@@ -17,11 +17,11 @@ export const DEFAULT_TEMPLATE: TemplateType = {
             children: [
                 {
                     type: "text",
-                    id: "text1",
+                    id: "text2",
                     height: 100,
                     width: 100,
-                    x: 500,
-                    y: 500,
+                    x: 1820,
+                    y: 980,
                     fontSize: 20,
                     fontFamily: "Arial",
                     fontWeight: "normal",

@@ -4,9 +4,13 @@ import { DivType, ElementType, ImageType, TemplateType, TextType } from "../type
 export const Template = ({
   template: { width, height, elements, id },
   modifications,
+  selected,
+  select,
 }: {
   template: TemplateType;
   modifications: ElementType[];
+  select?: (id: string) => void;
+  selected?: string;
 }) => {
   return (
     <div
@@ -23,61 +27,104 @@ export const Template = ({
           ...element,
           ...modifications.find((mod) => mod.id === element.id),
         };
-        return <Element key={index} element={modifiedElement} />;
+        return (
+          <Element key={index} element={modifiedElement} select={select} selected={selected} />
+        );
       })}
     </div>
   );
 };
-export const Element = ({ element }: { element: ElementType }) => {
+export const Element = ({
+  element,
+  selected,
+  select,
+}: {
+  element: ElementType;
+  selected?: string;
+  select?: (id: string) => void;
+}) => {
   const style: CSSProperties = {
     position: "absolute",
     top: `${element.y}px`,
     left: `${element.x}px`,
     width: `${element.width}px`,
     height: `${element.height}px`,
-    borderRadius: `${element.borderRadius}px`,
+    cursor: "pointer",
+    display: "flex",
   };
-  if (element.type === "text") return <Text style={style} element={element} />;
-  if (element.type === "image") return <Image style={style} element={element} />;
-  if (element.type === "div") return <Div style={style} element={element} />;
-  else return null;
-};
-
-export const Image = ({ style, element }: { style: CSSProperties; element: ImageType }) => {
-  return (
-    <img
-      src={element.src}
-      style={{
-        ...style,
-        objectFit: "contain",
-      }}
-    />
-  );
-};
-export const Text = ({ style, element }: { style: CSSProperties; element: TextType }) => {
+  if (selected === element.id) {
+    style.border = "1px solid red";
+  }
+  const onClick = () => {
+    if (selected !== element.id) {
+      select?.(element.id);
+      console.log(element.id);
+    }
+  };
   return (
     <div
       style={{
         ...style,
+      }}
+      onClick={onClick}
+    >
+      {element.type === "div" && <Div element={element} select={select} selected={selected} />}
+      {element.type === "image" && <Image element={element} />}
+      {element.type === "text" && <Text element={element} />}
+    </div>
+  );
+};
+
+export const Image = ({ element }: { element: ImageType }) => {
+  return (
+    <img
+      src={element.src}
+      style={{
+        height: "100%",
+        width: "100%",
+        objectFit: "contain",
+        borderRadius: `${element.borderRadius}px`,
+      }}
+    />
+  );
+};
+export const Text = ({ element }: { element: TextType }) => {
+  return (
+    <div
+      style={{
+        height: "100%",
+        width: "100%",
         backgroundColor: element.backgroundColor,
         color: element.color,
+        display: "flex",
+        borderRadius: `${element.borderRadius}px`,
       }}
     >
       {element.text}
     </div>
   );
 };
-export const Div = ({ style, element }: { style: CSSProperties; element: DivType }) => {
+export const Div = ({
+  element,
+  select,
+  selected,
+}: {
+  element: DivType;
+  select?: (id: string) => void;
+  selected?: string;
+}) => {
   return (
     <div
       style={{
-        ...style,
         display: "flex",
+        height: "100%",
+        width: "100%",
         backgroundColor: element.backgroundColor,
+        borderRadius: `${element.borderRadius}px`,
       }}
     >
       {element.children.map((child, index) => (
-        <Element key={index} element={child} />
+        <Element key={index} element={child} select={select} selected={selected} />
       ))}
     </div>
   );
