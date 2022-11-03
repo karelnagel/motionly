@@ -10,7 +10,7 @@ export type BaseElementType = {
     width: number
     x: number
     y: number
-    borderRadius?: number
+    borderRadius: number
 }
 export type TextType = {
     type: "text"
@@ -19,8 +19,8 @@ export type TextType = {
     fontWeight: string
     text: string
     textAlign: string
-    backgroundColor?: string
-    color?: string
+    backgroundColor: string
+    color: string
 } & BaseElementType
 
 export type ImageType = {
@@ -31,7 +31,7 @@ export type ImageType = {
 
 export type DivType = {
     type: "div"
-    backgroundColor?: string
+    backgroundColor: string
     children: ElementType[]
 } & BaseElementType
 

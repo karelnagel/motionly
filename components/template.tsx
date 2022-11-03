@@ -82,12 +82,13 @@ export const Image = ({ element }: { element: ImageType }) => {
       style={{
         height: "100%",
         width: "100%",
-        objectFit: "contain",
+        objectFit: element.objectFit || "cover",
         borderRadius: `${element.borderRadius}px`,
       }}
     />
   );
 };
+
 export const Text = ({ element }: { element: TextType }) => {
   return (
     <div
@@ -97,6 +98,10 @@ export const Text = ({ element }: { element: TextType }) => {
         backgroundColor: element.backgroundColor,
         color: element.color,
         display: "flex",
+        fontFamily: element.fontFamily,
+        fontSize: `${element.fontSize}px`,
+        fontWeight: element.fontWeight,
+        alignItems: "center",
         borderRadius: `${element.borderRadius}px`,
       }}
     >

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ElementEditor } from "../components/editor";
 import { Template } from "../components/template";
 import { ElementType } from "../types";
 import { DEFAULT_TEMPLATE } from "../types/defaults";
@@ -30,20 +31,19 @@ export default function Home() {
         VIEW
       </a>
       <div className="grid grid-cols-6">
-        <div className="">
-          {template.elements.map((element, index) => (
-            <div
-              key={index}
-              onClick={() => select(element.id)}
-              className="cursor-pointer"
-              style={{ background: selected === element.id ? "red" : "transparent" }}
-            >
-              {element.id}
-            </div>
-          ))}
-        </div>
+        <Elements elements={template.elements} select={select} selected={selected} />
         <div className="overflow-hidden col-span-4 bg-white">
-          <div className="scale-50 -m-[25%] overflow-hidden border border-black">
+          <div
+            className=" border border-black"
+            style={{
+              marginTop: `-${template.height / 4}px`,
+              marginLeft: `-${template.width / 6}px`,
+              transform: `scale(0.5)`,
+              height: `${template.height / 2}px`,
+              width: `${template.width / 2}px`,
+              aspectRatio: `${template.width / template.height}`,
+            }}
+          >
             <Template template={template} modifications={[]} select={select} selected={selected} />
           </div>
         </div>
@@ -53,45 +53,33 @@ export default function Home() {
     </div>
   );
 }
-
-export const ElementEditor = ({
-  element,
-  setElement,
+export const Elements = ({
+  selected,
+  elements,
+  select,
 }: {
-  element: ElementType;
-  setElement: (element: ElementType) => void;
+  selected?: string;
+  elements: ElementType[];
+  select: (id: string) => void;
 }) => {
   return (
     <div>
-      <p>{element.id}</p>
-      <NumberInput label="X" value={element.x} onChange={(x) => setElement({ ...element, x })} />
-      <NumberInput label="Y" value={element.y} onChange={(y) => setElement({ ...element, y })} />
-      <NumberInput
-        label="Height"
-        value={element.height}
-        onChange={(height) => setElement({ ...element, height })}
-      />
-      <NumberInput
-        label="width"
-        value={element.width}
-        onChange={(width) => setElement({ ...element, width })}
-      />
-    </div>
-  );
-};
-export const NumberInput = ({
-  label,
-  value,
-  onChange,
-}: {
-  label: string;
-  value: number;
-  onChange: (value: number) => void;
-}) => {
-  return (
-    <div>
-      <label>{label}</label>
-      <input value={value || 0} onChange={(e) => onChange(parseInt(e.target.value))} />
+      {elements.map((element, index) => (
+        <div key={index}>
+          <p
+            onClick={() => select(element.id)}
+            className="cursor-pointer"
+            style={{ background: selected === element.id ? "red" : "transparent" }}
+          >
+            {element.id}
+          </p>
+          {element.type === "div" && (
+            <div className="ml-2">
+              <Elements elements={element.children} select={select} selected={selected} />
+            </div>
+          )}
+        </div>
+      ))}
     </div>
   );
 };
