@@ -1,47 +1,16 @@
 import { CSSProperties } from "react";
-import { DivType, ElementType, ImageType, TemplateType, TextType } from "../types";
+import { DivType, ElementType, ImageType, TextType } from "../../types";
 
-export const Template = ({
-  template: { width, height, elements, id },
-  modifications,
-  selected,
-  select,
-}: {
-  template: TemplateType;
-  modifications: ElementType[];
-  select?: (id: string) => void;
-  selected?: string;
-}) => {
-  return (
-    <div
-      style={{
-        display: "flex",
-        width: `${width}px`,
-        height: `${height}px`,
-        margin: "0",
-        padding: 0,
-      }}
-    >
-      {elements.map((element, index) => {
-        const modifiedElement = {
-          ...element,
-          ...modifications.find((mod) => mod.id === element.id),
-        };
-        return (
-          <Element key={index} element={modifiedElement} select={select} selected={selected} />
-        );
-      })}
-    </div>
-  );
-};
 export const Element = ({
   element,
   selected,
   select,
+  setElement,
 }: {
   element: ElementType;
   selected?: string;
   select?: (id: string) => void;
+  setElement: (element: ElementType) => void;
 }) => {
   const style: CSSProperties = {
     position: "absolute",
@@ -61,14 +30,22 @@ export const Element = ({
       console.log(element.id);
     }
   };
+
   return (
     <div
       style={{
         ...style,
       }}
+      onDrag={(e) => {
+        e.stopPropagation();
+        const rect = e.currentTarget.getBoundingClientRect();
+        setElement({ ...element, x: (e.clientX - rect.left) * 4, y: (e.clientY - rect.top) * 4 });
+      }}
       onClick={onClick}
     >
-      {element.type === "div" && <Div element={element} select={select} selected={selected} />}
+      {element.type === "div" && (
+        <Div element={element} select={select} selected={selected} setElement={setElement} />
+      )}
       {element.type === "image" && <Image element={element} />}
       {element.type === "text" && <Text element={element} />}
     </div>
@@ -109,14 +86,17 @@ export const Text = ({ element }: { element: TextType }) => {
     </div>
   );
 };
+
 export const Div = ({
   element,
   select,
   selected,
+  setElement,
 }: {
   element: DivType;
   select?: (id: string) => void;
   selected?: string;
+  setElement: (element: ElementType) => void;
 }) => {
   return (
     <div
@@ -129,7 +109,13 @@ export const Div = ({
       }}
     >
       {element.children.map((child, index) => (
-        <Element key={index} element={child} select={select} selected={selected} />
+        <Element
+          key={index}
+          element={child}
+          select={select}
+          selected={selected}
+          setElement={setElement}
+        />
       ))}
     </div>
   );
