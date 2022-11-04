@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { RightPanel } from "../components/RightPanel";
 import { LeftPanel } from "../components/LeftPanel";
-import { Player } from "../components/Player";
+import { Player } from "../components/TemplatePlayer";
 import { Template } from "../components/template";
 import { ElementType } from "../types";
 import { DEFAULT_TEMPLATE } from "../types/defaults";
