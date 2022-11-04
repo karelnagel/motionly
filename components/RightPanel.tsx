@@ -8,13 +8,13 @@ export const RightPanel = ({
   setTemplate,
 }: {
   element?: ElementType;
-  setElement: (element: ElementType) => void;
+  setElement?: (element: ElementType) => void;
   template: TemplateType;
   setTemplate: (template: TemplateType) => void;
 }) => {
   return (
     <div className="bg-gray-600 h-full w-full">
-      {element && <ElementEditor element={element} setElement={setElement} />}
+      {element && setElement && <ElementEditor element={element} setElement={setElement} />}
       {!element && <TemplateEditor template={template} setTemplate={setTemplate} />}
     </div>
   );

@@ -20,6 +20,7 @@ export const Element = ({
     height: `${element.height}px`,
     cursor: "pointer",
     display: "flex",
+    overflow: "hidden",
   };
   if (selected === element.id) {
     style.border = "1px solid red";
@@ -68,22 +69,24 @@ export const Image = ({ element }: { element: ImageType }) => {
 
 export const Text = ({ element }: { element: TextType }) => {
   return (
-    <div
+    <p
       style={{
         height: "100%",
         width: "100%",
         backgroundColor: element.backgroundColor,
         color: element.color,
-        display: "flex",
         fontFamily: element.fontFamily,
         fontSize: `${element.fontSize}px`,
+        lineHeight: `${element.fontSize}px`,
+        padding: 0,
+        margin: 0,
         fontWeight: element.fontWeight,
-        alignItems: "center",
         borderRadius: `${element.borderRadius}px`,
+        textAlign: element.textAlign as any,
       }}
     >
       {element.text}
-    </div>
+    </p>
   );
 };
 
