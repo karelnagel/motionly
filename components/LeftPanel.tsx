@@ -7,10 +7,10 @@ export const LeftPanel = ({
   selected,
   elements,
   select,
-  id,
+  name,
   setElements,
 }: {
-  id: string;
+  name: string;
   selected?: string;
   elements: ElementType[];
   select: (id: string) => void;
@@ -20,9 +20,9 @@ export const LeftPanel = ({
     <div className="bg-gray-600 h-full flex flex-col">
       <p
         className=" w-full bg-blue-300 uppercase font-bold text-center py-3 text-lg mb-2 cursor-pointer"
-        onClick={() => select(id)}
+        onClick={() => select("")}
       >
-        {id}
+        {name}
       </p>
       <Elements elements={elements} select={select} selected={selected} setElements={setElements} />
       <div className="pt-4">

@@ -1,18 +1,27 @@
-import './globals.css'
+import Link from "next/link";
+import "./globals.css";
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
       <head />
-      <body>{children}</body>
+      <body>
+        <header className=" bg-white shadow-md">
+          <div className="max-w-screen-lg m-auto items-center flex justify-between py-3 px-2">
+            <Link className="text-3xl font-bold" href="/">
+              VidAPI
+            </Link>
+            <div className=" space-x-3 flex ">
+              <Link href="/templates">Templates</Link>
+              <Link href="/about">About</Link>
+            </div>
+          </div>
+        </header>
+        <main className="min-h-screen">{children}</main>
+        <footer className="bg-zinc-800 flex items-center justify-center py-10 text-4xl font-bold text-white">
+          <p>VidAPI</p>
+        </footer>
+      </body>
     </html>
-  )
+  );
 }

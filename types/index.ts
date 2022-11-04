@@ -1,8 +1,6 @@
-export interface TemplateType {
-    id: string
-    elements: ElementType[]
+export type SizeType = {
+    width: number,
     height: number
-    width: number
 }
 export type BaseElementType = {
     id: string

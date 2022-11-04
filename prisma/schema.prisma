@@ -11,11 +11,13 @@ datasource db {
 }
 
 model Template {
-  id          String      @id @default(cuid())
-  name        String  
-  description String
+  id          String   @id @default(cuid())
+  name        String
+  description String   @default("")
+  width       Int
+  height      Int
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   public      Boolean  @default(false)
-  template    String 
+  elements    String
 }

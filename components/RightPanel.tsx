@@ -1,45 +1,45 @@
 "use client";
-import { DivType, ElementType, ImageType, TemplateType, TextType } from "../types";
+import { DivType, ElementType, ImageType, SizeType, TextType } from "../types";
 import { ColorInput, NumberInput, TextInput } from "./inputs";
 
 export const RightPanel = ({
   element,
   setElement,
-  template,
-  setTemplate,
+  size,
+  setSize,
 }: {
   element?: ElementType;
   setElement?: (element: ElementType) => void;
-  template: TemplateType;
-  setTemplate: (template: TemplateType) => void;
+  size: SizeType;
+  setSize: (size: SizeType) => void;
 }) => {
   return (
     <div className="bg-gray-600 h-full w-full">
       {element && setElement && <ElementEditor element={element} setElement={setElement} />}
-      {!element && <TemplateEditor template={template} setTemplate={setTemplate} />}
+      {!element && <TemplateEditor size={size} setSize={setSize} />}
     </div>
   );
 };
 
 export const TemplateEditor = ({
-  template,
-  setTemplate,
+  size,
+  setSize,
 }: {
-  template: TemplateType;
-  setTemplate: (template: TemplateType) => void;
+  size: SizeType;
+  setSize: (template: SizeType) => void;
 }) => {
   return (
     <div>
       {/* <TextInput label="Template Name" value={template.name} onChange={(name) => setTemplate({...template, name})} /> */}
       <NumberInput
         label="Template Width"
-        value={template.width}
-        onChange={(width) => setTemplate({ ...template, width })}
+        value={size.width}
+        onChange={(width) => setSize({ ...size, width })}
       />
       <NumberInput
         label="Template Height"
-        value={template.height}
-        onChange={(height) => setTemplate({ ...template, height })}
+        value={size.height}
+        onChange={(height) => setSize({ ...size, height })}
       />
     </div>
   );

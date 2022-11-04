@@ -1,40 +1,44 @@
 "use client";
-import { ElementType, TemplateType } from "../../types";
+import { ElementType } from "../../types";
 import { Element } from "./element";
 
 export const Template = ({
-  template,
+  elements,
   modifications,
   selected,
   select,
-  setTemplate,
+  setElements,
+  height,
+  width,
 }: {
-  template: TemplateType;
+  elements: ElementType[];
   modifications: ElementType[];
   select?: (id: string) => void;
   selected?: string;
-  setTemplate: (template: TemplateType) => void;
+  width: number;
+  height: number;
+  setElements: (template: ElementType[]) => void;
 }) => {
   const setElement = (element: ElementType) => {
-    const elements = template.elements.map((e) => {
+    const elems = elements.map((e) => {
       if (e.id === element.id) {
         return element;
       }
       return e;
     });
-    setTemplate({ ...template, elements });
+    setElements(elems);
   };
   return (
     <div
       style={{
         display: "flex",
-        width: `${template.width}px`,
-        height: `${template.height}px`,
+        width: `${width}px`,
+        height: `${height}px`,
         margin: "0",
         padding: 0,
       }}
     >
-      {template.elements.map((element, index) => {
+      {elements.map((element, index) => {
         const modifiedElement = {
           ...element,
           ...modifications.find((mod) => mod.id === element.id),
