@@ -17,13 +17,13 @@ export const Player = ({
   return (
     <div className="overflow-hidden col-span-4 bg-gray-200 flex items-center justify-center relative">
       <div className="absolute top-4 right-4 flex items-center bg-white z-20 px-3 py-2 rounded-lg">
-        <AiOutlineMinus onClick={() => setScale(scale - 0.05)} />
+        <AiOutlineMinus onClick={() => setScale(scale - 0.05)} className="cursor-pointer" />
         <input
           value={scale || 0}
           className="w-16 text-center"
           onChange={(e) => setScale(Number(e.target.value) || 0)}
         />
-        <AiOutlinePlus onClick={() => setScale(scale + 0.05)} />
+        <AiOutlinePlus onClick={() => setScale(scale + 0.05)} className="cursor-pointer" />
       </div>
       <div style={{ width: `${width * scale}px`, height: `${height * scale}px` }}>
         <div

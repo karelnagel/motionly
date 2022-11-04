@@ -15,18 +15,18 @@ export const DEFAULT_IMAGE = (id: string) => <ImageType>({
 export const DEFAULT_TEXT = (id: string) => <TextType>({
     id,
     type: "text",
-    height: 100,
+    height: 30,
     width: 100,
     x: 0,
     y: 0,
-    backgroundColor: "#FF0000",
-    borderRadius: 100,
-    color: "#ffffff",
-    fontSize: 24,
+    backgroundColor: "transparent",
+    borderRadius: 0,
+    color: "#000000",
+    fontSize: 28,
     fontFamily: "Arial",
-    fontWeight: "normal",
+    fontWeight: "bold",
     text: "Hello World",
-    textAlign: "center"
+    textAlign: "left"
 })
 
 export const DEFAULT_DIV = (id: string) => <DivType>({
