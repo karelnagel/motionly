@@ -12,7 +12,7 @@ export default async function handler(req: NextRequest) {
   const { searchParams } = req.nextUrl;
   const username = searchParams.get("username");
 
-  return new ImageResponse(<Template template={template} modifications={[]} />, {
+  return new ImageResponse(<Template template={template} modifications={[]} setTemplate={()=>{}}/>, {
     width: template.width,
     height: template.height,
   });
