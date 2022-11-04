@@ -9,12 +9,14 @@ export const LeftPanel = ({
   select,
   name,
   setElements,
+  update,
 }: {
   name: string;
   selected?: string;
   elements: ElementType[];
   select: (id: string) => void;
   setElements: (elements: ElementType[]) => void;
+  update: () => void;
 }) => {
   return (
     <div className="bg-gray-600 h-full flex flex-col">
@@ -48,7 +50,7 @@ export const LeftPanel = ({
         </div>
       </div>
       <div className="mt-auto flex justify-between p-2">
-        <button>SAVE</button>
+        <button onClick={update}>SAVE</button>
         <a href="/api/image" target="_blank">
           VIEW
         </a>

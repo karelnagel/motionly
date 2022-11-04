@@ -7,7 +7,18 @@ export default async function Page({ params: { id } }: any) {
 
   return (
     <div>
-      <Edit template={template} />
+      <Edit
+        template={
+          {
+            width: template.width,
+            height: template.height,
+            elements: template.elements,
+            id: template.id,
+            name: template.name,
+            description: template.description,
+          } as any
+        }
+      />
     </div>
   );
 }

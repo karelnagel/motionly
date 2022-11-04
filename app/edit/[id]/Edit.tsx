@@ -7,6 +7,7 @@ import { Player } from "../../../components/TemplatePlayer";
 import { Template } from "../../../components/template";
 import { ElementType, SizeType } from "../../../types";
 import { Template as TemplateType } from "@prisma/client";
+import axios from "axios";
 
 export default function Edit({ template }: { template: TemplateType }) {
   const [elements, setElements] = useState<ElementType[]>(JSON.parse(template.elements));
@@ -49,6 +50,17 @@ export default function Edit({ template }: { template: TemplateType }) {
   };
   const foundElement = find(elements, setElementBase);
 
+  const update = async () => {
+    const result = await axios.put(`/api/templates/${template.id}`, {
+      elements: JSON.stringify(elements),
+      width: size.width,
+      height: size.height,
+      name: template.name,
+      description: template.description,
+    });
+    setElements(JSON.parse(result.data.elements));
+    setSize({ width: result.data.width, height: result.data.height });
+  };
   return (
     <div className="min-h-screen w-full bg-gray-400 grid grid-cols-6">
       <LeftPanel
@@ -57,6 +69,7 @@ export default function Edit({ template }: { template: TemplateType }) {
         selected={selected}
         name={template.name}
         setElements={(elements) => setElements(elements)}
+        update={update}
       />
       <Player height={template.height} width={template.width} scale={scale} setScale={setScale}>
         <Template

@@ -16,8 +16,8 @@ model Template {
   description String   @default("")
   width       Int
   height      Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime? @updatedAt
   public      Boolean  @default(false)
   elements    String
 }
