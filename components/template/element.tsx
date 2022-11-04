@@ -1,3 +1,4 @@
+"use client";
 import { CSSProperties } from "react";
 import { DivType, ElementType, ImageType, TextType } from "../../types";
 

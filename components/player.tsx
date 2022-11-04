@@ -1,3 +1,4 @@
+"use client";
 import { ReactElement } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 

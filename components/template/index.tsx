@@ -1,3 +1,4 @@
+"use client";
 import { ElementType, TemplateType } from "../../types";
 import { Element } from "./element";
 

@@ -1,3 +1,4 @@
+"use client";
 import { AiFillDelete } from "react-icons/ai";
 import { ElementType } from "../types";
 import { DEFAULT_DIV, DEFAULT_IMAGE, DEFAULT_TEXT } from "../types/defaults";

@@ -1,3 +1,4 @@
+"use client";
 import { DivType, ElementType, ImageType, TemplateType, TextType } from "../types";
 import { ColorInput, NumberInput, TextInput } from "./inputs";
 
