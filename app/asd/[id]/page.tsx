@@ -1,4 +1,3 @@
-import Edit from "./Edit";
 import { PrismaClient } from "@prisma/client";
 
 export default async function Page({ params: { id } }: any) {
@@ -7,18 +6,10 @@ export default async function Page({ params: { id } }: any) {
 
   return (
     <div>
-      <Edit
-        template={
-          {
-            width: template.width,
-            height: template.height,
-            elements: template.elements,
-            id: template.id,
-            name: template.name,
-            description: template.description,
-          } as any
-        }
-      />
+      <p>{id}</p>
+      <p>{template.name}</p>
+      <p>{template.width}</p>
+      
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 import Link from "next/link";
-import Image from "next/image";
 
 export default async function Templates() {
   const templates = await new PrismaClient().template.findMany();
