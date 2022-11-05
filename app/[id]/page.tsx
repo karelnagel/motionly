@@ -1,7 +1,7 @@
 import Edit from "./Edit";
 import { PrismaClient } from "@prisma/client";
 
-export default async function Page({ searchParams: { id } }: any) {
+export default async function Page({ params: { id } }: any) {
   if (!id) return <div>No id!</div>;
   const template = await new PrismaClient().template.findUnique({ where: { id } });
   if (!template) return <div>No template with this id!</div>;
