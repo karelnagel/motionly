@@ -10,7 +10,7 @@ export default async function Templates() {
         {templates.map((template) => (
           <Link
             key={template.id}
-            href={`/${template.id}`}
+            href={`/edit?id=${template.id}`}
             className=" relative rounded-lg overflow-hidden h-40 w-60"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
