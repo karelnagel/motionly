@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { RightPanel } from "../../components/RightPanel";
-import { LeftPanel } from "../../components/LeftPanel";
-import { Player } from "../../components/TemplatePlayer";
-import { Template } from "../../components/template";
-import { ElementType, SizeType } from "../../types";
+import { RightPanel } from "../../../components/RightPanel";
+import { LeftPanel } from "../../../components/LeftPanel";
+import { Player } from "../../../components/TemplatePlayer";
+import { Template } from "../../../components/template";
+import { ElementType, SizeType } from "../../../types";
 import { Template as TemplateType } from "@prisma/client";
 import axios from "axios";
 
