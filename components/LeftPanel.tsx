@@ -5,6 +5,7 @@ import { DEFAULT_DIV, DEFAULT_IMAGE, DEFAULT_TEXT } from "../types/defaults";
 
 export const LeftPanel = ({
   selected,
+  id,
   elements,
   select,
   name,
@@ -12,6 +13,7 @@ export const LeftPanel = ({
   update,
 }: {
   name: string;
+  id: string;
   selected?: string;
   elements: ElementType[];
   select: (id: string) => void;
@@ -51,10 +53,10 @@ export const LeftPanel = ({
       </div>
       <div className="mt-auto flex justify-between p-2">
         <button onClick={update}>SAVE</button>
-        <a href="/api/image" target="_blank">
+        <a href={`/api/images/${id}`} target="_blank" rel="noreferrer">
           VIEW
         </a>
-        <a href="/api/image" target="_blank" download>
+        <a href={`/api/images/${id}`} target="_blank" download rel="noreferrer">
           DOWN
         </a>
       </div>
