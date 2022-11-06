@@ -7,14 +7,14 @@ export default function Test({ id, elements }: { id: string; elements: string })
     JSON.stringify(JSON.parse(elements), null, 2)
   );
   return (
-    <div className="flex flex-col items-center space-y-4">
+    <div className="flex flex-col items-center space-y-4 h-96 my-10 ">
       <textarea
         value={modifiedElements}
         onChange={(e) => setModifiedElements(e.currentTarget.value)}
-        className="w-96 h-96"
+        className="w-full h-full max-w-screen-sm bg-zinc-300 m-auto p-2 rounded-lg"
       />
       <a
-        className=""
+        className="bg-blue-500 rounded-lg p-2 text-white"
         href={`/api/images/${id}?elements=${encodeURIComponent(modifiedElements)}`}
         target="_blank"
         rel="noreferrer"
