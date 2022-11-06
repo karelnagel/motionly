@@ -1,6 +1,8 @@
 import Edit from "./Edit";
 import { PrismaClient } from "@prisma/client";
 
+export const revalidate = 1;
+
 export default async function Page({ params: { id } }: any) {
   if (!id) return <div>No id!</div>;
   const template = await new PrismaClient().template.findUnique({ where: { id } });
