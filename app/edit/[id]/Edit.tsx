@@ -64,6 +64,7 @@ export default function Edit({ template }: { template: TemplateType }) {
   return (
     <div className="min-h-screen w-full bg-gray-400 grid grid-cols-6">
       <LeftPanel
+        id={template.id}
         elements={elements}
         select={select}
         selected={selected}
