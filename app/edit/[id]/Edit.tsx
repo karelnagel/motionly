@@ -72,14 +72,14 @@ export default function Edit({ template }: { template: TemplateType }) {
         setElements={(elements) => setElements(elements)}
         update={update}
       />
-      <Player height={template.height} width={template.width} scale={scale} setScale={setScale}>
+      <Player height={size.height} width={size.width} scale={scale} setScale={setScale}>
         <Template
           elements={elements}
           select={select}
           selected={selected}
           setElements={setElements}
-          width={template.width}
-          height={template.height}
+          width={size.width}
+          height={size.height}
         />
       </Player>
       <RightPanel

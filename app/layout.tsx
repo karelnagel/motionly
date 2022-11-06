@@ -9,7 +9,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className=" bg-white shadow-md">
           <div className="max-w-screen-lg m-auto items-center flex justify-between py-3 px-2">
             <Link className="text-3xl font-bold" href="/">
-              VidAPI
+              Home
             </Link>
             <div className=" space-x-3 flex ">
               <Link href="/templates">Templates</Link>
@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </header>
         <main className="min-h-screen">{children}</main>
         <footer className="bg-zinc-800 flex items-center justify-center py-10 text-4xl font-bold text-white">
-          <p>VidAPI</p>
+          <p>Home</p>
         </footer>
       </body>
     </html>
