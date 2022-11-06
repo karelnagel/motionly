@@ -10,7 +10,7 @@ export const config = {
 export default async function handler(req: NextRequest, res: NextApiResponse) {
   const id = req.nextUrl.searchParams.get("id");
   if (!id) return res.status(403).end();
-  const result = await fetch(`http://localhost:3000/api/templates/${id}`);
+  const result = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/templates/${id}`);
   const { width, height, elements } = await result.json();
 
   return new ImageResponse(
