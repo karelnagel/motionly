@@ -4,7 +4,6 @@ import { Element } from "./element";
 
 export const Template = ({
   elements,
-  modifications,
   selected,
   select,
   setElements,
@@ -12,7 +11,6 @@ export const Template = ({
   width,
 }: {
   elements: ElementType[];
-  modifications: ElementType[];
   select?: (id: string) => void;
   selected?: string;
   width: number;
@@ -39,14 +37,10 @@ export const Template = ({
       }}
     >
       {elements.map((element, index) => {
-        const modifiedElement = {
-          ...element,
-          ...modifications.find((mod) => mod.id === element.id),
-        };
         return (
           <Element
             key={index}
-            element={modifiedElement}
+            element={element}
             select={select}
             selected={selected}
             setElement={setElement}
