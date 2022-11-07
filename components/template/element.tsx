@@ -1,5 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { CSSProperties } from "react";
+import { Rnd } from "react-rnd";
+import { hexToRGBA } from "../../helpers";
 import { DivType, ElementType, ImageType, TextType } from "../../types";
 
 export const Element = ({
@@ -7,18 +10,17 @@ export const Element = ({
   selected,
   select,
   setElement,
+  scale = 1,
+  draggable = false,
 }: {
   element: ElementType;
   selected?: string;
   select?: (id: string) => void;
   setElement: (element: ElementType) => void;
+  scale?: number;
+  draggable?: boolean;
 }) => {
   const style: CSSProperties = {
-    position: "absolute",
-    top: `${element.y}px`,
-    left: `${element.x}px`,
-    width: `${element.width}px`,
-    height: `${element.height}px`,
     cursor: "pointer",
     display: "flex",
     overflow: "hidden",
@@ -32,32 +34,85 @@ export const Element = ({
       console.log(element.id);
     }
   };
-
-  return (
-    <div
-      style={{
-        ...style,
-      }}
-      onDrag={(e) => {
-        e.stopPropagation();
-        const rect = e.currentTarget.getBoundingClientRect();
-        setElement({ ...element, x: (e.clientX - rect.left) * 4, y: (e.clientY - rect.top) * 4 });
-      }}
-      onClick={onClick}
-    >
-      {element.type === "div" && (
-        <Div element={element} select={select} selected={selected} setElement={setElement} />
-      )}
-      {element.type === "image" && <Image element={element} />}
-      {element.type === "text" && <Text element={element} />}
-    </div>
-  );
+  if (draggable)
+    return (
+      <Rnd
+        style={style}
+        scale={scale}
+        disableDragging={selected !== element.id}
+        enableResizing={selected === element.id}
+        bounds=""
+        size={{
+          width: element.width,
+          height: element.height,
+        }}
+        onClick={onClick}
+        position={{
+          x: element.x,
+          y: element.y,
+        }}
+        onDrag={(e: any) => {
+          e.stopImmediatePropagation();
+        }}
+        onDragStop={(e: any, d: any) => {
+          e.stopImmediatePropagation();
+          setElement({ ...element, x: d.x, y: d.y });
+        }}
+        onResize={(e, direction, ref, delta, position) => {
+          setElement({
+            ...element,
+            width: ref.offsetWidth,
+            height: ref.offsetHeight,
+            ...position,
+          });
+        }}
+      >
+        {element.type === "div" && (
+          <DivElement
+            element={element}
+            select={select}
+            selected={selected}
+            setElement={setElement}
+            draggable
+          />
+        )}
+        {element.type === "image" && <ImageElement element={element} />}
+        {element.type === "text" && <TextElement element={element} />}
+      </Rnd>
+    );
+  else
+    return (
+      <div
+        style={{
+          ...style,
+          position: "absolute",
+          width: `${element.width}px`,
+          height: `${element.height}px`,
+          left: `${element.x}px`,
+          top: `${element.y}px`,
+        }}
+        onClick={onClick}
+      >
+        {element.type === "div" && (
+          <DivElement
+            element={element}
+            select={select}
+            selected={selected}
+            setElement={setElement}
+          />
+        )}
+        {element.type === "image" && <ImageElement element={element} />}
+        {element.type === "text" && <TextElement element={element} />}
+      </div>
+    );
 };
 
-export const Image = ({ element }: { element: ImageType }) => {
+export const ImageElement = ({ element }: { element: ImageType }) => {
   return (
     <img
       src={element.src}
+      draggable={false}
+      alt=""
       style={{
         height: "100%",
         width: "100%",
@@ -68,14 +123,14 @@ export const Image = ({ element }: { element: ImageType }) => {
   );
 };
 
-export const Text = ({ element }: { element: TextType }) => {
+export const TextElement = ({ element }: { element: TextType }) => {
   return (
     <p
       style={{
         height: "100%",
         width: "100%",
-        backgroundColor: element.backgroundColor,
-        color: element.color,
+        backgroundColor: hexToRGBA(element.backgroundColor),
+        color: hexToRGBA(element.color),
         fontFamily: element.fontFamily,
         fontSize: `${element.fontSize}px`,
         lineHeight: `${element.fontSize}px`,
@@ -91,24 +146,36 @@ export const Text = ({ element }: { element: TextType }) => {
   );
 };
 
-export const Div = ({
+export const DivElement = ({
   element,
   select,
   selected,
   setElement,
+  draggable,
 }: {
   element: DivType;
   select?: (id: string) => void;
   selected?: string;
   setElement: (element: ElementType) => void;
+  draggable?: boolean;
 }) => {
+  const set = (newElement: ElementType) => {
+    let elem = element;
+    elem.children = elem.children.map((e) => {
+      if (e.id === selected) {
+        return newElement;
+      }
+      return e;
+    });
+    setElement(elem);
+  };
   return (
     <div
       style={{
         display: "flex",
         height: "100%",
         width: "100%",
-        backgroundColor: element.backgroundColor,
+        backgroundColor: hexToRGBA(element.backgroundColor),
         borderRadius: `${element.borderRadius}px`,
       }}
     >
@@ -118,7 +185,8 @@ export const Div = ({
           element={child}
           select={select}
           selected={selected}
-          setElement={setElement}
+          setElement={set}
+          draggable={draggable}
         />
       ))}
     </div>

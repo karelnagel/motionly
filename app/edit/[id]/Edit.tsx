@@ -74,6 +74,7 @@ export default function Edit({ template }: { template: TemplateType }) {
       />
       <Player height={size.height} width={size.width} scale={scale} setScale={setScale}>
         <Template
+          scale={scale}
           elements={elements}
           select={select}
           selected={selected}

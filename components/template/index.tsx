@@ -9,6 +9,7 @@ export const Template = ({
   setElements,
   height,
   width,
+  scale = 1,
 }: {
   elements: ElementType[];
   select?: (id: string) => void;
@@ -16,6 +17,7 @@ export const Template = ({
   width: number;
   height: number;
   setElements: (template: ElementType[]) => void;
+  scale?: number;
 }) => {
   const setElement = (element: ElementType) => {
     const elems = elements.map((e) => {

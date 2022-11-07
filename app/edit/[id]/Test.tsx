@@ -11,10 +11,10 @@ export default function Test({ id, elements }: { id: string; elements: string })
       <textarea
         value={modifiedElements}
         onChange={(e) => setModifiedElements(e.currentTarget.value)}
-        className="w-full h-full max-w-screen-sm bg-zinc-300 m-auto p-2 rounded-lg"
+        className="w-full h-full max-w-screen-sm bg-base-300 m-auto p-2 rounded-lg"
       />
       <a
-        className="bg-blue-500 rounded-lg p-2 text-white"
+        className="bg-primary text-primary-content rounded-lg p-2 "
         href={`/api/images/${id}?elements=${encodeURIComponent(modifiedElements)}`}
         target="_blank"
         rel="noreferrer"
