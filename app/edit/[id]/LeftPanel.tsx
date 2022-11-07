@@ -47,6 +47,8 @@ export const LeftPanel = ({
 type ElementWLevel = {
   element: ElementType;
   level: number;
+  parentId: string;
+  pos: number;
 };
 export const Elements = ({
   selected,
@@ -59,16 +61,19 @@ export const Elements = ({
   select: (id: string) => void;
   setElements: (elements: ElementType[]) => void;
 }) => {
-  const recursion = (elements: ElementType[], level: number): ElementWLevel[] => {
-    return elements.flatMap((element) =>
+  const recursion = (elements: ElementType[], level: number, parentId: string): ElementWLevel[] => {
+    return elements.flatMap((element, pos) =>
       element.type === "div"
-        ? ([{ element, level }, ...recursion(element.children, level + 1)] as ElementWLevel[])
-        : [{ element, level }]
+        ? ([
+            { element, level, parentId, pos },
+            ...recursion(element.children, level + 1, element.id),
+          ] as ElementWLevel[])
+        : [{ element, level, parentId, pos }]
     );
   };
-  const elems = recursion(elements, 0);
+  const elems = recursion(elements, 0, "");
   const height = 30;
-
+  const step = 15;
   return (
     <div className="h-full">
       {elems.map(({ element, level }, index) => (
@@ -77,12 +82,34 @@ export const Elements = ({
           bounds="parent"
           enableResizing={false}
           disableDragging={selected !== element.id}
-          dragGrid={[10, 10]}
+          dragGrid={[height, height]}
           size={{ width: 200, height }}
-          position={{ x: level*20, y: index * height }}
+          position={{ x: level * step, y: index * height }}
           onClick={() => select(element.id)}
           onDragStop={(e, d) => {
-            console.log(d);
+            const newIndex = Math.round(d.y / height);
+            const newLevel = Math.round(d.x / step);
+
+            const oldElem = elems[newIndex];
+            // If the element is moved inside a div but to a lower level
+            if (oldElem && oldElem.level > newLevel) return console.log("Invalid drag!");
+
+            const newParentId =
+              oldElem?.level === newLevel ? oldElem.parentId : oldElem?.element?.id || "";
+            const newPos = oldElem?.level === newLevel ? oldElem.pos : 0;
+            
+            //find the old element and delete that and insert the new one
+            const recursion = (elements: ElementType[], parentId: string): ElementType[] => {
+              const newElems = elements.map((e) => {
+                if (e.id === element.id) return null;
+                if (e.type === "div") return { ...e, children: recursion(e.children, e.id) };
+
+                return e;
+              });
+              if (newParentId === parentId) newElems.splice(newPos, 0, element);
+              return newElems.filter((e) => e !== null) as ElementType[];
+            };
+            setElements(recursion(elements, ""));
           }}
         >
           <div
@@ -92,7 +119,18 @@ export const Elements = ({
           >
             <p>{element.id}</p>
             <AiFillDelete
-              onClick={() => setElements(elements.filter((e) => e.id !== element.id))}
+              onClick={() => {
+                const recursion = (elements: ElementType[]): ElementType[] => {
+                  const newElems = elements.map((e) => {
+                    if (e.id === element.id) return null;
+                    if (e.type === "div") return { ...e, children: recursion(e.children) };
+
+                    return e;
+                  });
+                  return newElems.filter((e) => e !== null) as ElementType[];
+                };
+                setElements(recursion(elements));
+              }}
             />
           </div>
         </Rnd>
