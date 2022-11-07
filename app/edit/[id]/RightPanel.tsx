@@ -30,15 +30,11 @@ export const TemplateEditor = ({
   setSize: (template: SizeType) => void;
 }) => {
   return (
-    <div>
-      {/* <TextInput label="Template Name" value={template.name} onChange={(name) => setTemplate({...template, name})} /> */}
+    <div className="w-full grid grid-cols-2 items-center justify-items-start gap-3 py-10 px-4">
+      <p className="text-xl font-bold col-span-2">Template</p>
+      <NumberInput label="W" value={size.width} onChange={(width) => setSize({ ...size, width })} />
       <NumberInput
-        label="Template Width"
-        value={size.width}
-        onChange={(width) => setSize({ ...size, width })}
-      />
-      <NumberInput
-        label="Template Height"
+        label="H"
         value={size.height}
         onChange={(height) => setSize({ ...size, height })}
       />

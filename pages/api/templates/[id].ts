@@ -1,11 +1,11 @@
-import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
+import { prisma } from "../../../prisma/client";
 
 export default async function Update(req: NextApiRequest, res: NextApiResponse) {
     const id = req.query.id as string;
 
     if (req.method === "GET") {
-        const result = await new PrismaClient().template.findUnique({
+        const result = await prisma.template.findUnique({
             where: { id }
         })
         if (!result) return res.status(404).end();
@@ -14,7 +14,7 @@ export default async function Update(req: NextApiRequest, res: NextApiResponse) 
 
     else if (req.method === "PUT") {
 
-        const result = await new PrismaClient().template.update({
+        const result = await prisma.template.update({
             where: { id },
             data: {
                 elements: req.body.elements,

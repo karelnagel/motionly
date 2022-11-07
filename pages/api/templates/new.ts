@@ -1,10 +1,10 @@
-import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { DEFAULT_ELEMENTS } from "../../../types/defaults";
+import { prisma } from "../../../prisma/client";
 
 export default async function New(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== "POST") res.status(405).end();
-    const result = await new PrismaClient().template.create({
+    const result = await prisma.template.create({
         data: {
             name: req.body.name,
             description: req.body.description,

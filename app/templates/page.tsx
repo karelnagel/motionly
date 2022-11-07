@@ -1,8 +1,8 @@
-import { PrismaClient } from "@prisma/client";
 import Link from "next/link";
+import { prisma } from "../../prisma/client";
 
 export default async function Templates() {
-  const templates = await new PrismaClient().template.findMany();
+  const templates = await prisma.template.findMany();
   return (
     <div>
       <p>Templates</p>
