@@ -73,7 +73,8 @@ export const Element = ({
             select={select}
             selected={selected}
             setElement={setElement}
-            draggable
+            draggable={draggable}
+            scale={scale}
           />
         )}
         {element.type === "image" && <ImageElement element={element} />}
@@ -98,7 +99,9 @@ export const Element = ({
             element={element}
             select={select}
             selected={selected}
+            scale={scale}
             setElement={setElement}
+            draggable={draggable}
           />
         )}
         {element.type === "image" && <ImageElement element={element} />}
@@ -152,12 +155,14 @@ export const DivElement = ({
   selected,
   setElement,
   draggable,
+  scale,
 }: {
   element: DivType;
   select?: (id: string) => void;
   selected?: string;
   setElement: (element: ElementType) => void;
-  draggable?: boolean;
+  draggable: boolean;
+  scale: number;
 }) => {
   const set = (newElement: ElementType) => {
     let elem = element;
@@ -187,6 +192,7 @@ export const DivElement = ({
           selected={selected}
           setElement={set}
           draggable={draggable}
+          scale={scale}
         />
       ))}
     </div>

@@ -81,6 +81,7 @@ export default function Edit({ template }: { template: TemplateType }) {
           setElements={setElements}
           width={size.width}
           height={size.height}
+          draggable
         />
       </Player>
       <RightPanel

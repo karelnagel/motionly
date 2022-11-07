@@ -10,6 +10,7 @@ export const Template = ({
   height,
   width,
   scale = 1,
+  draggable = false,
 }: {
   elements: ElementType[];
   select?: (id: string) => void;
@@ -18,6 +19,7 @@ export const Template = ({
   height: number;
   setElements: (template: ElementType[]) => void;
   scale?: number;
+  draggable?: boolean;
 }) => {
   const setElement = (element: ElementType) => {
     const elems = elements.map((e) => {
@@ -46,6 +48,8 @@ export const Template = ({
             select={select}
             selected={selected}
             setElement={setElement}
+            draggable={draggable}
+            scale={scale}
           />
         );
       })}
