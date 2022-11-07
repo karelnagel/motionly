@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { RightPanel } from "../../../components/RightPanel";
-import { LeftPanel } from "../../../components/LeftPanel";
-import { Player } from "../../../components/TemplatePlayer";
+import { RightPanel } from "./RightPanel";
+import { LeftPanel } from "./LeftPanel";
+import { Player } from "./TemplatePlayer";
 import { Template } from "../../../components/template";
 import { ElementType, SizeType } from "../../../types";
 import { Template as TemplateType } from "@prisma/client";

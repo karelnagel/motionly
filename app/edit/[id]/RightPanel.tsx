@@ -1,6 +1,7 @@
 "use client";
-import { DivType, ElementType, ImageType, SizeType, TextType } from "../types";
-import { ColorInput, NumberInput, TextInput } from "./inputs";
+
+import { DivType, ElementType, ImageType, SizeType, TextType } from "../../../types";
+import { ColorInput, NumberInput, TextInput } from "../../../components/inputs";
 
 export const RightPanel = ({
   element,
@@ -14,7 +15,7 @@ export const RightPanel = ({
   setSize: (size: SizeType) => void;
 }) => {
   return (
-    <div className="bg-gray-600 h-full w-full">
+    <div className="bg-base-100 border-t h-full w-full">
       {element && setElement && <ElementEditor element={element} setElement={setElement} />}
       {!element && <TemplateEditor size={size} setSize={setSize} />}
     </div>
@@ -53,10 +54,9 @@ export const ElementEditor = ({
   setElement: (element: ElementType) => void;
 }) => {
   return (
-    <div className="h-full w-full">
+    <div className=" w-full grid grid-cols-2 items-center justify-items-start gap-3  py-10 px-4">
       {element && (
         <>
-          <p>{element.id}</p>
           <NumberInput
             label="X"
             value={element.x}
@@ -68,17 +68,17 @@ export const ElementEditor = ({
             onChange={(y) => setElement({ ...element, y })}
           />
           <NumberInput
-            label="Height"
-            value={element.height}
-            onChange={(height) => setElement({ ...element, height })}
-          />
-          <NumberInput
-            label="width"
+            label="W"
             value={element.width}
             onChange={(width) => setElement({ ...element, width })}
           />
           <NumberInput
-            label="border radius"
+            label="H"
+            value={element.height}
+            onChange={(height) => setElement({ ...element, height })}
+          />
+          <NumberInput
+            label="RAD"
             value={element.borderRadius}
             onChange={(borderRadius) => setElement({ ...element, borderRadius })}
           />
@@ -99,8 +99,8 @@ export const TextEditor = ({
   setElement: (element: TextType) => void;
 }) => {
   return (
-    <div>
-      <p>Text editor</p>
+    <>
+      <p className="col-span-2 text-lg font-bold">Text details</p>
       <TextInput
         label="Text"
         value={element.text}
@@ -112,31 +112,32 @@ export const TextEditor = ({
         onChange={(color) => setElement({ ...element, color })}
       />
       <ColorInput
-        label="Background"
+        label="Back"
         value={element.backgroundColor}
         onChange={(backgroundColor) => setElement({ ...element, backgroundColor })}
       />
       <NumberInput
-        label="Font size"
+        label="Size"
+        className="col-span-2"
         value={element.fontSize}
         onChange={(fontSize) => setElement({ ...element, fontSize })}
       />
       <TextInput
-        label="Font family"
+        label="Family"
         value={element.fontFamily}
         onChange={(fontFamily) => setElement({ ...element, fontFamily })}
       />
       <TextInput
-        label="Font weight"
+        label="Weight"
         value={element.fontWeight}
         onChange={(fontWeight) => setElement({ ...element, fontWeight })}
       />
       <TextInput
-        label="Text align"
+        label="Align"
         value={element.textAlign}
         onChange={(textAlign) => setElement({ ...element, textAlign })}
       />
-    </div>
+    </>
   );
 };
 
@@ -148,19 +149,19 @@ export const ImageEditor = ({
   setElement: (element: ImageType) => void;
 }) => {
   return (
-    <div>
-      <p>Image editor</p>
+    <>
+      <p className="col-span-2 text-lg font-bold">Image details</p>
       <TextInput
         label="Src"
         value={element.src}
         onChange={(src) => setElement({ ...element, src })}
       />
       <TextInput
-        label="Object fit "
+        label="Fit"
         value={element.objectFit}
         onChange={(objectFit) => setElement({ ...element, objectFit: objectFit as any })}
       />
-    </div>
+    </>
   );
 };
 
@@ -172,13 +173,13 @@ export const DivEditor = ({
   setElement: (element: DivType) => void;
 }) => {
   return (
-    <div>
-      <p>Div editor</p>
+    <>
+      <p className="col-span-2 text-lg font-bold">Div editor</p>
       <ColorInput
-        label="Src"
+        label="Back"
         value={element.backgroundColor}
         onChange={(backgroundColor) => setElement({ ...element, backgroundColor })}
       />
-    </div>
+    </>
   );
 };

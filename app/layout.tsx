@@ -6,7 +6,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head />
       <body>
-        <header className=" bg-white shadow-md">
+        <header className=" bg-base-100 shadow-md">
           <div className="max-w-screen-lg m-auto items-center flex justify-between py-3 px-2">
             <Link className="text-3xl font-bold" href="/">
               Home

@@ -10,10 +10,14 @@ export const config = {
 
 export default async function handler(req: NextRequest, res: NextApiResponse) {
   const id = req.nextUrl.searchParams.get("id");
-  const modifiedElements = JSON.parse(
-    req.nextUrl.searchParams.get("elements") || "[]"
-  ) as ElementType[];
   if (!id) return res.status(403).end();
+
+  let modifiedElements: ElementType[] = [];
+  try {
+    modifiedElements = JSON.parse(req.nextUrl.searchParams.get("elements") || "[]");
+  } catch (e) {
+    console.log(e);
+  }
 
   const result = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/templates/${id}`);
   const { width, height, elements } = await result.json();
