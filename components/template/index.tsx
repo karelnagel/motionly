@@ -11,6 +11,7 @@ export const Template = ({
   width,
   scale = 1,
   draggable = false,
+  lockAspectRatio,
 }: {
   elements: ElementType[];
   select?: (id: string) => void;
@@ -20,6 +21,7 @@ export const Template = ({
   setElements: (template: ElementType[]) => void;
   scale?: number;
   draggable?: boolean;
+  lockAspectRatio: boolean;
 }) => {
   const setElement = (element: ElementType) => {
     const elems = elements.map((e) => {
@@ -43,6 +45,7 @@ export const Template = ({
       {elements.map((element, index) => {
         return (
           <Element
+            lockAspectRatio={lockAspectRatio}
             key={index}
             element={element}
             select={select}

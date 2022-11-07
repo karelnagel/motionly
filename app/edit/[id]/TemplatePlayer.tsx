@@ -20,7 +20,7 @@ export const Player = ({
       <div style={{ width: `${width * scale}px`, height: `${height * scale}px` }}>
         <Scale scale={scale} setScale={setScale} />
         <div
-          className=" border border-black overflow-hidden shrink-0 bg-white"
+          className="border border-black overflow-hidden shrink-0 bg-white select-none"
           style={{
             transform: `scale(${scale}) `,
             transformOrigin: "top left",
@@ -34,6 +34,7 @@ export const Player = ({
     </div>
   );
 };
+
 const Scale = ({ scale, setScale }: { scale: number; setScale: (scale: number) => void }) => {
   return (
     <div className="absolute top-4 right-4 flex items-center bg-base-300 z-20 px-3 py-2 rounded-lg space-x-2">

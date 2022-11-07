@@ -12,6 +12,7 @@ export const Element = ({
   setElement,
   scale = 1,
   draggable = false,
+  lockAspectRatio,
 }: {
   element: ElementType;
   selected?: string;
@@ -19,26 +20,23 @@ export const Element = ({
   setElement: (element: ElementType) => void;
   scale?: number;
   draggable?: boolean;
+  lockAspectRatio: boolean;
 }) => {
   const style: CSSProperties = {
     cursor: "pointer",
     display: "flex",
     overflow: "hidden",
   };
-  if (selected === element.id) {
-    style.border = "1px solid red";
-  }
   const onClick = () => {
-    if (selected !== element.id) {
-      select?.(element.id);
-      console.log(element.id);
-    }
+    select?.(element.id);
+    console.log(element.id);
   };
   if (draggable)
     return (
       <Rnd
         style={style}
         scale={scale}
+        lockAspectRatio={lockAspectRatio}
         disableDragging={selected !== element.id}
         enableResizing={selected === element.id}
         bounds=""
@@ -46,7 +44,10 @@ export const Element = ({
           width: element.width,
           height: element.height,
         }}
-        onClick={onClick}
+        onClick={(e: any) => {
+          onClick();
+          e.stopPropagation();
+        }}
         position={{
           x: element.x,
           y: element.y,
@@ -67,9 +68,13 @@ export const Element = ({
           });
         }}
       >
+        {selected === element.id && (
+          <div className=" absolute top-0 left-0 w-full h-full  border-blue-500 border-4" />
+        )}
         {element.type === "div" && (
           <DivElement
             element={element}
+            lockAspectRatio={lockAspectRatio}
             select={select}
             selected={selected}
             setElement={setElement}
@@ -96,6 +101,7 @@ export const Element = ({
       >
         {element.type === "div" && (
           <DivElement
+            lockAspectRatio={lockAspectRatio}
             element={element}
             select={select}
             selected={selected}
@@ -156,6 +162,7 @@ export const DivElement = ({
   setElement,
   draggable,
   scale,
+  lockAspectRatio,
 }: {
   element: DivType;
   select?: (id: string) => void;
@@ -163,6 +170,7 @@ export const DivElement = ({
   setElement: (element: ElementType) => void;
   draggable: boolean;
   scale: number;
+  lockAspectRatio: boolean;
 }) => {
   const set = (newElement: ElementType) => {
     let elem = element;
@@ -186,6 +194,7 @@ export const DivElement = ({
     >
       {element.children.map((child, index) => (
         <Element
+          lockAspectRatio={lockAspectRatio}
           key={index}
           element={child}
           select={select}

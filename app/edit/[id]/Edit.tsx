@@ -8,12 +8,14 @@ import { Template } from "../../../components/template";
 import { ElementType, SizeType } from "../../../types";
 import { Template as TemplateType } from "@prisma/client";
 import axios from "axios";
+import { useShiftKey } from "../../../hooks/useShiftKey";
 
 export default function Edit({ template }: { template: TemplateType }) {
   const [elements, setElements] = useState<ElementType[]>(JSON.parse(template.elements));
   const [size, setSize] = useState<SizeType>({ width: template.width, height: template.height });
   const [selected, setSelected] = useState<string>();
   const [scale, setScale] = useState(0.4);
+  const lockAspectRatio = useShiftKey();
   const select = (id: string) => {
     setSelected(id);
   };
@@ -74,6 +76,7 @@ export default function Edit({ template }: { template: TemplateType }) {
       />
       <Player height={size.height} width={size.width} scale={scale} setScale={setScale}>
         <Template
+          lockAspectRatio={lockAspectRatio}
           scale={scale}
           elements={elements}
           select={select}

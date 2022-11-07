@@ -1,6 +1,7 @@
 "use client";
 
 import { AiFillDelete, AiOutlinePlus } from "react-icons/ai";
+import { Rnd } from "react-rnd";
 import { ElementType } from "../../../types";
 import { DEFAULT_DIV, DEFAULT_IMAGE, DEFAULT_TEXT } from "../../../types/defaults";
 
@@ -43,7 +44,10 @@ export const LeftPanel = ({
     </div>
   );
 };
-
+type ElementWLevel = {
+  element: ElementType;
+  level: number;
+};
 export const Elements = ({
   selected,
   elements,
@@ -55,12 +59,33 @@ export const Elements = ({
   select: (id: string) => void;
   setElements: (elements: ElementType[]) => void;
 }) => {
+  const recursion = (elements: ElementType[], level: number): ElementWLevel[] => {
+    return elements.flatMap((element) =>
+      element.type === "div"
+        ? ([{ element, level }, ...recursion(element.children, level + 1)] as ElementWLevel[])
+        : [{ element, level }]
+    );
+  };
+  const elems = recursion(elements, 0);
+  const height = 30;
+
   return (
-    <div className="">
-      {elements.map((element, index) => (
-        <div key={index}>
+    <div className="h-full">
+      {elems.map(({ element, level }, index) => (
+        <Rnd
+          key={index}
+          bounds="parent"
+          enableResizing={false}
+          disableDragging={selected !== element.id}
+          dragGrid={[10, 10]}
+          size={{ width: 200, height }}
+          position={{ x: level*20, y: index * height }}
+          onClick={() => select(element.id)}
+          onDragStop={(e, d) => {
+            console.log(d);
+          }}
+        >
           <div
-            onClick={() => select(element.id)}
             className={`cursor-pointer flex justify-between items-center py-1 px-2 ${
               selected === element.id ? "bg-primary" : ""
             }`}
@@ -70,26 +95,7 @@ export const Elements = ({
               onClick={() => setElements(elements.filter((e) => e.id !== element.id))}
             />
           </div>
-          {element.type === "div" && (
-            <div className="ml-2">
-              <Elements
-                elements={element.children}
-                select={select}
-                selected={selected}
-                setElements={(el) =>
-                  setElements(
-                    elements.map((e) => {
-                      if (e.id === element.id) {
-                        return { ...e, children: el };
-                      }
-                      return e;
-                    })
-                  )
-                }
-              />
-            </div>
-          )}
-        </div>
+        </Rnd>
       ))}
     </div>
   );
