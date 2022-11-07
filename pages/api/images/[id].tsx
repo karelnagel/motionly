@@ -39,7 +39,15 @@ export default async function handler(req: NextRequest, res: NextApiResponse) {
   const finalElems = replace(JSON.parse(elements));
 
   return new ImageResponse(
-    <Template width={width} height={height} elements={finalElems} setElements={() => {}} />,
+    (
+      <Template
+        width={width}
+        height={height}
+        elements={finalElems}
+        setElements={() => {}}
+        lockAspectRatio={false}
+      />
+    ),
     {
       width: modWidth || width,
       height: modHeight || height,
