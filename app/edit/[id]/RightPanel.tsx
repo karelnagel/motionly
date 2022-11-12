@@ -1,7 +1,8 @@
 "use client";
 
 import { DivType, ElementType, ImageType, SizeType, TextType } from "../../../types";
-import { ColorInput, FontInput, NumberInput, TextInput } from "../../../components/inputs";
+import { ColorInput, NumberInput, SelectInput, TextInput } from "../../../components/inputs";
+import { FONTS } from "../../../types/defaults";
 
 export const RightPanel = ({
   element,
@@ -77,6 +78,11 @@ export const ElementEditor = ({
             label="RAD"
             value={element.borderRadius}
             onChange={(borderRadius) => setElement({ ...element, borderRadius })}
+          />{" "}
+          <NumberInput
+            label="ROT"
+            value={element.rotation}
+            onChange={(rotation) => setElement({ ...element, rotation })}
           />
           {element.type === "text" && <TextEditor element={element} setElement={setElement} />}
           {element.type === "image" && <ImageEditor element={element} setElement={setElement} />}
@@ -118,20 +124,22 @@ export const TextEditor = ({
         value={element.fontSize}
         onChange={(fontSize) => setElement({ ...element, fontSize })}
       />
-      <FontInput
+      <SelectInput
         label="Family"
         value={element.fontFamily}
         onChange={(fontFamily) => setElement({ ...element, fontFamily })}
+        list={FONTS}
       />
-      <TextInput
+      <NumberInput
         label="Weight"
         value={element.fontWeight}
         onChange={(fontWeight) => setElement({ ...element, fontWeight })}
       />
-      <TextInput
+      <SelectInput
         label="Align"
         value={element.textAlign}
         onChange={(textAlign) => setElement({ ...element, textAlign })}
+        list={["left", "center", "right"]}
       />
     </>
   );
@@ -152,10 +160,11 @@ export const ImageEditor = ({
         value={element.src}
         onChange={(src) => setElement({ ...element, src })}
       />
-      <TextInput
+      <SelectInput
         label="Fit"
         value={element.objectFit}
         onChange={(objectFit) => setElement({ ...element, objectFit: objectFit as any })}
+        list={["fill", "contain", "cover", "none", "scale-down"]}
       />
     </>
   );

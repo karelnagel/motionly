@@ -26,8 +26,9 @@ export const DEFAULT_TEXT = (id: string) => <TextType>({
     color: "#000000FF",
     fontSize: 28,
     fontFamily: "Inter",
-    fontWeight: "700",
+    fontWeight: 700,
     text: "Hello World",
+    rotation: 0,
     textAlign: "left"
 })
 
@@ -40,6 +41,7 @@ export const DEFAULT_DIV = (id: string) => <DivType>({
     y: 0,
     backgroundColor: "#FF0000FF",
     borderRadius: 100,
+    rotation: 0,
     children: []
 })
 
@@ -52,6 +54,7 @@ export const DEFAULT_ELEMENTS: ElementType[] = [
         x: 0,
         y: 0,
         objectFit: "cover",
+        rotation: 0,
         borderRadius: 0,
         src: "https://picsum.photos/1920/1080",
     },
@@ -60,6 +63,7 @@ export const DEFAULT_ELEMENTS: ElementType[] = [
         type: "div",
         height: 400,
         width: 600,
+        rotation: 0,
         x: 240,
         y: 340,
         backgroundColor: "#FFFFFFFF",
@@ -73,6 +77,7 @@ export const DEFAULT_ELEMENTS: ElementType[] = [
                 x: 20,
                 y: 20,
                 objectFit: "cover",
+                rotation: 0,
                 borderRadius: 100,
                 src: "https://picsum.photos/80/80",
 
@@ -87,9 +92,10 @@ export const DEFAULT_ELEMENTS: ElementType[] = [
                 backgroundColor: "#00000000",
                 borderRadius: 100,
                 color: "#000000FF",
+                rotation: 0,
                 fontSize: 28,
                 fontFamily: "Inter",
-                fontWeight: "700",
+                fontWeight: 700,
                 text: "Your mom",
                 textAlign: "left"
             },
@@ -103,9 +109,10 @@ export const DEFAULT_ELEMENTS: ElementType[] = [
                 backgroundColor: "#00000000",
                 borderRadius: 100,
                 color: "#000000FF",
+                rotation: 0,
                 fontSize: 24,
                 fontFamily: "Inter",
-                fontWeight: "500",
+                fontWeight: 500,
                 text: "@yourmom",
                 textAlign: "left"
             },
@@ -119,9 +126,10 @@ export const DEFAULT_ELEMENTS: ElementType[] = [
                 backgroundColor: "#00000000",
                 borderRadius: 0,
                 color: "#000000FF",
+                rotation: 0,
                 fontSize: 24,
                 fontFamily: "Inter",
-                fontWeight: "500",
+                fontWeight: 500,
                 text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
                 textAlign: "left"
             }

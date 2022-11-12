@@ -26,6 +26,8 @@ export const Element = ({
     cursor: "pointer",
     display: "flex",
     overflow: "hidden",
+    position: "relative",
+    transform: `rotate(${element.rotation || 0}deg)`, // For some reason, this messes up x and y
   };
   const onClick = () => {
     select?.(element.id);
@@ -34,7 +36,6 @@ export const Element = ({
   if (draggable)
     return (
       <Rnd
-        style={style}
         scale={scale}
         lockAspectRatio={lockAspectRatio}
         disableDragging={selected !== element.id}
@@ -68,22 +69,24 @@ export const Element = ({
           });
         }}
       >
-        {selected === element.id && (
-          <div className=" absolute top-0 left-0 w-full h-full  border-blue-500 border-4" />
-        )}
-        {element.type === "div" && (
-          <DivElement
-            element={element}
-            lockAspectRatio={lockAspectRatio}
-            select={select}
-            selected={selected}
-            setElement={setElement}
-            draggable={draggable}
-            scale={scale}
-          />
-        )}
-        {element.type === "image" && <ImageElement element={element} />}
-        {element.type === "text" && <TextElement element={element} />}
+        <div style={{ ...style, width: `100%`, height: `100%` }}>
+          {selected === element.id && (
+            <div className=" absolute top-0 left-0 w-full h-full  border-blue-500 border-4" />
+          )}
+          {element.type === "div" && (
+            <DivElement
+              element={element}
+              lockAspectRatio={lockAspectRatio}
+              select={select}
+              selected={selected}
+              setElement={setElement}
+              draggable={draggable}
+              scale={scale}
+            />
+          )}
+          {element.type === "image" && <ImageElement element={element} />}
+          {element.type === "text" && <TextElement element={element} />}
+        </div>
       </Rnd>
     );
   else

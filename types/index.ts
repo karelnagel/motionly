@@ -9,12 +9,13 @@ export type BaseElementType = {
     x: number
     y: number
     borderRadius: number
+    rotation: number
 }
 export type TextType = {
     type: "text"
     fontSize: number
     fontFamily: string
-    fontWeight: string
+    fontWeight: number
     text: string
     textAlign: string
     backgroundColor: string
