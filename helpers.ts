@@ -1,3 +1,5 @@
+import { ElementType } from "./types";
+
 export const percentToHex = (p: number) => {
     const intValue = Math.round(p / 100 * 255); // map percent to nearest integer (0 - 255)
     const hexValue = intValue.toString(16); // get hexadecimal representation
@@ -17,4 +19,13 @@ export function hexToRGBA(hex: string) {
         a = hexToPercent(hex.slice(7, 9)) * 0.01;
 
     return "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
+}
+
+type Font = { family: string, weight: number }
+export function getFonts(elements: ElementType[]): (Font)[] {
+    return elements.map((e) => {
+        if (e.type === "text") return [{ family: e.fontFamily, weight: Number(e.fontWeight) || 500 }]
+        if (e.type === "div") return getFonts(e.children)
+        else return [null]
+    }).flat().filter(e => e !== null) as Font[]
 }

@@ -126,12 +126,11 @@ export const ImageElement = ({ element }: { element: ImageType }) => {
         height: "100%",
         width: "100%",
         objectFit: element.objectFit || "cover",
-        borderRadius: `${element.borderRadius}px`,
+        borderRadius: `${element.borderRadius || 0}px`,
       }}
     />
   );
 };
-
 export const TextElement = ({ element }: { element: TextType }) => {
   return (
     <p
@@ -146,7 +145,7 @@ export const TextElement = ({ element }: { element: TextType }) => {
         padding: 0,
         margin: 0,
         fontWeight: element.fontWeight,
-        borderRadius: `${element.borderRadius}px`,
+        borderRadius: `${element.borderRadius || 0}px`,
         textAlign: element.textAlign as any,
       }}
     >
@@ -189,7 +188,7 @@ export const DivElement = ({
         height: "100%",
         width: "100%",
         backgroundColor: hexToRGBA(element.backgroundColor),
-        borderRadius: `${element.borderRadius}px`,
+        borderRadius: `${element.borderRadius || 0}px`,
       }}
     >
       {element.children.map((child, index) => (

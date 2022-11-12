@@ -2,6 +2,7 @@ import { ImageResponse } from "@vercel/og";
 import { NextApiResponse } from "next";
 import { NextRequest } from "next/server";
 import { Template } from "../../../components/template";
+import { getFonts } from "../../../helpers";
 import { ElementType } from "../../../types";
 
 export const config = {
@@ -37,6 +38,16 @@ export default async function handler(req: NextRequest, res: NextApiResponse) {
     return newElems;
   };
   const finalElems = replace(JSON.parse(elements));
+  const fonts = getFonts(finalElems);
+  const data: ArrayBuffer[] = [];
+
+  for (const font of fonts) {
+    data.push(
+      await (
+        await fetch(`${process.env.NEXT_PUBLIC_URL}/fonts/${font.family.replaceAll(" ", "")}.ttf`)
+      ).arrayBuffer()
+    );
+  }
 
   return new ImageResponse(
     (
@@ -51,6 +62,11 @@ export default async function handler(req: NextRequest, res: NextApiResponse) {
     {
       width: modWidth || width,
       height: modHeight || height,
+      // fonts: fonts.map(({ family: name, weight }, i) => ({
+      //   data: data[i],
+      //   name,
+      //   weight: weight as any,
+      // })),
     }
   );
 }

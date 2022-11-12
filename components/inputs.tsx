@@ -1,6 +1,7 @@
 "use client";
 
 import { hexToPercent, percentToHex } from "../helpers";
+import { FONTS } from "../types/defaults";
 
 export const NumberInput = ({
   label,
@@ -81,6 +82,34 @@ export const ColorInput = ({
         onChange={(e) => onChange(color + percentToHex(Number(e.target.value || 0)))}
         className="bg-base-300 w-10"
       />
+    </div>
+  );
+};
+
+export const FontInput = ({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+}) => {
+  console.log(value)
+  return (
+    <div className="flex items-center p-2 space-x-2 bg-base-300 rounded-lg py-1 px-2 col-span-2 w-full">
+      <label>{label}</label>
+      <select
+        className=" w-full h-full bg-base-300"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      >
+        {FONTS.map((font, i) => (
+          <option key={i} value={font}>
+            {font}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };

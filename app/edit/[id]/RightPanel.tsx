@@ -1,7 +1,7 @@
 "use client";
 
 import { DivType, ElementType, ImageType, SizeType, TextType } from "../../../types";
-import { ColorInput, NumberInput, TextInput } from "../../../components/inputs";
+import { ColorInput, FontInput, NumberInput, TextInput } from "../../../components/inputs";
 
 export const RightPanel = ({
   element,
@@ -118,7 +118,7 @@ export const TextEditor = ({
         value={element.fontSize}
         onChange={(fontSize) => setElement({ ...element, fontSize })}
       />
-      <TextInput
+      <FontInput
         label="Family"
         value={element.fontFamily}
         onChange={(fontFamily) => setElement({ ...element, fontFamily })}
