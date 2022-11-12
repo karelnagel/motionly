@@ -1,8 +1,8 @@
 "use client";
 
-import { DivType, ElementType, ImageType, SizeType, TextType } from "../../../types";
+import { DivType, ElementType, ImageType, SizeType, TextType } from "@imageapi/types";
 import { ColorInput, NumberInput, SelectInput, TextInput } from "../../../components/inputs";
-import { FONTS } from "../../../types/defaults";
+import { FONTS } from "../../../config";
 
 export const RightPanel = ({
   element,

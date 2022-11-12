@@ -1,6 +1,5 @@
 import { DivType, ElementType, ImageType, TextType } from ".";
 
-export const FONTS = ["Sono", "Inter", "Archivo", "Caveat", "Work Sans", "Roboto Mono", "Merriweather Sans", "Asap", "Montserrat", "Open Sans", "Yanone Kaffeesatz"]
 
 export const DEFAULT_IMAGE = (id: string) => <ImageType>({
     id,

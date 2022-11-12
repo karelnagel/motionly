@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { prisma } from "../../prisma/client";
+import { prisma } from "../../lib/prisma";
 
 export default async function Templates() {
   const templates = await prisma.template.findMany();

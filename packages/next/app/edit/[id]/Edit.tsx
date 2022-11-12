@@ -5,7 +5,7 @@ import { RightPanel } from "./RightPanel";
 import { LeftPanel } from "./LeftPanel";
 import { Player } from "./TemplatePlayer";
 import { Template } from "../../../components/template";
-import { ElementType, SizeType } from "../../../types";
+import { ElementType, SizeType } from "@imageapi/types";
 import { Template as TemplateType } from "@prisma/client";
 import axios from "axios";
 import { useShiftKey } from "../../../hooks/useShiftKey";

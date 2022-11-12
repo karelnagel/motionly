@@ -1,5 +1,5 @@
 "use client";
-import { ElementType } from "../../types";
+import { ElementType } from "@imageapi/types";
 import { Element } from "./element";
 
 export const Template = ({

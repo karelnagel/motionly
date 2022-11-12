@@ -1,6 +1,6 @@
 import Edit from "./Edit";
 import Test from "./Test";
-import { prisma } from "../../../prisma/client";
+import { prisma } from "../../../lib/prisma";
 
 export const revalidate = 1;
 

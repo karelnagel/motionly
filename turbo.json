@@ -1,0 +1,14 @@
+{
+    "pipeline": {
+        "build": {
+            "outputs": [
+                ".next/**"
+            ]
+        },
+        "start": {},
+        "dev": {},
+        "lint": {
+            "outputs": []
+        }
+    }
+}

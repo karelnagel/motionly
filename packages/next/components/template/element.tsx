@@ -3,7 +3,7 @@
 import { CSSProperties } from "react";
 import { Rnd } from "react-rnd";
 import { hexToRGBA } from "../../helpers";
-import { DivType, ElementType, ImageType, TextType } from "../../types";
+import { DivType, ElementType, ImageType, TextType } from "@imageapi/types";
 
 export const Element = ({
   element,

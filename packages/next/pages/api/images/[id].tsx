@@ -3,7 +3,7 @@ import { NextApiResponse } from "next";
 import { NextRequest } from "next/server";
 import { Template } from "../../../components/template";
 import { getFonts } from "../../../helpers";
-import { ElementType } from "../../../types";
+import { ElementType } from "../../../../types/dist";
 
 export const config = {
   runtime: "experimental-edge",

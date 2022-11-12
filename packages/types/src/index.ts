@@ -1,7 +1,10 @@
+export * from "./defaults"
+
 export type SizeType = {
     width: number,
     height: number
 }
+
 export type BaseElementType = {
     id: string
     height: number
@@ -11,6 +14,7 @@ export type BaseElementType = {
     borderRadius: number
     rotation: number
 }
+
 export type TextType = {
     type: "text"
     fontSize: number

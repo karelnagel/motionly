@@ -2,8 +2,8 @@
 
 import { AiFillDelete, AiOutlinePlus } from "react-icons/ai";
 import { Rnd } from "react-rnd";
-import { ElementType } from "../../../types";
-import { DEFAULT_DIV, DEFAULT_IMAGE, DEFAULT_TEXT } from "../../../types/defaults";
+import { ElementType } from "@imageapi/types";
+import { DEFAULT_DIV, DEFAULT_IMAGE, DEFAULT_TEXT } from "@imageapi/types";
 
 export const LeftPanel = ({
   selected,
@@ -97,7 +97,7 @@ export const Elements = ({
             const newParentId =
               oldElem?.level === newLevel ? oldElem.parentId : oldElem?.element?.id || "";
             const newPos = oldElem?.level === newLevel ? oldElem.pos : 0;
-            
+
             //find the old element and delete that and insert the new one
             const recursion = (elements: ElementType[], parentId: string): ElementType[] => {
               const newElems = elements.map((e) => {
