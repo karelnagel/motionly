@@ -1,6 +1,6 @@
 "use client";
 
-import { AiFillDelete, AiOutlinePlus } from "react-icons/ai";
+import { AiFillDelete, AiFillSave, AiOutlinePlus } from "react-icons/ai";
 import { Rnd } from "react-rnd";
 import { ElementType } from "@imageapi/types";
 import { DEFAULT_DIV, DEFAULT_IMAGE, DEFAULT_TEXT } from "@imageapi/types";
@@ -24,21 +24,21 @@ export const LeftPanel = ({
 }) => {
   return (
     <div className="bg-base-100 h-full flex flex-col text-base-content border-t">
-      <p
-        className=" w-full bg-base-300 uppercase font-bold text-center py-3 text-lg mb-2 cursor-pointer"
+      <div
+        className=" w-full bg-base-300 uppercase font-bold text-center py-3 text-lg mb-2 cursor-pointer flex items-center justify-between px-3"
         onClick={() => select("")}
       >
         {name}
-      </p>
+        <AiFillSave onClick={update} className="text-lg hover:text-primary" />
+      </div>
       <Elements elements={elements} select={select} selected={selected} setElements={setElements} />
       <AddElement elements={elements} setElements={setElements} />
       <div className="mt-auto flex justify-between p-2">
-        <button onClick={update}>SAVE</button>
         <a href={`/api/images/${id}`} target="_blank" rel="noreferrer">
           VIEW
         </a>
         <a href={`/api/images/${id}`} target="_blank" download rel="noreferrer">
-          DOWN
+          DOWNLOAD
         </a>
       </div>
     </div>

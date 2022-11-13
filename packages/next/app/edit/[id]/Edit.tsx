@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { RightPanel } from "./RightPanel";
 import { LeftPanel } from "./LeftPanel";
 import { Player } from "./TemplatePlayer";
@@ -52,7 +52,7 @@ export default function Edit({ template }: { template: TemplateType }) {
   };
   const foundElement = find(elements, setElementBase);
 
-  const update = async () => {
+  const update = useCallback(async () => {
     const result = await axios.put(`/api/templates/${template.id}`, {
       elements: JSON.stringify(elements),
       width: size.width,
@@ -62,7 +62,15 @@ export default function Edit({ template }: { template: TemplateType }) {
     });
     setElements(JSON.parse(result.data.elements));
     setSize({ width: result.data.width, height: result.data.height });
-  };
+  }, [elements, size, template.description, template.id, template.name]);
+
+  useEffect(() => {
+    const interval = setInterval(() => update(), 5000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [update]);
+
   return (
     <div className="min-h-screen w-full bg-gray-400 grid grid-cols-6">
       <LeftPanel
