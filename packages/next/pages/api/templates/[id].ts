@@ -36,7 +36,7 @@ export default async function Update(req: NextApiRequest, res: NextApiResponse) 
 
     else if (req.method === "DELETE") {
         if (template?.user.email !== session?.user?.email) return res.status(400).end()
-        const result = await prisma.template.delete({ where: { id } })
+        await prisma.template.delete({ where: { id } })
 
         return res.status(200).end()
     }
