@@ -1,38 +1,25 @@
-"use client";
+import { unstable_getServerSession } from "next-auth";
+import { UnAuthorized } from "../../../components/UnAuthorized";
+import { authOptions } from "../../../pages/api/auth/[...nextauth]";
+import Create from "./Create";
+import { prisma } from "../../../lib/prisma";
 
-import axios from "axios";
-import Link from "next/link";
-import { useState } from "react";
-
-export default function NewTemplate() {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [id, setId] = useState("");
-  const create = async () => {
-    const res = await axios.post("/api/templates/new", { name, description });
-    setId(res.data.id);
-  };
+export default async function Page({ searchParams: { id } }: { searchParams: { id?: string } }) {
+  const session = await unstable_getServerSession(authOptions);
+  if (!session) return <UnAuthorized />;
+  const template = !id
+    ? null
+    : await prisma.template.findFirst({
+        where: { id, OR: [{ public: true }, { user: { email: session.user?.email } }] },
+      });
   return (
     <div>
-      <p>New Template</p>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.currentTarget.value)}
-        placeholder="Name"
+      <p>{template ? `Duplicating template "${template.name}"` : "Create new"}</p>
+      <Create
+        duplicateId={template?.id}
+        duplicateName={template?.name}
+        duplicateDescription={template?.description}
       />
-      <input
-        type="text"
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.currentTarget.value)}
-      />
-      <button onClick={create}>Create</button>
-      {id && (
-        <Link href="/edit/${id}" as={`/edit/${id}`}>
-          Edit
-        </Link>
-      )}
     </div>
   );
 }

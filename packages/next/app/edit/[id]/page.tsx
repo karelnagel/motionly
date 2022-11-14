@@ -1,13 +1,17 @@
 import Edit from "./Edit";
-import Test from "./Test";
 import { prisma } from "../../../lib/prisma";
+import { unstable_getServerSession } from "next-auth";
+import { authOptions } from "../../../pages/api/auth/[...nextauth]";
 
 export const revalidate = 1;
 
-export default async function Page({ params: { id } }: any) {
+export default async function Page({ params: { id } }: { params: { id: string } }) {
   if (!id) return <div>No id!</div>;
-  const template = await prisma.template.findUnique({ where: { id } });
-  if (!template) return <div>No template with this id!</div>;
+  const session = await unstable_getServerSession(authOptions);
+  const template = await prisma.template.findFirst({
+    where: { id, user: { email: session?.user?.email } },
+  });
+  if (!template) return <div>No template!</div>;
   const { width, height, name, description, elements } = template;
   return (
     <div>
@@ -23,7 +27,6 @@ export default async function Page({ params: { id } }: any) {
           } as any
         }
       />
-      <Test elements={elements} id={id} />
     </div>
   );
 }

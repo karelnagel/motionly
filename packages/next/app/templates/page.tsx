@@ -1,8 +1,16 @@
+import { unstable_getServerSession } from "next-auth";
 import Link from "next/link";
 import { prisma } from "../../lib/prisma";
+import { authOptions } from "../../pages/api/auth/[...nextauth]";
+
+export const revalidate = 1;
 
 export default async function Templates() {
-  const templates = await prisma.template.findMany();
+  const session = await unstable_getServerSession(authOptions);
+  const templates = await prisma.template.findMany({
+    where: { OR: [{ public: true }, { user: { email: session?.user?.email } }] },
+    orderBy: { createdAt: "desc" },
+  });
   return (
     <div>
       <p>Templates</p>
@@ -10,7 +18,7 @@ export default async function Templates() {
         {templates.map((template) => (
           <Link
             key={template.id}
-            href={`/edit/${template.id}`}
+            href={`/templates/${template.id}`}
             className=" relative rounded-lg overflow-hidden h-40 w-60"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -22,7 +30,6 @@ export default async function Templates() {
         ))}
       </div>
       <Link href="/templates/new">NEW</Link>
-      <Link href="/edit/id">EDIT</Link>
     </div>
   );
 }

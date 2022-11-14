@@ -22,7 +22,9 @@ export default async function handler(req: NextRequest, res: NextApiResponse) {
   } catch (e) {
     console.log(e);
   }
-  const result = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/templates/${id}`);
+  const result = await fetch(
+    `${process.env.NEXT_PUBLIC_URL}/api/templates/${id}?password=${process.env.NEXTAUTH_SECRET}`
+  );
   const { width, height, elements } = await result.json();
   const replace = (elems: ElementType[]) => {
     const newElems: ElementType[] = [];

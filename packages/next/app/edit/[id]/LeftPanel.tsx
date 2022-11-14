@@ -1,9 +1,10 @@
 "use client";
 
-import { AiFillDelete, AiFillSave, AiOutlinePlus } from "react-icons/ai";
+import { AiFillBackward, AiFillDelete, AiFillSave, AiOutlinePlus } from "react-icons/ai";
 import { Rnd } from "react-rnd";
 import { ElementType } from "@imageapi/types";
 import { DEFAULT_DIV, DEFAULT_IMAGE, DEFAULT_TEXT } from "@imageapi/types";
+import { useRouter } from "next/navigation";
 
 export const LeftPanel = ({
   selected,
@@ -22,12 +23,17 @@ export const LeftPanel = ({
   setElements: (elements: ElementType[]) => void;
   update: () => void;
 }) => {
+  const router = useRouter();
   return (
     <div className="bg-base-100 h-full flex flex-col text-base-content border-t">
       <div
         className=" w-full bg-base-300 uppercase font-bold text-center py-3 text-lg mb-2 cursor-pointer flex items-center justify-between px-3"
         onClick={() => select("")}
       >
+        <AiFillBackward
+          onClick={() => router.push(`/templates/${id}`)}
+          className="text-lg hover:text-primary"
+        />
         {name}
         <AiFillSave onClick={update} className="text-lg hover:text-primary" />
       </div>

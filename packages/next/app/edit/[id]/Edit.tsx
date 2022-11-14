@@ -57,12 +57,10 @@ export default function Edit({ template }: { template: TemplateType }) {
       elements: JSON.stringify(elements),
       width: size.width,
       height: size.height,
-      name: template.name,
-      description: template.description,
     });
     setElements(JSON.parse(result.data.elements));
     setSize({ width: result.data.width, height: result.data.height });
-  }, [elements, size, template.description, template.id, template.name]);
+  }, [elements, size, template.id]);
 
   useEffect(() => {
     const interval = setInterval(() => update(), 5000);
