@@ -1,8 +1,9 @@
 "use client";
 import { ElementType } from "@imageapi/types";
-import { Element } from "./element";
+import { AbsoluteFill } from "remotion";
+import { Element } from "./Elements";
 
-export const Template = ({
+export const Composition = ({
   elements,
   selected,
   select,
@@ -33,15 +34,7 @@ export const Template = ({
     setElements(elems);
   };
   return (
-    <div
-      style={{
-        display: "flex",
-        width: `${width}px`,
-        height: `${height}px`,
-        margin: "0",
-        padding: 0,
-      }}
-    >
+    <AbsoluteFill>
       {elements.map((element, index) => {
         return (
           <Element
@@ -56,6 +49,6 @@ export const Template = ({
           />
         );
       })}
-    </div>
+    </AbsoluteFill>
   );
 };

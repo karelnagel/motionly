@@ -3,12 +3,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { RightPanel } from "./RightPanel";
 import { LeftPanel } from "./LeftPanel";
-import { Player } from "./TemplatePlayer";
-import { Template } from "../../../components/template";
+import { Middle } from "./Middle";
 import { ElementType, SizeType } from "@imageapi/types";
 import { Template as TemplateType } from "@prisma/client";
 import axios from "axios";
 import { useShiftKey } from "../../../hooks/useShiftKey";
+import { Player } from "../../../components/Player";
 
 export default function Edit({ template }: { template: TemplateType }) {
   const [elements, setElements] = useState<ElementType[]>(JSON.parse(template.elements));
@@ -80,19 +80,18 @@ export default function Edit({ template }: { template: TemplateType }) {
         setElements={(elements) => setElements(elements)}
         update={update}
       />
-      <Player height={size.height} width={size.width} scale={scale} setScale={setScale}>
-        <Template
+      <Middle height={size.height} width={size.width} scale={scale} setScale={setScale}>
+        <Player
+          elements={elements}
+          height={size.height}
+          width={size.width}
           lockAspectRatio={lockAspectRatio}
           scale={scale}
-          elements={elements}
           select={select}
-          selected={selected}
           setElements={setElements}
-          width={size.width}
-          height={size.height}
-          draggable
+          selected={selected}
         />
-      </Player>
+      </Middle>
       <RightPanel
         element={foundElement?.element}
         setElement={foundElement?.setElement}

@@ -1,7 +1,7 @@
 import { ImageResponse } from "@vercel/og";
 import { NextApiResponse } from "next";
 import { NextRequest } from "next/server";
-import { Template } from "../../../components/template";
+import { Composition } from "../../../components/Composition";
 import { getFonts } from "../../../helpers";
 import { ElementType } from "../../../../types/dist";
 
@@ -53,7 +53,7 @@ export default async function handler(req: NextRequest, res: NextApiResponse) {
 
   return new ImageResponse(
     (
-      <Template
+      <Composition
         width={width}
         height={height}
         elements={finalElems}
