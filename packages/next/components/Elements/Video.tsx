@@ -1,14 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { ImageType } from "@imageapi/types";
-import { Img } from "remotion";
+import { VideoType } from "@imageapi/types";
+import { OffthreadVideo } from "remotion";
 
-export const Image = ({ element }: { element: ImageType }) => {
+export const Video = ({ element }: { element: VideoType }) => {
   return (
-    <Img
+    <OffthreadVideo
       src={element.src}
-      draggable={false}
-      alt=""
+      startFrom={element.startFrom}
       style={{
         height: "100%",
         width: "100%",

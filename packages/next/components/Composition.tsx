@@ -1,6 +1,5 @@
 "use client";
 import { ElementType } from "@imageapi/types";
-import { AbsoluteFill } from "remotion";
 import { Element } from "./Elements";
 
 export const Composition = ({
@@ -8,8 +7,6 @@ export const Composition = ({
   selected,
   select,
   setElements,
-  height,
-  width,
   scale = 1,
   draggable = false,
   lockAspectRatio,
@@ -17,12 +14,10 @@ export const Composition = ({
   elements: ElementType[];
   select?: (id: string) => void;
   selected?: string;
-  width: number;
-  height: number;
-  setElements: (template: ElementType[]) => void;
+  setElements?: (template: ElementType[]) => void;
   scale?: number;
   draggable?: boolean;
-  lockAspectRatio: boolean;
+  lockAspectRatio?: boolean;
 }) => {
   const setElement = (element: ElementType) => {
     const elems = elements.map((e) => {
@@ -31,14 +26,14 @@ export const Composition = ({
       }
       return e;
     });
-    setElements(elems);
+    setElements?.(elems);
   };
   return (
-    <AbsoluteFill>
+    <div style={{ position: "absolute" }}>
       {elements.map((element, index) => {
         return (
           <Element
-            lockAspectRatio={lockAspectRatio}
+            lockAspectRatio={!!lockAspectRatio}
             key={index}
             element={element}
             select={select}
@@ -49,6 +44,6 @@ export const Composition = ({
           />
         );
       })}
-    </AbsoluteFill>
+    </div>
   );
 };

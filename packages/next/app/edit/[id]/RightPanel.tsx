@@ -1,6 +1,6 @@
 "use client";
 
-import { DivType, ElementType, ImageType, SizeType, TextType } from "@imageapi/types";
+import { DivType, ElementType, ImageType, SizeType, TextType, ObjectFit } from "@imageapi/types";
 import { ColorInput, NumberInput, SelectInput, TextInput } from "../../../components/inputs";
 import { FONTS } from "../../../config";
 
@@ -78,11 +78,21 @@ export const ElementEditor = ({
             label="RAD"
             value={element.borderRadius}
             onChange={(borderRadius) => setElement({ ...element, borderRadius })}
-          />{" "}
+          />
           <NumberInput
             label="ROT"
             value={element.rotation}
             onChange={(rotation) => setElement({ ...element, rotation })}
+          />
+          <NumberInput
+            label="FROM"
+            value={element.from}
+            onChange={(from) => setElement({ ...element, from })}
+          />
+          <NumberInput
+            label="DUR"
+            value={element.duration}
+            onChange={(duration) => setElement({ ...element, duration })}
           />
           {element.type === "text" && <TextEditor element={element} setElement={setElement} />}
           {element.type === "image" && <ImageEditor element={element} setElement={setElement} />}
@@ -164,7 +174,7 @@ export const ImageEditor = ({
         label="Fit"
         value={element.objectFit}
         onChange={(objectFit) => setElement({ ...element, objectFit: objectFit as any })}
-        list={["fill", "contain", "cover", "none", "scale-down"]}
+        list={Object.keys(ObjectFit)}
       />
     </>
   );

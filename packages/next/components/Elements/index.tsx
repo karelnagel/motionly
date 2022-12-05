@@ -6,6 +6,7 @@ import { ElementType } from "@imageapi/types";
 import { Div } from "./Div";
 import { Text } from "./Text";
 import { Image } from "./Image";
+import { Sequence } from "remotion";
 
 export const Element = ({
   element,
@@ -13,16 +14,16 @@ export const Element = ({
   select,
   setElement,
   scale = 1,
-  draggable = false,
+  draggable,
   lockAspectRatio,
 }: {
   element: ElementType;
   selected?: string;
   select?: (id: string) => void;
-  setElement: (element: ElementType) => void;
+  setElement?: (element: ElementType) => void;
   scale?: number;
   draggable?: boolean;
-  lockAspectRatio: boolean;
+  lockAspectRatio?: boolean;
 }) => {
   const style: CSSProperties = {
     cursor: "pointer",
@@ -35,8 +36,11 @@ export const Element = ({
     select?.(element.id);
     console.log(element.id);
   };
-  if (draggable)
-    return (
+  return (
+    <Sequence
+      from={element.from ? Math.floor(element.from * 30) : undefined}
+      durationInFrames={element.duration ? Math.floor(element.duration * 30) : undefined}
+    >
       <Rnd
         scale={scale}
         lockAspectRatio={lockAspectRatio}
@@ -60,10 +64,10 @@ export const Element = ({
         }}
         onDragStop={(e: any, d: any) => {
           e.stopImmediatePropagation();
-          setElement({ ...element, x: d.x, y: d.y });
+          setElement?.({ ...element, x: d.x, y: d.y });
         }}
         onResize={(e, direction, ref, delta, position) => {
-          setElement({
+          setElement?.({
             ...element,
             width: ref.offsetWidth,
             height: ref.offsetHeight,
@@ -90,33 +94,6 @@ export const Element = ({
           {element.type === "text" && <Text element={element} />}
         </div>
       </Rnd>
-    );
-  else
-    return (
-      <div
-        style={{
-          ...style,
-          position: "absolute",
-          width: `${element.width}px`,
-          height: `${element.height}px`,
-          left: `${element.x}px`,
-          top: `${element.y}px`,
-        }}
-        onClick={onClick}
-      >
-        {element.type === "div" && (
-          <Div
-            lockAspectRatio={lockAspectRatio}
-            element={element}
-            select={select}
-            selected={selected}
-            scale={scale}
-            setElement={setElement}
-            draggable={draggable}
-          />
-        )}
-        {element.type === "image" && <Image element={element} />}
-        {element.type === "text" && <Text element={element} />}
-      </div>
-    );
+    </Sequence>
+  );
 };

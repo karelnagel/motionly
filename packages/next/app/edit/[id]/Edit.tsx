@@ -70,7 +70,28 @@ export default function Edit({ template }: { template: TemplateType }) {
   }, [update]);
 
   return (
-    <div className="min-h-screen w-full bg-gray-400 grid grid-cols-6">
+    <div className="h-screen">
+      <div className=" w-full bg-gray-400 grid grid-cols-5 h-[70%]">
+        <Middle height={size.height} width={size.width} scale={scale} setScale={setScale}>
+          <Player
+            elements={elements}
+            height={size.height}
+            width={size.width}
+            lockAspectRatio={lockAspectRatio}
+            scale={scale}
+            select={select}
+            setElements={setElements}
+            selected={selected}
+          />
+        </Middle>
+        <RightPanel
+          element={foundElement?.element}
+          setElement={foundElement?.setElement}
+          size={size}
+          setSize={setSize}
+        />
+      </div>
+      <div className="bg-blue-50 h-[30%] w-full"></div>
       <LeftPanel
         id={template.id}
         elements={elements}
@@ -79,24 +100,6 @@ export default function Edit({ template }: { template: TemplateType }) {
         name={template.name}
         setElements={(elements) => setElements(elements)}
         update={update}
-      />
-      <Middle height={size.height} width={size.width} scale={scale} setScale={setScale}>
-        <Player
-          elements={elements}
-          height={size.height}
-          width={size.width}
-          lockAspectRatio={lockAspectRatio}
-          scale={scale}
-          select={select}
-          setElements={setElements}
-          selected={selected}
-        />
-      </Middle>
-      <RightPanel
-        element={foundElement?.element}
-        setElement={foundElement?.setElement}
-        size={size}
-        setSize={setSize}
       />
     </div>
   );

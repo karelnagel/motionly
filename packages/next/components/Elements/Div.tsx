@@ -16,10 +16,10 @@ export const Div = ({
   element: DivType;
   select?: (id: string) => void;
   selected?: string;
-  setElement: (element: ElementType) => void;
-  draggable: boolean;
-  scale: number;
-  lockAspectRatio: boolean;
+  setElement?: (element: ElementType) => void;
+  draggable?: boolean;
+  scale?: number;
+  lockAspectRatio?: boolean;
 }) => {
   const set = (newElement: ElementType) => {
     let elem = element;
@@ -29,7 +29,7 @@ export const Div = ({
       }
       return e;
     });
-    setElement(elem);
+    setElement?.(elem);
   };
   return (
     <div
