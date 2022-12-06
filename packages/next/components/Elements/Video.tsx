@@ -1,18 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { VideoType } from "@imageapi/types";
 import { OffthreadVideo } from "remotion";
+import { VideoCompProps } from "../../types";
 
-export const Video = ({ element }: { element: VideoType }) => {
+export const VideoComp = (props: VideoCompProps) => {
   return (
     <OffthreadVideo
-      src={element.src}
-      startFrom={element.startFrom}
+      src={props.src}
+      startFrom={props.startFrom}
+      volume={props.volume}
       style={{
         height: "100%",
         width: "100%",
-        objectFit: element.objectFit,
-        borderRadius: `${element.borderRadius || 0}px`,
+        objectFit: props.objectFit,
       }}
     />
   );

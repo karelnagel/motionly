@@ -1,24 +1,33 @@
 "use client";
 
-import { DivType, ElementType, ImageType, SizeType, TextType, ObjectFit } from "@imageapi/types";
 import { ColorInput, NumberInput, SelectInput, TextInput } from "../../../components/inputs";
 import { FONTS } from "../../../config";
+import {
+  CompProps,
+  DivCompProps,
+  ImageCompProps,
+  ObjectFit,
+  SizeProps,
+  TextAlign,
+  TextCompProps,
+  TextStyle,
+} from "../../../types";
 
 export const RightPanel = ({
-  element,
-  setElement,
+  props,
+  setProps,
   size,
   setSize,
 }: {
-  element?: ElementType;
-  setElement?: (element: ElementType) => void;
-  size: SizeType;
-  setSize: (size: SizeType) => void;
+  props?: CompProps;
+  setProps?: (element: CompProps) => void;
+  size: SizeProps;
+  setSize: (size: SizeProps) => void;
 }) => {
   return (
     <div className="bg-base-100 border-t h-full w-full">
-      {element && setElement && <ElementEditor element={element} setElement={setElement} />}
-      {!element && <TemplateEditor size={size} setSize={setSize} />}
+      {props && setProps && <ElementEditor props={props} setProps={setProps} />}
+      {!props && <TemplateEditor size={size} setSize={setSize} />}
     </div>
   );
 };
@@ -27,8 +36,8 @@ export const TemplateEditor = ({
   size,
   setSize,
 }: {
-  size: SizeType;
-  setSize: (template: SizeType) => void;
+  size: SizeProps;
+  setSize: (template: SizeProps) => void;
 }) => {
   return (
     <div className="w-full grid grid-cols-2 items-center justify-items-start gap-3 py-10 px-4">
@@ -44,59 +53,51 @@ export const TemplateEditor = ({
 };
 
 export const ElementEditor = ({
-  element,
-  setElement,
+  props,
+  setProps,
 }: {
-  element?: ElementType;
-  setElement: (element: ElementType) => void;
+  props?: CompProps;
+  setProps: (element: CompProps) => void;
 }) => {
   return (
     <div className=" w-full grid grid-cols-2 items-center justify-items-start gap-3  py-10 px-4">
-      {element && (
+      {props && (
         <>
-          <NumberInput
-            label="X"
-            value={element.x}
-            onChange={(x) => setElement({ ...element, x })}
-          />
-          <NumberInput
-            label="Y"
-            value={element.y}
-            onChange={(y) => setElement({ ...element, y })}
-          />
+          <NumberInput label="X" value={props.x} onChange={(x) => setProps({ ...props, x })} />
+          <NumberInput label="Y" value={props.y} onChange={(y) => setProps({ ...props, y })} />
           <NumberInput
             label="W"
-            value={element.width}
-            onChange={(width) => setElement({ ...element, width })}
+            value={props.width}
+            onChange={(width) => setProps({ ...props, width })}
           />
           <NumberInput
             label="H"
-            value={element.height}
-            onChange={(height) => setElement({ ...element, height })}
+            value={props.height}
+            onChange={(height) => setProps({ ...props, height })}
           />
           <NumberInput
             label="RAD"
-            value={element.borderRadius}
-            onChange={(borderRadius) => setElement({ ...element, borderRadius })}
+            value={props.borderRadius}
+            onChange={(borderRadius) => setProps({ ...props, borderRadius })}
           />
           <NumberInput
             label="ROT"
-            value={element.rotation}
-            onChange={(rotation) => setElement({ ...element, rotation })}
+            value={props.rotation}
+            onChange={(rotation) => setProps({ ...props, rotation })}
           />
           <NumberInput
             label="FROM"
-            value={element.from}
-            onChange={(from) => setElement({ ...element, from })}
+            value={props.from}
+            onChange={(from) => setProps({ ...props, from })}
           />
           <NumberInput
             label="DUR"
-            value={element.duration}
-            onChange={(duration) => setElement({ ...element, duration })}
+            value={props.duration}
+            onChange={(duration) => setProps({ ...props, duration })}
           />
-          {element.type === "text" && <TextEditor element={element} setElement={setElement} />}
-          {element.type === "image" && <ImageEditor element={element} setElement={setElement} />}
-          {element.type === "div" && <DivEditor element={element} setElement={setElement} />}
+          {props.type === "text" && <TextEditor props={props} setProps={setProps} />}
+          {props.type === "image" && <ImageEditor props={props} setProps={setProps} />}
+          {props.type === "div" && <DivEditor props={props} setProps={setProps} />}
         </>
       )}
     </div>
@@ -104,76 +105,94 @@ export const ElementEditor = ({
 };
 
 export const TextEditor = ({
-  element,
-  setElement,
+  props,
+  setProps,
 }: {
-  element: TextType;
-  setElement: (element: TextType) => void;
+  props: TextCompProps;
+  setProps: (element: TextCompProps) => void;
 }) => {
   return (
     <>
       <p className="col-span-2 text-lg font-bold">Text details</p>
       <TextInput
         label="Text"
-        value={element.text}
-        onChange={(text) => setElement({ ...element, text })}
+        value={props.text}
+        onChange={(text) => setProps({ ...props, text })}
       />
+      <TextStyleEditor
+        props={props.textStyle}
+        setProps={(textStyle) => setProps({ ...props, textStyle })}
+      />
+    </>
+  );
+};
+
+export const TextStyleEditor = ({
+  props,
+  setProps,
+}: {
+  props: TextStyle;
+  setProps: (props: TextStyle) => void;
+}) => {
+  return (
+    <>
+      <p className="col-span-2 text-lg font-bold">Text style</p>
       <ColorInput
         label="Color"
-        value={element.color}
-        onChange={(color) => setElement({ ...element, color })}
+        value={props.color || ""}
+        onChange={(color) => setProps({ ...props, color })}
       />
       <ColorInput
         label="Back"
-        value={element.backgroundColor}
-        onChange={(backgroundColor) => setElement({ ...element, backgroundColor })}
+        value={props.backgroundColor}
+        onChange={(backgroundColor) => setProps({ ...props, backgroundColor })}
       />
       <NumberInput
         label="Size"
         className="col-span-2"
-        value={element.fontSize}
-        onChange={(fontSize) => setElement({ ...element, fontSize })}
+        value={props.fontSize}
+        onChange={(fontSize) => setProps({ ...props, fontSize })}
       />
       <SelectInput
         label="Family"
-        value={element.fontFamily}
-        onChange={(fontFamily) => setElement({ ...element, fontFamily })}
+        value={props.fontFamily}
+        onChange={(fontFamily) => setProps({ ...props, fontFamily })}
         list={FONTS}
       />
       <NumberInput
         label="Weight"
-        value={element.fontWeight}
-        onChange={(fontWeight) => setElement({ ...element, fontWeight })}
+        value={props.fontWeight}
+        onChange={(fontWeight) => setProps({ ...props, fontWeight })}
       />
       <SelectInput
         label="Align"
-        value={element.textAlign}
-        onChange={(textAlign) => setElement({ ...element, textAlign })}
-        list={["left", "center", "right"]}
+        value={props.textAlign}
+        onChange={(textAlign) =>
+          setProps({ ...props, textAlign: textAlign as keyof typeof TextAlign })
+        }
+        list={Object.keys(TextAlign)}
       />
     </>
   );
 };
 
 export const ImageEditor = ({
-  element,
-  setElement,
+  props,
+  setProps,
 }: {
-  element: ImageType;
-  setElement: (element: ImageType) => void;
+  props: ImageCompProps;
+  setProps: (props: ImageCompProps) => void;
 }) => {
   return (
     <>
       <p className="col-span-2 text-lg font-bold">Image details</p>
-      <TextInput
-        label="Src"
-        value={element.src}
-        onChange={(src) => setElement({ ...element, src })}
-      />
+      <TextInput label="Src" value={props.src} onChange={(src) => setProps({ ...props, src })} />
       <SelectInput
         label="Fit"
-        value={element.objectFit}
-        onChange={(objectFit) => setElement({ ...element, objectFit: objectFit as any })}
+        value={props.objectFit}
+        onChange={(objectFit) =>
+          setProps({ ...props, objectFit: objectFit as keyof typeof ObjectFit })
+        }
         list={Object.keys(ObjectFit)}
       />
     </>
@@ -181,19 +200,19 @@ export const ImageEditor = ({
 };
 
 export const DivEditor = ({
-  element,
-  setElement,
+  props,
+  setProps,
 }: {
-  element: DivType;
-  setElement: (element: DivType) => void;
+  props: DivCompProps;
+  setProps: (props: DivCompProps) => void;
 }) => {
   return (
     <>
       <p className="col-span-2 text-lg font-bold">Div editor</p>
       <ColorInput
         label="Back"
-        value={element.backgroundColor}
-        onChange={(backgroundColor) => setElement({ ...element, backgroundColor })}
+        value={props.backgroundColor}
+        onChange={(backgroundColor) => setProps({ ...props, backgroundColor })}
       />
     </>
   );

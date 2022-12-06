@@ -1,27 +1,32 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { hexToRGBA } from "../../helpers";
-import { TextType } from "@imageapi/types";
+import { TextCompProps } from "../../types";
 
-export const Text = ({ element }: { element: TextType; }) => {
+export const TextComp = ({ textStyle: { outline, ...textProps }, text }: TextCompProps) => {
+  const shadowCount = 100;
+
   return (
     <p
       style={{
         height: "100%",
         width: "100%",
-        backgroundColor: hexToRGBA(element.backgroundColor),
-        color: hexToRGBA(element.color),
-        fontFamily: element.fontFamily,
-        fontSize: `${element.fontSize}px`,
-        lineHeight: `${element.fontSize}px`,
         padding: 0,
         margin: 0,
-        fontWeight: element.fontWeight,
-        borderRadius: `${element.borderRadius || 0}px`,
-        textAlign: element.textAlign as any,
+        ...textProps,
+        textShadow: outline
+          ? new Array(shadowCount)
+              .fill(0)
+              .map(
+                (_, i) =>
+                  `${Math.cos(((i + 1) / shadowCount) * Math.PI * 2) * outline.width}px ${
+                    Math.sin(((i + 1) / shadowCount) * Math.PI * 2) * outline.width
+                  }px ${outline.color}`
+              )
+              .join(", ")
+          : undefined,
       }}
     >
-      {element.text}
+      {text}
     </p>
   );
 };

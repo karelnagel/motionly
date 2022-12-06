@@ -1,7 +1,7 @@
-import { DivType, ImageType, TextType, VideoType } from ".";
+import { DivCompProps, ImageCompProps, TextCompProps, VideoCompProps } from ".";
 
 
-export const DEFAULT_IMAGE = (id: string) => <ImageType>({
+export const DEFAULT_IMAGE = (id: string) => <ImageCompProps>({
     id,
     type: "image",
     height: 500,
@@ -13,7 +13,7 @@ export const DEFAULT_IMAGE = (id: string) => <ImageType>({
     src: `https://picsum.photos/seed/${id}/500/500`,
     from: 0, duration: -1
 })
-export const DEFAULT_VIDEO = (id: string) => <VideoType>({
+export const DEFAULT_VIDEO = (id: string) => <VideoCompProps>({
     id,
     type: "video",
     height: 500,
@@ -28,26 +28,28 @@ export const DEFAULT_VIDEO = (id: string) => <VideoType>({
     from: 0, duration: -1
 })
 
-export const DEFAULT_TEXT = (id: string) => <TextType>({
+export const DEFAULT_TEXT = (id: string) => <TextCompProps>({
     id,
     type: "text",
     height: 30,
     width: 100,
     x: 0,
     y: 0,
-    backgroundColor: "#00000000",
+    textStyle: {
+        backgroundColor: "#00000000",
+        color: "#000000FF",
+        fontSize: 28,
+        fontFamily: "Inter",
+        fontWeight: 700,
+        textAlign: "left",
+    },
     borderRadius: 0,
-    color: "#000000FF",
-    fontSize: 28,
-    fontFamily: "Inter",
-    fontWeight: 700,
     text: "Hello World",
     rotation: 0,
-    textAlign: "left",
     duration: -1, from: 0
 })
 
-export const DEFAULT_DIV = (id: string) => <DivType>({
+export const DEFAULT_DIV = (id: string) => <DivCompProps>({
     id,
     type: "div",
     height: 500,

@@ -2,11 +2,20 @@
 "use client";
 import { CSSProperties } from "react";
 import { Rnd } from "react-rnd";
-import { ElementType } from "@imageapi/types";
-import { Div } from "./Div";
-import { Text } from "./Text";
-import { Image } from "./Image";
+import { DivComp } from "./Div";
+import { TextComp } from "./Text";
+import { ImageComp } from "./Image";
 import { Sequence } from "remotion";
+import { CompProps } from "../../types";
+import { AudioComp } from "./Audio";
+import { AudiogramComp } from "./Audiogram";
+import { GraphComp } from "./Graph";
+import { MapComp } from "./Map";
+import { MockupComp } from "./Mockup";
+import { ProgressBarComp } from "./ProgressBar";
+import { QRCodeComp } from "./QRCode";
+import { VideoComp } from "./Video";
+import { TranscriptionComp } from "./Audiogram copy";
 
 export const Element = ({
   element,
@@ -17,10 +26,10 @@ export const Element = ({
   draggable,
   lockAspectRatio,
 }: {
-  element: ElementType;
+  element: CompProps;
   selected?: string;
   select?: (id: string) => void;
-  setElement?: (element: ElementType) => void;
+  setElement?: (element: CompProps) => void;
   scale?: number;
   draggable?: boolean;
   lockAspectRatio?: boolean;
@@ -30,6 +39,9 @@ export const Element = ({
     display: "flex",
     overflow: "hidden",
     position: "relative",
+    width: `100%`,
+    height: `100%`,
+    borderRadius: element.borderRadius,
     transform: `rotate(${element.rotation || 0}deg)`, // For some reason, this messes up x and y
   };
   const onClick = () => {
@@ -40,6 +52,7 @@ export const Element = ({
     <Sequence
       from={element.from ? Math.floor(element.from * 30) : undefined}
       durationInFrames={element.duration ? Math.floor(element.duration * 30) : undefined}
+      layout="none"
     >
       <Rnd
         scale={scale}
@@ -75,12 +88,15 @@ export const Element = ({
           });
         }}
       >
-        <div style={{ ...style, width: `100%`, height: `100%` }}>
+        <div style={style}>
           {selected === element.id && (
-            <div className=" absolute top-0 left-0 w-full h-full  border-blue-500 border-4" />
+            <div
+              className=" absolute top-0 left-0 w-full h-full  border-blue-500 border-4"
+              style={{ borderRadius: style.borderRadius }}
+            />
           )}
           {element.type === "div" && (
-            <Div
+            <DivComp
               element={element}
               lockAspectRatio={lockAspectRatio}
               select={select}
@@ -90,8 +106,17 @@ export const Element = ({
               scale={scale}
             />
           )}
-          {element.type === "image" && <Image element={element} />}
-          {element.type === "text" && <Text element={element} />}
+          {element.type === "image" && <ImageComp {...element} />}
+          {element.type === "text" && <TextComp {...element} />}
+          {element.type === "audio" && <AudioComp {...element} />}
+          {element.type === "audiogram" && <AudiogramComp {...element} />}
+          {element.type === "graph" && <GraphComp {...element} />}
+          {element.type === "map" && <MapComp {...element} />}
+          {element.type === "mockup" && <MockupComp {...element} />}
+          {element.type === "progressbar" && <ProgressBarComp {...element} />}
+          {element.type === "qrcode" && <QRCodeComp {...element} />}
+          {element.type === "video" && <VideoComp {...element} />}
+          {element.type === "transcription" && <TranscriptionComp {...element} />}
         </div>
       </Rnd>
     </Sequence>

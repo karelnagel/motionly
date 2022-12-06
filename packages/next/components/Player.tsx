@@ -1,5 +1,5 @@
-import { ElementType } from "@imageapi/types";
 import { Player as RemotionPlayer } from "@remotion/player";
+import { CompProps } from "../types";
 import { Composition } from "./Composition";
 
 export const Player = ({
@@ -15,9 +15,9 @@ export const Player = ({
   height: number;
   width: number;
   scale: number;
-  elements: ElementType[];
+  elements: CompProps[];
   lockAspectRatio: boolean;
-  setElements: (e: ElementType[]) => void;
+  setElements: (e: CompProps[]) => void;
   select: (id: string) => void;
   selected?: string;
 }) => {

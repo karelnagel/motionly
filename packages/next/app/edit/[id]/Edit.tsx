@@ -4,15 +4,15 @@ import { useCallback, useEffect, useState } from "react";
 import { RightPanel } from "./RightPanel";
 import { LeftPanel } from "./LeftPanel";
 import { Middle } from "./Middle";
-import { ElementType, SizeType } from "@imageapi/types";
 import { Template as TemplateType } from "@prisma/client";
 import axios from "axios";
 import { useShiftKey } from "../../../hooks/useShiftKey";
 import { Player } from "../../../components/Player";
+import { CompProps, SizeProps } from "../../../types";
 
 export default function Edit({ template }: { template: TemplateType }) {
-  const [elements, setElements] = useState<ElementType[]>(JSON.parse(template.elements));
-  const [size, setSize] = useState<SizeType>({ width: template.width, height: template.height });
+  const [elements, setElements] = useState<CompProps[]>(JSON.parse(template.elements));
+  const [size, setSize] = useState<SizeProps>({ width: template.width, height: template.height });
   const [selected, setSelected] = useState<string>();
   const [scale, setScale] = useState(0.4);
   const lockAspectRatio = useShiftKey();
@@ -20,9 +20,9 @@ export default function Edit({ template }: { template: TemplateType }) {
     setSelected(id);
   };
   const find = (
-    elements: ElementType[],
-    setElement: (element: ElementType) => void
-  ): { element: ElementType; setElement: (element: ElementType) => void } | undefined => {
+    elements: CompProps[],
+    setElement: (element: CompProps) => void
+  ): { element: CompProps; setElement: (element: CompProps) => void } | undefined => {
     for (const element of elements) {
       if (element.id === selected) {
         return { element, setElement };
@@ -41,7 +41,7 @@ export default function Edit({ template }: { template: TemplateType }) {
     }
   };
 
-  const setElementBase = (element: ElementType) => {
+  const setElementBase = (element: CompProps) => {
     const elems = elements.map((e) => {
       if (e.id === element.id) {
         return element;
@@ -85,8 +85,8 @@ export default function Edit({ template }: { template: TemplateType }) {
           />
         </Middle>
         <RightPanel
-          element={foundElement?.element}
-          setElement={foundElement?.setElement}
+          props={foundElement?.element}
+          setProps={foundElement?.setElement}
           size={size}
           setSize={setSize}
         />

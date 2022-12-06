@@ -2,9 +2,8 @@
 
 import { AiFillBackward, AiFillDelete, AiFillSave, AiOutlinePlus } from "react-icons/ai";
 import { Rnd } from "react-rnd";
-import { ElementType } from "@imageapi/types";
-import { DEFAULT_DIV, DEFAULT_IMAGE, DEFAULT_TEXT } from "@imageapi/types";
 import { useRouter } from "next/navigation";
+import { CompProps, DEFAULT_DIV, DEFAULT_IMAGE, DEFAULT_TEXT } from "../../../types";
 
 export const LeftPanel = ({
   selected,
@@ -18,9 +17,9 @@ export const LeftPanel = ({
   name: string;
   id: string;
   selected?: string;
-  elements: ElementType[];
+  elements: CompProps[];
   select: (id: string) => void;
-  setElements: (elements: ElementType[]) => void;
+  setElements: (elements: CompProps[]) => void;
   update: () => void;
 }) => {
   const router = useRouter();
@@ -51,7 +50,7 @@ export const LeftPanel = ({
   );
 };
 type ElementWLevel = {
-  element: ElementType;
+  element: CompProps;
   level: number;
   parentId: string;
   pos: number;
@@ -63,11 +62,11 @@ export const Elements = ({
   setElements,
 }: {
   selected?: string;
-  elements: ElementType[];
+  elements: CompProps[];
   select: (id: string) => void;
-  setElements: (elements: ElementType[]) => void;
+  setElements: (elements: CompProps[]) => void;
 }) => {
-  const recursion = (elements: ElementType[], level: number, parentId: string): ElementWLevel[] => {
+  const recursion = (elements: CompProps[], level: number, parentId: string): ElementWLevel[] => {
     return elements.flatMap((element, pos) =>
       element.type === "div"
         ? ([
@@ -105,7 +104,7 @@ export const Elements = ({
             const newPos = oldElem?.level === newLevel ? oldElem.pos : 0;
 
             //find the old element and delete that and insert the new one
-            const recursion = (elements: ElementType[], parentId: string): ElementType[] => {
+            const recursion = (elements: CompProps[], parentId: string): CompProps[] => {
               const newElems = elements.map((e) => {
                 if (e.id === element.id) return null;
                 if (e.type === "div") return { ...e, children: recursion(e.children, e.id) };
@@ -113,7 +112,7 @@ export const Elements = ({
                 return e;
               });
               if (newParentId === parentId) newElems.splice(newPos, 0, element);
-              return newElems.filter((e) => e !== null) as ElementType[];
+              return newElems.filter((e) => e !== null) as CompProps[];
             };
             setElements(recursion(elements, ""));
           }}
@@ -126,14 +125,14 @@ export const Elements = ({
             <p>{element.id}</p>
             <AiFillDelete
               onClick={() => {
-                const recursion = (elements: ElementType[]): ElementType[] => {
+                const recursion = (elements: CompProps[]): CompProps[] => {
                   const newElems = elements.map((e) => {
                     if (e.id === element.id) return null;
                     if (e.type === "div") return { ...e, children: recursion(e.children) };
 
                     return e;
                   });
-                  return newElems.filter((e) => e !== null) as ElementType[];
+                  return newElems.filter((e) => e !== null) as CompProps[];
                 };
                 setElements(recursion(elements));
               }}
@@ -148,8 +147,8 @@ export const AddElement = ({
   elements,
   setElements,
 }: {
-  elements: ElementType[];
-  setElements: (elements: ElementType[]) => void;
+  elements: CompProps[];
+  setElements: (elements: CompProps[]) => void;
 }) => {
   const elems = [
     { name: "div", element: DEFAULT_DIV },

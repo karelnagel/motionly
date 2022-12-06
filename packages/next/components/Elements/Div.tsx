@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { hexToRGBA } from "../../helpers";
-import { DivType, ElementType } from "@imageapi/types";
+
+import { CompProps, DivCompProps } from "../../types";
 import { Element } from "./index";
 
-export const Div = ({
+export const DivComp = ({
   element,
   select,
   selected,
@@ -13,15 +13,15 @@ export const Div = ({
   scale,
   lockAspectRatio,
 }: {
-  element: DivType;
+  element: DivCompProps;
   select?: (id: string) => void;
   selected?: string;
-  setElement?: (element: ElementType) => void;
+  setElement?: (element: CompProps) => void;
   draggable?: boolean;
   scale?: number;
   lockAspectRatio?: boolean;
 }) => {
-  const set = (newElement: ElementType) => {
+  const set = (newElement: CompProps) => {
     let elem = element;
     elem.children = elem.children.map((e) => {
       if (e.id === selected) {
@@ -37,8 +37,7 @@ export const Div = ({
         display: "flex",
         height: "100%",
         width: "100%",
-        backgroundColor: hexToRGBA(element.backgroundColor),
-        borderRadius: `${element.borderRadius || 0}px`,
+        backgroundColor: element.backgroundColor,
       }}
     >
       {element.children.map((child, index) => (

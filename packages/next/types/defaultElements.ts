@@ -1,6 +1,6 @@
-import { ElementType } from ".";
+import { CompProps } from ".";
 
-export const DEFAULT_ELEMENTS: ElementType[] = [
+export const DEFAULT_ELEMENTS: CompProps[] = [
     {
         id: "bg",
         type: "image",
@@ -11,8 +11,8 @@ export const DEFAULT_ELEMENTS: ElementType[] = [
         objectFit: "cover",
         rotation: 0,
         borderRadius: 0,
-        src: "https://picsum.photos/seed/1/1920/1080",
-        duration: 0, from: 0
+        src: "https://picsum.photos/seed/13/1920/1080",
+        duration: 0, from: 0,
     },
     {
         id: "container",
@@ -35,9 +35,9 @@ export const DEFAULT_ELEMENTS: ElementType[] = [
                 y: 20,
                 objectFit: "cover",
                 rotation: 0,
-                borderRadius: 100,
+                borderRadius: 0,
                 src: "https://picsum.photos/seed/2/80/80",
-                duration: 0, from: 0
+                duration: 0, from: 0,
             },
             {
                 id: "name",
@@ -46,16 +46,18 @@ export const DEFAULT_ELEMENTS: ElementType[] = [
                 width: 500,
                 x: 120,
                 y: 27,
-                backgroundColor: "#00000000",
-                borderRadius: 100,
-                color: "#000000FF",
+                textStyle: {
+                    backgroundColor: "#00000000",
+                    color: "#000000FF",
+                    fontSize: 28,
+                    fontFamily: "Inter",
+                    fontWeight: 700,
+                    textAlign: "left",
+                },
+                borderRadius: 0,
                 rotation: 0,
-                fontSize: 28,
-                fontFamily: "Inter",
-                fontWeight: 700,
                 text: "Your mom",
-                textAlign: "left",
-                duration: 0, from: 0
+                duration: 0, from: 0,
             },
             {
                 id: "username",
@@ -64,16 +66,19 @@ export const DEFAULT_ELEMENTS: ElementType[] = [
                 width: 500,
                 x: 120,
                 y: 62,
-                backgroundColor: "#00000000",
-                borderRadius: 100,
-                color: "#000000FF",
+                textStyle: {
+                    backgroundColor: "#00000000",
+                    color: "#000000FF",
+                    fontSize: 24,
+                    fontFamily: "Inter",
+                    fontWeight: 500,
+                    textAlign: "left",
+                },
+                borderRadius: 0,
                 rotation: 0,
-                fontSize: 24,
-                fontFamily: "Inter",
-                fontWeight: 500,
                 text: "@yourmom",
-                textAlign: "left",
-                duration: 0, from: 0
+                duration: 0, from: 0,
+                componentAnimations: [],
             },
             {
                 id: "tweet",
@@ -82,16 +87,18 @@ export const DEFAULT_ELEMENTS: ElementType[] = [
                 width: 550,
                 x: 25,
                 y: 130,
-                backgroundColor: "#00000000",
                 borderRadius: 0,
-                color: "#000000FF",
+                textStyle: {
+                    color: "#000000FF",
+                    fontSize: 24,
+                    fontFamily: "Inter",
+                    fontWeight: 500,
+                    textAlign: "left",
+                },
                 rotation: 0,
-                fontSize: 24,
-                fontFamily: "Inter",
-                fontWeight: 500,
                 text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
-                textAlign: "left",
-                duration: 1, from: 0.2
+                duration: 1, from: 0.2,
+                componentAnimations: [],
             }
         ]
     }

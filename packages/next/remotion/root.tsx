@@ -1,7 +1,7 @@
-import { DEFAULT_ELEMENTS } from "@imageapi/types";
 import React from "react";
 import { Composition } from "remotion";
 import { Composition as Comp } from "../components/Composition";
+import { DEFAULT_ELEMENTS } from "../types";
 
 export const Root: React.FC = () => {
   const height = 1080;

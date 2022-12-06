@@ -1,5 +1,5 @@
 "use client";
-import { ElementType } from "@imageapi/types";
+import { CompProps } from "../types";
 import { Element } from "./Elements";
 
 export const Composition = ({
@@ -11,15 +11,15 @@ export const Composition = ({
   draggable = false,
   lockAspectRatio,
 }: {
-  elements: ElementType[];
+  elements: CompProps[];
   select?: (id: string) => void;
   selected?: string;
-  setElements?: (template: ElementType[]) => void;
+  setElements?: (template: CompProps[]) => void;
   scale?: number;
   draggable?: boolean;
   lockAspectRatio?: boolean;
 }) => {
-  const setElement = (element: ElementType) => {
+  const setElement = (element: CompProps) => {
     const elems = elements.map((e) => {
       if (e.id === element.id) {
         return element;

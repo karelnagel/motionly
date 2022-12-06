@@ -1,4 +1,4 @@
-import { ElementType } from "@imageapi/types";
+import { CompProps } from "./types";
 
 export const percentToHex = (p: number) => {
     const intValue = Math.round(p / 100 * 255); // map percent to nearest integer (0 - 255)
@@ -11,7 +11,8 @@ export const hexToPercent = (alpha: string) => {
     return Math.round(normalize(parseInt(alpha, 16), 255, 0) * 100);
 }
 
-export function hexToRGBA(hex: string) {
+export function hexToRGBA(hex?: string) {
+    if (!hex) return undefined
     if (hex.length !== 9 || hex[0] !== "#") return hex
     var r = parseInt(hex.slice(1, 3), 16),
         g = parseInt(hex.slice(3, 5), 16),
@@ -22,9 +23,9 @@ export function hexToRGBA(hex: string) {
 }
 
 type Font = { family: string, weight: number }
-export function getFonts(elements: ElementType[]): (Font)[] {
+export function getFonts(elements: CompProps[]): (Font)[] {
     return elements.map((e) => {
-        if (e.type === "text") return [{ family: e.fontFamily, weight: Number(e.fontWeight) || 500 }]
+        if (e.type === "text") return [{ family: e.textStyle.fontFamily, weight: Number(e.textStyle.fontWeight) || 500 }]
         if (e.type === "div") return getFonts(e.children)
         else return [null]
     }).flat().filter(e => e !== null) as Font[]
