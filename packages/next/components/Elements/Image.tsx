@@ -13,7 +13,6 @@ export const ImageComp = (props: ImageCompProps) => {
         height: "100%",
         width: "100%",
         objectFit: props.objectFit,
-        borderRadius: `${props.borderRadius || 0}px`,
       }}
     />
   );

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 "use client";
-import { CSSProperties } from "react";
+import { CSSProperties, ReactFragment } from "react";
 import { Rnd } from "react-rnd";
 import { DivComp } from "./Div";
 import { TextComp } from "./Text";
@@ -34,26 +34,79 @@ export const Element = ({
   draggable?: boolean;
   lockAspectRatio?: boolean;
 }) => {
-  const style: CSSProperties = {
-    cursor: "pointer",
-    display: "flex",
-    overflow: "hidden",
-    position: "relative",
-    width: `100%`,
-    height: `100%`,
-    borderRadius: element.borderRadius,
-    transform: `rotate(${element.rotation || 0}deg)`, // For some reason, this messes up x and y
-  };
-  const onClick = () => {
-    select?.(element.id);
-    console.log(element.id);
-  };
   return (
     <Sequence
       from={element.from ? Math.floor(element.from * 30) : undefined}
       durationInFrames={element.duration ? Math.floor(element.duration * 30) : undefined}
       layout="none"
     >
+      <Wrapper
+        draggable={draggable}
+        element={element}
+        lockAspectRatio={lockAspectRatio}
+        scale={scale}
+        select={select}
+        selected={selected}
+        setElement={setElement}
+      >
+        {element.type === "div" && (
+          <DivComp
+            element={element}
+            lockAspectRatio={lockAspectRatio}
+            select={select}
+            selected={selected}
+            setElement={setElement}
+            draggable={draggable}
+            scale={scale}
+          />
+        )}
+        {element.type === "image" && <ImageComp {...element} />}
+        {element.type === "text" && <TextComp {...element} />}
+        {element.type === "audio" && <AudioComp {...element} />}
+        {element.type === "audiogram" && <AudiogramComp {...element} />}
+        {element.type === "graph" && <GraphComp {...element} />}
+        {element.type === "map" && <MapComp {...element} />}
+        {element.type === "mockup" && <MockupComp {...element} />}
+        {element.type === "progressbar" && <ProgressBarComp {...element} />}
+        {element.type === "qrcode" && <QRCodeComp {...element} />}
+        {element.type === "video" && <VideoComp {...element} />}
+        {element.type === "transcription" && <TranscriptionComp {...element} />}
+      </Wrapper>
+    </Sequence>
+  );
+};
+
+export const Wrapper = ({
+  element,
+  draggable,
+  scale,
+  lockAspectRatio,
+  selected,
+  setElement,
+  select,
+  children,
+}: {
+  element: CompProps;
+  draggable?: boolean;
+  scale: number;
+  lockAspectRatio?: boolean;
+  selected?: string;
+  setElement?: (e: CompProps) => void;
+  select?: (id: string) => void;
+  children: ReactFragment;
+}) => {
+  const style: CSSProperties = {
+    cursor: "pointer",
+    display: "flex",
+    overflow: "hidden",
+    width: `100%`,
+    height: `100%`,
+    borderRadius: element.borderRadius,
+    transform: `rotate(${element.rotation || 0}deg)`, // For some reason, this messes up x and y
+  };
+
+  if (draggable)
+    return (
       <Rnd
         scale={scale}
         lockAspectRatio={lockAspectRatio}
@@ -65,7 +118,7 @@ export const Element = ({
           height: element.height,
         }}
         onClick={(e: any) => {
-          onClick();
+          select?.(element.id);
           e.stopPropagation();
         }}
         position={{
@@ -95,30 +148,23 @@ export const Element = ({
               style={{ borderRadius: style.borderRadius }}
             />
           )}
-          {element.type === "div" && (
-            <DivComp
-              element={element}
-              lockAspectRatio={lockAspectRatio}
-              select={select}
-              selected={selected}
-              setElement={setElement}
-              draggable={draggable}
-              scale={scale}
-            />
-          )}
-          {element.type === "image" && <ImageComp {...element} />}
-          {element.type === "text" && <TextComp {...element} />}
-          {element.type === "audio" && <AudioComp {...element} />}
-          {element.type === "audiogram" && <AudiogramComp {...element} />}
-          {element.type === "graph" && <GraphComp {...element} />}
-          {element.type === "map" && <MapComp {...element} />}
-          {element.type === "mockup" && <MockupComp {...element} />}
-          {element.type === "progressbar" && <ProgressBarComp {...element} />}
-          {element.type === "qrcode" && <QRCodeComp {...element} />}
-          {element.type === "video" && <VideoComp {...element} />}
-          {element.type === "transcription" && <TranscriptionComp {...element} />}
+          {children}
         </div>
       </Rnd>
-    </Sequence>
-  );
+    );
+  else
+    return (
+      <div
+        style={{
+          ...style,
+          width: element.width,
+          height: element.height,
+          position: "absolute",
+          top: element.y,
+          left: element.x,
+        }}
+      >
+        {children}
+      </div>
+    );
 };

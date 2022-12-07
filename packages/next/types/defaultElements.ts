@@ -35,7 +35,7 @@ export const DEFAULT_ELEMENTS: CompProps[] = [
                 y: 20,
                 objectFit: "cover",
                 rotation: 0,
-                borderRadius: 0,
+                borderRadius: 1000,
                 src: "https://picsum.photos/seed/2/80/80",
                 duration: 0, from: 0,
             },
