@@ -1,0 +1,15 @@
+{
+  "name": "@asius/player",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf dist && tsc"
+  },
+  "dependencies": {
+    "@remotion/player": "3.3.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remotion": "3.3.8"
+  }
+}

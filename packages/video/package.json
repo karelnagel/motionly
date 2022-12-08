@@ -1,0 +1,18 @@
+{
+  "name": "@asius/video",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "preview": "remotion preview src/root.tsx",
+    "render": "remotion render src/root.tsx",
+    "lambda:site": "npx remotion lambda sites create src/root.tsx --site-name=asius",
+    "lambda:function": "npx remotion lambda functions deploy",
+    "lambda:render": "npx remotion lambda render asius"
+  },
+  "dependencies": {
+    "@remotion/cli": "^3.3.8",
+    "remotion": "^3.3.8"
+  }
+}
