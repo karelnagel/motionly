@@ -14,7 +14,7 @@ import { MockupComp } from "./Mockup";
 import { ProgressBarComp } from "./ProgressBar";
 import { QRCodeComp } from "./QRCode";
 import { VideoComp } from "./Video";
-import { TranscriptionComp } from "./Audiogram copy";
+import { TranscriptionComp } from "./TranscriptionComp";
 import Moveable from "react-moveable";
 
 export const Element = ({
