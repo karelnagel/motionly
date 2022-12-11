@@ -13,7 +13,7 @@ export const Root: React.FC = () => {
       <Composition
         id="Composition"
         component={Comp}
-        durationInFrames={60}
+        durationInFrames={60 * fps}
         fps={fps}
         width={width}
         height={height}

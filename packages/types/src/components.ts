@@ -87,12 +87,20 @@ export interface TranscriptionWord {
     start: number
     end: number
 }
+export const TranscriptionScrollType = {
+    "page-by-page": "Page by page",
+    "line-by-line": "Line by line",
+}
+export interface TranscriptionAnimation {
+    type: keyof typeof TranscriptionAnimationTypes
+    textStyle: TextStyle
+}
 export interface TranscriptionCompProps extends BaseCompProps {
     type: "transcription"
     words: TranscriptionWord[]
     textStyle: TextStyle
-    scrollType: keyof typeof TextAnimationTypes
-    animationType: keyof typeof TranscriptionAnimationTypes
+    scrollType: keyof typeof TranscriptionScrollType
+    animation: TranscriptionAnimation
 }
 
 // IMAGE & VIDEO 
@@ -115,9 +123,10 @@ export interface VideoCompProps extends BaseCompProps {
     type: "video"
     src: string
     objectFit: ObjectFitType
-    startFrom: number
-    muted: boolean
-    volume: number
+    startFrom?: number
+    muted?: boolean
+    volume?: number
+    offthread?: boolean
 }
 
 // AUDIOGRAM

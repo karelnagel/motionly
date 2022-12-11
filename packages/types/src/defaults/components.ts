@@ -1,4 +1,5 @@
 import { CompProps } from "..";
+import { DEFAULT_TRANSCRIPTION } from "./transcription";
 
 export const DEFAULT_COMPONENTS: CompProps[] = [
     {
@@ -11,95 +12,85 @@ export const DEFAULT_COMPONENTS: CompProps[] = [
         objectFit: "cover",
         rotation: 0,
         borderRadius: 0,
-        src: "https://picsum.photos/seed/13/1920/1080",
+        src: "https://picsum.photos/seed/1333/1920/1080",
         duration: 0, from: 0,
     },
     {
-        id: "container",
+        id: "overlay",
         type: "div",
-        height: 400,
-        width: 600,
+        height: 0,
+        width: 0,
+        x: 0,
+        y: 0,
         rotation: 0,
-        x: 240,
-        y: 340,
-        backgroundColor: "#FFFFFFFF",
-        borderRadius: 30,
+        borderRadius: 0,
+        duration: 0, from: 0, children: [], backgroundColor: "#00000080"
+    },
+    {
+        id: "title",
+        type: "text",
+        height: 0,
+        width: 0,
+        x: 0,
+        y: 70,
+        rotation: 0,
+        borderRadius: 0,
         duration: 0, from: 0,
-        children: [
-            {
-                id: "profile_image",
-                type: "image",
-                height: 80,
-                width: 80,
-                x: 20,
-                y: 20,
-                objectFit: "cover",
-                rotation: 0,
-                borderRadius: 1000,
-                src: "https://picsum.photos/seed/2/80/80",
-                duration: 0, from: 0,
-            },
-            {
-                id: "name",
-                type: "text",
-                height: 28,
-                width: 500,
-                x: 120,
-                y: 27,
-                textStyle: {
-                    backgroundColor: "#00000000",
-                    color: "#000000FF",
-                    fontSize: 28,
-                    fontFamily: "Inter",
-                    fontWeight: 700,
-                    textAlign: "left",
+        text: "Title here",
+        animation: { animation: "scale", duration: 1, type: "letter-by-letter" },
+        textStyle: {
+            fontSize: 100,
+            outline: { color: "#ff00ff", width: 20 },
+            color: "#000000",
+            fontWeight: 900,
+            textAlign: "center"
+        }
+    },
+    {
+        id: "video",
+        type: "video",
+        height: 400,
+        width: 680,
+        x: 200,
+        y: 200,
+        objectFit: "cover",
+        rotation: 0,
+        borderRadius: 40,
+        src: "https://remotionlambda-24lixyhuqn.s3.us-east-1.amazonaws.com/video.mp4",
+        duration: 0, from: 0, muted: false, startFrom: 0, volume: 1
+    },
+    {
+        id: "transcription",
+        type: "transcription",
+        height: 240,
+        width: 680,
+        x: 200,
+        y: 700,
+        rotation: 0,
+        borderRadius: 0,
+        duration: 0, from: 0,
+        words: DEFAULT_TRANSCRIPTION,
+        animation: {
+            type: "current-word",
+            textStyle: {
+                outline: {
+                    color: "#00ffff",
+                    width: 7
                 },
-                borderRadius: 0,
-                rotation: 0,
-                text: "Your mom",
-                duration: 0, from: 0,
-            },
-            {
-                id: "username",
-                type: "text",
-                height: 30,
-                width: 500,
-                x: 120,
-                y: 62,
-                textStyle: {
-                    backgroundColor: "#00000000",
-                    color: "#000000FF",
-                    fontSize: 24,
-                    fontFamily: "Inter",
-                    fontWeight: 500,
-                    textAlign: "left",
-                },
-                borderRadius: 0,
-                rotation: 0,
-                text: "@yourmom",
-                duration: 0, from: 0,
-                componentAnimations: [],
-            },
-            {
-                id: "tweet",
-                type: "text",
-                height: 200,
-                width: 550,
-                x: 25,
-                y: 130,
-                borderRadius: 0,
-                textStyle: {
-                    color: "#000000FF",
-                    fontSize: 24,
-                    fontFamily: "Inter",
-                    fontWeight: 500,
-                    textAlign: "left",
-                },
-                rotation: 0,
-                text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
-                duration: 1, from: 0.2,
-                componentAnimations: [],
+
             }
-        ]
+        },
+        scrollType: "page-by-page",
+        textStyle: {
+            color: "#000000",
+            fontSize: 60,
+            outline: {
+                color: "#ffffff",
+                width: 7
+            },
+            lineHeight: 1.3,
+            textAlign: "center",
+            fontWeight: 700
+        }
     }
 ]
