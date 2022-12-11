@@ -1,5 +1,4 @@
 import { CompProps, DivCompProps } from "@asius/types";
-import React from "react";
 import { Component } from "../Component";
 
 export const DivComp = ({

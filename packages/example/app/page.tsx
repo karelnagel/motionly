@@ -1,57 +1,64 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+
+import styles from "./page.module.css";
+import { COMPONENTS } from "./components";
+import { Player } from "@asius/player";
+import { useState } from "react";
 
 export default function Home() {
+  const [name, setName] = useState("Your mom");
+  const [username, setUsername] = useState("@yourmom");
+  const [tweet, setTweet] = useState("hello world");
+  const [container, setContainer] = useState("#FFFFFF");
+  const modifications = [
+    { id: "name", text: name },
+    { id: "username", text: username },
+    { id: "tweet", text: tweet },
+    { id: "container", backgroundColor: container },
+  ];
+
   return (
     <div className={styles.container}>
-      <main className={styles.main}>
+      <main className={styles.main} style={{ width: "600px", margin: "auto" }}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js 13!</a>
+          Welcome to <a href="https://nextjs.org">Asius!</a>
         </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://beta.nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js 13</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Explore the Next.js 13 playground.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates/next.js/app-directory?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>Deploy your Next.js site to a public URL with Vercel.</p>
-          </a>
-        </div>
+        <p>Local player</p>
+        <input
+          type="text"
+          placeholder="name"
+          value={name}
+          onChange={(e) => setName(e.currentTarget.value)}
+        />
+        <input
+          type="color"
+          placeholder="container"
+          value={container}
+          onChange={(e) => setContainer(e.currentTarget.value)}
+        />
+        <input
+          type="text"
+          placeholder="username"
+          value={username}
+          onChange={(e) => setUsername(e.currentTarget.value)}
+        />
+        <input
+          type="text"
+          placeholder="tweet"
+          value={tweet}
+          onChange={(e) => setTweet(e.currentTarget.value)}
+        />
+        <Player
+          modifications={modifications as any}
+          components={COMPONENTS}
+          duration={10}
+          fps={30}
+          height={1080}
+          width={1080}
+          style={{ width: "100%" }}
+          controls
+        />
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
-  )
+  );
 }

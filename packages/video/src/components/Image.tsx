@@ -1,6 +1,5 @@
 import { Img } from "remotion";
 import { ImageCompProps } from "@asius/types";
-import React from "react";
 
 export const ImageComp = (props: ImageCompProps) => {
   return (

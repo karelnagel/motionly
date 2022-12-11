@@ -12,14 +12,14 @@ export type VideoInput = {
     modifications?: CompProps[];
 } & (
         | {
-            local: true;
+            id?: undefined;
             components: CompProps[];
             height: number;
             width: number;
             duration: number;
             fps: number;
         }
-        | { id: string; local: false }
+        | { id: string }
     );
 export type TemplateType = {
     id: string

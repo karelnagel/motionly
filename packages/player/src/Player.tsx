@@ -1,26 +1,31 @@
 import { Player as RemotionPlayer } from "@remotion/player";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Composition } from "@asius/video";
 import { PlayerProps } from "./PlayerProps";
 import { CompProps } from "@asius/types";
 
 export const Player = (props: PlayerProps) => {
-  const [components, setComponents] = useState(props.local ? props.components : []);
-  const [duration, setDuration] = useState(props.local ? props.duration : 0);
-  const [fps, setFps] = useState(props.local ? props.fps : 30);
-  const [width, setWidth] = useState(props.local ? props.width : 1080);
-  const [height, setHeight] = useState(props.local ? props.height : 1080);
+  const isLocal = props.id === undefined;
+  const [components, setComponents] = useState(isLocal ? props.components : []);
+  const [duration, setDuration] = useState(isLocal ? props.duration : 0);
+  const [fps, setFps] = useState(isLocal ? props.fps : 30);
+  const [width, setWidth] = useState(isLocal ? props.width : 1080);
+  const [height, setHeight] = useState(isLocal ? props.height : 1080);
 
   useEffect(() => {
     // Todo get data from api
   }, []);
+  const getComps = (comps: CompProps[]) => {
+    return comps.map((c) => {
+      const mod = props.modifications?.find((m) => m.id === c.id);
+      let newComp = c;
 
-  const comps = components.map((e) => {
-    const mod = props.modifications?.find((m) => m.id === e.id);
-    if (mod) return { ...e, ...mod } as CompProps;
-    return e;
-  });
-  
+      if (newComp.type === "div") newComp.children = getComps(newComp.children);
+      if (mod) newComp = { ...newComp, ...mod } as CompProps;
+      return newComp;
+    });
+  };
+  const comps = getComps(components);
   return (
     <RemotionPlayer
       component={Composition}

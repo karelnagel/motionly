@@ -12,7 +12,7 @@
     "turbo": "^1.6.3"
   },
   "scripts": {
-    "build": "turbo build",
+    "build": "cd packages/types; yarn build; cd ../sdk; yarn build; cd ../video; yarn build; cd ../player; yarn build; cd ../example; yarn build",
     "start": "turbo start",
     "dev": "turbo dev"
   }

@@ -14,7 +14,6 @@ import { QRCodeComp } from "./components/QRCode";
 import { VideoComp } from "./components/Video";
 import { TranscriptionComp } from "./components/TranscriptionComp";
 import Moveable from "react-moveable";
-import React from "react";
 
 export const Component = ({
   element,
