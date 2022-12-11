@@ -3,7 +3,7 @@ import { DivComp } from "./components/Div";
 import { TextComp } from "./components/Text";
 import { ImageComp } from "./components/Image";
 import { Sequence } from "remotion";
-import { CompProps } from "@asius/types";
+import { CompProps, EditableProps } from "@asius/types";
 import { AudioComp } from "./components/Audio";
 import { AudiogramComp } from "./components/Audiogram";
 import { GraphComp } from "./components/Graph";
@@ -15,109 +15,86 @@ import { VideoComp } from "./components/Video";
 import { TranscriptionComp } from "./components/TranscriptionComp";
 import Moveable from "react-moveable";
 
-export const Component = ({
-  element,
-  selected,
-  select,
-  setElement,
-  scale = 1,
-  lockAspectRatio,
-}: {
-  element: CompProps;
-  selected?: string;
-  select?: (id: string) => void;
-  setElement?: (element: CompProps) => void;
-  scale?: number;
-  lockAspectRatio?: boolean;
-}) => {
+export const Component = ({ comp, edit }: { comp: CompProps; edit?: EditableProps }) => {
   const divRef = useRef(null);
   const style: CSSProperties = {
     cursor: "pointer",
     display: "flex",
     overflow: "hidden",
-    width: element.width,
-    height: element.height,
+    width: comp.width,
+    height: comp.height,
     position: "absolute",
-    top: element.y,
-    left: element.x,
-    borderRadius: element.borderRadius,
-    transform: `rotate(${element.rotation || 0}deg)`, // For some reason, this messes up x and y
+    top: comp.y,
+    left: comp.x,
+    borderRadius: comp.borderRadius,
+    transform: `rotate(${comp.rotation || 0}deg)`, // For some reason, this messes up x and y
   };
   return (
     <Sequence
-      from={element.from ? Math.floor(element.from * 30) : undefined}
-      durationInFrames={element.duration ? Math.floor(element.duration * 30) : undefined}
+      from={comp.from ? Math.floor(comp.from * 30) : undefined}
+      durationInFrames={comp.duration ? Math.floor(comp.duration * 30) : undefined}
       layout="none"
     >
-      {selected === element.id && (
+      {edit?.selected === comp.id && (
         <Moveable
           target={divRef}
-          scale={scale}
+          scale={edit.scale}
           draggable={true}
           resizable={true}
           rotatable={true}
           bounds=""
           size={{
-            width: element.width,
-            height: element.height,
+            width: comp.width,
+            height: comp.height,
           }}
           position={{
-            x: element.x,
-            y: element.y,
+            x: comp.x,
+            y: comp.y,
           }}
           onDrag={(e) => {
             console.log(e);
-            setElement?.({
-              ...element,
-              x: element.x + e.beforeDelta[0],
-              y: element.y + e.beforeDelta[1],
+            edit?.setComp({
+              ...comp,
+              x: comp.x + e.beforeDelta[0],
+              y: comp.y + e.beforeDelta[1],
             });
           }}
-          keepRatio={lockAspectRatio}
+          keepRatio={edit?.lockAspectRatio}
           onResize={(e) => {
             console.log(e);
-            setElement?.({
-              ...element,
+            edit.setComp({
+              ...comp,
               width: e.width,
               height: e.height,
-              x: element.x + e.drag.beforeDelta[0],
-              y: element.y + e.drag.beforeDelta[1],
+              x: comp.x + e.drag.beforeDelta[0],
+              y: comp.y + e.drag.beforeDelta[1],
             });
           }}
           onRotate={(e) => {
-            setElement?.({ ...element, rotation: e.absoluteRotation });
+            edit?.setComp({ ...comp, rotation: e.absoluteRotation });
           }}
         />
       )}
       <div
         ref={divRef}
         onClick={(e: any) => {
-          select?.(element.id);
+          edit?.select(comp.id);
           e.stopPropagation();
         }}
         style={style}
       >
-        {element.type === "div" && (
-          <DivComp
-            element={element}
-            lockAspectRatio={lockAspectRatio}
-            select={select}
-            selected={selected}
-            setElement={setElement}
-            scale={scale}
-          />
-        )}
-        {element.type === "image" && <ImageComp {...element} />}
-        {element.type === "text" && <TextComp {...element} />}
-        {element.type === "audio" && <AudioComp {...element} />}
-        {element.type === "audiogram" && <AudiogramComp {...element} />}
-        {element.type === "graph" && <GraphComp {...element} />}
-        {element.type === "map" && <MapComp {...element} />}
-        {element.type === "mockup" && <MockupComp {...element} />}
-        {element.type === "progressbar" && <ProgressBarComp {...element} />}
-        {element.type === "qrcode" && <QRCodeComp {...element} />}
-        {element.type === "video" && <VideoComp {...element} />}
-        {element.type === "transcription" && <TranscriptionComp {...element} />}
+        {comp.type === "div" && <DivComp comp={comp} edit={edit} />}
+        {comp.type === "image" && <ImageComp {...comp} />}
+        {comp.type === "text" && <TextComp {...comp} />}
+        {comp.type === "audio" && <AudioComp {...comp} />}
+        {comp.type === "audiogram" && <AudiogramComp {...comp} />}
+        {comp.type === "graph" && <GraphComp {...comp} />}
+        {comp.type === "map" && <MapComp {...comp} />}
+        {comp.type === "mockup" && <MockupComp {...comp} />}
+        {comp.type === "progressbar" && <ProgressBarComp {...comp} />}
+        {comp.type === "qrcode" && <QRCodeComp {...comp} />}
+        {comp.type === "video" && <VideoComp {...comp} />}
+        {comp.type === "transcription" && <TranscriptionComp {...comp} />}
       </div>
     </Sequence>
   );

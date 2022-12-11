@@ -1,32 +1,16 @@
-import { CompProps, DivCompProps } from "@asius/types";
+import { CompProps, DivCompProps, EditableProps } from "@asius/types";
 import { Component } from "../Component";
 
-export const DivComp = ({
-  element,
-  select,
-  selected,
-  setElement,
-  draggable,
-  scale,
-  lockAspectRatio,
-}: {
-  element: DivCompProps;
-  select?: (id: string) => void;
-  selected?: string;
-  setElement?: (element: CompProps) => void;
-  draggable?: boolean;
-  scale?: number;
-  lockAspectRatio?: boolean;
-}) => {
+export const DivComp = ({ comp, edit }: { comp: DivCompProps; edit?: EditableProps }) => {
   const set = (newElement: CompProps) => {
-    let elem = element;
+    let elem = comp;
     elem.children = elem.children.map((e) => {
-      if (e.id === selected) {
+      if (e.id === edit?.selected) {
         return newElement;
       }
       return e;
     });
-    setElement?.(elem);
+    edit?.setComp(elem);
   };
   return (
     <div
@@ -34,19 +18,11 @@ export const DivComp = ({
         display: "flex",
         height: "100%",
         width: "100%",
-        backgroundColor: element.backgroundColor,
+        backgroundColor: comp.backgroundColor,
       }}
     >
-      {element.children.map((child, index) => (
-        <Component
-          lockAspectRatio={lockAspectRatio}
-          key={index}
-          element={child}
-          select={select}
-          selected={selected}
-          setElement={set}
-          scale={scale}
-        />
+      {comp.children.map((child, index) => (
+        <Component key={index} comp={child} edit={edit ? { ...edit, setComp: set } : undefined} />
       ))}
     </div>
   );

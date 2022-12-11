@@ -18,7 +18,7 @@ export const Root: React.FC = () => {
         width={width}
         height={height}
         defaultProps={{
-          elements: DEFAULT_COMPONENTS,
+          comps: DEFAULT_COMPONENTS,
         }}
       />
     </>

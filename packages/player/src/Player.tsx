@@ -30,7 +30,7 @@ export const Player = (props: PlayerProps) => {
     <RemotionPlayer
       component={Composition}
       durationInFrames={Math.ceil(duration * fps)}
-      inputProps={{ elements: comps }}
+      inputProps={{ comps }}
       fps={fps}
       compositionHeight={height}
       compositionWidth={width}

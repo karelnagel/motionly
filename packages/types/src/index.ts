@@ -30,3 +30,10 @@ export type TemplateType = {
     components: CompProps[]
 
 }
+export interface EditableProps {
+    select: (id: string) => void;
+    selected: string;
+    setComp: (comp: CompProps) => void;
+    scale: number;
+    lockAspectRatio: boolean;
+}
