@@ -16,13 +16,13 @@ import { TranscriptionComp } from "./components/TranscriptionComp";
 import Moveable from "react-moveable";
 
 export const Component = ({ comp, edit }: { comp: CompProps; edit?: EditableProps }) => {
-  const divRef = useRef(null);
+  const divRef = useRef<HTMLDivElement>(null);
   const style: CSSProperties = {
     cursor: "pointer",
     display: "flex",
     overflow: "hidden",
-    width: comp.width,
-    height: comp.height,
+    width: comp.width || "100%",
+    height: comp.height || "100%",
     position: "absolute",
     top: comp.y,
     left: comp.x,
@@ -44,8 +44,8 @@ export const Component = ({ comp, edit }: { comp: CompProps; edit?: EditableProp
           rotatable={true}
           bounds=""
           size={{
-            width: comp.width,
-            height: comp.height,
+            width: divRef.current?.getBoundingClientRect().width || 0,
+            height: divRef.current?.getBoundingClientRect().height || 0,
           }}
           position={{
             x: comp.x,

@@ -12,7 +12,7 @@ export const Composition = ({ comps, edit }: { comps: CompProps[]; edit?: Editab
   //   setElements?.(elems);
   // };
   return (
-    <div style={{ position: "absolute" }}>
+    <div style={{ position: "absolute", height: "100%", width: "100%" }}>
       {comps.map((comp, index) => {
         return <Component edit={edit} key={index} comp={comp} />;
       })}

@@ -12,7 +12,8 @@
     "lambda:render": "npx remotion lambda render asius"
   },
   "dependencies": {
-    "@asius/types": "*"
+    "@asius/types": "*",
+    "react-moveable": "^0.44.1"
   },
   "peerDependencies": {
     "react": ">=16.8.0",

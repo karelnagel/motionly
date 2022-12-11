@@ -4,8 +4,8 @@ export const DEFAULT_COMPONENTS: CompProps[] = [
     {
         id: "bg",
         type: "image",
-        height: 1080,
-        width: 1920,
+        height: 0,
+        width: 0,
         x: 0,
         y: 0,
         objectFit: "cover",
