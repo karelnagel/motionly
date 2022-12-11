@@ -1,6 +1,5 @@
 import { OffthreadVideo } from "remotion";
 import { VideoCompProps } from "@asius/types";
-import React from "react";
 
 export const VideoComp = (props: VideoCompProps) => {
   return (
