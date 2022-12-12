@@ -236,9 +236,10 @@ export const ProgressBarTypes = {
 }
 export interface ProgressBarCompProps extends BaseCompProps {
     type: "progressbar",
-    from: number
-    to: number
     progressBarType: keyof typeof ProgressBarTypes
+    color: string
+    backgroundColor?: string
+    barWidth?: number
 }
 
 

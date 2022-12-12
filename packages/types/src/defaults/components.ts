@@ -44,7 +44,7 @@ export const DEFAULT_COMPONENTS: CompProps[] = [
         animation: { start: 1, duration: 3 }
     },
     {
-        id: "graph",
+        id: "graph2",
         type: "graph",
         height: 400,
         width: 1080,
@@ -145,5 +145,19 @@ export const DEFAULT_COMPONENTS: CompProps[] = [
         roundness: 14,
         smoothing: true,
         mirror: true
+    },
+    {
+        id: "bar1",
+        type: "progressbar",
+        height: 40,
+        width: 1080,
+        x: 0,
+        y: 0,
+        rotation: 0,
+        borderRadius: 0,
+        duration: 0, from: 0,
+        color: "red",
+        progressBarType: "line",
+        backgroundColor: "pink"
     }
 ]
