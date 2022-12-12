@@ -198,16 +198,24 @@ export const GraphTypes = {
     "bar": "Bar",
     "pie": "Pie",
 }
-export interface GraphCompProps extends BaseCompProps {
+export type GraphCompProps = BaseCompProps & {
     type: "graph",
     values: number[]
     color: string
     graphType: keyof typeof GraphTypes
-    animation: {
+    max?: number
+    min?: number
+    animation?: {
         start: number
-        end: number
+        duration: number
     }
-}
+} & ({
+    graphType: "line"
+    strokeWidth: number
+} | {
+    graphType: "bar"
+    gap?: number
+})
 
 
 // QR CODE
