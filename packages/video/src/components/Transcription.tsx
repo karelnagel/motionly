@@ -63,7 +63,6 @@ export const TranscriptionComp = ({
             );
           })}
         </span>
-
         {unPlayedSubs.map((item, i) => (
           <span key={i}>{item.text} </span>
         ))}

@@ -12,7 +12,7 @@ import { MockupComp } from "./components/Mockup";
 import { ProgressBarComp } from "./components/ProgressBar";
 import { QRCodeComp } from "./components/QRCode";
 import { VideoComp } from "./components/Video";
-import { TranscriptionComp } from "./components/TranscriptionComp";
+import { TranscriptionComp } from "./components/Transcription";
 import Moveable from "react-moveable";
 
 export const Component = ({ comp, edit }: { comp: CompProps; edit?: EditableProps }) => {

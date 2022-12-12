@@ -131,8 +131,8 @@ export interface VideoCompProps extends BaseCompProps {
 
 // AUDIOGRAM
 export const AudiogramPosition = {
-    top: "Top",
-    bottom: "Bottom",
+    start: "Start",
+    end: "End",
     center: "Center",
 }
 export interface AudiogramCompProps extends BaseCompProps {
@@ -143,7 +143,9 @@ export interface AudiogramCompProps extends BaseCompProps {
     barWidth: number
     color: string
     roundness: number
-    startFrom: number
+    startFrom?: number
+    smoothing?: boolean
+    mirror?: boolean
 }
 
 

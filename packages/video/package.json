@@ -19,7 +19,8 @@
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
     "@remotion/cli": "3.3.9",
-    "remotion": "3.3.9"
+    "remotion": "3.3.9",
+    "@remotion/media-utils": "3.3.9"
   },
   "devDependencies": {
     "@types/react": "17.0.11",
@@ -27,6 +28,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "@remotion/cli": "3.3.9",
-    "remotion": "3.3.9"
+    "remotion": "3.3.9",
+    "@remotion/media-utils": "3.3.9"
   }
 }

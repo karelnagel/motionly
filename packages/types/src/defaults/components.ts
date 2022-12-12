@@ -1,6 +1,7 @@
 import { CompProps } from "..";
 import { DEFAULT_TRANSCRIPTION } from "./transcription";
 
+const videoUrl = "https://remotionlambda-24lixyhuqn.s3.us-east-1.amazonaws.com/video.mp4"
 export const DEFAULT_COMPONENTS: CompProps[] = [
     {
         id: "bg",
@@ -56,7 +57,7 @@ export const DEFAULT_COMPONENTS: CompProps[] = [
         objectFit: "cover",
         rotation: 0,
         borderRadius: 40,
-        src: "https://remotionlambda-24lixyhuqn.s3.us-east-1.amazonaws.com/video.mp4",
+        src: videoUrl,
         duration: 0, from: 0, muted: false, startFrom: 0, volume: 1
     },
     {
@@ -92,5 +93,24 @@ export const DEFAULT_COMPONENTS: CompProps[] = [
             textAlign: "center",
             fontWeight: 700
         }
+    },
+    {
+        id: "audiogram",
+        type: "audiogram",
+        height: 300,
+        width: 1080,
+        x: 0,
+        y: 780,
+        rotation: 0,
+        borderRadius: 0,
+        duration: 0, from: 0,
+        src: videoUrl,
+        barWidth: 30,
+        color: "blue",
+        gap: 19,
+        position: "end",
+        roundness: 14,
+        smoothing: true,
+        mirror: true
     }
 ]
