@@ -183,7 +183,7 @@ export interface MapCompProps extends BaseCompProps {
     zoom: number
     color: string
     backgroundColor: string
-    animation: {
+    animation?: {
         from: number
         to: number
         start: number
@@ -223,7 +223,7 @@ export interface QRCodeCompProps extends BaseCompProps {
     type: "qrcode",
     text: string,
     color: string,
-    backgroundColor: string,
+    backgroundColor?: string,
 }
 
 

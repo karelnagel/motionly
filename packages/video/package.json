@@ -5,11 +5,11 @@
   "license": "MIT",
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "preview": "remotion preview src/root.tsx",
-    "render": "remotion render src/root.tsx",
-    "lambda:site": "npx remotion lambda sites create src/root.tsx --site-name=asius",
+    "preview": "remotion preview src/register.tsx",
+    "render": "remotion render src/register.tsx",
+    "lambda:site": "npx remotion lambda sites create src/register.tsx --site-name=asius2",
     "lambda:function": "npx remotion lambda functions deploy",
-    "lambda:render": "npx remotion lambda render asius"
+    "lambda:render": "npx remotion lambda render asius2"
   },
   "dependencies": {
     "@asius/types": "*",

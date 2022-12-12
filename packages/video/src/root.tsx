@@ -1,8 +1,8 @@
 import React from "react";
-import { Composition } from "remotion";
+import { Composition, Folder } from "remotion";
 import { Composition as Comp } from "./Composition";
 import { DEFAULT_COMPONENTS } from "@asius/types";
-import { registerRoot } from "remotion";
+import { compositions } from "./compositions";
 
 export const Root: React.FC = () => {
   const height = 1080;
@@ -21,8 +21,22 @@ export const Root: React.FC = () => {
           comps: DEFAULT_COMPONENTS,
         }}
       />
+      {Object.keys(compositions).map((key, i) => (
+        <Folder key={key} name={key}>
+          {compositions[key].map((comp, i) => (
+            <Composition
+              key={i}
+              id={`${key}-${comp.id}`}
+              component={Comp}
+              fps={fps}
+              width={width}
+              durationInFrames={comp.duration * fps}
+              height={height}
+              defaultProps={{ comps: [comp] }}
+            />
+          ))}
+        </Folder>
+      ))}
     </>
   );
 };
-
-registerRoot(Root);
