@@ -2,17 +2,16 @@ import { ProgressBarCompProps } from "@asius/types";
 import { useCurrentFrame, useVideoConfig } from "remotion";
 
 export const ProgressBarComp = ({
-  progressBarType,
   color,
-  barWidth,
   backgroundColor,
   height,
   width,
+  ...props
 }: ProgressBarCompProps) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const progress = (frame / durationInFrames) * 100;
-  if (progressBarType === "line")
+  if (props.progressBarType === "line")
     return (
       <div style={{ width: "100%", height: "100%", position: "relative", backgroundColor }}>
         <div
@@ -27,7 +26,7 @@ export const ProgressBarComp = ({
         />
       </div>
     );
-  if (progressBarType === "spotify")
+  if (props.progressBarType === "spotify")
     return (
       <div
         style={{
@@ -73,19 +72,58 @@ export const ProgressBarComp = ({
         />
       </div>
     );
-  if (progressBarType === "circle")
-    // Todo
+  if (props.progressBarType === "circle") {
+    const size = Math.min(width, height);
+    const radius = (size - props.barWidth) / 2;
+    const circumference = 2 * Math.PI * radius;
+    const dash = circumference * (progress / 100);
     return (
-      <svg viewBox={`0 0 ${width} ${height}`}>
+      <svg viewBox={`0 0 ${size} ${size}`}>
         <circle
-          cx="50%"
-          cy="50%"
-          r={`calc(50% - ${barWidth! / 2}px)`}
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
           stroke={backgroundColor}
-          strokeWidth={barWidth}
-          fill="transparent"
+          strokeWidth={props.barWidth}
+          fill="none"
+        />
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          stroke={color}
+          strokeWidth={props.barWidth}
+          fill="none"
+          transform={`rotate(-90 ${size / 2} ${size / 2})`}
+          strokeDasharray={[dash, circumference - dash].join(" ")}
+          strokeLinecap="round"
         />
       </svg>
+    );
+  }
+  if (props.progressBarType === "square")
+    return (
+      <div style={{ position: "relative", height: "100%", width: "100%" }}>
+        {[1, 2, 3, 4].map((n) => {
+          const horizontal = n % 2 === 0;
+          const left = props.corner === "top-right" ? n < 3 : n > 2;
+          const top = n < 3;
+          return (
+            <div
+              style={{
+                width: horizontal ? props.barWidth : `${progress}%`,
+                backgroundColor: color,
+                height: horizontal ? `${progress}%` : props.barWidth,
+                position: "absolute",
+                top: !top ? 0 : undefined,
+                left: left ? 0 : undefined,
+                bottom: !top ? undefined : 0,
+                right: left ? undefined : 0,
+              }}
+            />
+          );
+        })}
+      </div>
     );
   return null;
 };

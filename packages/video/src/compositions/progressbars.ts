@@ -1,8 +1,8 @@
-import { CompProps } from "@asius/types";
-import { baseComp, videoUrl } from "./consts";
+import { CompProps, ProgressBarCompProps } from "@asius/types";
+import { baseComp } from "./consts";
 
-const base: CompProps = {
-    ...baseComp, type: "progressbar", height: 100, width: 1000, progressBarType: "line", barWidth: 20, color: "red", backgroundColor: "pink"
+const base: ProgressBarCompProps = {
+    ...baseComp, type: "progressbar", progressBarType: "line", height: 100, width: 1080, backgroundColor: "pink", color: "red"
 }
 
 export const progressbars: CompProps[] = [
@@ -13,9 +13,9 @@ export const progressbars: CompProps[] = [
         ...base, id: "spotify", progressBarType: "spotify"
     },
     {
-        ...base, id: "circle", progressBarType: "circle", height: 400, width: 400
+        ...base, id: "circle", progressBarType: "circle", height: 1080, barWidth: 40,
     },
     {
-        ...base, id: "square", progressBarType: "square"
+        ...base, id: "square", progressBarType: "square", height: 1080, barWidth: 40, corner: "top-left"
     },
 ]

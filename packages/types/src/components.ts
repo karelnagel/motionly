@@ -229,18 +229,29 @@ export interface QRCodeCompProps extends BaseCompProps {
 
 // PROGRESS BAR
 export const ProgressBarTypes = {
-    spotify: "Spotify",
-    line: "Line",
-    circle: "Circle",
-    square: "Square",
+    "spotify": "Spotify",
+    "line": "Line",
+    "circle": "Circle",
+    "square": "Square",
 }
-export interface ProgressBarCompProps extends BaseCompProps {
+export const ProgressBarSquareCorners = {
+    "top-left": "Top left",
+    "top-right": "Top right",
+}
+
+export type ProgressBarCompProps = BaseCompProps & {
     type: "progressbar",
-    progressBarType: keyof typeof ProgressBarTypes
     color: string
+    progressBarType: keyof typeof ProgressBarTypes
     backgroundColor?: string
-    barWidth?: number
-}
+} & ({
+    progressBarType: "square"
+    barWidth: number
+    corner: keyof typeof ProgressBarSquareCorners
+} | {
+    progressBarType: "circle"
+    barWidth: number
+} | { progressBarType: "line" | "spotify" })
 
 
 // DIV
