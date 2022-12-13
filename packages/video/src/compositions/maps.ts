@@ -2,7 +2,7 @@ import { CompProps } from "@asius/types";
 import { baseComp } from "./consts";
 
 const base: CompProps = {
-    ...baseComp, type: "map", location: { lat: 0, lng: 0 }, zoom: 200, color: "blue", backgroundColor: "pink", animation: undefined, marker: { color: "red", size: 30 }
+    ...baseComp, type: "map", location: { lat: 0, lng: 0 }, zoom: 200, fill: "blue", stroke: "white", strokeWidth: 1, animation: undefined, marker: { color: "red", size: 30 }
 }
 
 export const maps: CompProps[] = [
