@@ -4,6 +4,7 @@ import { audios } from "./audios"
 import { divs } from "./divs"
 import { graphs } from "./graphs"
 import { images } from "./images"
+import { lotties } from "./lotties"
 import { maps } from "./maps"
 import { mockups } from "./mockups"
 import { progressbars } from "./progressbars"
@@ -13,5 +14,5 @@ import { transcriptions } from "./transcriptions"
 import { videos } from "./videos"
 
 export const compositions: { [name: string]: CompProps[] } = {
-    audiograms, transcriptions, graphs, images, videos, progressbars, texts, qrcodes, audios, divs, maps, mockups
+    audiograms, transcriptions, graphs, images, videos, progressbars, texts, qrcodes, audios, divs, maps, mockups,lotties
 }

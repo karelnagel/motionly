@@ -268,4 +268,17 @@ export interface DivCompProps extends BaseCompProps {
 }
 
 
-export type CompProps = TextCompProps | ImageCompProps | DivCompProps | VideoCompProps | AudioCompProps | AudiogramCompProps | TranscriptionCompProps | MockupCompProps | MapCompProps | GraphCompProps | QRCodeCompProps | ProgressBarCompProps
+// LOTTIE
+export const LottieDirections = {
+    "forward": "Forward",
+    "backward": "Backward",
+}
+export interface LottieCompProps extends BaseCompProps {
+    type: "lottie"
+    src: string
+    direction?: keyof typeof LottieDirections
+    loop?: boolean
+    playbackRate?: number
+}
+
+export type CompProps = TextCompProps | ImageCompProps | DivCompProps | VideoCompProps | AudioCompProps | AudiogramCompProps | TranscriptionCompProps | MockupCompProps | MapCompProps | GraphCompProps | QRCodeCompProps | ProgressBarCompProps | LottieCompProps

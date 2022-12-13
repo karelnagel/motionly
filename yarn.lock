@@ -1618,6 +1618,13 @@
     mime-types "2.1.34"
     remotion "3.3.9"
 
+"@remotion/lottie@^3.3.9":
+  version "3.3.9"
+  resolved "https://registry.yarnpkg.com/@remotion/lottie/-/lottie-3.3.9.tgz#a5f17964a13218885be65122454b27fea89afc61"
+  integrity sha512-wWeiRFHFKgMMnPgj56zjm6/ZvG8F+7c9dwbXNYId6mWNLQEhmaIVdUeSPvUz2dL0EbfkWd6FTVfqjvBWdqvvxQ==
+  dependencies:
+    remotion "3.3.9"
+
 "@remotion/media-utils@3.3.9":
   version "3.3.9"
   resolved "https://registry.yarnpkg.com/@remotion/media-utils/-/media-utils-3.3.9.tgz#3a02b29667ce75c503e737af8f6195c1169382b8"
@@ -3804,6 +3811,11 @@ loose-envify@^1.1.0, loose-envify@^1.4.0:
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
+
+lottie-web@^5.10.0:
+  version "5.10.0"
+  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.10.0.tgz#72563f22efdcf2b8f7e8359743514930ebaf5f8c"
+  integrity sha512-q2hfqKrGXNkwjSSZjKxf3fWMi0e3ZBc03qBkVWoGbwUJ7BcG+9YXjMPtmmhitzk8Nc6VQ5PRnh9yInPdfq0PZg==
 
 lru-cache@^6.0.0:
   version "6.0.0"

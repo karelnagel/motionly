@@ -14,6 +14,7 @@ import { QRCodeComp } from "./components/QRCode";
 import { VideoComp } from "./components/Video";
 import { TranscriptionComp } from "./components/Transcription";
 import Moveable from "react-moveable";
+import { LottieComp } from "./components/Lottie";
 
 export const Component = ({ comp, edit }: { comp: CompProps; edit?: EditableProps }) => {
   const divRef = useRef<HTMLDivElement>(null);
@@ -95,6 +96,7 @@ export const Component = ({ comp, edit }: { comp: CompProps; edit?: EditableProp
         {comp.type === "qrcode" && <QRCodeComp {...comp} />}
         {comp.type === "video" && <VideoComp {...comp} />}
         {comp.type === "transcription" && <TranscriptionComp {...comp} />}
+        {comp.type === "lottie" && <LottieComp {...comp} />}
       </div>
     </Sequence>
   );
