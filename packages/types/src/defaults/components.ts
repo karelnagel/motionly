@@ -13,7 +13,7 @@ export const DEFAULT_COMPONENTS: CompProps[] = [
         objectFit: "cover",
         rotation: 0,
         borderRadius: 0,
-        src: "https://picsum.photos/seed/1333/1920/1080",
+        src: "https://picsum.photos/seed/13333/1920/1080",
         duration: 0, from: 0,
     },
     {
@@ -26,39 +26,6 @@ export const DEFAULT_COMPONENTS: CompProps[] = [
         rotation: 0,
         borderRadius: 0,
         duration: 0, from: 0, children: [], backgroundColor: "#00000080"
-    },
-    {
-        id: "graph",
-        type: "graph",
-        height: 400,
-        width: 1080,
-        x: -340,
-        y: 340,
-        rotation: 90,
-        borderRadius: 4,
-        duration: 0,
-        from: 0,
-        values: [87, 24, 4, 59, 79, 33, 11, 97, 65, 8, 56, 91, 44, 73, 28, 95, 6, 41, 68, 15, 86, 54, 98, 12, 82, 36, 63, 20, 77, 3, 92],
-        color: "green",
-        graphType: "bar",
-        animation: { start: 1, duration: 3 }
-    },
-    {
-        id: "graph2",
-        type: "graph",
-        height: 400,
-        width: 1080,
-        x: 340,
-        y: 340,
-        rotation: -90,
-        borderRadius: 4,
-        duration: 0,
-        from: 0,
-        values: [87, 24, 4, 59, 79, 33, 11, 97, 65, 8, 56, 91, 44, 73, 28, 95, 6, 41, 68, 15, 86, 54, 98, 12, 82, 36, 63, 20, 77, 3, 92],
-        color: "red",
-        graphType: "line",
-        strokeWidth: 12,
-        animation: { start: 4, duration: 6 }
     },
     {
         id: "title",
@@ -99,16 +66,16 @@ export const DEFAULT_COMPONENTS: CompProps[] = [
         height: 240,
         width: 680,
         x: 200,
-        y: 700,
+        y: 780,
         rotation: 0,
         borderRadius: 0,
         duration: 0, from: 0,
         words: DEFAULT_TRANSCRIPTION,
         animation: {
-            type: "current-word",
+            type: "previous-text",
             textStyle: {
                 outline: {
-                    color: "#00ffff",
+                    color: "#ffbf86",
                     width: 7
                 },
 
@@ -133,15 +100,15 @@ export const DEFAULT_COMPONENTS: CompProps[] = [
         height: 300,
         width: 1080,
         x: 0,
-        y: 780,
+        y: 550,
         rotation: 0,
         borderRadius: 0,
         duration: 0, from: 0,
         src: videoUrl,
         barWidth: 30,
-        color: "blue",
+        color: "red",
         gap: 19,
-        position: "end",
+        position: "center",
         roundness: 14,
         smoothing: true,
         mirror: true
@@ -149,15 +116,18 @@ export const DEFAULT_COMPONENTS: CompProps[] = [
     {
         id: "bar1",
         type: "progressbar",
-        height: 40,
+        height: 1080,
         width: 1080,
         x: 0,
         y: 0,
         rotation: 0,
         borderRadius: 0,
-        duration: 0, from: 0,
+        duration: 0,
+        from: 0,
         color: "red",
-        progressBarType: "line",
-        backgroundColor: "pink"
+        progressBarType: "square",
+        backgroundColor: "pink",
+        barWidth: 30,
+        corner: "top-left"
     }
 ]
