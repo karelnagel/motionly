@@ -103,7 +103,8 @@ export interface TranscriptionCompProps extends BaseCompProps {
     animation: TranscriptionAnimation
 }
 
-// IMAGE & VIDEO 
+
+// IMAGE & VIDEO & GIF
 export const ObjectFit = {
     cover: "cover",
     contain: "contain",
@@ -118,7 +119,6 @@ export interface ImageCompProps extends BaseCompProps {
     src: string
     objectFit: ObjectFitType
 }
-
 export interface VideoCompProps extends BaseCompProps {
     type: "video"
     src: string
@@ -127,6 +127,11 @@ export interface VideoCompProps extends BaseCompProps {
     muted?: boolean
     volume?: number
     offthread?: boolean
+}
+export interface GifCompProps extends BaseCompProps {
+    type: "gif"
+    src: string
+    objectFit: ObjectFitType
 }
 
 // AUDIOGRAM
@@ -281,4 +286,5 @@ export interface LottieCompProps extends BaseCompProps {
     playbackRate?: number
 }
 
-export type CompProps = TextCompProps | ImageCompProps | DivCompProps | VideoCompProps | AudioCompProps | AudiogramCompProps | TranscriptionCompProps | MockupCompProps | MapCompProps | GraphCompProps | QRCodeCompProps | ProgressBarCompProps | LottieCompProps
+
+export type CompProps = TextCompProps | ImageCompProps | DivCompProps | VideoCompProps | AudioCompProps | AudiogramCompProps | TranscriptionCompProps | MockupCompProps | MapCompProps | GraphCompProps | QRCodeCompProps | ProgressBarCompProps | LottieCompProps | GifCompProps

@@ -1596,6 +1596,15 @@
     semver "7.3.5"
     source-map "0.6.1"
 
+"@remotion/gif@^3.3.9":
+  version "3.3.9"
+  resolved "https://registry.yarnpkg.com/@remotion/gif/-/gif-3.3.9.tgz#d5096a51e05a0b83618092a7c7a9411a4332eee9"
+  integrity sha512-eeGAuk/6GV7om0iOEJRjegoR/HgdQpbDmZJdvTvQn+vuR+MJFnC6AszgEWX36uyDjZZu5bCuZHq0uSzeGA16xw==
+  dependencies:
+    gifuct-js "2.1.2"
+    lru_map "0.4.1"
+    remotion "3.3.9"
+
 "@remotion/lambda@3.3.9":
   version "3.3.9"
   resolved "https://registry.yarnpkg.com/@remotion/lambda/-/lambda-3.3.9.tgz#0ced2d1d9b783620d6a98725aac0e7edf6c60bb6"
@@ -3365,6 +3374,13 @@ get-symbol-description@^1.0.0:
     call-bind "^1.0.2"
     get-intrinsic "^1.1.1"
 
+gifuct-js@2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/gifuct-js/-/gifuct-js-2.1.2.tgz#06152437ba30ec914db8398bd838bd0fbc8a6ecd"
+  integrity sha512-rI2asw77u0mGgwhV3qA+OEgYqaDn5UNqgs+Bx0FGwSpuqfYn+Ir6RQY5ENNQ8SbIiG/m5gVa7CD5RriO4f4Lsg==
+  dependencies:
+    js-binary-schema-parser "^2.0.3"
+
 glob-parent@^5.1.2, glob-parent@~5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.1.2.tgz#869832c58034fe68a4093c17dc15e8340d8401c4"
@@ -3692,6 +3708,11 @@ jose@^4.10.0, jose@^4.9.3:
   resolved "https://registry.yarnpkg.com/jose/-/jose-4.11.1.tgz#8f7443549befe5bddcf4bae664a9cbc1a62da4fa"
   integrity sha512-YRv4Tk/Wlug8qicwqFNFVEZSdbROCHRAC6qu/i0dyNKr5JQdoa2pIGoS04lLO/jXQX7Z9omoNewYIVIxqZBd9Q==
 
+js-binary-schema-parser@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/js-binary-schema-parser/-/js-binary-schema-parser-2.0.3.tgz#3d7848748e8586e63b34e8911b643f59cfb6396e"
+  integrity sha512-xezGJmOb4lk/M1ZZLTR/jaBHQ4gG/lqQnJqdIv4721DMggsa1bDVlHXNeHYogaIEHD9vCRv0fcL4hMA+Coarkg==
+
 js-sdsl@^4.1.4:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/js-sdsl/-/js-sdsl-4.2.0.tgz#278e98b7bea589b8baaf048c20aeb19eb7ad09d0"
@@ -3823,6 +3844,11 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
+
+lru_map@0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/lru_map/-/lru_map-0.4.1.tgz#f7b4046283c79fb7370c36f8fca6aee4324b0a98"
+  integrity sha512-I+lBvqMMFfqaV8CJCISjI3wbjmwVu/VyOoU7+qtu9d7ioW5klMgsTTiUOUp+DJvfTTzKXoPbyC6YfgkNcyPSOg==
 
 memfs@3.4.3:
   version "3.4.3"

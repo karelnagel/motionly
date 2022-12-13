@@ -15,6 +15,7 @@ import { VideoComp } from "./components/Video";
 import { TranscriptionComp } from "./components/Transcription";
 import Moveable from "react-moveable";
 import { LottieComp } from "./components/Lottie";
+import { GifComp } from "./components/Gif";
 
 export const Component = ({ comp, edit }: { comp: CompProps; edit?: EditableProps }) => {
   const divRef = useRef<HTMLDivElement>(null);
@@ -97,6 +98,7 @@ export const Component = ({ comp, edit }: { comp: CompProps; edit?: EditableProp
         {comp.type === "video" && <VideoComp {...comp} />}
         {comp.type === "transcription" && <TranscriptionComp {...comp} />}
         {comp.type === "lottie" && <LottieComp {...comp} />}
+        {comp.type === "gif" && <GifComp {...comp} />}
       </div>
     </Sequence>
   );
