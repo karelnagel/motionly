@@ -4224,6 +4224,11 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
+qr.js@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/qr.js/-/qr.js-0.0.0.tgz#cace86386f59a0db8050fa90d9b6b0e88a1e364f"
+  integrity sha512-c4iYnWb+k2E+vYpRimHqSu575b1/wKl4XFeJGpFmrJQz5I88v9aY2czh7s0w36srfCM1sXgC/xpoJz5dJfq+OQ==
+
 queue-microtask@^1.2.2:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
@@ -4299,6 +4304,14 @@ react-moveable@^0.44.1:
     gesto "^1.14.0"
     overlap-area "^1.1.0"
     react-css-styled "^1.0.4"
+
+react-qr-code@^2.0.10:
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/react-qr-code/-/react-qr-code-2.0.10.tgz#dfd19b3c29a90475a4994bd3383be73233613c6e"
+  integrity sha512-1vjChDgzlv04MbdHgrCTu5td2Z0sNjqzLV8scd4tP1Iv3WmT1qYW/pHODLUFaLJjZzawXz7JKUU+k8/9uIJBoA==
+  dependencies:
+    prop-types "^15.8.1"
+    qr.js "0.0.0"
 
 react-refresh@0.9.0:
   version "0.9.0"
