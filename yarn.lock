@@ -1641,6 +1641,11 @@
   dependencies:
     remotion "3.3.9"
 
+"@remotion/paths@^3.3.9":
+  version "3.3.9"
+  resolved "https://registry.yarnpkg.com/@remotion/paths/-/paths-3.3.9.tgz#ea3ba2657ed6bb50c880aded1ef32035447e8a72"
+  integrity sha512-eqzDCFjJH/gz8VZcLnrdUBjTWZArlM7ppEiVl52wE7VI+rbNlzs2vlzw3s1k+S2iHFcczgIYud0V7pHCExxpRg==
+
 "@remotion/player@3.3.9":
   version "3.3.9"
   resolved "https://registry.yarnpkg.com/@remotion/player/-/player-3.3.9.tgz#c3c702d512d64db0938a220fe493e105e6e6869e"

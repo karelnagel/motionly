@@ -15,6 +15,7 @@
     "@asius/types": "*",
     "@remotion/gif": "^3.3.9",
     "@remotion/lottie": "^3.3.9",
+    "@remotion/paths": "^3.3.9",
     "@types/react-simple-maps": "^3.0.0",
     "lottie-web": "^5.10.0",
     "react-moveable": "^0.44.1",

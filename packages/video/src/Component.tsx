@@ -16,6 +16,7 @@ import { TranscriptionComp } from "./components/Transcription";
 import Moveable from "react-moveable";
 import { LottieComp } from "./components/Lottie";
 import { GifComp } from "./components/Gif";
+import { PathComp } from "./components/Path";
 
 export const Component = ({ comp, edit }: { comp: CompProps; edit?: EditableProps }) => {
   const divRef = useRef<HTMLDivElement>(null);
@@ -99,6 +100,7 @@ export const Component = ({ comp, edit }: { comp: CompProps; edit?: EditableProp
         {comp.type === "transcription" && <TranscriptionComp {...comp} />}
         {comp.type === "lottie" && <LottieComp {...comp} />}
         {comp.type === "gif" && <GifComp {...comp} />}
+        {comp.type === "path" && <PathComp {...comp} />}
       </div>
     </Sequence>
   );

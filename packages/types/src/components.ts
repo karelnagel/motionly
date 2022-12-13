@@ -287,4 +287,26 @@ export interface LottieCompProps extends BaseCompProps {
 }
 
 
-export type CompProps = TextCompProps | ImageCompProps | DivCompProps | VideoCompProps | AudioCompProps | AudiogramCompProps | TranscriptionCompProps | MockupCompProps | MapCompProps | GraphCompProps | QRCodeCompProps | ProgressBarCompProps | LottieCompProps | GifCompProps
+// PATH
+export const StrokeLinecap = {
+    "butt": "Butt",
+    "round": "Round",
+    "square": "Square",
+}
+export interface PathCompProps extends BaseCompProps {
+    type: "path"
+    path: string
+    animation: {
+        duration: number
+        from: number,
+        to: number
+    }
+    strokeColor?: string
+    strokeWidth?: number
+    viewBoxHeight?: number
+    viewBoxWidth?: number
+    fillColor?: string
+    strokeLinecap?: keyof typeof StrokeLinecap
+}
+
+export type CompProps = TextCompProps | ImageCompProps | DivCompProps | VideoCompProps | AudioCompProps | AudiogramCompProps | TranscriptionCompProps | MockupCompProps | MapCompProps | GraphCompProps | QRCodeCompProps | ProgressBarCompProps | LottieCompProps | GifCompProps | PathCompProps
