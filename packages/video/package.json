@@ -13,8 +13,10 @@
   },
   "dependencies": {
     "@asius/types": "*",
+    "@types/react-simple-maps": "^3.0.0",
     "react-moveable": "^0.44.1",
-    "react-qr-code": "^2.0.10"
+    "react-qr-code": "^2.0.10",
+    "react-simple-maps": "^3.0.0"
   },
   "peerDependencies": {
     "@remotion/cli": "3.3.9",

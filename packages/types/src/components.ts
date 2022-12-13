@@ -181,8 +181,14 @@ export interface MapCompProps extends BaseCompProps {
         lng: number
     }
     zoom: number
-    color: string
-    backgroundColor: string
+    fill: string
+    stroke?: string
+    strokeWidth?: number
+    marker?: {
+        color: string,
+        size: number
+    }
+    mapUrl?: string
     animation?: {
         from: number
         to: number
