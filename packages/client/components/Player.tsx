@@ -1,27 +1,21 @@
 import { Player as RemotionPlayer } from "@remotion/player";
-import { CompProps, EditableProps } from "@asius/types";
+import { EditableProps, TemplateType } from "@asius/types";
 import { Composition } from "@asius/video";
 
 export const Player = ({
-  height,
-  width,
-  comps,
   edit,
-  durationInFrames,
+  template: { width, height, duration, fps, comps },
 }: {
-  height: number;
-  width: number;
-  comps: CompProps[];
+  template: TemplateType;
   edit: EditableProps;
-  durationInFrames: number;
 }) => {
   return (
     <RemotionPlayer
       component={Composition}
       compositionHeight={height}
       compositionWidth={width}
-      durationInFrames={durationInFrames}
-      fps={30}
+      durationInFrames={duration * fps}
+      fps={fps}
       inputProps={{
         comps,
         width,

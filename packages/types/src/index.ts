@@ -13,23 +13,19 @@ export interface SizeProps {
 export type VideoInput = {
     modifications?: CompProps[];
 } & (
-        | {
-            id?: undefined;
-            components: CompProps[];
-            height: number;
-            width: number;
-            duration: number;
-            fps: number;
-        }
-        | { id: string }
+        TemplateType
+
     );
 export type TemplateType = {
-    id: string
+    id?: string
     width: number
     height: number
     duration: number
     fps: number
-    components: CompProps[]
+    name: string
+    public: boolean
+    description: string
+    comps: CompProps[]
 
 }
 export interface EditableProps {
@@ -39,3 +35,5 @@ export interface EditableProps {
     scale: number;
     lockAspectRatio: boolean;
 }
+
+export type ProgressStatus = "pending" | "rendering" | "done" | "error"

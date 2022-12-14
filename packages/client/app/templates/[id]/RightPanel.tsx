@@ -7,7 +7,7 @@ import {
   DivCompProps,
   ImageCompProps,
   ObjectFit,
-  SizeProps,
+  TemplateType,
   TextAlign,
   TextCompProps,
   TextStyle,
@@ -16,37 +16,41 @@ import {
 export const RightPanel = ({
   comp,
   setComp,
-  size,
-  setSize,
+  template,
+  setTemplate,
 }: {
-  comp: CompProps|null
+  comp: CompProps | null;
   setComp: (element: CompProps) => void;
-  size: SizeProps;
-  setSize: (size: SizeProps) => void;
+  template: TemplateType;
+  setTemplate: (template: TemplateType) => void;
 }) => {
   return (
     <div className="bg-base-100 border-t h-full w-full">
       {comp && <CompEditor comp={comp} setComp={setComp} />}
-      {!comp && <TemplateEditor size={size} setSize={setSize} />}
+      {!comp && <TemplateEditor template={template} setTemplate={setTemplate} />}
     </div>
   );
 };
 
 export const TemplateEditor = ({
-  size,
-  setSize,
+  template,
+  setTemplate,
 }: {
-  size: SizeProps;
-  setSize: (template: SizeProps) => void;
+  template: TemplateType;
+  setTemplate: (template: TemplateType) => void;
 }) => {
   return (
     <div className="w-full grid grid-cols-2 items-center justify-items-start gap-3 py-10 px-4">
       <p className="text-xl font-bold col-span-2">Template</p>
-      <NumberInput label="W" value={size.width} onChange={(width) => setSize({ ...size, width })} />
+      <NumberInput
+        label="W"
+        value={template.width}
+        onChange={(width) => setTemplate({ ...template, width })}
+      />
       <NumberInput
         label="H"
-        value={size.height}
-        onChange={(height) => setSize({ ...size, height })}
+        value={template.height}
+        onChange={(height) => setTemplate({ ...template, height })}
       />
     </div>
   );
