@@ -77,7 +77,7 @@ export default function Home() {
         />
         <Player
           modifications={modifications as any}
-          components={components}
+          comps={components}
           duration={10}
           fps={30}
           height={1080}

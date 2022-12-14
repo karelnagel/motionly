@@ -22,9 +22,9 @@ export type TemplateType = {
     height: number
     duration: number
     fps: number
-    name: string
-    public: boolean
-    description: string
+    name?: string
+    public?: boolean
+    description?: string
     comps: CompProps[]
 
 }

@@ -4,7 +4,6 @@ import { useCallback, useEffect, useState } from "react";
 import { RightPanel } from "./RightPanel";
 import { BottomPanel } from "./LeftPanel";
 import { Middle } from "./Middle";
-import axios from "axios";
 import { useShiftKey } from "../../../hooks/useShiftKey";
 import { Player } from "../../../components/Player";
 import { CompProps, TemplateType } from "@asius/types";

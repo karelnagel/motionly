@@ -69,7 +69,7 @@ model ApiKey {
 
 model Template {
   id          String    @id @default(cuid())
-  name        String
+  name        String    @default("")
   description String    @default("")
   width       Int
   height      Int

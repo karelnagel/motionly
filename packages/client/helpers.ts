@@ -1,7 +1,4 @@
 import { CompProps } from "@asius/types";
-import { unstable_getServerSession } from "next-auth";
-import { authOptions } from "./pages/api/auth/[...nextauth]";
-import { ReqRes } from "./types";
 
 export const percentToHex = (p: number) => {
     const intValue = Math.round(p / 100 * 255); // map percent to nearest integer (0 - 255)
@@ -32,9 +29,4 @@ export function getFonts(comps: CompProps[]): (Font)[] {
         if (e.type === "div") return getFonts(e.children)
         else return [null]
     }).flat().filter(e => e !== null) as Font[]
-}
-
-export const getServerSession = async (reqRes?: ReqRes) => {
-    if (reqRes) return await unstable_getServerSession(reqRes.req, reqRes.res, authOptions)
-    return await unstable_getServerSession(authOptions)
 }
