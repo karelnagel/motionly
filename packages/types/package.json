@@ -1,12 +1,10 @@
 {
   "name": "@asius/types",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
   "license": "MIT",
   "dependencies": {
     "typescript": "^4.9.4"
-  },
-  "scripts": {
-    "build": "rm -rf dist && tsc"
   }
 }

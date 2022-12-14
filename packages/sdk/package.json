@@ -4,8 +4,9 @@
   "main": "dist/index.js",
   "license": "MIT",
   "dependencies": {
+    "@asius/types": "*",
     "axios": "^1.2.1",
-    "@asius/types": "*"
+    "typescript": "^4.9.4"
   },
   "scripts": {
     "build": "rm -rf dist && tsc"

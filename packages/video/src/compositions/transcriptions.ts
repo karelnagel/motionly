@@ -1,5 +1,5 @@
 import { CompProps } from "@asius/types";
-import { DEFAULT_TRANSCRIPTION } from "@asius/types/dist/defaults/transcription";
+import { DEFAULT_TRANSCRIPTION } from "@asius/types/src/defaults/transcription";
 import { baseComp } from "./consts";
 
 const base: CompProps = {
