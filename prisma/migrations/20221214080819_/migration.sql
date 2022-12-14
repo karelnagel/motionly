@@ -65,26 +65,14 @@ CREATE TABLE "Template" (
     "description" TEXT NOT NULL DEFAULT '',
     "width" INTEGER NOT NULL,
     "height" INTEGER NOT NULL,
+    "duration" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3),
     "public" BOOLEAN NOT NULL DEFAULT false,
-    "elements" TEXT NOT NULL,
+    "comps" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
 
     CONSTRAINT "Template_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "Preset" (
-    "id" TEXT NOT NULL,
-    "width" INTEGER NOT NULL,
-    "height" INTEGER NOT NULL,
-    "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3),
-    "elements" TEXT NOT NULL,
-    "templateId" TEXT NOT NULL,
-
-    CONSTRAINT "Preset_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -129,9 +117,6 @@ ALTER TABLE "ApiKey" ADD CONSTRAINT "ApiKey_userId_fkey" FOREIGN KEY ("userId") 
 
 -- AddForeignKey
 ALTER TABLE "Template" ADD CONSTRAINT "Template_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Preset" ADD CONSTRAINT "Preset_templateId_fkey" FOREIGN KEY ("templateId") REFERENCES "Template"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "File" ADD CONSTRAINT "File_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

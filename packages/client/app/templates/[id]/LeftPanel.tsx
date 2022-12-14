@@ -11,7 +11,7 @@ export const BottomPanel = ({
   selected: string;
   setSelected: (id: string) => void;
   comps: CompProps[];
-  setComps: (elements: CompProps[]) => void;
+  setComps: (comps: CompProps[]) => void;
 }) => {
   return <div className=""></div>;
 };

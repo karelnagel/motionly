@@ -15,7 +15,8 @@ export default async function New(req: NextApiRequest, res: NextApiResponse) {
             description: req.body.description,
             width: duplicate?.width || 1080,
             height: duplicate?.height || 1080,
-            elements: duplicate?.elements || JSON.stringify(defaultComponents),
+            duration: duplicate?.duration || 10,
+            comps: duplicate?.comps || JSON.stringify(defaultComponents),
             user: { connect: { email: session?.user?.email || undefined } }
         }
     })

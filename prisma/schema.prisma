@@ -73,24 +73,13 @@ model Template {
   description String    @default("")
   width       Int
   height      Int
+  duration    Int
   createdAt   DateTime? @default(now())
   updatedAt   DateTime? @updatedAt
   public      Boolean   @default(false)
-  elements    String
+  comps       String
   userId      String
   user        User      @relation(fields: [userId], references: [id])
-  presets     Preset[]
-}
-
-model Preset {
-  id         String    @id @default(cuid())
-  width      Int
-  height     Int
-  createdAt  DateTime? @default(now())
-  updatedAt  DateTime? @updatedAt
-  elements   String
-  templateId String
-  template   Template  @relation(fields: [templateId], references: [id])
 }
 
 enum FileType {

@@ -23,8 +23,8 @@ export function hexToRGBA(hex?: string) {
 }
 
 type Font = { family: string, weight: number }
-export function getFonts(elements: CompProps[]): (Font)[] {
-    return elements.map((e) => {
+export function getFonts(comps: CompProps[]): (Font)[] {
+    return comps.map((e) => {
         if (e.type === "text") return [{ family: e.textStyle.fontFamily, weight: Number(e.textStyle.fontWeight) || 500 }]
         if (e.type === "div") return getFonts(e.children)
         else return [null]

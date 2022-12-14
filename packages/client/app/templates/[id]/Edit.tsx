@@ -11,7 +11,7 @@ import { Player } from "../../../components/Player";
 import { CompProps, SizeProps } from "@asius/types";
 
 export default function Edit({ template }: { template: TemplateType }) {
-  const [comps, setComps] = useState<CompProps[]>(JSON.parse(template.elements));
+  const [comps, setComps] = useState<CompProps[]>(JSON.parse(template.comps));
   const [size, setSize] = useState<SizeProps>({ width: template.width, height: template.height });
   const [selected, setSelected] = useState("");
   const [scale, setScale] = useState(0.4);
@@ -44,11 +44,11 @@ export default function Edit({ template }: { template: TemplateType }) {
 
   const update = useCallback(async () => {
     const result = await axios.put(`/api/templates/${template.id}`, {
-      elements: JSON.stringify(comps),
+      comps: JSON.stringify(comps),
       width: size.width,
       height: size.height,
     });
-    setComps(JSON.parse(result.data.elements));
+    setComps(JSON.parse(result.data.comps));
     setSize({ width: result.data.width, height: result.data.height });
   }, [comps, size, template.id]);
 

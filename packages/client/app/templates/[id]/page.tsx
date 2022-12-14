@@ -12,7 +12,7 @@ export default async function Page({ params: { id } }: { params: { id: string } 
     where: { id, user: { email: session?.user?.email } },
   });
   if (!template) return <div>No template!</div>;
-  const { width, height, name, description, elements } = template;
+  const { width, height, name, description, comps } = template;
   return (
     <div>
       <Edit
@@ -20,7 +20,7 @@ export default async function Page({ params: { id } }: { params: { id: string } 
           {
             width,
             height,
-            elements,
+            comps,
             id,
             name,
             description,

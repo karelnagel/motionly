@@ -14,7 +14,7 @@ export default async function Update(req: NextApiRequest, res: NextApiResponse) 
             where: { id }
         })
         if (!result) return res.status(404).end();
-        return res.status(200).json({ width: result.width, height: result.height, elements: result.elements })
+        return res.status(200).json({ width: result.width, height: result.height, comps: result.comps })
     }
 
     else if (req.method === "PUT") {
@@ -22,7 +22,7 @@ export default async function Update(req: NextApiRequest, res: NextApiResponse) 
         const result = await prisma.template.update({
             where: { id },
             data: {
-                elements: req.body.elements,
+                comps: req.body.comps,
                 width: req.body.width,
                 height: req.body.height,
                 name: req.body.name,
