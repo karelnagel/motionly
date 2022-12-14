@@ -1,11 +1,11 @@
 {
-  "name": "imageapi",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "devd": "next dev",
-    "buildd": "next build",
-    "startd": "next start",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "lint": "next lint",
     "preview": "remotion preview remotion/index.ts",
     "render": "remotion render remotion/index.ts Composition"
@@ -20,6 +20,9 @@
     "@types/react": "18.0.24",
     "@types/react-dom": "18.0.8",
     "@vercel/og": "^0.0.20",
+    "@asius/types": "*",
+    "@asius/video": "*",
+    "@asius/sdk": "*",
     "autoprefixer": "^10.4.13",
     "axios": "^1.1.3",
     "daisyui": "^2.38.1",

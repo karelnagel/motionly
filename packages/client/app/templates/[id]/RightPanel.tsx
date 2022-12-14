@@ -11,23 +11,23 @@ import {
   TextAlign,
   TextCompProps,
   TextStyle,
-} from "../../../types";
+} from "@asius/types";
 
 export const RightPanel = ({
-  props,
-  setProps,
+  comp,
+  setComp,
   size,
   setSize,
 }: {
-  props?: CompProps;
-  setProps?: (element: CompProps) => void;
+  comp: CompProps|null
+  setComp: (element: CompProps) => void;
   size: SizeProps;
   setSize: (size: SizeProps) => void;
 }) => {
   return (
     <div className="bg-base-100 border-t h-full w-full">
-      {props && setProps && <ElementEditor props={props} setProps={setProps} />}
-      {!props && <TemplateEditor size={size} setSize={setSize} />}
+      {comp && <CompEditor comp={comp} setComp={setComp} />}
+      {!comp && <TemplateEditor size={size} setSize={setSize} />}
     </div>
   );
 };
@@ -52,52 +52,52 @@ export const TemplateEditor = ({
   );
 };
 
-export const ElementEditor = ({
-  props,
-  setProps,
+export const CompEditor = ({
+  comp,
+  setComp,
 }: {
-  props?: CompProps;
-  setProps: (element: CompProps) => void;
+  comp?: CompProps;
+  setComp: (element: CompProps) => void;
 }) => {
   return (
     <div className=" w-full grid grid-cols-2 items-center justify-items-start gap-3  py-10 px-4">
-      {props && (
+      {comp && (
         <>
-          <NumberInput label="X" value={props.x} onChange={(x) => setProps({ ...props, x })} />
-          <NumberInput label="Y" value={props.y} onChange={(y) => setProps({ ...props, y })} />
+          <NumberInput label="X" value={comp.x} onChange={(x) => setComp({ ...comp, x })} />
+          <NumberInput label="Y" value={comp.y} onChange={(y) => setComp({ ...comp, y })} />
           <NumberInput
             label="W"
-            value={props.width}
-            onChange={(width) => setProps({ ...props, width })}
+            value={comp.width}
+            onChange={(width) => setComp({ ...comp, width })}
           />
           <NumberInput
             label="H"
-            value={props.height}
-            onChange={(height) => setProps({ ...props, height })}
+            value={comp.height}
+            onChange={(height) => setComp({ ...comp, height })}
           />
           <NumberInput
             label="RAD"
-            value={props.borderRadius}
-            onChange={(borderRadius) => setProps({ ...props, borderRadius })}
+            value={comp.borderRadius}
+            onChange={(borderRadius) => setComp({ ...comp, borderRadius })}
           />
           <NumberInput
             label="ROT"
-            value={props.rotation}
-            onChange={(rotation) => setProps({ ...props, rotation })}
+            value={comp.rotation}
+            onChange={(rotation) => setComp({ ...comp, rotation })}
           />
           <NumberInput
             label="FROM"
-            value={props.from}
-            onChange={(from) => setProps({ ...props, from })}
+            value={comp.from}
+            onChange={(from) => setComp({ ...comp, from })}
           />
           <NumberInput
             label="DUR"
-            value={props.duration}
-            onChange={(duration) => setProps({ ...props, duration })}
+            value={comp.duration}
+            onChange={(duration) => setComp({ ...comp, duration })}
           />
-          {props.type === "text" && <TextEditor props={props} setProps={setProps} />}
-          {props.type === "image" && <ImageEditor props={props} setProps={setProps} />}
-          {props.type === "div" && <DivEditor props={props} setProps={setProps} />}
+          {comp.type === "text" && <TextEditor props={comp} setProps={setComp} />}
+          {comp.type === "image" && <ImageEditor props={comp} setProps={setComp} />}
+          {comp.type === "div" && <DivEditor props={comp} setProps={setComp} />}
         </>
       )}
     </div>

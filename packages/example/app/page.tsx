@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
-import { COMPONENTS } from "./components";
+import { components } from "./components";
 import { Player } from "@asius/player";
 import { useState } from "react";
 import { TranscriptionAnimationTypes } from "@asius/types";
@@ -77,7 +77,7 @@ export default function Home() {
         />
         <Player
           modifications={modifications as any}
-          components={COMPONENTS}
+          components={components}
           duration={10}
           fps={30}
           height={1080}

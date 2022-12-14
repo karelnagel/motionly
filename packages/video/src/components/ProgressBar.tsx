@@ -110,6 +110,7 @@ export const ProgressBarComp = ({
           const top = n < 3;
           return (
             <div
+              key={n}
               style={{
                 width: horizontal ? props.barWidth : `${progress}%`,
                 backgroundColor: color,

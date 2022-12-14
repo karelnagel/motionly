@@ -1,7 +1,7 @@
 import React from "react";
 import { Composition, Folder } from "remotion";
 import { Composition as Comp } from "./Composition";
-import { DEFAULT_COMPONENTS } from "@asius/types";
+import { defaultComponents } from "@asius/types";
 import { compositions } from "./compositions";
 
 export const Root: React.FC = () => {
@@ -18,7 +18,7 @@ export const Root: React.FC = () => {
         width={width}
         height={height}
         defaultProps={{
-          comps: DEFAULT_COMPONENTS,
+          comps: defaultComponents,
         }}
       />
       {Object.keys(compositions).map((key, i) => (

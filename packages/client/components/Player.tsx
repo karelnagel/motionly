@@ -1,45 +1,34 @@
 import { Player as RemotionPlayer } from "@remotion/player";
-import { CompProps } from "../types";
-import { Composition } from "./Composition";
+import { CompProps, EditableProps } from "@asius/types";
+import { Composition } from "@asius/video";
 
 export const Player = ({
   height,
   width,
-  scale,
-  elements,
-  lockAspectRatio,
-  select,
-  setElements,
-  selected,
+  comps,
+  edit,
+  durationInFrames,
 }: {
   height: number;
   width: number;
-  scale: number;
-  elements: CompProps[];
-  lockAspectRatio: boolean;
-  setElements: (e: CompProps[]) => void;
-  select: (id: string) => void;
-  selected?: string;
+  comps: CompProps[];
+  edit: EditableProps;
+  durationInFrames: number;
 }) => {
   return (
     <RemotionPlayer
       component={Composition}
       compositionHeight={height}
       compositionWidth={width}
-      durationInFrames={1}
+      durationInFrames={durationInFrames}
       fps={30}
       inputProps={{
-        elements,
+        comps,
         width,
         height,
-        lockAspectRatio,
-        setElements,
-        draggable: true,
-        scale,
-        select,
-        selected,
+        edit,
       }}
-      style={{ width: width * scale, height: height * scale }}
+      style={{ width: width * edit.scale, height: height * edit.scale }}
     />
   );
 };

@@ -4,6 +4,8 @@ export * from "./defaults/image"
 export * from "./defaults/components"
 export * from "./components"
 export * from "./sdk"
+export * from "./defaults"
+
 export interface SizeProps {
     width: number,
     height: number

@@ -2,7 +2,7 @@ import { CompProps } from "..";
 import { DEFAULT_TRANSCRIPTION } from "./transcription";
 
 const videoUrl = "https://remotionlambda-24lixyhuqn.s3.us-east-1.amazonaws.com/video.mp4"
-export const DEFAULT_COMPONENTS: CompProps[] = [
+export const defaultComponents: CompProps[] = [
     {
         id: "bg",
         type: "image",

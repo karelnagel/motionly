@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../lib/prisma";
 import { unstable_getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
-import { DEFAULT_ELEMENTS } from "../../../types";
+import { defaultComponents } from "@asius/types";
 
 export default async function New(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== "POST") res.status(405).end();
@@ -15,7 +15,7 @@ export default async function New(req: NextApiRequest, res: NextApiResponse) {
             description: req.body.description,
             width: duplicate?.width || 1080,
             height: duplicate?.height || 1080,
-            elements: duplicate?.elements || JSON.stringify(DEFAULT_ELEMENTS),
+            elements: duplicate?.elements || JSON.stringify(defaultComponents),
             user: { connect: { email: session?.user?.email || undefined } }
         }
     })
