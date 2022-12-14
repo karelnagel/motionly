@@ -38,3 +38,4 @@ next-env.d.ts
 dist/
 .turbo/
 .vscode/
+.turbo

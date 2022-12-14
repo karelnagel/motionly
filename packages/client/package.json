@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "devd": "next dev",
+    "buildd": "next build",
+    "startd": "next start",
     "lint": "next lint",
     "preview": "remotion preview remotion/index.ts",
     "render": "remotion render remotion/index.ts Composition"

@@ -4,7 +4,8 @@
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf dist && tsc",
+    "build": "tsc",
+    "dev": "tsc --watch",
     "preview": "remotion preview src/register.tsx",
     "render": "remotion render src/register.tsx",
     "lambda:site": "npx remotion lambda sites create src/register.tsx --site-name=asius2",

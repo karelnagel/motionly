@@ -5,11 +5,20 @@
                 "^build"
             ],
             "outputs": [
-                ".next/**"
+                ".next/**",
+                "dist/**"
             ]
         },
-        "start": {},
-        "dev": {},
+        "dev": {
+            "dependsOn": [
+                "^build"
+            ]
+        },
+        "start": {
+            "dependsOn": [
+                "build"
+            ]
+        },
         "lint": {
             "outputs": []
         }
