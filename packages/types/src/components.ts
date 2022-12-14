@@ -79,7 +79,6 @@ export interface TextCompProps extends BaseCompProps {
 // TRANSCRIPTION
 export const TranscriptionAnimationTypes = {
     "current-word": "Current word",
-    "current-line": "Current line",
     "previous-text": "Previous text",
 }
 export interface TranscriptionWord {

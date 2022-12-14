@@ -4,17 +4,38 @@ import styles from "./page.module.css";
 import { COMPONENTS } from "./components";
 import { Player } from "@asius/player";
 import { useState } from "react";
+import { TranscriptionAnimationTypes } from "@asius/types";
 
 export default function Home() {
-  const [name, setName] = useState("Your mom");
-  const [username, setUsername] = useState("@yourmom");
-  const [tweet, setTweet] = useState("hello world");
-  const [container, setContainer] = useState("#FFFFFF");
+  const [title, setTitle] = useState("Title");
+  const [titleOutline, setTitleOutline] = useState("#FFFFFF");
+  const [titleColor, setTitleColor] = useState("#000000");
+  const [primaryColor, setPrimaryColor] = useState("#FFff00");
+
+  const [transcriptionType, setTranscriptionType] =
+    useState<keyof typeof TranscriptionAnimationTypes>("current-word");
+
   const modifications = [
-    { id: "name", text: name },
-    { id: "username", text: username },
-    { id: "tweet", text: tweet },
-    { id: "container", backgroundColor: container },
+    {
+      id: "title",
+      text: title,
+      textStyle: {
+        outline: { width: 10, color: titleOutline },
+        color: titleColor,
+        fontSize: 100,
+        textAlign: "center",
+      },
+    },
+    { id: "container", backgroundColor: titleOutline },
+    {
+      id: "transcription",
+      animation: {
+        type: transcriptionType,
+        textStyle: { outline: { width: 10, color: "blue" }, color: "white" },
+      },
+    },
+    { id: "bar1", color: primaryColor },
+    { id: "audiogram", color: primaryColor },
   ];
 
   return (
@@ -26,27 +47,33 @@ export default function Home() {
         <p>Local player</p>
         <input
           type="text"
-          placeholder="name"
-          value={name}
-          onChange={(e) => setName(e.currentTarget.value)}
+          placeholder="title"
+          value={title}
+          onChange={(e) => setTitle(e.currentTarget.value)}
         />
         <input
           type="color"
           placeholder="container"
-          value={container}
-          onChange={(e) => setContainer(e.currentTarget.value)}
+          value={titleOutline}
+          onChange={(e) => setTitleOutline(e.currentTarget.value)}
         />
+        <select
+          value={transcriptionType}
+          onChange={(e) =>
+            setTranscriptionType(e.currentTarget.value as keyof typeof TranscriptionAnimationTypes)
+          }
+        >
+          {Object.keys(TranscriptionAnimationTypes).map((key) => (
+            <option value={key} key={key}>
+              {TranscriptionAnimationTypes[key as keyof typeof TranscriptionAnimationTypes]}
+            </option>
+          ))}
+        </select>
         <input
-          type="text"
-          placeholder="username"
-          value={username}
-          onChange={(e) => setUsername(e.currentTarget.value)}
-        />
-        <input
-          type="text"
-          placeholder="tweet"
-          value={tweet}
-          onChange={(e) => setTweet(e.currentTarget.value)}
+          type="color"
+          placeholder="container"
+          value={primaryColor}
+          onChange={(e) => setPrimaryColor(e.currentTarget.value)}
         />
         <Player
           modifications={modifications as any}
