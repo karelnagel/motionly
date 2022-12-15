@@ -5,8 +5,8 @@ const nextConfig = {
     serverComponentsExternalPackages: ['@prisma/client'],
     transpilePackages: ["@asius/types"]
   },
-  images:{
-    domains: ['lh3.googleusercontent.com']
+  images: {
+    domains: ['lh3.googleusercontent.com', "picsum.photos"]
   }
 }
 

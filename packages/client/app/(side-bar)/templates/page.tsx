@@ -1,7 +1,7 @@
 import { unstable_getServerSession } from "next-auth";
 import Link from "next/link";
-import { prisma } from "../../lib/prisma";
-import { authOptions } from "../../pages/api/auth/[...nextauth]";
+import { prisma } from "../../../lib/prisma";
+import { authOptions } from "../../../pages/api/auth/[...nextauth]";
 
 export const revalidate = 1;
 
