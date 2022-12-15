@@ -1,7 +1,9 @@
+import { Title } from "../../components/Title";
+
 export default function Page() {
   return (
-    <div>
-      <p>dashboard</p>
+    <div className="">
+      <Title text="Your Projects" />
     </div>
   );
 }

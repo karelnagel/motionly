@@ -30,3 +30,8 @@ export function getFonts(comps: CompProps[]): (Font)[] {
         else return [null]
     }).flat().filter(e => e !== null) as Font[]
 }
+
+export const getRandomImage = () => {
+    const imageCount = 8;
+    return `/bgs/${Math.ceil(Math.random() * imageCount)}.jpg`
+}
