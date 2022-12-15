@@ -13,6 +13,7 @@ import { ExportSidePanel } from "./SidePanels/ExportSidePanel";
 import { Player } from "../../../components/Player";
 import { PlayerRef } from "@remotion/player";
 import { Timeline } from "./TimeLine";
+import { AddSidePanel } from "./SidePanels/AddSidePanel";
 
 export default function EditTemplate({ template: startTemplate }: { template: TemplateType }) {
   const [selected, setSelected] = useState("");
@@ -37,7 +38,7 @@ export default function EditTemplate({ template: startTemplate }: { template: Te
   }, [selected]);
 
   const sidePanelWidth = 350;
-  const timelineHeigth = 200;
+  const timelineHeigth = 250;
 
   return (
     <div className="bg-base-300  w-screen h-screen overflow-hidden flex flex-col">
@@ -54,17 +55,22 @@ export default function EditTemplate({ template: startTemplate }: { template: Te
 
           <PlayerControls scale={scale} setScale={setScale} playerRef={playerRef} />
         </div>
-        <div className="h-full p-3  pl-0" style={{ padding: show ? undefined : 0 }}>
+        <div
+          className="h-full p-3  pl-0"
+          style={{ paddingRight: show ? undefined : 0, paddingLeft: show ? undefined : 0 }}
+        >
           <div
             style={{
               width: show ? sidePanelWidth : 0,
-              padding: show ? undefined : 0,
+              paddingRight: show ? undefined : 0,
+              paddingLeft: show ? undefined : 0,
             }}
             className="h-full duration-200 panel"
           >
             {show === "comp" && <CompSidePanel />}
             {show === "template" && <TemplateSidePanel />}
             {show === "export" && <ExportSidePanel />}
+            {show === "add" && <AddSidePanel />}
           </div>
         </div>
       </div>
