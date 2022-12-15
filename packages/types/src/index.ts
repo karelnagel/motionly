@@ -26,6 +26,7 @@ export type TemplateType = {
     public?: boolean
     description?: string
     comps: CompProps[]
+    isOwner?: boolean
 
 }
 export interface EditableProps {

@@ -1,27 +1,25 @@
-import Edit from "./Edit";
+import EditTemplate from "./EditTemplate";
 import { getTemplate } from "../../../pages/api/templates/[id]";
+import { defaultComponents } from "@asius/types";
 
 export const revalidate = 1;
 
 export default async function Page({ params: { id } }: { params: { id: string } }) {
   if (!id) return <div>No id!</div>;
-  const template = await getTemplate({ id });
-  if (!template) return <div>No template!</div>;
-  const { width, height, name, description, comps } = template;
-  return (
-    <div>
-      <Edit
-        template={
-          {
-            width,
-            height,
-            comps,
-            id,
-            name,
-            description,
-          } as any
-        }
-      />
-    </div>
-  );
+  let template = await getTemplate({ id });
+  if (id === "blank")
+    template = {
+      comps: defaultComponents,
+      duration: 10,
+      fps: 30,
+      height: 1080,
+      width: 1080,
+      description: "asdf",
+      name: "name",
+      id: "asdfdsf",
+      isOwner: true,
+      public: false,
+    };
+  if (!template) return <div>Template not found!</div>;
+  return <EditTemplate template={template} />;
 }

@@ -1,11 +1,13 @@
 import { DeleteTemplateInput, DeleteTemplateOutput, GetTemplateInput, GetTemplateOutput, UpdateTemplateInput, UpdateTemplateOutput } from "@asius/sdk";
 import { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "../../../lib/getServerSession";
 import { prisma } from "../../../lib/prisma";
+import { ReqRes } from "../../../types";
 
 export default async function Template(req: NextApiRequest, res: NextApiResponse<any>) {
     let result = null
     const id = req.query.id as string
-    if (req.method === "GET") result = await getTemplate({ id })
+    if (req.method === "GET") result = await getTemplate({ id }, { req, res })
     else if (req.method === "PUT") result = await updateTemplate({ id, template: req.body })
     else if (req.method === "DELETE") result = await deleteTemplate({ id })
 
@@ -14,11 +16,13 @@ export default async function Template(req: NextApiRequest, res: NextApiResponse
 }
 
 
-export const getTemplate = async ({ id }: GetTemplateInput): Promise<GetTemplateOutput | null> => {
-    const template = await prisma.template.findUnique({ where: { id }, include: { user: true } })
+export const getTemplate = async ({ id }: GetTemplateInput, reqRes?: ReqRes): Promise<GetTemplateOutput | null> => {
+    const session = await getServerSession(reqRes)
+    const template = await prisma.template.findFirst({ where: { id, OR: [{ public: true }, { user: { email: session?.user?.email } }] }, include: { user: true } })
     if (!template) return null
     const { width, height, duration, name, description, comps, fps } = template
-    return { comps: JSON.parse(comps), width, height, name, description, id, duration, fps, public: template.public }
+    const isOwner = session?.user?.email === template.user.email
+    return { comps: JSON.parse(comps), width, height, name, description, id, duration, fps, public: template.public, isOwner }
 }
 
 const updateTemplate = async ({ id, template }: UpdateTemplateInput): Promise<UpdateTemplateOutput | null> => {

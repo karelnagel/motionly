@@ -8,7 +8,7 @@ export const Scale = ({
   setScale: (scale: number) => void;
 }) => {
   return (
-    <div className="absolute top-4 right-4 flex items-center bg-base-300 z-20 px-3 py-2 rounded-lg space-x-2">
+    <div className="flex items-center bg-base-300 px-3 py-2 rounded-lg space-x-2">
       <AiOutlineMinus
         onClick={() => setScale(scale - 0.05)}
         className="cursor-pointer hover:scale-110"

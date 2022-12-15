@@ -13,3 +13,6 @@
 body {
   font-family: "Roboto", sans-serif;
 }
+.panel {
+  @apply bg-base-100 rounded-lg shadow-lg p-3;
+}
