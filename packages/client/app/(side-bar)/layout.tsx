@@ -12,7 +12,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
         <div className="h-full fixed w-1/5 flex flex-col bg-base-100 shadow-xl p-6 justify-between">
           <div>
             <Link href={process.env.NEXT_PUBLIC_DOCS_URL || ""} target="_blank">
-              <Image src="/logo.png" width={150} height={120} alt="logo" />
+              <Image src="/asius.png" width={150} height={120} alt="logo" />
             </Link>
             <div className="flex flex-col space-y-3 mt-20">
               <SideBarButton href="/" text="Home">

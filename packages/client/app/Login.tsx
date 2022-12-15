@@ -11,7 +11,7 @@ export function Login() {
       <Image alt="background" src={getRandomImage()} fill={true} style={{ objectFit: "cover" }} />
       <div className="relative bg-base-100 shadow-2xl pt-4 pb-10 px-10 rounded-lg flex flex-col items-center max-w-[400px] w-full ">
         <Link href={process.env.NEXT_PUBLIC_DOCS_URL || ""} target="_blank">
-          <Image src="/logo.png" alt="logo" width={200} height={60} />
+          <Image src="/asius.png" alt="logo" width={200} height={60} />
         </Link>
         <div className="h-full flex flex-col space-y-6 items-center">
           <p className="text-xl font-bold">Welcome back!</p>

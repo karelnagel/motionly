@@ -17,7 +17,7 @@ export const Header = ({
           <MdArrowBackIos className="text-2xl" />
         </Link>
         <Link href={process.env.NEXT_PUBLIC_DOCS_URL || ""} target="_blank">
-          <Image src="/logo.png" width={100} height={100} alt="logo" />
+          <Image src="/asius.png" width={100} height={100} alt="logo" />
         </Link>
       </div>
       <div className="flex items-center space-x-2 font-bold">
