@@ -84,7 +84,8 @@ export default function EditTemplate({ template: startTemplate }: { template: Te
       <div className="p-3 pt-0">
         <div style={{ height: timelineHeigth }} className="panel">
           <Timeline
-            comps={template.comps}
+            frame={frame}
+            template={template}
             setSelected={setSelected}
             setComp={setComp}
             playerRef={playerRef}
