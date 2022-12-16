@@ -1,6 +1,6 @@
 import { CompProps } from "@asius/types";
 import { PlayerRef } from "@remotion/player";
-import { Ref } from "react";
+import { RefObject } from "react";
 
 export const Timeline = ({
   selected,
@@ -13,7 +13,7 @@ export const Timeline = ({
   setSelected: (s: string) => void;
   setComp: (c: CompProps) => void;
   comps: CompProps[];
-  playerRef: Ref<PlayerRef>;
+  playerRef: RefObject<PlayerRef>;
 }) => {
   return (
     <div className="h-full w-full ">

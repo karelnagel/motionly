@@ -1,7 +1,7 @@
 import { Player as RemotionPlayer, PlayerRef } from "@remotion/player";
 import { EditableProps, TemplateType } from "@asius/types";
 import { Composition } from "@asius/video";
-import { Ref } from "react";
+import { RefObject } from "react";
 
 export const Player = ({
   edit,
@@ -10,7 +10,7 @@ export const Player = ({
 }: {
   template: TemplateType;
   edit: EditableProps;
-  playerRef: Ref<PlayerRef>;
+  playerRef: RefObject<PlayerRef>;
 }) => {
   return (
     <RemotionPlayer
@@ -27,6 +27,8 @@ export const Player = ({
         edit,
       }}
       style={{ width: width * edit.scale, height: height * edit.scale }}
+      spaceKeyToPlayOrPause
+      loop
     />
   );
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useShiftKey } from "../../../hooks/useShiftKey";
 import { TemplateType } from "@asius/types";
 import { useTemplate } from "../../../hooks/useTemplate";
@@ -11,13 +11,14 @@ import { CompSidePanel } from "./SidePanels/CompSidePanel";
 import { TemplateSidePanel } from "./SidePanels/TemplateSidePanel";
 import { ExportSidePanel } from "./SidePanels/ExportSidePanel";
 import { Player } from "../../../components/Player";
-import { PlayerRef } from "@remotion/player";
 import { Timeline } from "./TimeLine";
 import { AddSidePanel } from "./SidePanels/AddSidePanel";
+import { usePlayer } from "../../../hooks/usePlayer";
 
 export default function EditTemplate({ template: startTemplate }: { template: TemplateType }) {
   const [selected, setSelected] = useState("");
-  const playerRef = useRef<PlayerRef>(null);
+  const { playerRef, frame, isPlaying } = usePlayer();
+
   const { update, template, selectedComp, setComp, setTemplate } = useTemplate(
     startTemplate,
     selected
@@ -52,8 +53,14 @@ export default function EditTemplate({ template: startTemplate }: { template: Te
               template={template}
             />
           </div>
-
-          <PlayerControls scale={scale} setScale={setScale} playerRef={playerRef} />
+          <PlayerControls
+            scale={scale}
+            setScale={setScale}
+            playerRef={playerRef}
+            frame={frame}
+            isPlaying={isPlaying}
+            fps={template.fps}
+          />
         </div>
         <div
           className="h-full p-3  pl-0"
