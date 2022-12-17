@@ -72,7 +72,7 @@ export default function EditTemplate({ template: startTemplate }: { template: Te
               paddingRight: show ? undefined : 0,
               paddingLeft: show ? undefined : 0,
             }}
-            className="h-full duration-200 panel"
+            className="h-full duration-200 panel p-3"
           >
             {show === "comp" && <CompSidePanel />}
             {show === "template" && <TemplateSidePanel />}

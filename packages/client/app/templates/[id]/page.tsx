@@ -10,7 +10,7 @@ export default async function Page({ params: { id } }: { params: { id: string } 
   if (id === "blank")
     template = {
       comps: defaultComponents,
-      duration: 10,
+      duration: 60,
       fps: 30,
       height: 1080,
       width: 1080,

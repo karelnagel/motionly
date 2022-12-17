@@ -29,7 +29,7 @@ export const PlayerControls = ({
 }) => {
   return (
     <div className="absolute bottom-0 left-0 p-3 w-full">
-      <div className="w-full grid grid-cols-3 panel text-3xl">
+      <div className="w-full grid grid-cols-3 panel text-3xl p-3">
         <input
           type="number"
           value={frame ? Math.round(frame / fps) : 0}
