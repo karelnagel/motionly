@@ -75,7 +75,9 @@ export default function EditTemplate({ template: startTemplate }: { template: Te
             className="h-full duration-200 panel p-3"
           >
             {show === "comp" && <CompSidePanel />}
-            {show === "template" && <TemplateSidePanel />}
+            {show === "template" && (
+              <TemplateSidePanel template={template} setTemplate={setTemplate} />
+            )}
             {show === "export" && <ExportSidePanel />}
             {show === "add" && <AddSidePanel />}
           </div>
