@@ -41,18 +41,12 @@ export const Timeline = ({
         {template.comps.map((comp) => (
           <div
             key={comp.id}
-            className="w-full relative cursor-pointer py-1"
+            className="py-1"
             onClick={() => {
               setSelected(comp.id);
             }}
           >
-            <div
-              className="p-2 rounded-lg w-full relative h-10 cursor-pointer py-1"
-              key={comp.id}
-              onClick={() => {
-                setSelected(comp.id);
-              }}
-            >
+            <div className="p-2 rounded-lg w-full relative h-10 cursor-pointer ">
               <div
                 className={`absolute top-0 h-full rounded-lg flex items-center px-2 ${
                   comp.id === selected ? "bg-primary text-primary-content" : "bg-base-200"
