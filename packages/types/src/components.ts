@@ -46,8 +46,8 @@ export interface TextStyle {
     backgroundColor?: string
     color?: string;
     outline?: {
-        color: string
-        width: number
+        color?: string
+        width?: number
     }
 }
 export const TextAnimationTypes = {
@@ -145,7 +145,7 @@ export interface AudiogramCompProps extends BaseCompProps {
     position: keyof typeof AudiogramPosition
     gap: number
     barWidth: number
-    color: string
+    color?: string
     roundness: number
     startFrom?: number
     smoothing?: boolean

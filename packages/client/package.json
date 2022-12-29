@@ -17,6 +17,7 @@
     "@next-auth/prisma-adapter": "^1.0.5",
     "@prisma/client": "^4.6.1",
     "@remotion/cli": "3.3.9",
+    "@remotion/google-fonts": "^3.3.19",
     "@remotion/lambda": "3.3.9",
     "@remotion/player": "3.3.9",
     "@types/node": "18.11.9",

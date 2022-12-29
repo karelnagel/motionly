@@ -27,6 +27,31 @@ export function NumberInput<T extends number | undefined>({
     </div>
   );
 }
+export function BooleanInput<T extends boolean | undefined>({
+  label,
+  value,
+  onChange,
+  className,
+}: {
+  label: string;
+  value: T;
+  onChange: (value: T) => void;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`flex items-center space-x-2 bg-base-300 rounded-lg py-1 px-2 w-full ${className}`}
+    >
+      <label>{label}</label>
+      <input
+        type="checkbox"
+        checked={value || false}
+        className=" bg-base-300 w-full"
+        onChange={(e) => onChange(e.target.checked as T)}
+      />
+    </div>
+  );
+}
 
 export function TextInput<T extends string | undefined>({
   label,
@@ -61,9 +86,9 @@ export const ColorInput = ({
   const color = value?.slice(0, 7);
   const alpha = value?.slice(7);
   return (
-    <div className="flex items-center p-2  space-x-2 bg-base-300 rounded-lg py-1 px-2 col-span-2 w-full">
+    <div className="flex items-center p-2  space-x-2 bg-base-300 rounded-lg py-1 px-2 col-span-2 w-full justify-between">
       <label>{label}</label>
-      {!value && <button onClick={() => onChange("#00000000")}>ADD</button>}
+      {!value && <button onClick={() => onChange("#000000FF")}>ADD</button>}
       {value && (
         <>
           <input
@@ -95,12 +120,12 @@ export const SelectInput = ({
   label,
   value,
   onChange,
-  list,
+  options,
 }: {
   label: string;
   value?: string;
   onChange: (value?: string) => void;
-  list: string[];
+  options: { value: string; label: string }[];
 }) => {
   return (
     <div className="flex items-center p-2 space-x-2 bg-base-300 rounded-lg py-1 px-2 col-span-2 w-full">
@@ -110,10 +135,10 @@ export const SelectInput = ({
         value={value}
         onChange={(e) => onChange(e.target.value)}
       >
-        <option value={undefined}>Not selected </option>
-        {list.map((font, i) => (
-          <option key={i} value={font}>
-            {font}
+        <option value={undefined}>Not selected</option>
+        {options.map(({ value, label }, i) => (
+          <option key={i} value={value}>
+            {label}
           </option>
         ))}
       </select>

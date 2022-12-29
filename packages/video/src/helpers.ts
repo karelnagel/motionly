@@ -3,6 +3,7 @@ import { CSSProperties } from "react";
 
 export const getTextStyle = ({ outline, ...textStyles }: TextStyle): CSSProperties => {
     const shadowCount = 100
+    const width = outline?.width || 0
     return {
         padding: 0,
         margin: 0,
@@ -12,7 +13,7 @@ export const getTextStyle = ({ outline, ...textStyles }: TextStyle): CSSProperti
                 .fill(0)
                 .map(
                     (_, i) =>
-                        `${Math.cos(((i + 1) / shadowCount) * Math.PI * 2) * outline.width}px ${Math.sin(((i + 1) / shadowCount) * Math.PI * 2) * outline.width
+                        `${Math.cos(((i + 1) / shadowCount) * Math.PI * 2) * width}px ${Math.sin(((i + 1) / shadowCount) * Math.PI * 2) * width
                         }px ${outline.color}`
                 )
                 .join(", ")

@@ -7,7 +7,7 @@ import { useTemplate } from "../../../hooks/useTemplate";
 import { SidePanelType } from "../../../types";
 import { Header } from "./Header";
 import { PlayerControls } from "./PlayerControls";
-import { CompSidePanel } from "./SidePanels/CompSidePanel";
+import { EditCompPanel } from "./SidePanels/EditCompPanel";
 import { TemplateSidePanel } from "./SidePanels/TemplateSidePanel";
 import { ExportSidePanel } from "./SidePanels/ExportSidePanel";
 import { Player } from "../../../components/Player";
@@ -72,18 +72,20 @@ export default function EditTemplate({ template: startTemplate }: { template: Te
               paddingRight: show ? undefined : 0,
               paddingLeft: show ? undefined : 0,
             }}
-            className="h-full duration-200 panel p-3"
+            className="h-full duration-200 panel relative"
           >
-            {show === "comp" && <CompSidePanel />}
-            {show === "template" && (
-              <TemplateSidePanel template={template} setTemplate={setTemplate} />
-            )}
-            {show === "export" && <ExportSidePanel />}
-            {show === "add" && <AddSidePanel />}
+            <div className="absolute top-0 left-0 overflow-y-scroll h-full p-3 w-full">
+              {show === "comp" && <EditCompPanel comp={selectedComp!} setComp={setComp} />}
+              {show === "template" && (
+                <TemplateSidePanel template={template} setTemplate={setTemplate} />
+              )}
+              {show === "export" && <ExportSidePanel />}
+              {show === "add" && <AddSidePanel />}
+            </div>
           </div>
         </div>
       </div>
-      <div className="p-3 pt-0">
+      <div className="p-3 pt-0 shrink-0">
         <div style={{ height: timelineHeigth }} className="panel">
           <Timeline
             frame={frame}

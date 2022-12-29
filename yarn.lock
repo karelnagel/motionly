@@ -1736,6 +1736,13 @@
     lru_map "0.4.1"
     remotion "3.3.9"
 
+"@remotion/google-fonts@^3.3.19":
+  version "3.3.19"
+  resolved "https://registry.yarnpkg.com/@remotion/google-fonts/-/google-fonts-3.3.19.tgz#169818488b03ef4310862d6f5e408f4175ddf775"
+  integrity sha512-UWw/UMPSwm1E7PKX0B3R87UlTZ3VZkhSyzm3wfyQPlAWiUxRK0WJLg2Z3OV84T79Cmo3p4hGVMtnPQjMQnDnsg==
+  dependencies:
+    remotion "3.3.19"
+
 "@remotion/lambda@3.3.9":
   version "3.3.9"
   resolved "https://registry.yarnpkg.com/@remotion/lambda/-/lambda-3.3.9.tgz#0ced2d1d9b783620d6a98725aac0e7edf6c60bb6"
@@ -5909,6 +5916,11 @@ remark-rehype@^10.0.0:
     "@types/mdast" "^3.0.0"
     mdast-util-to-hast "^12.1.0"
     unified "^10.0.0"
+
+remotion@3.3.19:
+  version "3.3.19"
+  resolved "https://registry.yarnpkg.com/remotion/-/remotion-3.3.19.tgz#9bf730aa2e57d2b38f5eb4e415c52b639edca447"
+  integrity sha512-unGqs4yb5tdlTpBU0AttAHI/rTf7bfQrMsG+oOCWHHG7PVeVEJUqbR7t9LZV0csPRHbsjGvvEEMKrMdQ0t6ItQ==
 
 remotion@3.3.9:
   version "3.3.9"
