@@ -11,14 +11,20 @@ export const Header = ({
   setShow: (s: SidePanelType) => void;
 }) => {
   return (
-    <div className="w-full flex justify-between items-center bg-base-100 shadow-lg px-3 ">
+    <div className="w-full flex justify-between items-center bg-base-100 shadow-lg px-3 py-2 ">
       <div className="flex space-x-2 items-center">
         <Link href="/">
-          <MdArrowBackIos className="text-2xl" />
+          <Image
+            src={"/favicon.png"}
+            width={40}
+            height={40}
+            alt="logo"
+            className="-rotate-90 hover:scale-110 duration-200"
+          />
         </Link>
-        <Link href={process.env.NEXT_PUBLIC_DOCS_URL || ""} target="_blank">
+        {/* <Link href={process.env.NEXT_PUBLIC_DOCS_URL || ""} target="_blank">
           <Image src="/asius.png" width={100} height={100} alt="logo" />
-        </Link>
+        </Link> */}
       </div>
       <div className="flex items-center space-x-2 font-bold">
         <button
