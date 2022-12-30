@@ -16,7 +16,12 @@ export default async function Templates({
     where: {
       public: true,
       AND: [
-        { OR: [{ name: { contains: search } }, { description: { contains: search } }] },
+        {
+          OR: [
+            { name: { contains: search } },
+            { description: { contains: search } },
+          ],
+        },
         { comps: { contains: `${comp}` } }, // Todo make more specific
       ],
     },
@@ -27,7 +32,11 @@ export default async function Templates({
       <Title text="Find Template To Start" />
       <SearchBar value={search} comp={comp} />
       <div className="grid grid-cols-4 gap-4 mt-10">
-        <Template id="blank" name="Start with empty project" image="/icons/add.webp" />
+        <Template
+          id="blank"
+          name="Start with empty project"
+          image="/icons/add.webp"
+        />
         {templates.map((template) => (
           <Template
             key={template.id}

@@ -30,7 +30,9 @@ export const TemplateSidePanel = ({
         <NumberInput
           label="H"
           value={template.height}
-          onChange={(height) => setTemplate({ ...template, height: height || 1 })}
+          onChange={(height) =>
+            setTemplate({ ...template, height: height || 1 })
+          }
         />
         <NumberInput
           label="FPS"
@@ -40,7 +42,9 @@ export const TemplateSidePanel = ({
         <NumberInput
           label="Duration"
           value={template.duration}
-          onChange={(duration) => setTemplate({ ...template, duration: duration || 1 })}
+          onChange={(duration) =>
+            setTemplate({ ...template, duration: duration || 1 })
+          }
         />
       </div>
     </div>

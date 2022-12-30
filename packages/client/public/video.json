@@ -1,1949 +1,1949 @@
 ﻿[
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "If",
-                "type": "word",
-                "data_start": 0.16,
-                "data_end": 0.32,
-                "confidence": 0.89
-            },
-            {
-                "text": " you",
-                "type": "word",
-                "data_start": 0.36,
-                "data_end": 0.56,
-                "confidence": 1.0
-            },
-            {
-                "text": " only",
-                "type": "word",
-                "data_start": 0.6,
-                "data_end": 0.92,
-                "confidence": 1.0
-            },
-            {
-                "text": " have",
-                "type": "word",
-                "data_start": 1.0,
-                "data_end": 1.32,
-                "confidence": 1.0
-            },
-            {
-                "text": " 24",
-                "type": "word",
-                "data_start": 1.4,
-                "data_end": 2.04,
-                "confidence": 0.99
-            },
-            {
-                "text": " hours",
-                "type": "word",
-                "data_start": 2.12,
-                "data_end": 2.36,
-                "confidence": 1.0
-            },
-            {
-                "text": " in",
-                "type": "word",
-                "data_start": 2.44,
-                "data_end": 2.6,
-                "confidence": 0.99
-            },
-            {
-                "text": " a",
-                "type": "word",
-                "data_start": 2.64,
-                "data_end": 2.72,
-                "confidence": 0.97
-            },
-            {
-                "text": " day,",
-                "type": "word",
-                "data_start": 2.72,
-                "data_end": 3.28,
-                "confidence": 0.97
-            }
-        ],
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "If",
+        "type": "word",
         "data_start": 0.16,
-        "data_end": 3.42
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "your",
-                "type": "word",
-                "data_start": 3.44,
-                "data_end": 3.84,
-                "confidence": 0.99
-            },
-            {
-                "text": " success",
-                "type": "word",
-                "data_start": 3.88,
-                "data_end": 4.4,
-                "confidence": 1.0
-            },
-            {
-                "text": " is",
-                "type": "word",
-                "data_start": 4.52,
-                "data_end": 4.8,
-                "confidence": 1.0
-            },
-            {
-                "text": " dependent",
-                "type": "word",
-                "data_start": 4.84,
-                "data_end": 5.28,
-                "confidence": 0.99
-            },
-            {
-                "text": "\nupon",
-                "type": "word",
-                "data_start": 5.28,
-                "data_end": 5.76,
-                "confidence": 0.9
-            },
-            {
-                "text": " how",
-                "type": "word",
-                "data_start": 5.84,
-                "data_end": 6.04,
-                "confidence": 1.0
-            },
-            {
-                "text": " you",
-                "type": "word",
-                "data_start": 6.08,
-                "data_end": 6.2,
-                "confidence": 1.0
-            },
-            {
-                "text": " use",
-                "type": "word",
-                "data_start": 6.24,
-                "data_end": 6.4,
-                "confidence": 0.91
-            },
-            {
-                "text": " the",
-                "type": "word",
-                "data_start": 6.44,
-                "data_end": 6.6,
-                "confidence": 0.97
-            },
-            {
-                "text": " 24.",
-                "type": "word",
-                "data_start": 6.64,
-                "data_end": 7.44,
-                "confidence": 1.0
-            }
-        ],
-        "data_start": 3.45,
-        "data_end": 8.17
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "You",
-                "type": "word",
-                "data_start": 8.2,
-                "data_end": 8.52,
-                "confidence": 1.0
-            },
-            {
-                "text": " got",
-                "type": "word",
-                "data_start": 8.56,
-                "data_end": 8.68,
-                "confidence": 0.78
-            },
-            {
-                "text": " to",
-                "type": "word",
-                "data_start": 8.72,
-                "data_end": 8.8,
-                "confidence": 0.26
-            },
-            {
-                "text": " hear",
-                "type": "word",
-                "data_start": 8.8,
-                "data_end": 8.92,
-                "confidence": 1.0
-            },
-            {
-                "text": " me.",
-                "type": "word",
-                "data_start": 8.96,
-                "data_end": 9.08,
-                "confidence": 1.0
-            },
-            {
-                "text": "\nPeople",
-                "type": "word",
-                "data_start": 9.12,
-                "data_end": 9.28,
-                "confidence": 1.0
-            },
-            {
-                "text": " talk",
-                "type": "word",
-                "data_start": 9.32,
-                "data_end": 9.48,
-                "confidence": 0.95
-            },
-            {
-                "text": " about",
-                "type": "word",
-                "data_start": 9.52,
-                "data_end": 9.68,
-                "confidence": 1.0
-            },
-            {
-                "text": " Oprah",
-                "type": "word",
-                "data_start": 9.72,
-                "data_end": 10.0,
-                "confidence": 0.97
-            },
-            {
-                "text": " Winfrey.",
-                "type": "word",
-                "data_start": 10.0,
-                "data_end": 10.56,
-                "confidence": 0.92
-            }
-        ],
+        "data_end": 0.32,
+        "confidence": 0.89
+      },
+      {
+        "text": " you",
+        "type": "word",
+        "data_start": 0.36,
+        "data_end": 0.56,
+        "confidence": 1.0
+      },
+      {
+        "text": " only",
+        "type": "word",
+        "data_start": 0.6,
+        "data_end": 0.92,
+        "confidence": 1.0
+      },
+      {
+        "text": " have",
+        "type": "word",
+        "data_start": 1.0,
+        "data_end": 1.32,
+        "confidence": 1.0
+      },
+      {
+        "text": " 24",
+        "type": "word",
+        "data_start": 1.4,
+        "data_end": 2.04,
+        "confidence": 0.99
+      },
+      {
+        "text": " hours",
+        "type": "word",
+        "data_start": 2.12,
+        "data_end": 2.36,
+        "confidence": 1.0
+      },
+      {
+        "text": " in",
+        "type": "word",
+        "data_start": 2.44,
+        "data_end": 2.6,
+        "confidence": 0.99
+      },
+      {
+        "text": " a",
+        "type": "word",
+        "data_start": 2.64,
+        "data_end": 2.72,
+        "confidence": 0.97
+      },
+      {
+        "text": " day,",
+        "type": "word",
+        "data_start": 2.72,
+        "data_end": 3.28,
+        "confidence": 0.97
+      }
+    ],
+    "data_start": 0.16,
+    "data_end": 3.42
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "your",
+        "type": "word",
+        "data_start": 3.44,
+        "data_end": 3.84,
+        "confidence": 0.99
+      },
+      {
+        "text": " success",
+        "type": "word",
+        "data_start": 3.88,
+        "data_end": 4.4,
+        "confidence": 1.0
+      },
+      {
+        "text": " is",
+        "type": "word",
+        "data_start": 4.52,
+        "data_end": 4.8,
+        "confidence": 1.0
+      },
+      {
+        "text": " dependent",
+        "type": "word",
+        "data_start": 4.84,
+        "data_end": 5.28,
+        "confidence": 0.99
+      },
+      {
+        "text": "\nupon",
+        "type": "word",
+        "data_start": 5.28,
+        "data_end": 5.76,
+        "confidence": 0.9
+      },
+      {
+        "text": " how",
+        "type": "word",
+        "data_start": 5.84,
+        "data_end": 6.04,
+        "confidence": 1.0
+      },
+      {
+        "text": " you",
+        "type": "word",
+        "data_start": 6.08,
+        "data_end": 6.2,
+        "confidence": 1.0
+      },
+      {
+        "text": " use",
+        "type": "word",
+        "data_start": 6.24,
+        "data_end": 6.4,
+        "confidence": 0.91
+      },
+      {
+        "text": " the",
+        "type": "word",
+        "data_start": 6.44,
+        "data_end": 6.6,
+        "confidence": 0.97
+      },
+      {
+        "text": " 24.",
+        "type": "word",
+        "data_start": 6.64,
+        "data_end": 7.44,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 3.45,
+    "data_end": 8.17
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "You",
+        "type": "word",
         "data_start": 8.2,
-        "data_end": 10.62
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "You",
-                "type": "word",
-                "data_start": 10.64,
-                "data_end": 10.8,
-                "confidence": 0.78
-            },
-            {
-                "text": " know,",
-                "type": "word",
-                "data_start": 10.8,
-                "data_end": 10.96,
-                "confidence": 1.0
-            },
-            {
-                "text": " Ted",
-                "type": "word",
-                "data_start": 11.0,
-                "data_end": 11.28,
-                "confidence": 0.69
-            },
-            {
-                "text": " Turner,",
-                "type": "word",
-                "data_start": 11.32,
-                "data_end": 11.84,
-                "confidence": 1.0
-            },
-            {
-                "text": " Warren",
-                "type": "word",
-                "data_start": 11.92,
-                "data_end": 12.32,
-                "confidence": 0.97
-            },
-            {
-                "text": " Buffett.",
-                "type": "word",
-                "data_start": 12.36,
-                "data_end": 12.8,
-                "confidence": 0.82
-            },
-            {
-                "text": "\nListen",
-                "type": "word",
-                "data_start": 12.8,
-                "data_end": 12.96,
-                "confidence": 1.0
-            },
-            {
-                "text": " to",
-                "type": "word",
-                "data_start": 13.0,
-                "data_end": 13.2,
-                "confidence": 0.98
-            },
-            {
-                "text": " me.",
-                "type": "word",
-                "data_start": 13.24,
-                "data_end": 13.44,
-                "confidence": 1.0
-            }
-        ],
-        "data_start": 10.65,
-        "data_end": 13.46
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "I",
-                "type": "word",
-                "data_start": 13.48,
-                "data_end": 13.6,
-                "confidence": 0.99
-            },
-            {
-                "text": " don't",
-                "type": "word",
-                "data_start": 13.6,
-                "data_end": 13.72,
-                "confidence": 0.95
-            },
-            {
-                "text": " care",
-                "type": "word",
-                "data_start": 13.76,
-                "data_end": 13.88,
-                "confidence": 1.0
-            },
-            {
-                "text": " how",
-                "type": "word",
-                "data_start": 13.92,
-                "data_end": 14.04,
-                "confidence": 1.0
-            },
-            {
-                "text": " much",
-                "type": "word",
-                "data_start": 14.08,
-                "data_end": 14.24,
-                "confidence": 1.0
-            },
-            {
-                "text": " money",
-                "type": "word",
-                "data_start": 14.28,
-                "data_end": 14.44,
-                "confidence": 1.0
-            },
-            {
-                "text": " you",
-                "type": "word",
-                "data_start": 14.48,
-                "data_end": 14.6,
-                "confidence": 0.83
-            },
-            {
-                "text": " make.",
-                "type": "word",
-                "data_start": 14.64,
-                "data_end": 14.96,
-                "confidence": 0.89
-            }
-        ],
+        "data_end": 8.52,
+        "confidence": 1.0
+      },
+      {
+        "text": " got",
+        "type": "word",
+        "data_start": 8.56,
+        "data_end": 8.68,
+        "confidence": 0.78
+      },
+      {
+        "text": " to",
+        "type": "word",
+        "data_start": 8.72,
+        "data_end": 8.8,
+        "confidence": 0.26
+      },
+      {
+        "text": " hear",
+        "type": "word",
+        "data_start": 8.8,
+        "data_end": 8.92,
+        "confidence": 1.0
+      },
+      {
+        "text": " me.",
+        "type": "word",
+        "data_start": 8.96,
+        "data_end": 9.08,
+        "confidence": 1.0
+      },
+      {
+        "text": "\nPeople",
+        "type": "word",
+        "data_start": 9.12,
+        "data_end": 9.28,
+        "confidence": 1.0
+      },
+      {
+        "text": " talk",
+        "type": "word",
+        "data_start": 9.32,
+        "data_end": 9.48,
+        "confidence": 0.95
+      },
+      {
+        "text": " about",
+        "type": "word",
+        "data_start": 9.52,
+        "data_end": 9.68,
+        "confidence": 1.0
+      },
+      {
+        "text": " Oprah",
+        "type": "word",
+        "data_start": 9.72,
+        "data_end": 10.0,
+        "confidence": 0.97
+      },
+      {
+        "text": " Winfrey.",
+        "type": "word",
+        "data_start": 10.0,
+        "data_end": 10.56,
+        "confidence": 0.92
+      }
+    ],
+    "data_start": 8.2,
+    "data_end": 10.62
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "You",
+        "type": "word",
+        "data_start": 10.64,
+        "data_end": 10.8,
+        "confidence": 0.78
+      },
+      {
+        "text": " know,",
+        "type": "word",
+        "data_start": 10.8,
+        "data_end": 10.96,
+        "confidence": 1.0
+      },
+      {
+        "text": " Ted",
+        "type": "word",
+        "data_start": 11.0,
+        "data_end": 11.28,
+        "confidence": 0.69
+      },
+      {
+        "text": " Turner,",
+        "type": "word",
+        "data_start": 11.32,
+        "data_end": 11.84,
+        "confidence": 1.0
+      },
+      {
+        "text": " Warren",
+        "type": "word",
+        "data_start": 11.92,
+        "data_end": 12.32,
+        "confidence": 0.97
+      },
+      {
+        "text": " Buffett.",
+        "type": "word",
+        "data_start": 12.36,
+        "data_end": 12.8,
+        "confidence": 0.82
+      },
+      {
+        "text": "\nListen",
+        "type": "word",
+        "data_start": 12.8,
+        "data_end": 12.96,
+        "confidence": 1.0
+      },
+      {
+        "text": " to",
+        "type": "word",
+        "data_start": 13.0,
+        "data_end": 13.2,
+        "confidence": 0.98
+      },
+      {
+        "text": " me.",
+        "type": "word",
+        "data_start": 13.24,
+        "data_end": 13.44,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 10.65,
+    "data_end": 13.46
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "I",
+        "type": "word",
         "data_start": 13.48,
-        "data_end": 15.01
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "You",
-                "type": "word",
-                "data_start": 15.04,
-                "data_end": 15.24,
-                "confidence": 1.0
-            },
-            {
-                "text": " only",
-                "type": "word",
-                "data_start": 15.28,
-                "data_end": 15.44,
-                "confidence": 0.99
-            },
-            {
-                "text": " get",
-                "type": "word",
-                "data_start": 15.48,
-                "data_end": 15.68,
-                "confidence": 1.0
-            },
-            {
-                "text": " 24",
-                "type": "word",
-                "data_start": 15.72,
-                "data_end": 16.12,
-                "confidence": 0.99
-            },
-            {
-                "text": " hours",
-                "type": "word",
-                "data_start": 16.16,
-                "data_end": 16.32,
-                "confidence": 1.0
-            },
-            {
-                "text": " in",
-                "type": "word",
-                "data_start": 16.36,
-                "data_end": 16.48,
-                "confidence": 0.98
-            },
-            {
-                "text": " a",
-                "type": "word",
-                "data_start": 16.48,
-                "data_end": 16.6,
-                "confidence": 0.96
-            },
-            {
-                "text": " day.",
-                "type": "word",
-                "data_start": 16.64,
-                "data_end": 16.88,
-                "confidence": 1.0
-            }
-        ],
+        "data_end": 13.6,
+        "confidence": 0.99
+      },
+      {
+        "text": " don't",
+        "type": "word",
+        "data_start": 13.6,
+        "data_end": 13.72,
+        "confidence": 0.95
+      },
+      {
+        "text": " care",
+        "type": "word",
+        "data_start": 13.76,
+        "data_end": 13.88,
+        "confidence": 1.0
+      },
+      {
+        "text": " how",
+        "type": "word",
+        "data_start": 13.92,
+        "data_end": 14.04,
+        "confidence": 1.0
+      },
+      {
+        "text": " much",
+        "type": "word",
+        "data_start": 14.08,
+        "data_end": 14.24,
+        "confidence": 1.0
+      },
+      {
+        "text": " money",
+        "type": "word",
+        "data_start": 14.28,
+        "data_end": 14.44,
+        "confidence": 1.0
+      },
+      {
+        "text": " you",
+        "type": "word",
+        "data_start": 14.48,
+        "data_end": 14.6,
+        "confidence": 0.83
+      },
+      {
+        "text": " make.",
+        "type": "word",
+        "data_start": 14.64,
+        "data_end": 14.96,
+        "confidence": 0.89
+      }
+    ],
+    "data_start": 13.48,
+    "data_end": 15.01
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "You",
+        "type": "word",
         "data_start": 15.04,
-        "data_end": 16.9
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "And",
-                "type": "word",
-                "data_start": 16.92,
-                "data_end": 17.08,
-                "confidence": 0.69
-            },
-            {
-                "text": " the",
-                "type": "word",
-                "data_start": 17.12,
-                "data_end": 17.24,
-                "confidence": 0.86
-            },
-            {
-                "text": " difference",
-                "type": "word",
-                "data_start": 17.28,
-                "data_end": 17.52,
-                "confidence": 1.0
-            },
-            {
-                "text": " between",
-                "type": "word",
-                "data_start": 17.56,
-                "data_end": 17.92,
-                "confidence": 1.0
-            },
-            {
-                "text": " Oprah",
-                "type": "word",
-                "data_start": 18.0,
-                "data_end": 18.56,
-                "confidence": 1.0
-            }
-        ],
+        "data_end": 15.24,
+        "confidence": 1.0
+      },
+      {
+        "text": " only",
+        "type": "word",
+        "data_start": 15.28,
+        "data_end": 15.44,
+        "confidence": 0.99
+      },
+      {
+        "text": " get",
+        "type": "word",
+        "data_start": 15.48,
+        "data_end": 15.68,
+        "confidence": 1.0
+      },
+      {
+        "text": " 24",
+        "type": "word",
+        "data_start": 15.72,
+        "data_end": 16.12,
+        "confidence": 0.99
+      },
+      {
+        "text": " hours",
+        "type": "word",
+        "data_start": 16.16,
+        "data_end": 16.32,
+        "confidence": 1.0
+      },
+      {
+        "text": " in",
+        "type": "word",
+        "data_start": 16.36,
+        "data_end": 16.48,
+        "confidence": 0.98
+      },
+      {
+        "text": " a",
+        "type": "word",
+        "data_start": 16.48,
+        "data_end": 16.6,
+        "confidence": 0.96
+      },
+      {
+        "text": " day.",
+        "type": "word",
+        "data_start": 16.64,
+        "data_end": 16.88,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 15.04,
+    "data_end": 16.9
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "And",
+        "type": "word",
         "data_start": 16.92,
-        "data_end": 18.58
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "and",
-                "type": "word",
-                "data_start": 18.6,
-                "data_end": 18.76,
-                "confidence": 0.99
-            },
-            {
-                "text": " the",
-                "type": "word",
-                "data_start": 18.8,
-                "data_end": 18.92,
-                "confidence": 0.99
-            },
-            {
-                "text": " person",
-                "type": "word",
-                "data_start": 18.96,
-                "data_end": 19.2,
-                "confidence": 1.0
-            },
-            {
-                "text": " that's",
-                "type": "word",
-                "data_start": 19.24,
-                "data_end": 19.48,
-                "confidence": 0.56
-            },
-            {
-                "text": " broke",
-                "type": "word",
-                "data_start": 19.52,
-                "data_end": 20.12,
-                "confidence": 0.59
-            },
-            {
-                "text": " is",
-                "type": "word",
-                "data_start": 20.2,
-                "data_end": 20.56,
-                "confidence": 0.74
-            },
-            {
-                "text": "\noprah",
-                "type": "word",
-                "data_start": 20.6,
-                "data_end": 21.08,
-                "confidence": 0.63
-            },
-            {
-                "text": " uses",
-                "type": "word",
-                "data_start": 21.12,
-                "data_end": 21.44,
-                "confidence": 0.74
-            },
-            {
-                "text": " her",
-                "type": "word",
-                "data_start": 21.48,
-                "data_end": 21.68,
-                "confidence": 1.0
-            },
-            {
-                "text": " 24",
-                "type": "word",
-                "data_start": 21.72,
-                "data_end": 22.28,
-                "confidence": 0.98
-            },
-            {
-                "text": " hours",
-                "type": "word",
-                "data_start": 22.36,
-                "data_end": 22.76,
-                "confidence": 1.0
-            },
-            {
-                "text": " wisely.",
-                "type": "word",
-                "data_start": 22.88,
-                "data_end": 23.88,
-                "confidence": 1.0
-            }
-        ],
+        "data_end": 17.08,
+        "confidence": 0.69
+      },
+      {
+        "text": " the",
+        "type": "word",
+        "data_start": 17.12,
+        "data_end": 17.24,
+        "confidence": 0.86
+      },
+      {
+        "text": " difference",
+        "type": "word",
+        "data_start": 17.28,
+        "data_end": 17.52,
+        "confidence": 1.0
+      },
+      {
+        "text": " between",
+        "type": "word",
+        "data_start": 17.56,
+        "data_end": 17.92,
+        "confidence": 1.0
+      },
+      {
+        "text": " Oprah",
+        "type": "word",
+        "data_start": 18.0,
+        "data_end": 18.56,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 16.92,
+    "data_end": 18.58
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "and",
+        "type": "word",
         "data_start": 18.6,
-        "data_end": 24.86
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "That's",
-                "type": "word",
-                "data_start": 24.88,
-                "data_end": 25.28,
-                "confidence": 0.96
-            },
-            {
-                "text": " it.",
-                "type": "word",
-                "data_start": 25.32,
-                "data_end": 25.48,
-                "confidence": 1.0
-            },
-            {
-                "text": "\nListen",
-                "type": "word",
-                "data_start": 25.52,
-                "data_end": 25.72,
-                "confidence": 1.0
-            },
-            {
-                "text": " to",
-                "type": "word",
-                "data_start": 25.76,
-                "data_end": 25.92,
-                "confidence": 1.0
-            },
-            {
-                "text": " me.",
-                "type": "word",
-                "data_start": 25.96,
-                "data_end": 26.2,
-                "confidence": 1.0
-            }
-        ],
-        "data_start": 24.89,
-        "data_end": 26.22
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "That's",
-                "type": "word",
-                "data_start": 26.24,
-                "data_end": 26.48,
-                "confidence": 0.74
-            },
-            {
-                "text": " it.",
-                "type": "word",
-                "data_start": 26.52,
-                "data_end": 26.68,
-                "confidence": 1.0
-            },
-            {
-                "text": "\nYou",
-                "type": "word",
-                "data_start": 26.72,
-                "data_end": 26.88,
-                "confidence": 1.0
-            },
-            {
-                "text": " get",
-                "type": "word",
-                "data_start": 26.92,
-                "data_end": 27.08,
-                "confidence": 1.0
-            },
-            {
-                "text": " 24",
-                "type": "word",
-                "data_start": 27.12,
-                "data_end": 27.84,
-                "confidence": 1.0
-            },
-            {
-                "text": " I",
-                "type": "word",
-                "data_start": 27.96,
-                "data_end": 28.16,
-                "confidence": 1.0
-            },
-            {
-                "text": " don't",
-                "type": "word",
-                "data_start": 28.2,
-                "data_end": 28.36,
-                "confidence": 1.0
-            },
-            {
-                "text": " care",
-                "type": "word",
-                "data_start": 28.36,
-                "data_end": 28.64,
-                "confidence": 1.0
-            },
-            {
-                "text": " you",
-                "type": "word",
-                "data_start": 28.72,
-                "data_end": 28.92,
-                "confidence": 1.0
-            },
-            {
-                "text": " broke.",
-                "type": "word",
-                "data_start": 28.96,
-                "data_end": 29.32,
-                "confidence": 0.99
-            }
-        ],
+        "data_end": 18.76,
+        "confidence": 0.99
+      },
+      {
+        "text": " the",
+        "type": "word",
+        "data_start": 18.8,
+        "data_end": 18.92,
+        "confidence": 0.99
+      },
+      {
+        "text": " person",
+        "type": "word",
+        "data_start": 18.96,
+        "data_end": 19.2,
+        "confidence": 1.0
+      },
+      {
+        "text": " that's",
+        "type": "word",
+        "data_start": 19.24,
+        "data_end": 19.48,
+        "confidence": 0.56
+      },
+      {
+        "text": " broke",
+        "type": "word",
+        "data_start": 19.52,
+        "data_end": 20.12,
+        "confidence": 0.59
+      },
+      {
+        "text": " is",
+        "type": "word",
+        "data_start": 20.2,
+        "data_end": 20.56,
+        "confidence": 0.74
+      },
+      {
+        "text": "\noprah",
+        "type": "word",
+        "data_start": 20.6,
+        "data_end": 21.08,
+        "confidence": 0.63
+      },
+      {
+        "text": " uses",
+        "type": "word",
+        "data_start": 21.12,
+        "data_end": 21.44,
+        "confidence": 0.74
+      },
+      {
+        "text": " her",
+        "type": "word",
+        "data_start": 21.48,
+        "data_end": 21.68,
+        "confidence": 1.0
+      },
+      {
+        "text": " 24",
+        "type": "word",
+        "data_start": 21.72,
+        "data_end": 22.28,
+        "confidence": 0.98
+      },
+      {
+        "text": " hours",
+        "type": "word",
+        "data_start": 22.36,
+        "data_end": 22.76,
+        "confidence": 1.0
+      },
+      {
+        "text": " wisely.",
+        "type": "word",
+        "data_start": 22.88,
+        "data_end": 23.88,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 18.6,
+    "data_end": 24.86
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "That's",
+        "type": "word",
+        "data_start": 24.88,
+        "data_end": 25.28,
+        "confidence": 0.96
+      },
+      {
+        "text": " it.",
+        "type": "word",
+        "data_start": 25.32,
+        "data_end": 25.48,
+        "confidence": 1.0
+      },
+      {
+        "text": "\nListen",
+        "type": "word",
+        "data_start": 25.52,
+        "data_end": 25.72,
+        "confidence": 1.0
+      },
+      {
+        "text": " to",
+        "type": "word",
+        "data_start": 25.76,
+        "data_end": 25.92,
+        "confidence": 1.0
+      },
+      {
+        "text": " me.",
+        "type": "word",
+        "data_start": 25.96,
+        "data_end": 26.2,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 24.89,
+    "data_end": 26.22
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "That's",
+        "type": "word",
         "data_start": 26.24,
-        "data_end": 29.34
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "You",
-                "type": "word",
-                "data_start": 29.36,
-                "data_end": 29.56,
-                "confidence": 1.0
-            },
-            {
-                "text": " grew",
-                "type": "word",
-                "data_start": 29.6,
-                "data_end": 29.8,
-                "confidence": 1.0
-            },
-            {
-                "text": " up",
-                "type": "word",
-                "data_start": 29.8,
-                "data_end": 29.92,
-                "confidence": 1.0
-            },
-            {
-                "text": " broke.",
-                "type": "word",
-                "data_start": 29.96,
-                "data_end": 30.32,
-                "confidence": 0.86
-            }
-        ],
-        "data_start": 29.37,
-        "data_end": 30.38
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "I",
-                "type": "word",
-                "data_start": 30.4,
-                "data_end": 30.56,
-                "confidence": 0.98
-            },
-            {
-                "text": " don't",
-                "type": "word",
-                "data_start": 30.6,
-                "data_end": 30.76,
-                "confidence": 1.0
-            },
-            {
-                "text": " care",
-                "type": "word",
-                "data_start": 30.76,
-                "data_end": 30.88,
-                "confidence": 1.0
-            },
-            {
-                "text": " if",
-                "type": "word",
-                "data_start": 30.92,
-                "data_end": 31.0,
-                "confidence": 0.97
-            },
-            {
-                "text": " you",
-                "type": "word",
-                "data_start": 31.0,
-                "data_end": 31.12,
-                "confidence": 0.98
-            },
-            {
-                "text": " grew",
-                "type": "word",
-                "data_start": 31.16,
-                "data_end": 31.32,
-                "confidence": 1.0
-            },
-            {
-                "text": " up",
-                "type": "word",
-                "data_start": 31.32,
-                "data_end": 31.48,
-                "confidence": 0.96
-            },
-            {
-                "text": " rich.",
-                "type": "word",
-                "data_start": 31.52,
-                "data_end": 31.96,
-                "confidence": 0.98
-            }
-        ],
+        "data_end": 26.48,
+        "confidence": 0.74
+      },
+      {
+        "text": " it.",
+        "type": "word",
+        "data_start": 26.52,
+        "data_end": 26.68,
+        "confidence": 1.0
+      },
+      {
+        "text": "\nYou",
+        "type": "word",
+        "data_start": 26.72,
+        "data_end": 26.88,
+        "confidence": 1.0
+      },
+      {
+        "text": " get",
+        "type": "word",
+        "data_start": 26.92,
+        "data_end": 27.08,
+        "confidence": 1.0
+      },
+      {
+        "text": " 24",
+        "type": "word",
+        "data_start": 27.12,
+        "data_end": 27.84,
+        "confidence": 1.0
+      },
+      {
+        "text": " I",
+        "type": "word",
+        "data_start": 27.96,
+        "data_end": 28.16,
+        "confidence": 1.0
+      },
+      {
+        "text": " don't",
+        "type": "word",
+        "data_start": 28.2,
+        "data_end": 28.36,
+        "confidence": 1.0
+      },
+      {
+        "text": " care",
+        "type": "word",
+        "data_start": 28.36,
+        "data_end": 28.64,
+        "confidence": 1.0
+      },
+      {
+        "text": " you",
+        "type": "word",
+        "data_start": 28.72,
+        "data_end": 28.92,
+        "confidence": 1.0
+      },
+      {
+        "text": " broke.",
+        "type": "word",
+        "data_start": 28.96,
+        "data_end": 29.32,
+        "confidence": 0.99
+      }
+    ],
+    "data_start": 26.24,
+    "data_end": 29.34
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "You",
+        "type": "word",
+        "data_start": 29.36,
+        "data_end": 29.56,
+        "confidence": 1.0
+      },
+      {
+        "text": " grew",
+        "type": "word",
+        "data_start": 29.6,
+        "data_end": 29.8,
+        "confidence": 1.0
+      },
+      {
+        "text": " up",
+        "type": "word",
+        "data_start": 29.8,
+        "data_end": 29.92,
+        "confidence": 1.0
+      },
+      {
+        "text": " broke.",
+        "type": "word",
+        "data_start": 29.96,
+        "data_end": 30.32,
+        "confidence": 0.86
+      }
+    ],
+    "data_start": 29.37,
+    "data_end": 30.38
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "I",
+        "type": "word",
         "data_start": 30.4,
-        "data_end": 32.02
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "I",
-                "type": "word",
-                "data_start": 32.04,
-                "data_end": 32.24,
-                "confidence": 1.0
-            },
-            {
-                "text": " don't",
-                "type": "word",
-                "data_start": 32.28,
-                "data_end": 32.44,
-                "confidence": 1.0
-            },
-            {
-                "text": " care",
-                "type": "word",
-                "data_start": 32.44,
-                "data_end": 32.56,
-                "confidence": 1.0
-            },
-            {
-                "text": " if",
-                "type": "word",
-                "data_start": 32.6,
-                "data_end": 32.68,
-                "confidence": 0.99
-            },
-            {
-                "text": " you're",
-                "type": "word",
-                "data_start": 32.68,
-                "data_end": 32.88,
-                "confidence": 0.83
-            },
-            {
-                "text": " in",
-                "type": "word",
-                "data_start": 32.92,
-                "data_end": 33.08,
-                "confidence": 1.0
-            },
-            {
-                "text": " college.",
-                "type": "word",
-                "data_start": 33.12,
-                "data_end": 33.48,
-                "confidence": 1.0
-            }
-        ],
+        "data_end": 30.56,
+        "confidence": 0.98
+      },
+      {
+        "text": " don't",
+        "type": "word",
+        "data_start": 30.6,
+        "data_end": 30.76,
+        "confidence": 1.0
+      },
+      {
+        "text": " care",
+        "type": "word",
+        "data_start": 30.76,
+        "data_end": 30.88,
+        "confidence": 1.0
+      },
+      {
+        "text": " if",
+        "type": "word",
+        "data_start": 30.92,
+        "data_end": 31.0,
+        "confidence": 0.97
+      },
+      {
+        "text": " you",
+        "type": "word",
+        "data_start": 31.0,
+        "data_end": 31.12,
+        "confidence": 0.98
+      },
+      {
+        "text": " grew",
+        "type": "word",
+        "data_start": 31.16,
+        "data_end": 31.32,
+        "confidence": 1.0
+      },
+      {
+        "text": " up",
+        "type": "word",
+        "data_start": 31.32,
+        "data_end": 31.48,
+        "confidence": 0.96
+      },
+      {
+        "text": " rich.",
+        "type": "word",
+        "data_start": 31.52,
+        "data_end": 31.96,
+        "confidence": 0.98
+      }
+    ],
+    "data_start": 30.4,
+    "data_end": 32.02
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "I",
+        "type": "word",
         "data_start": 32.04,
-        "data_end": 33.54
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "You're",
-                "type": "word",
-                "data_start": 33.56,
-                "data_end": 33.84,
-                "confidence": 1.0
-            },
-            {
-                "text": " not",
-                "type": "word",
-                "data_start": 33.88,
-                "data_end": 34.0,
-                "confidence": 1.0
-            },
-            {
-                "text": " in",
-                "type": "word",
-                "data_start": 34.04,
-                "data_end": 34.16,
-                "confidence": 0.99
-            },
-            {
-                "text": " college.",
-                "type": "word",
-                "data_start": 34.2,
-                "data_end": 34.52,
-                "confidence": 1.0
-            }
-        ],
+        "data_end": 32.24,
+        "confidence": 1.0
+      },
+      {
+        "text": " don't",
+        "type": "word",
+        "data_start": 32.28,
+        "data_end": 32.44,
+        "confidence": 1.0
+      },
+      {
+        "text": " care",
+        "type": "word",
+        "data_start": 32.44,
+        "data_end": 32.56,
+        "confidence": 1.0
+      },
+      {
+        "text": " if",
+        "type": "word",
+        "data_start": 32.6,
+        "data_end": 32.68,
+        "confidence": 0.99
+      },
+      {
+        "text": " you're",
+        "type": "word",
+        "data_start": 32.68,
+        "data_end": 32.88,
+        "confidence": 0.83
+      },
+      {
+        "text": " in",
+        "type": "word",
+        "data_start": 32.92,
+        "data_end": 33.08,
+        "confidence": 1.0
+      },
+      {
+        "text": " college.",
+        "type": "word",
+        "data_start": 33.12,
+        "data_end": 33.48,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 32.04,
+    "data_end": 33.54
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "You're",
+        "type": "word",
         "data_start": 33.56,
-        "data_end": 34.58
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "You",
-                "type": "word",
-                "data_start": 34.6,
-                "data_end": 34.8,
-                "confidence": 1.0
-            },
-            {
-                "text": " only",
-                "type": "word",
-                "data_start": 34.84,
-                "data_end": 34.96,
-                "confidence": 1.0
-            },
-            {
-                "text": " get",
-                "type": "word",
-                "data_start": 35.0,
-                "data_end": 35.16,
-                "confidence": 1.0
-            },
-            {
-                "text": " 24",
-                "type": "word",
-                "data_start": 35.2,
-                "data_end": 35.84,
-                "confidence": 1.0
-            },
-            {
-                "text": " hours.",
-                "type": "word",
-                "data_start": 35.92,
-                "data_end": 36.32,
-                "confidence": 1.0
-            }
-        ],
-        "data_start": 34.61,
-        "data_end": 36.42
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "And",
-                "type": "word",
-                "data_start": 36.44,
-                "data_end": 36.68,
-                "confidence": 1.0
-            },
-            {
-                "text": " I",
-                "type": "word",
-                "data_start": 36.72,
-                "data_end": 37.04,
-                "confidence": 1.0
-            },
-            {
-                "text": " blew",
-                "type": "word",
-                "data_start": 37.12,
-                "data_end": 37.44,
-                "confidence": 0.63
-            },
-            {
-                "text": " up.",
-                "type": "word",
-                "data_start": 37.52,
-                "data_end": 37.84,
-                "confidence": 1.0
-            },
-            {
-                "text": "\nLiterally.",
-                "type": "word",
-                "data_start": 37.92,
-                "data_end": 38.64,
-                "confidence": 1.0
-            }
-        ],
-        "data_start": 36.45,
-        "data_end": 38.82
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "I",
-                "type": "word",
-                "data_start": 38.84,
-                "data_end": 39.12,
-                "confidence": 1.0
-            },
-            {
-                "text": " went",
-                "type": "word",
-                "data_start": 39.16,
-                "data_end": 39.32,
-                "confidence": 0.8
-            },
-            {
-                "text": " from",
-                "type": "word",
-                "data_start": 39.36,
-                "data_end": 39.52,
-                "confidence": 1.0
-            },
-            {
-                "text": " being",
-                "type": "word",
-                "data_start": 39.56,
-                "data_end": 39.72,
-                "confidence": 0.99
-            },
-            {
-                "text": " a",
-                "type": "word",
-                "data_start": 39.76,
-                "data_end": 39.92,
-                "confidence": 1.0
-            },
-            {
-                "text": " high",
-                "type": "word",
-                "data_start": 39.96,
-                "data_end": 40.08,
-                "confidence": 1.0
-            },
-            {
-                "text": " school",
-                "type": "word",
-                "data_start": 40.12,
-                "data_end": 40.36,
-                "confidence": 1.0
-            },
-            {
-                "text": " dropout",
-                "type": "word",
-                "data_start": 40.4,
-                "data_end": 41.28,
-                "confidence": 0.56
-            }
-        ],
-        "data_start": 38.85,
-        "data_end": 41.46
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "to",
-                "type": "word",
-                "data_start": 41.48,
-                "data_end": 41.8,
-                "confidence": 0.65
-            },
-            {
-                "text": " selling",
-                "type": "word",
-                "data_start": 41.84,
-                "data_end": 42.24,
-                "confidence": 0.99
-            },
-            {
-                "text": " 6000",
-                "type": "word",
-                "data_start": 42.28,
-                "data_end": 42.8,
-                "confidence": 1.0
-            },
-            {
-                "text": " books",
-                "type": "word",
-                "data_start": 42.88,
-                "data_end": 43.16,
-                "confidence": 1.0
-            },
-            {
-                "text": "\nin",
-                "type": "word",
-                "data_start": 43.16,
-                "data_end": 43.28,
-                "confidence": 0.63
-            },
-            {
-                "text": " less",
-                "type": "word",
-                "data_start": 43.32,
-                "data_end": 43.44,
-                "confidence": 1.0
-            },
-            {
-                "text": " than",
-                "type": "word",
-                "data_start": 43.48,
-                "data_end": 43.6,
-                "confidence": 1.0
-            },
-            {
-                "text": " six",
-                "type": "word",
-                "data_start": 43.64,
-                "data_end": 43.8,
-                "confidence": 1.0
-            },
-            {
-                "text": " months.",
-                "type": "word",
-                "data_start": 43.84,
-                "data_end": 44.04,
-                "confidence": 1.0
-            }
-        ],
-        "data_start": 41.49,
-        "data_end": 44.06
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "What",
-                "type": "word",
-                "data_start": 44.08,
-                "data_end": 44.28,
-                "confidence": 1.0
-            },
-            {
-                "text": " happened",
-                "type": "word",
-                "data_start": 44.32,
-                "data_end": 44.64,
-                "confidence": 1.0
-            },
-            {
-                "text": " in.",
-                "type": "word",
-                "data_start": 44.72,
-                "data_end": 44.88,
-                "confidence": 0.74
-            },
-            {
-                "text": "\nMy",
-                "type": "word",
-                "data_start": 44.92,
-                "data_end": 45.04,
-                "confidence": 1.0
-            },
-            {
-                "text": " 24",
-                "type": "word",
-                "data_start": 45.08,
-                "data_end": 45.48,
-                "confidence": 1.0
-            },
-            {
-                "text": " hours?",
-                "type": "word",
-                "data_start": 45.52,
-                "data_end": 46.12,
-                "confidence": 1.0
-            }
-        ],
+        "data_end": 33.84,
+        "confidence": 1.0
+      },
+      {
+        "text": " not",
+        "type": "word",
+        "data_start": 33.88,
+        "data_end": 34.0,
+        "confidence": 1.0
+      },
+      {
+        "text": " in",
+        "type": "word",
+        "data_start": 34.04,
+        "data_end": 34.16,
+        "confidence": 0.99
+      },
+      {
+        "text": " college.",
+        "type": "word",
+        "data_start": 34.2,
+        "data_end": 34.52,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 33.56,
+    "data_end": 34.58
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "You",
+        "type": "word",
+        "data_start": 34.6,
+        "data_end": 34.8,
+        "confidence": 1.0
+      },
+      {
+        "text": " only",
+        "type": "word",
+        "data_start": 34.84,
+        "data_end": 34.96,
+        "confidence": 1.0
+      },
+      {
+        "text": " get",
+        "type": "word",
+        "data_start": 35.0,
+        "data_end": 35.16,
+        "confidence": 1.0
+      },
+      {
+        "text": " 24",
+        "type": "word",
+        "data_start": 35.2,
+        "data_end": 35.84,
+        "confidence": 1.0
+      },
+      {
+        "text": " hours.",
+        "type": "word",
+        "data_start": 35.92,
+        "data_end": 36.32,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 34.61,
+    "data_end": 36.42
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "And",
+        "type": "word",
+        "data_start": 36.44,
+        "data_end": 36.68,
+        "confidence": 1.0
+      },
+      {
+        "text": " I",
+        "type": "word",
+        "data_start": 36.72,
+        "data_end": 37.04,
+        "confidence": 1.0
+      },
+      {
+        "text": " blew",
+        "type": "word",
+        "data_start": 37.12,
+        "data_end": 37.44,
+        "confidence": 0.63
+      },
+      {
+        "text": " up.",
+        "type": "word",
+        "data_start": 37.52,
+        "data_end": 37.84,
+        "confidence": 1.0
+      },
+      {
+        "text": "\nLiterally.",
+        "type": "word",
+        "data_start": 37.92,
+        "data_end": 38.64,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 36.45,
+    "data_end": 38.82
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "I",
+        "type": "word",
+        "data_start": 38.84,
+        "data_end": 39.12,
+        "confidence": 1.0
+      },
+      {
+        "text": " went",
+        "type": "word",
+        "data_start": 39.16,
+        "data_end": 39.32,
+        "confidence": 0.8
+      },
+      {
+        "text": " from",
+        "type": "word",
+        "data_start": 39.36,
+        "data_end": 39.52,
+        "confidence": 1.0
+      },
+      {
+        "text": " being",
+        "type": "word",
+        "data_start": 39.56,
+        "data_end": 39.72,
+        "confidence": 0.99
+      },
+      {
+        "text": " a",
+        "type": "word",
+        "data_start": 39.76,
+        "data_end": 39.92,
+        "confidence": 1.0
+      },
+      {
+        "text": " high",
+        "type": "word",
+        "data_start": 39.96,
+        "data_end": 40.08,
+        "confidence": 1.0
+      },
+      {
+        "text": " school",
+        "type": "word",
+        "data_start": 40.12,
+        "data_end": 40.36,
+        "confidence": 1.0
+      },
+      {
+        "text": " dropout",
+        "type": "word",
+        "data_start": 40.4,
+        "data_end": 41.28,
+        "confidence": 0.56
+      }
+    ],
+    "data_start": 38.85,
+    "data_end": 41.46
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "to",
+        "type": "word",
+        "data_start": 41.48,
+        "data_end": 41.8,
+        "confidence": 0.65
+      },
+      {
+        "text": " selling",
+        "type": "word",
+        "data_start": 41.84,
+        "data_end": 42.24,
+        "confidence": 0.99
+      },
+      {
+        "text": " 6000",
+        "type": "word",
+        "data_start": 42.28,
+        "data_end": 42.8,
+        "confidence": 1.0
+      },
+      {
+        "text": " books",
+        "type": "word",
+        "data_start": 42.88,
+        "data_end": 43.16,
+        "confidence": 1.0
+      },
+      {
+        "text": "\nin",
+        "type": "word",
+        "data_start": 43.16,
+        "data_end": 43.28,
+        "confidence": 0.63
+      },
+      {
+        "text": " less",
+        "type": "word",
+        "data_start": 43.32,
+        "data_end": 43.44,
+        "confidence": 1.0
+      },
+      {
+        "text": " than",
+        "type": "word",
+        "data_start": 43.48,
+        "data_end": 43.6,
+        "confidence": 1.0
+      },
+      {
+        "text": " six",
+        "type": "word",
+        "data_start": 43.64,
+        "data_end": 43.8,
+        "confidence": 1.0
+      },
+      {
+        "text": " months.",
+        "type": "word",
+        "data_start": 43.84,
+        "data_end": 44.04,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 41.49,
+    "data_end": 44.06
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "What",
+        "type": "word",
         "data_start": 44.08,
-        "data_end": 46.46
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "I",
-                "type": "word",
-                "data_start": 46.48,
-                "data_end": 46.8,
-                "confidence": 0.74
-            },
-            {
-                "text": " was",
-                "type": "word",
-                "data_start": 46.84,
-                "data_end": 46.96,
-                "confidence": 0.51
-            },
-            {
-                "text": " like,",
-                "type": "word",
-                "data_start": 47.0,
-                "data_end": 47.12,
-                "confidence": 1.0
-            },
-            {
-                "text": " okay,",
-                "type": "word",
-                "data_start": 47.16,
-                "data_end": 47.28,
-                "confidence": 1.0
-            },
-            {
-                "text": " Eric,",
-                "type": "word",
-                "data_start": 47.32,
-                "data_end": 47.56,
-                "confidence": 0.93
-            }
-        ],
+        "data_end": 44.28,
+        "confidence": 1.0
+      },
+      {
+        "text": " happened",
+        "type": "word",
+        "data_start": 44.32,
+        "data_end": 44.64,
+        "confidence": 1.0
+      },
+      {
+        "text": " in.",
+        "type": "word",
+        "data_start": 44.72,
+        "data_end": 44.88,
+        "confidence": 0.74
+      },
+      {
+        "text": "\nMy",
+        "type": "word",
+        "data_start": 44.92,
+        "data_end": 45.04,
+        "confidence": 1.0
+      },
+      {
+        "text": " 24",
+        "type": "word",
+        "data_start": 45.08,
+        "data_end": 45.48,
+        "confidence": 1.0
+      },
+      {
+        "text": " hours?",
+        "type": "word",
+        "data_start": 45.52,
+        "data_end": 46.12,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 44.08,
+    "data_end": 46.46
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "I",
+        "type": "word",
         "data_start": 46.48,
-        "data_end": 47.56
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "you",
-                "type": "word",
-                "data_start": 47.56,
-                "data_end": 47.64,
-                "confidence": 1.0
-            },
-            {
-                "text": " got",
-                "type": "word",
-                "data_start": 47.64,
-                "data_end": 47.72,
-                "confidence": 1.0
-            },
-            {
-                "text": " to",
-                "type": "word",
-                "data_start": 47.72,
-                "data_end": 47.8,
-                "confidence": 1.0
-            },
-            {
-                "text": " get",
-                "type": "word",
-                "data_start": 47.8,
-                "data_end": 47.88,
-                "confidence": 1.0
-            },
-            {
-                "text": " a",
-                "type": "word",
-                "data_start": 47.88,
-                "data_end": 47.96,
-                "confidence": 1.0
-            },
-            {
-                "text": " grip",
-                "type": "word",
-                "data_start": 47.96,
-                "data_end": 48.16,
-                "confidence": 1.0
-            },
-            {
-                "text": " on",
-                "type": "word",
-                "data_start": 48.2,
-                "data_end": 48.28,
-                "confidence": 1.0
-            },
-            {
-                "text": " your",
-                "type": "word",
-                "data_start": 48.28,
-                "data_end": 48.4,
-                "confidence": 0.96
-            },
-            {
-                "text": " 24",
-                "type": "word",
-                "data_start": 48.44,
-                "data_end": 48.8,
-                "confidence": 1.0
-            },
-            {
-                "text": " hours,",
-                "type": "word",
-                "data_start": 48.84,
-                "data_end": 48.96,
-                "confidence": 1.0
-            },
-            {
-                "text": "\nbecause",
-                "type": "word",
-                "data_start": 49.0,
-                "data_end": 49.12,
-                "confidence": 0.88
-            },
-            {
-                "text": " you're",
-                "type": "word",
-                "data_start": 49.16,
-                "data_end": 49.32,
-                "confidence": 0.54
-            },
-            {
-                "text": " about",
-                "type": "word",
-                "data_start": 49.32,
-                "data_end": 49.44,
-                "confidence": 0.98
-            },
-            {
-                "text": " to.",
-                "type": "word",
-                "data_start": 49.48,
-                "data_end": 49.56,
-                "confidence": 1.0
-            }
-        ],
+        "data_end": 46.8,
+        "confidence": 0.74
+      },
+      {
+        "text": " was",
+        "type": "word",
+        "data_start": 46.84,
+        "data_end": 46.96,
+        "confidence": 0.51
+      },
+      {
+        "text": " like,",
+        "type": "word",
+        "data_start": 47.0,
+        "data_end": 47.12,
+        "confidence": 1.0
+      },
+      {
+        "text": " okay,",
+        "type": "word",
+        "data_start": 47.16,
+        "data_end": 47.28,
+        "confidence": 1.0
+      },
+      {
+        "text": " Eric,",
+        "type": "word",
+        "data_start": 47.32,
+        "data_end": 47.56,
+        "confidence": 0.93
+      }
+    ],
+    "data_start": 46.48,
+    "data_end": 47.56
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "you",
+        "type": "word",
         "data_start": 47.56,
-        "data_end": 49.56
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "Be",
-                "type": "word",
-                "data_start": 49.56,
-                "data_end": 49.64,
-                "confidence": 1.0
-            },
-            {
-                "text": " broke.",
-                "type": "word",
-                "data_start": 49.64,
-                "data_end": 50.0,
-                "confidence": 0.75
-            },
-            {
-                "text": "\nFor",
-                "type": "word",
-                "data_start": 50.04,
-                "data_end": 50.2,
-                "confidence": 0.87
-            },
-            {
-                "text": " the",
-                "type": "word",
-                "data_start": 50.24,
-                "data_end": 50.32,
-                "confidence": 1.0
-            },
-            {
-                "text": " rest",
-                "type": "word",
-                "data_start": 50.32,
-                "data_end": 50.44,
-                "confidence": 1.0
-            },
-            {
-                "text": " of",
-                "type": "word",
-                "data_start": 50.48,
-                "data_end": 50.6,
-                "confidence": 1.0
-            },
-            {
-                "text": " your",
-                "type": "word",
-                "data_start": 50.64,
-                "data_end": 50.76,
-                "confidence": 1.0
-            },
-            {
-                "text": " life.",
-                "type": "word",
-                "data_start": 50.8,
-                "data_end": 51.08,
-                "confidence": 1.0
-            }
-        ],
+        "data_end": 47.64,
+        "confidence": 1.0
+      },
+      {
+        "text": " got",
+        "type": "word",
+        "data_start": 47.64,
+        "data_end": 47.72,
+        "confidence": 1.0
+      },
+      {
+        "text": " to",
+        "type": "word",
+        "data_start": 47.72,
+        "data_end": 47.8,
+        "confidence": 1.0
+      },
+      {
+        "text": " get",
+        "type": "word",
+        "data_start": 47.8,
+        "data_end": 47.88,
+        "confidence": 1.0
+      },
+      {
+        "text": " a",
+        "type": "word",
+        "data_start": 47.88,
+        "data_end": 47.96,
+        "confidence": 1.0
+      },
+      {
+        "text": " grip",
+        "type": "word",
+        "data_start": 47.96,
+        "data_end": 48.16,
+        "confidence": 1.0
+      },
+      {
+        "text": " on",
+        "type": "word",
+        "data_start": 48.2,
+        "data_end": 48.28,
+        "confidence": 1.0
+      },
+      {
+        "text": " your",
+        "type": "word",
+        "data_start": 48.28,
+        "data_end": 48.4,
+        "confidence": 0.96
+      },
+      {
+        "text": " 24",
+        "type": "word",
+        "data_start": 48.44,
+        "data_end": 48.8,
+        "confidence": 1.0
+      },
+      {
+        "text": " hours,",
+        "type": "word",
+        "data_start": 48.84,
+        "data_end": 48.96,
+        "confidence": 1.0
+      },
+      {
+        "text": "\nbecause",
+        "type": "word",
+        "data_start": 49.0,
+        "data_end": 49.12,
+        "confidence": 0.88
+      },
+      {
+        "text": " you're",
+        "type": "word",
+        "data_start": 49.16,
+        "data_end": 49.32,
+        "confidence": 0.54
+      },
+      {
+        "text": " about",
+        "type": "word",
+        "data_start": 49.32,
+        "data_end": 49.44,
+        "confidence": 0.98
+      },
+      {
+        "text": " to.",
+        "type": "word",
+        "data_start": 49.48,
+        "data_end": 49.56,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 47.56,
+    "data_end": 49.56
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "Be",
+        "type": "word",
         "data_start": 49.56,
-        "data_end": 51.14
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "And",
-                "type": "word",
-                "data_start": 51.16,
-                "data_end": 51.44,
-                "confidence": 0.99
-            },
-            {
-                "text": " that's",
-                "type": "word",
-                "data_start": 51.48,
-                "data_end": 51.68,
-                "confidence": 0.45
-            },
-            {
-                "text": " all",
-                "type": "word",
-                "data_start": 51.68,
-                "data_end": 51.8,
-                "confidence": 0.83
-            },
-            {
-                "text": " I.",
-                "type": "word",
-                "data_start": 51.84,
-                "data_end": 51.92,
-                "confidence": 1.0
-            },
-            {
-                "text": "\nNeed",
-                "type": "word",
-                "data_start": 51.92,
-                "data_end": 52.04,
-                "confidence": 1.0
-            },
-            {
-                "text": " you",
-                "type": "word",
-                "data_start": 52.08,
-                "data_end": 52.16,
-                "confidence": 1.0
-            },
-            {
-                "text": " to",
-                "type": "word",
-                "data_start": 52.16,
-                "data_end": 52.24,
-                "confidence": 1.0
-            },
-            {
-                "text": " do",
-                "type": "word",
-                "data_start": 52.24,
-                "data_end": 52.36,
-                "confidence": 1.0
-            },
-            {
-                "text": " for",
-                "type": "word",
-                "data_start": 52.4,
-                "data_end": 52.52,
-                "confidence": 1.0
-            },
-            {
-                "text": " me.",
-                "type": "word",
-                "data_start": 52.56,
-                "data_end": 52.72,
-                "confidence": 1.0
-            }
-        ],
+        "data_end": 49.64,
+        "confidence": 1.0
+      },
+      {
+        "text": " broke.",
+        "type": "word",
+        "data_start": 49.64,
+        "data_end": 50.0,
+        "confidence": 0.75
+      },
+      {
+        "text": "\nFor",
+        "type": "word",
+        "data_start": 50.04,
+        "data_end": 50.2,
+        "confidence": 0.87
+      },
+      {
+        "text": " the",
+        "type": "word",
+        "data_start": 50.24,
+        "data_end": 50.32,
+        "confidence": 1.0
+      },
+      {
+        "text": " rest",
+        "type": "word",
+        "data_start": 50.32,
+        "data_end": 50.44,
+        "confidence": 1.0
+      },
+      {
+        "text": " of",
+        "type": "word",
+        "data_start": 50.48,
+        "data_end": 50.6,
+        "confidence": 1.0
+      },
+      {
+        "text": " your",
+        "type": "word",
+        "data_start": 50.64,
+        "data_end": 50.76,
+        "confidence": 1.0
+      },
+      {
+        "text": " life.",
+        "type": "word",
+        "data_start": 50.8,
+        "data_end": 51.08,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 49.56,
+    "data_end": 51.14
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "And",
+        "type": "word",
         "data_start": 51.16,
-        "data_end": 52.74
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "I",
-                "type": "word",
-                "data_start": 52.76,
-                "data_end": 52.92,
-                "confidence": 1.0
-            },
-            {
-                "text": " can",
-                "type": "word",
-                "data_start": 52.96,
-                "data_end": 53.08,
-                "confidence": 1.0
-            },
-            {
-                "text": " tell",
-                "type": "word",
-                "data_start": 53.12,
-                "data_end": 53.24,
-                "confidence": 1.0
-            },
-            {
-                "text": " you",
-                "type": "word",
-                "data_start": 53.28,
-                "data_end": 53.44,
-                "confidence": 0.96
-            },
-            {
-                "text": " all",
-                "type": "word",
-                "data_start": 53.48,
-                "data_end": 53.64,
-                "confidence": 1.0
-            },
-            {
-                "text": " about",
-                "type": "word",
-                "data_start": 53.68,
-                "data_end": 53.92,
-                "confidence": 1.0
-            },
-            {
-                "text": " your.",
-                "type": "word",
-                "data_start": 53.96,
-                "data_end": 54.12,
-                "confidence": 1.0
-            }
-        ],
+        "data_end": 51.44,
+        "confidence": 0.99
+      },
+      {
+        "text": " that's",
+        "type": "word",
+        "data_start": 51.48,
+        "data_end": 51.68,
+        "confidence": 0.45
+      },
+      {
+        "text": " all",
+        "type": "word",
+        "data_start": 51.68,
+        "data_end": 51.8,
+        "confidence": 0.83
+      },
+      {
+        "text": " I.",
+        "type": "word",
+        "data_start": 51.84,
+        "data_end": 51.92,
+        "confidence": 1.0
+      },
+      {
+        "text": "\nNeed",
+        "type": "word",
+        "data_start": 51.92,
+        "data_end": 52.04,
+        "confidence": 1.0
+      },
+      {
+        "text": " you",
+        "type": "word",
+        "data_start": 52.08,
+        "data_end": 52.16,
+        "confidence": 1.0
+      },
+      {
+        "text": " to",
+        "type": "word",
+        "data_start": 52.16,
+        "data_end": 52.24,
+        "confidence": 1.0
+      },
+      {
+        "text": " do",
+        "type": "word",
+        "data_start": 52.24,
+        "data_end": 52.36,
+        "confidence": 1.0
+      },
+      {
+        "text": " for",
+        "type": "word",
+        "data_start": 52.4,
+        "data_end": 52.52,
+        "confidence": 1.0
+      },
+      {
+        "text": " me.",
+        "type": "word",
+        "data_start": 52.56,
+        "data_end": 52.72,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 51.16,
+    "data_end": 52.74
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "I",
+        "type": "word",
         "data_start": 52.76,
-        "data_end": 54.14
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "Life",
-                "type": "word",
-                "data_start": 54.16,
-                "data_end": 54.52,
-                "confidence": 1.0
-            },
-            {
-                "text": " if",
-                "type": "word",
-                "data_start": 54.64,
-                "data_end": 54.84,
-                "confidence": 1.0
-            },
-            {
-                "text": " you",
-                "type": "word",
-                "data_start": 54.88,
-                "data_end": 55.0,
-                "confidence": 1.0
-            },
-            {
-                "text": " just",
-                "type": "word",
-                "data_start": 55.04,
-                "data_end": 55.16,
-                "confidence": 1.0
-            },
-            {
-                "text": " write",
-                "type": "word",
-                "data_start": 55.2,
-                "data_end": 55.48,
-                "confidence": 1.0
-            },
-            {
-                "text": " down",
-                "type": "word",
-                "data_start": 55.56,
-                "data_end": 55.72,
-                "confidence": 1.0
-            },
-            {
-                "text": " your.",
-                "type": "word",
-                "data_start": 55.76,
-                "data_end": 55.92,
-                "confidence": 0.61
-            },
-            {
-                "text": "\n24",
-                "type": "word",
-                "data_start": 55.96,
-                "data_end": 56.28,
-                "confidence": 1.0
-            },
-            {
-                "text": " hours",
-                "type": "word",
-                "data_start": 56.32,
-                "data_end": 56.48,
-                "confidence": 0.98
-            },
-            {
-                "text": " schedule.",
-                "type": "word",
-                "data_start": 56.52,
-                "data_end": 56.84,
-                "confidence": 1.0
-            }
-        ],
-        "data_start": 54.17,
-        "data_end": 56.86
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "For",
-                "type": "word",
-                "data_start": 56.88,
-                "data_end": 56.96,
-                "confidence": 1.0
-            },
-            {
-                "text": " me.",
-                "type": "word",
-                "data_start": 56.96,
-                "data_end": 57.08,
-                "confidence": 0.56
-            },
-            {
-                "text": "\nYou",
-                "type": "word",
-                "data_start": 57.12,
-                "data_end": 57.24,
-                "confidence": 0.97
-            },
-            {
-                "text": " let",
-                "type": "word",
-                "data_start": 57.28,
-                "data_end": 57.36,
-                "confidence": 1.0
-            },
-            {
-                "text": " me",
-                "type": "word",
-                "data_start": 57.36,
-                "data_end": 57.48,
-                "confidence": 1.0
-            },
-            {
-                "text": " look",
-                "type": "word",
-                "data_start": 57.52,
-                "data_end": 57.64,
-                "confidence": 1.0
-            },
-            {
-                "text": " at",
-                "type": "word",
-                "data_start": 57.68,
-                "data_end": 57.76,
-                "confidence": 1.0
-            },
-            {
-                "text": " it.",
-                "type": "word",
-                "data_start": 57.76,
-                "data_end": 57.88,
-                "confidence": 1.0
-            }
-        ],
+        "data_end": 52.92,
+        "confidence": 1.0
+      },
+      {
+        "text": " can",
+        "type": "word",
+        "data_start": 52.96,
+        "data_end": 53.08,
+        "confidence": 1.0
+      },
+      {
+        "text": " tell",
+        "type": "word",
+        "data_start": 53.12,
+        "data_end": 53.24,
+        "confidence": 1.0
+      },
+      {
+        "text": " you",
+        "type": "word",
+        "data_start": 53.28,
+        "data_end": 53.44,
+        "confidence": 0.96
+      },
+      {
+        "text": " all",
+        "type": "word",
+        "data_start": 53.48,
+        "data_end": 53.64,
+        "confidence": 1.0
+      },
+      {
+        "text": " about",
+        "type": "word",
+        "data_start": 53.68,
+        "data_end": 53.92,
+        "confidence": 1.0
+      },
+      {
+        "text": " your.",
+        "type": "word",
+        "data_start": 53.96,
+        "data_end": 54.12,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 52.76,
+    "data_end": 54.14
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "Life",
+        "type": "word",
+        "data_start": 54.16,
+        "data_end": 54.52,
+        "confidence": 1.0
+      },
+      {
+        "text": " if",
+        "type": "word",
+        "data_start": 54.64,
+        "data_end": 54.84,
+        "confidence": 1.0
+      },
+      {
+        "text": " you",
+        "type": "word",
+        "data_start": 54.88,
+        "data_end": 55.0,
+        "confidence": 1.0
+      },
+      {
+        "text": " just",
+        "type": "word",
+        "data_start": 55.04,
+        "data_end": 55.16,
+        "confidence": 1.0
+      },
+      {
+        "text": " write",
+        "type": "word",
+        "data_start": 55.2,
+        "data_end": 55.48,
+        "confidence": 1.0
+      },
+      {
+        "text": " down",
+        "type": "word",
+        "data_start": 55.56,
+        "data_end": 55.72,
+        "confidence": 1.0
+      },
+      {
+        "text": " your.",
+        "type": "word",
+        "data_start": 55.76,
+        "data_end": 55.92,
+        "confidence": 0.61
+      },
+      {
+        "text": "\n24",
+        "type": "word",
+        "data_start": 55.96,
+        "data_end": 56.28,
+        "confidence": 1.0
+      },
+      {
+        "text": " hours",
+        "type": "word",
+        "data_start": 56.32,
+        "data_end": 56.48,
+        "confidence": 0.98
+      },
+      {
+        "text": " schedule.",
+        "type": "word",
+        "data_start": 56.52,
+        "data_end": 56.84,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 54.17,
+    "data_end": 56.86
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "For",
+        "type": "word",
         "data_start": 56.88,
-        "data_end": 57.9
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "I",
-                "type": "word",
-                "data_start": 57.92,
-                "data_end": 58.04,
-                "confidence": 0.5
-            },
-            {
-                "text": " can",
-                "type": "word",
-                "data_start": 58.08,
-                "data_end": 58.2,
-                "confidence": 1.0
-            },
-            {
-                "text": " tell",
-                "type": "word",
-                "data_start": 58.24,
-                "data_end": 58.32,
-                "confidence": 1.0
-            },
-            {
-                "text": " you",
-                "type": "word",
-                "data_start": 58.32,
-                "data_end": 58.44,
-                "confidence": 0.79
-            },
-            {
-                "text": " where",
-                "type": "word",
-                "data_start": 58.48,
-                "data_end": 58.6,
-                "confidence": 0.96
-            },
-            {
-                "text": " you're",
-                "type": "word",
-                "data_start": 58.64,
-                "data_end": 58.72,
-                "confidence": 0.24
-            },
-            {
-                "text": " going.",
-                "type": "word",
-                "data_start": 58.72,
-                "data_end": 58.8,
-                "confidence": 0.74
-            },
-            {
-                "text": "\nTo",
-                "type": "word",
-                "data_start": 58.8,
-                "data_end": 58.88,
-                "confidence": 0.77
-            },
-            {
-                "text": " be",
-                "type": "word",
-                "data_start": 58.88,
-                "data_end": 58.96,
-                "confidence": 1.0
-            },
-            {
-                "text": " in",
-                "type": "word",
-                "data_start": 58.96,
-                "data_end": 59.04,
-                "confidence": 0.88
-            },
-            {
-                "text": " five",
-                "type": "word",
-                "data_start": 59.04,
-                "data_end": 59.2,
-                "confidence": 0.99
-            },
-            {
-                "text": " years.",
-                "type": "word",
-                "data_start": 59.24,
-                "data_end": 59.44,
-                "confidence": 0.96
-            }
-        ],
+        "data_end": 56.96,
+        "confidence": 1.0
+      },
+      {
+        "text": " me.",
+        "type": "word",
+        "data_start": 56.96,
+        "data_end": 57.08,
+        "confidence": 0.56
+      },
+      {
+        "text": "\nYou",
+        "type": "word",
+        "data_start": 57.12,
+        "data_end": 57.24,
+        "confidence": 0.97
+      },
+      {
+        "text": " let",
+        "type": "word",
+        "data_start": 57.28,
+        "data_end": 57.36,
+        "confidence": 1.0
+      },
+      {
+        "text": " me",
+        "type": "word",
+        "data_start": 57.36,
+        "data_end": 57.48,
+        "confidence": 1.0
+      },
+      {
+        "text": " look",
+        "type": "word",
+        "data_start": 57.52,
+        "data_end": 57.64,
+        "confidence": 1.0
+      },
+      {
+        "text": " at",
+        "type": "word",
+        "data_start": 57.68,
+        "data_end": 57.76,
+        "confidence": 1.0
+      },
+      {
+        "text": " it.",
+        "type": "word",
+        "data_start": 57.76,
+        "data_end": 57.88,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 56.88,
+    "data_end": 57.9
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "I",
+        "type": "word",
         "data_start": 57.92,
-        "data_end": 59.46
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "I",
-                "type": "word",
-                "data_start": 59.48,
-                "data_end": 59.64,
-                "confidence": 0.95
-            },
-            {
-                "text": " can",
-                "type": "word",
-                "data_start": 59.68,
-                "data_end": 59.76,
-                "confidence": 0.99
-            },
-            {
-                "text": " tell",
-                "type": "word",
-                "data_start": 59.76,
-                "data_end": 59.88,
-                "confidence": 0.99
-            },
-            {
-                "text": " you",
-                "type": "word",
-                "data_start": 59.92,
-                "data_end": 60.0,
-                "confidence": 0.99
-            },
-            {
-                "text": " where",
-                "type": "word",
-                "data_start": 60.0,
-                "data_end": 60.12,
-                "confidence": 0.95
-            },
-            {
-                "text": " you're",
-                "type": "word",
-                "data_start": 60.16,
-                "data_end": 60.24,
-                "confidence": 0.36
-            },
-            {
-                "text": "\ngoing",
-                "type": "word",
-                "data_start": 60.24,
-                "data_end": 60.32,
-                "confidence": 0.73
-            },
-            {
-                "text": " to",
-                "type": "word",
-                "data_start": 60.32,
-                "data_end": 60.4,
-                "confidence": 0.67
-            },
-            {
-                "text": " be",
-                "type": "word",
-                "data_start": 60.4,
-                "data_end": 60.44,
-                "confidence": 1.0
-            },
-            {
-                "text": " in",
-                "type": "word",
-                "data_start": 60.44,
-                "data_end": 60.48,
-                "confidence": 0.79
-            },
-            {
-                "text": " ten",
-                "type": "word",
-                "data_start": 60.48,
-                "data_end": 60.64,
-                "confidence": 1.0
-            },
-            {
-                "text": " years.",
-                "type": "word",
-                "data_start": 60.68,
-                "data_end": 60.88,
-                "confidence": 0.84
-            }
-        ],
+        "data_end": 58.04,
+        "confidence": 0.5
+      },
+      {
+        "text": " can",
+        "type": "word",
+        "data_start": 58.08,
+        "data_end": 58.2,
+        "confidence": 1.0
+      },
+      {
+        "text": " tell",
+        "type": "word",
+        "data_start": 58.24,
+        "data_end": 58.32,
+        "confidence": 1.0
+      },
+      {
+        "text": " you",
+        "type": "word",
+        "data_start": 58.32,
+        "data_end": 58.44,
+        "confidence": 0.79
+      },
+      {
+        "text": " where",
+        "type": "word",
+        "data_start": 58.48,
+        "data_end": 58.6,
+        "confidence": 0.96
+      },
+      {
+        "text": " you're",
+        "type": "word",
+        "data_start": 58.64,
+        "data_end": 58.72,
+        "confidence": 0.24
+      },
+      {
+        "text": " going.",
+        "type": "word",
+        "data_start": 58.72,
+        "data_end": 58.8,
+        "confidence": 0.74
+      },
+      {
+        "text": "\nTo",
+        "type": "word",
+        "data_start": 58.8,
+        "data_end": 58.88,
+        "confidence": 0.77
+      },
+      {
+        "text": " be",
+        "type": "word",
+        "data_start": 58.88,
+        "data_end": 58.96,
+        "confidence": 1.0
+      },
+      {
+        "text": " in",
+        "type": "word",
+        "data_start": 58.96,
+        "data_end": 59.04,
+        "confidence": 0.88
+      },
+      {
+        "text": " five",
+        "type": "word",
+        "data_start": 59.04,
+        "data_end": 59.2,
+        "confidence": 0.99
+      },
+      {
+        "text": " years.",
+        "type": "word",
+        "data_start": 59.24,
+        "data_end": 59.44,
+        "confidence": 0.96
+      }
+    ],
+    "data_start": 57.92,
+    "data_end": 59.46
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "I",
+        "type": "word",
         "data_start": 59.48,
-        "data_end": 60.9
-    },
-    {
-        "speaker": "",
-        "speaker_number": null,
-        "words": [
-            {
-                "text": "I",
-                "type": "word",
-                "data_start": 60.92,
-                "data_end": 61.08,
-                "confidence": 1.0
-            },
-            {
-                "text": " can",
-                "type": "word",
-                "data_start": 61.12,
-                "data_end": 61.2,
-                "confidence": 0.98
-            },
-            {
-                "text": " tell",
-                "type": "word",
-                "data_start": 61.2,
-                "data_end": 61.28,
-                "confidence": 1.0
-            },
-            {
-                "text": " you",
-                "type": "word",
-                "data_start": 61.28,
-                "data_end": 61.4,
-                "confidence": 0.98
-            },
-            {
-                "text": " where",
-                "type": "word",
-                "data_start": 61.44,
-                "data_end": 61.52,
-                "confidence": 0.87
-            },
-            {
-                "text": " you're",
-                "type": "word",
-                "data_start": 61.52,
-                "data_end": 61.6,
-                "confidence": 0.41
-            },
-            {
-                "text": " going",
-                "type": "word",
-                "data_start": 61.6,
-                "data_end": 61.68,
-                "confidence": 0.78
-            },
-            {
-                "text": " to",
-                "type": "word",
-                "data_start": 61.68,
-                "data_end": 61.76,
-                "confidence": 0.86
-            },
-            {
-                "text": " be",
-                "type": "word",
-                "data_start": 61.76,
-                "data_end": 61.84,
-                "confidence": 0.9
-            },
-            {
-                "text": "\nin",
-                "type": "word",
-                "data_start": 61.84,
-                "data_end": 61.92,
-                "confidence": 0.93
-            },
-            {
-                "text": " 20",
-                "type": "word",
-                "data_start": 61.92,
-                "data_end": 62.04,
-                "confidence": 1.0
-            },
-            {
-                "text": " years",
-                "type": "word",
-                "data_start": 62.08,
-                "data_end": 62.2,
-                "confidence": 1.0
-            },
-            {
-                "text": " if",
-                "type": "word",
-                "data_start": 62.24,
-                "data_end": 62.36,
-                "confidence": 0.98
-            },
-            {
-                "text": " you",
-                "type": "word",
-                "data_start": 62.4,
-                "data_end": 62.48,
-                "confidence": 1.0
-            },
-            {
-                "text": " keep",
-                "type": "word",
-                "data_start": 62.48,
-                "data_end": 62.6,
-                "confidence": 1.0
-            },
-            {
-                "text": " that",
-                "type": "word",
-                "data_start": 62.64,
-                "data_end": 62.8,
-                "confidence": 1.0
-            },
-            {
-                "text": " schedule.",
-                "type": "word",
-                "data_start": 62.84,
-                "data_end": 63.04,
-                "confidence": 1.0
-            }
-        ],
+        "data_end": 59.64,
+        "confidence": 0.95
+      },
+      {
+        "text": " can",
+        "type": "word",
+        "data_start": 59.68,
+        "data_end": 59.76,
+        "confidence": 0.99
+      },
+      {
+        "text": " tell",
+        "type": "word",
+        "data_start": 59.76,
+        "data_end": 59.88,
+        "confidence": 0.99
+      },
+      {
+        "text": " you",
+        "type": "word",
+        "data_start": 59.92,
+        "data_end": 60.0,
+        "confidence": 0.99
+      },
+      {
+        "text": " where",
+        "type": "word",
+        "data_start": 60.0,
+        "data_end": 60.12,
+        "confidence": 0.95
+      },
+      {
+        "text": " you're",
+        "type": "word",
+        "data_start": 60.16,
+        "data_end": 60.24,
+        "confidence": 0.36
+      },
+      {
+        "text": "\ngoing",
+        "type": "word",
+        "data_start": 60.24,
+        "data_end": 60.32,
+        "confidence": 0.73
+      },
+      {
+        "text": " to",
+        "type": "word",
+        "data_start": 60.32,
+        "data_end": 60.4,
+        "confidence": 0.67
+      },
+      {
+        "text": " be",
+        "type": "word",
+        "data_start": 60.4,
+        "data_end": 60.44,
+        "confidence": 1.0
+      },
+      {
+        "text": " in",
+        "type": "word",
+        "data_start": 60.44,
+        "data_end": 60.48,
+        "confidence": 0.79
+      },
+      {
+        "text": " ten",
+        "type": "word",
+        "data_start": 60.48,
+        "data_end": 60.64,
+        "confidence": 1.0
+      },
+      {
+        "text": " years.",
+        "type": "word",
+        "data_start": 60.68,
+        "data_end": 60.88,
+        "confidence": 0.84
+      }
+    ],
+    "data_start": 59.48,
+    "data_end": 60.9
+  },
+  {
+    "speaker": "",
+    "speaker_number": null,
+    "words": [
+      {
+        "text": "I",
+        "type": "word",
         "data_start": 60.92,
-        "data_end": 63.04
-    }
+        "data_end": 61.08,
+        "confidence": 1.0
+      },
+      {
+        "text": " can",
+        "type": "word",
+        "data_start": 61.12,
+        "data_end": 61.2,
+        "confidence": 0.98
+      },
+      {
+        "text": " tell",
+        "type": "word",
+        "data_start": 61.2,
+        "data_end": 61.28,
+        "confidence": 1.0
+      },
+      {
+        "text": " you",
+        "type": "word",
+        "data_start": 61.28,
+        "data_end": 61.4,
+        "confidence": 0.98
+      },
+      {
+        "text": " where",
+        "type": "word",
+        "data_start": 61.44,
+        "data_end": 61.52,
+        "confidence": 0.87
+      },
+      {
+        "text": " you're",
+        "type": "word",
+        "data_start": 61.52,
+        "data_end": 61.6,
+        "confidence": 0.41
+      },
+      {
+        "text": " going",
+        "type": "word",
+        "data_start": 61.6,
+        "data_end": 61.68,
+        "confidence": 0.78
+      },
+      {
+        "text": " to",
+        "type": "word",
+        "data_start": 61.68,
+        "data_end": 61.76,
+        "confidence": 0.86
+      },
+      {
+        "text": " be",
+        "type": "word",
+        "data_start": 61.76,
+        "data_end": 61.84,
+        "confidence": 0.9
+      },
+      {
+        "text": "\nin",
+        "type": "word",
+        "data_start": 61.84,
+        "data_end": 61.92,
+        "confidence": 0.93
+      },
+      {
+        "text": " 20",
+        "type": "word",
+        "data_start": 61.92,
+        "data_end": 62.04,
+        "confidence": 1.0
+      },
+      {
+        "text": " years",
+        "type": "word",
+        "data_start": 62.08,
+        "data_end": 62.2,
+        "confidence": 1.0
+      },
+      {
+        "text": " if",
+        "type": "word",
+        "data_start": 62.24,
+        "data_end": 62.36,
+        "confidence": 0.98
+      },
+      {
+        "text": " you",
+        "type": "word",
+        "data_start": 62.4,
+        "data_end": 62.48,
+        "confidence": 1.0
+      },
+      {
+        "text": " keep",
+        "type": "word",
+        "data_start": 62.48,
+        "data_end": 62.6,
+        "confidence": 1.0
+      },
+      {
+        "text": " that",
+        "type": "word",
+        "data_start": 62.64,
+        "data_end": 62.8,
+        "confidence": 1.0
+      },
+      {
+        "text": " schedule.",
+        "type": "word",
+        "data_start": 62.84,
+        "data_end": 63.04,
+        "confidence": 1.0
+      }
+    ],
+    "data_start": 60.92,
+    "data_end": 63.04
+  }
 ]

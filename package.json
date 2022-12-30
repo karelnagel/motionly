@@ -1,19 +1,30 @@
 {
-  "name": "imageapi",
-  "version": "1.0.0",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
-  "repository": "git@github.com:karelnagel/imageapi.git",
-  "author": "Karel <karel789@hotmail.com>",
-  "license": "MIT",
-  "devDependencies": {
-    "turbo": "^1.6.3"
-  },
-  "scripts": {
-    "build": "turbo build",
-    "start": "turbo start",
-    "dev": "turbo dev"
-  }
+    "name": "imageapi",
+    "version": "1.0.0",
+    "private": true,
+    "workspaces": [
+        "packages/*"
+    ],
+    "repository": "git@github.com:karelnagel/imageapi.git",
+    "author": "Karel <karel789@hotmail.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "turbo": "^1.6.3"
+    },
+    "scripts": {
+        "build": "turbo build",
+        "start": "turbo start",
+        "dev": "turbo dev",
+        "format": "prettier --write \"packages/**/*.{js,ts,tsx}\" && eslint --fix \"packages/**/*.{js,ts,tsx}\""
+    },
+    "dependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.47.2-alpha.0",
+        "@typescript-eslint/parser": "^5.47.2-alpha.0",
+        "eslint": "^8.30.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.31.11",
+        "prettier": "^2.8.1"
+    }
 }

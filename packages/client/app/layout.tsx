@@ -4,7 +4,11 @@ import { authOptions } from "../pages/api/auth/[...nextauth]";
 import "./globals.css";
 import { Login } from "./Login";
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const session = await unstable_getServerSession(authOptions);
 
   return (

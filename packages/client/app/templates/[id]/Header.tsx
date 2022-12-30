@@ -1,4 +1,3 @@
-import { MdArrowBackIos } from "react-icons/md";
 import { SidePanelType } from "../../../types";
 import Image from "next/image";
 import Link from "next/link";

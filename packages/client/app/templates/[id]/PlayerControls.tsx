@@ -5,7 +5,6 @@ import {
   MdFastRewind,
   MdForward,
   MdFullscreen,
-  MdLoop,
   MdPause,
   MdPlayArrow,
   MdVolumeMute,
@@ -33,23 +32,37 @@ export const PlayerControls = ({
         <input
           type="number"
           value={frame ? Math.round(frame / fps) : 0}
-          onChange={(e) => playerRef.current?.seekTo(Number(e.currentTarget.value) * fps || 0)}
+          onChange={(e) =>
+            playerRef.current?.seekTo(Number(e.currentTarget.value) * fps || 0)
+          }
           className="text-xl w-10"
         />
         <div className="w-full h-full flex items-center justify-center">
           {playerRef.current?.isMuted() ? (
-            <MdVolumeUp onClick={playerRef.current?.unmute} className="cursor-pointer" />
+            <MdVolumeUp
+              onClick={playerRef.current?.unmute}
+              className="cursor-pointer"
+            />
           ) : (
-            <MdVolumeMute onClick={playerRef.current?.mute} className="cursor-pointer" />
+            <MdVolumeMute
+              onClick={playerRef.current?.mute}
+              className="cursor-pointer"
+            />
           )}
           <MdFastRewind
             className="cursor-pointer"
             onClick={() => playerRef.current?.seekTo(frame - 5 * fps)}
           />
           {isPlaying ? (
-            <MdPause onClick={playerRef.current?.pause} className="cursor-pointer" />
+            <MdPause
+              onClick={playerRef.current?.pause}
+              className="cursor-pointer"
+            />
           ) : (
-            <MdPlayArrow onClick={playerRef.current?.play} className="cursor-pointer" />
+            <MdPlayArrow
+              onClick={playerRef.current?.play}
+              className="cursor-pointer"
+            />
           )}
           <MdForward
             className="cursor-pointer"

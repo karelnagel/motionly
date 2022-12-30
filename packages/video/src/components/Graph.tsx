@@ -7,16 +7,13 @@ export const GraphComp = ({
   values,
   height,
   width,
-  borderRadius,
-  min,
   max,
-
   ...props
 }: GraphCompProps) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const maxValue = max || Math.max(...values);
-  const minValue = min || Math.min(...values);
+  // const minValue = min || Math.min(...values);
   if (props.graphType === "bar")
     return (
       <div
@@ -33,7 +30,9 @@ export const GraphComp = ({
           const anim = animation
             ? spring({
                 frame:
-                  frame - animation.start * fps - ((animation.duration * fps) / values.length) * i,
+                  frame -
+                  animation.start * fps -
+                  ((animation.duration * fps) / values.length) * i,
                 fps,
               })
             : 1;

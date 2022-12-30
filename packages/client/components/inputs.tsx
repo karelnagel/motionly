@@ -98,7 +98,9 @@ export function ColorInput<T extends string | undefined>({
   return (
     <div className="flex items-center p-2  space-x-2 bg-base-300 rounded-lg py-1 px-2 col-span-2 w-full justify-between">
       <label>{label}</label>
-      {!value && <button onClick={() => onChange("#000000FF" as T)}>ADD</button>}
+      {!value && (
+        <button onClick={() => onChange("#000000FF" as T)}>ADD</button>
+      )}
       {value && (
         <>
           <input
@@ -116,7 +118,9 @@ export function ColorInput<T extends string | undefined>({
           <input
             type="number"
             value={alpha ? hexToPercent(alpha) : 100}
-            onChange={(e) => onChange((color + percentToHex(Number(e.target.value || 0))) as T)}
+            onChange={(e) =>
+              onChange((color + percentToHex(Number(e.target.value || 0))) as T)
+            }
             className="bg-base-300 w-10"
           />
           <button onClick={() => onChange()}>X</button>

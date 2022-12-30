@@ -1,5 +1,5 @@
 import { MockupCompProps } from "@asius/types";
 
-export const MockupComp = ({}: MockupCompProps) => {
-  return <div></div>;
+export const MockupComp = ({ mockupType }: MockupCompProps) => {
+  return <div>{mockupType}</div>;
 };

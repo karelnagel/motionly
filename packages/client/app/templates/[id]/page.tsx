@@ -4,7 +4,11 @@ import { defaultComponents } from "@asius/types";
 
 export const revalidate = 1;
 
-export default async function Page({ params: { id } }: { params: { id: string } }) {
+export default async function Page({
+  params: { id },
+}: {
+  params: { id: string };
+}) {
   if (!id) return <div>No id!</div>;
   let template = await getTemplate({ id });
   if (id === "blank")

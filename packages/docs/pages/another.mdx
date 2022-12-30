@@ -1,9 +1,9 @@
 # Another Page
 
 ```js filename="demo.js" {3} copy
-let a = 1;
+let a = 1
 
-console.log(a);
+console.log(a)
 ```
 
 ## Component
@@ -14,15 +14,20 @@ import { useState } from 'react'
 import styles from '../components/counters.module.css'
 
 export const Counter = () => {
-  const [count, setCount] = useState(0);
-  return (
-    <div>
-      <button onClick={() => setCount(count + 1)} className={styles.counter}>Clicked {count} times</button>
-    </div>
-  );
-};
+    const [count, setCount] = useState(0)
+    return (
+        <div>
+            <button
+                onClick={() => setCount(count + 1)}
+                className={styles.counter}
+            >
+                Clicked {count} times
+            </button>
+        </div>
+    )
+}
 
-<Counter/>
+<Counter />
 
 ## External Component
 

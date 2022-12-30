@@ -1,9 +1,15 @@
 import { CompProps, DivCompProps, EditableProps } from "@asius/types";
 import { Component } from "../Component";
 
-export const DivComp = ({ comp, edit }: { comp: DivCompProps; edit?: EditableProps }) => {
+export const DivComp = ({
+  comp,
+  edit,
+}: {
+  comp: DivCompProps;
+  edit?: EditableProps;
+}) => {
   const set = (newElement: CompProps) => {
-    let elem = comp;
+    const elem = comp;
     elem.children = elem.children.map((e) => {
       if (e.id === edit?.selected) {
         return newElement;
@@ -22,7 +28,11 @@ export const DivComp = ({ comp, edit }: { comp: DivCompProps; edit?: EditablePro
       }}
     >
       {comp.children.map((child, index) => (
-        <Component key={index} comp={child} edit={edit ? { ...edit, setComp: set } : undefined} />
+        <Component
+          key={index}
+          comp={child}
+          edit={edit ? { ...edit, setComp: set } : undefined}
+        />
       ))}
     </div>
   );

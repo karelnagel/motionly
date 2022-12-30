@@ -1,6 +1,11 @@
 import { TranscriptionCompProps } from "@asius/types";
 import { useEffect, useRef, useState } from "react";
-import { continueRender, delayRender, useCurrentFrame, useVideoConfig } from "remotion";
+import {
+  continueRender,
+  delayRender,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
 import { getTextStyle } from "../helpers";
 
 export const TranscriptionComp = ({
@@ -39,7 +44,12 @@ export const TranscriptionComp = ({
   const playedSubs = words.filter((s) => s.start * fps <= frame);
   const unPlayedSubs = words.filter((s) => s.start * fps > frame);
   return (
-    <div style={{ height: `${lineHeight * linesPerPage}px`, overflow: "clip" }}>
+    <div
+      style={{
+        height: `${lineHeight * linesPerPage}px`,
+        overflow: "clip",
+      }}
+    >
       <p
         className=""
         style={{
@@ -52,11 +62,20 @@ export const TranscriptionComp = ({
           {playedSubs.map((item, i) => {
             let isHighlighted = false;
             if (animation.type === "previous-text") isHighlighted = true;
-            else if (animation.type === "current-word" && i === playedSubs.length - 1)
+            else if (
+              animation.type === "current-word" &&
+              i === playedSubs.length - 1
+            )
               isHighlighted = true;
             return (
               <span key={i}>
-                <span style={isHighlighted ? getTextStyle(animation.textStyle) : undefined}>
+                <span
+                  style={
+                    isHighlighted
+                      ? getTextStyle(animation.textStyle)
+                      : undefined
+                  }
+                >
                   {item.text}{" "}
                 </span>
               </span>

@@ -4,7 +4,11 @@ import {
   TranscriptionScrollType,
 } from "@asius/types";
 import { useState } from "react";
-import { NumberInput, SelectInput, TextInput } from "../../../../../components/inputs";
+import {
+  NumberInput,
+  SelectInput,
+  TextInput,
+} from "../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { EditTextStyle } from "./EditTextStyle";
 import { SetComp } from "./index";
@@ -43,7 +47,9 @@ export const EditTranscription = ({
                   onChange={(text) =>
                     setComp({
                       ...comp,
-                      words: comp.words.map((w, j) => (i === j ? { ...w, text } : w)),
+                      words: comp.words.map((w, j) =>
+                        i === j ? { ...w, text } : w
+                      ),
                     })
                   }
                 />
@@ -53,7 +59,9 @@ export const EditTranscription = ({
                   onChange={(start) =>
                     setComp({
                       ...comp,
-                      words: comp.words.map((w, j) => (i === j ? { ...w, start } : w)),
+                      words: comp.words.map((w, j) =>
+                        i === j ? { ...w, start } : w
+                      ),
                     })
                   }
                 />
@@ -63,7 +71,9 @@ export const EditTranscription = ({
                   onChange={(end) =>
                     setComp({
                       ...comp,
-                      words: comp.words.map((w, j) => (i === j ? { ...w, end } : w)),
+                      words: comp.words.map((w, j) =>
+                        i === j ? { ...w, end } : w
+                      ),
                     })
                   }
                 />
@@ -79,27 +89,45 @@ export const EditTranscription = ({
       <SelectInput
         label="Scroll type"
         value={comp.scrollType}
-        onChange={(scrollType) => setComp({ ...comp, scrollType: scrollType as any })}
-        options={Object.entries(TranscriptionScrollType).map(([value, label]) => ({
-          value,
-          label,
-        }))}
+        onChange={(scrollType) =>
+          setComp({
+            ...comp,
+            scrollType: scrollType as keyof typeof TranscriptionScrollType,
+          })
+        }
+        options={Object.entries(TranscriptionScrollType).map(
+          ([value, label]) => ({
+            value,
+            label,
+          })
+        )}
       />
       <EditSection title="Animation" level={1} className="col-span-2">
         <SelectInput
           label="Type"
           value={comp.animation.type}
           onChange={(type) =>
-            setComp({ ...comp, animation: { ...comp.animation, type: type as any } })
+            setComp({
+              ...comp,
+              animation: {
+                ...comp.animation,
+                type: type as keyof typeof TranscriptionAnimationTypes,
+              },
+            })
           }
-          options={Object.entries(TranscriptionAnimationTypes).map(([value, label]) => ({
-            value,
-            label,
-          }))}
+          options={Object.entries(TranscriptionAnimationTypes).map(
+            ([value, label]) => ({
+              value,
+              label,
+            })
+          )}
         />
         <EditTextStyle
           setStyle={(textStyle) =>
-            setComp({ ...comp, animation: { ...comp.animation, textStyle } })
+            setComp({
+              ...comp,
+              animation: { ...comp.animation, textStyle },
+            })
           }
           style={comp.animation.textStyle}
         />

@@ -34,7 +34,9 @@ export const AudiogramComp = ({
     numberOfSamples,
     smoothing,
   });
-  const bars = mirror ? [...[...visualization].reverse(), ...visualization] : visualization;
+  const bars = mirror
+    ? [...[...visualization].reverse(), ...visualization]
+    : visualization;
   return (
     <div
       style={{

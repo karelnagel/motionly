@@ -1,5 +1,13 @@
-import { ProgressBarCompProps, ProgressBarSquareCorners, ProgressBarTypes } from "@asius/types";
-import { ColorInput, NumberInput, SelectInput } from "../../../../../components/inputs";
+import {
+  ProgressBarCompProps,
+  ProgressBarSquareCorners,
+  ProgressBarTypes,
+} from "@asius/types";
+import {
+  ColorInput,
+  NumberInput,
+  SelectInput,
+} from "../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 
@@ -26,9 +34,16 @@ export const EditProgressbar = ({
         label="Type"
         value={comp.progressBarType}
         onChange={(progressBarType) =>
-          setComp({ ...comp, progressBarType: progressBarType as any })
+          setComp({
+            ...comp,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            progressBarType: progressBarType as any,
+          })
         }
-        options={Object.entries(ProgressBarTypes).map(([value, label]) => ({ value, label }))}
+        options={Object.entries(ProgressBarTypes).map(([value, label]) => ({
+          value,
+          label,
+        }))}
       />
       {comp.progressBarType === "square" && (
         <>
@@ -40,11 +55,18 @@ export const EditProgressbar = ({
           <SelectInput
             label="Corner"
             value={comp.corner}
-            onChange={(corner) => setComp({ ...comp, corner: corner as any })}
-            options={Object.entries(ProgressBarSquareCorners).map(([value, label]) => ({
-              value,
-              label,
-            }))}
+            onChange={(corner) =>
+              setComp({
+                ...comp,
+                corner: corner as keyof typeof ProgressBarSquareCorners,
+              })
+            }
+            options={Object.entries(ProgressBarSquareCorners).map(
+              ([value, label]) => ({
+                value,
+                label,
+              })
+            )}
           />
         </>
       )}

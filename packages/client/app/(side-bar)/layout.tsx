@@ -29,7 +29,9 @@ export default async function Layout({ children }: { children: ReactNode }) {
           <LogOut />
         </div>
       </div>
-      <div className="col-span-4 bg-base-300 p-4 overflow-scroll">{children}</div>
+      <div className="col-span-4 bg-base-300 p-4 overflow-scroll">
+        {children}
+      </div>
     </div>
   );
 }

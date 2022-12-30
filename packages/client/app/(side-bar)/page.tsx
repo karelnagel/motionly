@@ -16,7 +16,11 @@ export default async function Page() {
     <div className="">
       <Title text="Your Projects" />
       <div className="grid grid-cols-4 gap-4 mt-10">
-        <Template id="blank" name="Start with empty project" image="/icons/add.webp" />
+        <Template
+          id="blank"
+          name="Start with empty project"
+          image="/icons/add.webp"
+        />
         {templates.map((template) => (
           <Template
             key={template.id}

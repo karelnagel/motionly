@@ -13,7 +13,14 @@ export const ProgressBarComp = ({
   const progress = (frame / durationInFrames) * 100;
   if (props.progressBarType === "line")
     return (
-      <div style={{ width: "100%", height: "100%", position: "relative", backgroundColor }}>
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "relative",
+          backgroundColor,
+        }}
+      >
         <div
           style={{
             position: "absolute",

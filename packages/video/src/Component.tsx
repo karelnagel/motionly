@@ -18,7 +18,13 @@ import { LottieComp } from "./components/Lottie";
 import { GifComp } from "./components/Gif";
 import { PathComp } from "./components/Path";
 
-export const Component = ({ comp, edit }: { comp: CompProps; edit?: EditableProps }) => {
+export const Component = ({
+  comp,
+  edit,
+}: {
+  comp: CompProps;
+  edit?: EditableProps;
+}) => {
   const divRef = useRef<HTMLDivElement>(null);
   const style: CSSProperties = {
     cursor: "pointer",
@@ -35,7 +41,9 @@ export const Component = ({ comp, edit }: { comp: CompProps; edit?: EditableProp
   return (
     <Sequence
       from={comp.from ? Math.floor(comp.from * 30) : undefined}
-      durationInFrames={comp.duration ? Math.floor(comp.duration * 30) : undefined}
+      durationInFrames={
+        comp.duration ? Math.floor(comp.duration * 30) : undefined
+      }
       layout="none"
     >
       {edit?.selected === comp.id && (
@@ -80,7 +88,7 @@ export const Component = ({ comp, edit }: { comp: CompProps; edit?: EditableProp
       )}
       <div
         ref={divRef}
-        onClick={(e: any) => {
+        onClick={(e) => {
           edit?.select(comp.id);
           e.stopPropagation();
         }}

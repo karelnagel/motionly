@@ -3,9 +3,15 @@ import { useEffect, useState } from "react";
 import { continueRender, delayRender } from "remotion";
 import { LottieCompProps } from "@asius/types";
 
-export const LottieComp = ({ src, direction, loop, playbackRate }: LottieCompProps) => {
+export const LottieComp = ({
+  src,
+  direction,
+  loop,
+  playbackRate,
+}: LottieCompProps) => {
   const [handle] = useState(() => delayRender("Loading Lottie animation"));
-  const [animationData, setAnimationData] = useState<LottieAnimationData | null>(null);
+  const [animationData, setAnimationData] =
+    useState<LottieAnimationData | null>(null);
 
   useEffect(() => {
     fetch(src)

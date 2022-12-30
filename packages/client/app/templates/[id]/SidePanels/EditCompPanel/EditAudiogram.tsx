@@ -18,19 +18,35 @@ export const EditAudiogram = ({
 }) => {
   return (
     <EditSection title="Audiogram">
-      <TextInput label="Src" value={comp.src} onChange={(src) => setComp({ ...comp, src })} />
+      <TextInput
+        label="Src"
+        value={comp.src}
+        onChange={(src) => setComp({ ...comp, src })}
+      />
       <SelectInput
         label="Position"
         value={comp.position}
-        onChange={(position) => setComp({ ...comp, position: position as any })}
-        options={Object.entries(AudiogramPosition).map(([value, label]) => ({ value, label }))}
+        onChange={(position) =>
+          setComp({
+            ...comp,
+            position: position as keyof typeof AudiogramPosition,
+          })
+        }
+        options={Object.entries(AudiogramPosition).map(([value, label]) => ({
+          value,
+          label,
+        }))}
       />
       <NumberInput
         label="Bar"
         value={comp.barWidth}
         onChange={(barWidth) => setComp({ ...comp, barWidth })}
       />
-      <NumberInput label="Gap" value={comp.gap} onChange={(gap) => setComp({ ...comp, gap })} />
+      <NumberInput
+        label="Gap"
+        value={comp.gap}
+        onChange={(gap) => setComp({ ...comp, gap })}
+      />
       <NumberInput
         label="Round"
         value={comp.roundness}

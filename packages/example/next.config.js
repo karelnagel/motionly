@@ -2,8 +2,8 @@
 const nextConfig = {
   experimental: {
     appDir: true,
-    transpilePackages: ["@asius/types"]
+    transpilePackages: ["@asius/types"],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

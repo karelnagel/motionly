@@ -2,12 +2,12 @@
 const nextConfig = {
   experimental: {
     appDir: true,
-    serverComponentsExternalPackages: ['@prisma/client'],
-    transpilePackages: ["@asius/types"]
+    serverComponentsExternalPackages: ["@prisma/client"],
+    transpilePackages: ["@asius/types"],
   },
   images: {
-    domains: ['lh3.googleusercontent.com', "picsum.photos"]
-  }
-}
+    domains: ["lh3.googleusercontent.com", "picsum.photos"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

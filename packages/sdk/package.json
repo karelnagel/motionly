@@ -1,15 +1,15 @@
 {
-  "name": "@asius/sdk",
-  "version": "1.0.0",
-  "main": "dist/index.js",
-  "license": "MIT",
-  "dependencies": {
-    "@asius/types": "*",
-    "axios": "^1.2.1",
-    "typescript": "^4.9.4"
-  },
-  "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch"
-  }
+    "name": "@asius/sdk",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "license": "MIT",
+    "dependencies": {
+        "@asius/types": "*",
+        "axios": "^1.2.1",
+        "typescript": "^4.9.4"
+    },
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch"
+    }
 }

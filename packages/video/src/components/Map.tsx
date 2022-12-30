@@ -1,6 +1,11 @@
 import { MapCompProps } from "@asius/types";
 import { useEffect, useState } from "react";
-import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  Marker,
+} from "react-simple-maps";
 import { continueRender, delayRender } from "remotion";
 
 export const MapComp = ({
@@ -16,7 +21,8 @@ export const MapComp = ({
 }: MapCompProps) => {
   const coordinates: [number, number] = [location.lng, location.lat];
   const url =
-    mapUrl || "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
+    mapUrl ||
+    "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
   const [handle] = useState(delayRender());
   const [geography, setGeography] = useState(null);
 

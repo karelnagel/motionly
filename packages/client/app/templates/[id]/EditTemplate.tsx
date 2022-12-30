@@ -15,7 +15,11 @@ import { Timeline } from "./TimeLine";
 import { AddSidePanel } from "./SidePanels/AddSidePanel";
 import { usePlayer } from "../../../hooks/usePlayer";
 
-export default function EditTemplate({ template: startTemplate }: { template: TemplateType }) {
+export default function EditTemplate({
+  template: startTemplate,
+}: {
+  template: TemplateType;
+}) {
   const [selected, setSelected] = useState("");
   const { playerRef, frame, isPlaying } = usePlayer();
 
@@ -49,7 +53,13 @@ export default function EditTemplate({ template: startTemplate }: { template: Te
           <div className="absolute top-0 left-0 flex items-center justify-center h-full w-full">
             <Player
               playerRef={playerRef}
-              edit={{ lockAspectRatio, scale, select: setSelected, selected, setComp }}
+              edit={{
+                lockAspectRatio,
+                scale,
+                select: setSelected,
+                selected,
+                setComp,
+              }}
               template={template}
             />
           </div>
@@ -64,7 +74,10 @@ export default function EditTemplate({ template: startTemplate }: { template: Te
         </div>
         <div
           className="h-full p-3  pl-0"
-          style={{ paddingRight: show ? undefined : 0, paddingLeft: show ? undefined : 0 }}
+          style={{
+            paddingRight: show ? undefined : 0,
+            paddingLeft: show ? undefined : 0,
+          }}
         >
           <div
             style={{
@@ -75,9 +88,14 @@ export default function EditTemplate({ template: startTemplate }: { template: Te
             className="h-full duration-200 panel relative"
           >
             <div className="absolute top-0 left-0 overflow-y-scroll h-full p-3 w-full">
-              {show === "comp" && <EditCompPanel comp={selectedComp!} setComp={setComp} />}
+              {show === "comp" && selectedComp && (
+                <EditCompPanel comp={selectedComp} setComp={setComp} />
+              )}
               {show === "template" && (
-                <TemplateSidePanel template={template} setTemplate={setTemplate} />
+                <TemplateSidePanel
+                  template={template}
+                  setTemplate={setTemplate}
+                />
               )}
               {show === "export" && <ExportSidePanel />}
               {show === "add" && (

@@ -19,7 +19,13 @@ import { EditTranscription } from "./EditTranscription";
 import { EditVideo } from "./EditVideo";
 export type SetComp = (c: CompProps) => void;
 
-export const EditCompPanel = ({ comp, setComp }: { comp: CompProps; setComp: SetComp }) => {
+export const EditCompPanel = ({
+  comp,
+  setComp,
+}: {
+  comp: CompProps;
+  setComp: SetComp;
+}) => {
   return (
     <div>
       <div className="grid grid-cols-5 justify-center place-items-center pb-2">
@@ -34,7 +40,9 @@ export const EditCompPanel = ({ comp, setComp }: { comp: CompProps; setComp: Set
       <EditAnimation comp={comp} setComp={setComp} />
       {comp.type === "text" && <EditText comp={comp} setComp={setComp} />}
       {comp.type === "audio" && <EditAudio comp={comp} setComp={setComp} />}
-      {comp.type === "audiogram" && <EditAudiogram comp={comp} setComp={setComp} />}
+      {comp.type === "audiogram" && (
+        <EditAudiogram comp={comp} setComp={setComp} />
+      )}
       {comp.type === "div" && <EditDiv comp={comp} setComp={setComp} />}
       {comp.type === "gif" && <EditGif comp={comp} setComp={setComp} />}
       {comp.type === "graph" && <EditGraph comp={comp} setComp={setComp} />}
@@ -43,9 +51,13 @@ export const EditCompPanel = ({ comp, setComp }: { comp: CompProps; setComp: Set
       {comp.type === "map" && <EditMap comp={comp} setComp={setComp} />}
       {comp.type === "mockup" && <EditMockup comp={comp} setComp={setComp} />}
       {comp.type === "path" && <EditPath comp={comp} setComp={setComp} />}
-      {comp.type === "progressbar" && <EditProgressbar comp={comp} setComp={setComp} />}
+      {comp.type === "progressbar" && (
+        <EditProgressbar comp={comp} setComp={setComp} />
+      )}
       {comp.type === "qrcode" && <EditQRCode comp={comp} setComp={setComp} />}
-      {comp.type === "transcription" && <EditTranscription comp={comp} setComp={setComp} />}
+      {comp.type === "transcription" && (
+        <EditTranscription comp={comp} setComp={setComp} />
+      )}
       {comp.type === "video" && <EditVideo comp={comp} setComp={setComp} />}
     </div>
   );

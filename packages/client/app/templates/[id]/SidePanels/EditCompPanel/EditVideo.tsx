@@ -1,17 +1,37 @@
 import { ObjectFit, VideoCompProps } from "@asius/types";
-import { BooleanInput, NumberInput, SelectInput, TextInput } from "../../../../../components/inputs";
+import {
+  BooleanInput,
+  NumberInput,
+  SelectInput,
+  TextInput,
+} from "../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 
-export const EditVideo = ({ comp, setComp }: { comp: VideoCompProps; setComp: SetComp }) => {
+export const EditVideo = ({
+  comp,
+  setComp,
+}: {
+  comp: VideoCompProps;
+  setComp: SetComp;
+}) => {
   return (
     <EditSection title="Video">
-      <TextInput label="Src" value={comp.src} onChange={(src) => setComp({ ...comp, src })} />
+      <TextInput
+        label="Src"
+        value={comp.src}
+        onChange={(src) => setComp({ ...comp, src })}
+      />
       <SelectInput
         label="Fit"
         value={comp.objectFit}
-        onChange={(objectFit) => setComp({ ...comp, objectFit: objectFit as any })}
-        options={Object.entries(ObjectFit).map(([value, label]) => ({ value, label }))}
+        onChange={(objectFit) =>
+          setComp({ ...comp, objectFit: objectFit as keyof typeof ObjectFit })
+        }
+        options={Object.entries(ObjectFit).map(([value, label]) => ({
+          value,
+          label,
+        }))}
       />
       <NumberInput
         label="Start From"

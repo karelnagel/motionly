@@ -4,12 +4,12 @@ import styles from "./page.module.css";
 import { components } from "./components";
 import { Player } from "@asius/player";
 import { useState } from "react";
-import { TranscriptionAnimationTypes } from "@asius/types";
+import { CompProps, TranscriptionAnimationTypes } from "@asius/types";
 
 export default function Home() {
   const [title, setTitle] = useState("Title");
   const [titleOutline, setTitleOutline] = useState("#FFFFFF");
-  const [titleColor, setTitleColor] = useState("#000000");
+  const [titleColor] = useState("#000000");
   const [primaryColor, setPrimaryColor] = useState("#FFff00");
 
   const [transcriptionType, setTranscriptionType] =
@@ -31,7 +31,10 @@ export default function Home() {
       id: "transcription",
       animation: {
         type: transcriptionType,
-        textStyle: { outline: { width: 10, color: "blue" }, color: "white" },
+        textStyle: {
+          outline: { width: 10, color: "blue" },
+          color: "white",
+        },
       },
     },
     { id: "bar1", color: primaryColor },
@@ -60,12 +63,18 @@ export default function Home() {
         <select
           value={transcriptionType}
           onChange={(e) =>
-            setTranscriptionType(e.currentTarget.value as keyof typeof TranscriptionAnimationTypes)
+            setTranscriptionType(
+              e.currentTarget.value as keyof typeof TranscriptionAnimationTypes
+            )
           }
         >
           {Object.keys(TranscriptionAnimationTypes).map((key) => (
             <option value={key} key={key}>
-              {TranscriptionAnimationTypes[key as keyof typeof TranscriptionAnimationTypes]}
+              {
+                TranscriptionAnimationTypes[
+                  key as keyof typeof TranscriptionAnimationTypes
+                ]
+              }
             </option>
           ))}
         </select>
@@ -76,7 +85,7 @@ export default function Home() {
           onChange={(e) => setPrimaryColor(e.currentTarget.value)}
         />
         <Player
-          modifications={modifications as any}
+          modifications={modifications as CompProps[]}
           comps={components}
           duration={10}
           fps={30}

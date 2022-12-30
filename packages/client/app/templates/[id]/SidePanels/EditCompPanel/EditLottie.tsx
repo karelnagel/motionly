@@ -8,15 +8,33 @@ import {
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 
-export const EditLottie = ({ comp, setComp }: { comp: LottieCompProps; setComp: SetComp }) => {
+export const EditLottie = ({
+  comp,
+  setComp,
+}: {
+  comp: LottieCompProps;
+  setComp: SetComp;
+}) => {
   return (
     <EditSection title="Lottie">
-      <TextInput label="Src" value={comp.src} onChange={(src) => setComp({ ...comp, src })} />
+      <TextInput
+        label="Src"
+        value={comp.src}
+        onChange={(src) => setComp({ ...comp, src })}
+      />
       <SelectInput
         label="Direction"
         value={comp.direction}
-        onChange={(direction) => setComp({ ...comp, direction: direction as any })}
-        options={Object.entries(LottieDirections).map(([value, label]) => ({ label, value }))}
+        onChange={(direction) =>
+          setComp({
+            ...comp,
+            direction: direction as keyof typeof LottieDirections,
+          })
+        }
+        options={Object.entries(LottieDirections).map(([value, label]) => ({
+          label,
+          value,
+        }))}
       />
       <BooleanInput
         label="Loop"

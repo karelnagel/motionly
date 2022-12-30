@@ -3,10 +3,20 @@ import { NumberInput, TextInput } from "../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 
-export const EditAudio = ({ comp, setComp }: { comp: AudioCompProps; setComp: SetComp }) => {
+export const EditAudio = ({
+  comp,
+  setComp,
+}: {
+  comp: AudioCompProps;
+  setComp: SetComp;
+}) => {
   return (
     <EditSection title="Audio">
-      <TextInput label="url" value={comp.src} onChange={(src) => setComp({ ...comp, src })} />
+      <TextInput
+        label="url"
+        value={comp.src}
+        onChange={(src) => setComp({ ...comp, src })}
+      />
       <NumberInput
         label="volume"
         value={comp.volume}

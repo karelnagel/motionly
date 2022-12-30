@@ -9,6 +9,11 @@ export const QRCodeComp = ({
   width,
 }: QRCodeCompProps) => {
   return (
-    <QRCode value={text} size={Math.min(height, width)} fgColor={color} bgColor={backgroundColor} />
+    <QRCode
+      value={text}
+      size={Math.min(height, width)}
+      fgColor={color}
+      bgColor={backgroundColor}
+    />
   );
 };

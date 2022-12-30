@@ -1,5 +1,9 @@
 import { TextAlign, TextStyle } from "@asius/types";
-import { NumberInput, SelectInput, ColorInput } from "../../../../../components/inputs";
+import {
+  NumberInput,
+  SelectInput,
+  ColorInput,
+} from "../../../../../components/inputs";
 import { getAvailableFonts } from "@remotion/google-fonts";
 import { EditSection } from "./EditSection";
 
@@ -16,7 +20,10 @@ export const EditTextStyle = ({
         label="Font"
         value={style.fontFamily}
         onChange={(fontFamily) => setStyle({ ...style, fontFamily })}
-        options={getAvailableFonts().map((f) => ({ label: f.fontFamily, value: f.importName }))}
+        options={getAvailableFonts().map((f) => ({
+          label: f.fontFamily,
+          value: f.importName,
+        }))}
       />
       <NumberInput
         label="Size"
@@ -47,7 +54,10 @@ export const EditTextStyle = ({
         label="Align"
         value={style.textAlign}
         onChange={(textAlign) =>
-          setStyle({ ...style, textAlign: textAlign as keyof typeof TextAlign })
+          setStyle({
+            ...style,
+            textAlign: textAlign as keyof typeof TextAlign,
+          })
         }
         options={Object.keys(TextAlign).map((a) => ({
           label: TextAlign[a as keyof typeof TextAlign],
@@ -58,12 +68,22 @@ export const EditTextStyle = ({
         <ColorInput
           label="Color"
           value={style.outline?.color}
-          onChange={(color) => setStyle({ ...style, outline: { ...style.outline, color: color } })}
+          onChange={(color) =>
+            setStyle({
+              ...style,
+              outline: { ...style.outline, color: color },
+            })
+          }
         />
         <NumberInput
           label="Width"
           value={style.outline?.width}
-          onChange={(width) => setStyle({ ...style, outline: { ...style.outline, width: width } })}
+          onChange={(width) =>
+            setStyle({
+              ...style,
+              outline: { ...style.outline, width: width },
+            })
+          }
         />
       </EditSection>
     </EditSection>

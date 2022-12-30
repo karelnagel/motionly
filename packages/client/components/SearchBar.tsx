@@ -32,7 +32,10 @@ export const SearchBar = ({ value, comp }: { value: string; comp: string }) => {
   useEffect(submit, [hasComp]);
 
   return (
-    <form onSubmit={submit} className="my-3 flex space-x-3 items-center justify-between">
+    <form
+      onSubmit={submit}
+      className="my-3 flex space-x-3 items-center justify-between"
+    >
       <input
         type="text"
         placeholder="Search"

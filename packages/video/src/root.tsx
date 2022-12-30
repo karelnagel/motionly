@@ -21,7 +21,7 @@ export const Root: React.FC = () => {
           comps: defaultComponents,
         }}
       />
-      {Object.keys(compositions).map((key, i) => (
+      {Object.keys(compositions).map((key) => (
         <Folder key={key} name={key}>
           {compositions[key].map((comp, i) => (
             <Composition
