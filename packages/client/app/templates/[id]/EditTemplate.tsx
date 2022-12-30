@@ -103,7 +103,7 @@ export default function EditTemplate({
                   setTemplate={setTemplate}
                 />
               )}
-              {selected === "export" && <ExportSidePanel />}
+              {selected === "export" && <ExportSidePanel template={template} />}
               {selected === "add" && <AddSidePanel addComp={addComp} />}
             </div>
           </div>
