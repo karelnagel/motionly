@@ -1,13 +1,12 @@
-import { SidePanelType } from "../../../types";
 import Image from "next/image";
 import Link from "next/link";
 
 export const Header = ({
-  show,
-  setShow,
+  selected,
+  setSelected,
 }: {
-  show: SidePanelType;
-  setShow: (s: SidePanelType) => void;
+  selected: string;
+  setSelected: (s: string) => void;
 }) => {
   return (
     <div className="w-full flex justify-between items-center bg-base-100 shadow-lg px-3 py-2 ">
@@ -27,24 +26,26 @@ export const Header = ({
       </div>
       <div className="flex items-center space-x-2 font-bold">
         <button
-          onClick={() => setShow("template")}
-          className={`${show === "template" ? "text-primary" : ""} uppercase`}
+          onClick={() => setSelected("template")}
+          className={`${
+            selected === "template" ? "text-primary" : ""
+          } uppercase`}
         >
           Template
         </button>
         <button
-          onClick={() => setShow("export")}
-          className={`${show === "export" ? "text-primary" : ""} uppercase`}
+          onClick={() => setSelected("export")}
+          className={`${selected === "export" ? "text-primary" : ""} uppercase`}
         >
           Export
         </button>
         <button
-          onClick={() => setShow("add")}
-          className={`${show === "add" ? "text-primary" : ""} uppercase`}
+          onClick={() => setSelected("add")}
+          className={`${selected === "add" ? "text-primary" : ""} uppercase`}
         >
           Add
         </button>
-        {show && <button onClick={() => setShow(undefined)}>X</button>}
+        {selected && <button onClick={() => setSelected("")}>X</button>}
       </div>
     </div>
   );

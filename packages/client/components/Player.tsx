@@ -28,6 +28,7 @@ export const Player = ({
       }}
       style={{ width: width * edit.scale, height: height * edit.scale }}
       spaceKeyToPlayOrPause
+      className="bg-base-100"
       loop
     />
   );

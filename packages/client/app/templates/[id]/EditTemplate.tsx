@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useShiftKey } from "../../../hooks/useShiftKey";
 import { TemplateType } from "@asius/types";
 import { useTemplate } from "../../../hooks/useTemplate";
-import { SidePanelType } from "../../../types";
 import { Header } from "./Header";
 import { PlayerControls } from "./PlayerControls";
 import { EditCompPanel } from "./SidePanels/EditCompPanel";
@@ -20,16 +19,22 @@ export default function EditTemplate({
 }: {
   template: TemplateType;
 }) {
-  const [selected, setSelected] = useState("");
   const { playerRef, frame, isPlaying } = usePlayer();
 
-  const { update, template, selectedComp, setComp, setTemplate } = useTemplate(
-    startTemplate,
-    selected
-  );
+  const {
+    update,
+    template,
+    selectedComp,
+    setComp,
+    setTemplate,
+    addComp,
+    deleteComp,
+    selected,
+    setSelected,
+  } = useTemplate(startTemplate);
+
   const [scale, setScale] = useState(0.2);
   const lockAspectRatio = useShiftKey();
-  const [show, setShow] = useState<SidePanelType>("template");
 
   useEffect(() => {
     const interval = setInterval(() => update(), 5000);
@@ -38,16 +43,11 @@ export default function EditTemplate({
     };
   }, [update]);
 
-  useEffect(() => {
-    if (selected) setShow("comp");
-  }, [selected]);
-
   const sidePanelWidth = 350;
   const timelineHeigth = 250;
-
   return (
     <div className="bg-base-300  w-screen h-screen overflow-hidden flex flex-col">
-      <Header setShow={setShow} show={show} />
+      <Header setSelected={setSelected} selected={selected} />
       <div className=" w-full flex h-full">
         <div className="w-full relative h-full overflow-hidden">
           <div className="absolute top-0 left-0 flex items-center justify-center h-full w-full">
@@ -75,35 +75,36 @@ export default function EditTemplate({
         <div
           className="h-full p-3  pl-0"
           style={{
-            paddingRight: show ? undefined : 0,
-            paddingLeft: show ? undefined : 0,
+            paddingRight: selected ? undefined : 0,
+            paddingLeft: selected ? undefined : 0,
           }}
         >
           <div
             style={{
-              width: show ? sidePanelWidth : 0,
-              paddingRight: show ? undefined : 0,
-              paddingLeft: show ? undefined : 0,
+              width: selected ? sidePanelWidth : 0,
+              paddingRight: selected ? undefined : 0,
+              paddingLeft: selected ? undefined : 0,
             }}
             className="h-full duration-200 panel relative"
           >
             <div className="absolute top-0 left-0 overflow-y-scroll h-full p-3 w-full">
-              {show === "comp" && selectedComp && (
-                <EditCompPanel comp={selectedComp} setComp={setComp} />
-              )}
-              {show === "template" && (
+              {!["template", "export", "add"].includes(selected) &&
+                selectedComp && (
+                  <EditCompPanel
+                    comp={selectedComp}
+                    setComp={setComp}
+                    addComp={addComp}
+                    deleteComp={deleteComp}
+                  />
+                )}
+              {selected === "template" && (
                 <TemplateSidePanel
                   template={template}
                   setTemplate={setTemplate}
                 />
               )}
-              {show === "export" && <ExportSidePanel />}
-              {show === "add" && (
-                <AddSidePanel
-                  comps={template.comps}
-                  setComps={(c) => setTemplate({ ...template, comps: c })}
-                />
-              )}
+              {selected === "export" && <ExportSidePanel />}
+              {selected === "add" && <AddSidePanel addComp={addComp} />}
             </div>
           </div>
         </div>

@@ -70,7 +70,7 @@ export const Timeline = ({
                   }%`,
                 }}
               >
-                {comp.id}
+                {comp.type}-{comp.id}
               </div>
             </div>
           </div>

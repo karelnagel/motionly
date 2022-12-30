@@ -15,7 +15,7 @@ export const defaultMapProps: MapCompProps = {
     lat: 0,
     lng: 0,
   },
-  zoom: 10,
+  zoom: 200,
   marker: {
     color: "#000000",
     size: 10,

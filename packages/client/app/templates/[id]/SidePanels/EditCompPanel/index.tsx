@@ -22,9 +22,13 @@ export type SetComp = (c: CompProps) => void;
 export const EditCompPanel = ({
   comp,
   setComp,
+  deleteComp,
+  addComp,
 }: {
   comp: CompProps;
   setComp: SetComp;
+  deleteComp: (id: string) => void;
+  addComp: (comp: CompProps) => void;
 }) => {
   return (
     <div>
@@ -32,8 +36,14 @@ export const EditCompPanel = ({
         <div></div>
         <p className="col-span-3 text-xl font-semibold">{comp.id}</p>
         <div className="flex text-xl space-x-1 w-full justify-end">
-          <AiFillCopy />
-          <AiFillDelete />
+          <AiFillCopy
+            onClick={() => addComp(comp)}
+            className="cursor-pointer"
+          />
+          <AiFillDelete
+            onClick={() => deleteComp(comp.id)}
+            className="cursor-pointer"
+          />
         </div>
       </div>
       <EditGeneral comp={comp} setComp={setComp} />
