@@ -80,7 +80,12 @@ export default function EditTemplate({ template: startTemplate }: { template: Te
                 <TemplateSidePanel template={template} setTemplate={setTemplate} />
               )}
               {show === "export" && <ExportSidePanel />}
-              {show === "add" && <AddSidePanel />}
+              {show === "add" && (
+                <AddSidePanel
+                  comps={template.comps}
+                  setComps={(c) => setTemplate({ ...template, comps: c })}
+                />
+              )}
             </div>
           </div>
         </div>

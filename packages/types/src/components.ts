@@ -268,7 +268,7 @@ export type ProgressBarCompProps = BaseCompProps & {
 // DIV
 export interface DivCompProps extends BaseCompProps {
     type: "div"
-    backgroundColor?: string
+    background?: string
     children: CompProps[]
 }
 

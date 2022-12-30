@@ -1,5 +1,5 @@
 import { CompProps } from "@asius/types";
-import { DEFAULT_TRANSCRIPTION } from "@asius/types/src/defaults/transcription";
+import { defaultTranscriptionWords } from "@asius/types/src/defaults/transcription";
 import { baseComp } from "./consts";
 
 const base: CompProps = {
@@ -7,7 +7,7 @@ const base: CompProps = {
     animation: { textStyle: { color: "red" }, type: "current-word" },
     scrollType: "line-by-line",
     textStyle: { fontSize: 60, color: "black", lineHeight: 1.2, fontWeight: 800, textAlign: "center" },
-    words: DEFAULT_TRANSCRIPTION
+    words: defaultTranscriptionWords
 }
 
 export const transcriptions: CompProps[] = [

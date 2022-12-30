@@ -12,6 +12,6 @@ export const baseComp: CompProps = {
     width: 1080,
     x: 0,
     y: 0,
-    backgroundColor: "white",
+    background: "white",
     children: []
 }

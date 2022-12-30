@@ -1,6 +1,6 @@
-import { TranscriptionWord } from "..";
+import { TranscriptionCompProps, TranscriptionWord } from "..";
 
-export const DEFAULT_TRANSCRIPTION: TranscriptionWord[] = [
+export const defaultTranscriptionWords: TranscriptionWord[] = [
     {
         "text": "If",
         "start": 0.16,
@@ -1227,3 +1227,31 @@ export const DEFAULT_TRANSCRIPTION: TranscriptionWord[] = [
         "end": 63.04
     }
 ]
+export const defaultTranscriptionProps: TranscriptionCompProps = {
+    id: "",
+    type: "transcription",
+    height: 500,
+    width: 500,
+    x: 0,
+    y: 0,
+    borderRadius: 10,
+    rotation: 0,
+    from: 0, duration: 0,
+    words: defaultTranscriptionWords,
+    animation: {
+        type: "current-word",
+        textStyle: {
+            outline: { color: "blue", width: 5 }
+        }
+    },
+    scrollType: "line-by-line",
+    textStyle: {
+        fontSize: 20,
+        fontFamily: "Arial",
+        color: "black",
+        outline: { color: "black", width: 5 },
+        fontWeight: 800,
+        lineHeight: 1.2, 
+        textAlign: "center"
+    }
+}

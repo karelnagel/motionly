@@ -18,7 +18,7 @@ export const DivComp = ({ comp, edit }: { comp: DivCompProps; edit?: EditablePro
         display: "flex",
         height: "100%",
         width: "100%",
-        backgroundColor: comp.backgroundColor,
+        backgroundColor: comp.background,
       }}
     >
       {comp.children.map((child, index) => (

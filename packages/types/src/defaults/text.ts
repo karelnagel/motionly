@@ -1,7 +1,7 @@
 import { TextCompProps } from "..";
 
-export const DEFAULT_TEXT = (id: string): TextCompProps => ({
-    id,
+export const defaultTextProps: TextCompProps = {
+    id: "",
     type: "text",
     height: 30,
     width: 100,
@@ -18,5 +18,5 @@ export const DEFAULT_TEXT = (id: string): TextCompProps => ({
     borderRadius: 0,
     text: "Hello World",
     rotation: 0,
-    duration: -1, from: 0
-});
+    duration: 0, from: 0
+}

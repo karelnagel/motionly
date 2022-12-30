@@ -1,7 +1,7 @@
 import { CompProps } from "..";
-import { DEFAULT_TRANSCRIPTION } from "./transcription";
+import { defaultTranscriptionWords } from "./transcription";
 
-const videoUrl = "https://remotionlambda-24lixyhuqn.s3.us-east-1.amazonaws.com/video.mp4"
+export const videoUrl = "https://remotionlambda-24lixyhuqn.s3.us-east-1.amazonaws.com/video.mp4"
 export const defaultComponents: CompProps[] = [
     {
         id: "bg",
@@ -37,7 +37,7 @@ export const defaultComponents: CompProps[] = [
         y: 0,
         rotation: 0,
         borderRadius: 0,
-        duration: 0, from: 0, children: [], backgroundColor: "#00000080"
+        duration: 0, from: 0, children: [], background: "#00000080"
     },
     {
         id: "title",
@@ -82,7 +82,7 @@ export const defaultComponents: CompProps[] = [
         rotation: 0,
         borderRadius: 0,
         duration: 0, from: 0,
-        words: DEFAULT_TRANSCRIPTION,
+        words: defaultTranscriptionWords,
         animation: {
             type: "previous-text",
             textStyle: {

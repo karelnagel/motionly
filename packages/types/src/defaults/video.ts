@@ -1,7 +1,7 @@
-import { VideoCompProps } from "..";
+import { VideoCompProps, videoUrl } from "..";
 
-export const DEFAULT_VIDEO = (id: string): VideoCompProps => ({
-    id,
+export const defaultVideoProps: VideoCompProps = {
+    id: "",
     type: "video",
     height: 500,
     width: 500,
@@ -11,8 +11,8 @@ export const DEFAULT_VIDEO = (id: string): VideoCompProps => ({
     borderRadius: 10,
     rotation: 0,
     startFrom: 0,
-    src: `https://picsum.photos/seed/${id}/500/500`,
+    src: videoUrl,
     muted: false,
     volume: 100,
-    from: 0, duration: -1
-});
+    from: 0, duration: 0
+}
