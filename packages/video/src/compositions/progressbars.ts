@@ -2,7 +2,7 @@ import { CompProps, ProgressBarCompProps } from "@asius/types";
 import { baseComp } from "./consts";
 
 const base: ProgressBarCompProps = {
-    ...baseComp, type: "progressbar", progressBarType: "line", height: 100, width: 1080, backgroundColor: "pink", color: "red"
+    ...baseComp, type: "progressbar", progressBarType: "line", height: 100, width: 1080, background: "pink", color: "red"
 }
 
 export const progressbars: CompProps[] = [

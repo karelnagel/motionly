@@ -5,13 +5,15 @@ export const EditSection = ({
   title,
   className,
   level = 0,
+  hideByDefault = false,
 }: {
   children: React.ReactNode;
   title: string;
   className?: string;
   level?: number;
+  hideByDefault?: boolean;
 }) => {
-  const [hidden, setHidden] = useState(false);
+  const [hidden, setHidden] = useState(hideByDefault);
   return (
     <div className={`${className} ${level ? " space-y-1" : "border-t-2 py-2 space-y-2"} `}>
       <div className="flex justify-between">

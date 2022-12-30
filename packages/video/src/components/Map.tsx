@@ -50,7 +50,7 @@ export const MapComp = ({
       </Geographies>
       {marker && (
         <Marker coordinates={coordinates}>
-          <circle r={marker.size / 2} fill={marker.color} />
+          {marker.size && <circle r={marker.size / 2} fill={marker.color} />}
         </Marker>
       )}
     </ComposableMap>

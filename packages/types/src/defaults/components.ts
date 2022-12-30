@@ -138,7 +138,7 @@ export const defaultComponents: CompProps[] = [
         from: 0,
         color: "red",
         progressBarType: "square",
-        backgroundColor: "pink",
+        background: "pink",
         barWidth: 30,
         corner: "top-left"
     }

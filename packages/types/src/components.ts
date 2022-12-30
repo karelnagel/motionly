@@ -185,12 +185,12 @@ export interface MapCompProps extends BaseCompProps {
         lng: number
     }
     zoom: number
-    fill: string
+    fill?: string
     stroke?: string
     strokeWidth?: number
     marker?: {
-        color: string,
-        size: number
+        color?: string,
+        size?: number
     }
     mapUrl?: string
     animation?: {
@@ -211,7 +211,7 @@ export const GraphTypes = {
 export type GraphCompProps = BaseCompProps & {
     type: "graph",
     values: number[]
-    color: string
+    color?: string
     graphType: keyof typeof GraphTypes
     max?: number
     min?: number
@@ -225,6 +225,7 @@ export type GraphCompProps = BaseCompProps & {
 } | {
     graphType: "bar"
     gap?: number
+    roundness?: number
 })
 
 
@@ -232,8 +233,8 @@ export type GraphCompProps = BaseCompProps & {
 export interface QRCodeCompProps extends BaseCompProps {
     type: "qrcode",
     text: string,
-    color: string,
-    backgroundColor?: string,
+    color?: string,
+    background?: string,
 }
 
 
@@ -251,9 +252,9 @@ export const ProgressBarSquareCorners = {
 
 export type ProgressBarCompProps = BaseCompProps & {
     type: "progressbar",
-    color: string
+    color?: string
     progressBarType: keyof typeof ProgressBarTypes
-    backgroundColor?: string
+    background?: string
 } & ({
     progressBarType: "square"
     barWidth: number

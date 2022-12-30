@@ -15,9 +15,9 @@ export function NumberInput<T extends number | undefined>({
 }) {
   return (
     <div
-      className={`flex items-center space-x-2 bg-base-300 rounded-lg py-1 px-2 w-full ${className}`}
+      className={`flex items-center space-x-3 bg-base-300 rounded-lg py-1 px-2 w-full ${className}`}
     >
-      <label>{label}</label>
+      <label className="whitespace-nowrap shrink-0">{label}</label>
       <input
         type="number"
         value={value || 0}
@@ -57,56 +57,66 @@ export function TextInput<T extends string | undefined>({
   label,
   value,
   onChange,
+  area,
 }: {
   label: string;
   value: T;
   onChange: (value: T) => void;
+  area?: boolean;
 }) {
   return (
     <div className="flex items-center p-2 space-x-2 bg-base-300 rounded-lg py-1 px-2 col-span-2 w-full">
       <label>{label}</label>
-      <input
-        type="text"
-        value={value || ""}
-        onChange={(e) => onChange(e.target.value as T)}
-        className="bg-base-300 w-full"
-      />
+      {area ? (
+        <textarea
+          value={value || ""}
+          onChange={(e) => onChange(e.target.value as T)}
+          className="bg-base-300 w-full"
+        />
+      ) : (
+        <input
+          type="text"
+          value={value || ""}
+          onChange={(e) => onChange(e.target.value as T)}
+          className="bg-base-300 w-full"
+        />
+      )}
     </div>
   );
 }
-export const ColorInput = ({
+export function ColorInput<T extends string | undefined>({
   label,
   value,
   onChange,
 }: {
   label: string;
-  value?: string;
-  onChange: (value?: string) => void;
-}) => {
+  value: T;
+  onChange: (value?: T) => void;
+}) {
   const color = value?.slice(0, 7);
   const alpha = value?.slice(7);
   return (
     <div className="flex items-center p-2  space-x-2 bg-base-300 rounded-lg py-1 px-2 col-span-2 w-full justify-between">
       <label>{label}</label>
-      {!value && <button onClick={() => onChange("#000000FF")}>ADD</button>}
+      {!value && <button onClick={() => onChange("#000000FF" as T)}>ADD</button>}
       {value && (
         <>
           <input
             type="color"
             value={color || ""}
-            onChange={(e) => onChange(e.target.value + alpha)}
+            onChange={(e) => onChange((e.target.value + alpha) as T)}
             className="bg-base-300 w-10 rounded-md"
           />
           <input
             type="text"
             value={color || ""}
-            onChange={(e) => onChange(e.target.value + alpha)}
+            onChange={(e) => onChange((e.target.value + alpha) as T)}
             className="bg-base-300 w-20"
           />
           <input
             type="number"
             value={alpha ? hexToPercent(alpha) : 100}
-            onChange={(e) => onChange(color + percentToHex(Number(e.target.value || 0)))}
+            onChange={(e) => onChange((color + percentToHex(Number(e.target.value || 0))) as T)}
             className="bg-base-300 w-10"
           />
           <button onClick={() => onChange()}>X</button>
@@ -114,7 +124,7 @@ export const ColorInput = ({
       )}
     </div>
   );
-};
+}
 
 export const SelectInput = ({
   label,

@@ -10,6 +10,7 @@ export const GraphComp = ({
   borderRadius,
   min,
   max,
+
   ...props
 }: GraphCompProps) => {
   const frame = useCurrentFrame();
@@ -43,7 +44,7 @@ export const GraphComp = ({
                 width: width / values.length,
                 height: height * (v / maxValue) * anim,
                 backgroundColor: color,
-                borderRadius,
+                borderRadius: props.roundness,
               }}
             />
           );

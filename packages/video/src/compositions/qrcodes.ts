@@ -2,7 +2,7 @@ import { CompProps } from "@asius/types";
 import { baseComp, videoUrl } from "./consts";
 
 const base: CompProps = {
-    ...baseComp, type: "qrcode", text: videoUrl, color: "aqua", backgroundColor: "black"
+    ...baseComp, type: "qrcode", text: videoUrl, color: "aqua", background: "black"
 }
 
 export const qrcodes: CompProps[] = [
@@ -13,7 +13,7 @@ export const qrcodes: CompProps[] = [
         ...base, id: "text", text: "Hello world!"
     },
     {
-        ...base, id: "wo-bg", backgroundColor: undefined
+        ...base, id: "wo-bg", background: undefined
     },
 
 ]

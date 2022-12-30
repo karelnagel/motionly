@@ -3,7 +3,7 @@ import { useCurrentFrame, useVideoConfig } from "remotion";
 
 export const ProgressBarComp = ({
   color,
-  backgroundColor,
+  background: backgroundColor,
   height,
   width,
   ...props

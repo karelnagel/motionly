@@ -1,5 +1,11 @@
 import { AudiogramCompProps, AudiogramPosition } from "@asius/types";
-import { BooleanInput, ColorInput, NumberInput, SelectInput, TextInput } from "../../../../../components/inputs";
+import {
+  BooleanInput,
+  ColorInput,
+  NumberInput,
+  SelectInput,
+  TextInput,
+} from "../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 
@@ -17,10 +23,7 @@ export const EditAudiogram = ({
         label="Position"
         value={comp.position}
         onChange={(position) => setComp({ ...comp, position: position as any })}
-        options={Object.keys(AudiogramPosition).map((key) => ({
-          value: key,
-          label: AudiogramPosition[key as keyof typeof AudiogramPosition],
-        }))}
+        options={Object.entries(AudiogramPosition).map(([value, label]) => ({ value, label }))}
       />
       <NumberInput
         label="Bar"

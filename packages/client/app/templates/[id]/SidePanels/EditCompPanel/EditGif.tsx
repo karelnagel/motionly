@@ -11,10 +11,7 @@ export const EditGif = ({ comp, setComp }: { comp: GifCompProps; setComp: SetCom
         label="Fit"
         value={comp.objectFit}
         onChange={(objectFit) => setComp({ ...comp, objectFit: objectFit as any })}
-        options={Object.keys(ObjectFit).map((key) => ({
-          value: key,
-          label: ObjectFit[key as keyof typeof ObjectFit],
-        }))}
+        options={Object.entries(ObjectFit).map(([value, label]) => ({ value, label }))}
       />
     </EditSection>
   );
