@@ -8,7 +8,7 @@ export const ExportSidePanel = ({ template }: { template: TemplateType }) => {
         onClick={() => alert("Coming soon!!!")}
         className="bg-primary rounded-lg p-2 text-primary-content"
       >
-        Download
+        Render
       </button>
       <p>
         ID: <span className="text-lg font-bold">{template.id}</span>

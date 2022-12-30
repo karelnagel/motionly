@@ -23,7 +23,7 @@ export const LottieComp = ({
       .catch((err) => {
         console.log("Animation failed to load", err);
       });
-  }, [handle]);
+  }, [handle, src]);
   if (!animationData) {
     return null;
   }
