@@ -26,7 +26,7 @@ export default async function Page() {
             key={template.id}
             id={template.id}
             name={template.name}
-            image={`https://picsum.photos/seed/${template.id}200/100`}
+            image={`https://picsum.photos/seed/${template.id}300/300`}
           />
         ))}
       </div>

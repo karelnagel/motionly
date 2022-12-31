@@ -17,7 +17,7 @@ export const Template = ({
           src={image}
           fill={true}
           alt="template"
-          className="object-contain"
+          className="object-cover"
         />
       </div>
       <p className="font-bold">{name}</p>

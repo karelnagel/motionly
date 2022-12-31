@@ -12,10 +12,12 @@ export const Header = ({
   setSelected: (s: string) => void;
   template: TemplateType;
 }) => {
-  const rounter = useRouter();
+  const router = useRouter();
   const clone = async () => {
     const newTemplate = await postNewTemplate(template);
-    if (newTemplate) rounter.push(`/templates/${newTemplate.id}`);
+    if (!newTemplate) return alert("Cloning failed");
+    alert("Cloning successful");
+    router.push(`/templates/${newTemplate.id}`);
   };
   return (
     <div className="w-full flex justify-between items-center bg-base-100 shadow-lg px-3 py-2 ">
