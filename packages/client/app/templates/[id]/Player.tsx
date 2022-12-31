@@ -1,9 +1,10 @@
 import { Player as RemotionPlayer, PlayerRef } from "@remotion/player";
 import { CompProps, TemplateType } from "@asius/types";
 import { Composition, SelectedContext } from "@asius/video";
-import { RefObject, useRef } from "react";
+import { RefObject, useRef, useState } from "react";
 import { useShiftKey } from "../../../hooks/useShiftKey";
 import Moveable from "react-moveable";
+import { useEffect } from "react";
 
 export const Player = ({
   template: { width, height, duration, fps, comps },
@@ -22,7 +23,8 @@ export const Player = ({
 }) => {
   const lockAspectRatio = useShiftKey();
   const divRef = useRef<HTMLDivElement>(null);
-
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => setIsClient(true), []);
   return (
     <div
       style={{ width: width * scale, height: height * scale }}
@@ -39,7 +41,7 @@ export const Player = ({
           durationInFrames={duration * fps}
           fps={fps}
           inputProps={{
-            comps,
+            comps: isClient ? comps : [],
             width,
             height,
           }}

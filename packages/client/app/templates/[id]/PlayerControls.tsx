@@ -1,15 +1,14 @@
 import { PlayerRef } from "@remotion/player";
 import { RefObject, useEffect, useState } from "react";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import {
-  MdFastRewind,
-  MdForward,
-  MdFullscreen,
-  MdPause,
-  MdPlayArrow,
-  MdVolumeMute,
-  MdVolumeUp,
-} from "react-icons/md";
+  IoIosPlay,
+  IoIosPause,
+  IoIosSkipForward,
+  IoIosSkipBackward,
+  IoIosVolumeHigh,
+  IoIosVolumeOff,
+  IoMdExpand,
+} from "react-icons/io";
 import { useCurrentPlayerFrame } from "../../../hooks/useCurrentPlayerFrame";
 
 export const PlayerControls = ({
@@ -38,6 +37,8 @@ export const PlayerControls = ({
     });
   }, [playerRef.current]);
 
+  const className =
+    "cursor-pointer w-[45px] aspect-square p-1 font-bold hover:text-primary hover:shadow-md hover:scale-110 duration-150 rounded-full";
   return (
     <div className="absolute bottom-0 left-0 p-3 w-full">
       <div className="w-full grid grid-cols-3 panel text-3xl p-3">
@@ -49,56 +50,53 @@ export const PlayerControls = ({
           }
           className="text-xl w-10"
         />
-        <div className="w-full h-full flex items-center justify-center">
+        <div className="w-full h-full flex items-center justify-center space-x-5">
           {playerRef.current?.isMuted() ? (
-            <MdVolumeUp
+            <IoIosVolumeHigh
               onClick={playerRef.current?.unmute}
-              className="cursor-pointer"
+              className={className}
             />
           ) : (
-            <MdVolumeMute
+            <IoIosVolumeOff
               onClick={playerRef.current?.mute}
-              className="cursor-pointer"
+              className={className}
             />
           )}
-          <MdFastRewind
-            className="cursor-pointer"
+          <IoIosSkipBackward
+            className={className}
             onClick={() => playerRef.current?.seekTo(frame - 5 * fps)}
           />
           {isPlaying ? (
-            <MdPause
+            <IoIosPause
               onClick={playerRef.current?.pause}
-              className="cursor-pointer"
+              className={className}
             />
           ) : (
-            <MdPlayArrow
+            <IoIosPlay
               onClick={playerRef.current?.play}
-              className="cursor-pointer"
+              className={className}
             />
           )}
-          <MdForward
-            className="cursor-pointer"
+          <IoIosSkipForward
+            className={className}
             onClick={() => playerRef.current?.seekTo(frame + 5 * fps)}
           />
-          <MdFullscreen
-            className="cursor-pointer"
+          <IoMdExpand
+            className={className}
             onClick={() => playerRef.current?.requestFullscreen()}
           />
         </div>
-        <div className="flex items-center justify-end w-full">
-          <AiOutlineMinus
-            onClick={() => setScale(scale - 0.05)}
-            className="cursor-pointer hover:scale-110"
-          />
+        <div className="flex items-center justify-end w-full space-x-2">
           <input
-            value={scale || 0}
-            className="w-10 text-center hover:scale-105 text-lg"
-            onChange={(e) => setScale(Number(e.target.value) || 0)}
+            type="range"
+            min={0.1}
+            max={1}
+            step={0.01}
+            value={scale}
+            className="w-20 range-primary range range-sm"
+            onChange={(e) => setScale(Number(e.target.value))}
           />
-          <AiOutlinePlus
-            onClick={() => setScale(scale + 0.05)}
-            className="cursor-pointer hover:scale-110"
-          />
+          <p className="text-base">{scale}</p>
         </div>
       </div>
     </div>

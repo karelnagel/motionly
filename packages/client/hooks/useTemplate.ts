@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 export const useTemplate = (starTemplate: TemplateType) => {
   // eslint-disable-next-line prefer-const
   let [template, setTemplate] = useState<TemplateType>(starTemplate);
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState("template");
   const [saveInfo, setSaveInfo] = useState("");
 
   if (!template.isOwner)
@@ -76,7 +76,7 @@ export const useTemplate = (starTemplate: TemplateType) => {
     deleteComp,
     addComp,
     selected,
-    setSelected,
+    setSelected: (id: string) => setSelected(id === selected ? "" : id),
     saveInfo,
   };
 };
