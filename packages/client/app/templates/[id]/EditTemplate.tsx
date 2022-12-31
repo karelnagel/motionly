@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { useShiftKey } from "../../../hooks/useShiftKey";
 import { TemplateType } from "@asius/types";
 import { useTemplate } from "../../../hooks/useTemplate";
@@ -12,15 +12,14 @@ import { ExportSidePanel } from "./SidePanels/ExportSidePanel";
 import { Player } from "../../../components/Player";
 import { Timeline } from "./TimeLine";
 import { AddSidePanel } from "./SidePanels/AddSidePanel";
-import { usePlayer } from "../../../hooks/usePlayer";
+import { PlayerRef } from "@remotion/player";
 
 export default function EditTemplate({
   template: startTemplate,
 }: {
   template: TemplateType;
 }) {
-  const { playerRef, frame, isPlaying } = usePlayer();
-  const [isClient, setIsClient] = useState(false);
+  const playerRef = useRef<PlayerRef>(null);
   const {
     template,
     selectedComp,
@@ -34,9 +33,7 @@ export default function EditTemplate({
 
   const [scale, setScale] = useState(0.2);
   const lockAspectRatio = useShiftKey();
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+
   const sidePanelWidth = 350;
   const timelineHeigth = 250;
   return (
@@ -49,26 +46,22 @@ export default function EditTemplate({
       <div className=" w-full flex h-full">
         <div className="w-full relative h-full overflow-hidden">
           <div className="absolute top-0 left-0 flex items-center justify-center h-full w-full">
-            {isClient && (
-              <Player
-                playerRef={playerRef}
-                edit={{
-                  lockAspectRatio,
-                  scale,
-                  select: setSelected,
-                  selected,
-                  setComp,
-                }}
-                template={template}
-              />
-            )}
+            <Player
+              playerRef={playerRef}
+              edit={{
+                lockAspectRatio,
+                scale,
+                select: setSelected,
+                selected,
+                setComp,
+              }}
+              template={template}
+            />
           </div>
           <PlayerControls
             scale={scale}
             setScale={setScale}
             playerRef={playerRef}
-            frame={frame}
-            isPlaying={isPlaying}
             fps={template.fps}
           />
         </div>
@@ -112,10 +105,8 @@ export default function EditTemplate({
       <div className="p-3 pt-0 shrink-0">
         <div style={{ height: timelineHeigth }} className="panel">
           <Timeline
-            frame={frame}
             template={template}
             setSelected={setSelected}
-            setComp={setComp}
             playerRef={playerRef}
             selected={selected}
           />

@@ -1,5 +1,5 @@
 import { PlayerRef } from "@remotion/player";
-import { RefObject } from "react";
+import { RefObject, useEffect, useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import {
   MdFastRewind,
@@ -10,22 +10,34 @@ import {
   MdVolumeMute,
   MdVolumeUp,
 } from "react-icons/md";
+import { useCurrentPlayerFrame } from "../../../hooks/useCurrentPlayerFrame";
 
 export const PlayerControls = ({
   scale,
   setScale,
   playerRef,
-  frame,
-  isPlaying,
   fps,
 }: {
   scale: number;
   setScale: (s: number) => void;
   playerRef: RefObject<PlayerRef>;
-  frame: number;
-  isPlaying: boolean;
   fps: number;
 }) => {
+  const frame = useCurrentPlayerFrame(playerRef);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    if (!playerRef.current) {
+      return;
+    }
+    playerRef.current.addEventListener("play", () => {
+      setIsPlaying(true);
+    });
+    playerRef.current.addEventListener("pause", () => {
+      setIsPlaying(false);
+    });
+  }, [playerRef.current]);
+
   return (
     <div className="absolute bottom-0 left-0 p-3 w-full">
       <div className="w-full grid grid-cols-3 panel text-3xl p-3">

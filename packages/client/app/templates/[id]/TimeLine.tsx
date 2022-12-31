@@ -1,20 +1,21 @@
-import { CompProps, TemplateType } from "@asius/types";
+import { TemplateType } from "@asius/types";
 import { PlayerRef } from "@remotion/player";
 import { RefObject } from "react";
+import { useCurrentPlayerFrame } from "../../../hooks/useCurrentPlayerFrame";
 
 export const Timeline = ({
   selected,
   template,
   setSelected,
-  frame,
+  playerRef,
 }: {
   selected: string;
   setSelected: (s: string) => void;
-  setComp: (c: CompProps) => void;
   template: TemplateType;
   playerRef: RefObject<PlayerRef>;
-  frame: number;
 }) => {
+  const frame = useCurrentPlayerFrame(playerRef);
+
   return (
     <div className="h-full w-full flex flex-col ">
       <div className="h-14 w-full relative p-3">
