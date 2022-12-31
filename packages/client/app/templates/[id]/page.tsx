@@ -1,8 +1,7 @@
 import EditTemplate from "./EditTemplate";
 import { getTemplate } from "../../../pages/api/templates/[id]";
-import { defaultComponents } from "@asius/types";
 
-export const revalidate = 1;
+export const revalidate = 0;
 
 export default async function Page({
   params: { id },
@@ -13,15 +12,15 @@ export default async function Page({
   let template = await getTemplate({ id });
   if (id === "blank")
     template = {
-      comps: defaultComponents,
+      comps: [],
       duration: 60,
       fps: 30,
       height: 1080,
       width: 1080,
-      description: "asdf",
-      name: "name",
-      id: "asdfdsf",
-      isOwner: true,
+      description: "This is an empty template",
+      name: "Blank",
+      id: "blank",
+      isOwner: false,
       public: false,
     };
   if (!template) return <div>Template not found!</div>;

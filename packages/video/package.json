@@ -14,9 +14,9 @@
     },
     "dependencies": {
         "@asius/types": "*",
-        "@remotion/gif": "^3.3.9",
-        "@remotion/lottie": "^3.3.9",
-        "@remotion/paths": "^3.3.9",
+        "@remotion/gif": "3.3.19",
+        "@remotion/lottie": "3.3.19",
+        "@remotion/paths": "3.3.19",
         "@types/react-simple-maps": "^3.0.0",
         "lottie-web": "^5.10.0",
         "react-moveable": "^0.44.1",
@@ -24,19 +24,19 @@
         "react-simple-maps": "^3.0.0"
     },
     "peerDependencies": {
-        "@remotion/cli": "3.3.9",
-        "@remotion/media-utils": "3.3.9",
+        "@remotion/cli": "3.3.19",
+        "@remotion/media-utils": "3.3.19",
         "react": ">=16.8.0",
         "react-dom": ">=16.8.0",
-        "remotion": "3.3.9"
+        "remotion": "3.3.19"
     },
     "devDependencies": {
-        "@remotion/cli": "3.3.9",
-        "@remotion/media-utils": "3.3.9",
+        "@remotion/cli": "3.3.19",
+        "@remotion/media-utils": "3.3.19",
         "@types/react": "17.0.11",
         "@types/react-dom": "17.0.8",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
-        "remotion": "3.3.9"
+        "remotion": "3.3.19"
     }
 }

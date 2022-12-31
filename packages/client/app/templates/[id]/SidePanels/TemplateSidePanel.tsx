@@ -1,5 +1,9 @@
 import { TemplateType } from "@asius/types";
-import { NumberInput, TextInput } from "../../../../components/inputs";
+import {
+  BooleanInput,
+  NumberInput,
+  TextInput,
+} from "../../../../components/inputs";
 
 export const TemplateSidePanel = ({
   template,
@@ -45,6 +49,11 @@ export const TemplateSidePanel = ({
           onChange={(duration) =>
             setTemplate({ ...template, duration: duration || 1 })
           }
+        />
+        <BooleanInput
+          label="Public"
+          value={template.public}
+          onChange={(public_) => setTemplate({ ...template, public: public_ })}
         />
       </div>
     </div>

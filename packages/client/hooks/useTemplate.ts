@@ -1,10 +1,30 @@
 import { updateTemplate } from "@asius/sdk";
 import { CompProps, TemplateType } from "@asius/types";
-import { useCallback, useState } from "react";
+import { useEffect, useState } from "react";
 
 export const useTemplate = (starTemplate: TemplateType) => {
-  const [template, setTemplate] = useState<TemplateType>(starTemplate);
+  // eslint-disable-next-line prefer-const
+  let [template, setTemplate] = useState<TemplateType>(starTemplate);
   const [selected, setSelected] = useState("");
+
+  if (!template.isOwner)
+    setTemplate = () => {
+      alert("You have to clone this template to edit!");
+    };
+
+  useEffect(() => {
+    if (template.isOwner) {
+      const interval = setInterval(async () => {
+        await updateTemplate({
+          id: template.id || "",
+          template,
+        });
+      }, 5000);
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [template]);
 
   const setComp = (element: CompProps) => {
     const get = (comps: CompProps[]) => {
@@ -32,14 +52,6 @@ export const useTemplate = (starTemplate: TemplateType) => {
   };
   const selectedComp = find(template.comps);
 
-  const update = useCallback(async () => {
-    const updatedTemplate = await updateTemplate({
-      id: template.id || "",
-      template,
-    });
-    if (updatedTemplate) setTemplate(updatedTemplate);
-  }, [template]);
-
   const deleteComp = (id: string) => {
     setTemplate((t) => ({ ...t, comps: t.comps.filter((c) => c.id !== id) }));
     setSelected("");
@@ -56,7 +68,6 @@ export const useTemplate = (starTemplate: TemplateType) => {
   return {
     template,
     setComp,
-    update,
     selectedComp,
     setTemplate,
     deleteComp,

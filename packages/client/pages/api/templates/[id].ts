@@ -19,7 +19,7 @@ export default async function Template(
   const id = req.query.id as string;
   if (req.method === "GET") result = await getTemplate({ id }, { req, res });
   else if (req.method === "PUT")
-    result = await updateTemplate({ id, template: req.body });
+    result = await updateTemplate({ id, template: req.body }, { req, res });
   else if (req.method === "DELETE") result = await deleteTemplate({ id });
 
   if (!result) return res.status(404).end();
@@ -55,10 +55,13 @@ export const getTemplate = async (
   };
 };
 
-const updateTemplate = async ({
-  id,
-  template,
-}: UpdateTemplateInput): Promise<UpdateTemplateOutput | null> => {
+const updateTemplate = async (
+  { id, template }: UpdateTemplateInput,
+  reqRes?: ReqRes
+): Promise<UpdateTemplateOutput | null> => {
+  const session = await getServerSession(reqRes);
+  if (!session?.user?.email) return null;
+  // Todo check if user is owner
   const { comps, ...result } = await prisma.template.update({
     where: { id },
     data: {
@@ -68,9 +71,25 @@ const updateTemplate = async ({
       name: template.name,
       public: template.public,
       description: template.description,
+      fps: template.fps,
+      duration: template.duration,
     },
+    include: { user: true },
   });
-  return { ...result, comps: JSON.parse(comps) };
+  const isOwner = session.user.email === result.user.email;
+
+  return {
+    comps: JSON.parse(comps),
+    duration: result.duration,
+    fps: result.fps,
+    isOwner,
+    public: result.public,
+    width: result.width,
+    height: result.height,
+    description: result.description,
+    name: result.name,
+    id: result.id,
+  };
 };
 
 const deleteTemplate = async ({

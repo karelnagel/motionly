@@ -9,7 +9,9 @@ export default async function NewTemplate(
   res: NextApiResponse
 ) {
   let result = null;
-  if (req.method === "POST") result = postNewTemplate(req.body, { req, res });
+  if (req.method === "POST")
+    result = await postNewTemplate(req.body, { req, res });
+
   if (!result) return res.status(404).end;
   return res.status(200).json(result);
 }
@@ -19,11 +21,19 @@ const postNewTemplate = async (
   reqRes?: ReqRes
 ): Promise<PostNewTemplateOutput | null> => {
   const session = await getServerSession(reqRes);
+
+  if (!session?.user?.email) return null;
   const result = await prisma.template.create({
     data: {
-      ...input,
       comps: JSON.stringify(input.comps),
-      user: { connect: { email: session?.user?.email || undefined } },
+      width: input.width,
+      height: input.height,
+      duration: input.duration,
+      fps: input.fps,
+      name: input.name + " (Copy)",
+      description: input.description,
+      public: false,
+      user: { connect: { email: session.user.email } },
     },
   });
   return { ...result, comps: JSON.parse(result.comps) };

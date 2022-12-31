@@ -10,9 +10,9 @@
     "dependencies": {
         "@asius/types": "*",
         "@asius/video": "*",
-        "@remotion/player": "3.3.9",
-        "@remotion/cli": "3.3.9",
-        "remotion": "3.3.9"
+        "@remotion/player": "3.3.19",
+        "@remotion/cli": "3.3.19",
+        "remotion": "3.3.19"
     },
     "peerDependencies": {
         "react": ">=16.8.0",

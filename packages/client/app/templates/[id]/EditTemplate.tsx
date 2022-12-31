@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useShiftKey } from "../../../hooks/useShiftKey";
 import { TemplateType } from "@asius/types";
 import { useTemplate } from "../../../hooks/useTemplate";
@@ -22,7 +22,6 @@ export default function EditTemplate({
   const { playerRef, frame, isPlaying } = usePlayer();
 
   const {
-    update,
     template,
     selectedComp,
     setComp,
@@ -36,18 +35,15 @@ export default function EditTemplate({
   const [scale, setScale] = useState(0.2);
   const lockAspectRatio = useShiftKey();
 
-  useEffect(() => {
-    const interval = setInterval(() => update(), 5000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [update]);
-
   const sidePanelWidth = 350;
   const timelineHeigth = 250;
   return (
     <div className="bg-base-300  w-screen h-screen overflow-hidden flex flex-col">
-      <Header setSelected={setSelected} selected={selected} />
+      <Header
+        setSelected={setSelected}
+        selected={selected}
+        template={template}
+      />
       <div className=" w-full flex h-full">
         <div className="w-full relative h-full overflow-hidden">
           <div className="absolute top-0 left-0 flex items-center justify-center h-full w-full">

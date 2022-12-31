@@ -9,7 +9,7 @@ export const postNewTemplate = async (
   input: PostNewTemplateInput
 ): Promise<PostNewTemplateOutput | null> => {
   try {
-    const result = await axios.post(`${BASE_URL}/api/templates`, input);
+    const result = await axios.post(`${BASE_URL}/api/templates/new`, input);
     return result.data;
   } catch (e) {
     return null;
