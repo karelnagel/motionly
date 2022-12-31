@@ -37,11 +37,16 @@ export const Timeline = ({
               </div>
             )
           )}
-          <div
-            className="bg-red-500 h-8 w-1 absolute top-0 -translate-x-1/2 cursor-grab"
-            style={{
-              left: `${(frame / template.fps / template.duration) * 100}%`,
+          <input
+            type="range"
+            value={frame}
+            onChange={(e) => {
+              playerRef.current?.seekTo(Number(e.currentTarget.value));
             }}
+            step={1}
+            min={0}
+            max={template.duration * template.fps}
+            className="absolute top-0 left-0 w-full h-6 timeline"
           />
         </div>
       </div>
