@@ -28,6 +28,7 @@ export default function EditTemplate({
     addComp,
     deleteComp,
     selected,
+    saveInfo,
     setSelected,
   } = useTemplate(startTemplate);
 
@@ -38,6 +39,7 @@ export default function EditTemplate({
   return (
     <div className="bg-base-300  w-screen h-screen overflow-hidden flex flex-col">
       <Header
+        saveInfo={saveInfo}
         setSelected={setSelected}
         selected={selected}
         template={template}

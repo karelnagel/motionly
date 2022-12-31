@@ -7,10 +7,12 @@ export const Header = ({
   selected,
   setSelected,
   template,
+  saveInfo,
 }: {
   selected: string;
   setSelected: (s: string) => void;
   template: TemplateType;
+  saveInfo: string;
 }) => {
   const router = useRouter();
   const clone = async () => {
@@ -20,8 +22,8 @@ export const Header = ({
     router.push(`/templates/${newTemplate.id}`);
   };
   return (
-    <div className="w-full flex justify-between items-center bg-base-100 shadow-lg px-3 py-2 ">
-      <div className="flex space-x-2 items-center">
+    <div className="w-full grid grid-cols-3 place-items-center items-center bg-base-100 shadow-lg px-3 py-2 ">
+      <div className="flex space-x-2 items-center w-full">
         <Link href="/">
           <Image
             src={"/favicon.png"}
@@ -35,7 +37,15 @@ export const Header = ({
           <Image src="/asius.png" width={100} height={100} alt="logo" />
         </Link> */}
       </div>
-      {!template.isOwner && (
+      {template.isOwner ? (
+        <div
+          className={` font-semibold ${
+            saveInfo.includes("Error") ? "text-error" : ""
+          }`}
+        >
+          {saveInfo}
+        </div>
+      ) : (
         <div className="text-white bg-error flex p-2 space-x-3 rounded-lg items-center">
           <p>This template is read only, clone it to edit!</p>
           <button
@@ -46,7 +56,7 @@ export const Header = ({
           </button>
         </div>
       )}
-      <div className="flex items-center space-x-2 font-bold">
+      <div className="flex items-center space-x-2 font-bold w-full justify-end">
         <button
           onClick={() => setSelected("template")}
           className={`${

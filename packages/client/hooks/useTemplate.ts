@@ -6,6 +6,7 @@ export const useTemplate = (starTemplate: TemplateType) => {
   // eslint-disable-next-line prefer-const
   let [template, setTemplate] = useState<TemplateType>(starTemplate);
   const [selected, setSelected] = useState("");
+  const [saveInfo, setSaveInfo] = useState("");
 
   if (!template.isOwner)
     setTemplate = () => {
@@ -15,10 +16,12 @@ export const useTemplate = (starTemplate: TemplateType) => {
   useEffect(() => {
     if (template.isOwner) {
       const interval = setInterval(async () => {
-        await updateTemplate({
+        const result = await updateTemplate({
           id: template.id || "",
           template,
         });
+        if (!result) setSaveInfo("Error saving");
+        setSaveInfo(`Last saved ${new Date().toLocaleTimeString()}`);
       }, 5000);
       return () => {
         clearInterval(interval);
@@ -74,5 +77,6 @@ export const useTemplate = (starTemplate: TemplateType) => {
     addComp,
     selected,
     setSelected,
+    saveInfo,
   };
 };

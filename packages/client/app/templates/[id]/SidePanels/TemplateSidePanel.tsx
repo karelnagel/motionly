@@ -20,7 +20,7 @@ export const TemplateSidePanel = ({
     const result = await deleteTemplate({ id: template.id });
     if (!result) return alert("Failed to delete template");
     alert("Template deleted");
-    router.push("/templates");
+    router.push("/");
   };
   const cloneTemplate = async () => {
     const newTemplate = await postNewTemplate(template);
