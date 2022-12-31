@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useShiftKey } from "../../../hooks/useShiftKey";
 import { TemplateType } from "@asius/types";
 import { useTemplate } from "../../../hooks/useTemplate";
@@ -20,7 +20,7 @@ export default function EditTemplate({
   template: TemplateType;
 }) {
   const { playerRef, frame, isPlaying } = usePlayer();
-
+  const [isClient, setIsClient] = useState(false);
   const {
     template,
     selectedComp,
@@ -34,7 +34,9 @@ export default function EditTemplate({
 
   const [scale, setScale] = useState(0.2);
   const lockAspectRatio = useShiftKey();
-
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   const sidePanelWidth = 350;
   const timelineHeigth = 250;
   return (
@@ -47,17 +49,19 @@ export default function EditTemplate({
       <div className=" w-full flex h-full">
         <div className="w-full relative h-full overflow-hidden">
           <div className="absolute top-0 left-0 flex items-center justify-center h-full w-full">
-            <Player
-              playerRef={playerRef}
-              edit={{
-                lockAspectRatio,
-                scale,
-                select: setSelected,
-                selected,
-                setComp,
-              }}
-              template={template}
-            />
+            {isClient && (
+              <Player
+                playerRef={playerRef}
+                edit={{
+                  lockAspectRatio,
+                  scale,
+                  select: setSelected,
+                  selected,
+                  setComp,
+                }}
+                template={template}
+              />
+            )}
           </div>
           <PlayerControls
             scale={scale}
