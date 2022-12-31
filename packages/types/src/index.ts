@@ -24,12 +24,5 @@ export type TemplateType = {
   comps: CompProps[];
   isOwner?: boolean;
 };
-export interface EditableProps {
-  select: (id: string) => void;
-  selected: string;
-  setComp: (comp: CompProps) => void;
-  scale: number;
-  lockAspectRatio: boolean;
-}
 
 export type ProgressStatus = "pending" | "rendering" | "done" | "error";

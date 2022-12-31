@@ -1,9 +1,9 @@
-import { CSSProperties, useRef } from "react";
+import { createContext, CSSProperties, useContext, useRef } from "react";
 import { DivComp } from "./components/Div";
 import { TextComp } from "./components/Text";
 import { ImageComp } from "./components/Image";
 import { Sequence } from "remotion";
-import { CompProps, EditableProps } from "@asius/types";
+import { CompProps } from "@asius/types";
 import { AudioComp } from "./components/Audio";
 import { AudiogramComp } from "./components/Audiogram";
 import { GraphComp } from "./components/Graph";
@@ -13,31 +13,13 @@ import { ProgressBarComp } from "./components/ProgressBar";
 import { QRCodeComp } from "./components/QRCode";
 import { VideoComp } from "./components/Video";
 import { TranscriptionComp } from "./components/Transcription";
-import Moveable from "react-moveable";
 import { LottieComp } from "./components/Lottie";
 import { GifComp } from "./components/Gif";
 import { PathComp } from "./components/Path";
+import { useSelected } from "./SetSelectedContext";
 
-export const Component = ({
-  comp,
-  edit,
-}: {
-  comp: CompProps;
-  edit?: EditableProps;
-}) => {
-  const divRef = useRef<HTMLDivElement>(null);
-  const style: CSSProperties = {
-    cursor: "pointer",
-    display: "flex",
-    overflow: "hidden",
-    width: comp.width || "100%",
-    height: comp.height || "100%",
-    position: "absolute",
-    top: comp.y,
-    left: comp.x,
-    borderRadius: comp.borderRadius,
-    transform: `rotate(${comp.rotation || 0}deg)`, // For some reason, this messes up x and y
-  };
+export const Component = ({ comp }: { comp: CompProps }) => {
+  const { setSelected, divRef, selected } = useSelected();
   return (
     <Sequence
       from={comp.from ? Math.floor(comp.from * 30) : undefined}
@@ -46,55 +28,27 @@ export const Component = ({
       }
       layout="none"
     >
-      {edit?.selected === comp.id && (
-        <Moveable
-          target={divRef}
-          scale={edit.scale}
-          draggable={true}
-          resizable={true}
-          rotatable={true}
-          bounds=""
-          size={{
-            width: divRef.current?.getBoundingClientRect().width || 0,
-            height: divRef.current?.getBoundingClientRect().height || 0,
-          }}
-          position={{
-            x: comp.x,
-            y: comp.y,
-          }}
-          onDrag={(e) => {
-            console.log(e);
-            edit?.setComp({
-              ...comp,
-              x: comp.x + e.beforeDelta[0],
-              y: comp.y + e.beforeDelta[1],
-            });
-          }}
-          keepRatio={edit?.lockAspectRatio}
-          onResize={(e) => {
-            console.log(e);
-            edit.setComp({
-              ...comp,
-              width: e.width,
-              height: e.height,
-              x: comp.x + e.drag.beforeDelta[0],
-              y: comp.y + e.drag.beforeDelta[1],
-            });
-          }}
-          onRotate={(e) => {
-            edit?.setComp({ ...comp, rotation: e.absoluteRotation });
-          }}
-        />
-      )}
       <div
-        ref={divRef}
+        ref={selected === comp.id ? divRef : undefined}
         onClick={(e) => {
-          edit?.select(comp.id);
+          setSelected(comp.id);
           e.stopPropagation();
         }}
-        style={style}
+        style={{
+          cursor: "pointer",
+          display: "flex",
+          overflow: "hidden",
+          width: comp.width || "100%",
+          height: comp.height || "100%",
+          position: "absolute",
+          top: comp.y,
+          left: comp.x,
+          userSelect: "none",
+          borderRadius: comp.borderRadius,
+          transform: `rotate(${comp.rotation || 0}deg)`, // For some reason, this messes up x and y
+        }}
       >
-        {comp.type === "div" && <DivComp comp={comp} edit={edit} />}
+        {comp.type === "div" && <DivComp comp={comp} />}
         {comp.type === "image" && <ImageComp {...comp} />}
         {comp.type === "text" && <TextComp {...comp} />}
         {comp.type === "audio" && <AudioComp {...comp} />}

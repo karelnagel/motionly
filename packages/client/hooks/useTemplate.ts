@@ -54,7 +54,7 @@ export const useTemplate = (starTemplate: TemplateType) => {
 
   const deleteComp = (id: string) => {
     setTemplate((t) => ({ ...t, comps: t.comps.filter((c) => c.id !== id) }));
-    setSelected("");
+    setSelected(template.comps.filter((c) => c.id !== id)?.[0]?.id || "");
   };
   const addComp = (comp: CompProps) => {
     const id = Math.random().toString(36).substring(6);

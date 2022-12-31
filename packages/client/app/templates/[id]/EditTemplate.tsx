@@ -9,7 +9,7 @@ import { PlayerControls } from "./PlayerControls";
 import { EditCompPanel } from "./SidePanels/EditCompPanel";
 import { TemplateSidePanel } from "./SidePanels/TemplateSidePanel";
 import { ExportSidePanel } from "./SidePanels/ExportSidePanel";
-import { Player } from "../../../components/Player";
+import { Player } from "./Player";
 import { Timeline } from "./TimeLine";
 import { AddSidePanel } from "./SidePanels/AddSidePanel";
 import { PlayerRef } from "@remotion/player";
@@ -32,7 +32,6 @@ export default function EditTemplate({
   } = useTemplate(startTemplate);
 
   const [scale, setScale] = useState(0.2);
-  const lockAspectRatio = useShiftKey();
 
   const sidePanelWidth = 350;
   const timelineHeigth = 250;
@@ -48,14 +47,11 @@ export default function EditTemplate({
           <div className="absolute top-0 left-0 flex items-center justify-center h-full w-full">
             <Player
               playerRef={playerRef}
-              edit={{
-                lockAspectRatio,
-                scale,
-                select: setSelected,
-                selected,
-                setComp,
-              }}
+              scale={scale}
+              setComp={setComp}
+              setSelected={setSelected}
               template={template}
+              selectedComp={selectedComp}
             />
           </div>
           <PlayerControls
