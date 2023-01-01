@@ -46,3 +46,11 @@ export const getRandomImage = () => {
   const imageCount = 8;
   return `/bgs/${Math.ceil(Math.random() * imageCount)}.jpg`;
 };
+
+export const applyMods = (comps: CompProps[], mods?: Partial<CompProps>[]): CompProps[] => {
+  const newComps = comps.map((comp) => {
+    const mod = mods?.find((e) => e.id === comp.id)
+    return { ...comp, ...mod }
+  })
+  return newComps as CompProps[]
+}

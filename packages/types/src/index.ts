@@ -10,7 +10,7 @@ export interface SizeProps {
   height: number;
 }
 export type VideoInput = {
-  modifications?: CompProps[];
+  modifications?: Partial<CompProps>[];
 } & TemplateType;
 export type TemplateType = {
   id?: string;
@@ -25,4 +25,4 @@ export type TemplateType = {
   isOwner?: boolean;
 };
 
-export type ProgressStatus = "pending" | "rendering" | "done" | "error";
+export type ProgressStatus = "rendering" | "done" | "error" | undefined

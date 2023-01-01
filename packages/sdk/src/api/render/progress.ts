@@ -1,4 +1,4 @@
-import { BASE_URL } from "../../consts";
+import { baseUrl } from "../../consts";
 import axios from "axios";
 import { ProgressStatus } from "@asius/types";
 
@@ -10,10 +10,16 @@ export type GetProgressOutput = {
   fileUrl: string;
 };
 export const getRenderProgress = async (
-  props: GetProgressInput
-): Promise<GetProgressOutput> => {
-  const result = await axios.get(`${BASE_URL}/api/progress/`, {
-    params: { apiKey: process.env.ASIUS_API_KEY, ...props },
-  });
-  return result.data;
-};
+  { renderId }: GetProgressInput
+): Promise<GetProgressOutput | null> => {
+  try {
+    const result = await axios.get(`${baseUrl}/api/render/progress/`, {
+      params: { renderId },
+    });
+    return result.data;
+  }
+  catch (e) {
+    console.log(e)
+    return null;
+  }
+}

@@ -16,10 +16,11 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint","import", "prettier"],
+  "indent": [2, 4, { "SwitchCase": 1 }],
+  "plugins": ["react", "@typescript-eslint", "import", "prettier"],
   "rules": {
     "prettier/prettier": "error",
-    "react/react-in-jsx-scope": "off",
+    "react/react-in-jsx-scope": "off"
   },
   "ignorePatterns": ["node_modules", "dist"]
 }

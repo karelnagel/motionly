@@ -1,22 +1,23 @@
 import React from "react";
-import { Composition, Folder } from "remotion";
+import { Composition, Folder, getInputProps } from "remotion";
 import { Composition as Comp } from "./Composition";
-import { defaultComponents } from "@asius/types";
+import { defaultComponents, TemplateType } from "@asius/types";
 import { compositions } from "./compositions";
 
+const inputProps = getInputProps() as TemplateType;
+const props = Object.keys(inputProps).length
+  ? inputProps
+  : { height: 1080, width: 1080, fps: 30, duration: 60 };
 export const Root: React.FC = () => {
-  const height = 1080;
-  const width = 1080;
-  const fps = 30;
   return (
     <>
       <Composition
-        id="Composition"
+        id="Main"
         component={Comp}
-        durationInFrames={60 * fps}
-        fps={fps}
-        width={width}
-        height={height}
+        durationInFrames={props.duration * props.fps}
+        fps={props.fps}
+        width={props.width}
+        height={props.height}
         defaultProps={{
           comps: defaultComponents,
         }}
@@ -28,10 +29,10 @@ export const Root: React.FC = () => {
               key={i}
               id={`${key}-${comp.id}`}
               component={Comp}
-              fps={fps}
-              width={width}
-              durationInFrames={comp.duration * fps}
-              height={height}
+              fps={props.fps}
+              width={props.width}
+              durationInFrames={comp.duration * props.fps}
+              height={props.height}
               defaultProps={{ comps: [comp] }}
             />
           ))}

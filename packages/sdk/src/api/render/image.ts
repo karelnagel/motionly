@@ -1,18 +1,23 @@
-import { BASE_URL } from "../../consts";
+import { baseUrl } from "../../consts";
 import axios from "axios";
 import { ProgressStatus, VideoInput } from "@asius/types";
 
-export type RenderImageInput = VideoInput & { frame: number };
-export type RenderImageOutput = {
+export type RenderStillInput = VideoInput & { frame: number };
+export type RenderStillOutput = {
   fileUrl: string;
   cost: number;
   status: ProgressStatus;
+  renderId: string;
 };
-export const renderImage = async (
-  props: RenderImageInput
-): Promise<RenderImageOutput> => {
-  const result = await axios.post(`${BASE_URL}/api/render-image/`, props, {
-    params: { apiKey: process.env.ASIUS_API_KEY },
-  });
-  return result.data;
+export const renderStill = async (
+  props: RenderStillInput
+): Promise<RenderStillOutput | null> => {
+  try {
+    const result = await axios.post(`${baseUrl}/api/render/still/`, props);
+    return result.data;
+  }
+  catch (e) {
+    console.log(e)
+    return null;
+  }
 };

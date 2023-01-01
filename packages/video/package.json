@@ -8,9 +8,9 @@
         "dev": "tsc --watch",
         "preview": "remotion preview src/register.tsx",
         "render": "remotion render src/register.tsx",
-        "lambda:site": "npx remotion lambda sites create src/register.tsx --site-name=asius2",
+        "lambda:site": "npx remotion lambda sites create src/register.tsx --site-name=asius",
         "lambda:function": "npx remotion lambda functions deploy",
-        "lambda:render": "npx remotion lambda render asius2"
+        "lambda:render": "npx remotion lambda render asius"
     },
     "dependencies": {
         "@asius/types": "*",

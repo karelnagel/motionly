@@ -11,5 +11,11 @@
     "scripts": {
         "build": "tsc",
         "dev": "tsc --watch"
+    },
+    "peerDependencies": {
+        "react": ">=16.8.0"
+    },
+    "devDependencies": {
+        "react": "^18.0.0"
     }
 }
