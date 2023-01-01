@@ -105,7 +105,7 @@ export default function EditTemplate({
             template={template}
             setSelected={setSelected}
             playerRef={playerRef}
-            selectedComp={selectedComp}
+            selected={selected}
             setComp={setComp}
           />
         </div>
