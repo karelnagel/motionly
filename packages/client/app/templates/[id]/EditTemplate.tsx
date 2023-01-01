@@ -107,6 +107,7 @@ export default function EditTemplate({
             playerRef={playerRef}
             selected={selected}
             setComp={setComp}
+            setTemplate={setTemplate}
           />
         </div>
       </div>

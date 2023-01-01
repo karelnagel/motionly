@@ -27,7 +27,6 @@ export const PathComp = ({
     },
   });
   const evolution = evolvePath(anim, path);
-  console.log(evolution);
   return (
     <svg
       viewBox={`0 0 ${viewBoxWidth || width} ${viewBoxHeight || height}`}

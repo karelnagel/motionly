@@ -17,7 +17,6 @@ export const AudiogramComp = ({
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const audioData = useAudioData(src);
-  console.log("adsf");
   if (!audioData) {
     return null;
   }
@@ -26,7 +25,6 @@ export const AudiogramComp = ({
     2,
     Math.ceil(Math.log(maxVisibleBars / (mirror ? 2 : 1)) / Math.log(2))
   );
-  console.log(maxVisibleBars, numberOfSamples);
   const visualization = visualizeAudio({
     fps,
     frame,

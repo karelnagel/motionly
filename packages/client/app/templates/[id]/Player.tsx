@@ -99,7 +99,6 @@ export const Player = ({
           }}
           keepRatio={lockAspectRatio}
           onResize={({ height, width, delta, target }) => {
-            console.log(height, width);
             setComp({
               ...selectedComp,
               width: width || 1,

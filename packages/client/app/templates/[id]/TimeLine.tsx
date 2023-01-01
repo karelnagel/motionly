@@ -10,12 +10,14 @@ export const Timeline = ({
   playerRef,
   selected,
   setComp,
+  setTemplate,
 }: {
   setSelected: (s: string) => void;
   template: TemplateType;
   playerRef: RefObject<PlayerRef>;
   selected: string;
   setComp: (comp: CompProps) => void;
+  setTemplate: (template: TemplateType) => void;
 }) => {
   const frame = useCurrentPlayerFrame(playerRef);
 
@@ -33,7 +35,7 @@ export const Timeline = ({
                 }}
               >
                 <div
-                  className={"h-3  bg-black"}
+                  className={"h-3 bg-black"}
                   style={{ width: i % 2 === 0 ? 2 : 1 }}
                 />
                 <p className="text-sm">{i % 2 === 0 && Math.floor(i / 2)}</p>
@@ -62,6 +64,7 @@ export const Timeline = ({
             onClick={() => setSelected(comp.id)}
             setComp={setComp}
             template={template}
+            setTemplate={setTemplate}
           />
         ))}
       </div>
@@ -75,18 +78,20 @@ const TimelineComp = ({
   template,
   onClick,
   setComp,
+  setTemplate,
 }: {
   comp: CompProps;
   selected: string;
   template: TemplateType;
   onClick: () => void;
   setComp: (comp: CompProps) => void;
+  setTemplate: (template: TemplateType) => void;
 }) => {
   const divRef = useRef<HTMLDivElement>(null);
   const isSelected = selected === comp.id;
   return (
     <div key={comp.id} className="py-1 relative" onClick={onClick}>
-      <div className="p-2 rounded-lg w-full relative h-10 cursor-pointer ">
+      <div className="p-[8px] rounded-lg w-full relative h-[40px] cursor-pointer ">
         <div
           ref={isSelected ? divRef : undefined}
           className={`absolute top-0 h-full rounded-lg flex items-center px-2 ${
@@ -137,17 +142,32 @@ const TimelineComp = ({
               (x / template.duration) *
               (divRef.current?.parentElement?.offsetWidth || 1)
           )}
-          onDrag={({ delta }) => {
-            setComp({
+          onDrag={({ delta, beforeDist }) => {
+            const newComp = {
               ...comp,
               from:
                 comp.from +
                 (delta[0] / (divRef.current?.parentElement?.offsetWidth || 1)) *
                   template.duration,
+            };
+            const indexChange = Math.round(beforeDist[1] / 48);
+
+            if (!indexChange) return setComp(newComp);
+
+            const oldIndex = template.comps.findIndex((c) => c.id === comp.id);
+            const newIndex = oldIndex + indexChange;
+            const comps = [...template.comps];
+            comps.splice(oldIndex, 1);
+            comps.splice(newIndex, 0, newComp);
+            setTemplate({
+              ...template,
+              comps,
             });
           }}
-          onResize={({ width, delta, target, boundingWidth }) => {
-            const duration = (width / boundingWidth) * template.duration;
+          onResize={({ width, delta, target }) => {
+            const duration =
+              (width / (divRef.current?.parentElement?.offsetWidth || 1)) *
+              template.duration;
             setComp({
               ...comp,
               duration,
