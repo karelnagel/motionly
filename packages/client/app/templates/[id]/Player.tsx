@@ -75,7 +75,7 @@ export const Player = ({
           horizontalGuidelines={[
             ...comps
               .filter((c) => c.id !== selectedComp.id)
-              .map((c) => [c.y, c.y + c.height])
+              .map((c) => [c.x, c.x + c.width])
               .flat(),
             0,
             width / 2,
@@ -84,7 +84,7 @@ export const Player = ({
           verticalGuidelines={[
             ...comps
               .filter((c) => c.id !== selectedComp.id)
-              .map((c) => [c.x, c.x + c.width])
+              .map((c) => [c.y, c.y + c.height])
               .flat(),
             0,
             height / 2,

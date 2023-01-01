@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { useShiftKey } from "../../../hooks/useShiftKey";
 import { TemplateType } from "@asius/types";
 import { useTemplate } from "../../../hooks/useTemplate";
 import { Header } from "./Header";
@@ -106,7 +105,8 @@ export default function EditTemplate({
             template={template}
             setSelected={setSelected}
             playerRef={playerRef}
-            selected={selected}
+            selectedComp={selectedComp}
+            setComp={setComp}
           />
         </div>
       </div>
