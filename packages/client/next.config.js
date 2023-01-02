@@ -21,7 +21,15 @@ const nextConfig = {
         ]
       }
     ]
-  }
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'https://app.asius.dev/:path*',
+      },
+    ]
+  },
 };
 
 module.exports = nextConfig;
