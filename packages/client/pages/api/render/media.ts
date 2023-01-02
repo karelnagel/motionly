@@ -8,15 +8,10 @@ import { TemplateType } from "@asius/types";
 import { applyMods } from "../../../helpers";
 
 export default async function Media(req: NextApiRequest, res: NextApiResponse) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-    );
-    if (req.method == "OPTIONS") {
-        res.setHeader("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-        return res.status(200).json({});
-    }
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
 
     let result = null;
     if (req.method === "POST") result = await renderMedia({ ...req.body }, { req, res });
