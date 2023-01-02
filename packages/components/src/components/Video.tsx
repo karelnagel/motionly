@@ -1,14 +1,14 @@
-import { OffthreadVideo, Video } from "remotion";
-import { VideoCompProps } from "@asius/types";
+import { OffthreadVideo, Video as RemotionVideo } from "remotion";
+import { VideoProps } from "@asius/types";
 
-export const VideoComp = ({
+export const Video = ({
   objectFit,
   offthread,
   muted,
   startFrom,
   volume,
   src,
-}: VideoCompProps) => {
+}: VideoProps) => {
   const props = { muted, startFrom, volume, src };
   if (offthread)
     return (
@@ -23,7 +23,7 @@ export const VideoComp = ({
     );
   else
     return (
-      <Video
+      <RemotionVideo
         {...props}
         style={{
           height: "100%",

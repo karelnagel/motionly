@@ -2,7 +2,7 @@ export * from "./defaults/image";
 export * from "./defaults/components";
 
 // BASE
-export const CompAnimationTypes = {
+export const AnimationTypes = {
   opacity: "Opacity",
   scale: "Scale",
   translateX: "Translate X",
@@ -10,14 +10,14 @@ export const CompAnimationTypes = {
   rotate: "Rotate",
   skew: "Skew",
 };
-export interface CompAnimationProps {
-  type: keyof typeof CompAnimationTypes;
+export interface AnimationProps {
+  type: keyof typeof AnimationTypes;
   from: number;
   to: number;
   start: number;
   end: number;
 }
-export interface BaseCompProps {
+export interface BaseProps {
   id: string;
   height: number;
   width: number;
@@ -27,7 +27,7 @@ export interface BaseCompProps {
   rotation: number;
   from: number;
   duration: number;
-  componentAnimations?: CompAnimationProps[];
+  componentAnimations?: AnimationProps[];
 }
 
 // TEXT
@@ -67,7 +67,7 @@ export interface TextAnimation {
   duration: number;
   animation: keyof typeof TextAnimationAnimations;
 }
-export interface TextCompProps extends BaseCompProps {
+export interface TextProps extends BaseProps {
   type: "text";
   textStyle: TextStyle;
   text: string;
@@ -92,7 +92,7 @@ export interface TranscriptionAnimation {
   type: keyof typeof TranscriptionAnimationTypes;
   textStyle: TextStyle;
 }
-export interface TranscriptionCompProps extends BaseCompProps {
+export interface TranscriptionProps extends BaseProps {
   type: "transcription";
   words: TranscriptionWord[];
   textStyle: TextStyle;
@@ -110,12 +110,12 @@ export const ObjectFit = {
 };
 export type ObjectFitType = keyof typeof ObjectFit;
 
-export interface ImageCompProps extends BaseCompProps {
+export interface ImageProps extends BaseProps {
   type: "image";
   src: string;
   objectFit: ObjectFitType;
 }
-export interface VideoCompProps extends BaseCompProps {
+export interface VideoProps extends BaseProps {
   type: "video";
   src: string;
   objectFit: ObjectFitType;
@@ -124,7 +124,7 @@ export interface VideoCompProps extends BaseCompProps {
   volume?: number;
   offthread?: boolean;
 }
-export interface GifCompProps extends BaseCompProps {
+export interface GifProps extends BaseProps {
   type: "gif";
   src: string;
   objectFit: ObjectFitType;
@@ -136,7 +136,7 @@ export const AudiogramPosition = {
   end: "End",
   center: "Center",
 };
-export interface AudiogramCompProps extends BaseCompProps {
+export interface AudiogramProps extends BaseProps {
   type: "audiogram";
   src: string;
   position: keyof typeof AudiogramPosition;
@@ -150,7 +150,7 @@ export interface AudiogramCompProps extends BaseCompProps {
 }
 
 // AUDIO
-export interface AudioCompProps extends BaseCompProps {
+export interface AudioProps extends BaseProps {
   type: "audio";
   src: string;
   volume: number;
@@ -166,14 +166,14 @@ export const MockupTypes = {
   "apple-watch": "Apple Watch",
   "vs-code": "VS Code",
 };
-export interface MockupCompProps extends BaseCompProps {
+export interface MockupProps extends BaseProps {
   type: "mockup";
   children: CompProps[];
   mockupType: keyof typeof MockupTypes;
 }
 
 // MAP
-export interface MapCompProps extends BaseCompProps {
+export interface MapProps extends BaseProps {
   type: "map";
   location: {
     lat: number;
@@ -202,7 +202,7 @@ export const GraphTypes = {
   bar: "Bar",
   pie: "Pie",
 };
-export type GraphCompProps = BaseCompProps & {
+export type GraphProps = BaseProps & {
   type: "graph";
   values: number[];
   color?: string;
@@ -215,18 +215,18 @@ export type GraphCompProps = BaseCompProps & {
   };
 } & (
     | {
-        graphType: "line";
-        strokeWidth: number;
-      }
+      graphType: "line";
+      strokeWidth: number;
+    }
     | {
-        graphType: "bar";
-        gap?: number;
-        roundness?: number;
-      }
+      graphType: "bar";
+      gap?: number;
+      roundness?: number;
+    }
   );
 
 // QR CODE
-export interface QRCodeCompProps extends BaseCompProps {
+export interface QRCodeProps extends BaseProps {
   type: "qrcode";
   text: string;
   color?: string;
@@ -234,37 +234,37 @@ export interface QRCodeCompProps extends BaseCompProps {
 }
 
 // PROGRESS BAR
-export const ProgressBarTypes = {
+export const ProgressbarTypes = {
   spotify: "Spotify",
   line: "Line",
   circle: "Circle",
   square: "Square",
 };
-export const ProgressBarSquareCorners = {
+export const ProgressbarSquareCorners = {
   "top-left": "Top left",
   "top-right": "Top right",
 };
 
-export type ProgressBarCompProps = BaseCompProps & {
+export type ProgressbarProps = BaseProps & {
   type: "progressbar";
   color?: string;
-  progressBarType: keyof typeof ProgressBarTypes;
+  progressBarType: keyof typeof ProgressbarTypes;
   background?: string;
 } & (
     | {
-        progressBarType: "square";
-        barWidth: number;
-        corner: keyof typeof ProgressBarSquareCorners;
-      }
+      progressBarType: "square";
+      barWidth: number;
+      corner: keyof typeof ProgressbarSquareCorners;
+    }
     | {
-        progressBarType: "circle";
-        barWidth: number;
-      }
+      progressBarType: "circle";
+      barWidth: number;
+    }
     | { progressBarType: "line" | "spotify" }
   );
 
 // DIV
-export interface DivCompProps extends BaseCompProps {
+export interface DivProps extends BaseProps {
   type: "div";
   background?: string;
   children: CompProps[];
@@ -275,7 +275,7 @@ export const LottieDirections = {
   forward: "Forward",
   backward: "Backward",
 };
-export interface LottieCompProps extends BaseCompProps {
+export interface LottieProps extends BaseProps {
   type: "lottie";
   src: string;
   direction?: keyof typeof LottieDirections;
@@ -289,7 +289,7 @@ export const StrokeLinecap = {
   round: "Round",
   square: "Square",
 };
-export interface PathCompProps extends BaseCompProps {
+export interface PathProps extends BaseProps {
   type: "path";
   path: string;
   animation: {
@@ -306,18 +306,18 @@ export interface PathCompProps extends BaseCompProps {
 }
 
 export type CompProps =
-  | TextCompProps
-  | ImageCompProps
-  | DivCompProps
-  | VideoCompProps
-  | AudioCompProps
-  | AudiogramCompProps
-  | TranscriptionCompProps
-  | MockupCompProps
-  | MapCompProps
-  | GraphCompProps
-  | QRCodeCompProps
-  | ProgressBarCompProps
-  | LottieCompProps
-  | GifCompProps
-  | PathCompProps;
+  | TextProps
+  | ImageProps
+  | DivProps
+  | VideoProps
+  | AudioProps
+  | AudiogramProps
+  | TranscriptionProps
+  | MockupProps
+  | MapProps
+  | GraphProps
+  | QRCodeProps
+  | ProgressbarProps
+  | LottieProps
+  | GifProps
+  | PathProps;

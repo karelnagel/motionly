@@ -1,6 +1,6 @@
-import { GifCompProps } from "..";
+import { GifProps } from "..";
 
-export const defaultGifProps: GifCompProps = {
+export const defaultGifProps: GifProps = {
   id: "",
   type: "gif",
   height: 500,

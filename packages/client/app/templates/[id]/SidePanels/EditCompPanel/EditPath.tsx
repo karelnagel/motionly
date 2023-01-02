@@ -1,4 +1,4 @@
-import { PathCompProps, StrokeLinecap } from "@asius/types";
+import { PathProps, StrokeLinecap } from "@asius/types";
 import {
   ColorInput,
   NumberInput,
@@ -12,7 +12,7 @@ export const EditPath = ({
   comp,
   setComp,
 }: {
-  comp: PathCompProps;
+  comp: PathProps;
   setComp: SetComp;
 }) => {
   return (

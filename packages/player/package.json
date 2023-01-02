@@ -3,13 +3,14 @@
     "version": "1.0.0",
     "main": "dist/index.js",
     "license": "MIT",
+    "private": false,
     "scripts": {
         "build": "tsc",
         "dev": "tsc --watch"
     },
     "dependencies": {
         "@asius/types": "*",
-        "@asius/video": "*",
+        "@asius/components": "*",
         "@remotion/player": "3.3.19",
         "@remotion/cli": "3.3.19",
         "remotion": "3.3.19"

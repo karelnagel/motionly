@@ -1,7 +1,7 @@
 import { Img } from "remotion";
-import { ImageCompProps } from "@asius/types";
+import { ImageProps } from "@asius/types";
 
-export const ImageComp = ({ src, objectFit }: ImageCompProps) => {
+export const Image = ({ src, objectFit }: ImageProps) => {
   return (
     <Img
       src={src}

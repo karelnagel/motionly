@@ -1,4 +1,4 @@
-import { GraphCompProps, GraphTypes } from "@asius/types";
+import { GraphProps, GraphTypes } from "@asius/types";
 import {
   ColorInput,
   NumberInput,
@@ -11,7 +11,7 @@ export const EditGraph = ({
   comp,
   setComp,
 }: {
-  comp: GraphCompProps;
+  comp: GraphProps;
   setComp: SetComp;
 }) => {
   return (

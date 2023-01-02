@@ -1,6 +1,6 @@
-import { TextCompProps } from "..";
+import { TextProps } from "..";
 
-export const defaultTextProps: TextCompProps = {
+export const defaultTextProps: TextProps = {
   id: "",
   type: "text",
   height: 30,

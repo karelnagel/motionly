@@ -1,6 +1,6 @@
-import { ImageCompProps } from "..";
+import { ImageProps } from "..";
 
-export const defaultImageProps: ImageCompProps = {
+export const defaultImageProps: ImageProps = {
   id: "",
   type: "image",
   height: 500,

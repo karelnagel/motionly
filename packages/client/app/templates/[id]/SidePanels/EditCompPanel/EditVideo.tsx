@@ -1,4 +1,4 @@
-import { ObjectFit, VideoCompProps } from "@asius/types";
+import { ObjectFit, VideoProps } from "@asius/types";
 import {
   BooleanInput,
   NumberInput,
@@ -12,7 +12,7 @@ export const EditVideo = ({
   comp,
   setComp,
 }: {
-  comp: VideoCompProps;
+  comp: VideoProps;
   setComp: SetComp;
 }) => {
   return (

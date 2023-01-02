@@ -1,7 +1,7 @@
-import { DivCompProps } from "@asius/types";
+import { DivProps } from "@asius/types";
 import { Component } from "../Component";
 
-export const DivComp = ({ comp }: { comp: DivCompProps }) => {
+export const Div = ({ comp }: { comp: DivProps }) => {
   return (
     <div
       style={{

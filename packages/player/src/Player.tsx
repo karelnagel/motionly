@@ -1,5 +1,5 @@
 import { Player as RemotionPlayer } from "@remotion/player";
-import { Composition } from "@asius/video";
+import { Composition } from "@asius/components";
 import { PlayerProps } from "./PlayerProps";
 import { CompProps } from "@asius/types";
 

@@ -1,6 +1,6 @@
-import { GraphCompProps } from "..";
+import { GraphProps } from "..";
 
-export const defaultGraphProps: GraphCompProps = {
+export const defaultGraphProps: GraphProps = {
   id: "",
   type: "graph",
   height: 500,

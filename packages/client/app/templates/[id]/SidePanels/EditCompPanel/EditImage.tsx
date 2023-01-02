@@ -1,4 +1,4 @@
-import { ImageCompProps, ObjectFit } from "@asius/types";
+import { ImageProps, ObjectFit } from "@asius/types";
 import { SelectInput, TextInput } from "../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
@@ -7,7 +7,7 @@ export const EditImage = ({
   comp,
   setComp,
 }: {
-  comp: ImageCompProps;
+  comp: ImageProps;
   setComp: SetComp;
 }) => {
   return (

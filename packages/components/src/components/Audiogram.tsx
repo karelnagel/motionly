@@ -1,8 +1,8 @@
-import { AudiogramCompProps } from "@asius/types";
+import { AudiogramProps } from "@asius/types";
 import { useAudioData, visualizeAudio } from "@remotion/media-utils";
 import { useCurrentFrame, useVideoConfig } from "remotion";
 
-export const AudiogramComp = ({
+export const Audiogram = ({
   barWidth,
   roundness,
   src,
@@ -13,7 +13,7 @@ export const AudiogramComp = ({
   smoothing,
   mirror,
   width,
-}: AudiogramCompProps) => {
+}: AudiogramProps) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const audioData = useAudioData(src);

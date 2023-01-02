@@ -1,6 +1,6 @@
-import { AudioCompProps, videoUrl } from "..";
+import { AudioProps, videoUrl } from "..";
 
-export const defaultAudioProps: AudioCompProps = {
+export const defaultAudioProps: AudioProps = {
   id: "",
   type: "audio",
   height: 500,

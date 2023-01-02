@@ -1,4 +1,4 @@
-import { AudiogramCompProps, AudiogramPosition } from "@asius/types";
+import { AudiogramProps, AudiogramPosition } from "@asius/types";
 import {
   BooleanInput,
   ColorInput,
@@ -13,7 +13,7 @@ export const EditAudiogram = ({
   comp,
   setComp,
 }: {
-  comp: AudiogramCompProps;
+  comp: AudiogramProps;
   setComp: SetComp;
 }) => {
   return (

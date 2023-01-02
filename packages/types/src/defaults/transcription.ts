@@ -1,4 +1,4 @@
-import { TranscriptionCompProps, TranscriptionWord } from "..";
+import { TranscriptionProps, TranscriptionWord } from "..";
 
 export const defaultTranscriptionWords: TranscriptionWord[] = [
   {
@@ -1227,7 +1227,7 @@ export const defaultTranscriptionWords: TranscriptionWord[] = [
     end: 63.04,
   },
 ];
-export const defaultTranscriptionProps: TranscriptionCompProps = {
+export const defaultTranscriptionProps: TranscriptionProps = {
   id: "",
   type: "transcription",
   height: 500,

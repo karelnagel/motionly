@@ -1,6 +1,6 @@
-import { AudiogramCompProps, videoUrl } from "..";
+import { AudiogramProps, videoUrl } from "..";
 
-export const defaultAudiogramProps: AudiogramCompProps = {
+export const defaultAudiogramProps: AudiogramProps = {
   id: "",
   type: "audiogram",
   height: 500,

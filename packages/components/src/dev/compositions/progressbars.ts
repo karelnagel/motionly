@@ -1,7 +1,7 @@
-import { CompProps, ProgressBarCompProps } from "@asius/types";
+import { CompProps, ProgressbarProps } from "@asius/types";
 import { baseComp } from "./consts";
 
-const base: ProgressBarCompProps = {
+const base: ProgressbarProps = {
   ...baseComp,
   type: "progressbar",
   progressBarType: "line",

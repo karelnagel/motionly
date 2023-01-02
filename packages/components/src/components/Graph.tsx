@@ -1,7 +1,7 @@
-import { GraphCompProps } from "@asius/types";
+import { GraphProps } from "@asius/types";
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 
-export const GraphComp = ({
+export const Graph = ({
   animation,
   color,
   values,
@@ -9,7 +9,7 @@ export const GraphComp = ({
   width,
   max,
   ...props
-}: GraphCompProps) => {
+}: GraphProps) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const maxValue = max || Math.max(...values);

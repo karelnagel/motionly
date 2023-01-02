@@ -1,4 +1,4 @@
-import { MapCompProps } from "@asius/types";
+import { MapProps } from "@asius/types";
 import { useEffect, useState } from "react";
 import {
   ComposableMap,
@@ -8,7 +8,7 @@ import {
 } from "react-simple-maps";
 import { continueRender, delayRender } from "remotion";
 
-export const MapComp = ({
+export const Map = ({
   location,
   zoom,
   height,
@@ -18,7 +18,7 @@ export const MapComp = ({
   stroke,
   strokeWidth,
   marker,
-}: MapCompProps) => {
+}: MapProps) => {
   const coordinates: [number, number] = [location.lng, location.lat];
   const url =
     mapUrl ||

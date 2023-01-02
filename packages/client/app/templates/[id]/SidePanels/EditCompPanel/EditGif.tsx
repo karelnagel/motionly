@@ -1,4 +1,4 @@
-import { GifCompProps, ObjectFit } from "@asius/types";
+import { GifProps, ObjectFit } from "@asius/types";
 import { SelectInput, TextInput } from "../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
@@ -7,7 +7,7 @@ export const EditGif = ({
   comp,
   setComp,
 }: {
-  comp: GifCompProps;
+  comp: GifProps;
   setComp: SetComp;
 }) => {
   return (

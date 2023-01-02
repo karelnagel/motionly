@@ -1,6 +1,6 @@
-import { ProgressBarCompProps } from "..";
+import { ProgressbarProps } from "..";
 
-export const defaultProgressBar: ProgressBarCompProps = {
+export const defaultProgressBar: ProgressbarProps = {
   id: "",
   type: "progressbar",
   height: 500,

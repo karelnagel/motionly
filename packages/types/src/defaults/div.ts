@@ -1,6 +1,6 @@
-import { DivCompProps } from "..";
+import { DivProps } from "..";
 
-export const defaultDivProps: DivCompProps = {
+export const defaultDivProps: DivProps = {
   id: "",
   type: "div",
   height: 500,

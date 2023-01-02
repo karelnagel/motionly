@@ -1,6 +1,6 @@
-import { MapCompProps } from "..";
+import { MapProps } from "..";
 
-export const defaultMapProps: MapCompProps = {
+export const defaultMapProps: MapProps = {
   id: "",
   type: "map",
   height: 500,

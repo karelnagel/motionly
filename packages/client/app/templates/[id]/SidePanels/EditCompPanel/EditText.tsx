@@ -1,4 +1,4 @@
-import { TextCompProps } from "@asius/types";
+import { TextProps } from "@asius/types";
 import { TextInput } from "../../../../../components/inputs";
 import { EditTextStyle } from "./EditTextStyle";
 import { SetComp } from "./index";
@@ -8,7 +8,7 @@ export const EditText = ({
   comp,
   setComp,
 }: {
-  comp: TextCompProps;
+  comp: TextProps;
   setComp: SetComp;
 }) => {
   return (

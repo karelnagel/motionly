@@ -1,8 +1,8 @@
 import { evolvePath } from "@remotion/paths";
-import { PathCompProps } from "@asius/types";
+import { PathProps } from "@asius/types";
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 
-export const PathComp = ({
+export const Path = ({
   path,
   animation,
   strokeColor,
@@ -13,7 +13,7 @@ export const PathComp = ({
   viewBoxWidth,
   fillColor,
   strokeLinecap,
-}: PathCompProps) => {
+}: PathProps) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const anim = spring({

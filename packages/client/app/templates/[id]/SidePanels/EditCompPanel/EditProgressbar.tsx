@@ -1,7 +1,7 @@
 import {
-  ProgressBarCompProps,
-  ProgressBarSquareCorners,
-  ProgressBarTypes,
+  ProgressbarProps,
+  ProgressbarSquareCorners,
+  ProgressbarTypes,
 } from "@asius/types";
 import {
   ColorInput,
@@ -15,7 +15,7 @@ export const EditProgressbar = ({
   comp,
   setComp,
 }: {
-  comp: ProgressBarCompProps;
+  comp: ProgressbarProps;
   setComp: SetComp;
 }) => {
   return (
@@ -40,7 +40,7 @@ export const EditProgressbar = ({
             progressBarType: progressBarType as any,
           })
         }
-        options={Object.entries(ProgressBarTypes).map(([value, label]) => ({
+        options={Object.entries(ProgressbarTypes).map(([value, label]) => ({
           value,
           label,
         }))}
@@ -58,10 +58,10 @@ export const EditProgressbar = ({
             onChange={(corner) =>
               setComp({
                 ...comp,
-                corner: corner as keyof typeof ProgressBarSquareCorners,
+                corner: corner as keyof typeof ProgressbarSquareCorners,
               })
             }
-            options={Object.entries(ProgressBarSquareCorners).map(
+            options={Object.entries(ProgressbarSquareCorners).map(
               ([value, label]) => ({
                 value,
                 label,

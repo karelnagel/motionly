@@ -1,6 +1,6 @@
 import React from "react";
 import { Composition, Folder, getInputProps } from "remotion";
-import { Composition as Comp } from "./Composition";
+import { Composition as Comp } from "../Composition";
 import { defaultComponents, TemplateType } from "@asius/types";
 import { compositions } from "./compositions";
 

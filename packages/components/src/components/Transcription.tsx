@@ -1,4 +1,4 @@
-import { TranscriptionCompProps } from "@asius/types";
+import { TranscriptionProps } from "@asius/types";
 import { useEffect, useRef, useState } from "react";
 import {
   continueRender,
@@ -8,13 +8,13 @@ import {
 } from "remotion";
 import { getTextStyle } from "../helpers";
 
-export const TranscriptionComp = ({
+export const Transcription = ({
   textStyle,
   animation,
   words,
   scrollType,
   height,
-}: TranscriptionCompProps) => {
+}: TranscriptionProps) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const windowRef = useRef<HTMLDivElement>(null);

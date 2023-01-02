@@ -1,6 +1,6 @@
-import { MockupCompProps } from "..";
+import { MockupProps } from "..";
 
-export const defaultMockupProps: MockupCompProps = {
+export const defaultMockupProps: MockupProps = {
   id: "",
   type: "mockup",
   height: 500,

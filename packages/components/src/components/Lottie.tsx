@@ -1,14 +1,12 @@
-import { Lottie, LottieAnimationData } from "@remotion/lottie";
+import {
+  Lottie as RemotionLottie,
+  LottieAnimationData,
+} from "@remotion/lottie";
 import { useEffect, useState } from "react";
 import { continueRender, delayRender } from "remotion";
-import { LottieCompProps } from "@asius/types";
+import { LottieProps } from "@asius/types";
 
-export const LottieComp = ({
-  src,
-  direction,
-  loop,
-  playbackRate,
-}: LottieCompProps) => {
+export const Lottie = ({ src, direction, loop, playbackRate }: LottieProps) => {
   const [handle] = useState(() => delayRender("Loading Lottie animation"));
   const [animationData, setAnimationData] =
     useState<LottieAnimationData | null>(null);
@@ -28,7 +26,7 @@ export const LottieComp = ({
     return null;
   }
   return (
-    <Lottie
+    <RemotionLottie
       animationData={animationData}
       direction={direction}
       loop={loop}

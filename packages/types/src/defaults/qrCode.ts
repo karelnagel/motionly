@@ -1,6 +1,6 @@
-import { QRCodeCompProps } from "..";
+import { QRCodeProps } from "..";
 
-export const defaultQrCodeProps: QRCodeCompProps = {
+export const defaultQrCodeProps: QRCodeProps = {
   id: "",
   type: "qrcode",
   height: 500,

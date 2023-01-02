@@ -1,13 +1,13 @@
-import { ProgressBarCompProps } from "@asius/types";
+import { ProgressbarProps } from "@asius/types";
 import { useCurrentFrame, useVideoConfig } from "remotion";
 
-export const ProgressBarComp = ({
+export const Progressbar = ({
   color,
   background: backgroundColor,
   height,
   width,
   ...props
-}: ProgressBarCompProps) => {
+}: ProgressbarProps) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const progress = (frame / durationInFrames) * 100;

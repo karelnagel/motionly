@@ -1,4 +1,4 @@
-import { DivCompProps } from "@asius/types";
+import { DivProps } from "@asius/types";
 import { ColorInput } from "../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
@@ -7,7 +7,7 @@ export const EditDiv = ({
   comp,
   setComp,
 }: {
-  comp: DivCompProps;
+  comp: DivProps;
   setComp: SetComp;
 }) => {
   return (

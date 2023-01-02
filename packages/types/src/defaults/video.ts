@@ -1,6 +1,6 @@
-import { VideoCompProps, videoUrl } from "..";
+import { VideoProps, videoUrl } from "..";
 
-export const defaultVideoProps: VideoCompProps = {
+export const defaultVideoProps: VideoProps = {
   id: "",
   type: "video",
   height: 500,

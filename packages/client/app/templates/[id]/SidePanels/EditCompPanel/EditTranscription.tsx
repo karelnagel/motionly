@@ -1,6 +1,6 @@
 import {
   TranscriptionAnimationTypes,
-  TranscriptionCompProps,
+  TranscriptionProps,
   TranscriptionScrollType,
 } from "@asius/types";
 import { useState } from "react";
@@ -17,7 +17,7 @@ export const EditTranscription = ({
   comp,
   setComp,
 }: {
-  comp: TranscriptionCompProps;
+  comp: TranscriptionProps;
   setComp: SetComp;
 }) => {
   const [showJson, setShowJson] = useState(false);

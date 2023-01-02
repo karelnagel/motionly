@@ -1,6 +1,6 @@
-import { LottieCompProps } from "..";
+import { LottieProps } from "..";
 
-export const defaultLottieProps: LottieCompProps = {
+export const defaultLottieProps: LottieProps = {
   id: "",
   type: "lottie",
   height: 500,

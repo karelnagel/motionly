@@ -1,4 +1,4 @@
-import { MapCompProps } from "@asius/types";
+import { MapProps } from "@asius/types";
 import {
   ColorInput,
   NumberInput,
@@ -11,7 +11,7 @@ export const EditMap = ({
   comp,
   setComp,
 }: {
-  comp: MapCompProps;
+  comp: MapProps;
   setComp: SetComp;
 }) => {
   return (

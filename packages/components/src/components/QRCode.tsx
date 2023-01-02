@@ -1,15 +1,15 @@
-import { QRCodeCompProps } from "@asius/types";
-import QRCode from "react-qr-code";
+import { QRCodeProps } from "@asius/types";
+import ReactQRCode from "react-qr-code";
 
-export const QRCodeComp = ({
+export const QRCode = ({
   text,
   color,
   background: backgroundColor,
   height,
   width,
-}: QRCodeCompProps) => {
+}: QRCodeProps) => {
   return (
-    <QRCode
+    <ReactQRCode
       value={text}
       size={Math.min(height, width)}
       fgColor={color}

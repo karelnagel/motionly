@@ -1,7 +1,7 @@
-import { TextCompProps } from "@asius/types";
+import { TextProps } from "@asius/types";
 import { getTextStyle } from "../helpers";
 
-export const TextComp = ({ textStyle, text }: TextCompProps) => {
+export const Text = ({ textStyle, text }: TextProps) => {
   return (
     <p
       style={{

@@ -1,6 +1,6 @@
-import { PathCompProps } from "..";
+import { PathProps } from "..";
 
-export const defaultPathProps: PathCompProps = {
+export const defaultPathProps: PathProps = {
   id: "",
   type: "path",
   height: 500,

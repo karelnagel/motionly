@@ -1,6 +1,6 @@
 import { Player as RemotionPlayer, PlayerRef } from "@remotion/player";
 import { CompProps, TemplateType } from "@asius/types";
-import { Composition, SelectedContext } from "@asius/video";
+import { Composition, SelectedContext } from "../../../../components/dist";
 import { RefObject, useRef, useState } from "react";
 import { useShiftKey } from "../../../hooks/useShiftKey";
 import Moveable from "react-moveable";

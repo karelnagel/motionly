@@ -1,4 +1,4 @@
-import { LottieCompProps, LottieDirections } from "@asius/types";
+import { LottieProps, LottieDirections } from "@asius/types";
 import {
   BooleanInput,
   NumberInput,
@@ -12,7 +12,7 @@ export const EditLottie = ({
   comp,
   setComp,
 }: {
-  comp: LottieCompProps;
+  comp: LottieProps;
   setComp: SetComp;
 }) => {
   return (

@@ -1,4 +1,4 @@
-import { AudioCompProps } from "@asius/types";
+import { AudioProps } from "@asius/types";
 import { NumberInput, TextInput } from "../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
@@ -7,7 +7,7 @@ export const EditAudio = ({
   comp,
   setComp,
 }: {
-  comp: AudioCompProps;
+  comp: AudioProps;
   setComp: SetComp;
 }) => {
   return (

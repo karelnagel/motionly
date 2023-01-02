@@ -1,4 +1,4 @@
-import { QRCodeCompProps } from "@asius/types";
+import { QRCodeProps } from "@asius/types";
 import { ColorInput, TextInput } from "../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
@@ -7,7 +7,7 @@ export const EditQRCode = ({
   comp,
   setComp,
 }: {
-  comp: QRCodeCompProps;
+  comp: QRCodeProps;
   setComp: SetComp;
 }) => {
   return (
