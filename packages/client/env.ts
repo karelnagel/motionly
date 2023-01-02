@@ -6,6 +6,6 @@ export const region = process.env.NEXT_PUBLIC_REMOTION_REGION as any
 export const serveUrl = process.env.NEXT_PUBLIC_SERVE_URL || ""
 export const composition = "Main"
 
-export const docsUrl = process.env.NEXT_PUBLIC_DOCS_URL || ""
-export const apiUrl = process.env.NEXT_PUBLIC_API_URL || ""
+export const asiusUrl = process.env.NEXT_PUBLIC_ASIUS_URL || ""
+export const apiUrl = process.env.NEXT_PUBLIC_ASIUS_API_URL || ""
 export const url = process.env.NEXT_PUBLIC_URL || ""
