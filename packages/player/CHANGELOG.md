@@ -1,5 +1,11 @@
 # @asius/player
 
+## 1.0.2
+
+### Patch Changes
+
+- player changed to wait for client
+
 ## 1.0.1
 
 ### Patch Changes
