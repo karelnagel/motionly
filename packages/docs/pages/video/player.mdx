@@ -1,0 +1,55 @@
+# @asius/player
+
+lets you embed YouTube videos in your Next.js app.
+
+## Installation
+
+import { Tab, Tabs } from "nextra-theme-docs";
+
+<Tabs items={["yarn", "npm", "pnpm"]}>
+      <Tab>
+        ```bash copy 
+        yarn add @asius/player
+        ```
+      </Tab>
+      <Tab>
+        ```bash copy 
+        npm install @asius/player 
+        ```
+        </Tab>
+      <Tab>
+        ```bash copy 
+        pnpm add @asius/player 
+        ```
+      </Tab>
+    </Tabs>
+
+## Usage
+
+```jsx
+import { Player } from "@asius/player";
+
+export default function Home() {
+  return (
+    <Player
+      src="https://www.youtube.com/watch?v=1Q8fG0TtVAY"
+      width="100%"
+      height="100%"
+    />
+  );
+}
+```
+
+## Props
+
+| Name | Type | Default | Description |
+| :--- | :--- | :------ | :---------- |
+| [src](#sd) | string | - | The URL of the video to embed. |
+| width | string | 100% | The width of the player. |
+| height | string | 100% | The height of the player. |
+| autoplay | boolean | false | Whether the video should autoplay. |
+| controls | boolean | true | Whether the video should show controls. |
+| loop | boolean | false | Whether the video should loop. |
+| muted | boolean | false | Whether the video should be muted. |
+| playsinline | boolean | false | Whether the video should play inline. |
+| showinfo | boolean | true | Whether the video should show info. |

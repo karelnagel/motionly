@@ -1,15 +1,25 @@
 {
-    "index": "Introduction",
-    "another": "Another Page",
-    "advanced": "Advanced (A Folder)",
+    "index": {
+        "title": "Home",
+        "type": "page",
+        "display": "hidden",
+        "theme": {
+            "typesetting": "article",
+            "layout": "full"
+        }
+    },
+    "video": {
+        "title": "Video",
+        "type": "page"
+    },
     "about": {
         "title": "About",
         "type": "page"
     },
     "contact": {
-        "title": "Contact ↗",
+        "title": "Calendly ↗",
         "type": "page",
-        "href": "https://twitter.com/shuding_",
+        "href": "/calendly",
         "newWindow": true
     }
 }

@@ -22,5 +22,5 @@
     "prettier/prettier": "error",
     "react/react-in-jsx-scope": "off"
   },
-  "ignorePatterns": ["node_modules", "dist"]
+  "ignorePatterns": ["node_modules", "dist", "*.mdx"]
 }
