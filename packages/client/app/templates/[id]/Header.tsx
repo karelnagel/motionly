@@ -33,9 +33,6 @@ export const Header = ({
             className="-rotate-90 hover:scale-110 duration-200"
           />
         </Link>
-        {/* <Link href={process.env.NEXT_PUBLIC_DOCS_URL || ""} target="_blank">
-          <Image src="/asius.png" width={100} height={100} alt="logo" />
-        </Link> */}
       </div>
       {template.isOwner ? (
         <div

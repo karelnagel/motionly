@@ -3,6 +3,7 @@
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { asiusUrl } from "../env";
 import { getRandomImage } from "../helpers";
 
 export function Login() {
@@ -15,7 +16,7 @@ export function Login() {
         style={{ objectFit: "cover" }}
       />
       <div className="relative bg-base-100 shadow-2xl pt-4 pb-10 px-10 rounded-lg flex flex-col items-center max-w-[400px] w-full ">
-        <Link href={process.env.NEXT_PUBLIC_DOCS_URL || ""} target="_blank">
+        <Link href={asiusUrl} target="_blank">
           <Image src="/asius.png" alt="logo" width={200} height={60} />
         </Link>
         <div className="h-full flex flex-col space-y-6 items-center">
