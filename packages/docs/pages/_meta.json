@@ -10,16 +10,18 @@
     },
     "video": {
         "title": "Video",
+        "type": "page",
+        "theme": {
+            "typesetting": "article",
+            "layout": "full"
+        }
+    },
+    "docs": {
+        "title": "Docs",
         "type": "page"
     },
     "about": {
         "title": "About",
         "type": "page"
-    },
-    "contact": {
-        "title": "Calendly ↗",
-        "type": "page",
-        "href": "/calendly",
-        "newWindow": true
     }
 }

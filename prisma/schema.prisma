@@ -52,7 +52,6 @@ model User {
   emailVerified DateTime?
   image         String?
   accounts      Account[]
-  kuulutused      Kuulutus[]
   sessions      Session[]
   templates     Template[]
   files         File[]
@@ -69,21 +68,6 @@ model ApiKey {
 }
 
 model Template {
-  id          String    @id @default(cuid())
-  name        String    @default("")
-  description String    @default("")
-  width       Int
-  height      Int
-  duration    Int
-  fps         Int
-  createdAt   DateTime? @default(now())
-  updatedAt   DateTime? @updatedAt
-  public      Boolean   @default(false)
-  comps       String
-  userId      String
-  user        User      @relation(fields: [userId], references: [id])
-}
-model Kuulutus {
   id          String    @id @default(cuid())
   name        String    @default("")
   description String    @default("")

@@ -23,6 +23,7 @@ const config: DocsThemeConfig = {
     const { frontMatter } = useConfig();
     return (
       <>
+        <link rel="icon" type="image/x-icon" href="/favicondark.png"></link>
         <meta property="og:url" content={`https://my-app.com${asPath}`} />
         <meta property="og:title" content={frontMatter.title || "Nextra"} />
         <meta
