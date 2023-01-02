@@ -1,4 +1,3 @@
-import { createContext, CSSProperties, useContext, useRef } from "react";
 import { Div } from "./components/Div";
 import { Text } from "./components/Text";
 import { Image } from "./components/Image";

@@ -4,6 +4,7 @@ export * from "./defaults/image";
 export * from "./defaults/components";
 export * from "./components";
 export * from "./defaults";
+export * from "./applyModifications";
 
 export interface SizeProps {
   width: number;
