@@ -5,7 +5,7 @@ export * from "./Graph";
 export * from "./Image";
 export * from "./Map";
 export * from "./Mockup";
-export * from "./Progressbar";
+export * from "./Progressbar2";
 export * from "./QRCode";
 export * from "./Text";
 export * from "./Transcription";
