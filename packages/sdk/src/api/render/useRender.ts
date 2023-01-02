@@ -1,8 +1,8 @@
 import { ProgressStatus } from "@asius/types"
 import { useEffect, useState } from "react"
-import { renderStill, RenderStillInput } from "./api/render/image"
-import { getRenderProgress } from "./api/render/progress"
-import { renderMedia } from "./api/render/video"
+import { renderStill, RenderStillInput } from "./image"
+import { getRenderProgress } from "./progress"
+import { renderMedia } from "./video"
 
 export const useRender = (videoInput: RenderStillInput, refreshInterval: number = 1000) => {
     const [renderId, setRenderId] = useState("")
