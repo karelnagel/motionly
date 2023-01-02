@@ -62,35 +62,41 @@ const updateTemplate = async (
   const session = await getServerSession(reqRes);
   if (!session?.user?.email) return null;
   // Todo check if user is owner
-  const { comps, ...result } = await prisma.template.update({
-    where: { id },
-    data: {
-      comps: JSON.stringify(template.comps),
-      width: template.width,
-      height: template.height,
-      name: template.name,
-      public: template.public,
-      description: template.description,
-      fps: template.fps,
-      duration: template.duration,
-    },
-    include: { user: true },
-  });
-  const isOwner = session.user.email === result.user.email;
+  try {
+    const { comps, ...result } = await prisma.template.update({
+      where: { id },
+      data: {
+        comps: JSON.stringify(template.comps),
+        width: template.width,
+        height: template.height,
+        name: template.name,
+        public: template.public,
+        description: template.description,
+        fps: template.fps,
+        duration: template.duration,
+      },
+      include: { user: true },
+    });
+    const isOwner = session.user.email === result.user.email;
 
-  return {
-    comps: JSON.parse(comps),
-    duration: result.duration,
-    fps: result.fps,
-    isOwner,
-    public: result.public,
-    width: result.width,
-    height: result.height,
-    description: result.description,
-    name: result.name,
-    id: result.id,
+    return {
+      comps: JSON.parse(comps),
+      duration: result.duration,
+      fps: result.fps,
+      isOwner,
+      public: result.public,
+      width: result.width,
+      height: result.height,
+      description: result.description,
+      name: result.name,
+      id: result.id,
+    };
+  }
+  catch (e) {
+    console.log(e)
+    return null
   };
-};
+}
 
 const deleteTemplate = async ({
   id,
