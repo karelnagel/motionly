@@ -1,6 +1,5 @@
 {
     "render-media": "renderMedia()",
     "get-progress": "getProgress()",
-    "render-still": "renderStill()",
-    "use-render": "useRender()"
+    "render-still": "renderStill()"
 }

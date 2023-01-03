@@ -1,0 +1,6 @@
+{
+    "component-props": "ComponentProps",
+    "media-props": "MediaProps",
+    "still-props": "StillProps",
+    "render-output": "RenderOutput"
+}

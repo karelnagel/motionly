@@ -1,6 +1,6 @@
-# MediaProps
+# StillProps
 
-Props that you will need to pass to the sdk or player.
+Props that you will need to pass to the sdk or player for images
 
 ## in typescript
 
@@ -8,8 +8,7 @@ Props that you will need to pass to the sdk or player.
 export type MediaProps = {
   width: number;
   height: number;
-  duration: number;
-  fps: number;
+  frame: number;
   comps: ComponentProps[];
   modifications?: Partial<ComponentProps>[];
 };
@@ -23,19 +22,15 @@ video height
 
 video width
 
-### duration
+### frame
 
-video duration in seconds
+frame number to render or show
 
-### fps
-
-video fps
-
-### comps: [ComponentProps](/docs/component-props)[]
+### comps: [ComponentProps](/docs/types/component-props)[]
 
 base components that should be copied from the online editor
 
-### modifications: Partial&lt;[ComponentProps](/docs/component-props)&gt;[]
+### modifications: Partial&lt;[ComponentProps](/docs/types/component-props)&gt;[]
 
 modifications that you want to apply to the base components
 

@@ -1,8 +1,7 @@
 {
-    "index": "What is asius?",
+    "index": "What is Asius?",
     "components": "@asius/components",
     "player": "@asius/player",
     "sdk": "@asius/sdk",
-    "component-props": "ComponentProps",
-    "media-props": "MediaProps"
+    "types": "Types"
 }
