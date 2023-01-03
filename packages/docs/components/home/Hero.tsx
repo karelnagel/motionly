@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useTheme } from "nextra-theme-docs";
 
 export const Hero = () => {
+  const { theme } = useTheme();
+  const isLight = theme === "light";
   return (
     <div className="relative overflow-hidden">
       <div className="relative flex flex-col items-center w-full py-40 space-y-14">
@@ -19,7 +22,7 @@ export const Hero = () => {
             />
           </svg>
           <Image
-            src="/favicondark.png"
+            src={isLight ? "/favicon.png" : "/favicondark.png"}
             width={180}
             height={120}
             alt="logo"

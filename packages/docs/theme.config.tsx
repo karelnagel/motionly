@@ -2,13 +2,16 @@ import React from "react";
 import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
 import Image from "next/image";
 import useNextSeoProps from "./hooks/useNextSeoProps";
+import { Logo } from "./components/Logo";
 import { useRouter } from "next/router";
 
 const config: DocsThemeConfig = {
-  logo: <Image src="/asiusdark.png" width={100} height={200} alt="logo" />,
+  logo: <Logo />,
   project: {
     link: "https://github.com/karelnagel",
   },
+  gitTimestamp: false,
+  primaryHue: 210,
   chat: {
     icon: <Image src="/twitter.ico" alt="twitter" width={28} height={28} />,
     link: "https://twitter.com",
