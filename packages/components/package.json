@@ -1,6 +1,6 @@
 {
     "name": "@asius/components",
-    "version": "1.0.7",
+    "version": "1.1.0",
     "main": "dist/index.js",
     "private": false,
     "license": "MIT",

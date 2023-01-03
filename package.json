@@ -15,6 +15,7 @@
         "build": "turbo build",
         "start": "turbo start",
         "dev": "turbo dev",
+        "fast-publish": "chageset add; changeset version; changeset publish",
         "preview": "cd packages/components; yarn preview",
         "render": "cd packages/components; yarn render",
         "lambda:site": "cd packages/components; yarn lambda:site",

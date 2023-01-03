@@ -29,7 +29,7 @@ export const useTemplate = (starTemplate: TemplateType) => {
     }
   }, [template]);
 
-  const setComp = (element: AllComponents) => {
+  const setComp = (element: Partial<ComponentProps>) => {
     const get = (comps: ComponentProps[]) => {
       return comps.map((comp) => {
         if (comp.id === selected) {

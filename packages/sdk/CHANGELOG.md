@@ -1,5 +1,16 @@
 # @asius/sdk
 
+## 1.1.0
+
+### Minor Changes
+
+- Structure change
+
+### Patch Changes
+
+- Updated dependencies
+  - @asius/components@1.1.0
+
 ## 1.0.2
 
 ### Patch Changes
