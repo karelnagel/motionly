@@ -1,0 +1,56 @@
+# MediaProps
+
+Props that you will need to pass to the sdk or player.
+
+## in typescript
+
+```ts
+export type MediaProps = {
+  width: number;
+  height: number;
+  duration: number;
+  fps: number;
+  comps: ComponentProps[];
+  modifications?: Partial<ComponentProps>[];
+};
+```
+
+### height
+
+video height
+
+### width
+
+video width
+
+### duration
+
+video duration in seconds
+
+### fps
+
+video fps
+
+### comps: [ComponentProps](/docs/component-props)[]
+
+base components that should be copied from the online editor
+
+### modifications: Partial&lt;[ComponentProps](/docs/component-props)&gt;[]
+
+modifications that you want to apply to the base components
+
+```ts
+const modifications = [
+  {
+    id: "id_you_want_to_modify", //Text component
+    text: "new text",
+  },
+  {
+    id: "id_you_want_to_modify2", // Map component
+    location: {
+      lat: 20,
+      lng: 60,
+    },
+  },
+];
+```

@@ -1,0 +1,121 @@
+# ComponentProps
+
+Props for each component in the video
+
+## in typescript
+
+```ts
+export const AnimationTypes = {
+  opacity: "Opacity",
+  scale: "Scale",
+  translateX: "Translate X",
+  translateY: "Translate Y",
+  rotate: "Rotate",
+};
+export interface AnimationProps {
+  type: keyof typeof AnimationTypes;
+  from: number;
+  to: number;
+  start: number;
+  end: number;
+}
+
+export type BaseProps = {
+  id: string;
+  height: number;
+  width: number;
+  x: number;
+  y: number;
+  borderRadius: number;
+  rotation: number;
+  from: number;
+  duration: number;
+  componentAnimations?: AnimationProps[];
+};
+export type ComponentProps = (
+  | TextProps
+  | ImageProps
+  | DivProps
+  | VideoProps
+  | AudioProps
+  | AudiogramProps
+  | LottieProps
+  | TranscriptionProps
+  | MockupProps
+  | MapProps
+  | GraphProps
+  | QRCodeProps
+  | ProgressbarProps
+  | GifProps
+  | PathProps
+) &
+  BaseProps;
+```
+
+### id
+
+Used to modify the component after
+
+### height
+
+height in pixels, if 0 then it will be the same as the parent
+
+### width
+
+width in pixels, if 0 then it will be the same as the parent
+
+### x
+
+x position in pixels
+
+### y
+
+y position in pixels
+
+### borderRadius
+
+border radius in pixels
+
+### rotation
+
+rotation in degrees
+
+### from
+
+Start time in seconds
+
+### duration
+
+Component duration in seconds, if 0 then it will be until the end
+
+### componentAnimations
+
+Array of animations that will be applied to the component
+
+#### Animation props
+
+##### type
+
+- `opacity`
+- `scale`
+- `translateX`
+- `translateY`
+- `rotate`
+
+##### from
+
+start value
+
+##### to
+
+end value
+
+##### start
+
+start time in seconds
+
+##### end
+
+end time in seconds
+
+### Component specific props...

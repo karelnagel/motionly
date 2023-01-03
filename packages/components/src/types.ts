@@ -51,7 +51,7 @@ export interface SizeProps {
   height: number;
 }
 
-export type VideoInput = {
+export type MediaProps = {
   modifications?: Partial<ComponentProps>[];
 } & TemplateType;
 export type TemplateType = {
@@ -75,7 +75,6 @@ export const AnimationTypes = {
   translateX: "Translate X",
   translateY: "Translate Y",
   rotate: "Rotate",
-  skew: "Skew",
 };
 export interface AnimationProps {
   type: keyof typeof AnimationTypes;

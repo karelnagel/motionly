@@ -1,12 +1,12 @@
 # Using &lt;Player&gt;
 
-Easily add audiogram to your remotion videos
+
 
 ## Example NextJS app
 
-[View example website](https://asius-example.vercel.app/)
+[website](https://asius-example.vercel.app/)
 
-[View example github](https://github.com/karelnagel/asius-example)
+[github](https://github.com/karelnagel/asius-example)
 
 ## Usage
 
@@ -14,8 +14,12 @@ Easily add audiogram to your remotion videos
 
 If you want to miss this step and use live information straight from the editor, you can use [&lt;PlayerWithId&gt;](/docs/player/playerWithId) instead.
 
+This is a list of [ComponentProps](/docs/componentProps)
+
 ```ts copy filename="components.ts"
-export const components = [
+import { ComponentProps } from "@asius/components";
+
+export const components: ComponentProps[] = [
   {
     id: "r81ebs",
     type: "image",
@@ -135,13 +139,14 @@ export const components = [
 
 ```tsx copy filename="index.tsx"
 import { components } from "./components";
+import { ComponentProps } from "@asius/components";
 
 export default function Home() {
   const [text, setText] = useState("Your text");
   const [seed, setSeed] = useState("sdf");
   const [color, setColor] = useState("#FFFFFF");
 
-  const modifications = [
+  const modifications: Partial<ComponentProps>[] = [
     {
       id: "m5sk14y",
       text,
