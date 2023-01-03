@@ -5,7 +5,7 @@ import { compositions } from "./compositions";
 import { BaseProps, ComponentProps, TemplateType } from "../types";
 
 const inputProps = getInputProps() as TemplateType;
-const props = Object.keys(inputProps).length
+const template = Object.keys(inputProps).length
   ? inputProps
   : { height: 1080, width: 1080, fps: 30, duration: 60, comps: [] };
 export const Root: React.FC = () => {
@@ -14,12 +14,12 @@ export const Root: React.FC = () => {
       <Composition
         id="Main"
         component={Comp}
-        durationInFrames={props.duration * props.fps}
-        fps={props.fps}
-        width={props.width}
-        height={props.height}
+        durationInFrames={template.duration * template.fps}
+        fps={template.fps}
+        width={template.width}
+        height={template.height}
         defaultProps={{
-          comps: props.comps,
+          comps: template.comps,
         }}
       />
       {compositions.map((comp, i) => {
@@ -40,10 +40,10 @@ export const Root: React.FC = () => {
             key={i}
             id={`${compProps.type}`}
             component={Comp}
-            fps={props.fps}
-            width={props.width}
-            durationInFrames={props.duration * props.fps}
-            height={props.height}
+            fps={template.fps}
+            width={template.width}
+            durationInFrames={template.duration * template.fps}
+            height={template.height}
             defaultProps={{ comps: [compProps] }}
           />
         );

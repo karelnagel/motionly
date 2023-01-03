@@ -1,5 +1,5 @@
 import { updateTemplate } from "@asius/sdk";
-import { AllComponents, ComponentProps, TemplateType } from "@asius/components";
+import { ComponentProps, TemplateType } from "@asius/components";
 import { useEffect, useState } from "react";
 
 export const useTemplate = (starTemplate: TemplateType) => {

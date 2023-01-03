@@ -7,18 +7,36 @@ import { getServerSession } from "../../../lib/getServerSession";
 import { applyModifications, TemplateType } from "@asius/components";
 
 export default async function Still(req: NextApiRequest, res: NextApiResponse) {
-    let result = null;
-    if (req.method === "POST") result = await renderStill({ ...req.body }, { req, res });
+  let result = null;
+  if (req.method === "POST")
+    result = await renderStill({ ...req.body }, { req, res });
 
-    if (!result) return res.status(404).end();
-    return res.status(200).json(result);
+  if (!result) return res.status(404).end();
+  return res.status(200).json(result);
 }
 export const renderStill = async (
-    { modifications, comps, frame, ...template }: RenderStillInput,
-    reqRes?: ReqRes
+  { modifications, comps, frame, ...template }: RenderStillInput,
+  reqRes?: ReqRes
 ): Promise<RenderStillOutput | null> => {
-    const session = await getServerSession(reqRes);
-    const inputProps: TemplateType = { ...template, comps: applyModifications(comps, modifications) }
-    const { estimatedPrice, renderId, url } = await renderStillOnLambda({ serveUrl, imageFormat: "jpeg", privacy: "public", frame, composition, functionName, region, inputProps })
-    return { renderId, cost: estimatedPrice.accruedSoFar, fileUrl: url, status: "done" }
-}
+  const session = await getServerSession(reqRes);
+  const inputProps: TemplateType = {
+    ...template,
+    comps: applyModifications(comps, modifications),
+  };
+  const { estimatedPrice, renderId, url } = await renderStillOnLambda({
+    serveUrl,
+    imageFormat: "jpeg",
+    privacy: "public",
+    frame,
+    composition,
+    functionName,
+    region,
+    inputProps,
+  });
+  return {
+    renderId,
+    cost: estimatedPrice.accruedSoFar,
+    fileUrl: url,
+    status: "done",
+  };
+};

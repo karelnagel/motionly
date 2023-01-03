@@ -2,7 +2,7 @@ import { OffthreadVideo, Video as RemotionVideo } from "remotion";
 import { videoUrl } from "../helpers";
 import { ObjectFitType } from "../types";
 
-export type VideoProps ={
+export type VideoProps = {
   type: "video";
   src: string;
   objectFit: ObjectFitType;
@@ -10,7 +10,7 @@ export type VideoProps ={
   muted?: boolean;
   volume?: number;
   offthread?: boolean;
-}
+};
 
 export const defaultVideoProps: VideoProps = {
   type: "video",

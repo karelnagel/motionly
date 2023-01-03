@@ -7,19 +7,20 @@ const withNextra = require("nextra")({
     {
       source: "/calendly",
       destination: "https://calendly.com/asius/contact-us",
-      permanent: true
+      permanent: true,
     },
     {
       source: "/revolut",
       destination: "https://revolut.me/asius",
-      permanent: true
+      permanent: true,
     },
     {
       source: "/gpt3",
-      destination: "https://marketplace.visualstudio.com/items?itemName=KarelNagel.gpt3",
-      permanent: true
-    }
-  ]
-})
+      destination:
+        "https://marketplace.visualstudio.com/items?itemName=KarelNagel.gpt3",
+      permanent: true,
+    },
+  ],
+});
 
 module.exports = withNextra();

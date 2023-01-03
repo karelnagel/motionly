@@ -1,11 +1,11 @@
 import { Img } from "remotion";
 import { ObjectFitType } from "../types";
 
-export type ImageProps= {
+export type ImageProps = {
   type: "image";
   src: string;
   objectFit: ObjectFitType;
-}
+};
 
 export const defaultImageProps: ImageProps = {
   type: "image",

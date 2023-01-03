@@ -8,7 +8,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  console.log('loadsf')
+  console.log("loadsf");
   const session = await getServerSession();
   console.log(session);
   return (

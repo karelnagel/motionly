@@ -16,7 +16,6 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "indent": [2, 4, { "SwitchCase": 1 }],
   "plugins": ["react", "@typescript-eslint", "import", "prettier"],
   "rules": {
     "prettier/prettier": "error",

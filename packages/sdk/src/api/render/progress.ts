@@ -9,17 +9,16 @@ export type GetProgressOutput = {
   status: ProgressStatus;
   fileUrl: string;
 };
-export const getRenderProgress = async (
-  { renderId }: GetProgressInput
-): Promise<GetProgressOutput | null> => {
+export const getRenderProgress = async ({
+  renderId,
+}: GetProgressInput): Promise<GetProgressOutput | null> => {
   try {
     const result = await axios.get(`${baseUrl}/api/render/progress/`, {
       params: { renderId },
     });
     return result.data;
-  }
-  catch (e) {
-    console.log(e)
+  } catch (e) {
+    console.log(e);
     return null;
   }
-}
+};

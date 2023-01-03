@@ -1,4 +1,4 @@
-import { AllComponents, ComponentProps } from "@asius/components";
+import { ComponentProps } from "@asius/components";
 import { AiFillCopy, AiFillDelete } from "react-icons/ai";
 import { EditAnimation } from "./EditAnimation";
 import { EditAudio } from "./EditAudio";

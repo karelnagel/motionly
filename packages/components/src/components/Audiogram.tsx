@@ -8,7 +8,7 @@ export const AudiogramPosition = {
   end: "End",
   center: "Center",
 };
-export type AudiogramProps= {
+export type AudiogramProps = {
   type: "audiogram";
   src: string;
   position: keyof typeof AudiogramPosition;
@@ -21,7 +21,7 @@ export type AudiogramProps= {
   mirror?: boolean;
   height?: number;
   width?: number;
-}
+};
 
 export const defaultAudiogramProps: AudiogramProps = {
   type: "audiogram",

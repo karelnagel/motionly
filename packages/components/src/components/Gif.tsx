@@ -1,11 +1,11 @@
 import { Gif as RemotionGif } from "@remotion/gif";
 import { ObjectFitType } from "../types";
 
-export type GifProps ={
+export type GifProps = {
   type: "gif";
   src: string;
   objectFit: ObjectFitType;
-}
+};
 
 export const defaultGifProps: GifProps = {
   type: "gif",

@@ -1,4 +1,20 @@
-import { TextProps, ImageProps, DivProps, VideoProps, AudioProps, AudiogramProps, TranscriptionProps, MockupProps, MapProps, GraphProps, ProgressbarProps, GifProps, PathProps, LottieProps, QRCodeProps } from "./components";
+import {
+  TextProps,
+  ImageProps,
+  DivProps,
+  VideoProps,
+  AudioProps,
+  AudiogramProps,
+  TranscriptionProps,
+  MockupProps,
+  MapProps,
+  GraphProps,
+  ProgressbarProps,
+  GifProps,
+  PathProps,
+  LottieProps,
+  QRCodeProps,
+} from "./components";
 
 export const ObjectFit = {
   cover: "cover",
@@ -51,8 +67,7 @@ export type TemplateType = {
   isOwner?: boolean;
 };
 
-export type ProgressStatus = "rendering" | "done" | "error" | undefined
-
+export type ProgressStatus = "rendering" | "done" | "error" | undefined;
 
 export const AnimationTypes = {
   opacity: "Opacity",
@@ -70,14 +85,14 @@ export interface AnimationProps {
   end: number;
 }
 
-export type AllComponents = TextProps
+export type AllComponents =
+  | TextProps
   | ImageProps
   | DivProps
   | VideoProps
   | AudioProps
   | AudiogramProps
   | LottieProps
-
   | TranscriptionProps
   | MockupProps
   | MapProps
@@ -86,7 +101,6 @@ export type AllComponents = TextProps
   | ProgressbarProps
   | GifProps
   | PathProps;
-
 
 export type BaseProps = {
   id: string;
@@ -99,6 +113,6 @@ export type BaseProps = {
   from: number;
   duration: number;
   componentAnimations?: AnimationProps[];
-}
+};
 
 export type ComponentProps = BaseProps & AllComponents;

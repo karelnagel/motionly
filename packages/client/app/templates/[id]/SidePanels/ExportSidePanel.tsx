@@ -39,6 +39,7 @@ export const ExportSidePanel = ({ template }: { template: TemplateType }) => {
             download
             target="_blank"
             className="text-primary font-semibold hover:scale-110 duration-200"
+            rel="noreferrer"
           >
             LINK
           </a>

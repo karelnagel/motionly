@@ -11,9 +11,8 @@ export const renderMedia = async (
   try {
     const result = await axios.post(`${baseUrl}/api/render/media/`, props);
     return result.data;
-  }
-  catch (e) {
-    console.log(e)
+  } catch (e) {
+    console.log(e);
     return null;
   }
 };

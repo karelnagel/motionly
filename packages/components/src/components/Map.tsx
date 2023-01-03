@@ -7,7 +7,7 @@ import {
 } from "react-simple-maps";
 import { continueRender, delayRender } from "remotion";
 
-export type MapProps ={
+export type MapProps = {
   type: "map";
   location: {
     lat: number;
@@ -28,7 +28,7 @@ export type MapProps ={
     start: number;
     end: number;
   };
-}
+};
 
 export const defaultMapProps: MapProps = {
   type: "map",

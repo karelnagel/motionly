@@ -1,3 +1,33 @@
-import { defaultAudiogramProps, defaultAudioProps, defaultDivProps, defaultGifProps, defaultImageProps, defaultLottieProps, defaultMapProps, defaultMockupProps, defaultPathProps, defaultProgressbar, defaultQRCodeProps, defaultTextProps, defaultTranscriptionProps, defaultVideoProps } from "../components";
+import {
+  defaultAudiogramProps,
+  defaultAudioProps,
+  defaultDivProps,
+  defaultGifProps,
+  defaultImageProps,
+  defaultLottieProps,
+  defaultMapProps,
+  defaultMockupProps,
+  defaultPathProps,
+  defaultProgressbar,
+  defaultQRCodeProps,
+  defaultTextProps,
+  defaultTranscriptionProps,
+  defaultVideoProps,
+} from "../components";
 
-export const compositions = [defaultAudioProps, defaultAudiogramProps, defaultDivProps, defaultGifProps, defaultImageProps, defaultLottieProps, defaultMapProps, defaultMockupProps, defaultPathProps, defaultProgressbar, defaultQRCodeProps, defaultTextProps, defaultTranscriptionProps, defaultVideoProps]
+export const compositions = [
+  defaultAudioProps,
+  defaultAudiogramProps,
+  defaultDivProps,
+  defaultGifProps,
+  defaultImageProps,
+  defaultLottieProps,
+  defaultMapProps,
+  defaultMockupProps,
+  defaultPathProps,
+  defaultProgressbar,
+  defaultQRCodeProps,
+  defaultTextProps,
+  defaultTranscriptionProps,
+  defaultVideoProps,
+];

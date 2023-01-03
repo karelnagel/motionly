@@ -14,17 +14,17 @@ export const TextAnimationAnimations = {
   "slide-right": "Slide right",
   scale: "Scale",
 };
-export type TextAnimation ={
+export type TextAnimation = {
   type: keyof typeof TextAnimationTypes;
   duration: number;
   animation: keyof typeof TextAnimationAnimations;
-}
-export type TextProps= {
+};
+export type TextProps = {
   type: "text";
   textStyle: TextStyle;
   text: string;
   animation?: TextAnimation;
-}
+};
 
 export const defaultTextProps: TextProps = {
   type: "text",

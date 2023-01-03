@@ -6,7 +6,7 @@ export const StrokeLinecap = {
   round: "Round",
   square: "Square",
 };
-export type PathProps ={
+export type PathProps = {
   type: "path";
   path: string;
   animation: {
@@ -22,7 +22,7 @@ export type PathProps ={
   strokeLinecap?: keyof typeof StrokeLinecap;
   width: number;
   height: number;
-}
+};
 
 export const defaultPathProps: PathProps = {
   type: "path",

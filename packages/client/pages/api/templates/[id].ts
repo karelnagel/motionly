@@ -91,12 +91,11 @@ const updateTemplate = async (
       name: result.name,
       id: result.id,
     };
+  } catch (e) {
+    console.log(e);
+    return null;
   }
-  catch (e) {
-    console.log(e)
-    return null
-  };
-}
+};
 
 const deleteTemplate = async ({
   id,

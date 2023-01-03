@@ -1,12 +1,12 @@
 import ReactQRCode from "react-qr-code";
 
-export type QRCodeProps= {
+export type QRCodeProps = {
   type: "qrcode";
   text: string;
   color?: string;
   background?: string;
   size?: number;
-}
+};
 
 export const defaultQRCodeProps: QRCodeProps = {
   type: "qrcode",

@@ -8,11 +8,11 @@ export const MockupTypes = {
   "apple-watch": "Apple Watch",
   "vs-code": "VS Code",
 };
-export type MockupProps ={
+export type MockupProps = {
   type: "mockup";
   children: ComponentProps[];
   mockupType: keyof typeof MockupTypes;
-}
+};
 
 export const defaultMockupProps: MockupProps = {
   type: "mockup",

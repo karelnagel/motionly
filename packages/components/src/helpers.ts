@@ -16,13 +16,14 @@ export const getTextStyle = ({
     ...textStyles,
     textShadow: outline
       ? new Array(shadowCount)
-        .fill(0)
-        .map(
-          (_, i) =>
-            `${Math.cos(((i + 1) / shadowCount) * Math.PI * 2) * width}px ${Math.sin(((i + 1) / shadowCount) * Math.PI * 2) * width
-            }px ${outline.color}`
-        )
-        .join(", ")
+          .fill(0)
+          .map(
+            (_, i) =>
+              `${Math.cos(((i + 1) / shadowCount) * Math.PI * 2) * width}px ${
+                Math.sin(((i + 1) / shadowCount) * Math.PI * 2) * width
+              }px ${outline.color}`
+          )
+          .join(", ")
       : undefined,
   };
 };

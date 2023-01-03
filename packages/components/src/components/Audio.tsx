@@ -1,12 +1,12 @@
 import { Audio as RemotionAudio } from "remotion";
 import { videoUrl } from "../helpers";
 
-export type AudioProps ={
+export type AudioProps = {
   type: "audio";
   src: string;
   volume: number;
   startFrom: number;
-}
+};
 
 export const defaultAudioProps: AudioProps = {
   type: "audio",
