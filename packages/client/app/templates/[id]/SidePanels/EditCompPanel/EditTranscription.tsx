@@ -2,7 +2,7 @@ import {
   TranscriptionAnimationTypes,
   TranscriptionProps,
   TranscriptionScrollType,
-} from "@asius/types";
+} from "@asius/components";
 import { useState } from "react";
 import {
   NumberInput,

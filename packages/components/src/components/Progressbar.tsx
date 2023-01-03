@@ -1,11 +1,51 @@
-import { ProgressbarProps } from "@asius/types";
 import { useCurrentFrame, useVideoConfig } from "remotion";
+
+export const ProgressbarTypes = {
+  spotify: "Spotify",
+  line: "Line",
+  circle: "Circle",
+  square: "Square",
+};
+export const ProgressbarSquareCorners = {
+  "top-left": "Top left",
+  "top-right": "Top right",
+};
+
+export type ProgressbarProps = {
+  type: "progressbar";
+  color?: string;
+  progressBarType: keyof typeof ProgressbarTypes;
+  background?: string;
+  height: number;
+  width: number;
+} & (
+  | {
+      progressBarType: "square";
+      barWidth: number;
+      corner: keyof typeof ProgressbarSquareCorners;
+    }
+  | {
+      progressBarType: "circle";
+      barWidth: number;
+    }
+  | { progressBarType: "line" | "spotify" }
+);
+
+export const defaultProgressbar: ProgressbarProps = {
+  type: "progressbar",
+  height: 500,
+  width: 500,
+  barWidth: 10,
+  corner: "top-left",
+  color: "#ff00ffff",
+  progressBarType: "square",
+};
 
 export const Progressbar = ({
   color,
-  background: backgroundColor,
   height,
   width,
+  background: backgroundColor,
   ...props
 }: ProgressbarProps) => {
   const frame = useCurrentFrame();
@@ -34,7 +74,7 @@ export const Progressbar = ({
         />
       </div>
     );
-    
+
   if (props.progressBarType === "spotify")
     return (
       <div

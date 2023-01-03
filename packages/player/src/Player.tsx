@@ -1,7 +1,7 @@
 import { Player as RemotionPlayer } from "@remotion/player";
 import { Composition } from "@asius/components";
 import { PlayerProps } from "./PlayerProps";
-import { applyModifications } from "@asius/types";
+import { applyModifications } from "@asius/components";
 import { useEffect, useState } from "react";
 
 export const Player = (props: PlayerProps) => {

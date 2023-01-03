@@ -1,17 +1,28 @@
-import { QRCodeProps } from "@asius/types";
 import ReactQRCode from "react-qr-code";
+
+export type QRCodeProps= {
+  type: "qrcode";
+  text: string;
+  color?: string;
+  background?: string;
+  size?: number;
+}
+
+export const defaultQRCodeProps: QRCodeProps = {
+  type: "qrcode",
+  text: "https://www.youtube.com/watch?v=QH2-TGUlwu4",
+};
 
 export const QRCode = ({
   text,
   color,
   background: backgroundColor,
-  height,
-  width,
+  size,
 }: QRCodeProps) => {
   return (
     <ReactQRCode
       value={text}
-      size={Math.min(height, width)}
+      size={size}
       fgColor={color}
       bgColor={backgroundColor}
     />

@@ -1,5 +1,48 @@
-import { GraphProps } from "@asius/types";
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
+
+export const GraphTypes = {
+  line: "Line",
+  bar: "Bar",
+  pie: "Pie",
+};
+
+export type GraphProps = {
+  type: "graph";
+  values: number[];
+  color?: string;
+  graphType: keyof typeof GraphTypes;
+  max?: number;
+  min?: number;
+  height: number;
+  width: number;
+  animation?: {
+    start: number;
+    duration: number;
+  };
+} & (
+  | {
+      graphType: "line";
+      strokeWidth: number;
+    }
+  | {
+      graphType: "bar";
+      gap?: number;
+      roundness?: number;
+    }
+);
+
+export const defaultGraphProps: GraphProps = {
+  type: "graph",
+  graphType: "line",
+  values: [
+    2, 5, 2, 9, 5, 3, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+    19, 20,
+  ],
+  color: "#000000",
+  strokeWidth: 1,
+  height: 500,
+  width: 500,
+};
 
 export const Graph = ({
   animation,

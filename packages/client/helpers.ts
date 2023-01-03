@@ -1,4 +1,4 @@
-import { CompProps } from "@asius/types";
+import { ComponentProps } from "@asius/components";
 
 export const percentToHex = (p: number) => {
   const intValue = Math.round((p / 100) * 255); // map percent to nearest integer (0 - 255)
@@ -25,7 +25,7 @@ export function hexToRGBA(hex?: string) {
 }
 
 type Font = { family: string; weight: number };
-export function getFonts(comps: CompProps[]): Font[] {
+export function getFonts(comps: ComponentProps[]): Font[] {
   return comps
     .map((e) => {
       if (e.type === "text")
@@ -46,11 +46,3 @@ export const getRandomImage = () => {
   const imageCount = 8;
   return `/bgs/${Math.ceil(Math.random() * imageCount)}.jpg`;
 };
-
-export const applyMods = (comps: CompProps[], mods?: Partial<CompProps>[]): CompProps[] => {
-  const newComps = comps.map((comp) => {
-    const mod = mods?.find((e) => e.id === comp.id)
-    return { ...comp, ...mod }
-  })
-  return newComps as CompProps[]
-}

@@ -1,4 +1,4 @@
-import { ProgressStatus } from "@asius/types"
+import { ProgressStatus } from "@asius/components"
 import { useEffect, useState } from "react"
 import { renderStill, RenderStillInput } from "./image"
 import { getRenderProgress } from "./progress"

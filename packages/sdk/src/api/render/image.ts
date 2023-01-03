@@ -1,6 +1,6 @@
 import { baseUrl } from "../../consts";
 import axios from "axios";
-import { ProgressStatus, VideoInput } from "@asius/types";
+import { ProgressStatus, VideoInput } from "@asius/components";
 
 export type RenderStillInput = VideoInput & { frame: number };
 export type RenderStillOutput = {

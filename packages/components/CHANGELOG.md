@@ -24,7 +24,7 @@
 
 - idk
 - Updated dependencies
-  - @asius/types@2.0.1
+  - @asius/components@2.0.1
 
 ## 1.0.3
 
@@ -44,4 +44,4 @@
 
 - test
 - Updated dependencies
-  - @asius/types@1.0.1
+  - @asius/components@1.0.1

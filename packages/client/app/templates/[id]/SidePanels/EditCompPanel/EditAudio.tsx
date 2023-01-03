@@ -1,4 +1,4 @@
-import { AudioProps } from "@asius/types";
+import { AudioProps } from "@asius/components";
 import { NumberInput, TextInput } from "../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";

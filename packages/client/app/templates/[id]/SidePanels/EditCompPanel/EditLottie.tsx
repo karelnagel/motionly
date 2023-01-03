@@ -1,4 +1,4 @@
-import { LottieProps, LottieDirections } from "@asius/types";
+import { LottieProps, LottieDirections } from "@asius/components";
 import {
   BooleanInput,
   NumberInput,

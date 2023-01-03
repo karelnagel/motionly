@@ -2,7 +2,7 @@ import {
   ProgressbarProps,
   ProgressbarSquareCorners,
   ProgressbarTypes,
-} from "@asius/types";
+} from "@asius/components";
 import {
   ColorInput,
   NumberInput,

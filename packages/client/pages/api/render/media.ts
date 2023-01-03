@@ -4,8 +4,7 @@ import { ReqRes } from "../../../types";
 import { renderMediaOnLambda } from "@remotion/lambda";
 import { functionName, region, serveUrl } from "../../../env";
 import { getServerSession } from "../../../lib/getServerSession";
-import { TemplateType } from "@asius/types";
-import { applyMods } from "../../../helpers";
+import { applyModifications, TemplateType } from "@asius/components";
 
 export default async function Media(req: NextApiRequest, res: NextApiResponse) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -24,7 +23,7 @@ export const renderMedia = async (
     reqRes?: ReqRes
 ): Promise<RenderMediaOutput | null> => {
     const session = await getServerSession(reqRes);
-    const inputProps: TemplateType = { ...template, comps: applyMods(comps, modifications) }
+    const inputProps: TemplateType = { ...template, comps: applyModifications(comps, modifications) }
     const { renderId } = await renderMediaOnLambda({ serveUrl, codec: "h264", composition: "Main", functionName, region, inputProps })
     return { renderId }
 }

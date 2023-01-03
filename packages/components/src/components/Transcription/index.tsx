@@ -1,4 +1,3 @@
-import { TranscriptionProps } from "@asius/types";
 import { useEffect, useRef, useState } from "react";
 import {
   continueRender,
@@ -6,7 +5,10 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { getTextStyle } from "../helpers";
+import { getTextStyle } from "../../helpers";
+import { TranscriptionProps } from "./types";
+export * from "./types";
+export * from "./default";
 
 export const Transcription = ({
   textStyle,

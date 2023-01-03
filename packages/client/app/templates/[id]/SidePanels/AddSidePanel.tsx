@@ -1,5 +1,7 @@
 import {
-  CompProps,
+  AllComponents,
+  ComponentProps,
+  BaseProps,
   defaultAudiogramProps,
   defaultAudioProps,
   defaultDivProps,
@@ -10,22 +12,34 @@ import {
   defaultMapProps,
   defaultMockupProps,
   defaultPathProps,
-  defaultProgressBar,
-  defaultQrCodeProps,
+  defaultProgressbar,
+  defaultQRCodeProps,
   defaultTextProps,
   defaultVideoProps,
-} from "@asius/types";
-import { defaultTranscriptionProps } from "@asius/types/src/defaults/transcription";
+  defaultTranscriptionProps,
+} from "@asius/components";
 
 export const AddSidePanel = ({
   addComp,
 }: {
-  addComp: (comp: CompProps) => void;
+  addComp: (comp: ComponentProps) => void;
 }) => {
-  const Add = (title: string, newComp: CompProps) => {
+  const baseComp: BaseProps = {
+    id: "0",
+    x: 0,
+    y: 0,
+    width: 500,
+    height: 500,
+    borderRadius: 0,
+    duration: 0,
+    from: 0,
+    rotation: 0,
+    componentAnimations: [],
+  };
+  const Add = (title: string, newComp: AllComponents) => {
     return (
       <div
-        onClick={() => addComp(newComp)}
+        onClick={() => addComp({ ...newComp, ...baseComp })}
         className="cursor-pointer uppercase font-semibold rounded-md duration-200 shadow-lg hover:bg-primary hover:text-primary-content px-8 py-2"
       >
         <p>{title}</p>
@@ -49,8 +63,8 @@ export const AddSidePanel = ({
         {Add("Map", defaultMapProps)}
         {Add("Mockup", defaultMockupProps)}
         {Add("Path", defaultPathProps)}
-        {Add("Progressbar", defaultProgressBar)}
-        {Add("QR Code", defaultQrCodeProps)}
+        {Add("Progressbar", defaultProgressbar)}
+        {Add("QR Code", defaultQRCodeProps)}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { GraphProps, GraphTypes } from "@asius/types";
+import { GraphProps, GraphTypes } from "@asius/components";
 import {
   ColorInput,
   NumberInput,

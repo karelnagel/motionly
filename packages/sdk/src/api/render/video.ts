@@ -1,6 +1,6 @@
 import { baseUrl } from "../../consts";
 import axios from "axios";
-import { VideoInput } from "@asius/types";
+import { VideoInput } from "@asius/components";
 
 export type RenderMediaInput = VideoInput;
 export type RenderMediaOutput = { renderId: string };

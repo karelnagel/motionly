@@ -15,11 +15,11 @@
         "build": "turbo build",
         "start": "turbo start",
         "dev": "turbo dev",
-        "preview": "cd packages/video; yarn preview",
-        "render": "cd packages/video; yarn render",
-        "lambda:site": "cd packages/video; yarn lambda:site",
-        "lambda:function": "cd packages/video; yarn lambda:function",
-        "lambda:render": "cd packages/video; yarn lambda:render",
+        "preview": "cd packages/components; yarn preview",
+        "render": "cd packages/components; yarn render",
+        "lambda:site": "cd packages/components; yarn lambda:site",
+        "lambda:function": "cd packages/components; yarn lambda:function",
+        "lambda:render": "cd packages/components; yarn lambda:render",
         "format": "prettier --write \"packages/**/*.{js,ts,tsx}\" && eslint --fix \"packages/**/*.{js,ts,tsx}\""
     },
     "dependencies": {

@@ -2,22 +2,22 @@ import { Div } from "./components/Div";
 import { Text } from "./components/Text";
 import { Image } from "./components/Image";
 import { Sequence } from "remotion";
-import { CompProps } from "@asius/types";
 import { Audio } from "./components/Audio";
 import { Audiogram } from "./components/Audiogram";
 import { Graph } from "./components/Graph";
 import { Map } from "./components/Map";
 import { Mockup } from "./components/Mockup";
-import { Progressbar } from "./components/Progressbar2";
+import { Progressbar } from "./components/Progressbar";
 import { QRCode } from "./components/QRCode";
 import { Video } from "./components/Video";
 import { Transcription } from "./components/Transcription";
 import { Lottie } from "./components/Lottie";
 import { Gif } from "./components/Gif";
 import { Path } from "./components/Path";
-import { useSelected } from "./SetSelectedContext";
+import { useSelected } from "./SelectedContext";
+import { ComponentProps } from "./types";
 
-export const Component = ({ comp }: { comp: CompProps }) => {
+export const Component = (comp: ComponentProps) => {
   const { setSelected, divRef, selected } = useSelected();
   return (
     <Sequence
@@ -47,7 +47,7 @@ export const Component = ({ comp }: { comp: CompProps }) => {
           transform: `rotate(${comp.rotation || 0}deg)`, // For some reason, this messes up x and y
         }}
       >
-        {comp.type === "div" && <Div comp={comp} />}
+        {comp.type === "div" && <Div {...comp} />}
         {comp.type === "image" && <Image {...comp} />}
         {comp.type === "text" && <Text {...comp} />}
         {comp.type === "audio" && <Audio {...comp} />}

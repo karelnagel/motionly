@@ -1,6 +1,5 @@
-import { unstable_getServerSession } from "next-auth";
 import { ClientSessionProvider } from "../contexts/ClientSessionProvider";
-import { authOptions } from "../pages/api/auth/[...nextauth]";
+import { getServerSession } from "../lib/getServerSession";
 import "./globals.css";
 import { Login } from "./Login";
 
@@ -10,7 +9,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   console.log('loadsf')
-  const session = await unstable_getServerSession(authOptions);
+  const session = await getServerSession();
   console.log(session);
   return (
     <html lang="en">

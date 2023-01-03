@@ -1,4 +1,4 @@
-import { GifProps, ObjectFit } from "@asius/types";
+import { GifProps, ObjectFit } from "@asius/components";
 import { SelectInput, TextInput } from "../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";

@@ -1,13 +1,13 @@
 import React from "react";
-import { Composition, Folder, getInputProps } from "remotion";
+import { Composition, getInputProps } from "remotion";
 import { Composition as Comp } from "../Composition";
-import { defaultComponents, TemplateType } from "@asius/types";
 import { compositions } from "./compositions";
+import { BaseProps, ComponentProps, TemplateType } from "../types";
 
 const inputProps = getInputProps() as TemplateType;
 const props = Object.keys(inputProps).length
   ? inputProps
-  : { height: 1080, width: 1080, fps: 30, duration: 60 };
+  : { height: 1080, width: 1080, fps: 30, duration: 60, comps: [] };
 export const Root: React.FC = () => {
   return (
     <>
@@ -19,25 +19,35 @@ export const Root: React.FC = () => {
         width={props.width}
         height={props.height}
         defaultProps={{
-          comps: defaultComponents,
+          comps: props.comps,
         }}
       />
-      {Object.keys(compositions).map((key) => (
-        <Folder key={key} name={key}>
-          {compositions[key].map((comp, i) => (
-            <Composition
-              key={i}
-              id={`${key}-${comp.id}`}
-              component={Comp}
-              fps={props.fps}
-              width={props.width}
-              durationInFrames={comp.duration * props.fps}
-              height={props.height}
-              defaultProps={{ comps: [comp] }}
-            />
-          ))}
-        </Folder>
-      ))}
+      {compositions.map((comp, i) => {
+        const baseProps: BaseProps = {
+          borderRadius: 0,
+          duration: 0,
+          from: 0,
+          height: 1080,
+          width: 1080,
+          id: "1",
+          rotation: 0,
+          x: 0,
+          y: 0,
+        };
+        const compProps: ComponentProps = { ...comp, ...baseProps };
+        return (
+          <Composition
+            key={i}
+            id={`${compProps.type}`}
+            component={Comp}
+            fps={props.fps}
+            width={props.width}
+            durationInFrames={props.duration * props.fps}
+            height={props.height}
+            defaultProps={{ comps: [compProps] }}
+          />
+        );
+      })}
     </>
   );
 };

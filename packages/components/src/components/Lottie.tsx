@@ -4,9 +4,31 @@ import {
 } from "@remotion/lottie";
 import { useEffect, useState } from "react";
 import { continueRender, delayRender } from "remotion";
-import { LottieProps } from "@asius/types";
 
-export const Lottie = ({ src, direction, loop, playbackRate }: LottieProps) => {
+export const LottieDirections = {
+  forward: "Forward",
+  backward: "Backward",
+};
+export type LottieProps = {
+  type: "lottie";
+  src: string;
+  direction?: keyof typeof LottieDirections;
+  loop?: boolean;
+  playbackRate?: number;
+};
+
+export const defaultLottieProps: LottieProps = {
+  type: "lottie",
+  src: "https://assets4.lottiefiles.com/packages/lf20_zyquagfl.json",
+  loop: true,
+};
+
+export const Lottie = ({
+  src,
+  direction: direction,
+  loop: loop,
+  playbackRate: playbackRate,
+}: LottieProps) => {
   const [handle] = useState(() => delayRender("Loading Lottie animation"));
   const [animationData, setAnimationData] =
     useState<LottieAnimationData | null>(null);

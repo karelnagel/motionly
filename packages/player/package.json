@@ -9,7 +9,6 @@
         "dev": "tsc --watch"
     },
     "dependencies": {
-        "@asius/types": "*",
         "@asius/components": "*",
         "@remotion/player": "3.3.19",
         "@remotion/cli": "3.3.19",

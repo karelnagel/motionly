@@ -1,5 +1,5 @@
 import { useRender } from "@asius/sdk";
-import { TemplateType } from "@asius/types";
+import { TemplateType } from "@asius/components";
 import { useState } from "react";
 import { NumberInput } from "../../../../components/inputs";
 

@@ -1,4 +1,4 @@
-import { CompProps, TemplateType } from "@asius/types";
+import { ComponentProps, TemplateType } from "@asius/components";
 import { PlayerRef } from "@remotion/player";
 import { RefObject, useRef } from "react";
 import Moveable from "react-moveable";
@@ -16,7 +16,7 @@ export const Timeline = ({
   template: TemplateType;
   playerRef: RefObject<PlayerRef>;
   selected: string;
-  setComp: (comp: CompProps) => void;
+  setComp: (comp: ComponentProps) => void;
   setTemplate: (template: TemplateType) => void;
 }) => {
   const frame = useCurrentPlayerFrame(playerRef);
@@ -80,11 +80,11 @@ const TimelineComp = ({
   setComp,
   setTemplate,
 }: {
-  comp: CompProps;
+  comp: ComponentProps;
   selected: string;
   template: TemplateType;
   onClick: () => void;
-  setComp: (comp: CompProps) => void;
+  setComp: (comp: ComponentProps) => void;
   setTemplate: (template: TemplateType) => void;
 }) => {
   const divRef = useRef<HTMLDivElement>(null);

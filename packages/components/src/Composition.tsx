@@ -1,12 +1,13 @@
-import { CompProps } from "@asius/types";
+import { AbsoluteFill } from "remotion";
 import { Component } from "./Component";
+import { ComponentProps } from "./types";
 
-export const Composition = ({ comps }: { comps: CompProps[] }) => {
+export const Composition = ({ comps }: { comps: ComponentProps[] }) => {
   return (
-    <div style={{ position: "absolute", height: "100%", width: "100%" }}>
+    <AbsoluteFill>
       {comps.map((comp, index) => {
-        return <Component key={index} comp={comp} />;
+        return <Component key={index} {...comp} />;
       })}
-    </div>
+    </AbsoluteFill>
   );
 };

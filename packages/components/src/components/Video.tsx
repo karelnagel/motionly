@@ -1,5 +1,25 @@
 import { OffthreadVideo, Video as RemotionVideo } from "remotion";
-import { VideoProps } from "@asius/types";
+import { videoUrl } from "../helpers";
+import { ObjectFitType } from "../types";
+
+export type VideoProps ={
+  type: "video";
+  src: string;
+  objectFit: ObjectFitType;
+  startFrom?: number;
+  muted?: boolean;
+  volume?: number;
+  offthread?: boolean;
+}
+
+export const defaultVideoProps: VideoProps = {
+  type: "video",
+  objectFit: "cover",
+  startFrom: 0,
+  src: videoUrl,
+  muted: false,
+  volume: 100,
+};
 
 export const Video = ({
   objectFit,

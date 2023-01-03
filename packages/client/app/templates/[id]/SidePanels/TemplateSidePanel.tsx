@@ -1,5 +1,5 @@
 import { deleteTemplate, postNewTemplate } from "@asius/sdk";
-import { TemplateType } from "@asius/types";
+import { TemplateType } from "@asius/components";
 import { useRouter } from "next/navigation";
 import {
   BooleanInput,

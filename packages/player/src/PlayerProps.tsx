@@ -1,4 +1,4 @@
-import { VideoInput } from "@asius/types";
+import { VideoInput } from "@asius/components";
 import { CSSProperties } from "react";
 
 export type PlayerProps = {

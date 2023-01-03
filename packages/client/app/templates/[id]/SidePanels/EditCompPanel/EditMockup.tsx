@@ -1,4 +1,4 @@
-import { MockupProps, MockupTypes } from "@asius/types";
+import { MockupProps, MockupTypes } from "@asius/components";
 import { SelectInput } from "../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";

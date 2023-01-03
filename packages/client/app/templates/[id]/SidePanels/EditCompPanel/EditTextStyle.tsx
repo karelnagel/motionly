@@ -1,4 +1,4 @@
-import { TextAlign, TextStyle } from "@asius/types";
+import { TextAlign, TextStyle } from "@asius/components";
 import {
   NumberInput,
   SelectInput,

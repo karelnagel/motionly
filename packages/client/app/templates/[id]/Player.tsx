@@ -1,5 +1,5 @@
 import { Player as RemotionPlayer, PlayerRef } from "@remotion/player";
-import { CompProps, TemplateType } from "@asius/types";
+import { ComponentProps, TemplateType } from "@asius/components";
 import { Composition, SelectedContext } from "../../../../components/dist";
 import { RefObject, useRef, useState } from "react";
 import { useShiftKey } from "../../../hooks/useShiftKey";
@@ -14,12 +14,12 @@ export const Player = ({
   setSelected,
   selectedComp,
 }: {
-  setComp: (comp: CompProps) => void;
+  setComp: (comp: ComponentProps) => void;
   setSelected: (s: string) => void;
   scale: number;
   template: TemplateType;
   playerRef: RefObject<PlayerRef>;
-  selectedComp: CompProps | null;
+  selectedComp: ComponentProps | null;
 }) => {
   const lockAspectRatio = useShiftKey();
   const divRef = useRef<HTMLDivElement>(null);

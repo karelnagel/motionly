@@ -1,4 +1,4 @@
-import { CompProps } from "@asius/types";
+import { AllComponents, ComponentProps } from "@asius/components";
 import { AiFillCopy, AiFillDelete } from "react-icons/ai";
 import { EditAnimation } from "./EditAnimation";
 import { EditAudio } from "./EditAudio";
@@ -17,7 +17,7 @@ import { EditQRCode } from "./EditQRCode";
 import { EditText } from "./EditText";
 import { EditTranscription } from "./EditTranscription";
 import { EditVideo } from "./EditVideo";
-export type SetComp = (c: CompProps) => void;
+export type SetComp = (c: Partial<ComponentProps>) => void;
 
 export const EditCompPanel = ({
   comp,
@@ -25,10 +25,10 @@ export const EditCompPanel = ({
   deleteComp,
   addComp,
 }: {
-  comp: CompProps;
+  comp: ComponentProps;
   setComp: SetComp;
   deleteComp: (id: string) => void;
-  addComp: (comp: CompProps) => void;
+  addComp: (comp: ComponentProps) => void;
 }) => {
   return (
     <div>

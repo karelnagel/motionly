@@ -1,5 +1,5 @@
 import { postNewTemplate } from "@asius/sdk";
-import { TemplateType } from "@asius/types";
+import { TemplateType } from "@asius/components";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

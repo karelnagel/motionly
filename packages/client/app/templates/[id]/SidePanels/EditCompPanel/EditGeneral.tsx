@@ -1,4 +1,4 @@
-import { CompProps } from "@asius/types";
+import { ComponentProps } from "@asius/components";
 import { NumberInput } from "../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
@@ -7,7 +7,7 @@ export const EditGeneral = ({
   comp,
   setComp,
 }: {
-  comp: CompProps;
+  comp: ComponentProps;
   setComp: SetComp;
 }) => {
   return (

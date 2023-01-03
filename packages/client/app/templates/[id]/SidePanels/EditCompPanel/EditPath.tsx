@@ -1,4 +1,4 @@
-import { PathProps, StrokeLinecap } from "@asius/types";
+import { PathProps, StrokeLinecap } from "@asius/components";
 import {
   ColorInput,
   NumberInput,

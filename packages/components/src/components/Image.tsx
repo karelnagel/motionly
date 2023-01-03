@@ -1,5 +1,17 @@
 import { Img } from "remotion";
-import { ImageProps } from "@asius/types";
+import { ObjectFitType } from "../types";
+
+export type ImageProps= {
+  type: "image";
+  src: string;
+  objectFit: ObjectFitType;
+}
+
+export const defaultImageProps: ImageProps = {
+  type: "image",
+  objectFit: "cover",
+  src: "https://picsum.photos/seed/df/500/500",
+};
 
 export const Image = ({ src, objectFit }: ImageProps) => {
   return (

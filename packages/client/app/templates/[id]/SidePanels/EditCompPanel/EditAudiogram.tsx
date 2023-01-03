@@ -1,4 +1,4 @@
-import { AudiogramProps, AudiogramPosition } from "@asius/types";
+import { AudiogramProps, AudiogramPosition } from "@asius/components";
 import {
   BooleanInput,
   ColorInput,

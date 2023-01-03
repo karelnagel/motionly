@@ -1,4 +1,4 @@
-import { TemplateType } from "@asius/types";
+import { TemplateType } from "@asius/components";
 import axios from "axios";
 import { baseUrl } from "../../consts";
 import { GetTemplateInput } from "./get";

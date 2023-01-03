@@ -1,5 +1,5 @@
 import { updateTemplate } from "@asius/sdk";
-import { CompProps, TemplateType } from "@asius/types";
+import { AllComponents, ComponentProps, TemplateType } from "@asius/components";
 import { useEffect, useState } from "react";
 
 export const useTemplate = (starTemplate: TemplateType) => {
@@ -29,11 +29,11 @@ export const useTemplate = (starTemplate: TemplateType) => {
     }
   }, [template]);
 
-  const setComp = (element: CompProps) => {
-    const get = (comps: CompProps[]) => {
+  const setComp = (element: AllComponents) => {
+    const get = (comps: ComponentProps[]) => {
       return comps.map((comp) => {
-        if (comp.id === element.id) {
-          comp = element;
+        if (comp.id === selected) {
+          comp = { ...comp, ...element } as ComponentProps;
         }
         if (comp.type === "div" && comp.children) {
           comp.children = get(comp.children);
@@ -45,7 +45,7 @@ export const useTemplate = (starTemplate: TemplateType) => {
     setTemplate((t) => ({ ...t, comps: newComps }));
   };
 
-  const find = (comps: CompProps[]): CompProps | null => {
+  const find = (comps: ComponentProps[]): ComponentProps | null => {
     let selectedComp = comps.find((comp) => comp.id === selected) || null;
     if (selectedComp) return selectedComp;
     comps.forEach((comp) =>
@@ -59,7 +59,7 @@ export const useTemplate = (starTemplate: TemplateType) => {
     setTemplate((t) => ({ ...t, comps: t.comps.filter((c) => c.id !== id) }));
     setSelected(template.comps.filter((c) => c.id !== id)?.[0]?.id || "");
   };
-  const addComp = (comp: CompProps) => {
+  const addComp = (comp: ComponentProps) => {
     const id = Math.random().toString(36).substring(6);
     setTemplate((t) => ({
       ...t,

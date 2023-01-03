@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { TemplateType } from "@asius/types";
+import { TemplateType } from "@asius/components";
 import { useTemplate } from "../../../hooks/useTemplate";
 import { Header } from "./Header";
 import { PlayerControls } from "./PlayerControls";

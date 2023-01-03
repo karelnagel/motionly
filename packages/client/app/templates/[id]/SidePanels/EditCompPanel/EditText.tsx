@@ -1,4 +1,4 @@
-import { TextProps } from "@asius/types";
+import { TextProps } from "@asius/components";
 import { TextInput } from "../../../../../components/inputs";
 import { EditTextStyle } from "./EditTextStyle";
 import { SetComp } from "./index";
