@@ -1,0 +1,69 @@
+# &lt;Player&gt;
+
+## API
+
+Props for &lt;Player&gt;
+
+### height
+
+video height
+
+### width
+
+video width
+
+### duration
+
+video duration in seconds
+
+### fps
+
+video fps
+
+### comps: `ComponentProps[]`
+
+base components that should be copied from the online editor
+
+### modifications: `Partial<ComponentProps>[]`
+
+modifications that you want to apply to the base components
+
+```ts
+const modifications = [
+  {
+    id: "id_you_want_to_modify", //Text component
+    text: "new text",
+  },
+  {
+    id: "id_you_want_to_modify2", // Map component
+    location: {
+      lat: 20,
+      lng: 60,
+    },
+  },
+];
+```
+
+### style
+
+### className
+
+## Booleans
+
+### allowFullscreen
+
+### autoPlay
+
+### clickToPlay
+
+### controls
+
+### doubleClickToFullscreen
+
+### moveToBeginningWhenEnded
+
+### initiallyShowControls
+
+### spaceKeyToPlayOrPause
+
+### showVolumeControls

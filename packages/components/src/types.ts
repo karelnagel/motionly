@@ -116,3 +116,5 @@ export type BaseProps = {
 };
 
 export type ComponentProps = BaseProps & AllComponents;
+
+export type Modification = Partial<ComponentProps>;
