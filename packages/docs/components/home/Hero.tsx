@@ -28,7 +28,7 @@ export const Hero = () => {
         </div>
 
         <div className="relative text-center max-w-[800px] space-y-6 flex flex-col items-center">
-          <h1 className="text-[70px] font-extrabold tracking leading-[1] bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-blue-600 ">
+          <h1 className="title text-[70px] font-extrabold leading-[1]">
             Automate your videos
           </h1>
           <p className="text-[24px] leading-[1.6] font-medium text-center max-w-[550px] opacity-90">

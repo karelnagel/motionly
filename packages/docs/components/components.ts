@@ -1322,10 +1322,10 @@ export const components: ComponentProps[] = [
     textStyle: {
       backgroundColor: "#00000000",
       color: "#eb0000FF",
-      fontSize: 200,
-      fontFamily: "Inter",
+      fontSize: 180,
+      fontFamily: "Arial",
       fontWeight: 700,
-      textAlign: "left",
+      textAlign: "center",
     },
     text: "Hello World",
     id: "m5sk14y",
