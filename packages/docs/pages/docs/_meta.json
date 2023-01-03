@@ -1,3 +1,6 @@
 {
-    "video": "Asius video"
+    "index": "What is asius?",
+    "components": "@asius/components",
+    "player": "@asius/player",
+    "sdk": "@asius/sdk"
 }

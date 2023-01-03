@@ -12,7 +12,7 @@ import {
   defaultMapProps,
   defaultMockupProps,
   defaultPathProps,
-  defaultProgressbar,
+  defaultProgressbarProps,
   defaultQRCodeProps,
   defaultTextProps,
   defaultVideoProps,
@@ -63,7 +63,7 @@ export const AddSidePanel = ({
         {Add("Map", defaultMapProps)}
         {Add("Mockup", defaultMockupProps)}
         {Add("Path", defaultPathProps)}
-        {Add("Progressbar", defaultProgressbar)}
+        {Add("Progressbar", defaultProgressbarProps)}
         {Add("QR Code", defaultQRCodeProps)}
       </div>
     </div>

@@ -19,6 +19,7 @@
     },
     "homepage": "https://github.com/shuding/nextra-docs-template#readme",
     "dependencies": {
+        "@asius/components": "*",
         "autoprefixer": "^10.4.13",
         "next": "^13.0.6",
         "nextra": "2.0.1",

@@ -14,7 +14,6 @@ export const ProgressbarSquareCorners = {
 export type ProgressbarProps = {
   type: "progressbar";
   color?: string;
-  progressBarType: keyof typeof ProgressbarTypes;
   background?: string;
   height: number;
   width: number;
@@ -31,13 +30,14 @@ export type ProgressbarProps = {
   | { progressBarType: "line" | "spotify" }
 );
 
-export const defaultProgressbar: ProgressbarProps = {
+export const defaultProgressbarProps: ProgressbarProps = {
   type: "progressbar",
-  height: 500,
-  width: 500,
-  barWidth: 10,
+  height: 600,
+  width: 1080,
+  barWidth: 30,
   corner: "top-left",
   color: "#ff00ffff",
+  background: "#0000FFFF",
   progressBarType: "square",
 };
 

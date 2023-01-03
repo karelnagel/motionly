@@ -10,7 +10,7 @@ export type ImageProps = {
 export const defaultImageProps: ImageProps = {
   type: "image",
   objectFit: "cover",
-  src: "https://picsum.photos/seed/df/500/500",
+  src: "https://picsum.photos/seed/df/1080/1080",
 };
 
 export const Image = ({ src, objectFit }: ImageProps) => {

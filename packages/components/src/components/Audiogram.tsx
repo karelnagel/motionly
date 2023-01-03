@@ -25,15 +25,15 @@ export type AudiogramProps = {
 
 export const defaultAudiogramProps: AudiogramProps = {
   type: "audiogram",
-  height: 500,
-  width: 500,
+  height: 600,
+  width: 1080,
   startFrom: 0,
   src: videoUrl,
-  barWidth: 10,
+  barWidth: 14,
   gap: 1,
   position: "center",
   roundness: 5,
-  color: "#000000",
+  color: "#000FF0",
   mirror: true,
   smoothing: true,
 };

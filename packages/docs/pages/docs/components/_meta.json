@@ -1,0 +1,8 @@
+{
+    "component": "<Component>",
+    "audiogram": "<Audiogram>",
+    "graph": "<Graph>",
+    "map": "<Map>",
+    "mockup": "<Mockup>",
+    "progressbar": "<Progressbar>"
+}

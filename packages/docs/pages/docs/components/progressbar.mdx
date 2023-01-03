@@ -1,0 +1,64 @@
+# &lt;Progressbar&gt;
+
+Add progressbars to your projects easily.
+
+## Usage
+
+```tsx
+import { Progressbar, ProgressbarProps } from "@asius/components";
+
+const progressbar: ProgressbarProps = {
+  type: "progressbar",
+  height: 600,
+  width: 1080,
+  barWidth: 30,
+  corner: "top-left",
+  color: "#ff00ffff",
+  progressBarType: "square",
+  background: "#0000FFFF",
+};
+
+return <Progressbar {...progressbar} />;
+```
+
+import { ProgressbarPlayer } from "../../../components/ProgressbarPlayer";
+
+<ProgressbarPlayer />
+
+## API
+
+### type
+
+= `progressbar`
+
+### progressbarType
+
+- `spotify`
+- `square`
+- `line`
+- `circle`
+
+### corner (only for `square`)
+
+- `top-left`
+- `top-right`
+
+### color
+
+color of the progressbar
+
+### background
+
+background color of the progressbar
+
+### height
+
+height of the progressbar
+
+### width
+
+width of the progressbar
+
+### barWidth (only for `square` or `circle`)
+
+width of the progressbar

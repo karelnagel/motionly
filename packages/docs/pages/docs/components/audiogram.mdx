@@ -1,0 +1,68 @@
+# &lt;Audiogram&gt;
+
+Easily add audiogram to your remotion videos
+
+## Usage
+
+```tsx
+import { Component, AudiogramProps } from "@asius/components";
+
+const audiogram: AudiogramProps = {
+  type: "audiogram",
+  height: 600,
+  width: 1080,
+  startFrom: 0,
+  src: "https://remotionlambda-24lixyhuqn.s3.us-east-1.amazonaws.com/video.mp4",
+  barWidth: 14,
+  gap: 1,
+  position: "center",
+  roundness: 5,
+  color: "#000FF0",
+  mirror: true,
+  smoothing: true,
+};
+
+return <Audiogram {...audiogram} />;
+```
+
+import { DocsPlayer } from "../../../components/DocsPlayer";
+import { defaultAudiogramProps } from "@asius/components";
+
+<DocsPlayer {...defaultAudiogramProps} />
+
+## API
+
+### type
+= `audiogram`
+
+### src
+The source of the video or audio file 
+
+### position
+- start
+- center
+- end
+
+### gap
+The gap between the bars
+
+### barWidth
+The width of the bars
+
+### roundness
+The roundness of the bars
+
+### color
+The color of the bars
+
+### mirror
+Boolean to mirror the bars
+
+### smoothing
+Boolean to smooth the bars
+
+### height
+The height of the audiogram
+
+### width
+The width of the audiogram

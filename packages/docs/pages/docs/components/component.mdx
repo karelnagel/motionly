@@ -1,0 +1,121 @@
+# &lt;Component&gt;
+
+Asius main component that has all the other components inside it.
+
+## Usage
+
+```tsx
+import { Component, VideoProps } from "@asius/components";
+
+const video: VideoProps = {
+  type: "video",
+  objectFit: "cover",
+  startFrom: 0,
+  src: videoUrl,
+  muted: false,
+  volume: 100,
+};
+
+return (
+  <Component
+    id={"id"}
+    height={0}
+    width={0}
+    x={0}
+    y={0}
+    borderRadius={0}
+    rotation={0}
+    from={0}
+    duration={10}
+    componentAnimations={[
+      {
+        type: "opacity",
+        from: 0,
+        to: 1,
+        start: 0,
+        end: 1,
+      },
+    ]}
+    {...video}
+  />
+);
+```
+
+import { DocsPlayer } from "../../../components/DocsPlayer";
+import { defaultVideoProps } from "@asius/components";
+
+<DocsPlayer {...defaultVideoProps} />
+
+## API
+
+### id
+
+Used to modify the component after
+
+### height
+
+height in pixels, if 0 then it will be the same as the parent
+
+### width
+
+width in pixels, if 0 then it will be the same as the parent
+
+### x
+
+x position in pixels
+
+### y
+
+y position in pixels
+
+### borderRadius
+
+border radius in pixels
+
+### rotation
+
+rotation in degrees
+
+### from
+
+Start time in seconds
+
+### duration
+
+Component duration in seconds, if 0 then it will be until the end
+
+### componentAnimations
+
+Array of animations that will be applied to the component
+
+#### Animation props
+
+##### type
+
+- `opacity`
+- `scale`
+- `translateX`
+- `translateY`
+- `rotate`
+
+##### from
+
+start value
+
+##### to
+
+end value
+
+##### start
+
+start time in seconds
+
+##### end
+
+end time in seconds
+
+#### animation types
+
+### ...ComponentProps
+
+other props for

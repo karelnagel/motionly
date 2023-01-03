@@ -33,18 +33,24 @@ export type MapProps = {
 export const defaultMapProps: MapProps = {
   type: "map",
   location: {
-    lat: 0,
-    lng: 0,
+    lat: 48.85,
+    lng: 2.29,
   },
-  zoom: 200,
+  zoom: 300,
   marker: {
-    color: "#000000",
-    size: 10,
+    color: "#FF0000",
+    size: 20,
   },
-  fill: "#00000080",
+  fill: "#0000FFFF",
   mapUrl: "",
-  stroke: "#000000",
-  strokeWidth: 1,
+  stroke: "#FFFFFF",
+  strokeWidth: 2,
+  animation: {
+    from: 200,
+    to: 400,
+    start: 0,
+    end: 100,
+  },
 };
 
 export const Map = ({

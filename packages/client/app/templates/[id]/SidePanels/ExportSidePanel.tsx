@@ -7,7 +7,7 @@ export const ExportSidePanel = ({ template }: { template: TemplateType }) => {
   const [frame, setFrame] = useState(0);
   const { media, still, cost, progress, fileUrl, status } = useRender({
     ...template,
-    frame: 0,
+    frame,
   });
   const className =
     "bg-primary rounded-lg p-2 text-primary-content whitespace-nowrap";
