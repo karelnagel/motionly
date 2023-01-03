@@ -11,6 +11,7 @@ export const Progressbar = ({
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const progress = (frame / durationInFrames) * 100;
+
   if (props.progressBarType === "line")
     return (
       <div
@@ -33,6 +34,7 @@ export const Progressbar = ({
         />
       </div>
     );
+    
   if (props.progressBarType === "spotify")
     return (
       <div

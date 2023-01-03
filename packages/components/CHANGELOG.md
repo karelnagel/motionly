@@ -1,5 +1,23 @@
 # @asius/components
 
+## 1.0.7
+
+### Patch Changes
+
+- Still issue with progressbar filename
+
+## 1.0.6
+
+### Patch Changes
+
+- d
+
+## 1.0.5
+
+### Patch Changes
+
+- Progressbar capital letter
+
 ## 1.0.4
 
 ### Patch Changes

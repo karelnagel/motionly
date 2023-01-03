@@ -8,7 +8,7 @@ import { Audiogram } from "./components/Audiogram";
 import { Graph } from "./components/Graph";
 import { Map } from "./components/Map";
 import { Mockup } from "./components/Mockup";
-import { Progressbar } from "./components/Progressbar";
+import { Progressbar } from "./components/Progressbar2";
 import { QRCode } from "./components/QRCode";
 import { Video } from "./components/Video";
 import { Transcription } from "./components/Transcription";
