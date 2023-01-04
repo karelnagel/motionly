@@ -1229,22 +1229,21 @@ export const defaultTranscriptionWords: TranscriptionWord[] = [
 ];
 export const defaultTranscriptionProps: TranscriptionProps = {
   type: "transcription",
-  height: 500,
   words: defaultTranscriptionWords,
   animation: {
     type: "current-word",
     textStyle: {
-      outline: { color: "blue", width: 5 },
+      outline: { color: "#0000FFFF", width: 20 },
     },
   },
   scrollType: "line-by-line",
   textStyle: {
-    fontSize: 20,
+    fontSize: 100,
     fontFamily: "Arial",
-    color: "black",
-    outline: { color: "black", width: 5 },
+    color: "#FFFFFFFF",
+    outline: { color: "#000000FF", width: 20 },
     fontWeight: 800,
-    lineHeight: 1.2,
+    lineHeight: 1.3,
     textAlign: "center",
   },
 };

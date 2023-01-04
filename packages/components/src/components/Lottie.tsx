@@ -4,6 +4,7 @@ import {
 } from "@remotion/lottie";
 import { useEffect, useState } from "react";
 import { continueRender, delayRender } from "remotion";
+import { StyleAndClass } from "../types";
 
 export const LottieDirections = {
   forward: "Forward",
@@ -15,6 +16,7 @@ export type LottieProps = {
   direction?: keyof typeof LottieDirections;
   loop?: boolean;
   playbackRate?: number;
+  background?: string;
 };
 
 export const defaultLottieProps: LottieProps = {
@@ -25,10 +27,13 @@ export const defaultLottieProps: LottieProps = {
 
 export const Lottie = ({
   src,
-  direction: direction,
-  loop: loop,
-  playbackRate: playbackRate,
-}: LottieProps) => {
+  direction,
+  loop,
+  playbackRate,
+  style,
+  className,
+  background,
+}: LottieProps & StyleAndClass) => {
   const [handle] = useState(() => delayRender("Loading Lottie animation"));
   const [animationData, setAnimationData] =
     useState<LottieAnimationData | null>(null);
@@ -49,6 +54,13 @@ export const Lottie = ({
   }
   return (
     <RemotionLottie
+      className={className}
+      style={{
+        height: "100%",
+        width: "100%",
+        background,
+        ...style,
+      }}
       animationData={animationData}
       direction={direction}
       loop={loop}

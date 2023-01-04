@@ -17,11 +17,6 @@ export const ProgressbarPlayer = () => {
       />
       <DocsPlayer
         {...defaultProgressbarProps}
-        height={
-          progressbarType === "square" || progressbarType === "circle"
-            ? defaultProgressbarProps.height
-            : 100
-        }
         progressBarType={progressbarType as any}
       />
     </>

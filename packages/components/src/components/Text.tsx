@@ -1,5 +1,5 @@
 import { getTextStyle } from "../helpers";
-import { TextStyle } from "../types";
+import { StyleAndClass, TextStyle } from "../types";
 
 export const TextAnimationTypes = {
   "word-by-word": "Word by word",
@@ -31,21 +31,28 @@ export const defaultTextProps: TextProps = {
   textStyle: {
     backgroundColor: "#00000000",
     color: "#000000FF",
-    fontSize: 28,
-    fontFamily: "Inter",
+    fontSize: 120,
+    fontFamily: "Arial",
     fontWeight: 700,
-    textAlign: "left",
+    textAlign: "center",
   },
   text: "Hello World",
 };
 
-export const Text = ({ textStyle, text }: TextProps) => {
+export const Text = ({
+  textStyle,
+  text,
+  style,
+  className,
+}: TextProps & StyleAndClass) => {
   return (
     <p
+      className={className}
       style={{
         ...getTextStyle(textStyle),
         height: "100%",
         width: "100%",
+        ...style,
       }}
     >
       {text}

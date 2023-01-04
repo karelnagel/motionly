@@ -23,5 +23,4 @@ export interface TranscriptionProps {
   textStyle: TextStyle;
   scrollType: keyof typeof TranscriptionScrollType;
   animation: TranscriptionAnimation;
-  height: number;
 }

@@ -6,6 +6,7 @@ import {
   Marker,
 } from "react-simple-maps";
 import { continueRender, delayRender } from "remotion";
+import { StyleAndClass } from "../types";
 
 export type MapProps = {
   type: "map";
@@ -22,12 +23,7 @@ export type MapProps = {
     size?: number;
   };
   mapUrl?: string;
-  animation?: {
-    from: number;
-    to: number;
-    start: number;
-    end: number;
-  };
+  background?: string;
 };
 
 export const defaultMapProps: MapProps = {
@@ -42,46 +38,41 @@ export const defaultMapProps: MapProps = {
     size: 20,
   },
   fill: "#0000FFFF",
-  mapUrl: "",
-  stroke: "#FFFFFF",
+  stroke: "#FFFFFFFF",
   strokeWidth: 2,
-  animation: {
-    from: 200,
-    to: 400,
-    start: 0,
-    end: 100,
-  },
 };
 
 export const Map = ({
   location,
   zoom,
   fill,
-  mapUrl,
+  mapUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json",
   stroke,
   strokeWidth,
   marker,
-}: MapProps) => {
+  style,
+  className,
+  background,
+}: MapProps & StyleAndClass) => {
   const coordinates: [number, number] = [location.lng, location.lat];
-  const url =
-    mapUrl ||
-    "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
   const [handle] = useState(delayRender());
   const [geography, setGeography] = useState(null);
 
   useEffect(() => {
-    fetch(url)
+    fetch(mapUrl)
       .then((g) => g.json())
       .then((g) => {
         setGeography(g);
         continueRender(handle);
       })
       .catch();
-  }, [url]);
+  }, [mapUrl]);
+
   if (!geography) return null;
   return (
     <ComposableMap
-      style={{ width: "100%", height: "100%" }}
+      className={className}
+      style={{ width: "100%", height: "100%", background, ...style }}
       projectionConfig={{ center: coordinates, scale: zoom }}
     >
       <Geographies geography={geography}>

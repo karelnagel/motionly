@@ -1,4 +1,6 @@
+import { useRef } from "react";
 import { useCurrentFrame, useVideoConfig } from "remotion";
+import { StyleAndClass } from "../types";
 
 export const ProgressbarTypes = {
   spotify: "Spotify",
@@ -15,8 +17,6 @@ export type ProgressbarProps = {
   type: "progressbar";
   color?: string;
   background?: string;
-  height: number;
-  width: number;
 } & (
   | {
       progressBarType: "square";
@@ -32,8 +32,6 @@ export type ProgressbarProps = {
 
 export const defaultProgressbarProps: ProgressbarProps = {
   type: "progressbar",
-  height: 600,
-  width: 1080,
   barWidth: 30,
   corner: "top-left",
   color: "#ff00ffff",
@@ -43,23 +41,30 @@ export const defaultProgressbarProps: ProgressbarProps = {
 
 export const Progressbar = ({
   color,
-  height,
-  width,
-  background: backgroundColor,
+  background,
+  style,
+  className,
   ...props
-}: ProgressbarProps) => {
+}: ProgressbarProps & StyleAndClass) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const progress = (frame / durationInFrames) * 100;
 
+  const ref = useRef<HTMLDivElement>(null);
+  const height = ref.current?.parentElement?.offsetHeight || 1;
+  const width = ref.current?.parentElement?.offsetWidth || 1;
+
   if (props.progressBarType === "line")
     return (
       <div
+        ref={ref}
+        className={className}
         style={{
           width: "100%",
           height: "100%",
           position: "relative",
-          backgroundColor,
+          background,
+          ...style,
         }}
       >
         <div
@@ -78,6 +83,8 @@ export const Progressbar = ({
   if (props.progressBarType === "spotify")
     return (
       <div
+        ref={ref}
+        className={className}
         style={{
           width: "100%",
           height,
@@ -85,6 +92,7 @@ export const Progressbar = ({
           alignItems: "center",
           position: "relative",
           margin: `0 ${height / 2}px`,
+          ...style,
         }}
       >
         <div
@@ -94,7 +102,7 @@ export const Progressbar = ({
             height: height / 2,
             borderRadius: height / 4,
             left: 0,
-            backgroundColor,
+            background,
             overflow: "hidden",
           }}
         >
@@ -127,12 +135,17 @@ export const Progressbar = ({
     const circumference = 2 * Math.PI * radius;
     const dash = circumference * (progress / 100);
     return (
-      <svg viewBox={`0 0 ${size} ${size}`}>
+      <svg
+        ref={ref as any}
+        viewBox={`0 0 ${size} ${size}`}
+        style={style}
+        className={className}
+      >
         <circle
           cx={size / 2}
           cy={size / 2}
           r={radius}
-          stroke={backgroundColor}
+          stroke={background}
           strokeWidth={props.barWidth}
           fill="none"
         />
@@ -152,7 +165,16 @@ export const Progressbar = ({
   }
   if (props.progressBarType === "square")
     return (
-      <div style={{ position: "relative", height: "100%", width: "100%" }}>
+      <div
+        ref={ref}
+        style={{
+          position: "relative",
+          height: "100%",
+          width: "100%",
+          ...style,
+        }}
+        className={className}
+      >
         {[1, 2, 3, 4].map((n) => {
           const horizontal = n % 2 === 0;
           const left = props.corner === "top-right" ? n < 3 : n > 2;

@@ -16,6 +16,11 @@ import {
   QRCodeProps,
 } from "./components";
 
+export interface StyleAndClass {
+  style?: React.CSSProperties;
+  className?: string;
+}
+
 export const ObjectFit = {
   cover: "cover",
   contain: "contain",

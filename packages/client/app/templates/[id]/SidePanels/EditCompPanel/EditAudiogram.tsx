@@ -53,9 +53,14 @@ export const EditAudiogram = ({
         onChange={(roundness) => setComp({ ...comp, roundness })}
       />
       <NumberInput
-        label="Round"
+        label="StartFrom"
         value={comp.startFrom}
         onChange={(startFrom) => setComp({ ...comp, startFrom })}
+      />
+      <NumberInput
+        label="Multiplier"
+        value={comp.multiplier}
+        onChange={(multiplier) => setComp({ ...comp, multiplier })}
       />
       <BooleanInput
         label="Smoothing"

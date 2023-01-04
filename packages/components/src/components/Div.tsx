@@ -1,5 +1,5 @@
 import { Component } from "../Component";
-import { ComponentProps } from "../types";
+import { ComponentProps, StyleAndClass } from "../types";
 
 export type DivProps = {
   type: "div";
@@ -13,14 +13,21 @@ export const defaultDivProps: DivProps = {
   children: [],
 };
 
-export const Div = ({ background, children }: DivProps) => {
+export const Div = ({
+  background,
+  children,
+  style,
+  className,
+}: DivProps & StyleAndClass) => {
   return (
     <div
+      className={className}
       style={{
         display: "flex",
         height: "100%",
         width: "100%",
         backgroundColor: background,
+        ...style,
       }}
     >
       {children.map((child, index) => (

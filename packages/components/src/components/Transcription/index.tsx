@@ -6,6 +6,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { getTextStyle } from "../../helpers";
+import { StyleAndClass } from "../../types";
 import { TranscriptionProps } from "./types";
 export * from "./types";
 export * from "./default";
@@ -14,9 +15,10 @@ export const Transcription = ({
   textStyle,
   animation,
   words,
+  style,
+  className,
   scrollType,
-  height,
-}: TranscriptionProps) => {
+}: TranscriptionProps & StyleAndClass) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const windowRef = useRef<HTMLDivElement>(null);
@@ -24,6 +26,8 @@ export const Transcription = ({
   const [handle] = useState(() => delayRender());
   const [linesRendered, setLinesRendered] = useState(0);
   const lineHeight = (textStyle.lineHeight || 1) * (textStyle.fontSize || 1);
+  const ref = useRef<HTMLDivElement>(null);
+  const height = ref.current?.parentElement?.offsetHeight || 1;
   const linesPerPage = Math.floor(height / lineHeight);
 
   useEffect(() => {
@@ -47,9 +51,12 @@ export const Transcription = ({
   const unPlayedSubs = words.filter((s) => s.start * fps > frame);
   return (
     <div
+      ref={ref}
+      className={className}
       style={{
         height: `${lineHeight * linesPerPage}px`,
         overflow: "clip",
+        ...style,
       }}
     >
       <p

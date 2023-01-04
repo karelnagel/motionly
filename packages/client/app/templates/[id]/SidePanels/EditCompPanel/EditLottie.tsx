@@ -1,6 +1,7 @@
 import { LottieProps, LottieDirections } from "@asius/components";
 import {
   BooleanInput,
+  ColorInput,
   NumberInput,
   SelectInput,
   TextInput,
@@ -45,6 +46,12 @@ export const EditLottie = ({
         label="Playback Speed"
         value={comp.playbackRate}
         onChange={(playbackRate) => setComp({ ...comp, playbackRate })}
+      />
+
+      <ColorInput
+        label="Background"
+        value={comp.background}
+        onChange={(background) => setComp({ ...comp, background })}
       />
     </EditSection>
   );

@@ -39,14 +39,24 @@ export const EditPath = ({
       />
       <p className="col-span-2">View box</p>
       <NumberInput
-        label="height"
-        value={comp.viewBoxHeight}
-        onChange={(viewBoxHeight) => setComp({ ...comp, viewBoxHeight })}
+        label="X"
+        value={comp.viewBoxX}
+        onChange={(viewBoxX) => setComp({ ...comp, viewBoxX })}
       />
       <NumberInput
-        label="width"
+        label="Y"
+        value={comp.viewBoxY}
+        onChange={(viewBoxY) => setComp({ ...comp, viewBoxY })}
+      />
+      <NumberInput
+        label="W"
         value={comp.viewBoxWidth}
         onChange={(viewBoxWidth) => setComp({ ...comp, viewBoxWidth })}
+      />
+      <NumberInput
+        label="H"
+        value={comp.viewBoxHeight}
+        onChange={(viewBoxHeight) => setComp({ ...comp, viewBoxHeight })}
       />
       <SelectInput
         label="Linecap"
@@ -62,7 +72,7 @@ export const EditPath = ({
           label,
         }))}
       />
-      <p className="col-span-2">Animation</p>
+      {/* <p className="col-span-2">Animation</p>
       <NumberInput
         label="Duration"
         value={comp.animation.duration}
@@ -86,7 +96,7 @@ export const EditPath = ({
         onChange={(to) =>
           setComp({ ...comp, animation: { ...comp.animation, to } })
         }
-      />
+      /> */}
     </EditSection>
   );
 };

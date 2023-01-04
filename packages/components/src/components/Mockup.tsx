@@ -1,4 +1,4 @@
-import { ComponentProps } from "../types";
+import { ComponentProps, StyleAndClass } from "../types";
 
 export const MockupTypes = {
   iPhone: "iPhone",
@@ -20,6 +20,9 @@ export const defaultMockupProps: MockupProps = {
   children: [],
 };
 
-export const Mockup = ({ mockupType }: MockupProps) => {
-  return <div>{mockupType}</div>;
+export const Mockup = ({
+  mockupType,
+  ...props
+}: MockupProps & StyleAndClass) => {
+  return <div {...props}>No {mockupType} mockup yet!</div>;
 };

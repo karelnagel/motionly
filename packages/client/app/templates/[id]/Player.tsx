@@ -55,6 +55,7 @@ export const Player = ({
         <Moveable
           target={divRef}
           scale={scale}
+          edgeDraggable
           draggable={true}
           resizable={true}
           rotatable={true}

@@ -1,6 +1,6 @@
 import { OffthreadVideo, Video as RemotionVideo } from "remotion";
 import { videoUrl } from "../helpers";
-import { ObjectFitType } from "../types";
+import { ObjectFitType, StyleAndClass } from "../types";
 
 export type VideoProps = {
   type: "video";
@@ -24,12 +24,14 @@ export const defaultVideoProps: VideoProps = {
 export const Video = ({
   objectFit,
   offthread,
-  muted,
-  startFrom,
-  volume,
+  style,
   src,
-}: VideoProps) => {
-  const props = { muted, startFrom, volume, src };
+  className,
+  muted,
+  volume,
+  startFrom,
+}: VideoProps & StyleAndClass) => {
+  const props = { src, className, muted, volume, startFrom };
   if (offthread)
     return (
       <OffthreadVideo
@@ -38,6 +40,7 @@ export const Video = ({
           height: "100%",
           width: "100%",
           objectFit,
+          ...style,
         }}
       />
     );
@@ -49,6 +52,7 @@ export const Video = ({
           height: "100%",
           width: "100%",
           objectFit,
+          ...style,
         }}
       />
     );

@@ -1,5 +1,5 @@
 import { Gif as RemotionGif } from "@remotion/gif";
-import { ObjectFitType } from "../types";
+import { ObjectFitType, StyleAndClass } from "../types";
 
 export type GifProps = {
   type: "gif";
@@ -13,7 +13,7 @@ export const defaultGifProps: GifProps = {
   objectFit: "cover",
 };
 
-export const Gif = ({ src, objectFit }: GifProps) => {
+export const Gif = ({ src, objectFit, style }: GifProps & StyleAndClass) => {
   return (
     <RemotionGif
       src={src}
@@ -21,6 +21,7 @@ export const Gif = ({ src, objectFit }: GifProps) => {
         height: "100%",
         width: "100%",
         objectFit,
+        ...style,
       }}
     />
   );

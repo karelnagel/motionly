@@ -55,6 +55,11 @@ export const EditMap = ({
         value={comp.fill}
         onChange={(fill) => setComp({ ...comp, fill })}
       />
+      <ColorInput
+        label="Background"
+        value={comp.background}
+        onChange={(background) => setComp({ ...comp, background })}
+      />
       {comp.marker ? (
         <>
           <p className="">Marker</p>

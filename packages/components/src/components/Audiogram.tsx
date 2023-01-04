@@ -2,6 +2,7 @@ import { useAudioData, visualizeAudio } from "@remotion/media-utils";
 import { useRef } from "react";
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import { videoUrl } from "../helpers";
+import { StyleAndClass } from "../types";
 
 export const AudiogramPosition = {
   start: "Start",
@@ -19,23 +20,21 @@ export type AudiogramProps = {
   startFrom?: number;
   smoothing?: boolean;
   mirror?: boolean;
-  height?: number;
-  width?: number;
+  multiplier?: number;
 };
 
 export const defaultAudiogramProps: AudiogramProps = {
   type: "audiogram",
-  height: 600,
-  width: 1080,
   startFrom: 0,
   src: videoUrl,
-  barWidth: 14,
-  gap: 1,
+  barWidth: 16,
+  gap: 3,
   position: "center",
-  roundness: 5,
-  color: "#000FF0",
+  roundness: 8,
+  color: "#000FF0FF",
   mirror: true,
   smoothing: true,
+  multiplier: 2,
 };
 
 export const Audiogram = ({
@@ -44,22 +43,24 @@ export const Audiogram = ({
   src,
   color,
   gap,
-  height,
   position,
   smoothing,
   mirror,
-  width,
-}: AudiogramProps) => {
+  style,
+  className,
+  multiplier = 1,
+}: AudiogramProps & StyleAndClass) => {
   const ref = useRef<HTMLDivElement>(null);
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const audioData = useAudioData(src);
+  const width = ref.current?.parentElement?.offsetWidth || 1;
+  const height = ref.current?.parentElement?.offsetHeight || 1;
+
   if (!audioData) {
     return null;
   }
-  const maxVisibleBars = Math.floor(
-    (width || ref.current?.offsetWidth || 1) / (gap + barWidth)
-  );
+  const maxVisibleBars = Math.floor(width / (gap + barWidth));
   const numberOfSamples = Math.pow(
     2,
     Math.ceil(Math.log(maxVisibleBars / (mirror ? 2 : 1)) / Math.log(2))
@@ -79,6 +80,7 @@ export const Audiogram = ({
   return (
     <div
       ref={ref}
+      className={className}
       style={{
         display: "flex",
         alignItems: position,
@@ -86,6 +88,7 @@ export const Audiogram = ({
         gap,
         width,
         height,
+        ...style,
       }}
     >
       {bars.map((v, i) => {
@@ -94,7 +97,7 @@ export const Audiogram = ({
             key={i}
             style={{
               width: barWidth,
-              height: (height || ref.current?.clientHeight || 1) * v,
+              height: height * v * multiplier,
               backgroundColor: color,
               borderRadius: roundness,
             }}

@@ -1,4 +1,6 @@
+import { useRef } from "react";
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { StyleAndClass } from "../types";
 
 export const GraphTypes = {
   line: "Line",
@@ -13,8 +15,6 @@ export type GraphProps = {
   graphType: keyof typeof GraphTypes;
   max?: number;
   min?: number;
-  height: number;
-  width: number;
   animation?: {
     start: number;
     duration: number;
@@ -38,29 +38,37 @@ export const defaultGraphProps: GraphProps = {
     2, 5, 2, 9, 5, 3, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
     19, 20,
   ],
-  color: "#0000FF",
-  gap: 1,
-  roundness: 5,
-  height: 600,
-  width: 1080,
+  color: "#0000FFFF",
+  gap: 3,
+  roundness: 10,
+  animation: {
+    duration: 2,
+    start: 0,
+  },
 };
 
 export const Graph = ({
   animation,
   color,
   values,
-  height,
-  width,
   max,
+  style,
+  className,
   ...props
-}: GraphProps) => {
+}: GraphProps & StyleAndClass) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const maxValue = max || Math.max(...values);
-  // const minValue = min || Math.min(...values);
+
+  const ref = useRef<HTMLDivElement>(null);
+  const width = ref.current?.parentElement?.offsetWidth || 1;
+  const height = ref.current?.parentElement?.offsetHeight || 1;
+
   if (props.graphType === "bar")
     return (
       <div
+        ref={ref}
+        className={className}
         style={{
           display: "flex",
           height: "100%",
@@ -68,6 +76,7 @@ export const Graph = ({
           justifyContent: "center",
           alignItems: "end",
           gap: props.gap,
+          ...style,
         }}
       >
         {values.map((v, i) => {
@@ -106,7 +115,12 @@ export const Graph = ({
         })
       : 1;
     return (
-      <svg viewBox={`0 0 ${width} ${height}`}>
+      <svg
+        ref={ref as any}
+        viewBox={`0 0 ${width} ${height}`}
+        style={style}
+        className={className}
+      >
         <path
           d={values
             .slice(0, Math.floor(values.length * anim))
