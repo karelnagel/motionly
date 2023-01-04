@@ -99,11 +99,11 @@ const TimelineComp = ({
           }`}
           style={{
             boxShadow: "0 0 4px rgba(0,0,0,0.2)",
-            left: `${(comp.from / template.duration) * 100}%`,
+            left: `${((comp.from || 0) / template.duration) * 100}%`,
             width: `${
               comp.duration
                 ? (comp.duration / template.duration) * 100
-                : 100 - (comp.from / template.duration) * 100
+                : 100 - ((comp.from || 0) / template.duration) * 100
             }%`,
           }}
         >
@@ -132,21 +132,21 @@ const TimelineComp = ({
           horizontalGuidelines={[
             ...template.comps
               .filter((c) => c.id !== selected)
-              .map((c) => [c.from, c.from + c.duration])
+              .map((c) => [c.from, (c.from || 0) + (c.duration || 0)])
               .flat(),
             0,
             template.duration / 2,
             template.duration,
           ].map(
             (x) =>
-              (x / template.duration) *
+              ((x || 0) / template.duration) *
               (divRef.current?.parentElement?.offsetWidth || 1)
           )}
           onDrag={({ delta, beforeDist }) => {
             const newComp = {
               ...comp,
               from:
-                comp.from +
+                (comp.from || 0) +
                 (delta[0] / (divRef.current?.parentElement?.offsetWidth || 1)) *
                   template.duration,
             };

@@ -74,19 +74,32 @@ export type TemplateType = {
 
 export type ProgressStatus = "rendering" | "done" | "error" | undefined;
 
-export const AnimationTypes = {
-  opacity: "Opacity",
-  scale: "Scale",
-  translateX: "Translate X",
-  translateY: "Translate Y",
-  rotate: "Rotate",
+export interface AnimationType {
+  label: string;
+  units?: string;
+}
+export const AnimationTypes: { [key: string]: AnimationType } = {
+  // opacity: { label: "Opacity" },
+  // borderRadius: { label: "borderRadius", units: "px" },
+  rotate: { label: "Rotate", units: "deg" },
+  rotateX: { label: "Rotate X", units: "deg" },
+  rotateY: { label: "Rotate Y", units: "deg" },
+  rotateZ: { label: "Rotate Z", units: "deg" },
+  scale: { label: "Scale" },
+  scaleX: { label: "Scale X" },
+  scaleY: { label: "Scale Y" },
+  scaleZ: { label: "Scale Z" },
+  translate: { label: "Translate", units: "px" },
+  translateX: { label: "Translate X", units: "px" },
+  translateY: { label: "Translate Y", units: "px" },
+  translateZ: { label: "Translate Z", units: "px" },
+  skew: { label: "Skew", units: "deg" },
+  skewX: { label: "Skew X", units: "deg" },
+  skewY: { label: "Skew Y", units: "deg" },
+  perspective: { label: "Perspective", units: "px" },
 };
-export interface AnimationProps {
-  type: keyof typeof AnimationTypes;
-  from: number;
-  to: number;
-  start: number;
-  end: number;
+export interface AnimationProps extends SpringHookInput {
+  type: string; //todo;
 }
 
 export type AllComponents =
@@ -108,17 +121,43 @@ export type AllComponents =
 
 export type BaseProps = {
   id: string;
-  height: number;
-  width: number;
-  x: number;
-  y: number;
-  borderRadius: number;
-  rotation: number;
-  from: number;
-  duration: number;
+  height?: number;
+  width?: number;
+  x?: number;
+  y?: number;
+  borderRadius?: number;
+  rotation?: number;
+  from?: number;
+  duration?: number;
+  opacity?: number;
   componentAnimations?: AnimationProps[];
 };
 
 export type ComponentProps = BaseProps & AllComponents;
 
 export type Modification = Partial<ComponentProps>;
+
+export interface SpringInput {
+  frame: number;
+  fps: number;
+  durationInFrames?: number;
+  startInFrames?: number;
+  endInFrames?: number;
+  from?: number;
+  to?: number;
+  mass?: number;
+  damping?: number;
+  stiffness?: number;
+  reverse?: boolean;
+}
+export interface SpringHookInput {
+  start?: number;
+  end?: number;
+  from?: number;
+  to?: number;
+  duration?: number;
+  mass?: number;
+  damping?: number;
+  stiffness?: number;
+  reverse?: boolean;
+}

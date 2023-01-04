@@ -76,26 +76,28 @@ export const Player = ({
           horizontalGuidelines={[
             ...comps
               .filter((c) => c.id !== selectedComp.id)
-              .map((c) => [c.x, c.x + c.width])
-              .flat(),
+              .map((c) => [c.x, (c.x || 0) + (c.width || 0)])
+              .flat()
+              .filter((x) => x),
             0,
             width / 2,
             width,
-          ].map((x) => x * scale)}
+          ].map((x) => (x || 0) * scale)}
           verticalGuidelines={[
             ...comps
               .filter((c) => c.id !== selectedComp.id)
-              .map((c) => [c.y, c.y + c.height])
-              .flat(),
+              .map((c) => [c.y, (c.y || 0) + (c.height || 0)])
+              .flat()
+              .filter((x) => x),
             0,
             height / 2,
             height,
-          ].map((x) => x * scale)}
+          ].map((x) => (x || 0) * scale)}
           onDrag={(e) => {
             setComp({
               ...selectedComp,
-              x: selectedComp.x + e.delta[0],
-              y: selectedComp.y + e.delta[1],
+              x: (selectedComp.x || 0) + e.delta[0],
+              y: (selectedComp.y || 0) + e.delta[1],
             });
           }}
           keepRatio={lockAspectRatio}
