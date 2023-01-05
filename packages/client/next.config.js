@@ -3,7 +3,6 @@ const nextConfig = {
   experimental: {
     appDir: true,
     serverComponentsExternalPackages: ["@prisma/client"],
-    transpilePackages: [],
   },
   images: {
     domains: ["lh3.googleusercontent.com", "picsum.photos"],
