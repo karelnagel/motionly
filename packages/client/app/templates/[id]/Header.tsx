@@ -63,6 +63,12 @@ export const Header = ({
           Template
         </button>
         <button
+          onClick={() => setSelected("ai")}
+          className={`${selected === "ai" ? "text-primary" : ""} uppercase`}
+        >
+          AI
+        </button>
+        <button
           onClick={() => setSelected("export")}
           className={`${selected === "export" ? "text-primary" : ""} uppercase`}
         >

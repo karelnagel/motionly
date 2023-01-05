@@ -1,23 +1,6 @@
 import { evolvePath } from "@remotion/paths";
 import { StyleAndClass } from "../types";
-
-export const StrokeLinecap = {
-  butt: "Butt",
-  round: "Round",
-  square: "Square",
-};
-export type PathProps = {
-  type: "path";
-  path: string;
-  strokeColor?: string;
-  strokeWidth?: number;
-  viewBoxX?: number;
-  viewBoxY?: number;
-  viewBoxHeight?: number;
-  viewBoxWidth?: number;
-  fillColor?: string;
-  strokeLinecap?: keyof typeof StrokeLinecap;
-};
+import { PathProps } from "../types/components";
 
 export const defaultPathProps: PathProps = {
   type: "path",

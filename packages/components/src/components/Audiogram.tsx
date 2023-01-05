@@ -3,25 +3,7 @@ import { useRef } from "react";
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import { videoUrl } from "../helpers";
 import { StyleAndClass } from "../types";
-
-export const AudiogramPosition = {
-  start: "Start",
-  end: "End",
-  center: "Center",
-};
-export type AudiogramProps = {
-  type: "audiogram";
-  src: string;
-  position: keyof typeof AudiogramPosition;
-  gap: number;
-  barWidth: number;
-  color?: string;
-  roundness: number;
-  startFrom?: number;
-  smoothing?: boolean;
-  mirror?: boolean;
-  multiplier?: number;
-};
+import { AudiogramProps } from "../types/components";
 
 export const defaultAudiogramProps: AudiogramProps = {
   type: "audiogram",

@@ -1,35 +1,7 @@
 import { useRef } from "react";
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { StyleAndClass } from "../types";
-
-export const GraphTypes = {
-  line: "Line",
-  bar: "Bar",
-  pie: "Pie",
-};
-
-export type GraphProps = {
-  type: "graph";
-  values: number[];
-  color?: string;
-  graphType: keyof typeof GraphTypes;
-  max?: number;
-  min?: number;
-  animation?: {
-    start: number;
-    duration: number;
-  };
-} & (
-  | {
-      graphType: "line";
-      strokeWidth: number;
-    }
-  | {
-      graphType: "bar";
-      gap?: number;
-      roundness?: number;
-    }
-);
+import { GraphProps } from "../types/components";
 
 export const defaultGraphProps: GraphProps = {
   type: "graph",

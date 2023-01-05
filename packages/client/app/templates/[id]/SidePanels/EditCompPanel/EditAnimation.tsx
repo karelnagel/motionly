@@ -11,7 +11,7 @@ import {
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 
-const defaultAnimation = {
+const defaultAnimation: AnimationProps = {
   type: "scale",
   start: 0.1,
   end: 1,
@@ -72,7 +72,9 @@ export const EditAnimation = ({
                   label="type"
                   value={type}
                   onChange={(newType) =>
-                    setAnimation(i, { type: newType || type })
+                    setAnimation(i, {
+                      type: (newType || type) as keyof typeof AnimationTypes,
+                    })
                   }
                   options={Object.entries(AnimationTypes).map(
                     ([value, { label }]) => ({ value, label })

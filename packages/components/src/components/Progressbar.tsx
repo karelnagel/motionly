@@ -1,34 +1,7 @@
 import { useRef } from "react";
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import { StyleAndClass } from "../types";
-
-export const ProgressbarTypes = {
-  spotify: "Spotify",
-  line: "Line",
-  circle: "Circle",
-  square: "Square",
-};
-export const ProgressbarSquareCorners = {
-  "top-left": "Top left",
-  "top-right": "Top right",
-};
-
-export type ProgressbarProps = {
-  type: "progressbar";
-  color?: string;
-  background?: string;
-} & (
-  | {
-      progressBarType: "square";
-      barWidth: number;
-      corner: keyof typeof ProgressbarSquareCorners;
-    }
-  | {
-      progressBarType: "circle";
-      barWidth: number;
-    }
-  | { progressBarType: "line" | "spotify" }
-);
+import { ProgressbarProps } from "../types/components";
 
 export const defaultProgressbarProps: ProgressbarProps = {
   type: "progressbar",

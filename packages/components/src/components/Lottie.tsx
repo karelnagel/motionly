@@ -5,19 +5,7 @@ import {
 import { useEffect, useState } from "react";
 import { continueRender, delayRender } from "remotion";
 import { StyleAndClass } from "../types";
-
-export const LottieDirections = {
-  forward: "Forward",
-  backward: "Backward",
-};
-export type LottieProps = {
-  type: "lottie";
-  src: string;
-  direction?: keyof typeof LottieDirections;
-  loop?: boolean;
-  playbackRate?: number;
-  background?: string;
-};
+import { LottieProps } from "../types/components";
 
 export const defaultLottieProps: LottieProps = {
   type: "lottie",

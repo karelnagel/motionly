@@ -1,11 +1,6 @@
 import { Component } from "../Component";
-import { ComponentProps, StyleAndClass } from "../types";
-
-export type DivProps = {
-  type: "div";
-  background?: string;
-  children: ComponentProps[];
-};
+import { StyleAndClass } from "../types";
+import { DivProps } from "../types/components";
 
 export const defaultDivProps: DivProps = {
   type: "div",

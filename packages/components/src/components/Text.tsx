@@ -1,30 +1,6 @@
 import { getTextStyle } from "../helpers";
-import { StyleAndClass, TextStyle } from "../types";
-
-export const TextAnimationTypes = {
-  "word-by-word": "Word by word",
-  "letter-by-letter": "Letter by letter",
-  "line-by-line": "Line by line",
-};
-export const TextAnimationAnimations = {
-  "fade-in": "Fade in",
-  "slide-up": "Slide up",
-  "slide-down": "Slide down",
-  "slide-left": "Slide left",
-  "slide-right": "Slide right",
-  scale: "Scale",
-};
-export type TextAnimation = {
-  type: keyof typeof TextAnimationTypes;
-  duration: number;
-  animation: keyof typeof TextAnimationAnimations;
-};
-export type TextProps = {
-  type: "text";
-  textStyle: TextStyle;
-  text: string;
-  animation?: TextAnimation;
-};
+import { StyleAndClass } from "../types";
+import { TextProps } from "../types/components";
 
 export const defaultTextProps: TextProps = {
   type: "text",

@@ -7,24 +7,7 @@ import {
 } from "react-simple-maps";
 import { continueRender, delayRender } from "remotion";
 import { StyleAndClass } from "../types";
-
-export type MapProps = {
-  type: "map";
-  location: {
-    lat: number;
-    lng: number;
-  };
-  zoom: number;
-  fill?: string;
-  stroke?: string;
-  strokeWidth?: number;
-  marker?: {
-    color?: string;
-    size?: number;
-  };
-  mapUrl?: string;
-  background?: string;
-};
+import { MapProps } from "../types/components";
 
 export const defaultMapProps: MapProps = {
   type: "map",

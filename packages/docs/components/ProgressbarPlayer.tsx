@@ -12,7 +12,7 @@ export const ProgressbarPlayer = () => {
         onChange={setProgressbarType}
         options={Object.entries(ProgressbarTypes).map(([value, label]) => ({
           value,
-          label,
+          label: `${label || ""}`,
         }))}
       />
       <DocsPlayer

@@ -12,6 +12,7 @@ import { Player } from "./Player";
 import { Timeline } from "./TimeLine";
 import { AddSidePanel } from "./SidePanels/AddSidePanel";
 import { PlayerRef } from "@remotion/player";
+import { AISidePanel } from "./SidePanels/AISidePanel";
 
 export default function EditTemplate({
   template: startTemplate,
@@ -78,7 +79,7 @@ export default function EditTemplate({
             className="h-full duration-200 panel relative"
           >
             <div className="absolute top-0 left-0 overflow-y-scroll h-full p-3 w-full">
-              {!["template", "export", "add"].includes(selected) &&
+              {!["template", "export", "add", "ai"].includes(selected) &&
                 selectedComp && (
                   <EditCompPanel
                     comp={selectedComp}
@@ -95,6 +96,9 @@ export default function EditTemplate({
               )}
               {selected === "export" && <ExportSidePanel template={template} />}
               {selected === "add" && <AddSidePanel addComp={addComp} />}
+              {selected === "ai" && (
+                <AISidePanel template={template} setTemplate={setTemplate} />
+              )}
             </div>
           </div>
         </div>

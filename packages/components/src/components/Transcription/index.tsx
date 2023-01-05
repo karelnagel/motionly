@@ -7,8 +7,7 @@ import {
 } from "remotion";
 import { getTextStyle } from "../../helpers";
 import { StyleAndClass } from "../../types";
-import { TranscriptionProps } from "./types";
-export * from "./types";
+import { TranscriptionProps } from "../../types/components";
 export * from "./default";
 
 export const Transcription = ({

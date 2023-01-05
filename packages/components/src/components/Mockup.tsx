@@ -1,18 +1,5 @@
-import { ComponentProps, StyleAndClass } from "../types";
-
-export const MockupTypes = {
-  iPhone: "iPhone",
-  chrome: "Chrome",
-  macbook: "Macbook",
-  iPad: "iPad",
-  "apple-watch": "Apple Watch",
-  "vs-code": "VS Code",
-};
-export type MockupProps = {
-  type: "mockup";
-  children: ComponentProps[];
-  mockupType: keyof typeof MockupTypes;
-};
+import { StyleAndClass } from "../types";
+import { MockupProps } from "../types/components";
 
 export const defaultMockupProps: MockupProps = {
   type: "mockup",

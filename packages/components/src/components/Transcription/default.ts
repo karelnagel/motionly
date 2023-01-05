@@ -1,4 +1,4 @@
-import { TranscriptionProps, TranscriptionWord } from "./types";
+import { TranscriptionProps, TranscriptionWord } from "../../types/components";
 
 export const defaultTranscriptionWords: TranscriptionWord[] = [
   {

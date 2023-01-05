@@ -1,11 +1,6 @@
 import { Img } from "remotion";
-import { ObjectFitType, StyleAndClass } from "../types";
-
-export type ImageProps = {
-  type: "image";
-  src: string;
-  objectFit: ObjectFitType;
-};
+import { StyleAndClass } from "../types";
+import { ImageProps } from "../types/components";
 
 export const defaultImageProps: ImageProps = {
   type: "image",
