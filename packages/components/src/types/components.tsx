@@ -12,12 +12,10 @@ export interface TextStyle {
   fontWeight?: number;
   lineHeight?: number;
   textAlign?: keyof typeof TextAlign;
-  backgroundColor?: string;
+  bg?: string;
   color?: string;
-  outline?: {
-    color?: string;
-    width?: number;
-  };
+  outlineColor?: string;
+  outlineWidth?: number;
 }
 
 export const ObjectFit = {
@@ -25,7 +23,6 @@ export const ObjectFit = {
   contain: "contain",
   fill: "fill",
   none: "none",
-  "scale-down": "scale-down",
 };
 export const TranscriptionAnimationTypes = {
   "current-word": "Current word",
@@ -36,24 +33,17 @@ export interface TranscriptionWord {
   start: number;
   end: number;
 }
-export const TranscriptionScrollType = {
-  "page-by-page": "Page by page",
-  "line-by-line": "Line by line",
-};
-export interface TranscriptionAnimation {
-  type: keyof typeof TranscriptionAnimationTypes;
-  textStyle: TextStyle;
-}
 export interface TranscriptionProps {
-  type: "transcription";
-  words: TranscriptionWord[];
+  comp: "transcription";
+  src: TranscriptionWord[];
   textStyle: TextStyle;
-  scrollType: keyof typeof TranscriptionScrollType;
-  animation: TranscriptionAnimation;
+  scrollByPage?: boolean;
+  animationType: keyof typeof TranscriptionAnimationTypes;
+  animationStyle: TextStyle;
 }
 
 export type AudioProps = {
-  type: "audio";
+  comp: "audio";
   src: string;
   volume: number;
   startFrom: number;
@@ -65,7 +55,7 @@ export const AudiogramPosition = {
   center: "Center",
 };
 export type AudiogramProps = {
-  type: "audiogram";
+  comp: "audiogram";
   src: string;
   position: keyof typeof AudiogramPosition;
   gap: number;
@@ -79,13 +69,13 @@ export type AudiogramProps = {
 };
 
 export type DivProps = {
-  type: "div";
-  background?: string;
+  comp: "div";
+  bg?: string;
   children: ComponentProps[];
 };
 
 export type GifProps = {
-  type: "gif";
+  comp: "gif";
   src: string;
   objectFit: keyof typeof ObjectFit;
 };
@@ -97,63 +87,45 @@ export const GraphTypes = {
 };
 
 export type GraphProps = {
-  type: "graph";
-  values: number[];
+  comp: "graph";
+  src: number[];
   color?: string;
-  graphType: keyof typeof GraphTypes;
+  type: keyof typeof GraphTypes;
   max?: number;
   min?: number;
-  animation?: {
-    start: number;
-    duration: number;
-  };
-} & (
-  | {
-      graphType: "line";
-      strokeWidth: number;
-    }
-  | {
-      graphType: "bar";
-      gap?: number;
-      roundness?: number;
-    }
-);
-
+  animationStart?: number;
+  animationDuration?: number;
+  strokeWidth?: number;
+  gap?: number;
+  roundness?: number;
+};
 export type ImageProps = {
-  type: "image";
+  comp: "image";
   src: string;
   objectFit: keyof typeof ObjectFit;
 };
 
-export const LottieDirections = {
-  forward: "Forward",
-  backward: "Backward",
-};
 export type LottieProps = {
-  type: "lottie";
+  comp: "lottie";
   src: string;
-  direction?: keyof typeof LottieDirections;
+  backwards?: boolean;
   loop?: boolean;
   playbackRate?: number;
-  background?: string;
+  bg?: string;
 };
 
 export type MapProps = {
-  type: "map";
-  location: {
-    lat: number;
-    lng: number;
-  };
+  comp: "map";
+  lat: number;
+  lng: number;
   zoom: number;
   fill?: string;
   stroke?: string;
   strokeWidth?: number;
-  marker?: {
-    color?: string;
-    size?: number;
-  };
-  mapUrl?: string;
-  background?: string;
+  markerColor?: string;
+  markerSize?: number;
+  url?: string;
+  bg?: string;
 };
 
 export const MockupTypes = {
@@ -165,18 +137,13 @@ export const MockupTypes = {
   "vs-code": "VS Code",
 };
 export type MockupProps = {
-  type: "mockup";
+  comp: "mockup";
   children: ComponentProps[];
-  mockupType: keyof typeof MockupTypes;
+  type: keyof typeof MockupTypes;
 };
 
-export const StrokeLinecap = {
-  butt: "Butt",
-  round: "Round",
-  square: "Square",
-};
 export type PathProps = {
-  type: "path";
+  comp: "path";
   path: string;
   strokeColor?: string;
   strokeWidth?: number;
@@ -185,43 +152,24 @@ export type PathProps = {
   viewBoxHeight?: number;
   viewBoxWidth?: number;
   fillColor?: string;
-  strokeLinecap?: keyof typeof StrokeLinecap;
+  isRound?: boolean;
 };
 
 export type QRCodeProps = {
-  type: "qrcode";
+  comp: "qrcode";
   text: string;
   color?: string;
-  background?: string;
+  bg?: string;
 };
 
-export const TextAnimationTypes = {
-  "word-by-word": "Word by word",
-  "letter-by-letter": "Letter by letter",
-  "line-by-line": "Line by line",
-};
-export const TextAnimationAnimations = {
-  "fade-in": "Fade in",
-  "slide-up": "Slide up",
-  "slide-down": "Slide down",
-  "slide-left": "Slide left",
-  "slide-right": "Slide right",
-  scale: "Scale",
-};
-export type TextAnimation = {
-  type: keyof typeof TextAnimationTypes;
-  duration: number;
-  animation: keyof typeof TextAnimationAnimations;
-};
 export type TextProps = {
-  type: "text";
+  comp: "text";
   textStyle: TextStyle;
   text: string;
-  animation?: TextAnimation;
 };
 
 export type VideoProps = {
-  type: "video";
+  comp: "video";
   src: string;
   objectFit: keyof typeof ObjectFit;
   startFrom?: number;
@@ -237,27 +185,14 @@ export const ProgressbarTypes = {
   square: "Square",
 };
 
-export const ProgressbarSquareCorners = {
-  "top-left": "Top left",
-  "top-right": "Top right",
-};
-
 export type ProgressbarProps = {
-  type: "progressbar";
+  comp: "progressbar";
+  type: keyof typeof ProgressbarTypes;
   color?: string;
-  background?: string;
-} & (
-  | {
-      progressBarType: "square";
-      barWidth: number;
-      corner: keyof typeof ProgressbarSquareCorners;
-    }
-  | {
-      progressBarType: "circle";
-      barWidth: number;
-    }
-  | { progressBarType: "line" | "spotify" }
-);
+  bg?: string;
+  barWidth?: number;
+  topRight?: boolean;
+};
 
 export type TemplateType = {
   id?: string;
@@ -273,8 +208,6 @@ export type TemplateType = {
 };
 
 export const AnimationTypes = {
-  // opacity: { label: "Opacity" },
-  // borderRadius: { label: "borderRadius", units: "px" },
   rotate: { label: "Rotate", units: "deg" },
   rotateX: { label: "Rotate X", units: "deg" },
   rotateY: { label: "Rotate Y", units: "deg" },
@@ -324,7 +257,7 @@ export type BaseProps = {
   from?: number;
   duration?: number;
   opacity?: number;
-  componentAnimations?: AnimationProps[];
+  animations?: AnimationProps[];
 };
 
 export type ComponentProps = BaseProps & AllComponents;

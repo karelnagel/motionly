@@ -3,13 +3,13 @@ import { StyleAndClass } from "../types";
 import { DivProps } from "../types/components";
 
 export const defaultDivProps: DivProps = {
-  type: "div",
-  background: "#FF0000FF",
+  comp: "div",
+  bg: "#FF0000FF",
   children: [],
 };
 
 export const Div = ({
-  background,
+  bg: background,
   children,
   style,
   className,

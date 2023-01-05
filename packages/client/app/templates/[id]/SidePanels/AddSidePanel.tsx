@@ -34,7 +34,7 @@ export const AddSidePanel = ({
     duration: 0,
     from: 0,
     rotation: 0,
-    componentAnimations: [],
+    animations: [],
   };
   const Add = (title: string, newComp: AllComponents) => {
     return (

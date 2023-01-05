@@ -24,8 +24,8 @@ export const EditQRCode = ({
       />
       <ColorInput
         label="Background"
-        value={comp.background}
-        onChange={(background) => setComp({ ...comp, background })}
+        value={comp.bg}
+        onChange={(bg) => setComp({ ...comp, bg })}
       />
     </EditSection>
   );

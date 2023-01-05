@@ -1,10 +1,10 @@
 import {
   TranscriptionAnimationTypes,
   TranscriptionProps,
-  TranscriptionScrollType,
 } from "@asius/components";
 import { useState } from "react";
 import {
+  BooleanInput,
   NumberInput,
   SelectInput,
   TextInput,
@@ -34,12 +34,12 @@ export const EditTranscription = ({
           <TextInput
             area
             label="Json"
-            value={JSON.stringify(comp.words, null, 2)}
-            onChange={(words) => setComp({ ...comp, words: JSON.parse(words) })}
+            value={JSON.stringify(comp.src, null, 2)}
+            onChange={(src) => setComp({ ...comp, src: JSON.parse(src) })}
           />
         ) : (
           <div className="col-span-2 w-full space-y-2">
-            {comp.words.map(({ text, end, start }, i) => (
+            {comp.src.map(({ text, end, start }, i) => (
               <div key={i} className="grid grid-cols-4 w-full gap-2">
                 <TextInput
                   label="T"
@@ -47,7 +47,7 @@ export const EditTranscription = ({
                   onChange={(text) =>
                     setComp({
                       ...comp,
-                      words: comp.words.map((w, j) =>
+                      src: comp.src.map((w, j) =>
                         i === j ? { ...w, text } : w
                       ),
                     })
@@ -59,7 +59,7 @@ export const EditTranscription = ({
                   onChange={(start) =>
                     setComp({
                       ...comp,
-                      words: comp.words.map((w, j) =>
+                      src: comp.src.map((w, j) =>
                         i === j ? { ...w, start } : w
                       ),
                     })
@@ -71,7 +71,7 @@ export const EditTranscription = ({
                   onChange={(end) =>
                     setComp({
                       ...comp,
-                      words: comp.words.map((w, j) =>
+                      src: comp.src.map((w, j) =>
                         i === j ? { ...w, end } : w
                       ),
                     })
@@ -86,33 +86,20 @@ export const EditTranscription = ({
         setStyle={(textStyle) => setComp({ ...comp, textStyle })}
         style={comp.textStyle}
       />
-      <SelectInput
-        label="Scroll type"
-        value={comp.scrollType}
-        onChange={(scrollType) =>
-          setComp({
-            ...comp,
-            scrollType: scrollType as keyof typeof TranscriptionScrollType,
-          })
-        }
-        options={Object.entries(TranscriptionScrollType).map(
-          ([value, label]) => ({
-            value,
-            label,
-          })
-        )}
+      <BooleanInput
+        label="Scroll by page"
+        value={comp.scrollByPage}
+        onChange={(scrollByPage) => setComp({ ...comp, scrollByPage })}
       />
       <EditSection title="Animation" level={1} className="col-span-2">
         <SelectInput
           label="Type"
-          value={comp.animation.type}
-          onChange={(type) =>
+          value={comp.animationType}
+          onChange={(animationType) =>
             setComp({
               ...comp,
-              animation: {
-                ...comp.animation,
-                type: type as keyof typeof TranscriptionAnimationTypes,
-              },
+              animationType:
+                animationType as keyof typeof TranscriptionAnimationTypes,
             })
           }
           options={Object.entries(TranscriptionAnimationTypes).map(
@@ -123,13 +110,13 @@ export const EditTranscription = ({
           )}
         />
         <EditTextStyle
-          setStyle={(textStyle) =>
+          setStyle={(animationStyle) =>
             setComp({
               ...comp,
-              animation: { ...comp.animation, textStyle },
+              animationStyle,
             })
           }
-          style={comp.animation.textStyle}
+          style={comp.animationStyle}
         />
       </EditSection>
     </EditSection>

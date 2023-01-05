@@ -14,8 +14,8 @@ export const EditDiv = ({
     <EditSection title="Div">
       <ColorInput
         label="BG"
-        value={comp.background}
-        onChange={(background) => setComp({ ...comp, background })}
+        value={comp.bg}
+        onChange={(bg) => setComp({ ...comp, bg })}
       />
     </EditSection>
   );

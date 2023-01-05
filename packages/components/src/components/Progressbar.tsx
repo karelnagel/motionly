@@ -4,17 +4,17 @@ import { StyleAndClass } from "../types";
 import { ProgressbarProps } from "../types/components";
 
 export const defaultProgressbarProps: ProgressbarProps = {
-  type: "progressbar",
+  comp: "progressbar",
   barWidth: 30,
-  corner: "top-left",
+  topRight: false,
   color: "#ff00ffff",
-  background: "#0000FFFF",
-  progressBarType: "square",
+  bg: "#0000FFFF",
+  type: "square",
 };
 
 export const Progressbar = ({
   color,
-  background,
+  bg: background,
   style,
   className,
   ...props
@@ -27,7 +27,7 @@ export const Progressbar = ({
   const height = ref.current?.parentElement?.offsetHeight || 1;
   const width = ref.current?.parentElement?.offsetWidth || 1;
 
-  if (props.progressBarType === "line")
+  if (props.type === "line")
     return (
       <div
         ref={ref}
@@ -53,7 +53,7 @@ export const Progressbar = ({
       </div>
     );
 
-  if (props.progressBarType === "spotify")
+  if (props.type === "spotify")
     return (
       <div
         ref={ref}
@@ -102,9 +102,9 @@ export const Progressbar = ({
         />
       </div>
     );
-  if (props.progressBarType === "circle") {
+  if (props.type === "circle") {
     const size = Math.min(width, height);
-    const radius = (size - props.barWidth) / 2;
+    const radius = (size - (props.barWidth || 1)) / 2;
     const circumference = 2 * Math.PI * radius;
     const dash = circumference * (progress / 100);
     return (
@@ -136,7 +136,7 @@ export const Progressbar = ({
       </svg>
     );
   }
-  if (props.progressBarType === "square")
+  if (props.type === "square")
     return (
       <div
         ref={ref}
@@ -150,7 +150,7 @@ export const Progressbar = ({
       >
         {[1, 2, 3, 4].map((n) => {
           const horizontal = n % 2 === 0;
-          const left = props.corner === "top-right" ? n < 3 : n > 2;
+          const left = props.topRight ? n < 3 : n > 2;
           const top = n < 3;
           return (
             <div

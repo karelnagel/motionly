@@ -3,7 +3,7 @@ import { StyleAndClass } from "../types";
 import { ImageProps } from "../types/components";
 
 export const defaultImageProps: ImageProps = {
-  type: "image",
+  comp: "image",
   objectFit: "cover",
   src: "https://picsum.photos/seed/asius/1080/1080",
 };

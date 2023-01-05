@@ -3,7 +3,7 @@ import { ComponentProps } from "@asius/components";
 export const components: ComponentProps[] = [
   {
     id: "r81ebs",
-    type: "image",
+    comp: "image",
     height: 1080,
     width: 1080,
     x: 0,
@@ -16,7 +16,7 @@ export const components: ComponentProps[] = [
     rotation: 0,
   },
   {
-    type: "video",
+    comp: "video",
     objectFit: "cover",
     startFrom: 0,
     src: "https://remotionlambda-24lixyhuqn.s3.us-east-1.amazonaws.com/video.mp4",
@@ -31,12 +31,12 @@ export const components: ComponentProps[] = [
     duration: 0,
     from: 0,
     rotation: 0,
-    componentAnimations: [],
+    animations: [],
   },
   {
-    type: "transcription",
+    comp: "transcription",
     height: 275,
-    words: [
+    src: [
       {
         text: "If",
         start: 0.16,
@@ -1263,24 +1263,18 @@ export const components: ComponentProps[] = [
         end: 63.04,
       },
     ],
-    animation: {
-      type: "current-word",
-      textStyle: {
-        outline: {
-          color: "#ffa3a3",
-          width: 20,
-        },
-      },
+    animationType: "current-word",
+    animationStyle: {
+      outlineColor: "#ffa3a3",
+      outlineWidth: 20,
     },
-    scrollType: "line-by-line",
+    scrollByPage: false,
     textStyle: {
       fontSize: 200,
       fontFamily: "Arial",
       color: "#1a77db",
-      outline: {
-        color: "#ffffff",
-        width: 20,
-      },
+      outlineColor: "#ffffff",
+      outlineWidth: 20,
       fontWeight: 800,
       lineHeight: 1.2,
       textAlign: "center",
@@ -1293,10 +1287,10 @@ export const components: ComponentProps[] = [
     duration: 0,
     from: 0,
     rotation: 0,
-    componentAnimations: [],
+    animations: [],
   },
   {
-    type: "audiogram",
+    comp: "audiogram",
     height: 500,
     width: 1080,
     startFrom: 0,
@@ -1315,12 +1309,12 @@ export const components: ComponentProps[] = [
     duration: 0,
     from: 0,
     rotation: 0,
-    componentAnimations: [],
+    animations: [],
   },
   {
-    type: "text",
+    comp: "text",
     textStyle: {
-      backgroundColor: "#00000000",
+      bg: "#00000000",
       color: "#eb0000FF",
       fontSize: 180,
       fontFamily: "Arial",
@@ -1337,6 +1331,6 @@ export const components: ComponentProps[] = [
     duration: 0,
     from: 0,
     rotation: 0,
-    componentAnimations: [],
+    animations: [],
   },
 ];

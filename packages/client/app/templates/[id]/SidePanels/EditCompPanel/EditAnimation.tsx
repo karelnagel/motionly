@@ -25,7 +25,7 @@ const defaultAnimation: AnimationProps = {
 };
 
 export const EditAnimation = ({
-  comp: { componentAnimations = [], ...comp },
+  comp: { animations = [], ...comp },
   setComp,
 }: {
   comp: ComponentProps;
@@ -34,7 +34,7 @@ export const EditAnimation = ({
   const setAnimation = (index: number, value: Partial<AnimationProps>) => {
     setComp({
       ...comp,
-      componentAnimations: componentAnimations.map((a, i) => {
+      animations: animations.map((a, i) => {
         if (i === index) {
           return { ...a, ...value };
         }
@@ -45,7 +45,7 @@ export const EditAnimation = ({
   return (
     <EditSection title="Animation">
       <div className="col-span-2">
-        {componentAnimations.map(
+        {animations.map(
           (
             {
               type,
@@ -129,9 +129,7 @@ export const EditAnimation = ({
                   onClick={() =>
                     setComp({
                       ...comp,
-                      componentAnimations: componentAnimations.filter(
-                        (_, index) => i !== index
-                      ),
+                      animations: animations.filter((_, index) => i !== index),
                     })
                   }
                 >
@@ -145,7 +143,7 @@ export const EditAnimation = ({
           onClick={() => {
             setComp({
               ...comp,
-              componentAnimations: [...componentAnimations, defaultAnimation],
+              animations: [...animations, defaultAnimation],
             });
           }}
         >

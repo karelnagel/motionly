@@ -3,14 +3,14 @@ import { StyleAndClass } from "../types";
 import { QRCodeProps } from "../types/components";
 
 export const defaultQRCodeProps: QRCodeProps = {
-  type: "qrcode",
+  comp: "qrcode",
   text: "https://www.youtube.com/watch?v=QH2-TGUlwu4",
 };
 
 export const QRCode = ({
   text,
   color,
-  background: backgroundColor,
+  bg: backgroundColor,
   style,
   className,
 }: QRCodeProps & StyleAndClass) => {

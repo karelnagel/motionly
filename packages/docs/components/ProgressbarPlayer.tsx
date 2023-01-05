@@ -17,7 +17,7 @@ export const ProgressbarPlayer = () => {
       />
       <DocsPlayer
         {...defaultProgressbarProps}
-        progressBarType={progressbarType as any}
+        type={progressbarType as keyof typeof ProgressbarTypes}
       />
     </>
   );

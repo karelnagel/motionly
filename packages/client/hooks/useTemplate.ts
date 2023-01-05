@@ -35,7 +35,7 @@ export const useTemplate = (starTemplate: TemplateType) => {
         if (comp.id === selected) {
           comp = { ...comp, ...element } as ComponentProps;
         }
-        if (comp.type === "div" && comp.children) {
+        if (comp.comp === "div" && comp.children) {
           comp.children = get(comp.children);
         }
         return comp;
@@ -49,7 +49,7 @@ export const useTemplate = (starTemplate: TemplateType) => {
     let selectedComp = comps.find((comp) => comp.id === selected) || null;
     if (selectedComp) return selectedComp;
     comps.forEach((comp) =>
-      comp.type === "div" ? (selectedComp = find(comp.children)) : null
+      comp.comp === "div" ? (selectedComp = find(comp.children)) : null
     );
     return selectedComp;
   };

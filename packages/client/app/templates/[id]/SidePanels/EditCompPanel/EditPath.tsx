@@ -1,8 +1,8 @@
-import { PathProps, StrokeLinecap } from "@asius/components";
+import { PathProps } from "@asius/components";
 import {
+  BooleanInput,
   ColorInput,
   NumberInput,
-  SelectInput,
   TextInput,
 } from "../../../../../components/inputs";
 import { EditSection } from "./EditSection";
@@ -58,19 +58,10 @@ export const EditPath = ({
         value={comp.viewBoxHeight}
         onChange={(viewBoxHeight) => setComp({ ...comp, viewBoxHeight })}
       />
-      <SelectInput
-        label="Linecap"
-        value={comp.strokeLinecap}
-        onChange={(strokeLinecap) =>
-          setComp({
-            ...comp,
-            strokeLinecap: strokeLinecap as keyof typeof StrokeLinecap,
-          })
-        }
-        options={Object.entries(StrokeLinecap).map(([value, label]) => ({
-          value,
-          label,
-        }))}
+      <BooleanInput
+        label="Rounded"
+        value={comp.isRound}
+        onChange={(isRound) => setComp({ ...comp, isRound })}
       />
       {/* <p className="col-span-2">Animation</p>
       <NumberInput

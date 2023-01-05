@@ -6,7 +6,7 @@ import { StyleAndClass } from "../types";
 import { AudiogramProps } from "../types/components";
 
 export const defaultAudiogramProps: AudiogramProps = {
-  type: "audiogram",
+  comp: "audiogram",
   startFrom: 0,
   src: videoUrl,
   barWidth: 16,

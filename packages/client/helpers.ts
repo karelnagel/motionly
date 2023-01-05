@@ -24,23 +24,23 @@ export function hexToRGBA(hex?: string) {
   return "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
 }
 
-type Font = { family: string; weight: number };
-export function getFonts(comps: ComponentProps[]): Font[] {
-  return comps
-    .map((e) => {
-      if (e.type === "text")
-        return [
-          {
-            family: e.textStyle.fontFamily,
-            weight: Number(e.textStyle.fontWeight) || 500,
-          },
-        ];
-      if (e.type === "div") return getFonts(e.children);
-      else return [null];
-    })
-    .flat()
-    .filter((e) => e !== null) as Font[];
-}
+// type Font = { family: string; weight: number };
+// export function getFonts(comps: ComponentProps[]): Font[] {
+//   return comps
+//     .map((e) => {
+//       if (e.comp === "text")
+//         return [
+//           {
+//             family: e.textStyle.fontFamily,
+//             weight: Number(e.textStyle.fontWeight) || 500,
+//           },
+//         ];
+//       if (e.comp === "div") return getFonts(e.children);
+//       else return [null];
+//     })
+//     .flat()
+//     .filter((e) => e !== null) as Font[];
+// }
 
 export const getRandomImage = () => {
   const imageCount = 8;

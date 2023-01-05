@@ -4,28 +4,27 @@ import { StyleAndClass } from "../types";
 import { GraphProps } from "../types/components";
 
 export const defaultGraphProps: GraphProps = {
-  type: "graph",
-  graphType: "bar",
-  values: [
+  comp: "graph",
+  type: "bar",
+  src: [
     2, 5, 2, 9, 5, 3, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
     19, 20,
   ],
   color: "#0000FFFF",
   gap: 3,
   roundness: 10,
-  animation: {
-    duration: 2,
-    start: 0,
-  },
+  animationDuration: 2,
+  animationStart: 0,
 };
 
 export const Graph = ({
-  animation,
   color,
-  values,
+  src: values,
   max,
   style,
   className,
+  animationDuration,
+  animationStart,
   ...props
 }: GraphProps & StyleAndClass) => {
   const frame = useCurrentFrame();
@@ -36,7 +35,7 @@ export const Graph = ({
   const width = ref.current?.parentElement?.offsetWidth || 1;
   const height = ref.current?.parentElement?.offsetHeight || 1;
 
-  if (props.graphType === "bar")
+  if (props.type === "bar")
     return (
       <div
         ref={ref}
@@ -52,15 +51,16 @@ export const Graph = ({
         }}
       >
         {values.map((v, i) => {
-          const anim = animation
-            ? spring({
-                frame:
-                  frame -
-                  animation.start * fps -
-                  ((animation.duration * fps) / values.length) * i,
-                fps,
-              })
-            : 1;
+          const anim =
+            animationDuration && animationStart !== undefined
+              ? spring({
+                  frame:
+                    frame -
+                    animationStart * fps -
+                    ((animationDuration * fps) / values.length) * i,
+                  fps,
+                })
+              : 1;
           return (
             <div
               key={i}
@@ -75,17 +75,18 @@ export const Graph = ({
         })}
       </div>
     );
-  else if (props.graphType === "line") {
-    const anim = animation
-      ? spring({
-          frame: frame - animation.start * fps,
-          fps,
-          durationInFrames: animation.duration * fps,
-          config: {
-            damping: 100,
-          },
-        })
-      : 1;
+  else if (props.type === "line") {
+    const anim =
+      animationDuration && animationStart !== undefined
+        ? spring({
+            frame: frame - animationStart * fps,
+            fps,
+            durationInFrames: animationDuration * fps,
+            config: {
+              damping: 100,
+            },
+          })
+        : 1;
     return (
       <svg
         ref={ref as any}

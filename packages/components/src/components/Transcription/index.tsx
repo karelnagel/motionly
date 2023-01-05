@@ -12,11 +12,12 @@ export * from "./default";
 
 export const Transcription = ({
   textStyle,
-  animation,
-  words,
+  src: words,
   style,
   className,
-  scrollType,
+  animationStyle,
+  animationType,
+  scrollByPage,
 }: TranscriptionProps & StyleAndClass) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -42,7 +43,7 @@ export const Transcription = ({
 
   const linesOffset = Math.max(
     0,
-    scrollType === "line-by-line"
+    !scrollByPage
       ? linesRendered - linesPerPage
       : Math.floor((linesRendered - 1) / linesPerPage) * linesPerPage
   );
@@ -69,9 +70,9 @@ export const Transcription = ({
         <span ref={windowRef}>
           {playedSubs.map((item, i) => {
             let isHighlighted = false;
-            if (animation.type === "previous-text") isHighlighted = true;
+            if (animationType === "previous-text") isHighlighted = true;
             else if (
-              animation.type === "current-word" &&
+              animationType === "current-word" &&
               i === playedSubs.length - 1
             )
               isHighlighted = true;
@@ -79,9 +80,7 @@ export const Transcription = ({
               <span key={i}>
                 <span
                   style={
-                    isHighlighted
-                      ? getTextStyle(animation.textStyle)
-                      : undefined
+                    isHighlighted ? getTextStyle(animationStyle) : undefined
                   }
                 >
                   {item.text}{" "}

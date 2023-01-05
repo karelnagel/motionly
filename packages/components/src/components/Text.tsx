@@ -3,9 +3,9 @@ import { StyleAndClass } from "../types";
 import { TextProps } from "../types/components";
 
 export const defaultTextProps: TextProps = {
-  type: "text",
+  comp: "text",
   textStyle: {
-    backgroundColor: "#00000000",
+    bg: "#00000000",
     color: "#000000FF",
     fontSize: 120,
     fontFamily: "Arial",

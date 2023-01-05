@@ -4,7 +4,7 @@ import { StyleAndClass } from "../types";
 import { AudioProps } from "../types/components";
 
 export const defaultAudioProps: AudioProps = {
-  type: "audio",
+  comp: "audio",
   startFrom: 0,
   src: videoUrl,
   volume: 1,

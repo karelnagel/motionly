@@ -1,9 +1,8 @@
-import { LottieProps, LottieDirections } from "@asius/components";
+import { LottieProps } from "@asius/components";
 import {
   BooleanInput,
   ColorInput,
   NumberInput,
-  SelectInput,
   TextInput,
 } from "../../../../../components/inputs";
 import { EditSection } from "./EditSection";
@@ -23,19 +22,10 @@ export const EditLottie = ({
         value={comp.src}
         onChange={(src) => setComp({ ...comp, src })}
       />
-      <SelectInput
-        label="Direction"
-        value={comp.direction}
-        onChange={(direction) =>
-          setComp({
-            ...comp,
-            direction: direction as keyof typeof LottieDirections,
-          })
-        }
-        options={Object.entries(LottieDirections).map(([value, label]) => ({
-          label,
-          value,
-        }))}
+      <BooleanInput
+        label="Backwards"
+        value={comp.backwards}
+        onChange={(backwards) => setComp({ ...comp, backwards })}
       />
       <BooleanInput
         label="Loop"
@@ -50,8 +40,8 @@ export const EditLottie = ({
 
       <ColorInput
         label="Background"
-        value={comp.background}
-        onChange={(background) => setComp({ ...comp, background })}
+        value={comp.bg}
+        onChange={(bg) => setComp({ ...comp, bg })}
       />
     </EditSection>
   );

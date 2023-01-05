@@ -14,11 +14,11 @@ export const EditMockup = ({
     <EditSection title="Mockup">
       <SelectInput
         label="Type"
-        value={comp.mockupType}
-        onChange={(mockupType) =>
+        value={comp.type}
+        onChange={(type) =>
           setComp({
             ...comp,
-            mockupType: mockupType as keyof typeof MockupTypes,
+            type: type as keyof typeof MockupTypes,
           })
         }
         options={Object.entries(MockupTypes).map(([value, label]) => ({

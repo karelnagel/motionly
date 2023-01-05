@@ -10,34 +10,32 @@ import { StyleAndClass } from "../types";
 import { MapProps } from "../types/components";
 
 export const defaultMapProps: MapProps = {
-  type: "map",
-  location: {
-    lat: 48.85,
-    lng: 2.29,
-  },
+  comp: "map",
+  lat: 48.85,
+  lng: 2.29,
   zoom: 300,
-  marker: {
-    color: "#FF0000",
-    size: 20,
-  },
+  markerColor: "#FF0000",
+  markerSize: 20,
   fill: "#0000FFFF",
   stroke: "#FFFFFFFF",
   strokeWidth: 2,
 };
 
 export const Map = ({
-  location,
   zoom,
   fill,
-  mapUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json",
+  url: mapUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json",
   stroke,
   strokeWidth,
-  marker,
   style,
   className,
-  background,
+  bg: background,
+  lat,
+  lng,
+  markerColor,
+  markerSize,
 }: MapProps & StyleAndClass) => {
-  const coordinates: [number, number] = [location.lng, location.lat];
+  const coordinates: [number, number] = [lng, lat];
   const [handle] = useState(delayRender());
   const [geography, setGeography] = useState(null);
 
@@ -71,9 +69,9 @@ export const Map = ({
           ))
         }
       </Geographies>
-      {marker && (
+      {markerSize && markerColor && (
         <Marker coordinates={coordinates}>
-          {marker.size && <circle r={marker.size / 2} fill={marker.color} />}
+          {markerSize && <circle r={markerSize / 2} fill={markerColor} />}
         </Marker>
       )}
     </ComposableMap>

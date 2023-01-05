@@ -47,8 +47,8 @@ export const EditTextStyle = ({
       />
       <ColorInput
         label="BG"
-        value={style.backgroundColor}
-        onChange={(backgroundColor) => setStyle({ ...style, backgroundColor })}
+        value={style.bg}
+        onChange={(bg) => setStyle({ ...style, bg })}
       />
       <SelectInput
         label="Align"
@@ -64,28 +64,26 @@ export const EditTextStyle = ({
           value: a,
         }))}
       />
-      <EditSection title="Outline" className="col-span-2" level={1}>
-        <ColorInput
-          label="Color"
-          value={style.outline?.color}
-          onChange={(color) =>
-            setStyle({
-              ...style,
-              outline: { ...style.outline, color: color },
-            })
-          }
-        />
-        <NumberInput
-          label="Width"
-          value={style.outline?.width}
-          onChange={(width) =>
-            setStyle({
-              ...style,
-              outline: { ...style.outline, width: width },
-            })
-          }
-        />
-      </EditSection>
+      <ColorInput
+        label="Outline Color"
+        value={style.outlineColor}
+        onChange={(outlineColor) =>
+          setStyle({
+            ...style,
+            outlineColor,
+          })
+        }
+      />
+      <NumberInput
+        label="Outline Width"
+        value={style.outlineWidth}
+        onChange={(outlineWidth) =>
+          setStyle({
+            ...style,
+            outlineWidth,
+          })
+        }
+      />
     </EditSection>
   );
 };

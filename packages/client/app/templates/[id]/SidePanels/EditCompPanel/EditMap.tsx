@@ -18,22 +18,18 @@ export const EditMap = ({
     <EditSection title="Map">
       <TextInput
         label="Url"
-        value={comp.mapUrl}
-        onChange={(mapUrl) => setComp({ ...comp, mapUrl })}
+        value={comp.url}
+        onChange={(url) => setComp({ ...comp, url })}
       />
       <NumberInput
         label="Latitude"
-        value={comp.location.lat}
-        onChange={(lat) =>
-          setComp({ ...comp, location: { ...comp.location, lat } })
-        }
+        value={comp.lat}
+        onChange={(lat) => setComp({ ...comp, lat })}
       />
       <NumberInput
         label="Longitude"
-        value={comp.location.lng}
-        onChange={(lng) =>
-          setComp({ ...comp, location: { ...comp.location, lng } })
-        }
+        value={comp.lng}
+        onChange={(lng) => setComp({ ...comp, lng })}
       />
       <NumberInput
         label="Zoom"
@@ -57,41 +53,30 @@ export const EditMap = ({
       />
       <ColorInput
         label="Background"
-        value={comp.background}
-        onChange={(background) => setComp({ ...comp, background })}
+        value={comp.bg}
+        onChange={(bg) => setComp({ ...comp, bg })}
       />
-      {comp.marker ? (
-        <>
-          <p className="">Marker</p>
-          <button onClick={() => setComp({ ...comp, marker: undefined })}>
-            Remove
-          </button>
-          <NumberInput
-            label="size"
-            value={comp.marker.size}
-            onChange={(size) =>
-              setComp({
-                ...comp,
-                marker: { ...comp.marker, size },
-              })
-            }
-          />
-          <ColorInput
-            label="color"
-            value={comp.marker.color}
-            onChange={(color) =>
-              setComp({
-                ...comp,
-                marker: { ...comp.marker, color },
-              })
-            }
-          />
-        </>
-      ) : (
-        <button onClick={() => setComp({ ...comp, marker: {} })}>
-          Add Marker
-        </button>
-      )}
+      <p className="">Marker</p>
+      <NumberInput
+        label="size"
+        value={comp.markerSize}
+        onChange={(markerSize) =>
+          setComp({
+            ...comp,
+            markerSize,
+          })
+        }
+      />
+      <ColorInput
+        label="color"
+        value={comp.markerColor}
+        onChange={(markerColor) =>
+          setComp({
+            ...comp,
+            markerColor,
+          })
+        }
+      />
     </EditSection>
   );
 };

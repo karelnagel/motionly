@@ -107,7 +107,7 @@ const TimelineComp = ({
             }%`,
           }}
         >
-          {comp.type}-{comp.id}
+          {comp.comp}-{comp.id}
         </div>
       </div>
       {isSelected && (

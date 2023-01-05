@@ -31,7 +31,7 @@ export const Root: React.FC = () => {
       {compositions.map((comp, i) => {
         const baseProps: BaseProps = {
           id: "1",
-          componentAnimations: [
+          animations: [
             {
               type: "translate",
               start: 0.1,
@@ -47,7 +47,7 @@ export const Root: React.FC = () => {
         return (
           <Composition
             key={i}
-            id={`${compProps.type}`}
+            id={`${compProps.comp}`}
             component={Comp}
             fps={template.fps}
             width={template.width}

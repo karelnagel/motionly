@@ -8,19 +8,19 @@ import { StyleAndClass } from "../types";
 import { LottieProps } from "../types/components";
 
 export const defaultLottieProps: LottieProps = {
-  type: "lottie",
+  comp: "lottie",
   src: "https://assets4.lottiefiles.com/packages/lf20_zyquagfl.json",
   loop: true,
 };
 
 export const Lottie = ({
   src,
-  direction,
   loop,
   playbackRate,
   style,
   className,
-  background,
+  bg: background,
+  backwards,
 }: LottieProps & StyleAndClass) => {
   const [handle] = useState(() => delayRender("Loading Lottie animation"));
   const [animationData, setAnimationData] =
@@ -50,7 +50,7 @@ export const Lottie = ({
         ...style,
       }}
       animationData={animationData}
-      direction={direction}
+      direction={backwards ? "backward" : "forward"}
       loop={loop}
       playbackRate={playbackRate}
     />

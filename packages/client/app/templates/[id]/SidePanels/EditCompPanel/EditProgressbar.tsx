@@ -1,9 +1,6 @@
+import { ProgressbarProps, ProgressbarTypes } from "@asius/components";
 import {
-  ProgressbarProps,
-  ProgressbarSquareCorners,
-  ProgressbarTypes,
-} from "@asius/components";
-import {
+  BooleanInput,
   ColorInput,
   NumberInput,
   SelectInput,
@@ -27,17 +24,16 @@ export const EditProgressbar = ({
       />
       <ColorInput
         label="Background"
-        value={comp.background}
-        onChange={(background) => setComp({ ...comp, background })}
+        value={comp.bg}
+        onChange={(bg) => setComp({ ...comp, bg })}
       />
       <SelectInput
         label="Type"
-        value={comp.progressBarType}
-        onChange={(progressBarType) =>
+        value={comp.type}
+        onChange={(type) =>
           setComp({
             ...comp,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            progressBarType: progressBarType as any,
+            type: type as keyof typeof ProgressbarTypes,
           })
         }
         options={Object.entries(ProgressbarTypes).map(([value, label]) => ({
@@ -45,32 +41,21 @@ export const EditProgressbar = ({
           label,
         }))}
       />
-      {comp.progressBarType === "square" && (
+      {comp.type === "square" && (
         <>
           <NumberInput
             label="Width"
             value={comp.barWidth}
             onChange={(barWidth) => setComp({ ...comp, barWidth })}
           />
-          <SelectInput
-            label="Corner"
-            value={comp.corner}
-            onChange={(corner) =>
-              setComp({
-                ...comp,
-                corner: corner as keyof typeof ProgressbarSquareCorners,
-              })
-            }
-            options={Object.entries(ProgressbarSquareCorners).map(
-              ([value, label]) => ({
-                value,
-                label,
-              })
-            )}
+          <BooleanInput
+            label="Top right corner"
+            value={comp.topRight}
+            onChange={(topRight) => setComp({ ...comp, topRight })}
           />
         </>
       )}
-      {comp.progressBarType === "circle" && (
+      {comp.type === "circle" && (
         <>
           <NumberInput
             label="Width"

@@ -18,15 +18,15 @@ export const EditGraph = ({
     <EditSection title="Graph">
       <EditSection title="Data" level={1} className="col-span-2" hideByDefault>
         <div className="col-span-2 flex flex-col space-y-1 items-center">
-          {comp.values.map((value, i) => (
+          {comp.src.map((src, i) => (
             <div key={i} className="flex space-x-1 w-full">
               <NumberInput
                 label={`Value ${i}`}
-                value={value}
+                value={src}
                 onChange={(e) =>
                   setComp({
                     ...comp,
-                    values: comp.values.map((v, j) => (j === i ? e : v)),
+                    src: comp.src.map((v, j) => (j === i ? e : v)),
                   })
                 }
               />
@@ -34,7 +34,7 @@ export const EditGraph = ({
                 onClick={() =>
                   setComp({
                     ...comp,
-                    values: comp.values.filter((v, j) => j !== i),
+                    src: comp.src.filter((v, j) => j !== i),
                   })
                 }
               >
@@ -44,7 +44,7 @@ export const EditGraph = ({
           ))}
           <button
             className="bg-primary p-2 rounded-lg text-primary-content px-3"
-            onClick={() => setComp({ ...comp, values: [...comp.values, 1] })}
+            onClick={() => setComp({ ...comp, src: [...comp.src, 1] })}
           >
             Add
           </button>
@@ -52,9 +52,10 @@ export const EditGraph = ({
       </EditSection>
       <SelectInput
         label="Type"
-        value={comp.graphType}
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        onChange={(type) => setComp({ ...comp, graphType: type as any })}
+        value={comp.type}
+        onChange={(type) =>
+          setComp({ ...comp, type: type as keyof typeof GraphTypes })
+        }
         options={Object.entries(GraphTypes).map(([value, label]) => ({
           value,
           label,
@@ -75,7 +76,7 @@ export const EditGraph = ({
         value={comp.min}
         onChange={(min) => setComp({ ...comp, min })}
       />
-      {comp.graphType === "bar" && (
+      {comp.type === "bar" && (
         <>
           <NumberInput
             label="Gap"
@@ -89,7 +90,7 @@ export const EditGraph = ({
           />
         </>
       )}
-      {comp.graphType === "line" && (
+      {comp.type === "line" && (
         <NumberInput
           label="Stroke"
           value={comp.strokeWidth}

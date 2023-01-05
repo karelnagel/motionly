@@ -48,27 +48,27 @@ export const EditCompPanel = ({
       </div>
       <EditGeneral comp={comp} setComp={setComp} />
       <EditAnimation comp={comp} setComp={setComp} />
-      {comp.type === "text" && <EditText comp={comp} setComp={setComp} />}
-      {comp.type === "audio" && <EditAudio comp={comp} setComp={setComp} />}
-      {comp.type === "audiogram" && (
+      {comp.comp === "text" && <EditText comp={comp} setComp={setComp} />}
+      {comp.comp === "audio" && <EditAudio comp={comp} setComp={setComp} />}
+      {comp.comp === "audiogram" && (
         <EditAudiogram comp={comp} setComp={setComp} />
       )}
-      {comp.type === "div" && <EditDiv comp={comp} setComp={setComp} />}
-      {comp.type === "gif" && <EditGif comp={comp} setComp={setComp} />}
-      {comp.type === "graph" && <EditGraph comp={comp} setComp={setComp} />}
-      {comp.type === "image" && <EditImage comp={comp} setComp={setComp} />}
-      {comp.type === "lottie" && <EditLottie comp={comp} setComp={setComp} />}
-      {comp.type === "map" && <EditMap comp={comp} setComp={setComp} />}
-      {comp.type === "mockup" && <EditMockup comp={comp} setComp={setComp} />}
-      {comp.type === "path" && <EditPath comp={comp} setComp={setComp} />}
-      {comp.type === "progressbar" && (
+      {comp.comp === "div" && <EditDiv comp={comp} setComp={setComp} />}
+      {comp.comp === "gif" && <EditGif comp={comp} setComp={setComp} />}
+      {comp.comp === "graph" && <EditGraph comp={comp} setComp={setComp} />}
+      {comp.comp === "image" && <EditImage comp={comp} setComp={setComp} />}
+      {comp.comp === "lottie" && <EditLottie comp={comp} setComp={setComp} />}
+      {comp.comp === "map" && <EditMap comp={comp} setComp={setComp} />}
+      {comp.comp === "mockup" && <EditMockup comp={comp} setComp={setComp} />}
+      {comp.comp === "path" && <EditPath comp={comp} setComp={setComp} />}
+      {comp.comp === "progressbar" && (
         <EditProgressbar comp={comp} setComp={setComp} />
       )}
-      {comp.type === "qrcode" && <EditQRCode comp={comp} setComp={setComp} />}
-      {comp.type === "transcription" && (
+      {comp.comp === "qrcode" && <EditQRCode comp={comp} setComp={setComp} />}
+      {comp.comp === "transcription" && (
         <EditTranscription comp={comp} setComp={setComp} />
       )}
-      {comp.type === "video" && <EditVideo comp={comp} setComp={setComp} />}
+      {comp.comp === "video" && <EditVideo comp={comp} setComp={setComp} />}
     </div>
   );
 };

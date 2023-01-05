@@ -4,7 +4,7 @@ import { StyleAndClass } from "../types";
 import { VideoProps } from "../types/components";
 
 export const defaultVideoProps: VideoProps = {
-  type: "video",
+  comp: "video",
   objectFit: "cover",
   startFrom: 0,
   src: videoUrl,

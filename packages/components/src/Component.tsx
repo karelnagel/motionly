@@ -36,7 +36,7 @@ export const Component = (comp: ComponentProps) => {
 const InsideSequence = ({
   id,
   borderRadius,
-  componentAnimations = [],
+  animations = [],
   duration,
   from,
   height,
@@ -50,10 +50,10 @@ const InsideSequence = ({
   const { setSelected, divRef, selected } = useSelected();
   const { fps } = useVideoConfig();
   const spring = useNewSpring();
-  const transformAnimations = componentAnimations
-    .map(({ type, ...props }) => {
-      const { units } = AnimationTypes[type];
-      return `${type}(${spring({ ...props })}${units || ""})`;
+  const transformAnimations = animations
+    .map(({ type: comp, ...props }) => {
+      const { units } = AnimationTypes[comp];
+      return `${comp}(${spring({ ...props })}${units || ""})`;
     })
     .join(" ");
 
@@ -84,21 +84,21 @@ const InsideSequence = ({
           transform: `rotate(${rotation || 0}deg) ${transformAnimations}`, // For some reason, this messes up x and y
         }}
       >
-        {comp.type === "div" && <Div {...comp} />}
-        {comp.type === "image" && <Image {...comp} />}
-        {comp.type === "text" && <Text {...comp} />}
-        {comp.type === "audio" && <Audio {...comp} />}
-        {comp.type === "audiogram" && <Audiogram {...comp} />}
-        {comp.type === "graph" && <Graph {...comp} />}
-        {comp.type === "map" && <Map {...comp} />}
-        {comp.type === "mockup" && <Mockup {...comp} />}
-        {comp.type === "progressbar" && <Progressbar {...comp} />}
-        {comp.type === "qrcode" && <QRCode {...comp} />}
-        {comp.type === "video" && <Video {...comp} />}
-        {comp.type === "transcription" && <Transcription {...comp} />}
-        {comp.type === "lottie" && <Lottie {...comp} />}
-        {comp.type === "gif" && <Gif {...comp} />}
-        {comp.type === "path" && <Path {...comp} />}
+        {comp.comp === "div" && <Div {...comp} />}
+        {comp.comp === "image" && <Image {...comp} />}
+        {comp.comp === "text" && <Text {...comp} />}
+        {comp.comp === "audio" && <Audio {...comp} />}
+        {comp.comp === "audiogram" && <Audiogram {...comp} />}
+        {comp.comp === "graph" && <Graph {...comp} />}
+        {comp.comp === "map" && <Map {...comp} />}
+        {comp.comp === "mockup" && <Mockup {...comp} />}
+        {comp.comp === "progressbar" && <Progressbar {...comp} />}
+        {comp.comp === "qrcode" && <QRCode {...comp} />}
+        {comp.comp === "video" && <Video {...comp} />}
+        {comp.comp === "transcription" && <Transcription {...comp} />}
+        {comp.comp === "lottie" && <Lottie {...comp} />}
+        {comp.comp === "gif" && <Gif {...comp} />}
+        {comp.comp === "path" && <Path {...comp} />}
       </div>
     </Sequence>
   );
