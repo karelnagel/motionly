@@ -24,7 +24,7 @@
         "@types/react-dom": "18.0.8",
         "@vercel/og": "^0.0.20",
         "autoprefixer": "^10.4.13",
-        "axios": "^1.1.3",
+        "axios": "^1.2.2",
         "daisyui": "^2.38.1",
         "eslint": "8.26.0",
         "eslint-config-next": "13.0.2",
