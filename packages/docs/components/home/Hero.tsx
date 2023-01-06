@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "nextra-theme-docs";
+import { appUrl } from "../../env";
 
 export const Hero = () => {
   const { theme } = useTheme();
@@ -41,7 +42,7 @@ export const Hero = () => {
         </div>
 
         <div className="flex space-x-10 text-2xl font-bold">
-          <Link href="https://app.asius.dev">
+          <Link href={appUrl}>
             <button className=" rounded-lg p-3 bg-gradient-to-r from-pink-500 to-blue-600  w-44 text-white">
               Get Started
             </button>
