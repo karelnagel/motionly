@@ -52,13 +52,13 @@ export const PlayerControls = ({
         />
         <div className="w-full h-full flex items-center justify-center space-x-5">
           {playerRef.current?.isMuted() ? (
-            <IoIosVolumeHigh
-              onClick={playerRef.current?.unmute}
+            <IoIosVolumeOff
+              onClick={playerRef.current?.mute}
               className={className}
             />
           ) : (
-            <IoIosVolumeOff
-              onClick={playerRef.current?.mute}
+            <IoIosVolumeHigh
+              onClick={playerRef.current?.unmute}
               className={className}
             />
           )}
