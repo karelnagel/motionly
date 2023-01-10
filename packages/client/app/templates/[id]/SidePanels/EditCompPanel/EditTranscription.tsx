@@ -60,7 +60,7 @@ export const EditTranscription = ({
                     setComp({
                       ...comp,
                       src: comp.src.map((w, j) =>
-                        i === j ? { ...w, start } : w
+                        i === j ? { ...w, start: start || 0 } : w
                       ),
                     })
                   }
@@ -72,7 +72,7 @@ export const EditTranscription = ({
                     setComp({
                       ...comp,
                       src: comp.src.map((w, j) =>
-                        i === j ? { ...w, end } : w
+                        i === j ? { ...w, end: end || 0 } : w
                       ),
                     })
                   }

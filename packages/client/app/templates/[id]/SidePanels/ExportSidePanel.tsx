@@ -19,7 +19,7 @@ export const ExportSidePanel = ({ template }: { template: TemplateType }) => {
           Render video
         </button>
         <div className="flex space-x-2">
-          <NumberInput label="Frame" onChange={setFrame} value={frame} />
+          {/* <NumberInput label="Frame" onChange={setFrame} value={frame} /> */}
           <button onClick={still} className={className}>
             Render frame
           </button>

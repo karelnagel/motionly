@@ -26,7 +26,7 @@ export const EditGraph = ({
                 onChange={(e) =>
                   setComp({
                     ...comp,
-                    src: comp.src.map((v, j) => (j === i ? e : v)),
+                    src: comp.src.map((v, j) => (j === i ? e || 0 : v)),
                   })
                 }
               />

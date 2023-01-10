@@ -12,7 +12,7 @@ export const EditSection = ({
   return (
     <div className={`${className} py-2 space-y-2`}>
       {title && <h1 className="font-bold text-lg">{title}</h1>}
-      <div className="w-full grid grid-cols-2 gap-3">{children}</div>
+      <div className="w-full grid grid-cols-2 gap-2">{children}</div>
     </div>
   );
 };

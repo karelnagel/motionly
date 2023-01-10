@@ -77,14 +77,14 @@ const OneAnimation = ({
   remove: () => void;
 }) => {
   return (
-    <div className="mb-4 space-y-1">
+    <div className="mb-4 space-y-2">
       <div className="flex justify-between">
         <p>Animation {i + 1}</p>
         <button onClick={remove} className="text-error">
           Remove
         </button>
       </div>
-      <div className="grid grid-cols-4 gap-1">
+      <div className="grid grid-cols-4 gap-2">
         <SelectInput
           label="Prop"
           value={animation.prop}
@@ -112,7 +112,7 @@ const OneAnimation = ({
           }))}
         />
       </div>
-      <div className="grid grid-cols-2 gap-1">
+      <div className="grid grid-cols-2 gap-2">
         <NumberInput
           label="Start"
           onChange={(start) => setAnimation(i, { start })}
@@ -124,7 +124,7 @@ const OneAnimation = ({
           value={animation.duration}
         />
       </div>
-      <div className="grid grid-cols-2 gap-1">
+      <div className="grid grid-cols-2 gap-2">
         <NumberInput
           label="From"
           onChange={(from) => setAnimation(i, { from })}
@@ -138,7 +138,7 @@ const OneAnimation = ({
       </div>
 
       {animation.type === "spring" && (
-        <div className="grid grid-cols-3 gap-1">
+        <div className="grid grid-cols-3 gap-2">
           <NumberInput
             label="Mass"
             onChange={(mass) => setAnimation(i, { mass })}
