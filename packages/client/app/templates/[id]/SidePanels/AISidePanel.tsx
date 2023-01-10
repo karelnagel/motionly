@@ -12,8 +12,8 @@ export const AISidePanel = ({
   const [prompt, setPrompt] = useState("");
   const [status, setStatus] = useState<"loading" | "done" | "error">();
 
-  const submit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const submit = async (e?: FormEvent<HTMLFormElement>) => {
+    e?.preventDefault();
     if (status === "loading")
       return alert("Please wait for the previous request to finish");
     setStatus("loading");
@@ -30,6 +30,11 @@ export const AISidePanel = ({
       setStatus("error");
     }
   };
+  const commentEnterSubmit = (e: any) => {
+    if (e.key === "Enter" && e.shiftKey == false) {
+      submit();
+    }
+  };
 
   return (
     <div className="flex flex-col items-center space-y-10 w-full">
@@ -38,6 +43,7 @@ export const AISidePanel = ({
         <textarea
           className="bg-base-200 rounded-t-lg min-h-[100px] p-2"
           value={prompt}
+          onKeyDown={commentEnterSubmit}
           placeholder="Enter your prompt here"
           onChange={(e) => setPrompt(e.target.value)}
         />
@@ -51,6 +57,7 @@ export const AISidePanel = ({
       </form>
       {status === "loading" && <p>Loading...</p>}
       {status === "done" && <p>Successfully updated</p>}
+      {status === "error" && <p className="text-error">Error</p>}
     </div>
   );
 };
