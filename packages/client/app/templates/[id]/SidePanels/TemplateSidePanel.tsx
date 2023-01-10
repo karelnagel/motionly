@@ -3,6 +3,7 @@ import { TemplateType } from "@asius/components";
 import { useRouter } from "next/navigation";
 import {
   BooleanInput,
+  ColorInput,
   NumberInput,
   TextInput,
 } from "../../../../components/inputs";
@@ -70,6 +71,11 @@ export const TemplateSidePanel = ({
             onChange={(duration) =>
               setTemplate({ ...template, duration: duration || 1 })
             }
+          />
+          <ColorInput
+            label="Background"
+            value={template.background}
+            onChange={(background) => setTemplate({ ...template, background })}
           />
           <BooleanInput
             label="Public"

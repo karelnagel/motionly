@@ -200,6 +200,7 @@ export type TemplateType = {
   width: number;
   height: number;
   duration: number;
+  background?: string;
   fps: number;
   name?: string;
   public?: boolean;

@@ -22,6 +22,7 @@ export default async function Page({
       id: "blank",
       isOwner: false,
       public: false,
+      background: "#FFFFFFFF",
     };
   if (!template) return <div>Template not found!</div>;
   return <EditTemplate template={template} />;

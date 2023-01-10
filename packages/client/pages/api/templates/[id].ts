@@ -39,7 +39,8 @@ export const getTemplate = async (
     include: { user: true },
   });
   if (!template) return null;
-  const { width, height, duration, name, description, comps, fps } = template;
+  const { width, height, duration, name, description, comps, fps, background } =
+    template;
   const isOwner = session?.user?.email === template.user.email;
   return {
     comps: JSON.parse(comps),
@@ -52,6 +53,7 @@ export const getTemplate = async (
     fps,
     public: template.public,
     isOwner,
+    background: background || undefined,
   };
 };
 
@@ -102,5 +104,9 @@ const deleteTemplate = async ({
 }: DeleteTemplateInput): Promise<DeleteTemplateOutput | null> => {
   const { comps, ...result } = await prisma.template.delete({ where: { id } });
 
-  return { ...result, comps: JSON.parse(comps) };
+  return {
+    ...result,
+    comps: JSON.parse(comps),
+    background: result.background || undefined,
+  };
 };
