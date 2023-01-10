@@ -12,7 +12,7 @@ export const ExportSidePanel = ({ template }: { template: TemplateType }) => {
   const className =
     "bg-primary rounded-lg p-2 text-primary-content whitespace-nowrap";
   return (
-    <div className=" flex flex-col items-center space-y-3">
+    <div className=" flex flex-col items-center space-y-3 w-full">
       <h1 className="text-xl font-bold uppercase">Export</h1>
       <div className="space-y-2 flex flex-col items-center">
         <button onClick={media} className={className}>

@@ -32,7 +32,7 @@ export const AISidePanel = ({
   };
 
   return (
-    <div className="flex flex-col items-center space-y-10">
+    <div className="flex flex-col items-center space-y-10 w-full">
       <p className="text-xl font-bold ">Modify your video using ai</p>
       <form action="none" className="flex flex-col w-full" onSubmit={submit}>
         <textarea

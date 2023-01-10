@@ -15,8 +15,9 @@ import { Lottie } from "./components/Lottie";
 import { Gif } from "./components/Gif";
 import { Path } from "./components/Path";
 import { useSelected } from "./SelectedContext";
-import { AnimationTypes, ComponentProps } from "./types";
-import { useNewSpring } from "./spring";
+import { ComponentProps } from "./types";
+import { useAnimation } from "./useAnimations";
+import { animationProps } from "./types/animations";
 
 export const Component = (comp: ComponentProps) => {
   const { fps } = useVideoConfig();
@@ -49,11 +50,11 @@ const InsideSequence = ({
 }: ComponentProps) => {
   const { setSelected, divRef, selected } = useSelected();
   const { fps } = useVideoConfig();
-  const spring = useNewSpring();
+  const animation = useAnimation();
   const transformAnimations = animations
-    .map(({ type: comp, ...props }) => {
-      const { units } = AnimationTypes[comp];
-      return `${comp}(${spring({ ...props })}${units || ""})`;
+    .map((anim) => {
+      const { units } = animationProps[anim.prop];
+      return `${anim.prop}(${animation(anim)}${units || ""})`;
     })
     .join(" ");
 
@@ -70,6 +71,16 @@ const InsideSequence = ({
           e.stopPropagation();
         }}
         style={{
+          opacity:
+            (opacity || 1) *
+            animations
+              .filter((a) => a.prop === "opacity")
+              .reduce((acc, a) => acc * animation(a), 1),
+          borderRadius:
+            (borderRadius || 0) +
+            animations
+              .filter((a) => a.prop === "borderRadius")
+              .reduce((acc, a) => acc + animation(a), 1),
           cursor: "pointer",
           display: "flex",
           overflow: "hidden",
@@ -78,9 +89,7 @@ const InsideSequence = ({
           position: "absolute",
           top: y,
           left: x,
-          opacity,
           userSelect: "none",
-          borderRadius,
           transform: `rotate(${rotation || 0}deg) ${transformAnimations}`, // For some reason, this messes up x and y
         }}
       >

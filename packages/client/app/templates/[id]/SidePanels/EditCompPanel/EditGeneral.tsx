@@ -11,7 +11,7 @@ export const EditGeneral = ({
   setComp: SetComp;
 }) => {
   return (
-    <EditSection title="General">
+    <EditSection>
       <NumberInput
         label="X"
         value={comp.x}

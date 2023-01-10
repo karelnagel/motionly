@@ -50,7 +50,7 @@ export const AddSidePanel = ({
     );
   };
   return (
-    <div className="flex flex-col items-center space-y-3 overflow-hidden">
+    <div className="flex flex-col items-center space-y-3 overflow-auto w-full">
       <h1 className="text-xl font-bold">Add Elements</h1>
       <div className="w-full space-y-2">
         {Add("Text", defaultTextProps)}

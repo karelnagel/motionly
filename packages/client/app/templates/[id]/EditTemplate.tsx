@@ -78,7 +78,7 @@ export default function EditTemplate({
             }}
             className="h-full duration-200 panel relative"
           >
-            <div className="absolute top-0 left-0 overflow-y-auto h-full p-3 w-full">
+            <div className="absolute top-0 left-0 flex h-full p-3 w-full">
               {!["template", "export", "add", "ai"].includes(selected) &&
                 selectedComp && (
                   <EditCompPanel

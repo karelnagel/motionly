@@ -2052,6 +2052,14 @@
   dependencies:
     remotion "3.3.19"
 
+"@remotion/noise@3.3.19":
+  version "3.3.19"
+  resolved "https://registry.yarnpkg.com/@remotion/noise/-/noise-3.3.19.tgz#c69ed23e09ce2793f56e2721505b763ff5d32403"
+  integrity sha512-pPWGw11is1inpEZZ8+T8e0J++egi5m5qM2r18gHQKdybfu5tlaxD7xAURq4rVp0FmQ/s4s6UJNKowcBCqPkhyg==
+  dependencies:
+    remotion "3.3.19"
+    simplex-noise "4.0.1"
+
 "@remotion/paths@3.3.19":
   version "3.3.19"
   resolved "https://registry.yarnpkg.com/@remotion/paths/-/paths-3.3.19.tgz#bc8e8fef607439f7c3e5d7b661b656fd19a38959"
@@ -6997,6 +7005,11 @@ simple-swizzle@^0.2.2:
   integrity sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==
   dependencies:
     is-arrayish "^0.3.1"
+
+simplex-noise@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/simplex-noise/-/simplex-noise-4.0.1.tgz#1573a4eaa46ce488bdf5f1e7ab3a1f798126781f"
+  integrity sha512-zl/+bdSqW7HJOQ0oDbxrNYaF4F5ik0i7M6YOYmEoIJNtg16NpvWaTTM1Y7oV/7T0jFljawLgYPS81Uu2rsfo1A==
 
 sisteransi@^1.0.5:
   version "1.0.5"

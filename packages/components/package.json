@@ -19,6 +19,7 @@
         "@remotion/lottie": "3.3.19",
         "@remotion/media-utils": "3.3.19",
         "@remotion/paths": "3.3.19",
+        "@remotion/noise": "3.3.19",
         "@types/react-simple-maps": "^3.0.0",
         "lottie-web": "^5.10.0",
         "react-qr-code": "^2.0.10",
@@ -31,6 +32,7 @@
         "@remotion/lottie": "^3.3.19",
         "@remotion/media-utils": "^3.3.19",
         "@remotion/paths": "^3.3.19",
+        "@remotion/noise": "^3.3.19",
         "react": ">=16.8.0",
         "react-dom": ">=16.8.0",
         "remotion": "3.3.19"
