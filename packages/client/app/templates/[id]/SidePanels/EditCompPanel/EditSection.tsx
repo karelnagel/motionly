@@ -15,11 +15,8 @@ export const EditSection = ({
 }) => {
   const [hidden, setHidden] = useState(hideByDefault);
   return (
-    <div
-      className={`${className} ${
-        level ? " space-y-1" : "border-t-2 py-2 space-y-2"
-      } `}
-    >
+    <div className={`${className} ${level ? " space-y-1" : "py-2 space-y-2"}`}>
+      {!level && <div className="h-1 w-full gradient rounded-full" />}
       <div className="flex justify-between">
         <h1 className={`${level ? "" : "font-bold text-xl"}`}>{title}</h1>
         <button className="text-xs" onClick={() => setHidden((h) => !h)}>

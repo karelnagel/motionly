@@ -1,5 +1,5 @@
 import { TemplateType } from "@asius/components";
-import { FormEvent, FormEventHandler, useState } from "react";
+import { FormEvent, useState } from "react";
 import axios from "axios";
 
 export const AISidePanel = ({
@@ -36,7 +36,7 @@ export const AISidePanel = ({
       <p className="text-xl font-bold ">Modify your video using ai</p>
       <form action="none" className="flex flex-col w-full" onSubmit={submit}>
         <textarea
-          className="bg-base-200 rounded-t-lg min-h-[80px] p-2"
+          className="bg-base-200 rounded-t-lg min-h-[100px] p-2"
           value={prompt}
           placeholder="Enter your prompt here"
           onChange={(e) => setPrompt(e.target.value)}
@@ -44,7 +44,7 @@ export const AISidePanel = ({
         <button
           type="submit"
           disabled={status === "loading"}
-          className="text-primary-content bg-primary p-2 rounded-b-lg"
+          className="text-primary-content p-2 rounded-b-lg gradient font-semibold text-lg"
         >
           Submit
         </button>

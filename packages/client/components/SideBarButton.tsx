@@ -18,7 +18,7 @@ export const SideBarButton = ({
     <Link
       href={href}
       className={`${
-        selected ? "bg-base-200 shadow-lg" : "hover:shadow-lg"
+        selected ? "bg-primary shadow-lg" : "bg-base-200 hover:shadow-lg"
       } duration-150 p-3 rounded-lg font-bold text-xl text-base-content flex space-x-3 items-end hover:scale-105`}
     >
       {children}

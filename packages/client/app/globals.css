@@ -60,3 +60,7 @@ body {
 :root {
   color-scheme: dark;
 }
+
+.gradient {
+  @apply bg-gradient-to-r from-secondary to-primary;
+}

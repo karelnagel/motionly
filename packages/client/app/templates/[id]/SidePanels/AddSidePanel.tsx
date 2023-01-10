@@ -40,7 +40,7 @@ export const AddSidePanel = ({
     return (
       <div
         onClick={() => addComp({ ...newComp, ...baseComp })}
-        className="group hover:scale-110 origin-left cursor-pointer rounded-md duration-200 shadow-lg hover:bg-primary hover:text-primary-content px-8 py-2 bg-base-200 flex items-center space-x-3"
+        className="group hover:scale-110 origin-left cursor-pointer rounded-md duration-200 shadow-lg hover:bg-gradient-to-r from-secondary to-primary hover:text-primary-content px-8 py-2 bg-base-200 flex items-center space-x-3"
       >
         <p className="shrink-0 font-semibold ">{title}</p>
         <p className="hidden group-hover:block duration-150 text-xs">

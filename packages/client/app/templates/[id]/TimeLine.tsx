@@ -95,7 +95,9 @@ const TimelineComp = ({
         <div
           ref={isSelected ? divRef : undefined}
           className={`absolute top-0 h-full rounded-lg flex items-center px-2 ${
-            isSelected ? "bg-primary text-primary-content" : "bg-base-200"
+            isSelected
+              ? "bg-gradient-to-r from-secondary to bg-primary text-primary-content"
+              : "bg-base-200"
           }`}
           style={{
             boxShadow: "0 0 4px rgba(0,0,0,0.2)",

@@ -48,16 +48,30 @@ export const Header = ({
     alert("Cloning successful");
     router.push(`/templates/${newTemplate.id}`);
   };
+  const Button = ({ title, value }: { title: string; value: string }) => {
+    return (
+      <button
+        onClick={() => setSelected(value)}
+        className={`${
+          selected === value ? "text-primary-content gradient" : ""
+        } bg-base-200 p-2 rounded-lg min-w-[60px]`}
+      >
+        {title}
+      </button>
+    );
+  };
   return (
     <div className="w-full grid grid-cols-3 place-items-center items-center bg-base-100 shadow-lg px-3 h-[70px]">
       <div className="flex space-x-2 items-center w-full">
         <Link href="/">
-          <IoIosArrowBack className="text-3xl" />
+          <IoIosArrowBack className="text-3xl font-bold" />
         </Link>
       </div>
       {template.isOwner ? (
-        <p className="flex flex-col items-center">
-          <span className="text-lg font-bold">{template.name}</span>
+        <p className="flex flex-col items-center space-y-1 leading-none">
+          <span className="text-[22px] font-bold bg-clip-text text-transparent gradient">
+            {template.name}
+          </span>
           {saveTime && (
             <span className="text-[10px] opacity-60">
               saved <TimeAfter time={saveTime} />
@@ -75,34 +89,12 @@ export const Header = ({
           </button>
         </div>
       )}
-      <div className="flex items-center space-x-2 font-bold w-full justify-end">
-        <button
-          onClick={() => setSelected("template")}
-          className={`${
-            selected === "template" ? "text-primary" : ""
-          } uppercase`}
-        >
-          Template
-        </button>
-        <button
-          onClick={() => setSelected("ai")}
-          className={`${selected === "ai" ? "text-primary" : ""} uppercase`}
-        >
-          AI
-        </button>
-        <button
-          onClick={() => setSelected("export")}
-          className={`${selected === "export" ? "text-primary" : ""} uppercase`}
-        >
-          Export
-        </button>
-        <button
-          onClick={() => setSelected("add")}
-          className={`${selected === "add" ? "text-primary" : ""} uppercase`}
-        >
-          Add
-        </button>
-        {selected && <button onClick={() => setSelected("")}>X</button>}
+      <div className="flex items-center space-x-4 font-bold w-full justify-end">
+        <Button title="AI" value="ai" />
+
+        <Button title="Add" value="add" />
+        <Button title="Template" value="template" />
+        <Button title="Export" value="export" />
       </div>
     </div>
   );
