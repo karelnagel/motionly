@@ -19,7 +19,7 @@ export default async function Page() {
         <Template
           id="blank"
           name="Start with empty project"
-          image="/icons/add.webp"
+          image="/icons/add.jpeg"
         />
         {templates.map((template) => (
           <Template

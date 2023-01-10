@@ -3,6 +3,8 @@ import { TemplateType } from "@asius/components";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { AiFillBackward } from "react-icons/ai";
+import { IoIosArrowBack, IoMdArrowBack } from "react-icons/io";
 export const Header = ({
   selected,
   setSelected,
@@ -22,16 +24,10 @@ export const Header = ({
     router.push(`/templates/${newTemplate.id}`);
   };
   return (
-    <div className="w-full grid grid-cols-3 place-items-center items-center bg-base-100 shadow-lg px-3 py-2 ">
+    <div className="w-full grid grid-cols-3 place-items-center items-center bg-base-100 shadow-lg px-3 py-3 ">
       <div className="flex space-x-2 items-center w-full">
         <Link href="/">
-          <Image
-            src={"/favicon.png"}
-            width={40}
-            height={40}
-            alt="logo"
-            className="-rotate-90 hover:scale-110 duration-200"
-          />
+          <IoIosArrowBack className="text-3xl" />
         </Link>
       </div>
       {template.isOwner ? (

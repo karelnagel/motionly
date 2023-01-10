@@ -35,7 +35,7 @@ export const Timeline = ({
                 }}
               >
                 <div
-                  className={"h-3 bg-black"}
+                  className={"h-3 bg-base-content"}
                   style={{ width: i % 2 === 0 ? 2 : 1 }}
                 />
                 <p className="text-sm">{i % 2 === 0 && Math.floor(i / 2)}</p>

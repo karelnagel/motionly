@@ -48,7 +48,7 @@ export const PlayerControls = ({
           onChange={(e) =>
             playerRef.current?.seekTo(Number(e.currentTarget.value) * fps || 0)
           }
-          className="text-xl w-10"
+          className="text-lg w-10 bg-base-200 rounded-lg p-1"
         />
         <div className="w-full h-full flex items-center justify-center space-x-5">
           {playerRef.current?.isMuted() ? (

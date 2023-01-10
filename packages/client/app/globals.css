@@ -47,12 +47,16 @@ body {
   transform: translateY(-50%);
 }
 .timeline::-moz-range-thumb {
-    background-color: red;
-    position: relative;
-    height: 40px;
-    width: 4px;
-    appearance: none;
-    -webkit-appearance: none;
-    top: 50%;
-    transform: translateY(-50%);
+  background-color: red;
+  position: relative;
+  height: 40px;
+  width: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+:root {
+  color-scheme: dark;
 }
