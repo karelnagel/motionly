@@ -115,12 +115,17 @@ const TimelineComp = ({
       {isSelected && (
         <Moveable
           target={divRef}
+          bounds={{
+            left: 0,
+            right: divRef.current?.parentElement?.offsetWidth,
+          }}
           resizable={true}
           draggable={true}
           snappable={true}
           snapCenter={true}
           snapThreshold={10}
           renderDirections={["w", "e"]}
+          className="timeline-moveable"
           snapHorizontal={true}
           snapVertical={true}
           elementSnapDirections={{

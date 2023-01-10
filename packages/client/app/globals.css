@@ -64,3 +64,10 @@ body {
 .gradient {
   @apply bg-gradient-to-r from-secondary to-primary;
 }
+
+.timeline-moveable > .moveable-line {
+  display: none;
+}
+.moveable-origin {
+  display: none;
+}
