@@ -1,20 +1,45 @@
 import { postNewTemplate } from "@asius/sdk";
 import { TemplateType } from "@asius/components";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { AiFillBackward } from "react-icons/ai";
-import { IoIosArrowBack, IoMdArrowBack } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
+import { useEffect, useState } from "react";
+
+export const TimeAfter = ({
+  time,
+  className,
+}: {
+  time: Date;
+  className?: string;
+}) => {
+  const [date, setDate] = useState(new Date());
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDate(new Date());
+    }, 1000);
+    return () => {
+      clearInterval(timer); // Return a funtion to clear the timer so that it will stop being called on unmount
+    };
+  }, []);
+  const diff = +date - +time;
+  const seconds = Math.floor(diff / 1000);
+  return (
+    <span className={className}>
+      {seconds <= 0 ? "now" : `${seconds} seconds ago`}
+    </span>
+  );
+};
+
 export const Header = ({
   selected,
   setSelected,
   template,
-  saveInfo,
+  saveTime,
 }: {
   selected: string;
   setSelected: (s: string) => void;
   template: TemplateType;
-  saveInfo: string;
+  saveTime?: Date;
 }) => {
   const router = useRouter();
   const clone = async () => {
@@ -24,20 +49,21 @@ export const Header = ({
     router.push(`/templates/${newTemplate.id}`);
   };
   return (
-    <div className="w-full grid grid-cols-3 place-items-center items-center bg-base-100 shadow-lg px-3 py-3 ">
+    <div className="w-full grid grid-cols-3 place-items-center items-center bg-base-100 shadow-lg px-3 h-[70px]">
       <div className="flex space-x-2 items-center w-full">
         <Link href="/">
           <IoIosArrowBack className="text-3xl" />
         </Link>
       </div>
       {template.isOwner ? (
-        <div
-          className={` font-semibold ${
-            saveInfo.includes("Error") ? "text-error" : ""
-          }`}
-        >
-          {saveInfo}
-        </div>
+        <p className="flex flex-col items-center">
+          <span className="text-lg font-bold">{template.name}</span>
+          {saveTime && (
+            <span className="text-[10px] opacity-60">
+              saved <TimeAfter time={saveTime} />
+            </span>
+          )}
+        </p>
       ) : (
         <div className="text-white bg-error flex p-2 space-x-3 rounded-lg items-center">
           <p>This template is read only, clone it to edit!</p>

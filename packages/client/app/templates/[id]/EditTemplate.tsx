@@ -28,18 +28,18 @@ export default function EditTemplate({
     addComp,
     deleteComp,
     selected,
-    saveInfo,
+    saveTime,
     setSelected,
   } = useTemplate(startTemplate);
 
   const [scale, setScale] = useState(0.2);
 
-  const sidePanelWidth = 350;
+  const sidePanelWidth = 380;
   const timelineHeigth = 250;
   return (
-    <div className="bg-base-300  w-screen h-screen overflow-hidden flex flex-col">
+    <div className="bg-base-300 w-screen h-screen overflow-hidden flex flex-col">
       <Header
-        saveInfo={saveInfo}
+        saveTime={saveTime}
         setSelected={setSelected}
         selected={selected}
         template={template}
@@ -64,7 +64,7 @@ export default function EditTemplate({
           />
         </div>
         <div
-          className="h-full p-3  pl-0"
+          className="h-full p-3 pl-0"
           style={{
             paddingRight: selected ? undefined : 0,
             paddingLeft: selected ? undefined : 0,
@@ -78,7 +78,7 @@ export default function EditTemplate({
             }}
             className="h-full duration-200 panel relative"
           >
-            <div className="absolute top-0 left-0 overflow-y-scroll h-full p-3 w-full">
+            <div className="absolute top-0 left-0 overflow-y-auto h-full p-3 w-full">
               {!["template", "export", "add", "ai"].includes(selected) &&
                 selectedComp && (
                   <EditCompPanel

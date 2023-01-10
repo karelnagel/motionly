@@ -6,7 +6,7 @@ export const useTemplate = (starTemplate: TemplateType) => {
   // eslint-disable-next-line prefer-const
   let [template, setTemplate] = useState<TemplateType>(starTemplate);
   const [selected, setSelected] = useState("template");
-  const [saveInfo, setSaveInfo] = useState("");
+  const [saveTime, setSaveTime] = useState<Date>();
 
   if (!template.isOwner)
     setTemplate = () => {
@@ -20,8 +20,8 @@ export const useTemplate = (starTemplate: TemplateType) => {
           id: template.id || "",
           template,
         });
-        if (!result) setSaveInfo("Error saving");
-        setSaveInfo(`Last saved ${new Date().toLocaleTimeString()}`);
+        if (!result) setSaveTime(undefined);
+        setSaveTime(new Date());
       }, 5000);
       return () => {
         clearInterval(interval);
@@ -77,6 +77,6 @@ export const useTemplate = (starTemplate: TemplateType) => {
     addComp,
     selected,
     setSelected: (id: string) => setSelected(id === selected ? "" : id),
-    saveInfo,
+    saveTime,
   };
 };
