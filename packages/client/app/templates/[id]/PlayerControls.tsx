@@ -92,13 +92,15 @@ export const PlayerControls = ({
             min={0.1}
             max={2}
             step={0.01}
-            value={scale}
+            value={scale === undefined ? 0 : scale}
             className="w-24 range-primary range range-sm"
-            onChange={(e) => setScale(Number(e.target.value))}
+            onChange={(e) =>
+              setScale(e.target.value ? Number(e.target.value) : undefined)
+            }
           />
           <input
             type="number"
-            className="text-base w-12 overflow-hidden"
+            className="text-base w-12 overflow-hidden bg-base-200 p-2 rounded-lg"
             value={scale === undefined ? "" : scale}
             onChange={(e) =>
               setScale(e.target.value ? Number(e.target.value) : undefined)
