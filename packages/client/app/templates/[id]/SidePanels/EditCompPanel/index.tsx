@@ -68,11 +68,18 @@ export const EditCompPanel = ({
   return (
     <div className="flex flex-col w-full">
       <PanelTitle title={`${comp.comp}-${comp.id}`}>
-        <AiFillCopy onClick={() => addComp(comp)} className="cursor-pointer" />
-        <AiFillDelete
-          onClick={() => deleteComp(comp.id)}
-          className="cursor-pointer"
-        />
+        <div className="tooltip tooltip-bottom" data-tip="⌘ + C">
+          <AiFillCopy
+            onClick={() => addComp(comp)}
+            className="cursor-pointer"
+          />
+        </div>
+        <div className="tooltip tooltip-bottom" data-tip="⌫">
+          <AiFillDelete
+            onClick={() => deleteComp(comp.id)}
+            className="cursor-pointer"
+          />
+        </div>
       </PanelTitle>
       <div className="grid grid-cols-2 my-2 font-bold">
         <Tab title="Props" value={false} />

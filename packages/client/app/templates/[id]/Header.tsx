@@ -93,18 +93,22 @@ export const Header = ({
       )}
       <div className="flex items-center space-x-4 font-bold w-full justify-end">
         <div className="flex text-2xl space-x-2">
-          <IoMdUndo
-            onClick={undo}
-            className={`${
-              undo ? "cursor-pointer" : "opacity-30 cursor-default"
-            }`}
-          />
-          <IoMdRedo
-            onClick={redo}
-            className={`${
-              redo ? "cursor-pointer" : "opacity-30 cursor-default"
-            }`}
-          />
+          <div className="tooltip tooltip-bottom" data-tip="⌘ + Z">
+            <IoMdUndo
+              onClick={undo}
+              className={`${
+                undo ? "cursor-pointer" : "opacity-30 cursor-default"
+              }`}
+            />
+          </div>
+          <div className="tooltip tooltip-bottom" data-tip="⌘ + ⇧ + Z">
+            <IoMdRedo
+              onClick={redo}
+              className={`${
+                redo ? "cursor-pointer" : "opacity-30 cursor-default"
+              }`}
+            />
+          </div>
         </div>
 
         <Button title="AI" value="ai" />

@@ -62,25 +62,32 @@ export const PlayerControls = ({
               className={className}
             />
           )}
-          <IoIosSkipBackward
-            className={className}
-            onClick={() => playerRef.current?.seekTo(frame - 5 * fps)}
-          />
-          {isPlaying ? (
-            <IoIosPause
-              onClick={playerRef.current?.pause}
+          <div className="tooltip tooltip-bottom" data-tip="← / J">
+            <IoIosSkipBackward
               className={className}
+              onClick={() => playerRef.current?.seekTo(frame - 5 * fps)}
             />
-          ) : (
-            <IoIosPlay
-              onClick={playerRef.current?.play}
+          </div>
+          <div className="tooltip tooltip-bottom" data-tip="⎵">
+            {isPlaying ? (
+              <IoIosPause
+                onClick={playerRef.current?.pause}
+                className={className}
+              />
+            ) : (
+              <IoIosPlay
+                onClick={playerRef.current?.play}
+                className={className}
+              />
+            )}
+          </div>
+
+          <div className="tooltip tooltip-bottom" data-tip="→ / L">
+            <IoIosSkipForward
               className={className}
+              onClick={() => playerRef.current?.seekTo(frame + 5 * fps)}
             />
-          )}
-          <IoIosSkipForward
-            className={className}
-            onClick={() => playerRef.current?.seekTo(frame + 5 * fps)}
-          />
+          </div>
           <IoMdExpand
             className={className}
             onClick={() => playerRef.current?.requestFullscreen()}
