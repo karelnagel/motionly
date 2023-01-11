@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { TemplateType } from "@asius/components";
 import { useTemplate } from "../../../hooks/useTemplate";
 import { Header } from "./Header";
@@ -13,6 +13,58 @@ import { Timeline } from "./TimeLine";
 import { AddSidePanel } from "./SidePanels/AddSidePanel";
 import { PlayerRef } from "@remotion/player";
 import { AISidePanel } from "./SidePanels/AISidePanel";
+
+export const Resize = ({
+  value,
+  setValue,
+  isHorizontal = false,
+}: {
+  value: number;
+  setValue: (w: number) => void;
+  isHorizontal?: boolean;
+}) => {
+  const [isResizing, setIsResizing] = useState(false);
+
+  const onMouseMove = useCallback(
+    (e: MouseEvent) => {
+      if (!isResizing) {
+        return;
+      }
+      setValue(value - (isHorizontal ? e.movementY : e.movementX));
+    },
+    [isResizing, value]
+  );
+
+  const onMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    setIsResizing(true);
+  }, []);
+
+  const onMouseUp = useCallback(() => {
+    setIsResizing(false);
+  }, []);
+
+  useEffect(() => {
+    if (isResizing) {
+      window.addEventListener("mousemove", onMouseMove);
+      window.addEventListener("mouseup", onMouseUp);
+      return () => {
+        window.removeEventListener("mousemove", onMouseMove);
+        window.removeEventListener("mouseup", onMouseUp);
+      };
+    }
+  }, [isResizing, onMouseMove, onMouseUp]);
+
+  return (
+    <div
+      onMouseDown={onMouseDown}
+      className={` ${
+        isHorizontal
+          ? "w-full h-1 cursor-ns-resize"
+          : " h-full w-1 cursor-ew-resize"
+      } hover:bg-primary absolute left-0 top-0 select-none `}
+    />
+  );
+};
 
 export default function EditTemplate({
   template: startTemplate,
@@ -34,8 +86,8 @@ export default function EditTemplate({
 
   const [scale, setScale] = useState(0.2);
 
-  const sidePanelWidth = 380;
-  const timelineHeigth = 250;
+  const [sidePanelWidth, setSidePanelWidth] = useState(380);
+  const [timelineHeigth, setTimelineHeight] = useState(250);
   return (
     <div className="bg-base-300 w-screen h-screen overflow-hidden flex flex-col">
       <Header
@@ -100,11 +152,12 @@ export default function EditTemplate({
                 <AISidePanel template={template} setTemplate={setTemplate} />
               )}
             </div>
+            <Resize value={sidePanelWidth} setValue={setSidePanelWidth} />
           </div>
         </div>
       </div>
       <div className="p-3 pt-0 shrink-0">
-        <div style={{ height: timelineHeigth }} className="panel">
+        <div style={{ height: timelineHeigth }} className="panel relative">
           <Timeline
             template={template}
             setSelected={setSelected}
@@ -112,6 +165,11 @@ export default function EditTemplate({
             selected={selected}
             setComp={setComp}
             setTemplate={setTemplate}
+          />
+          <Resize
+            value={timelineHeigth}
+            setValue={setTimelineHeight}
+            isHorizontal
           />
         </div>
       </div>
