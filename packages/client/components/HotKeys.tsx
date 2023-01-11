@@ -1,28 +1,25 @@
-import { useCallback, useEffect } from "react";
+import { PlayerRef } from "@remotion/player";
+import { RefObject, useCallback, useEffect } from "react";
+import { useCurrentPlayerFrame } from "../hooks/useCurrentPlayerFrame";
 
-export function useKeys({
+export function HotKeys({
   copy,
   remove,
   undo,
   redo,
-  play,
-  forwards,
-  backwards,
   setSelected,
-  mute,
-  fullscreen,
+  playerRef,
+  fps,
 }: {
   copy?: () => void;
   remove?: () => void;
   undo?: () => void;
   redo?: () => void;
-  play?: () => void;
-  forwards?: () => void;
-  backwards?: () => void;
-  mute?: () => void;
-  fullscreen?: () => void;
   setSelected?: (s: string) => void;
+  playerRef: RefObject<PlayerRef>;
+  fps: number;
 }) {
+  const frame = useCurrentPlayerFrame(playerRef);
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
       const isInput =
@@ -37,18 +34,22 @@ export function useKeys({
       } else if (event.key === "c" && event.metaKey && !isInput) {
         copy?.();
       } else if (event.key === " " && !isInput) {
-        play?.();
+        playerRef.current?.toggle();
       } else if (
         (event.key === "l" || event.key === "ArrowRight") &&
         !isInput
       ) {
-        forwards?.();
+        playerRef.current?.seekTo(frame + 5 * fps);
       } else if ((event.key === "j" || event.key === "ArrowLeft") && !isInput) {
-        backwards?.();
+        playerRef.current?.seekTo(frame - 5 * fps);
       } else if (event.key === "m" && !isInput) {
-        mute?.();
+        playerRef.current?.isMuted()
+          ? playerRef.current?.unmute()
+          : playerRef.current?.mute();
       } else if (event.key === "f" && !isInput) {
-        fullscreen?.();
+        playerRef.current?.isFullscreen()
+          ? playerRef.current?.exitFullscreen()
+          : playerRef.current?.requestFullscreen();
       } else if (event.key === "1" && !isInput) {
         setSelected?.("ai");
       } else if (event.key === "2" && !isInput) {
@@ -62,7 +63,7 @@ export function useKeys({
       } else return;
       event.preventDefault();
     },
-    [remove, undo, redo, copy, play]
+    [copy, remove, undo, redo, setSelected, playerRef, fps, frame]
   );
 
   useEffect(() => {
@@ -70,7 +71,7 @@ export function useKeys({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [remove, undo, redo, copy, play]);
+  }, [copy, remove, undo, redo, setSelected, playerRef, fps, frame]);
 
-  return;
+  return null;
 }

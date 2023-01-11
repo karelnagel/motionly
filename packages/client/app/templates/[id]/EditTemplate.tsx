@@ -14,8 +14,7 @@ import { AddSidePanel } from "./SidePanels/AddSidePanel";
 import { PlayerRef } from "@remotion/player";
 import { AISidePanel } from "./SidePanels/AISidePanel";
 import { Resize } from "../../../components/Resize";
-import { useKeys } from "../../../hooks/useKeys";
-import { useCurrentPlayerFrame } from "../../../hooks/useCurrentPlayerFrame";
+import { HotKeys } from "../../../components/HotKeys";
 
 export default function EditTemplate({
   template: startTemplate,
@@ -23,7 +22,6 @@ export default function EditTemplate({
   template: TemplateType;
 }) {
   const playerRef = useRef<PlayerRef>(null);
-  const frame = useCurrentPlayerFrame(playerRef);
   const {
     template,
     selectedComp,
@@ -37,23 +35,6 @@ export default function EditTemplate({
     undo,
     redo,
   } = useTemplate(startTemplate);
-
-  useKeys({
-    undo,
-    redo,
-    remove: deleteComp,
-    play: playerRef.current?.toggle,
-    setSelected,
-    copy: addComp,
-    backwards: () => playerRef.current?.seekTo(frame - 5 * template.fps),
-    forwards: () => playerRef.current?.seekTo(frame + 5 * template.fps),
-    mute: playerRef.current?.isMuted()
-      ? playerRef.current?.unmute
-      : playerRef.current?.mute,
-    fullscreen: playerRef.current?.isFullscreen()
-      ? playerRef.current?.exitFullscreen
-      : playerRef.current?.requestFullscreen,
-  });
 
   const [scale, setScale] = useState<number>();
   const ref = useRef<HTMLDivElement>(null);
@@ -158,6 +139,17 @@ export default function EditTemplate({
           />
         </div>
       </div>
+      <HotKeys
+        {...{
+          undo,
+          redo,
+          remove: deleteComp,
+          setSelected,
+          copy: addComp,
+          playerRef,
+          fps: template.fps,
+        }}
+      />
     </div>
   );
 }
