@@ -205,6 +205,7 @@ export type TemplateType = {
   name?: string;
   public?: boolean;
   description?: string;
+  preview?: string;
   comps: ComponentProps[];
   isOwner?: boolean;
 };

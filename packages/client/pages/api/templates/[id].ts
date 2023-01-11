@@ -3,6 +3,7 @@ import {
   DeleteTemplateOutput,
   GetTemplateInput,
   GetTemplateOutput,
+  renderStill,
   UpdateTemplateInput,
   UpdateTemplateOutput,
 } from "@asius/sdk";
@@ -39,8 +40,17 @@ export const getTemplate = async (
     include: { user: true },
   });
   if (!template) return null;
-  const { width, height, duration, name, description, comps, fps, background } =
-    template;
+  const {
+    width,
+    height,
+    duration,
+    name,
+    description,
+    comps,
+    fps,
+    background,
+    preview,
+  } = template;
   const isOwner = session?.user?.email === template.user.email;
   return {
     comps: JSON.parse(comps),
@@ -54,6 +64,7 @@ export const getTemplate = async (
     public: template.public,
     isOwner,
     background: background || undefined,
+    preview: preview || undefined,
   };
 };
 
@@ -65,6 +76,7 @@ const updateTemplate = async (
   if (!session?.user?.email) return null;
   // Todo check if user is owner
   try {
+    const still = await renderStill({ ...template, frame: 10 });
     const { comps, ...result } = await prisma.template.update({
       where: { id },
       data: {
@@ -74,8 +86,10 @@ const updateTemplate = async (
         name: template.name,
         public: template.public,
         description: template.description,
+        background: template.background,
         fps: template.fps,
         duration: template.duration,
+        preview: still?.fileUrl,
       },
       include: { user: true },
     });
@@ -90,6 +104,8 @@ const updateTemplate = async (
       width: result.width,
       height: result.height,
       description: result.description,
+      background: result.background || undefined,
+      preview: result.preview || undefined,
       name: result.name,
       id: result.id,
     };
@@ -108,5 +124,6 @@ const deleteTemplate = async ({
     ...result,
     comps: JSON.parse(comps),
     background: result.background || undefined,
+    preview: result.preview || undefined,
   };
 };

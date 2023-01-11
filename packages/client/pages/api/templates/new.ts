@@ -32,6 +32,8 @@ const postNewTemplate = async (
       fps: input.fps,
       name: input.name + " (Copy)",
       description: input.description,
+      background: input.background,
+      preview: input.preview,
       public: false,
       user: { connect: { email: session.user.email } },
     },
@@ -40,5 +42,6 @@ const postNewTemplate = async (
     ...result,
     comps: JSON.parse(result.comps),
     background: result.background || undefined,
+    preview: result.preview || undefined,
   };
 };

@@ -75,6 +75,7 @@ model Template {
   height      Int
   duration    Int
   background  String?
+  preview     String?
   fps         Int
   createdAt   DateTime? @default(now())
   updatedAt   DateTime? @updatedAt

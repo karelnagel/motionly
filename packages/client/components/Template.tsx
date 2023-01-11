@@ -7,18 +7,20 @@ export const Template = ({
   id,
 }: {
   name: string;
-  image: string;
+  image?: string;
   id: string;
 }) => {
   return (
     <Link className="flex flex-col space-y-1" href={`/templates/${id}`}>
       <div className="aspect-video relative bg-base-200 rounded-lg overflow-hidden">
-        <Image
-          src={image}
-          fill={true}
-          alt="template"
-          className="object-cover"
-        />
+        {image && (
+          <Image
+            src={image}
+            fill={true}
+            alt="template"
+            className="object-cover"
+          />
+        )}
       </div>
       <p className="font-bold">{name}</p>
     </Link>

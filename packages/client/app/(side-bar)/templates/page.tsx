@@ -42,7 +42,7 @@ export default async function Templates({
             key={template.id}
             id={template.id}
             name={template.name}
-            image={`https://picsum.photos/seed/${template.id}300/300`}
+            image={template.preview || undefined}
           />
         ))}
       </div>
