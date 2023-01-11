@@ -68,13 +68,13 @@ export const EditCompPanel = ({
   return (
     <div className="flex flex-col w-full">
       <PanelTitle title={`${comp.comp}-${comp.id}`}>
-        <div className="tooltip tooltip-bottom" data-tip="⌘ + C">
+        <div className="tooltip" data-tip="⌘ + C">
           <AiFillCopy
             onClick={() => addComp(comp)}
             className="cursor-pointer"
           />
         </div>
-        <div className="tooltip tooltip-bottom" data-tip="⌫">
+        <div className="tooltip" data-tip="⌫">
           <AiFillDelete
             onClick={() => deleteComp(comp.id)}
             className="cursor-pointer"

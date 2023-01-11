@@ -8,6 +8,9 @@ export function useKeys({
   play,
   forwards,
   backwards,
+  setSelected,
+  mute,
+  fullscreen,
 }: {
   copy?: () => void;
   remove?: () => void;
@@ -16,6 +19,9 @@ export function useKeys({
   play?: () => void;
   forwards?: () => void;
   backwards?: () => void;
+  mute?: () => void;
+  fullscreen?: () => void;
+  setSelected?: (s: string) => void;
 }) {
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
@@ -39,6 +45,20 @@ export function useKeys({
         forwards?.();
       } else if ((event.key === "j" || event.key === "ArrowLeft") && !isInput) {
         backwards?.();
+      } else if (event.key === "m" && !isInput) {
+        mute?.();
+      } else if (event.key === "f" && !isInput) {
+        fullscreen?.();
+      } else if (event.key === "1" && !isInput) {
+        setSelected?.("ai");
+      } else if (event.key === "2" && !isInput) {
+        setSelected?.("add");
+      } else if (event.key === "3" && !isInput) {
+        setSelected?.("template");
+      } else if (event.key === "4" && !isInput) {
+        setSelected?.("export");
+      } else if (event.key === "0" && !isInput) {
+        setSelected?.("");
       } else return;
       event.preventDefault();
     },

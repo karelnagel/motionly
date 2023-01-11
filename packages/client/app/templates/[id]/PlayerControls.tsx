@@ -51,24 +51,26 @@ export const PlayerControls = ({
           className="text-lg w-10 bg-base-200 rounded-lg p-1"
         />
         <div className="w-full h-full flex items-center justify-center space-x-5">
-          {playerRef.current?.isMuted() ? (
-            <IoIosVolumeOff
-              onClick={playerRef.current?.unmute}
-              className={className}
-            />
-          ) : (
-            <IoIosVolumeHigh
-              onClick={playerRef.current?.mute}
-              className={className}
-            />
-          )}
-          <div className="tooltip tooltip-bottom" data-tip="← / J">
+          <div className="tooltip" data-tip="M">
+            {playerRef.current?.isMuted() ? (
+              <IoIosVolumeOff
+                onClick={playerRef.current?.unmute}
+                className={className}
+              />
+            ) : (
+              <IoIosVolumeHigh
+                onClick={playerRef.current?.mute}
+                className={className}
+              />
+            )}
+          </div>
+          <div className="tooltip" data-tip="← / J">
             <IoIosSkipBackward
               className={className}
               onClick={() => playerRef.current?.seekTo(frame - 5 * fps)}
             />
           </div>
-          <div className="tooltip tooltip-bottom" data-tip="⎵">
+          <div className="tooltip" data-tip="⎵">
             {isPlaying ? (
               <IoIosPause
                 onClick={playerRef.current?.pause}
@@ -82,16 +84,18 @@ export const PlayerControls = ({
             )}
           </div>
 
-          <div className="tooltip tooltip-bottom" data-tip="→ / L">
+          <div className="tooltip" data-tip="→ / L">
             <IoIosSkipForward
               className={className}
               onClick={() => playerRef.current?.seekTo(frame + 5 * fps)}
             />
           </div>
-          <IoMdExpand
-            className={className}
-            onClick={() => playerRef.current?.requestFullscreen()}
-          />
+          <div className="tooltip" data-tip="F">
+            <IoMdExpand
+              className={className}
+              onClick={() => playerRef.current?.requestFullscreen()}
+            />
+          </div>
         </div>
         <div className="flex items-center justify-end w-full space-x-2">
           <input

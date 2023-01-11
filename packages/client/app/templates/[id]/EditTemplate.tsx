@@ -43,9 +43,16 @@ export default function EditTemplate({
     redo,
     remove: deleteComp,
     play: playerRef.current?.toggle,
+    setSelected,
     copy: addComp,
     backwards: () => playerRef.current?.seekTo(frame - 5 * template.fps),
     forwards: () => playerRef.current?.seekTo(frame + 5 * template.fps),
+    mute: playerRef.current?.isMuted()
+      ? playerRef.current?.unmute
+      : playerRef.current?.mute,
+    fullscreen: playerRef.current?.isFullscreen()
+      ? playerRef.current?.exitFullscreen
+      : playerRef.current?.requestFullscreen,
   });
 
   const [scale, setScale] = useState<number>();

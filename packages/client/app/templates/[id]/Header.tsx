@@ -52,16 +52,26 @@ export const Header = ({
     alert("Cloning successful");
     router.push(`/templates/${newTemplate.id}`);
   };
-  const Button = ({ title, value }: { title: string; value: string }) => {
+  const Button = ({
+    title,
+    value,
+    tooltip,
+  }: {
+    title: string;
+    value: string;
+    tooltip?: string;
+  }) => {
     return (
-      <button
-        onClick={() => setSelected(value)}
-        className={`${
-          selected === value ? "text-primary-content gradient" : ""
-        } bg-base-200 p-2 rounded-lg min-w-[60px]`}
-      >
-        {title}
-      </button>
+      <div className="tooltip tooltip-bottom" data-tip={tooltip}>
+        <button
+          onClick={() => setSelected(value)}
+          className={`${
+            selected === value ? "text-primary-content gradient" : ""
+          } bg-base-200 p-2 rounded-lg min-w-[60px]`}
+        >
+          {title}
+        </button>
+      </div>
     );
   };
   return (
@@ -111,11 +121,10 @@ export const Header = ({
           </div>
         </div>
 
-        <Button title="AI" value="ai" />
-
-        <Button title="Add" value="add" />
-        <Button title="Template" value="template" />
-        <Button title="Export" value="export" />
+        <Button title="AI" value="ai" tooltip="1" />
+        <Button title="Add" value="add" tooltip="2" />
+        <Button title="Template" value="template" tooltip="3" />
+        <Button title="Export" value="export" tooltip="4" />
       </div>
     </div>
   );

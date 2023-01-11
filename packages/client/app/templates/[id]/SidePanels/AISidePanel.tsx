@@ -33,6 +33,7 @@ export const AISidePanel = ({
   };
   const commentEnterSubmit = (e: any) => {
     if (e.key === "Enter" && e.shiftKey == false) {
+      e.preventDefault();
       submit();
     }
   };

@@ -51,7 +51,7 @@ export const AddSidePanel = ({
     );
   };
   return (
-    <div className="flex flex-col items-center space-y-3 overflow-auto w-full">
+    <div className="flex flex-col items-center space-y-3 overflow-x-clip overflow-y-auto w-full">
       <PanelTitle title="Add elements" />
       <div className="w-full space-y-2">
         {Add("Text", defaultTextProps)}
