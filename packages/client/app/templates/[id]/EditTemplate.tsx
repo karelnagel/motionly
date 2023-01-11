@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TemplateType } from "@asius/components";
 import { useTemplate } from "../../../hooks/useTemplate";
 import { Header } from "./Header";
@@ -13,58 +13,9 @@ import { Timeline } from "./TimeLine";
 import { AddSidePanel } from "./SidePanels/AddSidePanel";
 import { PlayerRef } from "@remotion/player";
 import { AISidePanel } from "./SidePanels/AISidePanel";
-
-export const Resize = ({
-  value,
-  setValue,
-  isHorizontal = false,
-}: {
-  value: number;
-  setValue: (w: number) => void;
-  isHorizontal?: boolean;
-}) => {
-  const [isResizing, setIsResizing] = useState(false);
-
-  const onMouseMove = useCallback(
-    (e: MouseEvent) => {
-      if (!isResizing) {
-        return;
-      }
-      setValue(value - (isHorizontal ? e.movementY : e.movementX));
-    },
-    [isResizing, value]
-  );
-
-  const onMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    setIsResizing(true);
-  }, []);
-
-  const onMouseUp = useCallback(() => {
-    setIsResizing(false);
-  }, []);
-
-  useEffect(() => {
-    if (isResizing) {
-      window.addEventListener("mousemove", onMouseMove);
-      window.addEventListener("mouseup", onMouseUp);
-      return () => {
-        window.removeEventListener("mousemove", onMouseMove);
-        window.removeEventListener("mouseup", onMouseUp);
-      };
-    }
-  }, [isResizing, onMouseMove, onMouseUp]);
-
-  return (
-    <div
-      onMouseDown={onMouseDown}
-      className={` ${
-        isHorizontal
-          ? "w-full h-1 cursor-ns-resize"
-          : " h-full w-1 cursor-ew-resize"
-      } hover:bg-primary absolute left-0 top-0 select-none `}
-    />
-  );
-};
+import { Resize } from "../../../components/Resize";
+import { useKeys } from "../../../hooks/useKeys";
+import { useCurrentPlayerFrame } from "../../../hooks/useCurrentPlayerFrame";
 
 export default function EditTemplate({
   template: startTemplate,
@@ -72,6 +23,7 @@ export default function EditTemplate({
   template: TemplateType;
 }) {
   const playerRef = useRef<PlayerRef>(null);
+  const frame = useCurrentPlayerFrame(playerRef);
   const {
     template,
     selectedComp,
@@ -86,6 +38,16 @@ export default function EditTemplate({
     redo,
   } = useTemplate(startTemplate);
 
+  useKeys({
+    undo,
+    redo,
+    remove: deleteComp,
+    play: playerRef.current?.toggle,
+    copy: addComp,
+    backwards: () => playerRef.current?.seekTo(frame - 5 * template.fps),
+    forwards: () => playerRef.current?.seekTo(frame + 5 * template.fps),
+  });
+
   const [scale, setScale] = useState<number>();
   const ref = useRef<HTMLDivElement>(null);
   const [sidePanelWidth, setSidePanelWidth] = useState(380);
@@ -95,10 +57,10 @@ export default function EditTemplate({
     if (ref.current?.clientHeight && ref.current?.clientWidth) {
       const scaleX = ref.current?.clientWidth / template.width;
       const scaleY = ref.current?.clientHeight / template.height;
-      console.log(scaleX, scaleY);
       setScale(Math.min(scaleX, scaleY));
     }
   }, [sidePanelWidth, timelineHeigth]);
+
   return (
     <div className="bg-base-300 w-screen h-screen overflow-hidden flex flex-col">
       <Header

@@ -82,15 +82,16 @@ export const useTemplate = (startTemplate: TemplateType) => {
   };
   const selectedComp = find(template.comps);
 
-  const deleteComp = (id: string) => {
+  const deleteComp = (id: string = selected) => {
     setTemplate({
       ...template,
       comps: template.comps.filter((c) => c.id !== id),
     });
     setSelected(template.comps.filter((c) => c.id !== id)?.[0]?.id || "");
   };
-  const addComp = (comp: ComponentProps) => {
+  const addComp = (comp: ComponentProps | null = selectedComp) => {
     const id = Math.random().toString(36).substring(6);
+    if (!comp) return;
     setTemplate({
       ...template,
       comps: [...template.comps, { ...comp, id }],
