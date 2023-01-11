@@ -61,7 +61,7 @@ export const Header = ({
     );
   };
   return (
-    <div className="w-full grid grid-cols-3 place-items-center items-center bg-base-100 shadow-lg px-3 h-[70px]">
+    <div className="shrink-0 w-full grid grid-cols-3 place-items-center items-center bg-base-100 shadow-lg px-3 h-[60px]">
       <div className="flex space-x-2 items-center w-full">
         <Link href="/">
           <IoIosArrowBack className="text-3xl font-bold" />
