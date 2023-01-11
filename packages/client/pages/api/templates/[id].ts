@@ -76,7 +76,12 @@ const updateTemplate = async (
   if (!session?.user?.email) return null;
   // Todo check if user is owner
   try {
-    const still = await renderStill({ ...template, frame: 10 });
+    let preview = undefined;
+    try {
+      preview = (await renderStill({ ...template, frame: 10 }))?.fileUrl;
+    } catch (e) {
+      preview = undefined;
+    }
     const { comps, ...result } = await prisma.template.update({
       where: { id },
       data: {
@@ -89,7 +94,7 @@ const updateTemplate = async (
         background: template.background,
         fps: template.fps,
         duration: template.duration,
-        preview: still?.fileUrl,
+        preview,
       },
       include: { user: true },
     });
