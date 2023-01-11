@@ -2,39 +2,58 @@ import { updateTemplate } from "@asius/sdk";
 import { ComponentProps, TemplateType } from "@asius/components";
 import { useEffect, useState } from "react";
 
-export const useTemplate = (starTemplate: TemplateType) => {
-  // eslint-disable-next-line prefer-const
-  const [history, setHistory] = useState<TemplateType[]>([starTemplate]);
-  const [current, setCurrent] = useState(0);
+export const useTemplate = (startTemplate: TemplateType) => {
+  const [history, setHistory] = useState<TemplateType[]>([]);
+  const [current, setCurrent] = useState(-1);
   const [selected, setSelected] = useState("template");
   const [saveTime, setSaveTime] = useState<Date>();
-  const template = history[current];
-
-  const setTemplate = (t: TemplateType) => {
-    if (!template.isOwner)
-      return alert("You have to clone this template to edit!");
-
-    setHistory((h) => [...h.slice(0, current + 1), t]);
-    setCurrent((c) => c + 1);
-  };
-  const undo = current > 0 ? () => setCurrent((c) => c - 1) : undefined;
-  const redo =
-    current < history.length - 1 ? () => setCurrent((c) => c + 1) : undefined;
+  const [wasUndoOrRedo, setWasUndoOrRedo] = useState(false);
+  // eslint-disable-next-line prefer-const
+  let [template, setTemplate] = useState(startTemplate);
+  if (!template.isOwner)
+    setTemplate = () => alert("You have to clone this template to edit!");
 
   useEffect(() => {
-    if (template.isOwner) {
-      const interval = setInterval(async () => {
-        const result = await updateTemplate({
-          id: template.id || "",
-          template,
-        });
-        if (!result) setSaveTime(undefined);
-        setSaveTime(new Date());
-      }, 5000);
-      return () => {
-        clearInterval(interval);
-      };
-    }
+    if (wasUndoOrRedo) return setWasUndoOrRedo(false);
+    const timeout = setTimeout(() => {
+      setHistory((h) => [...h.slice(0, current + 1), template]);
+      setCurrent((c) => c + 1);
+    }, 600);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [template]);
+
+  const undo =
+    current > 0
+      ? () => {
+          setWasUndoOrRedo(true);
+          setCurrent((c) => c - 1);
+          setTemplate(history[current - 1]);
+        }
+      : undefined;
+  const redo =
+    current < history.length - 1
+      ? () => {
+          setWasUndoOrRedo(true);
+          setCurrent((c) => c + 1);
+          setTemplate(history[current + 1]);
+        }
+      : undefined;
+
+  useEffect(() => {
+    if (!template.isOwner) return;
+    const timeout = setTimeout(async () => {
+      const result = await updateTemplate({
+        id: template.id || "",
+        template,
+      });
+      if (!result) setSaveTime(undefined);
+      setSaveTime(new Date());
+    }, 3000);
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [template]);
 
   const setComp = (element: Partial<ComponentProps>) => {
