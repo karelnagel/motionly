@@ -1,6 +1,7 @@
 import { TemplateType } from "@asius/components";
 import { FormEvent, useState } from "react";
 import axios from "axios";
+import { PanelTitle } from "../../../../components/PanelTitle";
 
 export const AISidePanel = ({
   template,
@@ -38,7 +39,7 @@ export const AISidePanel = ({
 
   return (
     <div className="flex flex-col items-center space-y-10 w-full">
-      <p className="text-xl font-bold ">Modify your video using ai</p>
+      <PanelTitle title="Edit video using AI" />
       <form action="none" className="flex flex-col w-full" onSubmit={submit}>
         <textarea
           className="bg-base-200 rounded-t-lg min-h-[100px] p-2"

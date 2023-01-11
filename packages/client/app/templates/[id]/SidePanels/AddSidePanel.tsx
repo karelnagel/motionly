@@ -18,6 +18,7 @@ import {
   defaultVideoProps,
   defaultTranscriptionProps,
 } from "@asius/components";
+import { PanelTitle } from "../../../../components/PanelTitle";
 
 export const AddSidePanel = ({
   addComp,
@@ -51,7 +52,7 @@ export const AddSidePanel = ({
   };
   return (
     <div className="flex flex-col items-center space-y-3 overflow-auto w-full">
-      <h1 className="text-xl font-bold">Add Elements</h1>
+      <PanelTitle title="Add elements" />
       <div className="w-full space-y-2">
         {Add("Text", defaultTextProps)}
         {Add("Image", defaultImageProps)}

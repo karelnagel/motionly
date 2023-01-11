@@ -7,6 +7,7 @@ import {
   NumberInput,
   TextInput,
 } from "../../../../components/inputs";
+import { PanelTitle } from "../../../../components/PanelTitle";
 
 export const TemplateSidePanel = ({
   template,
@@ -32,7 +33,7 @@ export const TemplateSidePanel = ({
   return (
     <div className="flex flex-col justify-between h-full w-full">
       <div className="flex flex-col space-y-4 items-center">
-        <h1 className="font-bold text-xl">Template settings</h1>
+        <PanelTitle title="Template settings" />
         <div className="w-full grid grid-cols-2 gap-2">
           <TextInput
             label="Name"

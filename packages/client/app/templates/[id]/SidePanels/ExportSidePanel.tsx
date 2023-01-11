@@ -1,7 +1,7 @@
 import { useRender } from "@asius/sdk";
 import { TemplateType } from "@asius/components";
 import { useState } from "react";
-import { NumberInput } from "../../../../components/inputs";
+import { PanelTitle } from "../../../../components/PanelTitle";
 
 export const ExportSidePanel = ({ template }: { template: TemplateType }) => {
   const [frame, setFrame] = useState(0);
@@ -13,7 +13,7 @@ export const ExportSidePanel = ({ template }: { template: TemplateType }) => {
     "bg-primary rounded-lg p-2 text-primary-content whitespace-nowrap";
   return (
     <div className=" flex flex-col items-center space-y-3 w-full">
-      <h1 className="text-xl font-bold uppercase">Export</h1>
+      <PanelTitle title="Export your video" />
       <div className="space-y-2 flex flex-col items-center">
         <button onClick={media} className={className}>
           Render video
