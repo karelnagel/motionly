@@ -19,7 +19,9 @@ export function useKeys({
 }) {
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
-      const isInput = document.activeElement?.tagName === "INPUT";
+      const isInput =
+        document.activeElement?.tagName === "INPUT" &&
+        document.activeElement?.id !== "timeline";
       if (event.key === "Backspace" && !isInput) {
         remove?.();
       } else if (event.key === "z" && event.metaKey && !event.shiftKey) {

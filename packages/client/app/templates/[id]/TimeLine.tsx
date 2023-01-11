@@ -43,6 +43,7 @@ export const Timeline = ({
             )
           )}
           <input
+            id="timeline"
             type="range"
             value={frame}
             onChange={(e) => {
