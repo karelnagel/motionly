@@ -35,7 +35,7 @@ export const Timeline = ({
                 }}
               >
                 <div
-                  className={"h-3 bg-black"}
+                  className={"h-3 bg-base-content"}
                   style={{ width: i % 2 === 0 ? 2 : 1 }}
                 />
                 <p className="text-sm">{i % 2 === 0 && Math.floor(i / 2)}</p>
@@ -43,6 +43,7 @@ export const Timeline = ({
             )
           )}
           <input
+            id="timeline"
             type="range"
             value={frame}
             onChange={(e) => {
@@ -95,7 +96,9 @@ const TimelineComp = ({
         <div
           ref={isSelected ? divRef : undefined}
           className={`absolute top-0 h-full rounded-lg flex items-center px-2 ${
-            isSelected ? "bg-primary text-primary-content" : "bg-base-200"
+            isSelected
+              ? "bg-gradient-to-r from-secondary to bg-primary text-primary-content"
+              : "bg-base-200"
           }`}
           style={{
             boxShadow: "0 0 4px rgba(0,0,0,0.2)",
@@ -113,12 +116,17 @@ const TimelineComp = ({
       {isSelected && (
         <Moveable
           target={divRef}
+          bounds={{
+            left: 0,
+            right: divRef.current?.parentElement?.offsetWidth,
+          }}
           resizable={true}
           draggable={true}
           snappable={true}
           snapCenter={true}
           snapThreshold={10}
           renderDirections={["w", "e"]}
+          className="timeline-moveable"
           snapHorizontal={true}
           snapVertical={true}
           elementSnapDirections={{

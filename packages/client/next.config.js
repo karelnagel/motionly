@@ -5,7 +5,11 @@ const nextConfig = {
     serverComponentsExternalPackages: ["@prisma/client"],
   },
   images: {
-    domains: ["lh3.googleusercontent.com", "picsum.photos"],
+    domains: [
+      "lh3.googleusercontent.com",
+      "picsum.photos",
+      "s3.us-east-1.amazonaws.com",
+    ],
   },
 };
 

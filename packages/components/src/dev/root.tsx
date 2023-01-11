@@ -13,6 +13,7 @@ const template = Object.keys(inputProps).length
       fps: 30,
       duration: 60,
       comps: [],
+      background: "#FFFFFFFF",
     } as TemplateType);
 export const Root: React.FC = () => {
   return (
@@ -26,22 +27,13 @@ export const Root: React.FC = () => {
         height={template.height}
         defaultProps={{
           comps: template.comps,
+          background: template.background,
         }}
       />
       {compositions.map((comp, i) => {
         const baseProps: BaseProps = {
           id: "1",
-          animations: [
-            {
-              type: "translate",
-              start: 0.1,
-              from: -2000,
-              to: 0,
-              end: 10,
-              duration: 3,
-              reverse: false,
-            },
-          ],
+          animations: [],
         };
         const compProps: ComponentProps = { ...comp, ...baseProps };
         return (

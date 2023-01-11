@@ -17,8 +17,8 @@ export const PlayerControls = ({
   playerRef,
   fps,
 }: {
-  scale: number;
-  setScale: (s: number) => void;
+  scale?: number;
+  setScale: (s?: number) => void;
   playerRef: RefObject<PlayerRef>;
   fps: number;
 }) => {
@@ -40,7 +40,7 @@ export const PlayerControls = ({
   const className =
     "cursor-pointer w-[45px] aspect-square p-1 font-bold hover:text-primary hover:shadow-md hover:scale-110 duration-150 rounded-full";
   return (
-    <div className="absolute bottom-0 left-0 p-3 w-full">
+    <div className="pt-0 p-3 shrink-0 w-full relative">
       <div className="w-full grid grid-cols-3 panel text-3xl p-3">
         <input
           type="number"
@@ -48,55 +48,75 @@ export const PlayerControls = ({
           onChange={(e) =>
             playerRef.current?.seekTo(Number(e.currentTarget.value) * fps || 0)
           }
-          className="text-xl w-10"
+          className="text-lg w-10 bg-base-200 rounded-lg p-1"
         />
         <div className="w-full h-full flex items-center justify-center space-x-5">
-          {playerRef.current?.isMuted() ? (
-            <IoIosVolumeHigh
-              onClick={playerRef.current?.unmute}
+          <div className="tooltip" data-tip="M">
+            {playerRef.current?.isMuted() ? (
+              <IoIosVolumeOff
+                onClick={playerRef.current?.unmute}
+                className={className}
+              />
+            ) : (
+              <IoIosVolumeHigh
+                onClick={playerRef.current?.mute}
+                className={className}
+              />
+            )}
+          </div>
+          <div className="tooltip" data-tip="← / J">
+            <IoIosSkipBackward
               className={className}
+              onClick={() => playerRef.current?.seekTo(frame - 5 * fps)}
             />
-          ) : (
-            <IoIosVolumeOff
-              onClick={playerRef.current?.mute}
+          </div>
+          <div className="tooltip" data-tip="⎵">
+            {isPlaying ? (
+              <IoIosPause
+                onClick={playerRef.current?.pause}
+                className={className}
+              />
+            ) : (
+              <IoIosPlay
+                onClick={playerRef.current?.play}
+                className={className}
+              />
+            )}
+          </div>
+
+          <div className="tooltip" data-tip="→ / L">
+            <IoIosSkipForward
               className={className}
+              onClick={() => playerRef.current?.seekTo(frame + 5 * fps)}
             />
-          )}
-          <IoIosSkipBackward
-            className={className}
-            onClick={() => playerRef.current?.seekTo(frame - 5 * fps)}
-          />
-          {isPlaying ? (
-            <IoIosPause
-              onClick={playerRef.current?.pause}
+          </div>
+          <div className="tooltip" data-tip="F">
+            <IoMdExpand
               className={className}
+              onClick={() => playerRef.current?.requestFullscreen()}
             />
-          ) : (
-            <IoIosPlay
-              onClick={playerRef.current?.play}
-              className={className}
-            />
-          )}
-          <IoIosSkipForward
-            className={className}
-            onClick={() => playerRef.current?.seekTo(frame + 5 * fps)}
-          />
-          <IoMdExpand
-            className={className}
-            onClick={() => playerRef.current?.requestFullscreen()}
-          />
+          </div>
         </div>
         <div className="flex items-center justify-end w-full space-x-2">
           <input
             type="range"
             min={0.1}
-            max={1}
+            max={2}
             step={0.01}
-            value={scale}
-            className="w-20 range-primary range range-sm"
-            onChange={(e) => setScale(Number(e.target.value))}
+            value={scale === undefined ? 0 : scale}
+            className="w-24 range-primary range range-sm"
+            onChange={(e) =>
+              setScale(e.target.value ? Number(e.target.value) : undefined)
+            }
           />
-          <p className="text-base">{scale}</p>
+          <input
+            type="number"
+            className="text-base w-12 overflow-hidden bg-base-200 p-2 rounded-lg"
+            value={scale === undefined ? "" : scale}
+            onChange={(e) =>
+              setScale(e.target.value ? Number(e.target.value) : undefined)
+            }
+          />
         </div>
       </div>
     </div>

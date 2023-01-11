@@ -9,7 +9,7 @@ export function LogOut() {
   return (
     <button
       onClick={() => signOut()}
-      className="flex rounded-lg items-center bg-primary hover:bg-primary-focus duration-200 group overflow-hidden"
+      className="flex rounded-lg items-center gradient duration-200 group overflow-hidden"
     >
       {data.user.image && (
         <Image

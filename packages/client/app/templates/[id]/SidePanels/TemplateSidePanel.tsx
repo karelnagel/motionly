@@ -3,9 +3,11 @@ import { TemplateType } from "@asius/components";
 import { useRouter } from "next/navigation";
 import {
   BooleanInput,
+  ColorInput,
   NumberInput,
   TextInput,
 } from "../../../../components/inputs";
+import { PanelTitle } from "../../../../components/PanelTitle";
 
 export const TemplateSidePanel = ({
   template,
@@ -29,10 +31,10 @@ export const TemplateSidePanel = ({
     router.push(`/templates/${newTemplate.id}`);
   };
   return (
-    <div className="flex flex-col justify-between h-full">
+    <div className="flex flex-col justify-between h-full w-full">
       <div className="flex flex-col space-y-4 items-center">
-        <h1 className="font-bold text-xl">Template settings</h1>
-        <div className="w-full grid grid-cols-2 gap-3">
+        <PanelTitle title="Template settings" />
+        <div className="w-full grid grid-cols-2 gap-2">
           <TextInput
             label="Name"
             value={template.name}
@@ -70,6 +72,11 @@ export const TemplateSidePanel = ({
             onChange={(duration) =>
               setTemplate({ ...template, duration: duration || 1 })
             }
+          />
+          <ColorInput
+            label="Background"
+            value={template.background}
+            onChange={(background) => setTemplate({ ...template, background })}
           />
           <BooleanInput
             label="Public"

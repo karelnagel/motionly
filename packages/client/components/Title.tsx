@@ -10,7 +10,7 @@ export const Title = ({ text }: { text: string }) => {
         className="object-cover rounded-2xl"
         alt="bg"
       />
-      <p className="relative text-primary-content text-5xl font-bold p-5 bg-primary bg-opacity-80 rounded-lg">
+      <p className="relative text-primary-content text-5xl font-bold p-5 gradient bg-opacity-80 rounded-lg">
         {text}
       </p>
     </div>

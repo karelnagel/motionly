@@ -1,3 +1,5 @@
+import { AnimationProps } from "./animations";
+
 export const TextAlign = {
   left: "Left",
   center: "Center",
@@ -39,24 +41,6 @@ export const ProgressbarTypes = {
   square: "Square",
 };
 
-export const AnimationTypes = {
-  rotate: { label: "Rotate", units: "deg" },
-  rotateX: { label: "Rotate X", units: "deg" },
-  rotateY: { label: "Rotate Y", units: "deg" },
-  rotateZ: { label: "Rotate Z", units: "deg" },
-  scale: { label: "Scale", units: undefined },
-  scaleX: { label: "Scale X", units: undefined },
-  scaleY: { label: "Scale Y", units: undefined },
-  scaleZ: { label: "Scale Z", units: undefined },
-  translate: { label: "Translate", units: "px" },
-  translateX: { label: "Translate X", units: "px" },
-  translateY: { label: "Translate Y", units: "px" },
-  translateZ: { label: "Translate Z", units: "px" },
-  skew: { label: "Skew", units: "deg" },
-  skewX: { label: "Skew X", units: "deg" },
-  skewY: { label: "Skew Y", units: "deg" },
-  perspective: { label: "Perspective", units: "px" },
-};
 export interface TranscriptionWord {
   text: string;
   start: number;
@@ -216,25 +200,14 @@ export type TemplateType = {
   width: number;
   height: number;
   duration: number;
+  background?: string;
   fps: number;
   name?: string;
   public?: boolean;
   description?: string;
+  preview?: string;
   comps: ComponentProps[];
   isOwner?: boolean;
-};
-
-export type AnimationProps = {
-  type: keyof typeof AnimationTypes;
-  start?: number;
-  end?: number;
-  from?: number;
-  to?: number;
-  duration?: number;
-  mass?: number;
-  damping?: number;
-  stiffness?: number;
-  reverse?: boolean;
 };
 
 export type BaseProps = {

@@ -10,7 +10,7 @@ export const useRender = (
 ) => {
   const [renderId, setRenderId] = useState("");
   const [fileUrl, setFileUrl] = useState("");
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState<number>();
   const [cost, setCost] = useState(0);
   const [status, setStatus] = useState<ProgressStatus>();
 
@@ -23,7 +23,7 @@ export const useRender = (
 
   const init = () => {
     setRenderId("");
-    setProgress(0);
+    setProgress(undefined);
     setCost(0);
     setFileUrl("");
     setStatus("rendering");
@@ -50,7 +50,7 @@ export const useRender = (
 
     setCost(result.cost);
     setStatus(result.status);
-    setProgress(100);
+    setProgress(1);
     setRenderId(result.renderId);
     setFileUrl(result.fileUrl);
   };

@@ -1,6 +1,7 @@
 import { TemplateType } from "@asius/components";
-import { FormEvent, FormEventHandler, useState } from "react";
+import { FormEvent, useState } from "react";
 import axios from "axios";
+import { PanelTitle } from "../../../../components/PanelTitle";
 
 export const AISidePanel = ({
   template,
@@ -12,8 +13,8 @@ export const AISidePanel = ({
   const [prompt, setPrompt] = useState("");
   const [status, setStatus] = useState<"loading" | "done" | "error">();
 
-  const submit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const submit = async (e?: FormEvent<HTMLFormElement>) => {
+    e?.preventDefault();
     if (status === "loading")
       return alert("Please wait for the previous request to finish");
     setStatus("loading");
@@ -30,27 +31,35 @@ export const AISidePanel = ({
       setStatus("error");
     }
   };
+  const commentEnterSubmit = (e: any) => {
+    if (e.key === "Enter" && e.shiftKey == false) {
+      e.preventDefault();
+      submit();
+    }
+  };
 
   return (
-    <div className="flex flex-col items-center space-y-10">
-      <p className="text-xl font-bold ">Modify your video using ai</p>
+    <div className="flex flex-col items-center space-y-10 w-full">
+      <PanelTitle title="Edit video using AI" />
       <form action="none" className="flex flex-col w-full" onSubmit={submit}>
         <textarea
-          className="bg-base-200 rounded-t-lg min-h-[80px] p-2"
+          className="bg-base-200 rounded-t-lg min-h-[100px] p-2"
           value={prompt}
+          onKeyDown={commentEnterSubmit}
           placeholder="Enter your prompt here"
           onChange={(e) => setPrompt(e.target.value)}
         />
         <button
           type="submit"
           disabled={status === "loading"}
-          className="text-primary-content bg-primary p-2 rounded-b-lg"
+          className="text-primary-content p-2 rounded-b-lg gradient font-semibold text-lg"
         >
           Submit
         </button>
       </form>
       {status === "loading" && <p>Loading...</p>}
       {status === "done" && <p>Successfully updated</p>}
+      {status === "error" && <p className="text-error">Error</p>}
     </div>
   );
 };

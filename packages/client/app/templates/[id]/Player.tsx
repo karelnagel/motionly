@@ -7,7 +7,7 @@ import Moveable from "react-moveable";
 import { useEffect } from "react";
 
 export const Player = ({
-  template: { width, height, duration, fps, comps },
+  template: { width, height, duration, fps, comps, background },
   playerRef,
   scale,
   setComp,
@@ -28,7 +28,7 @@ export const Player = ({
   return (
     <div
       style={{ width: width * scale, height: height * scale }}
-      className="relative"
+      className="absolute"
     >
       <SelectedContext.Provider
         value={{ divRef, setSelected, selected: selectedComp?.id || "" }}
@@ -42,8 +42,7 @@ export const Player = ({
           fps={fps}
           inputProps={{
             comps: isClient ? comps : [],
-            width,
-            height,
+            background,
           }}
           style={{ width: "100%", height: "100%" }}
           spaceKeyToPlayOrPause

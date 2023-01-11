@@ -19,14 +19,14 @@ export default async function Page() {
         <Template
           id="blank"
           name="Start with empty project"
-          image="/icons/add.webp"
+          image="/icons/add.jpeg"
         />
         {templates.map((template) => (
           <Template
             key={template.id}
             id={template.id}
             name={template.name}
-            image={`https://picsum.photos/seed/${template.id}300/300`}
+            image={template.preview || undefined}
           />
         ))}
       </div>

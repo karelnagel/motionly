@@ -3,6 +3,7 @@ import {
   DeleteTemplateOutput,
   GetTemplateInput,
   GetTemplateOutput,
+  renderStill,
   UpdateTemplateInput,
   UpdateTemplateOutput,
 } from "@asius/sdk";
@@ -39,7 +40,17 @@ export const getTemplate = async (
     include: { user: true },
   });
   if (!template) return null;
-  const { width, height, duration, name, description, comps, fps } = template;
+  const {
+    width,
+    height,
+    duration,
+    name,
+    description,
+    comps,
+    fps,
+    background,
+    preview,
+  } = template;
   const isOwner = session?.user?.email === template.user.email;
   return {
     comps: JSON.parse(comps),
@@ -52,6 +63,8 @@ export const getTemplate = async (
     fps,
     public: template.public,
     isOwner,
+    background: background || undefined,
+    preview: preview || undefined,
   };
 };
 
@@ -62,6 +75,12 @@ const updateTemplate = async (
   const session = await getServerSession(reqRes);
   if (!session?.user?.email) return null;
   // Todo check if user is owner
+  let preview = undefined;
+  try {
+    preview = (await renderStill({ ...template, frame: 10 }))?.fileUrl;
+  } catch {
+    preview = undefined;
+  }
   try {
     const { comps, ...result } = await prisma.template.update({
       where: { id },
@@ -72,8 +91,10 @@ const updateTemplate = async (
         name: template.name,
         public: template.public,
         description: template.description,
+        background: template.background,
         fps: template.fps,
         duration: template.duration,
+        preview,
       },
       include: { user: true },
     });
@@ -88,6 +109,8 @@ const updateTemplate = async (
       width: result.width,
       height: result.height,
       description: result.description,
+      background: result.background || undefined,
+      preview: result.preview || undefined,
       name: result.name,
       id: result.id,
     };
@@ -102,5 +125,10 @@ const deleteTemplate = async ({
 }: DeleteTemplateInput): Promise<DeleteTemplateOutput | null> => {
   const { comps, ...result } = await prisma.template.delete({ where: { id } });
 
-  return { ...result, comps: JSON.parse(comps) };
+  return {
+    ...result,
+    comps: JSON.parse(comps),
+    background: result.background || undefined,
+    preview: result.preview || undefined,
+  };
 };

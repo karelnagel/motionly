@@ -2,15 +2,15 @@
 
 import { hexToPercent, percentToHex } from "../helpers";
 
-export function NumberInput<T extends number | undefined>({
+export function NumberInput({
   label,
   value,
   onChange,
   className,
 }: {
   label: string;
-  value: T;
-  onChange: (value: T) => void;
+  value?: number;
+  onChange: (value?: number) => void;
   className?: string;
 }) {
   return (
@@ -20,9 +20,11 @@ export function NumberInput<T extends number | undefined>({
       <label className="whitespace-nowrap shrink-0">{label}</label>
       <input
         type="number"
-        value={value || 0}
+        value={value === undefined ? "" : value}
         className=" bg-base-300 w-full"
-        onChange={(e) => onChange(parseInt(e.target.value) as T)}
+        onChange={(e) =>
+          onChange(e.target.value ? Number(e.target.value) : undefined)
+        }
       />
     </div>
   );
@@ -42,7 +44,7 @@ export function BooleanInput<T extends boolean | undefined>({
     <div
       className={`flex items-center space-x-2 bg-base-300 rounded-lg py-1 px-2 w-full ${className}`}
     >
-      <label>{label}</label>
+      <label className="whitespace-nowrap">{label}</label>
       <input
         type="checkbox"
         checked={value || false}
