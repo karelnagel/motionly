@@ -84,10 +84,19 @@ export default function EditTemplate({
     setSelected,
   } = useTemplate(startTemplate);
 
-  const [scale, setScale] = useState(0.2);
-
+  const [scale, setScale] = useState<number>();
+  const ref = useRef<HTMLDivElement>(null);
   const [sidePanelWidth, setSidePanelWidth] = useState(380);
   const [timelineHeigth, setTimelineHeight] = useState(250);
+
+  useEffect(() => {
+    if (ref.current?.clientHeight && ref.current?.clientWidth) {
+      const scaleX = ref.current?.clientWidth / template.width;
+      const scaleY = ref.current?.clientHeight / template.height;
+      console.log(scaleX, scaleY);
+      setScale(Math.min(scaleX, scaleY));
+    }
+  }, [sidePanelWidth, timelineHeigth]);
   return (
     <div className="bg-base-300 w-screen h-screen overflow-hidden flex flex-col">
       <Header
@@ -97,11 +106,14 @@ export default function EditTemplate({
         template={template}
       />
       <div className=" w-full flex h-full">
-        <div className="w-full relative h-full overflow-hidden">
-          <div className="absolute top-0 left-0 flex items-center justify-center h-full w-full">
+        <div className="w-full relative h-full overflow-hidden flex flex-col">
+          <div
+            ref={ref}
+            className="flex items-center justify-center h-full w-full relative m-4"
+          >
             <Player
               playerRef={playerRef}
-              scale={scale}
+              scale={scale || 0.2}
               setComp={setComp}
               setSelected={setSelected}
               template={template}

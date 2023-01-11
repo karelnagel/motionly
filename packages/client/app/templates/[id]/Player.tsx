@@ -28,7 +28,7 @@ export const Player = ({
   return (
     <div
       style={{ width: width * scale, height: height * scale }}
-      className="relative"
+      className="absolute"
     >
       <SelectedContext.Provider
         value={{ divRef, setSelected, selected: selectedComp?.id || "" }}

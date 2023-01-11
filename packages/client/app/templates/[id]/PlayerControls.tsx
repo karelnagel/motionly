@@ -17,8 +17,8 @@ export const PlayerControls = ({
   playerRef,
   fps,
 }: {
-  scale: number;
-  setScale: (s: number) => void;
+  scale?: number;
+  setScale: (s?: number) => void;
   playerRef: RefObject<PlayerRef>;
   fps: number;
 }) => {
@@ -40,7 +40,7 @@ export const PlayerControls = ({
   const className =
     "cursor-pointer w-[45px] aspect-square p-1 font-bold hover:text-primary hover:shadow-md hover:scale-110 duration-150 rounded-full";
   return (
-    <div className="absolute bottom-0 left-0 p-3 w-full">
+    <div className="pt-0 p-3 shrink-0 w-full relative">
       <div className="w-full grid grid-cols-3 panel text-3xl p-3">
         <input
           type="number"
@@ -90,13 +90,20 @@ export const PlayerControls = ({
           <input
             type="range"
             min={0.1}
-            max={1}
+            max={2}
             step={0.01}
             value={scale}
-            className="w-20 range-primary range range-sm"
+            className="w-24 range-primary range range-sm"
             onChange={(e) => setScale(Number(e.target.value))}
           />
-          <p className="text-base">{scale}</p>
+          <input
+            type="number"
+            className="text-base w-12 overflow-hidden"
+            value={scale === undefined ? "" : scale}
+            onChange={(e) =>
+              setScale(e.target.value ? Number(e.target.value) : undefined)
+            }
+          />
         </div>
       </div>
     </div>
