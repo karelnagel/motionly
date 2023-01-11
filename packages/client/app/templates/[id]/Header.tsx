@@ -2,7 +2,7 @@ import { postNewTemplate } from "@asius/sdk";
 import { TemplateType } from "@asius/components";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowBack, IoMdRedo, IoMdUndo } from "react-icons/io";
 import { useEffect, useState } from "react";
 
 export const TimeAfter = ({
@@ -35,11 +35,15 @@ export const Header = ({
   setSelected,
   template,
   saveTime,
+  undo,
+  redo,
 }: {
   selected: string;
   setSelected: (s: string) => void;
   template: TemplateType;
   saveTime?: Date;
+  undo?: () => void;
+  redo?: () => void;
 }) => {
   const router = useRouter();
   const clone = async () => {
@@ -88,6 +92,21 @@ export const Header = ({
         </div>
       )}
       <div className="flex items-center space-x-4 font-bold w-full justify-end">
+        <div className="flex text-2xl space-x-2">
+          <IoMdUndo
+            onClick={undo}
+            className={`${
+              undo ? "cursor-pointer" : "opacity-30 cursor-default"
+            }`}
+          />
+          <IoMdRedo
+            onClick={redo}
+            className={`${
+              redo ? "cursor-pointer" : "opacity-30 cursor-default"
+            }`}
+          />
+        </div>
+
         <Button title="AI" value="ai" />
 
         <Button title="Add" value="add" />

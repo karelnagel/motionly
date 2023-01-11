@@ -4,14 +4,22 @@ import { useEffect, useState } from "react";
 
 export const useTemplate = (starTemplate: TemplateType) => {
   // eslint-disable-next-line prefer-const
-  let [template, setTemplate] = useState<TemplateType>(starTemplate);
+  const [history, setHistory] = useState<TemplateType[]>([starTemplate]);
+  const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState("template");
   const [saveTime, setSaveTime] = useState<Date>();
+  const template = history[current];
 
-  if (!template.isOwner)
-    setTemplate = () => {
-      alert("You have to clone this template to edit!");
-    };
+  const setTemplate = (t: TemplateType) => {
+    if (!template.isOwner)
+      return alert("You have to clone this template to edit!");
+
+    setHistory((h) => [...h.slice(0, current + 1), t]);
+    setCurrent((c) => c + 1);
+  };
+  const undo = current > 0 ? () => setCurrent((c) => c - 1) : undefined;
+  const redo =
+    current < history.length - 1 ? () => setCurrent((c) => c + 1) : undefined;
 
   useEffect(() => {
     if (template.isOwner) {
@@ -42,7 +50,7 @@ export const useTemplate = (starTemplate: TemplateType) => {
       });
     };
     const newComps = get(template.comps);
-    setTemplate((t) => ({ ...t, comps: newComps }));
+    setTemplate({ ...template, comps: newComps });
   };
 
   const find = (comps: ComponentProps[]): ComponentProps | null => {
@@ -56,15 +64,18 @@ export const useTemplate = (starTemplate: TemplateType) => {
   const selectedComp = find(template.comps);
 
   const deleteComp = (id: string) => {
-    setTemplate((t) => ({ ...t, comps: t.comps.filter((c) => c.id !== id) }));
+    setTemplate({
+      ...template,
+      comps: template.comps.filter((c) => c.id !== id),
+    });
     setSelected(template.comps.filter((c) => c.id !== id)?.[0]?.id || "");
   };
   const addComp = (comp: ComponentProps) => {
     const id = Math.random().toString(36).substring(6);
-    setTemplate((t) => ({
-      ...t,
-      comps: [...t.comps, { ...comp, id }],
-    }));
+    setTemplate({
+      ...template,
+      comps: [...template.comps, { ...comp, id }],
+    });
     setSelected(id);
   };
 
@@ -75,6 +86,8 @@ export const useTemplate = (starTemplate: TemplateType) => {
     setTemplate,
     deleteComp,
     addComp,
+    undo,
+    redo,
     selected,
     setSelected: (id: string) => setSelected(id === selected ? "" : id),
     saveTime,

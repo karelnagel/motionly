@@ -82,6 +82,8 @@ export default function EditTemplate({
     selected,
     saveTime,
     setSelected,
+    undo,
+    redo,
   } = useTemplate(startTemplate);
 
   const [scale, setScale] = useState<number>();
@@ -104,6 +106,8 @@ export default function EditTemplate({
         setSelected={setSelected}
         selected={selected}
         template={template}
+        undo={undo}
+        redo={redo}
       />
       <div className=" w-full flex h-full">
         <div className="w-full relative h-full overflow-hidden flex flex-col">
