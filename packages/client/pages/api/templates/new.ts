@@ -36,5 +36,9 @@ const postNewTemplate = async (
       user: { connect: { email: session.user.email } },
     },
   });
-  return { ...result, comps: JSON.parse(result.comps) };
+  return {
+    ...result,
+    comps: JSON.parse(result.comps),
+    background: result.background || undefined,
+  };
 };
