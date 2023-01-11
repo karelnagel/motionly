@@ -4,6 +4,7 @@ import {
   NumberInput,
   SelectInput,
 } from "../../../../../components/inputs";
+import { ShowJson } from "../../../../../components/ShowJson";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 
@@ -16,40 +17,6 @@ export const EditGraph = ({
 }) => {
   return (
     <EditSection title="Graph">
-      <EditSection title="Data" level={1} className="col-span-2" hideByDefault>
-        <div className="col-span-2 flex flex-col space-y-1 items-center">
-          {comp.src.map((src, i) => (
-            <div key={i} className="flex space-x-1 w-full">
-              <NumberInput
-                label={`Value ${i}`}
-                value={src}
-                onChange={(e) =>
-                  setComp({
-                    ...comp,
-                    src: comp.src.map((v, j) => (j === i ? e || 0 : v)),
-                  })
-                }
-              />
-              <button
-                onClick={() =>
-                  setComp({
-                    ...comp,
-                    src: comp.src.filter((v, j) => j !== i),
-                  })
-                }
-              >
-                X
-              </button>
-            </div>
-          ))}
-          <button
-            className="bg-primary p-2 rounded-lg text-primary-content px-3"
-            onClick={() => setComp({ ...comp, src: [...comp.src, 1] })}
-          >
-            Add
-          </button>
-        </div>
-      </EditSection>
       <SelectInput
         label="Type"
         value={comp.type}
@@ -97,6 +64,42 @@ export const EditGraph = ({
           onChange={(strokeWidth) => setComp({ ...comp, strokeWidth })}
         />
       )}
+      <ShowJson
+        label="Values"
+        json={JSON.stringify(comp.src, null, 2)}
+        onChange={(json) => setComp({ ...comp, src: JSON.parse(json) })}
+      >
+        {comp.src.map((src, i) => (
+          <div key={i} className="flex space-x-1 w-full">
+            <NumberInput
+              label={`Value ${i + 1}`}
+              value={src}
+              onChange={(e) =>
+                setComp({
+                  ...comp,
+                  src: comp.src.map((v, j) => (j === i ? e || 0 : v)),
+                })
+              }
+            />
+            <button
+              onClick={() =>
+                setComp({
+                  ...comp,
+                  src: comp.src.filter((v, j) => j !== i),
+                })
+              }
+            >
+              X
+            </button>
+          </div>
+        ))}
+        <button
+          className="bg-primary p-2 rounded-lg text-primary-content px-3"
+          onClick={() => setComp({ ...comp, src: [...comp.src, 1] })}
+        >
+          Add
+        </button>
+      </ShowJson>
     </EditSection>
   );
 };

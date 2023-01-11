@@ -6,8 +6,6 @@ export const EditSection = ({
   children: React.ReactNode;
   title?: string;
   className?: string;
-  level?: number;
-  hideByDefault?: boolean;
 }) => {
   return (
     <div className={`${className} py-2 space-y-2`}>

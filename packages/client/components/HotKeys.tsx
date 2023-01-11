@@ -23,7 +23,8 @@ export function HotKeys({
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
       const isInput =
-        document.activeElement?.tagName === "INPUT" &&
+        (document.activeElement?.tagName === "INPUT" ||
+          document.activeElement?.tagName === "TEXTAREA") &&
         document.activeElement?.id !== "timeline";
       if (event.key === "Backspace" && !isInput) {
         remove?.();

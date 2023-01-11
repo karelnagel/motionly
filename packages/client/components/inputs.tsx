@@ -44,7 +44,7 @@ export function BooleanInput<T extends boolean | undefined>({
     <div
       className={`flex items-center space-x-2 bg-base-300 rounded-lg py-1 px-2 w-full ${className}`}
     >
-      <label>{label}</label>
+      <label className="whitespace-nowrap">{label}</label>
       <input
         type="checkbox"
         checked={value || false}

@@ -75,13 +75,13 @@ const updateTemplate = async (
   const session = await getServerSession(reqRes);
   if (!session?.user?.email) return null;
   // Todo check if user is owner
+  let preview = undefined;
   try {
-    let preview = undefined;
-    try {
-      preview = (await renderStill({ ...template, frame: 10 }))?.fileUrl;
-    } catch (e) {
-      preview = undefined;
-    }
+    preview = (await renderStill({ ...template, frame: 10 }))?.fileUrl;
+  } catch {
+    preview = undefined;
+  }
+  try {
     const { comps, ...result } = await prisma.template.update({
       where: { id },
       data: {
