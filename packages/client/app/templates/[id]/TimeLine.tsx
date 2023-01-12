@@ -66,6 +66,7 @@ export const Timeline = ({
             setComp={setComp}
             template={template}
             setTemplate={setTemplate}
+            parentDuration={template.duration}
           />
         ))}
       </div>
@@ -80,6 +81,7 @@ const TimelineComp = ({
   onClick,
   setComp,
   setTemplate,
+  parentDuration,
 }: {
   comp: ComponentProps;
   selected: string;
@@ -87,9 +89,20 @@ const TimelineComp = ({
   onClick: () => void;
   setComp: (comp: ComponentProps) => void;
   setTemplate: (template: TemplateType) => void;
+  parentDuration: number;
 }) => {
   const divRef = useRef<HTMLDivElement>(null);
   const isSelected = selected === comp.id;
+  const from = comp.from
+    ? comp.from > 0
+      ? comp.from
+      : parentDuration + comp.from
+    : 0;
+  const duration = comp.duration
+    ? comp.duration > 0
+      ? comp.duration
+      : parentDuration - from + comp.duration
+    : parentDuration - from;
   return (
     <div key={comp.id} className="py-1 relative" onClick={onClick}>
       <div className="p-[8px] rounded-lg w-full relative h-[40px] cursor-pointer ">
@@ -102,12 +115,8 @@ const TimelineComp = ({
           }`}
           style={{
             boxShadow: "0 0 4px rgba(0,0,0,0.2)",
-            left: `${((comp.from || 0) / template.duration) * 100}%`,
-            width: `${
-              comp.duration
-                ? (comp.duration / template.duration) * 100
-                : 100 - ((comp.from || 0) / template.duration) * 100
-            }%`,
+            left: `${(from / parentDuration) * 100}%`,
+            width: `${(duration / parentDuration) * 100}%`,
           }}
         >
           {comp.comp}-{comp.id}
@@ -143,11 +152,11 @@ const TimelineComp = ({
               .map((c) => [c.from, (c.from || 0) + (c.duration || 0)])
               .flat(),
             0,
-            template.duration / 2,
-            template.duration,
+            parentDuration / 2,
+            parentDuration,
           ].map(
             (x) =>
-              ((x || 0) / template.duration) *
+              ((x || 0) / parentDuration) *
               (divRef.current?.parentElement?.offsetWidth || 1)
           )}
           onDrag={({ delta, beforeDist }) => {
@@ -156,7 +165,7 @@ const TimelineComp = ({
               from:
                 (comp.from || 0) +
                 (delta[0] / (divRef.current?.parentElement?.offsetWidth || 1)) *
-                  template.duration,
+                  parentDuration,
             };
             const indexChange = Math.round(beforeDist[1] / 48);
 
@@ -175,7 +184,7 @@ const TimelineComp = ({
           onResize={({ width, delta, target }) => {
             const duration =
               (width / (divRef.current?.parentElement?.offsetWidth || 1)) *
-              template.duration;
+              parentDuration;
             setComp({
               ...comp,
               duration,

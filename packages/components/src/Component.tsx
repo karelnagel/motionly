@@ -20,13 +20,23 @@ import { useAnimation } from "./useAnimations";
 import { animationProps } from "./types/animations";
 
 export const Component = (comp: ComponentProps) => {
-  const { fps } = useVideoConfig();
+  const { fps, durationInFrames } = useVideoConfig();
+  const from = comp.from
+    ? Math.floor(
+        comp.from > 0 ? comp.from * fps : durationInFrames + comp.from * fps
+      )
+    : undefined;
+  const duration = comp.duration
+    ? Math.floor(
+        comp.duration > 0
+          ? comp.duration * fps
+          : durationInFrames - (from || 0) + comp.duration * fps
+      )
+    : 0;
   return (
     <Sequence
-      from={comp.from ? Math.floor(comp.from * fps) : undefined}
-      durationInFrames={
-        comp.duration ? Math.floor(comp.duration * fps) : undefined
-      }
+      from={from}
+      durationInFrames={duration > 0 ? duration : undefined}
       layout="none"
     >
       <InsideSequence {...comp} />
