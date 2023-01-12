@@ -9,12 +9,14 @@ import { EditCompPanel } from "./SidePanels/EditCompPanel";
 import { TemplateSidePanel } from "./SidePanels/TemplateSidePanel";
 import { ExportSidePanel } from "./SidePanels/ExportSidePanel";
 import { Player } from "./Player";
-import { Timeline } from "./TimeLine";
+import { Timeline } from "./Timeline";
 import { AddSidePanel } from "./SidePanels/AddSidePanel";
 import { PlayerRef } from "@remotion/player";
 import { AISidePanel } from "./SidePanels/AISidePanel";
 import { Resize } from "../../../components/Resize";
 import { HotKeys } from "../../../components/HotKeys";
+import { Tabs } from "../../../types";
+import { isPanel } from "../../../helpers";
 
 export default function EditTemplate({
   template: startTemplate,
@@ -34,12 +36,13 @@ export default function EditTemplate({
     setSelected,
     undo,
     redo,
+    changeParent,
   } = useTemplate(startTemplate);
-
   const [scale, setScale] = useState<number>();
   const ref = useRef<HTMLDivElement>(null);
   const [sidePanelWidth, setSidePanelWidth] = useState(380);
   const [timelineHeigth, setTimelineHeight] = useState(250);
+  const [tab, setTab] = useState<Tabs>("props");
 
   useEffect(() => {
     if (ref.current?.clientHeight && ref.current?.clientWidth) {
@@ -97,22 +100,28 @@ export default function EditTemplate({
             className="h-full duration-200 panel relative"
           >
             <div className="absolute top-0 left-0 flex h-full p-3 w-full">
-              {!["template", "export", "add", "ai"].includes(selected) &&
-                selectedComp && (
-                  <EditCompPanel
-                    comp={selectedComp}
-                    setComp={setComp}
-                    addComp={addComp}
-                    deleteComp={deleteComp}
-                  />
-                )}
+              {!isPanel(selected) && selectedComp && (
+                <EditCompPanel
+                  comp={selectedComp}
+                  setComp={setComp}
+                  addComp={addComp}
+                  deleteComp={deleteComp}
+                  setTab={setTab}
+                  tab={tab}
+                />
+              )}
               {selected === "template" && (
                 <TemplateSidePanel
                   template={template}
                   setTemplate={setTemplate}
                 />
               )}
-              {selected === "export" && <ExportSidePanel template={template} />}
+              {selected === "export" && (
+                <ExportSidePanel
+                  setTemplate={setTemplate}
+                  template={template}
+                />
+              )}
               {selected === "add" && <AddSidePanel addComp={addComp} />}
               {selected === "ai" && (
                 <AISidePanel template={template} setTemplate={setTemplate} />
@@ -125,6 +134,7 @@ export default function EditTemplate({
       <div className="p-3 pt-0 shrink-0">
         <div style={{ height: timelineHeigth }} className="panel relative">
           <Timeline
+            changeParent={changeParent}
             template={template}
             setSelected={setSelected}
             playerRef={playerRef}
@@ -148,6 +158,7 @@ export default function EditTemplate({
           copy: addComp,
           playerRef,
           fps: template.fps,
+          setTab,
         }}
       />
     </div>

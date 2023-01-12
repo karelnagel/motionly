@@ -6,6 +6,7 @@ import {
   useVideoConfig,
   Easing,
 } from "remotion";
+import { getDuration, getFrom } from "./helpers";
 import {
   AnimationProps,
   SpringAnimationProps,
@@ -28,8 +29,10 @@ export const useAnimation = () => {
   }: SpringAnimationProps) =>
     remotionSpring({
       fps,
-      frame: frame - (start ? start * fps : 0),
-      durationInFrames: duration ? duration * fps : undefined,
+      frame: frame - getFrom(durationInFrames, (start || 0) * fps),
+      durationInFrames: duration
+        ? getDuration(durationInFrames, (start || 0) * fps, duration * fps)
+        : undefined,
       config: { damping, mass, stiffness },
       from,
       to,
@@ -38,13 +41,21 @@ export const useAnimation = () => {
   const interpolate = ({
     from = 0,
     to = 1,
-    duration = 1,
+    duration,
     easing,
-    start = 0,
+    start,
   }: InterpolateAnimationProps) => {
     return remotionInterpolate(
       frame,
-      [start * fps, duration ? (duration + start) * fps : durationInFrames],
+      [
+        getFrom(durationInFrames, (start || 0) * fps),
+        getDuration(
+          durationInFrames,
+          (start || 0) * fps,
+          (duration || 0) * fps,
+          true
+        ),
+      ],
       [from, to],
       {
         easing:
@@ -73,10 +84,16 @@ export const useAnimation = () => {
     const x = remotionInterpolate(
       frame,
       [
-        (start || 0) * fps,
-        duration && start ? (duration + start) * fps : durationInFrames,
+        getFrom(durationInFrames, (start || 0) * fps),
+        getDuration(
+          durationInFrames,
+          (start || 0) * fps,
+          (duration || 0) * fps,
+          true
+        ),
       ],
-      [0, 1]
+      [0, 1],
+      { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
     );
     const nois = noise2D(
       `${start}${duration}${from}${to}${speed}` || "",

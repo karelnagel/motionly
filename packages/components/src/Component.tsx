@@ -18,18 +18,20 @@ import { useSelected } from "./SelectedContext";
 import { ComponentProps } from "./types";
 import { useAnimation } from "./useAnimations";
 import { animationProps } from "./types/animations";
+import { getDuration, getFrom } from "./helpers";
 
 export const Component = (comp: ComponentProps) => {
-  const { fps } = useVideoConfig();
-
+  const { fps, durationInFrames } = useVideoConfig();
+  const from = Math.floor(getFrom(durationInFrames, (comp.from || 0) * fps));
+  const duration = Math.floor(
+    getDuration(
+      durationInFrames,
+      (comp.from || 0) * fps,
+      (comp.duration || 0) * fps
+    )
+  );
   return (
-    <Sequence
-      from={comp.from ? Math.floor(comp.from * fps) : undefined}
-      durationInFrames={
-        comp.duration ? Math.floor(comp.duration * fps) : undefined
-      }
-      layout="none"
-    >
+    <Sequence from={from} durationInFrames={duration} layout="none">
       <InsideSequence {...comp} />
     </Sequence>
   );
@@ -38,8 +40,6 @@ const InsideSequence = ({
   id,
   borderRadius,
   animations = [],
-  duration,
-  from,
   height,
   opacity,
   rotation,
@@ -49,7 +49,6 @@ const InsideSequence = ({
   ...comp
 }: ComponentProps) => {
   const { setSelected, divRef, selected } = useSelected();
-  const { fps } = useVideoConfig();
   const animation = useAnimation();
   const transformAnimations = animations
     .map((anim) => {
@@ -59,56 +58,50 @@ const InsideSequence = ({
     .join(" ");
 
   return (
-    <Sequence
-      from={from ? Math.floor(from * fps) : undefined}
-      durationInFrames={duration ? Math.floor(duration * fps) : undefined}
-      layout="none"
+    <div
+      ref={selected === id ? divRef : undefined}
+      onClick={(e) => {
+        setSelected(id);
+        e.stopPropagation();
+      }}
+      style={{
+        opacity:
+          (opacity || 1) *
+          animations
+            .filter((a) => a.prop === "opacity")
+            .reduce((acc, a) => acc * animation(a), 1),
+        borderRadius:
+          (borderRadius || 0) +
+          animations
+            .filter((a) => a.prop === "borderRadius")
+            .reduce((acc, a) => acc + animation(a), 1),
+        cursor: "pointer",
+        display: "flex",
+        overflow: "hidden",
+        width: width || "100%",
+        height: height || "100%",
+        position: "absolute",
+        top: y,
+        left: x,
+        userSelect: "none",
+        transform: `rotate(${rotation || 0}deg) ${transformAnimations}`, // For some reason, this messes up x and y
+      }}
     >
-      <div
-        ref={selected === id ? divRef : undefined}
-        onClick={(e) => {
-          setSelected(id);
-          e.stopPropagation();
-        }}
-        style={{
-          opacity:
-            (opacity || 1) *
-            animations
-              .filter((a) => a.prop === "opacity")
-              .reduce((acc, a) => acc * animation(a), 1),
-          borderRadius:
-            (borderRadius || 0) +
-            animations
-              .filter((a) => a.prop === "borderRadius")
-              .reduce((acc, a) => acc + animation(a), 1),
-          cursor: "pointer",
-          display: "flex",
-          overflow: "hidden",
-          width: width || "100%",
-          height: height || "100%",
-          position: "absolute",
-          top: y,
-          left: x,
-          userSelect: "none",
-          transform: `rotate(${rotation || 0}deg) ${transformAnimations}`, // For some reason, this messes up x and y
-        }}
-      >
-        {comp.comp === "div" && <Div {...comp} />}
-        {comp.comp === "image" && <Image {...comp} />}
-        {comp.comp === "text" && <Text {...comp} />}
-        {comp.comp === "audio" && <Audio {...comp} />}
-        {comp.comp === "audiogram" && <Audiogram {...comp} />}
-        {comp.comp === "graph" && <Graph {...comp} />}
-        {comp.comp === "map" && <Map {...comp} />}
-        {comp.comp === "mockup" && <Mockup {...comp} />}
-        {comp.comp === "progressbar" && <Progressbar {...comp} />}
-        {comp.comp === "qrcode" && <QRCode {...comp} />}
-        {comp.comp === "video" && <Video {...comp} />}
-        {comp.comp === "transcription" && <Transcription {...comp} />}
-        {comp.comp === "lottie" && <Lottie {...comp} />}
-        {comp.comp === "gif" && <Gif {...comp} />}
-        {comp.comp === "path" && <Path {...comp} />}
-      </div>
-    </Sequence>
+      {comp.comp === "div" && <Div {...comp} />}
+      {comp.comp === "image" && <Image {...comp} />}
+      {comp.comp === "text" && <Text {...comp} />}
+      {comp.comp === "audio" && <Audio {...comp} />}
+      {comp.comp === "audiogram" && <Audiogram {...comp} />}
+      {comp.comp === "graph" && <Graph {...comp} />}
+      {comp.comp === "map" && <Map {...comp} />}
+      {comp.comp === "mockup" && <Mockup {...comp} />}
+      {comp.comp === "progressbar" && <Progressbar {...comp} />}
+      {comp.comp === "qrcode" && <QRCode {...comp} />}
+      {comp.comp === "video" && <Video {...comp} />}
+      {comp.comp === "transcription" && <Transcription {...comp} />}
+      {comp.comp === "lottie" && <Lottie {...comp} />}
+      {comp.comp === "gif" && <Gif {...comp} />}
+      {comp.comp === "path" && <Path {...comp} />}
+    </div>
   );
 };

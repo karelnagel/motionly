@@ -6,6 +6,7 @@ import {
   EasingTypes,
 } from "@asius/components";
 import { NumberInput, SelectInput } from "../../../../../components/inputs";
+import { getAnimationColor } from "../../../../../helpers/color";
 import { SetComp } from "./index";
 
 const defaultAnimation: AnimationProps = {
@@ -84,6 +85,10 @@ const OneAnimation = ({
           Remove
         </button>
       </div>
+      <div
+        style={{ background: getAnimationColor(animation) }}
+        className="h-[3px] rounded-full"
+      />
       <div className="grid grid-cols-4 gap-2">
         <SelectInput
           label="Prop"

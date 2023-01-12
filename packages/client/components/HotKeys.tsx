@@ -1,6 +1,7 @@
 import { PlayerRef } from "@remotion/player";
 import { RefObject, useCallback, useEffect } from "react";
 import { useCurrentPlayerFrame } from "../hooks/useCurrentPlayerFrame";
+import { Tabs } from "../types";
 
 export function HotKeys({
   copy,
@@ -10,12 +11,14 @@ export function HotKeys({
   setSelected,
   playerRef,
   fps,
+  setTab,
 }: {
   copy?: () => void;
   remove?: () => void;
   undo?: () => void;
   redo?: () => void;
   setSelected?: (s: string) => void;
+  setTab: (tab: Tabs) => void;
   playerRef: RefObject<PlayerRef>;
   fps: number;
 }) {
@@ -61,6 +64,10 @@ export function HotKeys({
         setSelected?.("export");
       } else if (event.key === "0" && !isInput) {
         setSelected?.("");
+      } else if (event.key === "p" && !isInput) {
+        setTab("props");
+      } else if (event.key === "a" && !isInput) {
+        setTab("animations");
       } else return;
       event.preventDefault();
     },

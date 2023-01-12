@@ -1,5 +1,3 @@
-import { ComponentProps } from "@asius/components";
-
 export const percentToHex = (p: number) => {
   const intValue = Math.round((p / 100) * 255); // map percent to nearest integer (0 - 255)
   const hexValue = intValue.toString(16); // get hexadecimal representation
@@ -45,4 +43,12 @@ export function hexToRGBA(hex?: string) {
 export const getRandomImage = () => {
   const imageCount = 8;
   return `/bgs/${Math.ceil(Math.random() * imageCount)}.jpg`;
+};
+
+export const getRandomId = () => {
+  return Math.random().toString(36).substring(6);
+};
+
+export const isPanel = (selected: string) => {
+  return ["template", "export", "add", "ai"].includes(selected);
 };

@@ -1,6 +1,7 @@
 import { updateTemplate } from "@asius/sdk";
 import { ComponentProps, TemplateType } from "@asius/components";
 import { useEffect, useState } from "react";
+import { getRandomId } from "../helpers";
 
 export const useTemplate = (startTemplate: TemplateType) => {
   const [history, setHistory] = useState<TemplateType[]>([]);
@@ -62,7 +63,7 @@ export const useTemplate = (startTemplate: TemplateType) => {
         if (comp.id === selected) {
           comp = { ...comp, ...element } as ComponentProps;
         }
-        if (comp.comp === "div" && comp.children) {
+        if (comp.comp === "div" || comp.comp === "mockup") {
           comp.children = get(comp.children);
         }
         return comp;
@@ -72,31 +73,73 @@ export const useTemplate = (startTemplate: TemplateType) => {
     setTemplate({ ...template, comps: newComps });
   };
 
-  const find = (comps: ComponentProps[]): ComponentProps | null => {
-    let selectedComp = comps.find((comp) => comp.id === selected) || null;
-    if (selectedComp) return selectedComp;
-    comps.forEach((comp) =>
-      comp.comp === "div" ? (selectedComp = find(comp.children)) : null
-    );
-    return selectedComp;
+  const find = (
+    comps: ComponentProps[] = template.comps,
+    id: string = selected
+  ): ComponentProps | null => {
+    let sel = comps.find((comp) => comp.id === id) || null;
+    if (sel) return sel;
+    for (const comp of comps) {
+      if (comp.comp === "div" || comp.comp === "mockup")
+        sel = find(comp.children, id);
+      if (sel) break;
+    }
+    return sel;
   };
-  const selectedComp = find(template.comps);
+  const selectedComp = find();
 
-  const deleteComp = (id: string = selected) => {
-    setTemplate({
-      ...template,
-      comps: template.comps.filter((c) => c.id !== id),
-    });
-    setSelected(template.comps.filter((c) => c.id !== id)?.[0]?.id || "");
+  const deleteComp = (
+    id: string = selected,
+    comps: ComponentProps[] = template.comps,
+    setComps: (c: ComponentProps[]) => void = (comps) =>
+      setTemplate({ ...template, comps })
+  ) => {
+    if (comps.find((c) => c.id === id)) {
+      setComps(comps.filter((c) => c.id !== id));
+    } else {
+      comps.forEach((comp) => {
+        if (comp.comp === "div" || comp.comp === "mockup")
+          deleteComp(id, comp.children, (children) =>
+            setComps(
+              comps.map((c) => (c.id === comp.id ? { ...comp, children } : c))
+            )
+          );
+      });
+    }
   };
+
   const addComp = (comp: ComponentProps | null = selectedComp) => {
-    const id = Math.random().toString(36).substring(6);
+    const id = getRandomId();
     if (!comp) return;
     setTemplate({
       ...template,
       comps: [...template.comps, { ...comp, id }],
     });
     setSelected(id);
+  };
+
+  const changeParent = (
+    newParentId: string,
+    parentId = "",
+    comps: ComponentProps[] = template.comps
+  ) => {
+    let newComps = comps;
+    if (!selectedComp) return newComps;
+
+    newComps = newComps.filter((c) => c.id !== selectedComp.id);
+    if (newParentId === parentId && selectedComp) {
+      newComps.push(selectedComp);
+    }
+    for (const comp of newComps) {
+      if (comp.comp === "div" || comp.comp === "mockup") {
+        const children = changeParent(newParentId, comp.id, comp.children);
+        newComps = newComps.map((c) =>
+          c.id === comp.id ? { ...comp, children } : c
+        );
+      }
+    }
+    if (!parentId) setTemplate({ ...template, comps: newComps });
+    return newComps;
   };
 
   return {
@@ -108,6 +151,7 @@ export const useTemplate = (startTemplate: TemplateType) => {
     addComp,
     undo,
     redo,
+    changeParent,
     selected,
     setSelected: (id: string) => setSelected(id === selected ? "" : id),
     saveTime,

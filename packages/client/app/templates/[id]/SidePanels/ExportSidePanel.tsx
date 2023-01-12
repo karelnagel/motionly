@@ -4,7 +4,13 @@ import { useState } from "react";
 import { PanelTitle } from "../../../../components/PanelTitle";
 import { BooleanInput, NumberInput } from "../../../../components/inputs";
 
-export const ExportSidePanel = ({ template }: { template: TemplateType }) => {
+export const ExportSidePanel = ({
+  template,
+  setTemplate,
+}: {
+  template: TemplateType;
+  setTemplate: (t: TemplateType) => void;
+}) => {
   const [frame, setFrame] = useState(0);
   const [renderStill, setRenderStill] = useState(false);
   const { media, still, cost, progress, fileUrl, status } = useRender({
@@ -12,7 +18,7 @@ export const ExportSidePanel = ({ template }: { template: TemplateType }) => {
     frame,
   });
   return (
-    <div className=" flex flex-col items-center space-y-3 w-full">
+    <div className="flex flex-col items-center space-y-3 w-full overflow-y-auto overflow-x-clip">
       <PanelTitle title="Export your video" />
       <div className="space-y-2 w-full">
         <div className="flex space-x-2 justify-between">
@@ -79,8 +85,10 @@ export const ExportSidePanel = ({ template }: { template: TemplateType }) => {
         </a>
       </p>
       <textarea
-        readOnly
         value={JSON.stringify(template.comps, null, 2)}
+        onChange={(e) =>
+          setTemplate({ ...template, comps: JSON.parse(e.target.value) })
+        }
         className="w-full min-h-[600px] bg-base-200 rounded-lg p-2"
       />
     </div>
