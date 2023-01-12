@@ -1,4 +1,9 @@
-import { ComponentProps, TemplateType } from "@asius/components";
+import {
+  ComponentProps,
+  getDuration,
+  getFrom,
+  TemplateType,
+} from "@asius/components";
 import { PlayerRef } from "@remotion/player";
 import { RefObject, useRef } from "react";
 import Moveable from "react-moveable";
@@ -93,16 +98,8 @@ const TimelineComp = ({
 }) => {
   const divRef = useRef<HTMLDivElement>(null);
   const isSelected = selected === comp.id;
-  const from = comp.from
-    ? comp.from > 0
-      ? comp.from
-      : parentDuration + comp.from
-    : 0;
-  const duration = comp.duration
-    ? comp.duration > 0
-      ? comp.duration
-      : parentDuration - from + comp.duration
-    : parentDuration - from;
+  const from = getFrom(parentDuration, comp.from);
+  const duration = getDuration(parentDuration, comp.from, comp.duration);
   return (
     <div key={comp.id} className="py-1 relative" onClick={onClick}>
       <div className="p-[8px] rounded-lg w-full relative h-[40px] cursor-pointer ">

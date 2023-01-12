@@ -18,27 +18,20 @@ import { useSelected } from "./SelectedContext";
 import { ComponentProps } from "./types";
 import { useAnimation } from "./useAnimations";
 import { animationProps } from "./types/animations";
+import { getDuration, getFrom } from "./helpers";
 
 export const Component = (comp: ComponentProps) => {
   const { fps, durationInFrames } = useVideoConfig();
-  const from = comp.from
-    ? Math.floor(
-        comp.from > 0 ? comp.from * fps : durationInFrames + comp.from * fps
-      )
-    : undefined;
-  const duration = comp.duration
-    ? Math.floor(
-        comp.duration > 0
-          ? comp.duration * fps
-          : durationInFrames - (from || 0) + comp.duration * fps
-      )
-    : 0;
+  const from = Math.floor(getFrom(durationInFrames, (comp.from || 0) * fps));
+  const duration = Math.floor(
+    getDuration(
+      durationInFrames,
+      (comp.from || 0) * fps,
+      (comp.duration || 0) * fps
+    )
+  );
   return (
-    <Sequence
-      from={from}
-      durationInFrames={duration > 0 ? duration : undefined}
-      layout="none"
-    >
+    <Sequence from={from} durationInFrames={duration} layout="none">
       <InsideSequence {...comp} />
     </Sequence>
   );
