@@ -119,24 +119,27 @@ export const useTemplate = (startTemplate: TemplateType) => {
   };
 
   const changeParent = (
-    parentId: string,
-    comp: ComponentProps | null = selectedComp
+    newParentId: string,
+    parentId = "",
+    comps: ComponentProps[] = template.comps
   ) => {
-    deleteComp();
-    if (!comp) return;
-    if (!parentId) {
-      setTemplate({
-        ...template,
-        comps: [...template.comps, { ...comp, id: getRandomId() }],
-      });
-    } else {
-      const parent = find(undefined, parentId);
-      console.log(parent, parentId);
-      console.log(comp);
-      if (!parent) return;
-      if (parent.comp === "div" || parent.comp === "mockup")
-        parent.children = [...parent.children, { ...comp, id: getRandomId() }];
+    let newComps = comps;
+    if (!selectedComp) return newComps;
+
+    newComps = newComps.filter((c) => c.id !== selectedComp.id);
+    if (newParentId === parentId && selectedComp) {
+      newComps.push(selectedComp);
     }
+    for (const comp of newComps) {
+      if (comp.comp === "div" || comp.comp === "mockup") {
+        const children = changeParent(newParentId, comp.id, comp.children);
+        newComps = newComps.map((c) =>
+          c.id === comp.id ? { ...comp, children } : c
+        );
+      }
+    }
+    if (!parentId) setTemplate({ ...template, comps: newComps });
+    return newComps;
   };
 
   return {

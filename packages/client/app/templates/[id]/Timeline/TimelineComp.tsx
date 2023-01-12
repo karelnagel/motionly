@@ -1,6 +1,7 @@
 import { getFrom, getDuration, ComponentProps } from "@asius/components";
 import { useRef } from "react";
 import Moveable from "react-moveable";
+import { isPanel } from "../../../../helpers";
 import { Animation } from "./Animation";
 
 export const TimelineComp = ({
@@ -53,27 +54,35 @@ export const TimelineComp = ({
               parentDuration={duration}
             />
           ))}
-          {hasChildren && !isSelected && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                changeParent(comp.id);
-              }}
-              className="absolute right-3 text-xl"
+          {hasChildren && !isSelected && selected && !isPanel(selected) && (
+            <div
+              className="tooltip absolute right-3 text-xl tooltip-left"
+              data-tip="Add selected element to group"
             >
-              +
-            </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  changeParent(comp.id);
+                }}
+              >
+                +
+              </button>
+            </div>
           )}
           {isSelected && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                changeParent("");
-              }}
-              className="absolute right-3 text-3xl"
+            <div
+              className="tooltip absolute right-3 text-3xl tooltip-left"
+              data-tip="Remove from group"
             >
-              -
-            </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  changeParent("");
+                }}
+              >
+                -
+              </button>
+            </div>
           )}
           <p className="relative">
             {comp.comp}-{comp.id}

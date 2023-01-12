@@ -16,6 +16,7 @@ import { AISidePanel } from "./SidePanels/AISidePanel";
 import { Resize } from "../../../components/Resize";
 import { HotKeys } from "../../../components/HotKeys";
 import { Tabs } from "../../../types";
+import { isPanel } from "../../../helpers";
 
 export default function EditTemplate({
   template: startTemplate,
@@ -99,17 +100,16 @@ export default function EditTemplate({
             className="h-full duration-200 panel relative"
           >
             <div className="absolute top-0 left-0 flex h-full p-3 w-full">
-              {!["template", "export", "add", "ai"].includes(selected) &&
-                selectedComp && (
-                  <EditCompPanel
-                    comp={selectedComp}
-                    setComp={setComp}
-                    addComp={addComp}
-                    deleteComp={deleteComp}
-                    setTab={setTab}
-                    tab={tab}
-                  />
-                )}
+              {!isPanel(selected) && selectedComp && (
+                <EditCompPanel
+                  comp={selectedComp}
+                  setComp={setComp}
+                  addComp={addComp}
+                  deleteComp={deleteComp}
+                  setTab={setTab}
+                  tab={tab}
+                />
+              )}
               {selected === "template" && (
                 <TemplateSidePanel
                   template={template}

@@ -48,3 +48,7 @@ export const getRandomImage = () => {
 export const getRandomId = () => {
   return Math.random().toString(36).substring(6);
 };
+
+export const isPanel = (selected: string) => {
+  return ["template", "export", "add", "ai"].includes(selected);
+};
