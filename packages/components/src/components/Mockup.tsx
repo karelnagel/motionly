@@ -1,3 +1,4 @@
+import { Component } from "../Component";
 import { StyleAndClass } from "../types";
 import { MockupProps } from "../types/components";
 
@@ -7,6 +8,12 @@ export const defaultMockupProps: MockupProps = {
   children: [],
 };
 
-export const Mockup = ({ type, ...props }: MockupProps & StyleAndClass) => {
-  return <div {...props}>No {type} mockup yet!</div>;
+export const Mockup = ({ children, ...props }: MockupProps & StyleAndClass) => {
+  return (
+    <div {...props}>
+      {children.map((child, index) => (
+        <Component key={index} {...child} />
+      ))}
+    </div>
+  );
 };

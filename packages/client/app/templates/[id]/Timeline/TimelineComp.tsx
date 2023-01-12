@@ -1,9 +1,4 @@
-import {
-  TemplateType,
-  getFrom,
-  getDuration,
-  ComponentProps,
-} from "@asius/components";
+import { getFrom, getDuration, ComponentProps } from "@asius/components";
 import { useRef } from "react";
 import Moveable from "react-moveable";
 import { Animation } from "./Animation";
@@ -11,39 +6,42 @@ import { Animation } from "./Animation";
 export const TimelineComp = ({
   comp,
   selected,
-  template,
-  onClick,
+  comps,
+  setSelected,
   setComp,
-  setTemplate,
+  setComps,
   parentDuration,
 }: {
   comp: ComponentProps;
   selected: string;
-  template: TemplateType;
-  onClick: () => void;
+  comps: ComponentProps[];
+  setSelected: (s: string) => void;
   setComp: (comp: ComponentProps) => void;
-  setTemplate: (template: TemplateType) => void;
+  setComps: (comps: ComponentProps[]) => void;
   parentDuration: number;
 }) => {
   const divRef = useRef<HTMLDivElement>(null);
   const isSelected = selected === comp.id;
   const from = getFrom(parentDuration, comp.from);
   const duration = getDuration(parentDuration, comp.from, comp.duration);
+  const hasChildren = comp.comp === "div" || comp.comp === "mockup";
   return (
-    <div key={comp.id} className="py-1 relative" onClick={onClick}>
-      <div className="p-[8px] w-full relative h-[40px] cursor-pointer ">
+    <div className="relative cursor-pointer">
+      <div
+        className="bg-base-200 rounded-sm"
+        ref={isSelected ? divRef : undefined}
+        style={{
+          marginLeft: `${(from / parentDuration) * 100}%`,
+          width: `${(duration / parentDuration) * 100}%`,
+        }}
+      >
         <div
-          ref={isSelected ? divRef : undefined}
-          className={`absolute top-0 h-full rounded-sm overflow-hidden flex items-center px-2 ${
+          onClick={() => setSelected(comp.id)}
+          className={`relative flex h-[40px] items-center px-2 rounded-sm overflow-hidden ${
             isSelected
               ? "bg-gradient-to-r from-secondary to bg-primary text-primary-content"
               : "bg-base-300"
           }`}
-          style={{
-            boxShadow: "0 0 4px rgba(0,0,0,0.2)",
-            left: `${(from / parentDuration) * 100}%`,
-            width: `${(duration / parentDuration) * 100}%`,
-          }}
         >
           {comp.animations?.map((a, i) => (
             <Animation
@@ -53,22 +51,44 @@ export const TimelineComp = ({
               parentDuration={duration}
             />
           ))}
-          {(comp.comp === "div" || comp.comp === "mockup") && (
+          {hasChildren && !isSelected && (
             <button className="absolute right-3 text-xl">+</button>
           )}
           <p className="relative">
             {comp.comp}-{comp.id}
           </p>
         </div>
+        {hasChildren && (
+          <div className="space-y-2 py-2">
+            {comp.children.map((child, i) => (
+              <TimelineComp
+                key={i}
+                comp={child}
+                selected={selected}
+                setSelected={setSelected}
+                setComp={setComp}
+                comps={comp.children}
+                setComps={(children) =>
+                  setComps(
+                    comps.map((c) =>
+                      c.id === child.id ? comp : { ...child, children }
+                    )
+                  )
+                }
+                parentDuration={duration}
+              />
+            ))}
+          </div>
+        )}
       </div>
       {isSelected && (
         <CompMoveable
           divRef={divRef}
-          comps={template.comps}
+          comps={comps}
           parentDuration={parentDuration}
           comp={comp}
           setComp={setComp}
-          setComps={(comps) => setTemplate({ ...template, comps })}
+          setComps={setComps}
         />
       )}
     </div>

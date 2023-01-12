@@ -56,19 +56,21 @@ export const Timeline = ({
           />
         </div>
       </div>
-      <div className="overflow-y-auto h-full flex flex-col px-3 ">
-        {template.comps.map((comp, i) => (
-          <TimelineComp
-            key={i}
-            comp={comp}
-            selected={selected}
-            onClick={() => setSelected(comp.id)}
-            setComp={setComp}
-            template={template}
-            setTemplate={setTemplate}
-            parentDuration={template.duration}
-          />
-        ))}
+      <div className="overflow-y-auto px-3 pb-2">
+        <div className="flex flex-col space-y-2">
+          {template.comps.map((comp, i) => (
+            <TimelineComp
+              key={i}
+              comp={comp}
+              selected={selected}
+              setSelected={setSelected}
+              setComp={setComp}
+              comps={template.comps}
+              setComps={(comps) => setTemplate({ ...template, comps })}
+              parentDuration={template.duration}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

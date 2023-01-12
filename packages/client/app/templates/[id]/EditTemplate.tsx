@@ -36,7 +36,6 @@ export default function EditTemplate({
     undo,
     redo,
   } = useTemplate(startTemplate);
-
   const [scale, setScale] = useState<number>();
   const ref = useRef<HTMLDivElement>(null);
   const [sidePanelWidth, setSidePanelWidth] = useState(380);
@@ -116,7 +115,12 @@ export default function EditTemplate({
                   setTemplate={setTemplate}
                 />
               )}
-              {selected === "export" && <ExportSidePanel template={template} />}
+              {selected === "export" && (
+                <ExportSidePanel
+                  setTemplate={setTemplate}
+                  template={template}
+                />
+              )}
               {selected === "add" && <AddSidePanel addComp={addComp} />}
               {selected === "ai" && (
                 <AISidePanel template={template} setTemplate={setTemplate} />
