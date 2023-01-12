@@ -83,7 +83,12 @@ export const Header = ({
       </div>
       {template.isOwner ? (
         <p className="flex flex-col items-center space-y-1 leading-none">
-          <span className="text-[22px] font-bold">{template.name}</span>
+          <span
+            onClick={() => setSelected("template")}
+            className="text-[22px] font-bold cursor-pointer"
+          >
+            {template.name}
+          </span>
           {saveTime && (
             <span className="text-[10px] opacity-60">
               saved <TimeAfter time={saveTime} />
