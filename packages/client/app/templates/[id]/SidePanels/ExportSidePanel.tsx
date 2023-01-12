@@ -12,7 +12,7 @@ export const ExportSidePanel = ({ template }: { template: TemplateType }) => {
     frame,
   });
   return (
-    <div className=" flex flex-col items-center space-y-3 w-full overflow-hidden">
+    <div className="flex flex-col items-center space-y-3 w-full overflow-y-auto overflow-x-clip">
       <PanelTitle title="Export your video" />
       <div className="space-y-2 w-full">
         <div className="flex space-x-2 justify-between">
