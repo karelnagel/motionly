@@ -63,7 +63,7 @@ export const Timeline = ({
           />
         </div>
       </div>
-      <div className="overflow-y-scroll h-full flex flex-col px-3 ">
+      <div className="overflow-y-auto h-full flex flex-col px-3 ">
         {template.comps.map((comp, i) => (
           <TimelineComp
             key={i}
