@@ -6,7 +6,7 @@ import {
   EasingTypes,
 } from "@asius/components";
 import { NumberInput, SelectInput } from "../../../../../components/inputs";
-import { getAnimationColor } from "../../../../../helpers";
+import { getAnimationColor } from "../../../../../helpers/color";
 import { SetComp } from "./index";
 
 const defaultAnimation: AnimationProps = {

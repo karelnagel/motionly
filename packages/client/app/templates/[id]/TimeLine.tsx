@@ -8,7 +8,7 @@ import {
 import { PlayerRef } from "@remotion/player";
 import { RefObject, useRef } from "react";
 import Moveable from "react-moveable";
-import { getAnimationColor } from "../../../helpers";
+import { getAnimationColor } from "../../../helpers/color";
 import { useCurrentPlayerFrame } from "../../../hooks/useCurrentPlayerFrame";
 
 export const Timeline = ({

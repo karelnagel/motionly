@@ -1,6 +1,3 @@
-import { AnimationProps } from "@asius/components";
-import { random } from "remotion";
-
 export const percentToHex = (p: number) => {
   const intValue = Math.round((p / 100) * 255); // map percent to nearest integer (0 - 255)
   const hexValue = intValue.toString(16); // get hexadecimal representation
@@ -47,6 +44,3 @@ export const getRandomImage = () => {
   const imageCount = 8;
   return `/bgs/${Math.ceil(Math.random() * imageCount)}.jpg`;
 };
-
-export const getAnimationColor = (animation: AnimationProps) =>
-  `hsl(${random(animation.prop) * 360}, 100%, 70%)`;
