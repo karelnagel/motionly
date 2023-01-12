@@ -1,4 +1,5 @@
 import {
+  AnimationProps,
   ComponentProps,
   getDuration,
   getFrom,
@@ -7,6 +8,7 @@ import {
 import { PlayerRef } from "@remotion/player";
 import { RefObject, useRef } from "react";
 import Moveable from "react-moveable";
+import { getAnimationColor } from "../../../helpers";
 import { useCurrentPlayerFrame } from "../../../hooks/useCurrentPlayerFrame";
 
 export const Timeline = ({
@@ -102,13 +104,13 @@ const TimelineComp = ({
   const duration = getDuration(parentDuration, comp.from, comp.duration);
   return (
     <div key={comp.id} className="py-1 relative" onClick={onClick}>
-      <div className="p-[8px] rounded-lg w-full relative h-[40px] cursor-pointer ">
+      <div className="p-[8px] w-full relative h-[40px] cursor-pointer ">
         <div
           ref={isSelected ? divRef : undefined}
-          className={`absolute top-0 h-full rounded-lg flex items-center px-2 ${
+          className={`absolute top-0 h-full rounded-sm overflow-hidden flex items-center px-2 ${
             isSelected
               ? "bg-gradient-to-r from-secondary to bg-primary text-primary-content"
-              : "bg-base-200"
+              : "bg-base-300"
           }`}
           style={{
             boxShadow: "0 0 4px rgba(0,0,0,0.2)",
@@ -116,7 +118,17 @@ const TimelineComp = ({
             width: `${(duration / parentDuration) * 100}%`,
           }}
         >
-          {comp.comp}-{comp.id}
+          {comp.animations?.map((a, i) => (
+            <Animation
+              key={i}
+              index={i}
+              animation={a}
+              parentDuration={duration}
+            />
+          ))}
+          <p className="relative">
+            {comp.comp}-{comp.id}
+          </p>
         </div>
       </div>
       {isSelected && (
@@ -191,5 +203,32 @@ const TimelineComp = ({
         />
       )}
     </div>
+  );
+};
+export const Animation = ({
+  animation,
+  index,
+  parentDuration,
+}: {
+  animation: AnimationProps;
+  index: number;
+  parentDuration: number;
+}) => {
+  const from = getFrom(parentDuration, animation.start);
+  const duration = getDuration(
+    parentDuration,
+    animation.start,
+    animation.duration
+  );
+  return (
+    <div
+      className="absolute h-[3px] w-full left-0 rounded-full"
+      style={{
+        top: index * 6 + 3,
+        left: `${(from / parentDuration) * 100}%`,
+        width: `${(duration / parentDuration) * 100}%`,
+        background: getAnimationColor(animation),
+      }}
+    />
   );
 };
