@@ -11,6 +11,7 @@ export const Timeline = ({
   selected,
   setComp,
   setTemplate,
+  changeParent,
 }: {
   setSelected: (s: string) => void;
   template: TemplateType;
@@ -18,6 +19,7 @@ export const Timeline = ({
   selected: string;
   setComp: (comp: ComponentProps) => void;
   setTemplate: (template: TemplateType) => void;
+  changeParent: (parentId: string) => void;
 }) => {
   const frame = useCurrentPlayerFrame(playerRef);
 
@@ -66,6 +68,7 @@ export const Timeline = ({
               setSelected={setSelected}
               setComp={setComp}
               comps={template.comps}
+              changeParent={changeParent}
               setComps={(comps) => setTemplate({ ...template, comps })}
               parentDuration={template.duration}
             />

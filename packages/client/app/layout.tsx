@@ -1,7 +1,7 @@
 import { ClientSessionProvider } from "../contexts/ClientSessionProvider";
 import { getServerSession } from "../lib/getServerSession";
 import "./globals.css";
-import { Login } from "./Login";
+import { Login } from "../components/Login";
 
 export default async function RootLayout({
   children,

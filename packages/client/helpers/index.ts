@@ -44,3 +44,7 @@ export const getRandomImage = () => {
   const imageCount = 8;
   return `/bgs/${Math.ceil(Math.random() * imageCount)}.jpg`;
 };
+
+export const getRandomId = () => {
+  return Math.random().toString(36).substring(6);
+};

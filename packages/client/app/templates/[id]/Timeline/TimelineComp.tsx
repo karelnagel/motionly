@@ -11,6 +11,7 @@ export const TimelineComp = ({
   setComp,
   setComps,
   parentDuration,
+  changeParent,
 }: {
   comp: ComponentProps;
   selected: string;
@@ -19,6 +20,7 @@ export const TimelineComp = ({
   setComp: (comp: ComponentProps) => void;
   setComps: (comps: ComponentProps[]) => void;
   parentDuration: number;
+  changeParent: (parentId: string) => void;
 }) => {
   const divRef = useRef<HTMLDivElement>(null);
   const isSelected = selected === comp.id;
@@ -28,7 +30,7 @@ export const TimelineComp = ({
   return (
     <div className="relative cursor-pointer">
       <div
-        className="bg-base-200 rounded-sm"
+        className="bg-base-content bg-opacity-20 rounded-sm"
         ref={isSelected ? divRef : undefined}
         style={{
           marginLeft: `${(from / parentDuration) * 100}%`,
@@ -52,13 +54,32 @@ export const TimelineComp = ({
             />
           ))}
           {hasChildren && !isSelected && (
-            <button className="absolute right-3 text-xl">+</button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                changeParent(comp.id);
+              }}
+              className="absolute right-3 text-xl"
+            >
+              +
+            </button>
+          )}
+          {isSelected && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                changeParent("");
+              }}
+              className="absolute right-3 text-3xl"
+            >
+              -
+            </button>
           )}
           <p className="relative">
             {comp.comp}-{comp.id}
           </p>
         </div>
-        {hasChildren && (
+        {hasChildren && comp.children.length > 0 && (
           <div className="space-y-2 py-2">
             {comp.children.map((child, i) => (
               <TimelineComp
@@ -67,6 +88,7 @@ export const TimelineComp = ({
                 selected={selected}
                 setSelected={setSelected}
                 setComp={setComp}
+                changeParent={changeParent}
                 comps={comp.children}
                 setComps={(children) =>
                   setComps(

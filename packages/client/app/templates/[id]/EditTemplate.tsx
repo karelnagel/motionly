@@ -35,6 +35,7 @@ export default function EditTemplate({
     setSelected,
     undo,
     redo,
+    changeParent,
   } = useTemplate(startTemplate);
   const [scale, setScale] = useState<number>();
   const ref = useRef<HTMLDivElement>(null);
@@ -133,6 +134,7 @@ export default function EditTemplate({
       <div className="p-3 pt-0 shrink-0">
         <div style={{ height: timelineHeigth }} className="panel relative">
           <Timeline
+            changeParent={changeParent}
             template={template}
             setSelected={setSelected}
             playerRef={playerRef}
