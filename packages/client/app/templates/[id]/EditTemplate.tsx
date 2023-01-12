@@ -15,6 +15,7 @@ import { PlayerRef } from "@remotion/player";
 import { AISidePanel } from "./SidePanels/AISidePanel";
 import { Resize } from "../../../components/Resize";
 import { HotKeys } from "../../../components/HotKeys";
+import { Tabs } from "../../../types";
 
 export default function EditTemplate({
   template: startTemplate,
@@ -40,6 +41,7 @@ export default function EditTemplate({
   const ref = useRef<HTMLDivElement>(null);
   const [sidePanelWidth, setSidePanelWidth] = useState(380);
   const [timelineHeigth, setTimelineHeight] = useState(250);
+  const [tab, setTab] = useState<Tabs>("props");
 
   useEffect(() => {
     if (ref.current?.clientHeight && ref.current?.clientWidth) {
@@ -104,6 +106,8 @@ export default function EditTemplate({
                     setComp={setComp}
                     addComp={addComp}
                     deleteComp={deleteComp}
+                    setTab={setTab}
+                    tab={tab}
                   />
                 )}
               {selected === "template" && (
@@ -148,6 +152,7 @@ export default function EditTemplate({
           copy: addComp,
           playerRef,
           fps: template.fps,
+          setTab,
         }}
       />
     </div>

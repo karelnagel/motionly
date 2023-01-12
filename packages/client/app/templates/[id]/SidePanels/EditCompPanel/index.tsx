@@ -1,6 +1,7 @@
 import { ComponentProps } from "@asius/components";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import { AiFillCopy, AiFillDelete } from "react-icons/ai";
+import { Tabs } from "../../../../../types";
 import { EditAnimation } from "./EditAnimation";
 import { EditAudio } from "./EditAudio";
 import { EditAudiogram } from "./EditAudiogram";
@@ -41,25 +42,35 @@ export const EditCompPanel = ({
   setComp,
   deleteComp,
   addComp,
+  tab,
+  setTab,
 }: {
   comp: ComponentProps;
   setComp: SetComp;
   deleteComp: (id: string) => void;
   addComp: (comp: ComponentProps) => void;
+  tab: Tabs;
+  setTab: (tab: Tabs) => void;
 }) => {
-  const [showAnimations, setShowAnimations] = useState(false);
-  const Tab = ({ title, value }: { title: string; value: boolean }) => {
+  const Tab = ({
+    title,
+    value,
+    tooltip,
+  }: {
+    title: string;
+    value: Tabs;
+    tooltip: string;
+  }) => {
     return (
       <div
         className={`${
-          showAnimations === value
-            ? "gradient bg-clip-text text-transparent"
-            : ""
-        } text-center cursor-pointer`}
-        onClick={() => setShowAnimations(value)}
+          tab === value ? "gradient bg-clip-text text-transparent" : ""
+        } text-center cursor-pointer tooltip`}
+        onClick={() => setTab(value)}
+        data-tip={tooltip}
       >
         <p>{title}</p>
-        {showAnimations === value && (
+        {tab === value && (
           <div className="h-[2px] w-full gradient rounded-full"></div>
         )}
       </div>
@@ -82,10 +93,10 @@ export const EditCompPanel = ({
         </div>
       </PanelTitle>
       <div className="grid grid-cols-2 my-2 font-bold">
-        <Tab title="Props" value={false} />
-        <Tab title="Animations" value={true} />
+        <Tab title="Props" value="props" tooltip="P" />
+        <Tab title="Animations" value="animations" tooltip="A" />
       </div>
-      {showAnimations ? (
+      {tab === "animations" ? (
         <div className="mt-4 overflow-y-auto">
           <EditAnimation comp={comp} setComp={setComp} />
         </div>
