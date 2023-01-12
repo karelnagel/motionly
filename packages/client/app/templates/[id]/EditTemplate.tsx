@@ -9,7 +9,7 @@ import { EditCompPanel } from "./SidePanels/EditCompPanel";
 import { TemplateSidePanel } from "./SidePanels/TemplateSidePanel";
 import { ExportSidePanel } from "./SidePanels/ExportSidePanel";
 import { Player } from "./Player";
-import { Timeline } from "./TimeLine";
+import { Timeline } from "./Timeline";
 import { AddSidePanel } from "./SidePanels/AddSidePanel";
 import { PlayerRef } from "@remotion/player";
 import { AISidePanel } from "./SidePanels/AISidePanel";
