@@ -56,7 +56,8 @@ export const getFrom = (maxDuration: number, from?: number) => {
 export const getDuration = (
   maxDuration: number,
   from?: number,
-  duration?: number
+  duration?: number,
+  addFrom?: boolean
 ) => {
   const actualFrom = getFrom(maxDuration, from);
   let actualDuration = 0;
@@ -65,9 +66,9 @@ export const getDuration = (
   else if (duration < 0) actualDuration = maxDuration - actualFrom + duration;
   if (
     !actualDuration ||
-    actualDuration < 0 ||
+    actualDuration <= 0 ||
     actualDuration > maxDuration - actualFrom
   )
-    actualDuration = maxDuration - actualFrom;
-  return actualDuration;
+    actualDuration = maxDuration - actualFrom || 1;
+  return addFrom ? actualDuration + actualFrom : actualDuration;
 };
