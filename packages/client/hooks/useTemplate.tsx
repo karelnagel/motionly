@@ -112,21 +112,17 @@ export const useTemplate = (startTemplate: TemplateType) => {
   const deleteComp = (
     id: string = selected,
     comps: ComponentProps[] = template.comps,
-    setComps: (c: ComponentProps[]) => void = (comps) =>
-      setTemplate({ ...template, comps })
+    isBase = true
   ) => {
-    if (comps.find((c) => c.id === id)) {
-      setComps(comps.filter((c) => c.id !== id));
-    } else {
-      comps.forEach((comp) => {
-        if (comp.comp === "div" || comp.comp === "mockup")
-          deleteComp(id, comp.children, (children) =>
-            setComps(
-              comps.map((c) => (c.id === comp.id ? { ...comp, children } : c))
-            )
-          );
-      });
+    const newComps = comps.filter((c) => c.id !== id);
+    for (const comp of newComps) {
+      if (comp.comp === "div" || comp.comp === "mockup") {
+        const children = deleteComp(id, comp.children, false);
+        comp.children = children;
+      }
     }
+    if (isBase) setTemplate((t) => ({ ...t, comps: newComps }));
+    return newComps;
   };
 
   const addComp = (comp: ComponentProps | null = selectedComp) => {
