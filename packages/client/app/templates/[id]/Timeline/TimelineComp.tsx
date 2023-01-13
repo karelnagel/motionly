@@ -19,15 +19,17 @@ export const TimelineComp = ({
   setComps,
   parentDuration,
   changeParent,
+  parentId,
 }: {
   comp: ComponentProps;
   selected: string;
   comps: ComponentProps[];
   setSelected: (s: string) => void;
   setComp: (comp: ComponentProps) => void;
-  setComps: (comps: ComponentProps[]) => void;
+  setComps: (comps: ComponentProps[], parentId: string) => void;
   parentDuration: number;
   changeParent: (parentId: string) => void;
+  parentId: string;
 }) => {
   const [minimize, setMinimize] = useState(false);
   const divRef = useRef<HTMLDivElement>(null);
@@ -81,7 +83,7 @@ export const TimelineComp = ({
                 </button>
               </div>
             )}
-            {isSelected && (
+            {isSelected && parentId && (
               <div
                 className="tooltip tooltip-left"
                 data-tip="Remove from group"
@@ -121,19 +123,14 @@ export const TimelineComp = ({
             {comp.children.map((child, i) => (
               <TimelineComp
                 key={i}
+                parentId={comp.id}
                 comp={child}
                 selected={selected}
                 setSelected={setSelected}
                 setComp={setComp}
                 changeParent={changeParent}
                 comps={comp.children}
-                setComps={(children) =>
-                  setComps(
-                    comps.map((c) =>
-                      c.id === child.id ? comp : { ...child, children }
-                    )
-                  )
-                }
+                setComps={setComps}
                 parentDuration={duration}
               />
             ))}
@@ -148,6 +145,7 @@ export const TimelineComp = ({
           comp={comp}
           setComp={setComp}
           setComps={setComps}
+          parentId={parentId}
         />
       )}
     </div>
@@ -161,13 +159,15 @@ export const CompMoveable = ({
   comp,
   setComp,
   setComps,
+  parentId,
 }: {
   divRef: React.RefObject<HTMLDivElement>;
   comps: ComponentProps[];
   parentDuration: number;
   comp: ComponentProps;
   setComp: (comp: ComponentProps) => void;
-  setComps: (comps: ComponentProps[]) => void;
+  setComps: (comps: ComponentProps[], parentId: string) => void;
+  parentId: string;
 }) => {
   return (
     <Moveable
@@ -220,7 +220,7 @@ export const CompMoveable = ({
         const newComps = [...comps];
         newComps.splice(oldIndex, 1);
         newComps.splice(newIndex, 0, newComp);
-        setComps(newComps);
+        setComps(newComps, parentId);
       }}
       onResize={({ width, delta, target }) => {
         const duration =

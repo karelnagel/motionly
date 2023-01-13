@@ -36,6 +36,7 @@ export default function EditTemplate({
     setSelected,
     undo,
     redo,
+    setComps,
     changeParent,
   } = useTemplate(startTemplate);
   const [scale, setScale] = useState<number>();
@@ -140,7 +141,7 @@ export default function EditTemplate({
             playerRef={playerRef}
             selected={selected}
             setComp={setComp}
-            setTemplate={setTemplate}
+            setComps={setComps}
           />
           <Resize
             value={timelineHeigth}

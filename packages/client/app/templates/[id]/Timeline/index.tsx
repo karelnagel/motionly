@@ -10,7 +10,7 @@ export const Timeline = ({
   playerRef,
   selected,
   setComp,
-  setTemplate,
+  setComps,
   changeParent,
 }: {
   setSelected: (s: string) => void;
@@ -18,7 +18,7 @@ export const Timeline = ({
   playerRef: RefObject<PlayerRef>;
   selected: string;
   setComp: (comp: ComponentProps) => void;
-  setTemplate: (template: TemplateType) => void;
+  setComps: (comps: ComponentProps[], parentId: string) => void;
   changeParent: (parentId: string) => void;
 }) => {
   const frame = useCurrentPlayerFrame(playerRef);
@@ -29,7 +29,7 @@ export const Timeline = ({
         className="h-full w-full flex flex-col"
         style={{ width: `${width}%` }}
       >
-        <div className="h-14 w-full relative p-3">
+        <div className="h-14 w-full relative p-3 pr-7">
           <div className=" relative ">
             {new Array(template.duration * 2 + 1).fill(0).map((_, i) =>
               i % Math.ceil(template.duration / 10) !== 0 ? null : (
@@ -62,18 +62,19 @@ export const Timeline = ({
             />
           </div>
         </div>
-        <div className="overflow-y-auto overflow-x-hidden px-3 pb-2">
+        <div className="overflow-y-scroll h-full overflow-x-hidden px-3 pb-2">
           <div className="flex flex-col space-y-2">
             {template.comps.map((comp, i) => (
               <TimelineComp
                 key={i}
+                parentId=""
                 comp={comp}
                 selected={selected}
                 setSelected={setSelected}
                 setComp={setComp}
                 comps={template.comps}
                 changeParent={changeParent}
-                setComps={(comps) => setTemplate({ ...template, comps })}
+                setComps={setComps}
                 parentDuration={template.duration}
               />
             ))}

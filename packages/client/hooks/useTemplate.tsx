@@ -72,6 +72,27 @@ export const useTemplate = (startTemplate: TemplateType) => {
     const newComps = get(template.comps);
     setTemplate({ ...template, comps: newComps });
   };
+  const setComps = (
+    comps: ComponentProps[],
+    parentId: string,
+    currentComps: ComponentProps[] = template.comps,
+    currentParentId = ""
+  ) => {
+    let newComps = currentComps;
+    if (currentParentId === parentId) {
+      newComps = comps;
+    } else {
+      newComps = newComps.map((comp) => {
+        if (comp.comp === "div" || comp.comp === "mockup") {
+          comp.children = setComps(comps, parentId, comp.children, comp.id);
+        }
+        return comp;
+      });
+    }
+
+    if (!currentParentId) setTemplate((t) => ({ ...t, comps: newComps }));
+    return newComps;
+  };
 
   const find = (
     comps: ComponentProps[] = template.comps,
@@ -152,6 +173,7 @@ export const useTemplate = (startTemplate: TemplateType) => {
     undo,
     redo,
     changeParent,
+    setComps,
     selected,
     setSelected: (id: string) => setSelected(id === selected ? "" : id),
     saveTime,
