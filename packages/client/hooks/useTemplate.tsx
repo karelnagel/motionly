@@ -105,9 +105,9 @@ export const useTemplate = (startTemplate: TemplateType) => {
     for (const comp of comps) {
       if (comp.comp === "div" || comp.comp === "mockup")
         [sel, newParentId] = find(comp.children, id, comp.id);
-      if (sel) break;
+      if (sel) return [sel, newParentId];
     }
-    return [sel, newParentId];
+    return [sel, ""];
   };
   const [selectedComp, selectedParentId] = find();
 
@@ -124,6 +124,7 @@ export const useTemplate = (startTemplate: TemplateType) => {
       }
     }
     if (isBase) setTemplate((t) => ({ ...t, comps: newComps }));
+    setSelected("");
     return newComps;
   };
 
