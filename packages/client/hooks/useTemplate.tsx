@@ -96,18 +96,20 @@ export const useTemplate = (startTemplate: TemplateType) => {
 
   const find = (
     comps: ComponentProps[] = template.comps,
-    id: string = selected
-  ): ComponentProps | null => {
+    id: string = selected,
+    parentId = ""
+  ): [ComponentProps | null, string] => {
     let sel = comps.find((comp) => comp.id === id) || null;
-    if (sel) return sel;
+    let newParentId = parentId;
+    if (sel) return [sel, parentId];
     for (const comp of comps) {
       if (comp.comp === "div" || comp.comp === "mockup")
-        sel = find(comp.children, id);
+        [sel, newParentId] = find(comp.children, id, comp.id);
       if (sel) break;
     }
-    return sel;
+    return [sel, newParentId];
   };
-  const selectedComp = find();
+  const [selectedComp, selectedParentId] = find();
 
   const deleteComp = (
     id: string = selected,
@@ -125,14 +127,29 @@ export const useTemplate = (startTemplate: TemplateType) => {
     return newComps;
   };
 
-  const addComp = (comp: ComponentProps | null = selectedComp) => {
-    const id = getRandomId();
-    if (!comp) return;
-    setTemplate({
-      ...template,
-      comps: [...template.comps, { ...comp, id }],
-    });
-    setSelected(id);
+  const addComp = (
+    comp: ComponentProps | null = selectedComp,
+    parentId = selectedParentId,
+    currentParentId = "",
+    currentComps = template.comps
+  ) => {
+    const newComps = currentComps;
+
+    if (parentId === currentParentId && comp) {
+      const id = getRandomId();
+      newComps.push({ ...comp, id });
+      setSelected(id);
+    } else {
+      for (const c of newComps) {
+        if (c.comp === "div" || c.comp === "mockup") {
+          c.children = addComp(comp, parentId, c.id, c.children);
+        }
+      }
+    }
+    if (!currentParentId) {
+      setTemplate((t) => ({ ...t, comps: newComps }));
+    }
+    return newComps;
   };
 
   const changeParent = (
