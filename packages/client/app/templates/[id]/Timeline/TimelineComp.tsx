@@ -33,6 +33,10 @@ export const TimelineComp = ({
       <div
         className="bg-base-content bg-opacity-20 rounded-sm"
         ref={isSelected ? divRef : undefined}
+        onClick={(e) => {
+          e.stopPropagation();
+          setSelected(comp.id);
+        }}
         style={{
           marginLeft: `${(from / parentDuration) * 100}%`,
           width: `${(duration / parentDuration) * 100}%`,
