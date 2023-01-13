@@ -127,6 +127,14 @@ export const useTemplate = (startTemplate: TemplateType) => {
     return newComps;
   };
 
+  const setRandomIds = (comp: ComponentProps) => {
+    const newComp = { ...comp, id: getRandomId() };
+    if (newComp.comp === "div" || newComp.comp === "mockup") {
+      newComp.children = newComp.children.map((c) => setRandomIds(c));
+    }
+    return newComp;
+  };
+
   const addComp = (
     comp: ComponentProps | null = selectedComp,
     parentId = selectedParentId,
@@ -136,9 +144,9 @@ export const useTemplate = (startTemplate: TemplateType) => {
     const newComps = currentComps;
 
     if (parentId === currentParentId && comp) {
-      const id = getRandomId();
-      newComps.push({ ...comp, id });
-      setSelected(id);
+      const newComp = setRandomIds(comp);
+      newComps.push(newComp);
+      setSelected(newComp.id);
     } else {
       for (const c of newComps) {
         if (c.comp === "div" || c.comp === "mockup") {
