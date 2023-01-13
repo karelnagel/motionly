@@ -26,7 +26,8 @@ export const AISidePanel = () => {
       setStatus("error");
     }
   };
-  const commentEnterSubmit = (e: any) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const commentEnterSubmit = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && e.shiftKey == false) {
       e.preventDefault();
       submit();
