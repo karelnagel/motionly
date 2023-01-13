@@ -1,7 +1,8 @@
 import { ComponentProps, TemplateType } from "@asius/components";
 import { PlayerRef } from "@remotion/player";
-import { RefObject, useState } from "react";
+import { RefObject } from "react";
 import { useCurrentPlayerFrame } from "../../../../hooks/useCurrentPlayerFrame";
+import { useLocalStorage } from "../../../../hooks/useLocalStorage";
 import { TimelineComp } from "./TimelineComp";
 
 export const Timeline = ({
@@ -22,7 +23,7 @@ export const Timeline = ({
   changeParent: (parentId: string) => void;
 }) => {
   const frame = useCurrentPlayerFrame(playerRef);
-  const [width, setWidth] = useState(100);
+  const [width, setWidth] = useLocalStorage("timelineWidth", 100);
   return (
     <div className="overflow-x-auto h-full relative">
       <div

@@ -17,6 +17,7 @@ import { Resize } from "../../../components/Resize";
 import { HotKeys } from "../../../components/HotKeys";
 import { Tabs } from "../../../types";
 import { isPanel } from "../../../helpers";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
 
 export default function EditTemplate({
   template: startTemplate,
@@ -41,9 +42,12 @@ export default function EditTemplate({
   } = useTemplate(startTemplate);
   const [scale, setScale] = useState<number>();
   const ref = useRef<HTMLDivElement>(null);
-  const [sidePanelWidth, setSidePanelWidth] = useState(380);
-  const [timelineHeigth, setTimelineHeight] = useState(250);
-  const [tab, setTab] = useState<Tabs>("props");
+  const [sideWidth, setSideWidth] = useLocalStorage("sideWidth", 380);
+  const [timelineHeigth, setTimelineHeight] = useLocalStorage(
+    "timelineHeigth",
+    250
+  );
+  const [tab, setTab] = useLocalStorage<Tabs>("tab", "props");
 
   useEffect(() => {
     if (ref.current?.clientHeight && ref.current?.clientWidth) {
@@ -51,7 +55,7 @@ export default function EditTemplate({
       const scaleY = ref.current?.clientHeight / template.height;
       setScale(Math.min(scaleX, scaleY));
     }
-  }, [sidePanelWidth, timelineHeigth]);
+  }, [sideWidth, timelineHeigth]);
 
   return (
     <div className="bg-base-300 w-screen h-screen overflow-hidden flex flex-col">
@@ -94,7 +98,7 @@ export default function EditTemplate({
         >
           <div
             style={{
-              width: selected ? sidePanelWidth : 0,
+              width: selected ? sideWidth : 0,
               paddingRight: selected ? undefined : 0,
               paddingLeft: selected ? undefined : 0,
             }}
@@ -128,7 +132,7 @@ export default function EditTemplate({
                 <AISidePanel template={template} setTemplate={setTemplate} />
               )}
             </div>
-            <Resize value={sidePanelWidth} setValue={setSidePanelWidth} />
+            <Resize value={sideWidth} setValue={setSideWidth} />
           </div>
         </div>
       </div>

@@ -2,11 +2,12 @@ import { updateTemplate } from "@asius/sdk";
 import { ComponentProps, TemplateType } from "@asius/components";
 import { useEffect, useState } from "react";
 import { getRandomId } from "../helpers";
+import { useLocalStorage } from "./useLocalStorage";
 
 export const useTemplate = (startTemplate: TemplateType) => {
   const [history, setHistory] = useState<TemplateType[]>([]);
   const [current, setCurrent] = useState(-1);
-  const [selected, setSelected] = useState("template");
+  const [selected, setSelected] = useLocalStorage("selected", "template");
   const [saveTime, setSaveTime] = useState<Date>();
   const [wasUndoOrRedo, setWasUndoOrRedo] = useState(false);
   // eslint-disable-next-line prefer-const
