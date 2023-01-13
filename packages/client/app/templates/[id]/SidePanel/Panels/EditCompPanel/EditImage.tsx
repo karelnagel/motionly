@@ -1,17 +1,17 @@
-import { GifProps, ObjectFit } from "@asius/components";
-import { SelectInput, TextInput } from "../../../../../components/inputs";
+import { ImageProps, ObjectFit } from "@asius/components";
+import { SelectInput, TextInput } from "../../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 
-export const EditGif = ({
+export const EditImage = ({
   comp,
   setComp,
 }: {
-  comp: GifProps;
+  comp: ImageProps;
   setComp: SetComp;
 }) => {
   return (
-    <EditSection title="Gif">
+    <EditSection title="Image">
       <TextInput
         label="Src"
         value={comp.src}

@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import axios from "axios";
-import { PanelTitle } from "../../../../components/PanelTitle";
-import { useTemplate } from "../../../../hooks/useTemplate";
+import { PanelTitle } from "../../../../../components/PanelTitle";
+import { useTemplate } from "../../../../../hooks/useTemplate";
 
 export const AISidePanel = () => {
   const { template, setTemplate } = useTemplate();

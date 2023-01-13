@@ -5,9 +5,9 @@ import {
   ColorInput,
   NumberInput,
   TextInput,
-} from "../../../../components/inputs";
-import { PanelTitle } from "../../../../components/PanelTitle";
-import { useTemplate } from "../../../../hooks/useTemplate";
+} from "../../../../../components/inputs";
+import { PanelTitle } from "../../../../../components/PanelTitle";
+import { useTemplate } from "../../../../../hooks/useTemplate";
 
 export const TemplateSidePanel = () => {
   const { template, setTemplate } = useTemplate();

@@ -9,8 +9,8 @@ import {
   IoIosVolumeOff,
   IoMdExpand,
 } from "react-icons/io";
-import { useTemplate } from "../../../hooks/useTemplate";
-import { useCurrentPlayerFrame } from "../../../hooks/useCurrentPlayerFrame";
+import { useTemplate } from "../../../../hooks/useTemplate";
+import { useCurrentPlayerFrame } from "../../../../hooks/useCurrentPlayerFrame";
 
 export const PlayerControls = ({
   scale,

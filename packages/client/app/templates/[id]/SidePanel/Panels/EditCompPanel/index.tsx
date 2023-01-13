@@ -1,8 +1,8 @@
 import { ComponentProps } from "@asius/components";
 import { ReactNode } from "react";
 import { AiFillCopy, AiFillDelete } from "react-icons/ai";
-import { useTemplate } from "../../../../../hooks/useTemplate";
-import { Tabs } from "../../../../../types";
+import { useTemplate } from "../../../../../../hooks/useTemplate";
+import { Tabs } from "../../../../../../types";
 import { EditAnimation } from "./EditAnimation";
 import { EditAudio } from "./EditAudio";
 import { EditAudiogram } from "./EditAudiogram";

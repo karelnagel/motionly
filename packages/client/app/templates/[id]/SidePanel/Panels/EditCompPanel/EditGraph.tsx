@@ -3,8 +3,8 @@ import {
   ColorInput,
   NumberInput,
   SelectInput,
-} from "../../../../../components/inputs";
-import { ShowJson } from "../../../../../components/ShowJson";
+} from "../../../../../../components/inputs";
+import { ShowJson } from "../../../../../../components/ShowJson";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 

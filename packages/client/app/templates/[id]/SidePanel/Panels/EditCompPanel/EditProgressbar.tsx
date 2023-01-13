@@ -4,7 +4,7 @@ import {
   ColorInput,
   NumberInput,
   SelectInput,
-} from "../../../../../components/inputs";
+} from "../../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 

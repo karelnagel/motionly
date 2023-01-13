@@ -3,7 +3,7 @@ import {
   NumberInput,
   SelectInput,
   ColorInput,
-} from "../../../../../components/inputs";
+} from "../../../../../../components/inputs";
 import { getAvailableFonts } from "@remotion/google-fonts";
 import { useState } from "react";
 import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md";

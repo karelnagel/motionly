@@ -2,7 +2,6 @@ import { updateTemplate } from "@asius/sdk";
 import { ComponentProps, TemplateType } from "@asius/components";
 import { ReactNode, useEffect, useState } from "react";
 import { getRandomId } from "../../helpers";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Context } from "./Context";
 import { Tabs } from "../../types";
 
@@ -15,10 +14,10 @@ export const TemplateContext = ({
 }) => {
   const [history, setHistory] = useState<TemplateType[]>([]);
   const [current, setCurrent] = useState(-1);
-  const [selected, setSelected] = useLocalStorage("selected", "template");
+  const [selected, setSelected] = useState("template");
   const [saveTime, setSaveTime] = useState<Date>();
   const [wasUndoOrRedo, setWasUndoOrRedo] = useState(false);
-  const [tab, setTab] = useLocalStorage<Tabs>("tab", "props");
+  const [tab, setTab] = useState<Tabs>("props");
 
   // eslint-disable-next-line prefer-const
   let [template, setTemplate] = useState(startTemplate);

@@ -1,10 +1,10 @@
 import { Player as RemotionPlayer, PlayerRef } from "@remotion/player";
-import { Composition, SelectedContext } from "../../../../components/dist";
+import { Composition, SelectedContext } from "@asius/components";
 import { RefObject, useRef, useState } from "react";
-import { useShiftKey } from "../../../hooks/useShiftKey";
+import { useShiftKey } from "../../../../hooks/useShiftKey";
 import Moveable from "react-moveable";
 import { useEffect } from "react";
-import { useTemplate } from "../../../hooks/useTemplate";
+import { useTemplate } from "../../../../hooks/useTemplate";
 
 export const Player = ({
   playerRef,

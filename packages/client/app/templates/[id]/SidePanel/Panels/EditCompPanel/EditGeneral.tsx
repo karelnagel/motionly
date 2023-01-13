@@ -1,5 +1,5 @@
 import { ComponentProps } from "@asius/components";
-import { NumberInput } from "../../../../../components/inputs";
+import { NumberInput } from "../../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 

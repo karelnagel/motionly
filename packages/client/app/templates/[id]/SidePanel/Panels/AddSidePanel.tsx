@@ -17,8 +17,8 @@ import {
   defaultVideoProps,
   defaultTranscriptionProps,
 } from "@asius/components";
-import { PanelTitle } from "../../../../components/PanelTitle";
-import { useTemplate } from "../../../../hooks/useTemplate";
+import { PanelTitle } from "../../../../../components/PanelTitle";
+import { useTemplate } from "../../../../../hooks/useTemplate";
 
 export const AddSidePanel = () => {
   const { addComp } = useTemplate();

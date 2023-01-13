@@ -10,8 +10,8 @@ import {
   NumberInput,
   SelectInput,
   TextInput,
-} from "../../../../../components/inputs";
-import { ShowJson } from "../../../../../components/ShowJson";
+} from "../../../../../../components/inputs";
+import { ShowJson } from "../../../../../../components/ShowJson";
 import { EditSection } from "./EditSection";
 import { EditTextStyle } from "./EditTextStyle";
 import { SetComp } from "./index";
