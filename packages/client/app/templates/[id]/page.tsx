@@ -1,5 +1,5 @@
-import EditTemplate from "./EditTemplate";
 import { getTemplate } from "../../../pages/api/templates/[id]";
+import { ClientPage } from "./EditTemplate";
 
 export const revalidate = 0;
 
@@ -25,5 +25,5 @@ export default async function Page({
       background: "#FFFFFFFF",
     };
   if (!template) return <div>Template not found!</div>;
-  return <EditTemplate template={template} />;
+  return <ClientPage template={template} />;
 }

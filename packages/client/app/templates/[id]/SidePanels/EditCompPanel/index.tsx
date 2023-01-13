@@ -1,6 +1,7 @@
 import { ComponentProps } from "@asius/components";
 import { ReactNode } from "react";
 import { AiFillCopy, AiFillDelete } from "react-icons/ai";
+import { useTemplate } from "../../../../../hooks/useTemplate";
 import { Tabs } from "../../../../../types";
 import { EditAnimation } from "./EditAnimation";
 import { EditAudio } from "./EditAudio";
@@ -37,21 +38,16 @@ export const PanelTitle = ({
     </div>
   );
 };
-export const EditCompPanel = ({
-  comp,
-  setComp,
-  deleteComp,
-  addComp,
-  tab,
-  setTab,
-}: {
-  comp: ComponentProps;
-  setComp: SetComp;
-  deleteComp: (id: string) => void;
-  addComp: (comp: ComponentProps) => void;
-  tab: Tabs;
-  setTab: (tab: Tabs) => void;
-}) => {
+export const EditCompPanel = () => {
+  const {
+    selectedComp: comp,
+    setTab,
+    tab,
+    addComp,
+    setComp,
+    deleteComp,
+  } = useTemplate();
+  if (!comp) return null;
   const Tab = ({
     title,
     value,
@@ -80,14 +76,11 @@ export const EditCompPanel = ({
     <div className="flex flex-col w-full">
       <PanelTitle title={`${comp.comp}-${comp.id}`}>
         <div className="tooltip" data-tip="⌘ + C">
-          <AiFillCopy
-            onClick={() => addComp(comp)}
-            className="cursor-pointer"
-          />
+          <AiFillCopy onClick={() => addComp()} className="cursor-pointer" />
         </div>
         <div className="tooltip" data-tip="⌫">
           <AiFillDelete
-            onClick={() => deleteComp(comp.id)}
+            onClick={() => deleteComp()}
             className="cursor-pointer"
           />
         </div>

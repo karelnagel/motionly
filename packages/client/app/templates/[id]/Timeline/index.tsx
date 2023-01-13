@@ -1,27 +1,16 @@
-import { ComponentProps, TemplateType } from "@asius/components";
 import { PlayerRef } from "@remotion/player";
 import { RefObject } from "react";
+import { useTemplate } from "../../../../hooks/useTemplate";
 import { useCurrentPlayerFrame } from "../../../../hooks/useCurrentPlayerFrame";
 import { useLocalStorage } from "../../../../hooks/useLocalStorage";
 import { TimelineComp } from "./TimelineComp";
 
 export const Timeline = ({
-  template,
-  setSelected,
   playerRef,
-  selected,
-  setComp,
-  setComps,
-  changeParent,
 }: {
-  setSelected: (s: string) => void;
-  template: TemplateType;
   playerRef: RefObject<PlayerRef>;
-  selected: string;
-  setComp: (comp: ComponentProps) => void;
-  setComps: (comps: ComponentProps[], parentId: string) => void;
-  changeParent: (parentId: string) => void;
 }) => {
+  const { template } = useTemplate();
   const frame = useCurrentPlayerFrame(playerRef);
   const [width, setWidth] = useLocalStorage("timelineWidth", 100);
   return (
@@ -70,12 +59,7 @@ export const Timeline = ({
                 key={i}
                 parentId=""
                 comp={comp}
-                selected={selected}
-                setSelected={setSelected}
-                setComp={setComp}
                 comps={template.comps}
-                changeParent={changeParent}
-                setComps={setComps}
                 parentDuration={template.duration}
               />
             ))}

@@ -1,5 +1,4 @@
 import { deleteTemplate, postNewTemplate } from "@asius/sdk";
-import { TemplateType } from "@asius/components";
 import { useRouter } from "next/navigation";
 import {
   BooleanInput,
@@ -8,14 +7,10 @@ import {
   TextInput,
 } from "../../../../components/inputs";
 import { PanelTitle } from "../../../../components/PanelTitle";
+import { useTemplate } from "../../../../hooks/useTemplate";
 
-export const TemplateSidePanel = ({
-  template,
-  setTemplate,
-}: {
-  template: TemplateType;
-  setTemplate: (t: TemplateType) => void;
-}) => {
+export const TemplateSidePanel = () => {
+  const { template, setTemplate } = useTemplate();
   const router = useRouter();
   const delTemplate = async () => {
     if (!template.id) return;

@@ -1,27 +1,18 @@
 import { PlayerRef } from "@remotion/player";
 import { RefObject, useCallback, useEffect } from "react";
 import { useCurrentPlayerFrame } from "../hooks/useCurrentPlayerFrame";
-import { Tabs } from "../types";
+import { useTemplate } from "../hooks/useTemplate";
 
-export function HotKeys({
-  copy,
-  remove,
-  undo,
-  redo,
-  setSelected,
-  playerRef,
-  fps,
-  setTab,
-}: {
-  copy?: () => void;
-  remove?: () => void;
-  undo?: () => void;
-  redo?: () => void;
-  setSelected?: (s: string) => void;
-  setTab: (tab: Tabs) => void;
-  playerRef: RefObject<PlayerRef>;
-  fps: number;
-}) {
+export function HotKeys({ playerRef }: { playerRef: RefObject<PlayerRef> }) {
+  const {
+    undo,
+    redo,
+    setSelected,
+    setTab,
+    deleteComp,
+    addComp,
+    template: { fps },
+  } = useTemplate();
   const frame = useCurrentPlayerFrame(playerRef);
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
@@ -30,13 +21,13 @@ export function HotKeys({
           document.activeElement?.tagName === "TEXTAREA") &&
         document.activeElement?.id !== "timeline";
       if (event.key === "Backspace" && !isInput) {
-        remove?.();
+        deleteComp();
       } else if (event.key === "z" && event.metaKey && !event.shiftKey) {
         undo?.();
       } else if (event.key === "z" && event.metaKey && event.shiftKey) {
         redo?.();
       } else if (event.key === "c" && event.metaKey && !isInput) {
-        copy?.();
+        addComp();
       } else if (event.key === " " && !isInput) {
         playerRef.current?.toggle();
       } else if (
@@ -55,15 +46,15 @@ export function HotKeys({
           ? playerRef.current?.exitFullscreen()
           : playerRef.current?.requestFullscreen();
       } else if (event.key === "1" && !isInput) {
-        setSelected?.("ai");
+        setSelected("ai");
       } else if (event.key === "2" && !isInput) {
-        setSelected?.("add");
+        setSelected("add");
       } else if (event.key === "3" && !isInput) {
-        setSelected?.("template");
+        setSelected("template");
       } else if (event.key === "4" && !isInput) {
-        setSelected?.("export");
+        setSelected("export");
       } else if (event.key === "0" && !isInput) {
-        setSelected?.("");
+        setSelected("");
       } else if (event.key === "p" && !isInput) {
         setTab("props");
       } else if (event.key === "a" && !isInput) {
@@ -71,7 +62,17 @@ export function HotKeys({
       } else return;
       event.preventDefault();
     },
-    [copy, remove, undo, redo, setSelected, playerRef, fps, frame]
+    [
+      undo,
+      redo,
+      setSelected,
+      playerRef,
+      fps,
+      frame,
+      deleteComp,
+      addComp,
+      setTab,
+    ]
   );
 
   useEffect(() => {
@@ -79,7 +80,17 @@ export function HotKeys({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [copy, remove, undo, redo, setSelected, playerRef, fps, frame]);
+  }, [
+    addComp,
+    deleteComp,
+    setTab,
+    undo,
+    redo,
+    setSelected,
+    playerRef,
+    fps,
+    frame,
+  ]);
 
   return null;
 }

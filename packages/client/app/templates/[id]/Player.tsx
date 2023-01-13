@@ -1,26 +1,24 @@
 import { Player as RemotionPlayer, PlayerRef } from "@remotion/player";
-import { ComponentProps, TemplateType } from "@asius/components";
 import { Composition, SelectedContext } from "../../../../components/dist";
 import { RefObject, useRef, useState } from "react";
 import { useShiftKey } from "../../../hooks/useShiftKey";
 import Moveable from "react-moveable";
 import { useEffect } from "react";
+import { useTemplate } from "../../../hooks/useTemplate";
 
 export const Player = ({
-  template: { width, height, duration, fps, comps, background },
   playerRef,
   scale,
-  setComp,
-  setSelected,
-  selectedComp,
 }: {
-  setComp: (comp: ComponentProps) => void;
-  setSelected: (s: string) => void;
-  scale: number;
-  template: TemplateType;
   playerRef: RefObject<PlayerRef>;
-  selectedComp: ComponentProps | null;
+  scale: number;
 }) => {
+  const {
+    template: { width, height, fps, duration, comps, background },
+    selectedComp,
+    setSelected,
+    setComp,
+  } = useTemplate();
   const lockAspectRatio = useShiftKey();
   const divRef = useRef<HTMLDivElement>(null);
   const [isClient, setIsClient] = useState(false);

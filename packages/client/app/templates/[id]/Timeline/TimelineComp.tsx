@@ -7,30 +7,22 @@ import {
   IoIosRemove,
 } from "react-icons/io";
 import Moveable from "react-moveable";
+import { useTemplate } from "../../../../hooks/useTemplate";
 import { isPanel } from "../../../../helpers";
 import { Animation } from "./Animation";
 
 export const TimelineComp = ({
   comp,
-  selected,
   comps,
-  setSelected,
-  setComp,
-  setComps,
   parentDuration,
-  changeParent,
   parentId,
 }: {
   comp: ComponentProps;
-  selected: string;
   comps: ComponentProps[];
-  setSelected: (s: string) => void;
-  setComp: (comp: ComponentProps) => void;
-  setComps: (comps: ComponentProps[], parentId: string) => void;
   parentDuration: number;
-  changeParent: (parentId: string) => void;
   parentId: string;
 }) => {
+  const { selected, setSelected, changeParent } = useTemplate();
   const [minimize, setMinimize] = useState(false);
   const divRef = useRef<HTMLDivElement>(null);
   const isSelected = selected === comp.id;
@@ -125,12 +117,7 @@ export const TimelineComp = ({
                 key={i}
                 parentId={comp.id}
                 comp={child}
-                selected={selected}
-                setSelected={setSelected}
-                setComp={setComp}
-                changeParent={changeParent}
                 comps={comp.children}
-                setComps={setComps}
                 parentDuration={duration}
               />
             ))}
@@ -143,8 +130,6 @@ export const TimelineComp = ({
           comps={comps}
           parentDuration={parentDuration}
           comp={comp}
-          setComp={setComp}
-          setComps={setComps}
           parentId={parentId}
         />
       )}
@@ -157,18 +142,15 @@ export const CompMoveable = ({
   comps,
   parentDuration,
   comp,
-  setComp,
-  setComps,
   parentId,
 }: {
   divRef: React.RefObject<HTMLDivElement>;
   comps: ComponentProps[];
   parentDuration: number;
   comp: ComponentProps;
-  setComp: (comp: ComponentProps) => void;
-  setComps: (comps: ComponentProps[], parentId: string) => void;
   parentId: string;
 }) => {
+  const { setComp, setComps } = useTemplate();
   return (
     <Moveable
       target={divRef}

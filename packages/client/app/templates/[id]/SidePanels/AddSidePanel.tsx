@@ -1,6 +1,5 @@
 import {
   AllComponents,
-  ComponentProps,
   BaseProps,
   defaultAudiogramProps,
   defaultAudioProps,
@@ -19,12 +18,10 @@ import {
   defaultTranscriptionProps,
 } from "@asius/components";
 import { PanelTitle } from "../../../../components/PanelTitle";
+import { useTemplate } from "../../../../hooks/useTemplate";
 
-export const AddSidePanel = ({
-  addComp,
-}: {
-  addComp: (comp: ComponentProps) => void;
-}) => {
+export const AddSidePanel = () => {
+  const { addComp } = useTemplate();
   const baseComp: BaseProps = {
     id: "0",
     x: 0,

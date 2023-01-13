@@ -1,15 +1,10 @@
-import { TemplateType } from "@asius/components";
 import { FormEvent, useState } from "react";
 import axios from "axios";
 import { PanelTitle } from "../../../../components/PanelTitle";
+import { useTemplate } from "../../../../hooks/useTemplate";
 
-export const AISidePanel = ({
-  template,
-  setTemplate,
-}: {
-  template: TemplateType;
-  setTemplate: (t: TemplateType) => void;
-}) => {
+export const AISidePanel = () => {
+  const { template, setTemplate } = useTemplate();
   const [prompt, setPrompt] = useState("");
   const [status, setStatus] = useState<"loading" | "done" | "error">();
 

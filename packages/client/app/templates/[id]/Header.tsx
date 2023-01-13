@@ -1,9 +1,9 @@
 import { postNewTemplate } from "@asius/sdk";
-import { TemplateType } from "@asius/components";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { IoIosArrowBack, IoMdRedo, IoMdUndo } from "react-icons/io";
 import { useEffect, useState } from "react";
+import { useTemplate } from "../../../hooks/useTemplate";
 
 export const TimeAfter = ({
   time,
@@ -30,21 +30,10 @@ export const TimeAfter = ({
   );
 };
 
-export const Header = ({
-  selected,
-  setSelected,
-  template,
-  saveTime,
-  undo,
-  redo,
-}: {
-  selected: string;
-  setSelected: (s: string) => void;
-  template: TemplateType;
-  saveTime?: Date;
-  undo?: () => void;
-  redo?: () => void;
-}) => {
+export const Header = () => {
+  const { template, setSelected, selected, saveTime, undo, redo } =
+    useTemplate();
+
   const router = useRouter();
   const clone = async () => {
     const newTemplate = await postNewTemplate(template);

@@ -1,16 +1,11 @@
 import { useRender } from "@asius/sdk";
-import { TemplateType } from "@asius/components";
 import { useState } from "react";
 import { PanelTitle } from "../../../../components/PanelTitle";
 import { BooleanInput, NumberInput } from "../../../../components/inputs";
+import { useTemplate } from "../../../../hooks/useTemplate";
 
-export const ExportSidePanel = ({
-  template,
-  setTemplate,
-}: {
-  template: TemplateType;
-  setTemplate: (t: TemplateType) => void;
-}) => {
+export const ExportSidePanel = () => {
+  const { template, setTemplate } = useTemplate();
   const [frame, setFrame] = useState(0);
   const [renderStill, setRenderStill] = useState(false);
   const { media, still, cost, progress, fileUrl, status } = useRender({
