@@ -1,5 +1,11 @@
 import { getFrom, getDuration, ComponentProps } from "@asius/components";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import {
+  IoIosAdd,
+  IoIosArrowDown,
+  IoIosArrowUp,
+  IoIosRemove,
+} from "react-icons/io";
 import Moveable from "react-moveable";
 import { isPanel } from "../../../../helpers";
 import { Animation } from "./Animation";
@@ -23,6 +29,7 @@ export const TimelineComp = ({
   parentDuration: number;
   changeParent: (parentId: string) => void;
 }) => {
+  const [minimize, setMinimize] = useState(false);
   const divRef = useRef<HTMLDivElement>(null);
   const isSelected = selected === comp.id;
   const from = getFrom(parentDuration, comp.from);
@@ -58,41 +65,58 @@ export const TimelineComp = ({
               parentDuration={duration}
             />
           ))}
-          {hasChildren && !isSelected && selected && !isPanel(selected) && (
-            <div
-              className="tooltip absolute right-3 text-xl tooltip-left"
-              data-tip="Add selected element to group"
-            >
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  changeParent(comp.id);
-                }}
+          <div className="absolute right-3 text-xl flex space-x-2 leading-none items-center h-full top-0">
+            {hasChildren && !isSelected && selected && !isPanel(selected) && (
+              <div
+                className="tooltip tooltip-left"
+                data-tip="Add selected element to group"
               >
-                +
-              </button>
-            </div>
-          )}
-          {isSelected && (
-            <div
-              className="tooltip absolute right-3 text-3xl tooltip-left"
-              data-tip="Remove from group"
-            >
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  changeParent("");
-                }}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    changeParent(comp.id);
+                  }}
+                >
+                  <IoIosAdd />
+                </button>
+              </div>
+            )}
+            {isSelected && (
+              <div
+                className="tooltip tooltip-left"
+                data-tip="Remove from group"
               >
-                -
-              </button>
-            </div>
-          )}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    changeParent("");
+                  }}
+                >
+                  <IoIosRemove />
+                </button>
+              </div>
+            )}
+            {hasChildren && comp.children.length > 0 && (
+              <div
+                className="tooltip tooltip-left text-lg"
+                data-tip={!minimize ? "Minimize" : "Maximize"}
+              >
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setMinimize((m) => !m);
+                  }}
+                >
+                  {!minimize ? <IoIosArrowDown /> : <IoIosArrowUp />}
+                </button>
+              </div>
+            )}
+          </div>
           <p className="relative">
             {comp.comp}-{comp.id}
           </p>
         </div>
-        {hasChildren && comp.children.length > 0 && (
+        {hasChildren && comp.children.length > 0 && !minimize && (
           <div className="space-y-2 py-2">
             {comp.children.map((child, i) => (
               <TimelineComp
