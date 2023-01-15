@@ -67,43 +67,6 @@ export const TemplateContext = ({
     };
   }, [template]);
 
-  const setComp = (element: Partial<ComponentProps>) => {
-    const get = (comps: ComponentProps[]) => {
-      return comps.map((comp) => {
-        if (comp.id === selected) {
-          comp = { ...comp, ...element } as ComponentProps;
-        }
-        if (comp.comp === "div" || comp.comp === "mockup") {
-          comp.children = get(comp.children);
-        }
-        return comp;
-      });
-    };
-    const newComps = get(template.comps);
-    setTemplate({ ...template, comps: newComps });
-  };
-  const setComps = (
-    comps: ComponentProps[],
-    parentId: string,
-    currentComps: ComponentProps[] = template.comps,
-    currentParentId = ""
-  ) => {
-    let newComps = currentComps;
-    if (currentParentId === parentId) {
-      newComps = comps;
-    } else {
-      newComps = newComps.map((comp) => {
-        if (comp.comp === "div" || comp.comp === "mockup") {
-          comp.children = setComps(comps, parentId, comp.children, comp.id);
-        }
-        return comp;
-      });
-    }
-
-    if (!currentParentId) setTemplate((t) => ({ ...t, comps: newComps }));
-    return newComps;
-  };
-
   const find = (
     comps: ComponentProps[] = template.comps,
     id: string = selected,
@@ -121,21 +84,44 @@ export const TemplateContext = ({
   };
   const [selectedComp, selectedParentId] = find();
 
-  const deleteComp = (
-    id: string = selected,
-    comps: ComponentProps[] = template.comps,
-    isBase = true
+  const updateTree = (
+    fn: (comp: ComponentProps[], parentId: string) => ComponentProps[],
+    currentComps: ComponentProps[] = template.comps,
+    currentParentId = ""
   ) => {
-    const newComps = comps.filter((c) => c.id !== id);
+    let newComps = currentComps;
+    newComps = fn(newComps, currentParentId);
     for (const comp of newComps) {
       if (comp.comp === "div" || comp.comp === "mockup") {
-        const children = deleteComp(id, comp.children, false);
+        const children = updateTree(fn, comp.children, comp.id);
         comp.children = children;
       }
     }
-    if (isBase) setTemplate((t) => ({ ...t, comps: newComps }));
-    setSelected("");
+    if (!currentParentId) setTemplate((t) => ({ ...t, comps: newComps }));
     return newComps;
+  };
+
+  const setComp = (element: Partial<ComponentProps>) => {
+    updateTree((comps) =>
+      comps.map((comp) =>
+        comp.id === selected
+          ? ({ ...comp, ...element } as ComponentProps)
+          : comp
+      )
+    );
+  };
+
+  const setComps = (newComps: ComponentProps[], parentId: string) => {
+    updateTree((comps, parent) => {
+      if (parent === parentId) return newComps;
+      return comps;
+    });
+  };
+
+  const deleteComp = (id: string = selected) => {
+    updateTree((comps) => {
+      return comps.filter((comp) => comp.id !== id);
+    });
   };
 
   const setRandomIds = (comp: ComponentProps) => {
@@ -148,51 +134,25 @@ export const TemplateContext = ({
 
   const addComp = (
     comp: ComponentProps | null = selectedComp,
-    parentId = selectedParentId,
-    currentParentId = "",
-    currentComps = template.comps
+    parentId = selectedParentId
   ) => {
-    const newComps = currentComps;
-
-    if (parentId === currentParentId && comp) {
-      const newComp = setRandomIds(comp);
-      newComps.push(newComp);
-      setSelected(newComp.id);
-    } else {
-      for (const c of newComps) {
-        if (c.comp === "div" || c.comp === "mockup") {
-          c.children = addComp(comp, parentId, c.id, c.children);
-        }
+    if (!comp) return;
+    updateTree((comps, parent) => {
+      if (parent === parentId) {
+        const newComp = setRandomIds(comp);
+        return [...comps, newComp];
       }
-    }
-    if (!currentParentId) {
-      setTemplate((t) => ({ ...t, comps: newComps }));
-    }
-    return newComps;
+      return comps;
+    });
   };
 
-  const changeParent = (
-    newParentId: string,
-    parentId = "",
-    comps: ComponentProps[] = template.comps
-  ) => {
-    let newComps = comps;
-    if (!selectedComp) return newComps;
-
-    newComps = newComps.filter((c) => c.id !== selectedComp.id);
-    if (newParentId === parentId && selectedComp) {
-      newComps.push(selectedComp);
-    }
-    for (const comp of newComps) {
-      if (comp.comp === "div" || comp.comp === "mockup") {
-        const children = changeParent(newParentId, comp.id, comp.children);
-        newComps = newComps.map((c) =>
-          c.id === comp.id ? { ...comp, children } : c
-        );
-      }
-    }
-    if (!parentId) setTemplate({ ...template, comps: newComps });
-    return newComps;
+  const changeParent = (newParentId: string) => {
+    updateTree((comps, parentId) => {
+      const newComps = comps.filter((c) => c.id !== selected);
+      if (newParentId === parentId && selectedComp)
+        if (selectedComp) newComps.push(selectedComp);
+      return newComps;
+    });
   };
 
   return (
