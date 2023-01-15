@@ -14,15 +14,20 @@ export const TemplateContext = ({
 }) => {
   const [history, setHistory] = useState<TemplateType[]>([]);
   const [current, setCurrent] = useState(-1);
-  const [selected, setSelected] = useState("template");
+  const [selected, setSelectedState] = useState("template");
+  const [template, setTemplateState] = useState(startTemplate);
   const [saveTime, setSaveTime] = useState<Date>();
   const [wasUndoOrRedo, setWasUndoOrRedo] = useState(false);
   const [tab, setTab] = useState<Tabs>("props");
 
-  // eslint-disable-next-line prefer-const
-  let [template, setTemplate] = useState(startTemplate);
-  if (!template.isOwner)
-    setTemplate = () => alert("You have to clone this template to edit!");
+  const setSelected = (id: string) => {
+    if (selected === id) return setSelectedState("");
+    setSelectedState(id);
+  };
+  const setTemplate = (template: TemplateType) => {
+    if (!template.isOwner) alert("You have to clone this template to edit!");
+    else setTemplateState(template);
+  };
 
   useEffect(() => {
     if (wasUndoOrRedo) return setWasUndoOrRedo(false);
@@ -97,7 +102,7 @@ export const TemplateContext = ({
         comp.children = children;
       }
     }
-    if (!currentParentId) setTemplate((t) => ({ ...t, comps: newComps }));
+    if (!currentParentId) setTemplate({ ...template, comps: newComps });
     return newComps;
   };
 
