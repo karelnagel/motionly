@@ -1,28 +1,29 @@
 import { getFrom, getDuration, ComponentProps } from "@asius/components";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import {
+  IoIosAdd,
+  IoIosArrowDown,
+  IoIosArrowUp,
+  IoIosRemove,
+} from "react-icons/io";
 import Moveable from "react-moveable";
+import { useTemplate } from "../../../../hooks/useTemplate";
 import { isPanel } from "../../../../helpers";
 import { Animation } from "./Animation";
 
 export const TimelineComp = ({
   comp,
-  selected,
   comps,
-  setSelected,
-  setComp,
-  setComps,
   parentDuration,
-  changeParent,
+  parentId,
 }: {
   comp: ComponentProps;
-  selected: string;
   comps: ComponentProps[];
-  setSelected: (s: string) => void;
-  setComp: (comp: ComponentProps) => void;
-  setComps: (comps: ComponentProps[]) => void;
   parentDuration: number;
-  changeParent: (parentId: string) => void;
+  parentId: string;
 }) => {
+  const { selected, setSelected, changeParent } = useTemplate();
+  const [minimize, setMinimize] = useState(false);
   const divRef = useRef<HTMLDivElement>(null);
   const isSelected = selected === comp.id;
   const from = getFrom(parentDuration, comp.from);
@@ -33,6 +34,10 @@ export const TimelineComp = ({
       <div
         className="bg-base-content bg-opacity-20 rounded-sm"
         ref={isSelected ? divRef : undefined}
+        onClick={(e) => {
+          e.stopPropagation();
+          setSelected(comp.id);
+        }}
         style={{
           marginLeft: `${(from / parentDuration) * 100}%`,
           width: `${(duration / parentDuration) * 100}%`,
@@ -54,58 +59,65 @@ export const TimelineComp = ({
               parentDuration={duration}
             />
           ))}
-          {hasChildren && !isSelected && selected && !isPanel(selected) && (
-            <div
-              className="tooltip absolute right-3 text-xl tooltip-left"
-              data-tip="Add selected element to group"
-            >
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  changeParent(comp.id);
-                }}
+          <div className="absolute right-3 text-xl flex space-x-2 leading-none items-center h-full top-0">
+            {hasChildren && !isSelected && selected && !isPanel(selected) && (
+              <div
+                className="tooltip tooltip-left"
+                data-tip="Add selected element to group"
               >
-                +
-              </button>
-            </div>
-          )}
-          {isSelected && (
-            <div
-              className="tooltip absolute right-3 text-3xl tooltip-left"
-              data-tip="Remove from group"
-            >
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  changeParent("");
-                }}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    changeParent(comp.id);
+                  }}
+                >
+                  <IoIosAdd />
+                </button>
+              </div>
+            )}
+            {isSelected && parentId && (
+              <div
+                className="tooltip tooltip-left"
+                data-tip="Remove from group"
               >
-                -
-              </button>
-            </div>
-          )}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    changeParent("");
+                  }}
+                >
+                  <IoIosRemove />
+                </button>
+              </div>
+            )}
+            {hasChildren && comp.children.length > 0 && (
+              <div
+                className="tooltip tooltip-left text-lg"
+                data-tip={!minimize ? "Minimize" : "Maximize"}
+              >
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setMinimize((m) => !m);
+                  }}
+                >
+                  {!minimize ? <IoIosArrowDown /> : <IoIosArrowUp />}
+                </button>
+              </div>
+            )}
+          </div>
           <p className="relative">
             {comp.comp}-{comp.id}
           </p>
         </div>
-        {hasChildren && comp.children.length > 0 && (
+        {hasChildren && comp.children.length > 0 && !minimize && (
           <div className="space-y-2 py-2">
             {comp.children.map((child, i) => (
               <TimelineComp
                 key={i}
+                parentId={comp.id}
                 comp={child}
-                selected={selected}
-                setSelected={setSelected}
-                setComp={setComp}
-                changeParent={changeParent}
                 comps={comp.children}
-                setComps={(children) =>
-                  setComps(
-                    comps.map((c) =>
-                      c.id === child.id ? comp : { ...child, children }
-                    )
-                  )
-                }
                 parentDuration={duration}
               />
             ))}
@@ -118,8 +130,7 @@ export const TimelineComp = ({
           comps={comps}
           parentDuration={parentDuration}
           comp={comp}
-          setComp={setComp}
-          setComps={setComps}
+          parentId={parentId}
         />
       )}
     </div>
@@ -131,16 +142,15 @@ export const CompMoveable = ({
   comps,
   parentDuration,
   comp,
-  setComp,
-  setComps,
+  parentId,
 }: {
   divRef: React.RefObject<HTMLDivElement>;
   comps: ComponentProps[];
   parentDuration: number;
   comp: ComponentProps;
-  setComp: (comp: ComponentProps) => void;
-  setComps: (comps: ComponentProps[]) => void;
+  parentId: string;
 }) => {
+  const { setComp, setComps } = useTemplate();
   return (
     <Moveable
       target={divRef}
@@ -192,7 +202,7 @@ export const CompMoveable = ({
         const newComps = [...comps];
         newComps.splice(oldIndex, 1);
         newComps.splice(newIndex, 0, newComp);
-        setComps(newComps);
+        setComps(newComps, parentId);
       }}
       onResize={({ width, delta, target }) => {
         const duration =
