@@ -14,6 +14,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     session: async ({ session, token }) => {
       if (session?.user) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (session as any).user.id = token.uid as string;
       }
       return session;

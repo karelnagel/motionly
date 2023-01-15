@@ -52,3 +52,7 @@ export const getRandomId = () => {
 export const isPanel = (selected: string) => {
   return ["template", "export", "add", "ai"].includes(selected);
 };
+
+export const getMediaUrl = (key: string) => {
+  return `https://asius-media.s3.amazonaws.com/${key}`;
+};

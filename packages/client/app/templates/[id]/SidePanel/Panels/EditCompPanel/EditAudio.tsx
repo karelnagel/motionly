@@ -1,5 +1,6 @@
 import { AudioProps } from "@asius/components";
-import { NumberInput, TextInput } from "../../../../../../components/inputs";
+import { NumberInput } from "../../../../../../components/inputs";
+import { Media } from "../../../../../../components/Media";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 
@@ -12,10 +13,10 @@ export const EditAudio = ({
 }) => {
   return (
     <EditSection title="Audio">
-      <TextInput
-        label="url"
+      <Media
         value={comp.src}
         onChange={(src) => setComp({ ...comp, src })}
+        type="video"
       />
       <NumberInput
         label="volume"

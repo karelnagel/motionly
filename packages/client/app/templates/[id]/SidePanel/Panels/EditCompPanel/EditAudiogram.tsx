@@ -4,8 +4,8 @@ import {
   ColorInput,
   NumberInput,
   SelectInput,
-  TextInput,
 } from "../../../../../../components/inputs";
+import { Media } from "../../../../../../components/Media";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 
@@ -18,10 +18,10 @@ export const EditAudiogram = ({
 }) => {
   return (
     <EditSection title="Audiogram">
-      <TextInput
-        label="Src"
+      <Media
         value={comp.src}
         onChange={(src) => setComp({ ...comp, src })}
+        type="video"
       />
       <SelectInput
         label="Position"

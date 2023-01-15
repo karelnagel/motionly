@@ -9,6 +9,15 @@ export default async function SignedUrl(
   const session = await getServerSession({ req, res });
   if (!session) return res.status(401).end();
   const { name, type } = req.body;
+  if (!type || !name) return res.status(400).end();
+  if (
+    !type.startsWith("image/") &&
+    !type.startsWith("video/") &&
+    !type.startsWith("gif/") &&
+    !type.startsWith("audio/")
+  )
+    return res.status(400).end();
+
   if (req.method === "POST") {
     const s3 = new S3({
       region: "us-east-1",
