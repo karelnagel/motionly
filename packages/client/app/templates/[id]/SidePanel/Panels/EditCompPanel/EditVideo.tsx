@@ -3,8 +3,8 @@ import {
   BooleanInput,
   NumberInput,
   SelectInput,
-  TextInput,
 } from "../../../../../../components/inputs";
+import { Media } from "../../../../../../components/Media";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 
@@ -17,10 +17,10 @@ export const EditVideo = ({
 }) => {
   return (
     <EditSection title="Video">
-      <TextInput
-        label="Src"
+      <Media
         value={comp.src}
         onChange={(src) => setComp({ ...comp, src })}
+        type="video"
       />
       <SelectInput
         label="Fit"

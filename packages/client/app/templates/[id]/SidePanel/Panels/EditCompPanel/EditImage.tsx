@@ -1,5 +1,6 @@
 import { ImageProps, ObjectFit } from "@asius/components";
-import { SelectInput, TextInput } from "../../../../../../components/inputs";
+import { SelectInput } from "../../../../../../components/inputs";
+import { Media } from "../../../../../../components/Media";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 
@@ -12,10 +13,10 @@ export const EditImage = ({
 }) => {
   return (
     <EditSection title="Image">
-      <TextInput
-        label="Src"
+      <Media
         value={comp.src}
         onChange={(src) => setComp({ ...comp, src })}
+        type="image"
       />
       <SelectInput
         label="Fit"

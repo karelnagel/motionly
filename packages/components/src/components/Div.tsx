@@ -4,7 +4,7 @@ import { DivProps } from "../types/components";
 
 export const defaultDivProps: DivProps = {
   comp: "div",
-  bg: "#FF0000FF",
+  bg: "#00000000",
   children: [],
 };
 
