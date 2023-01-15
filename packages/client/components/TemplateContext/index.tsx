@@ -127,6 +127,7 @@ export const TemplateContext = ({
     updateTree((comps) => {
       return comps.filter((comp) => comp.id !== id);
     });
+    setSelected(template.comps.find((c) => c.id !== id)?.id || "");
   };
 
   const setRandomIds = (comp: ComponentProps) => {
@@ -142,13 +143,15 @@ export const TemplateContext = ({
     parentId = selectedParentId
   ) => {
     if (!comp) return;
+
+    const newComp = setRandomIds(comp);
     updateTree((comps, parent) => {
       if (parent === parentId) {
-        const newComp = setRandomIds(comp);
         return [...comps, newComp];
       }
       return comps;
     });
+    setSelected(newComp.id);
   };
 
   const changeParent = (newParentId: string) => {
