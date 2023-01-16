@@ -1,7 +1,6 @@
 import { ClientSessionProvider } from "../contexts/ClientSessionProvider";
 import { getServerSession } from "../lib/getServerSession";
 import "./globals.css";
-import { Login } from "../components/Login";
 
 export default async function RootLayout({
   children,
@@ -13,7 +12,7 @@ export default async function RootLayout({
     <html lang="en">
       <ClientSessionProvider session={session}>
         <head />
-        <body className="dark">{session ? children : <Login />}</body>
+        <body className="dark">{children}</body>
       </ClientSessionProvider>
     </html>
   );

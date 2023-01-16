@@ -1,12 +1,14 @@
 import { ReactNode } from "react";
-import { LogOut } from "../../components/Logout";
+import { Login } from "../../components/Login";
 import Image from "next/image";
-import { MdAccountCircle, MdOutlineHome, MdPermMedia } from "react-icons/md";
+import { MdOutlineHome, MdPermMedia } from "react-icons/md";
 import { SideBarButton } from "../../components/SideBarButton";
 import Link from "next/link";
 import { asiusUrl } from "../../env";
+import { getServerSession } from "../../lib/getServerSession";
 
 export default async function Layout({ children }: { children: ReactNode }) {
+  const session = await getServerSession();
   return (
     <div className="grid grid-cols-5 min-h-screen overflow-hidden">
       <div className="relative">
@@ -19,15 +21,19 @@ export default async function Layout({ children }: { children: ReactNode }) {
               <SideBarButton href="/" text="Home">
                 <MdOutlineHome />
               </SideBarButton>
-              <SideBarButton href="/templates" text="Templates">
-                <MdPermMedia />
-              </SideBarButton>
-              <SideBarButton href="/account" text="Account">
-                <MdAccountCircle />
-              </SideBarButton>
+              {session?.user && (
+                <>
+                  <SideBarButton href="/projects" text="Projects">
+                    <MdPermMedia />
+                  </SideBarButton>
+                  {/* <SideBarButton href="/account" text="Account">
+                    <MdAccountCircle />
+                  </SideBarButton> */}
+                </>
+              )}
             </div>
           </div>
-          <LogOut />
+          <Login />
         </div>
       </div>
       <div className="col-span-4 bg-base-300 p-4 overflow-y-auto">
