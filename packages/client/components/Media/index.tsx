@@ -57,6 +57,13 @@ export const MediaPopup = ({
     });
     const { url, key } = response.data;
     await axios.put(url, file);
+    if (type === "video") {
+      const res = await axios.post("/api/transcribe", {
+        url: getMediaUrl(key),
+        key,
+      });
+      console.log(res.data);
+    }
     onChange(getMediaUrl(key));
     setFile(undefined);
     if (ref.current) ref.current.value = "";
