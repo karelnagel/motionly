@@ -12,7 +12,7 @@ export default async function NewTemplate(
   if (req.method === "POST")
     result = await postNewTemplate(req.body, { req, res });
 
-  if (!result) return res.status(404).end;
+  if (!result) return res.status(404).end();
   return res.status(200).json(result);
 }
 

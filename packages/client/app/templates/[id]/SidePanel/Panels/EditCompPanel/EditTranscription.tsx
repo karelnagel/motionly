@@ -3,7 +3,8 @@ import {
   TranscriptionProps,
   TranscriptionWord,
 } from "@asius/components";
-import { ReactNode } from "react";
+import axios from "axios";
+import { useEffect } from "react";
 import { useState } from "react";
 import {
   BooleanInput,
@@ -11,7 +12,9 @@ import {
   SelectInput,
   TextInput,
 } from "../../../../../../components/inputs";
+import { Media } from "../../../../../../components/Media";
 import { ShowJson } from "../../../../../../components/ShowJson";
+import { getMediaUrl } from "../../../../../../helpers";
 import { EditSection } from "./EditSection";
 import { EditTextStyle } from "./EditTextStyle";
 import { SetComp } from "./index";
@@ -23,8 +26,19 @@ export const EditTranscription = ({
   comp: TranscriptionProps;
   setComp: SetComp;
 }) => {
+  const [media, setMedia] = useState<string>("");
+
+  useEffect(() => {
+    if (!media) return;
+    const key = media.replace(getMediaUrl(""), "");
+    axios
+      .get("/api/transcribe", { params: { key } })
+      .then((res) => setComp({ ...comp, src: res.data }));
+  }, [media]);
+
   return (
     <EditSection title="Transcription">
+      <Media type="video" value={media} onChange={(e) => setMedia(e)} />
       <ShowJson
         label="Words"
         json={JSON.stringify(comp.src, null, 2)}

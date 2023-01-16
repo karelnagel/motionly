@@ -1,40 +1,45 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import Link from "next/link";
-import { asiusUrl } from "../env";
-import { getRandomImage } from "../helpers";
 
 export function Login() {
+  const { data } = useSession();
   return (
-    <div className="h-screen w-full relative flex items-center justify-center bg-base-300">
-      <Image
-        alt="background"
-        src={getRandomImage()}
-        fill={true}
-        style={{ objectFit: "cover" }}
-      />
-      <div className="relative bg-base-100 shadow-2xl pt-4 pb-10 px-10 rounded-lg flex flex-col items-center max-w-[400px] w-full ">
-        <Link href={asiusUrl} target="_blank">
-          <Image src="/asius.png" alt="logo" width={200} height={60} />
-        </Link>
-        <div className="h-full flex flex-col space-y-6 items-center">
-          <p className="text-xl font-bold">Welcome back!</p>
-          <button
-            onClick={() => signIn("google")}
-            className="shadow-lg flex space-x-2 items-center  p-2 rounded-lg bg-base-200 w-[300px]"
-          >
+    <button
+      onClick={() => (data?.user ? signOut() : signIn("google"))}
+      className="rounded-lg bg-base-300 duration-200 group overflow-hidden"
+    >
+      {data?.user ? (
+        <div className="flex rounded-lg items-center ">
+          {data.user.image && (
             <Image
-              src="/icons/google.webp"
-              alt="google"
+              src={data.user.image}
               width={30}
               height={30}
+              alt="user"
+              className="rounded-lg object-cover m-2"
             />
-            <p className="w-full text-center font-medium">Login with Google</p>
-          </button>
+          )}
+          <div className="text-primary-content flex flex-col items-start">
+            <p className="text-lg font-bold">{data.user.name}</p>
+            <p className="group-hover:h-auto h-0 duration-200 opacity-0 group-hover:opacity-100">
+              Log out
+            </p>
+          </div>
         </div>
-      </div>
-    </div>
+      ) : (
+        <div className="flex items-center text-lg whitespace-nowrap">
+          <Image
+            src="/icons/google.webp"
+            alt="google"
+            width={30}
+            height={30}
+            className="m-2"
+          />
+          <p className="w-full text-center font-medium">Login with Google</p>{" "}
+        </div>
+      )}
+    </button>
   );
 }

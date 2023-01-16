@@ -1,20 +1,36 @@
+import { SearchBar } from "../../components/SearchBar";
 import { Template } from "../../components/Template";
 import { Title } from "../../components/Title";
-import { getServerSession } from "../../lib/getServerSession";
 import { prisma } from "../../lib/prisma";
 
-export default async function Page() {
-  const session = await getServerSession();
+export const revalidate = 1;
+
+export default async function Templates({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string };
+}) {
+  const search = searchParams?.search || "";
+  const comp = searchParams?.comp || "";
   const templates = await prisma.template.findMany({
     where: {
-      user: { email: session?.user?.email },
+      public: true,
+      AND: [
+        {
+          OR: [
+            { name: { contains: search } },
+            { description: { contains: search } },
+          ],
+        },
+        { comps: { contains: `${comp}` } }, // Todo make more specific
+      ],
     },
-    include: { user: true },
-    orderBy: { updatedAt: "desc" },
+    orderBy: { createdAt: "desc" },
   });
   return (
-    <div className="">
-      <Title text="Your Projects" />
+    <div>
+      <Title text="Find Template To Start" />
+      <SearchBar value={search} comp={comp} />
       <div className="grid grid-cols-4 gap-4 mt-10">
         <Template
           id="blank"

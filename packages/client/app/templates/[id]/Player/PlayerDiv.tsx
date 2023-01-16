@@ -10,21 +10,33 @@ export const PlayerDiv = ({
 }) => {
   const playerDivRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState<number>();
-  useEffect(() => {
+
+  const getScale = () => {
     if (
       playerDivRef.current?.clientHeight &&
       playerDivRef.current?.clientWidth
     ) {
-      const scaleX = playerDivRef.current?.clientWidth / 1080;
-      const scaleY = playerDivRef.current?.clientHeight / 1080;
+      const scaleX = playerDivRef.current.clientWidth / 1080;
+      const scaleY = playerDivRef.current.clientHeight / 1080;
       setScale(Math.min(scaleX, scaleY));
     }
+  };
+  useEffect(() => {
+    new ResizeObserver(() => {
+      getScale();
+    }).observe(playerDivRef.current as Element);
+    return () => {
+      new ResizeObserver(() => {
+        getScale();
+      }).disconnect();
+    };
   }, []);
+
   return (
     <div className="w-full relative h-full overflow-hidden flex flex-col">
       <div
         ref={playerDivRef}
-        className="flex items-center justify-center h-full w-full relative m-4"
+        className="flex items-center justify-center h-full relative m-4"
       >
         <Player playerRef={playerRef} scale={scale || 0.2} />
       </div>

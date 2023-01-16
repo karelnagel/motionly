@@ -45,7 +45,7 @@ export const TimelineComp = ({
       >
         <div
           onClick={() => setSelected(comp.id)}
-          className={`relative flex h-[40px] items-center px-2 rounded-sm overflow-hidden ${
+          className={`relative flex h-[40px] items-center px-2 rounded-sm overflow-hidden justify-between ${
             isSelected
               ? "bg-gradient-to-r from-secondary to bg-primary text-primary-content"
               : "bg-base-300"
@@ -59,7 +59,13 @@ export const TimelineComp = ({
               parentDuration={duration}
             />
           ))}
-          <div className="absolute right-3 text-xl flex space-x-2 leading-none items-center h-full top-0">
+          <div className="whitespace-nowrap overflow-hidden text-ellipsis w-full">
+            <p className="sticky left-0 right-0">
+              {comp.comp}-{comp.id}
+            </p>
+          </div>
+
+          <div className="text-xl flex space-x-2 leading-none items-center h-full top-0">
             {hasChildren && !isSelected && selected && !isPanel(selected) && (
               <div
                 className="tooltip tooltip-left"
@@ -106,9 +112,6 @@ export const TimelineComp = ({
               </div>
             )}
           </div>
-          <p className="relative">
-            {comp.comp}-{comp.id}
-          </p>
         </div>
         {hasChildren && comp.children.length > 0 && !minimize && (
           <div className="space-y-2 py-2">
