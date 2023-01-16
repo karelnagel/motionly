@@ -25,6 +25,11 @@ export const PlayerDiv = ({
     new ResizeObserver(() => {
       getScale();
     }).observe(playerDivRef.current as Element);
+    return () => {
+      new ResizeObserver(() => {
+        getScale();
+      }).disconnect();
+    };
   }, []);
 
   return (
