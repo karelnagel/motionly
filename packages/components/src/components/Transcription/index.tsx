@@ -27,10 +27,11 @@ export const Transcription = ({
   const [linesRendered, setLinesRendered] = useState(0);
   const lineHeight = (textStyle.lineHeight || 1) * (textStyle.fontSize || 1);
   const ref = useRef<HTMLDivElement>(null);
-  const height = ref.current?.parentElement?.offsetHeight || 1;
-  const linesPerPage = Math.floor(height / lineHeight);
+  const [linesPerPage, setLinesPerPage] = useState(1);
 
   useEffect(() => {
+    const height = ref.current?.parentElement?.offsetHeight || 1;
+    setLinesPerPage(Math.floor(height / lineHeight));
     if (words && words.length > 0 && linesPerPage) {
       const linesRendered = Math.round(
         (windowRef.current?.getBoundingClientRect().height as number) /
