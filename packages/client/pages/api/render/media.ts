@@ -2,7 +2,7 @@ import { RenderMediaInput, RenderMediaOutput } from "@asius/sdk";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ReqRes } from "../../../types";
 import { renderMediaOnLambda } from "@remotion/lambda";
-import { functionName, region, serveUrl } from "../../../env";
+import { functionName, region, serveUrl, composition } from "../../../env";
 import { getServerSession } from "../../../lib/getServerSession";
 import { applyModifications, TemplateType } from "@asius/components";
 
@@ -19,6 +19,7 @@ export const renderMedia = async (
   reqRes?: ReqRes
 ): Promise<RenderMediaOutput | null> => {
   const session = await getServerSession(reqRes);
+  if (!session?.user?.email) return null;
   const inputProps: TemplateType = {
     ...template,
     comps: applyModifications(comps, modifications),
@@ -26,7 +27,7 @@ export const renderMedia = async (
   const { renderId } = await renderMediaOnLambda({
     serveUrl,
     codec: "h264",
-    composition: "Main",
+    composition,
     functionName,
     region,
     inputProps,

@@ -1,3 +1,5 @@
+import { mediaBucket } from "../env";
+
 export const percentToHex = (p: number) => {
   const intValue = Math.round((p / 100) * 255); // map percent to nearest integer (0 - 255)
   const hexValue = intValue.toString(16); // get hexadecimal representation
@@ -54,5 +56,5 @@ export const isPanel = (selected: string) => {
 };
 
 export const getMediaUrl = (key: string) => {
-  return `https://asius-media.s3.amazonaws.com/${key}`;
+  return `https://${mediaBucket}.s3.amazonaws.com/${key}`;
 };

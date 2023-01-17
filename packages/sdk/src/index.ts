@@ -7,3 +7,10 @@ export * from "./api/templates/delete";
 export * from "./api/templates/get";
 export * from "./api/templates/new";
 export * from "./api/templates/update";
+
+export * from "./api/media/getTranscription";
+export * from "./api/media/startTranscription";
+export * from "./api/media/upload";
+export * from "./api/media/get";
+
+export * from "./api/ai";

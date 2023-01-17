@@ -3,7 +3,7 @@ import {
   TranscriptionProps,
   TranscriptionWord,
 } from "@asius/components";
-import axios from "axios";
+import { getTranscription } from "@asius/sdk";
 import { useEffect } from "react";
 import { useState } from "react";
 import {
@@ -31,9 +31,10 @@ export const EditTranscription = ({
   useEffect(() => {
     if (!media) return;
     const key = media.replace(getMediaUrl(""), "");
-    axios
-      .get("/api/transcribe", { params: { key } })
-      .then((res) => setComp({ ...comp, src: res.data }));
+    getTranscription(key).then((res) => {
+      if (!res) return;
+      setComp({ ...comp, src: res.transcription });
+    });
   }, [media]);
 
   return (

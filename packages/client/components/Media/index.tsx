@@ -1,4 +1,4 @@
-import axios from "axios";
+import { getMedia, uploadMedia } from "@asius/sdk";
 import { useEffect, useRef, useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import { getMediaUrl } from "../../helpers";
@@ -17,7 +17,7 @@ export const Media = ({
   return (
     <div className="col-span-2 text-sm grid grid-cols-3 gap-3 items-center">
       <p className="col-span-2 text-ellipsis overflow-hidden whitespace-nowrap">
-        {value.split("/").reverse()[0]}
+        {value?.split("/")?.pop()}
       </p>
       <button onClick={() => setShow((s) => !s)} className="btn btn-sm">
         Change
@@ -51,43 +51,16 @@ export const MediaPopup = ({
 
   const uploadFile = async () => {
     if (!file) return;
-    const response = await axios.post("/api/media/signed-url", {
-      name: file.name,
-      type: file.type,
-    });
-    const { url, key } = response.data;
-    await axios.put(url, file);
-    if (type === "video") {
-      const res = await axios.post("/api/transcribe", {
-        url: getMediaUrl(key),
-        key,
-      });
-      console.log(res.data);
-    }
+    const key = await uploadMedia(file);
+    if (!key) return alert("Error uploading file");
     onChange(getMediaUrl(key));
     setFile(undefined);
     if (ref.current) ref.current.value = "";
   };
 
   const getFiles = async () => {
-    const response = await axios.get("/api/media");
-    const files = response.data.filter((f: string) => {
-      const file = f.toLowerCase();
-      if (type === "video")
-        return (
-          file.includes(".mp4") ||
-          file.includes(".mkv") ||
-          file.includes(".mp3")
-        );
-      if (type === "gif") return file.includes(".gif");
-      else
-        return (
-          file.includes(".png") ||
-          file.includes(".jpg") ||
-          file.includes(".jpeg") ||
-          file.includes(".svg")
-        );
-    });
+    const files = await getMedia(type);
+    if (!files) return alert("Error getting files");
     setFiles(files);
   };
 
@@ -142,21 +115,22 @@ export const MediaPopup = ({
                 <div
                   key={file}
                   onClick={() => onChange(getMediaUrl(file))}
-                  className="w-20 h-20 bg-base-300 rounded-lg m-2 flex items-center justify-center cursor-pointer relative"
+                  className=" w-20  bg-base-300 flex flex-col items-center m-2  whitespace-nowrap text-sm overflow-hidden cursor-pointer relative"
                 >
                   {type !== "video" ? (
                     <img
                       src={getMediaUrl(file)}
-                      className="w-full h-full object-contain"
+                      className=" h-20 object-contain"
                     />
                   ) : (
-                    <video src={getMediaUrl(file)} className="w-full h-full" />
+                    <video src={getMediaUrl(file)} className=" h-20" />
                   )}
                   {value.includes(file) && (
                     <p className="absolute font-bold bg-base-200 h-full w-full flex items-center justify-center bg-opacity-50">
                       Selected
                     </p>
                   )}
+                  <p>{file?.split("/")?.pop()}</p>
                 </div>
               ))
             ) : (
