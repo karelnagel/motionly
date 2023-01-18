@@ -19,6 +19,7 @@ export default async function Progress(
 
 export const getProgress = async (
   { renderId }: GetProgressInput,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   reqRes?: ReqRes
 ): Promise<GetProgressOutput | null> => {
   const {

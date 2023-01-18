@@ -103,6 +103,7 @@ export const Graph = ({
         : 1;
     return (
       <svg
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ref={ref as any}
         viewBox={`0 0 ${width} ${height}`}
         style={style}
