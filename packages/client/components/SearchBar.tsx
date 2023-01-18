@@ -34,7 +34,7 @@ export const SearchBar = ({ value, comp }: { value: string; comp: string }) => {
   return (
     <form
       onSubmit={submit}
-      className="my-3 flex space-x-3 items-center justify-between"
+      className="my-3 flex  justify-between flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2 md:items-center"
     >
       <input
         type="text"

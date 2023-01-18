@@ -22,7 +22,7 @@ export const SideBarButton = ({
       } duration-150 px-3 py-1 rounded-lg font-bold text-xl text-base-content flex items-center hover:scale-105 space-x-2`}
     >
       {children}
-      <p className="text-lg leading-none">{text}</p>
+      <p className="text-lg leading-none hidden sm:block">{text}</p>
     </Link>
   );
 };

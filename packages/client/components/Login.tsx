@@ -21,7 +21,7 @@ export function Login() {
               className="rounded-lg object-cover"
             />
           )}
-          <div className="text-primary-content flex flex-col items-start relative text-lg font-bold ">
+          <div className="text-primary-content flex-col items-start relative text-lg font-bold hidden sm:flex">
             <p className="group-hover:opacity-0">{data.user.name}</p>
             <p className="hidden group-hover:block absolute">Log out</p>
           </div>
@@ -35,7 +35,9 @@ export function Login() {
             height={30}
             className=""
           />
-          <p className="w-full text-center font-medium">Login with Google</p>{" "}
+          <p className="w-full text-center font-medium hidden sm:flex">
+            Login with Google
+          </p>
         </div>
       )}
     </button>

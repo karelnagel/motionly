@@ -31,7 +31,7 @@ export default async function Templates({
     <div>
       <Title text="Find Template To Start" />
       <SearchBar value={search} comp={comp} />
-      <div className="grid grid-cols-4 gap-4 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5  gap-4 mt-10">
         <Template
           id="blank"
           name="Start with empty project"
