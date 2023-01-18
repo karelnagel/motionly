@@ -35,10 +35,9 @@ export default async function SignedUrl(
         : null;
       return res
         .status(200)
-        .json({ transcriptions: transcriptionToJson(transcript), status });
+        .json({ transcription: transcriptionToJson(transcript), status });
     } catch (e) {
-      console.log(e);
-      return res.status(500).end("Error getting transcription");
+      return res.status(404).end("Transcription not found");
     }
   }
 
@@ -63,8 +62,10 @@ export default async function SignedUrl(
   return res.status(404).end("Not found");
 }
 
-const transcriptionToJson = (transcription: any): TranscriptionWord[] => {
-  if (!transcription) return [];
+const transcriptionToJson = (
+  transcription: any
+): TranscriptionWord[] | undefined => {
+  if (!transcription) return;
   const items = transcription.results.items;
   return items
     .map((item: any, i: number) => {

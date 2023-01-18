@@ -13,7 +13,6 @@ export const getTranscription = async (
     });
     return result.data;
   } catch (e) {
-    console.log(e);
     return null;
   }
 };

@@ -1,7 +1,7 @@
 import { getMedia, uploadMedia } from "@asius/sdk";
 import { useEffect, useRef, useState } from "react";
-import { IoIosClose } from "react-icons/io";
 import { getMediaUrl } from "../../helpers";
+import { Popup } from "../Popup";
 
 export const Media = ({
   value,
@@ -68,84 +68,66 @@ export const MediaPopup = ({
   }, [file]);
 
   return (
-    <div
-      onClick={() => hide()}
-      className="fixed top-0 left-0 h-full w-full flex items-center justify-center bg-black bg-opacity-40 z-[3000]"
-    >
-      <div
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-        className="bg-base-300 rounded-lg p-10 flex space-x-3 items-center relative"
-      >
-        <IoIosClose
-          onClick={hide}
-          className="absolute top-3 right-3 text-4xl cursor-pointer"
-        />
-        {type !== "video" ? (
-          <img
-            src={value}
-            alt="selected"
-            className="w-60 h-60 object-contain"
-          />
-        ) : (
-          <video src={value} className="w-60 h-60 object-contain" controls />
-        )}
+    <Popup hide={hide}>
+      {type !== "video" ? (
+        <img src={value} alt="selected" className="w-60 h-60 object-contain" />
+      ) : (
+        <video src={value} className="w-60 h-60 object-contain" controls />
+      )}
 
-        <div>
-          <p className="text-xl font-semibold">Upload new file</p>
-          <div className="flex items-center">
-            <input
-              ref={ref}
-              type="file"
-              onChange={(e) => setFile(e.target.files?.[0])}
-            />
-            <button
-              disabled={!file}
-              className="btn btn-sm btn-primary"
-              onClick={uploadFile}
-            >
-              UPLOAD
-            </button>
-          </div>
-          <p className="text-xl font-semibold mt-4">Select from existing</p>
-          <div className="grid grid-cols-5 gap-2 max-h-60 overflow-auto">
-            {files ? (
-              files.map((file) => (
-                <div
-                  key={file}
-                  onClick={() => onChange(getMediaUrl(file))}
-                  className=" w-20  bg-base-300 flex flex-col items-center m-2  whitespace-nowrap text-sm overflow-hidden cursor-pointer relative"
-                >
-                  {type !== "video" ? (
-                    <img
-                      src={getMediaUrl(file)}
-                      className=" h-20 object-contain"
-                    />
-                  ) : (
-                    <video src={getMediaUrl(file)} className=" h-20" />
-                  )}
-                  {value.includes(file) && (
-                    <p className="absolute font-bold bg-base-200 h-full w-full flex items-center justify-center bg-opacity-50">
-                      Selected
-                    </p>
-                  )}
-                  <p>{file?.split("/")?.pop()}</p>
-                </div>
-              ))
-            ) : (
-              <p>Loading...</p>
-            )}
-          </div>
-          <p className="text-xl font-semibold mt-4">From url</p>
+      <div>
+        <p className="text-xl font-semibold">Upload new file</p>
+        <div className="flex items-center">
           <input
-            type="text"
-            className="input w-full"
-            value={value}
-            onChange={(e) => onChange(e.currentTarget.value)}
+            ref={ref}
+            type="file"
+            onChange={(e) => setFile(e.target.files?.[0])}
           />
+          <button
+            disabled={!file}
+            className="btn btn-sm btn-primary"
+            onClick={uploadFile}
+          >
+            UPLOAD
+          </button>
         </div>
+        <p className="text-xl font-semibold mt-4">Select from existing</p>
+        <div className="grid grid-cols-5 gap-2 max-h-60 overflow-auto">
+          {files ? (
+            files.map((file) => (
+              <div
+                key={file}
+                onClick={() => onChange(getMediaUrl(file))}
+                className=" w-20  bg-base-300 flex flex-col items-center m-2  whitespace-nowrap text-sm overflow-hidden cursor-pointer relative"
+              >
+                {type !== "video" ? (
+                  <img
+                    src={getMediaUrl(file)}
+                    className=" h-20 object-contain"
+                  />
+                ) : (
+                  <video src={getMediaUrl(file)} className=" h-20" />
+                )}
+                {value.includes(file) && (
+                  <p className="absolute font-bold bg-base-200 h-full w-full flex items-center justify-center bg-opacity-50">
+                    Selected
+                  </p>
+                )}
+                <p>{file?.split("/")?.pop()}</p>
+              </div>
+            ))
+          ) : (
+            <p>Loading...</p>
+          )}
+        </div>
+        <p className="text-xl font-semibold mt-4">From url</p>
+        <input
+          type="text"
+          className="input w-full"
+          value={value}
+          onChange={(e) => onChange(e.currentTarget.value)}
+        />
       </div>
-    </div>
+    </Popup>
   );
 };
