@@ -1,5 +1,6 @@
 import { PlayerRef } from "@remotion/player";
 import { RefObject, useEffect, useRef, useState } from "react";
+import { useTemplate } from "../../../../hooks/useTemplate";
 import { Player } from "./Player";
 import { PlayerControls } from "./PlayerControls";
 
@@ -10,14 +11,14 @@ export const PlayerDiv = ({
 }) => {
   const playerDivRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState<number>();
-
+  const { template } = useTemplate();
   const getScale = () => {
     if (
       playerDivRef.current?.clientHeight &&
       playerDivRef.current?.clientWidth
     ) {
-      const scaleX = playerDivRef.current.clientWidth / 1080;
-      const scaleY = playerDivRef.current.clientHeight / 1080;
+      const scaleX = playerDivRef.current.clientWidth / template.width;
+      const scaleY = playerDivRef.current.clientHeight / template.height;
       setScale(Math.min(scaleX, scaleY));
     }
   };
