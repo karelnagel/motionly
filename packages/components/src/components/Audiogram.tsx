@@ -31,10 +31,13 @@ export const Audiogram = ({
   style,
   className,
   multiplier = 1,
+  startFrom,
 }: AudiogramProps & StyleAndClass) => {
   const ref = useRef<HTMLDivElement>(null);
-  const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  const currentFrame = useCurrentFrame();
+  let frame = startFrom ? currentFrame - startFrom * fps : currentFrame;
+  if (frame < 0) frame = 0;
   const audioData = useAudioData(src);
   const width = ref.current?.parentElement?.offsetWidth || 1;
   const height = ref.current?.parentElement?.offsetHeight || 1;

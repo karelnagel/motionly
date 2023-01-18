@@ -63,6 +63,7 @@ export type TextStyle = {
 export type TranscriptionProps = {
   comp: "transcription";
   src: TranscriptionWord[];
+  startFrom?: number;
   textStyle: TextStyle;
   scrollByPage?: boolean;
   animationType: keyof typeof TranscriptionAnimationTypes;
