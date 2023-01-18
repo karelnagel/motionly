@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import {
   ComposableMap,
@@ -24,7 +25,7 @@ export const defaultMapProps: MapProps = {
 export const Map = ({
   zoom,
   fill,
-  url: mapUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json",
+  url = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json",
   stroke,
   strokeWidth,
   style,
@@ -36,18 +37,22 @@ export const Map = ({
   markerSize,
 }: MapProps & StyleAndClass) => {
   const coordinates: [number, number] = [lng, lat];
-  const [handle] = useState(delayRender());
+  const [handle] = useState(() => delayRender());
   const [geography, setGeography] = useState(null);
 
   useEffect(() => {
-    fetch(mapUrl)
-      .then((g) => g.json())
-      .then((g) => {
-        setGeography(g);
+    const effect = async () => {
+      try {
+        const res = await axios.get(url, { timeout: 2000 });
+        setGeography(res.data);
         continueRender(handle);
-      })
-      .catch();
-  }, [mapUrl]);
+      } catch (err) {
+        console.log("Map failed to load", err);
+        continueRender(handle);
+      }
+    };
+    effect();
+  }, [url]);
 
   if (!geography) return null;
   return (

@@ -1,6 +1,5 @@
 import React from "react";
 import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
-import Image from "next/image";
 import useNextSeoProps from "./hooks/useNextSeoProps";
 import { Logo } from "./components/Logo";
 import { useRouter } from "next/router";
@@ -13,12 +12,16 @@ const config: DocsThemeConfig = {
   gitTimestamp: false,
   primaryHue: 210,
   chat: {
-    icon: <Image src="/twitter.ico" alt="twitter" width={28} height={28} />,
-    link: "https://twitter.com",
+    link: "https://discord.gg/U8gF8jEuJA",
   },
-  docsRepositoryBase: "https://github.com/karelnagel",
+  // docsRepositoryBase: "https://github.com/karelnagel",
   footer: {
     text: "Asius",
+  },
+  banner: {
+    text: "In beta, feedback is welcome in the discord",
+    key: "Beta",
+    dismissible: true,
   },
   useNextSeoProps,
   head: () => {

@@ -1,5 +1,11 @@
-import { useRef } from "react";
-import { spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { useEffect, useRef, useState } from "react";
+import {
+  continueRender,
+  delayRender,
+  spring,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
 import { StyleAndClass } from "../types";
 import { GraphProps } from "../types/components";
 
@@ -32,8 +38,16 @@ export const Graph = ({
   const maxValue = max || Math.max(...values);
 
   const ref = useRef<HTMLDivElement>(null);
-  const width = ref.current?.parentElement?.offsetWidth || 1;
-  const height = ref.current?.parentElement?.offsetHeight || 1;
+  const [width, setWidth] = useState(1);
+  const [height, setHeight] = useState(1);
+  const [handle] = useState(() => delayRender());
+
+  useEffect(() => {
+    if (!ref.current?.parentElement) return;
+    setHeight(ref.current.parentElement.offsetHeight);
+    setWidth(ref.current.parentElement.offsetWidth);
+    continueRender(handle);
+  }, []);
 
   if (props.type === "bar")
     return (
@@ -89,6 +103,7 @@ export const Graph = ({
         : 1;
     return (
       <svg
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ref={ref as any}
         viewBox={`0 0 ${width} ${height}`}
         style={style}

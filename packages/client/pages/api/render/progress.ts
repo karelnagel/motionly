@@ -3,7 +3,6 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { ReqRes } from "../../../types";
 import { getRenderProgress } from "@remotion/lambda";
 import { functionName, region, bucketName } from "../../../env";
-import { getServerSession } from "../../../lib/getServerSession";
 
 export default async function Progress(
   req: NextApiRequest,
@@ -20,11 +19,18 @@ export default async function Progress(
 
 export const getProgress = async (
   { renderId }: GetProgressInput,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   reqRes?: ReqRes
 ): Promise<GetProgressOutput | null> => {
-  const session = await getServerSession(reqRes);
-  const { overallProgress, costs, outputFile, fatalErrorEncountered, done } =
-    await getRenderProgress({ bucketName, functionName, region, renderId });
+  const {
+    overallProgress,
+    costs,
+    outputFile,
+    fatalErrorEncountered,
+    done,
+    errors,
+  } = await getRenderProgress({ bucketName, functionName, region, renderId });
+  if (errors.length > 0) console.log(errors);
   return {
     progress: overallProgress,
     cost: costs.accruedSoFar,

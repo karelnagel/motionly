@@ -8,7 +8,7 @@ export const Hero = () => {
   const isLight = theme === "light";
   return (
     <div className="relative overflow-hidden">
-      <div className="relative flex flex-col items-center w-full py-40 space-y-14">
+      <div className="relative flex flex-col items-center w-full pt-20 md:pt-40 space-y-14">
         <div className="relative">
           <svg
             viewBox="0 0 200 200"
@@ -32,27 +32,28 @@ export const Hero = () => {
         </div>
 
         <div className="relative text-center max-w-[800px] space-y-6 flex flex-col items-center">
-          <h1 className="title text-[70px] font-extrabold leading-[1]">
+          <h1 className="title text-[50px] md:text-[70px] font-extrabold leading-[1]">
             Automate your videos
           </h1>
-          <p className="text-[24px] leading-[1.6] font-medium text-center max-w-[550px] opacity-90">
+          <p className=" text-[18px] md:text-[24px] leading-[1.6] font-medium text-center max-w-[550px] opacity-90">
             With Asius you can automate your video editing and integrate videos
             with dynamic data on your site.
           </p>
         </div>
 
-        <div className="flex space-x-10 text-2xl font-bold">
+        <div className="flex space-x-5 md:space-x-10 text-xl md:text-2xl font-bold">
           <Link href={appUrl}>
-            <button className=" rounded-lg p-3 bg-gradient-to-r from-pink-500 to-blue-600  w-44 text-white">
+            <button className=" rounded-lg p-3 bg-gradient-to-r from-pink-500 to-blue-600 w-36 md:w-44 text-white">
               Get Started
             </button>
           </Link>
           <Link href="/docs">
-            <button className="border-4 rounded-lg p-2 w-44">Docs</button>
+            <button className="border-4 rounded-lg p-2 w-36 md:w-44">
+              Docs
+            </button>
           </Link>
         </div>
       </div>
-      <div className="absolute bottom-0 h-1 w-full bg-gradient-to-l from-pink-500 to-blue-600 rounded-lg" />
     </div>
   );
 };
