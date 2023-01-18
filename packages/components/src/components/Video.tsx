@@ -1,4 +1,8 @@
-import { OffthreadVideo, Video as RemotionVideo } from "remotion";
+import {
+  OffthreadVideo,
+  useVideoConfig,
+  Video as RemotionVideo,
+} from "remotion";
 import { videoUrl } from "../helpers";
 import { StyleAndClass } from "../types";
 import { VideoProps } from "../types/components";
@@ -22,7 +26,14 @@ export const Video = ({
   volume,
   startFrom,
 }: VideoProps & StyleAndClass) => {
-  const props = { src, className, muted, volume, startFrom };
+  const { fps } = useVideoConfig();
+  const props = {
+    src,
+    className,
+    muted,
+    volume,
+    startFrom: startFrom ? Math.round(startFrom * fps) : undefined,
+  };
   if (!src) return null;
   if (offthread)
     return (

@@ -18,9 +18,12 @@ export const Transcription = ({
   animationStyle,
   animationType,
   scrollByPage,
+  startFrom,
 }: TranscriptionProps & StyleAndClass) => {
-  const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  const currentFrame = useCurrentFrame();
+  let frame = startFrom ? currentFrame - startFrom * fps : currentFrame;
+  if (frame < 0) frame = 0;
   const windowRef = useRef<HTMLDivElement>(null);
   const zoomRef = useRef<HTMLDivElement>(null);
   const [handle] = useState(() => delayRender());

@@ -1,4 +1,4 @@
-import { Audio as RemotionAudio } from "remotion";
+import { Audio as RemotionAudio, useVideoConfig } from "remotion";
 import { videoUrl } from "../helpers";
 import { StyleAndClass } from "../types";
 import { AudioProps } from "../types/components";
@@ -15,6 +15,13 @@ export const Audio = ({
   src,
   volume,
 }: AudioProps & StyleAndClass) => {
+  const { fps } = useVideoConfig();
   if (!src) return null;
-  return <RemotionAudio startFrom={startFrom} src={src} volume={volume} />;
+  return (
+    <RemotionAudio
+      startFrom={startFrom ? Math.floor(startFrom * fps) : undefined}
+      src={src}
+      volume={volume}
+    />
+  );
 };

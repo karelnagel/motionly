@@ -61,6 +61,11 @@ export const EditTranscription = ({
         value={comp.scrollByPage}
         onChange={(scrollByPage) => setComp({ ...comp, scrollByPage })}
       />
+      <NumberInput
+        label="start"
+        value={comp.startFrom}
+        onChange={(startFrom) => setComp({ ...comp, startFrom })}
+      />
       <SelectInput
         label="Type"
         value={comp.animationType}
