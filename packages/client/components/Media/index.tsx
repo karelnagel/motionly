@@ -48,7 +48,6 @@ export const MediaPopup = ({
   const [file, setFile] = useState<File>();
   const [files, setFiles] = useState<string[]>();
   const ref = useRef<HTMLInputElement>(null);
-
   const uploadFile = async () => {
     if (!file) return;
     const key = await uploadMedia(file);
@@ -92,6 +91,7 @@ export const MediaPopup = ({
         ) : (
           <video src={value} className="w-60 h-60 object-contain" controls />
         )}
+
         <div>
           <p className="text-xl font-semibold">Upload new file</p>
           <div className="flex items-center">

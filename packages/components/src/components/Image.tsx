@@ -14,6 +14,7 @@ export const Image = ({
   style,
   className,
 }: ImageProps & StyleAndClass) => {
+  if (!src) return null;
   return (
     <Img
       src={src}

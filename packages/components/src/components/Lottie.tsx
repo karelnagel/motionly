@@ -25,7 +25,7 @@ export const Lottie = ({
   const [handle] = useState(() => delayRender("Loading Lottie animation"));
   const [animationData, setAnimationData] =
     useState<LottieAnimationData | null>(null);
-
+  if (!src) return null;
   useEffect(() => {
     fetch(src)
       .then((data) => data.json())

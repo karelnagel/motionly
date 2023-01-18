@@ -9,6 +9,7 @@ export const defaultGifProps: GifProps = {
 };
 
 export const Gif = ({ src, objectFit, style }: GifProps & StyleAndClass) => {
+  if (!src) return null;
   return (
     <RemotionGif
       src={src}

@@ -39,6 +39,7 @@ export const Audiogram = ({
   const width = ref.current?.parentElement?.offsetWidth || 1;
   const height = ref.current?.parentElement?.offsetHeight || 1;
 
+  if (!src) return null;
   if (!audioData) {
     return null;
   }

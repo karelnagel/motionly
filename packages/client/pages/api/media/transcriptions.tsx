@@ -21,7 +21,7 @@ export default async function SignedUrl(
     try {
       const { key } = req.query;
       if (!key) return res.status(400).end("No key");
-      
+
       const result = await transcribe
         .getTranscriptionJob({
           TranscriptionJobName: keyReplace(key as string),
