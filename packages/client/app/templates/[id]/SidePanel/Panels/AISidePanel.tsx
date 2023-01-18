@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
-import axios from "axios";
 import { PanelTitle } from "../../../../../components/PanelTitle";
 import { useTemplate } from "../../../../../hooks/useTemplate";
+import { postAI } from "@asius/sdk";
 
 export const AISidePanel = () => {
   const { template, setTemplate } = useTemplate();
@@ -13,17 +13,12 @@ export const AISidePanel = () => {
     if (status === "loading")
       return alert("Please wait for the previous request to finish");
     setStatus("loading");
-    try {
-      const result = await axios.post("/api/ai", {
-        comps: template.comps,
-        prompt,
-      });
-      console.log(result.data);
-      setTemplate({ ...template, comps: result.data });
+
+    const result = await postAI(template.comps, prompt);
+    if (!result) setStatus("error");
+    else {
+      setTemplate({ ...template, comps: result });
       setStatus("done");
-    } catch (e) {
-      console.log(e);
-      setStatus("error");
     }
   };
   const commentEnterSubmit = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {

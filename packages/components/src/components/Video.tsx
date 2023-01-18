@@ -23,6 +23,7 @@ export const Video = ({
   startFrom,
 }: VideoProps & StyleAndClass) => {
   const props = { src, className, muted, volume, startFrom };
+  if (!src) return null;
   if (offthread)
     return (
       <OffthreadVideo

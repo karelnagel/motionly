@@ -15,5 +15,6 @@ export const Audio = ({
   src,
   volume,
 }: AudioProps & StyleAndClass) => {
+  if (!src) return null;
   return <RemotionAudio startFrom={startFrom} src={src} volume={volume} />;
 };

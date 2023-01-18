@@ -3,7 +3,7 @@ import {
   TranscriptionProps,
   TranscriptionWord,
 } from "@asius/components";
-import axios from "axios";
+import { getMedia, getTranscription, startTranscription } from "@asius/sdk";
 import { useEffect } from "react";
 import { useState } from "react";
 import {
@@ -12,7 +12,7 @@ import {
   SelectInput,
   TextInput,
 } from "../../../../../../components/inputs";
-import { Media } from "../../../../../../components/Media";
+import { Popup } from "../../../../../../components/Popup";
 import { ShowJson } from "../../../../../../components/ShowJson";
 import { getMediaUrl } from "../../../../../../helpers";
 import { EditSection } from "./EditSection";
@@ -26,19 +26,9 @@ export const EditTranscription = ({
   comp: TranscriptionProps;
   setComp: SetComp;
 }) => {
-  const [media, setMedia] = useState<string>("");
-
-  useEffect(() => {
-    if (!media) return;
-    const key = media.replace(getMediaUrl(""), "");
-    axios
-      .get("/api/transcribe", { params: { key } })
-      .then((res) => setComp({ ...comp, src: res.data }));
-  }, [media]);
-
   return (
     <EditSection title="Transcription">
-      <Media type="video" value={media} onChange={(e) => setMedia(e)} />
+      <GetTranscriptions onChange={(src) => setComp({ ...comp, src })} />
       <ShowJson
         label="Words"
         json={JSON.stringify(comp.src, null, 2)}
@@ -121,6 +111,94 @@ const Word = ({
         onChange={(start) => setWord({ start })}
       />
       <NumberInput label="E" value={end} onChange={(end) => setWord({ end })} />
+    </div>
+  );
+};
+
+export const GetTranscriptions = ({
+  onChange,
+}: {
+  onChange: (e: TranscriptionWord[]) => void;
+}) => {
+  const [show, setShow] = useState(false);
+  const [videos, setVideos] = useState<string[]>();
+  const [selected, setSelected] = useState<string>();
+  const [status, setStatus] = useState<string>();
+  const [transcription, setTranscription] = useState<TranscriptionWord[]>();
+
+  useEffect(() => {
+    if (!show) return;
+    getMedia("video").then((res) => {
+      if (res) setVideos(res);
+    });
+  }, [show]);
+
+  const getTrans = async (video: string) => {
+    setStatus(undefined);
+    setTranscription(undefined);
+    setSelected(video);
+    const res = await getTranscription(video);
+    if (!res) {
+      setStatus(undefined);
+      return;
+    }
+    setTranscription(res.transcription);
+    setStatus(res.status);
+  };
+  const transcribe = async (video: string) => {
+    if (!video) return;
+    const res = await startTranscription(video, getMediaUrl(video));
+    if (!res) return alert("Error starting transcription");
+    getTrans(video);
+  };
+  console.log(transcription);
+  return (
+    <div className=" col-span-2 text-center">
+      <button onClick={() => setShow(true)} className="btn btn-sm">
+        Get Transcriptions from a video
+      </button>
+      {show && (
+        <Popup hide={() => setShow(false)}>
+          <p>Select video to transcribe</p>
+          <div className="grid grid-cols-5 gap-3 max-h-80 overflow-auto">
+            {videos?.map((v) => (
+              <div
+                key={v}
+                onClick={() => getTrans(v)}
+                className="w-24 flex flex-col items-center overflow-hidden cursor-pointer"
+              >
+                <video src={getMediaUrl(v)} className=" h-24" />
+                <p>{v?.split("/")?.pop()}</p>
+              </div>
+            ))}
+          </div>
+          {selected && (
+            <div>
+              <p>Selected: {selected?.split("/")?.pop()}</p>
+              <p>Transcription status: {status || "NONE"}</p>
+              {(!status || status === "FAILED") && (
+                <button
+                  className="btn btn-sm"
+                  onClick={() => transcribe(selected)}
+                >
+                  Transcribe
+                </button>
+              )}
+              {transcription && (
+                <button
+                  onClick={() => {
+                    onChange(transcription);
+                    setShow(false);
+                  }}
+                  className="btn btn-sm"
+                >
+                  Use Transcription
+                </button>
+              )}
+            </div>
+          )}
+        </Popup>
+      )}
     </div>
   );
 };

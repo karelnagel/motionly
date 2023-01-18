@@ -12,13 +12,13 @@ export const Template = ({
 }) => {
   return (
     <Link className="flex flex-col space-y-1" href={`/templates/${id}`}>
-      <div className="aspect-video relative bg-base-200 rounded-lg overflow-hidden">
+      <div className="aspect-square relative bg-base-200 rounded-lg overflow-hidden">
         {image && (
           <Image
             src={image}
             fill={true}
             alt="template"
-            className="object-cover"
+            className="object-contain"
           />
         )}
       </div>
