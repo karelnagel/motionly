@@ -23,7 +23,7 @@ export const TemplateSidePanel = () => {
     const newTemplate = await postNewTemplate(template);
     if (!newTemplate) return alert("Cloning failed");
     alert("Cloning successful");
-    router.push(`/templates/${newTemplate.id}`);
+    router.push(`/edit/${newTemplate.id}`);
   };
   return (
     <div className="flex flex-col justify-between h-full w-full">

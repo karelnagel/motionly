@@ -1,6 +1,4 @@
-import { postNewTemplate } from "@asius/sdk";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { IoIosArrowBack, IoMdRedo, IoMdUndo } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { useTemplate } from "../../../hooks/useTemplate";
@@ -34,13 +32,6 @@ export const Header = () => {
   const { template, setSelected, selected, saveTime, undo, redo } =
     useTemplate();
 
-  const router = useRouter();
-  const clone = async () => {
-    const newTemplate = await postNewTemplate(template);
-    if (!newTemplate) return alert("Cloning failed");
-    alert("Cloning successful");
-    router.push(`/templates/${newTemplate.id}`);
-  };
   const Button = ({
     title,
     value,
@@ -70,31 +61,19 @@ export const Header = () => {
           <IoIosArrowBack className="text-3xl font-bold" />
         </Link>
       </div>
-      {template.isOwner ? (
-        <p className="flex flex-col items-center space-y-1 leading-none">
-          <span
-            onClick={() => setSelected("template")}
-            className="text-[22px] font-bold cursor-pointer"
-          >
-            {template.name}
+      <p className="flex flex-col items-center space-y-1 leading-none">
+        <span
+          onClick={() => setSelected("template")}
+          className="text-[22px] font-bold cursor-pointer"
+        >
+          {template.name}
+        </span>
+        {saveTime && (
+          <span className="text-[10px] opacity-60">
+            saved <TimeAfter time={saveTime} />
           </span>
-          {saveTime && (
-            <span className="text-[10px] opacity-60">
-              saved <TimeAfter time={saveTime} />
-            </span>
-          )}
-        </p>
-      ) : (
-        <div className="text-white bg-error flex p-2 space-x-3 rounded-lg items-center">
-          <p>This template is read only, clone it to edit!</p>
-          <button
-            className="bg-primary text-primary-content rounded-lg py-1 px-3"
-            onClick={clone}
-          >
-            Clone
-          </button>
-        </div>
-      )}
+        )}
+      </p>
       <div className="flex items-center space-x-4 font-bold w-full justify-end">
         <div className="flex text-2xl space-x-2">
           <div className="tooltip tooltip-bottom" data-tip="⌘ + Z">
