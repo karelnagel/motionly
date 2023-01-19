@@ -1,6 +1,7 @@
 import { deleteTemplate } from "@asius/sdk";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useAlerts } from "../../../../../components/Alert";
 import { Clone } from "../../../../../components/Clone";
 import {
   BooleanInput,
@@ -14,11 +15,13 @@ import { useTemplate } from "../../../../../hooks/useTemplate";
 export const TemplateSidePanel = () => {
   const { template, setTemplate } = useTemplate();
   const router = useRouter();
+  const alert = useAlerts();
+
   const delTemplate = async () => {
     if (!template.id) return;
     const result = await deleteTemplate({ id: template.id });
-    if (!result) return alert("Failed to delete template");
-    alert("Template deleted");
+    if (!result) return alert("Failed to delete template", "error");
+    alert("Template deleted", "success");
     router.push("/");
   };
   return (
