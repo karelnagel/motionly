@@ -1,9 +1,10 @@
+import { Clone } from "./Clone";
+
 export const Title = ({ text }: { text: string }) => {
   return (
-    <div className="flex items-center justify-center py-6 w-full relative">
-      <p className="relative text-primary-content text-2xl md:text-5xl font-bold p-3 md:p-5 gradient bg-opacity-80 rounded-lg">
-        {text}
-      </p>
+    <div className="flex flex-col text-center md:flex-row space-y-4 md:space-y-0 justify-between items-center my-10">
+      <p className="text-5xl font-bold title">{text}</p>
+      <Clone className="btn">create new</Clone>
     </div>
   );
 };

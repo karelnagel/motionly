@@ -1,5 +1,7 @@
-import { deleteTemplate, postNewTemplate } from "@asius/sdk";
+import { deleteTemplate } from "@asius/sdk";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Clone } from "../../../../../components/Clone";
 import {
   BooleanInput,
   ColorInput,
@@ -18,12 +20,6 @@ export const TemplateSidePanel = () => {
     if (!result) return alert("Failed to delete template");
     alert("Template deleted");
     router.push("/");
-  };
-  const cloneTemplate = async () => {
-    const newTemplate = await postNewTemplate(template);
-    if (!newTemplate) return alert("Cloning failed");
-    alert("Cloning successful");
-    router.push(`/edit/${newTemplate.id}`);
   };
   return (
     <div className="flex flex-col justify-between h-full w-full">
@@ -83,16 +79,13 @@ export const TemplateSidePanel = () => {
         </div>
       </div>
       <div className="flex justify-between">
-        <button
-          onClick={cloneTemplate}
-          className="py-1 px-2 bg-primary rounded-lg shadow-lg text-primary-content hover:scale-105 duration-200"
-        >
+        <Clone template={template} className="btn">
           Duplicate
-        </button>
-        <button
-          onClick={delTemplate}
-          className="py-1 px-2 bg-error rounded-lg shadow-lg text-error-content hover:scale-105 duration-200"
-        >
+        </Clone>
+        <Link href={`/templates/${template.id}`} className="btn">
+          View
+        </Link>
+        <button onClick={delTemplate} className="btn btn-error">
           Delete
         </button>
       </div>

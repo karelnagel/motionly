@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Clone } from "../../../../components/Clone";
+import { getServerSession } from "../../../../lib/getServerSession";
 import { getTemplate } from "../../../../pages/api/templates/[id]";
 import { Player } from "./Player";
 
@@ -8,19 +10,18 @@ export default async function Edit({
   params: { id: string };
 }) {
   const template = await getTemplate({ id });
+  const session = await getServerSession();
   if (!template) return <div>Template not found!</div>;
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
       <div className="space-y-10 flex flex-col justify-between">
         <div className="space-y-2">
-          <div className="indicator text-center">
-            {template.public && (
-              <span className="indicator-item badge badge-secondary font-bold">
-                PUBLIC
-              </span>
-            )}
-            <div className="text-3xl font-bold">{template.name}</div>
-          </div>
+          <p className="text-3xl font-bold text-center md:text-left">
+            {template.name}
+          </p>
+          {template.public && (
+            <span className="badge badge-primary font-bold">PUBLIC</span>
+          )}
           <p className="text-lg">{template.description}</p>
           <p>
             <b>Duration:</b> {template.duration} seconds
@@ -35,7 +36,13 @@ export default async function Edit({
               Edit
             </Link>
           )}
-          <button className="btn">Clone</button>
+          {session?.user ? (
+            <Clone template={template} className="btn">
+              Clone
+            </Clone>
+          ) : (
+            <p>Login to clone</p>
+          )}
         </div>
       </div>
       <Player
