@@ -13,7 +13,7 @@ export default async function Edit({
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
       <div className="space-y-10 flex flex-col justify-between">
         <div className="space-y-2">
-          <div className="indicator">
+          <div className="indicator text-center">
             {template.public && (
               <span className="indicator-item badge badge-secondary font-bold">
                 PUBLIC
