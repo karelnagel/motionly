@@ -1,5 +1,11 @@
 # @asius/components
 
+## 1.2.0
+
+### Minor Changes
+
+- Some changes
+
 ## 1.1.0
 
 ### Minor Changes
