@@ -1,3 +1,5 @@
+"use client";
+
 import { Player as RemotionPlayer } from "@remotion/player";
 import { Composition } from "@asius/components";
 import { PlayerProps } from "./PlayerProps";

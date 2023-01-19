@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "@asius/components": "*",
+        "@asius/player": "*",
         "@asius/sdk": "*",
         "@next-auth/prisma-adapter": "^1.0.5",
         "@prisma/client": "^4.6.1",

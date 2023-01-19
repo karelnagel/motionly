@@ -7,7 +7,7 @@ export default async function Page() {
   const session = await getServerSession();
   const templates = await prisma.template.findMany({
     where: {
-      user: { email: session?.user?.email },
+      userId: session.user?.id || undefined,
     },
     include: { user: true },
     orderBy: { updatedAt: "desc" },
@@ -27,6 +27,7 @@ export default async function Page() {
             id={template.id}
             name={template.name}
             image={template.preview || undefined}
+            isOwner={true}
           />
         ))}
       </div>

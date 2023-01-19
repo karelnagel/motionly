@@ -19,21 +19,7 @@ export default async function Page({
         <Login />
       </div>
     );
-  let template = await getTemplate({ id });
-  if (id === "blank")
-    template = {
-      comps: [],
-      duration: 10,
-      fps: 30,
-      height: 1080,
-      width: 1080,
-      description: "This is an empty template",
-      name: "Empty Template",
-      id: "blank",
-      isOwner: false,
-      public: false,
-      background: "#FFFFFFFF",
-    };
+  const template = await getTemplate({ id });
   if (!template) return <div>Template not found!</div>;
   if (!template.isOwner) return <div>{"You can't edit this template!"}</div>;
   return <ClientPageWrapper template={template} />;
