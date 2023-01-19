@@ -37,7 +37,7 @@ export const Timeline = ({
           </div>
         </div>
       </div>
-      <div className="fixed bottom-2 left-2 p-2 py-1 leading-none text-3xl space-x-6 bg-primary text-primary-content flex items-center rounded-lg">
+      <div className="absolute top-0 left-0 leading-none text-2xl text-primary-content flex items-center bg-base-300 space-x-2 px-2 rounded-br-lg">
         <button
           disabled={width / 1.1 < 100}
           onClick={() => setWidth((w) => (w / 1.1 > 100 ? w / 1.1 : 100))}

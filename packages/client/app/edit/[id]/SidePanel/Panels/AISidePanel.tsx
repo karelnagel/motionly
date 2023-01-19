@@ -2,16 +2,18 @@ import { FormEvent, useState } from "react";
 import { PanelTitle } from "../../../../../components/PanelTitle";
 import { useTemplate } from "../../../../../hooks/useTemplate";
 import { postAI } from "@asius/sdk";
+import { useAlerts } from "../../../../../components/Alert";
 
 export const AISidePanel = () => {
   const { template, setTemplate } = useTemplate();
   const [prompt, setPrompt] = useState("");
   const [status, setStatus] = useState<"loading" | "done" | "error">();
+  const alert = useAlerts();
 
   const submit = async (e?: FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
     if (status === "loading")
-      return alert("Please wait for the previous request to finish");
+      return alert("Please wait for the previous request to finish", "warning");
     setStatus("loading");
 
     const result = await postAI(template.comps, prompt);

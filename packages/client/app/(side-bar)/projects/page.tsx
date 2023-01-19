@@ -7,7 +7,7 @@ export default async function Page() {
   const session = await getServerSession();
   const templates = await prisma.template.findMany({
     where: {
-      user: { email: session?.user?.email },
+      userId: session.user?.id || undefined,
     },
     include: { user: true },
     orderBy: { updatedAt: "desc" },
@@ -15,18 +15,15 @@ export default async function Page() {
   return (
     <div className="">
       <Title text="Your Projects" />
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-10">
-        <Template
-          id="blank"
-          name="Start with empty project"
-          image="/icons/add.jpeg"
-        />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
         {templates.map((template) => (
           <Template
             key={template.id}
             id={template.id}
             name={template.name}
             image={template.preview || undefined}
+            isOwner={true}
+            description={template.description}
           />
         ))}
       </div>

@@ -3,16 +3,23 @@ import Image from "next/image";
 
 export const Template = ({
   name,
+  description,
   image,
   id,
+  isOwner,
 }: {
   name: string;
+  description: string;
   image?: string;
   id: string;
+  isOwner?: boolean;
 }) => {
   return (
-    <Link className="flex flex-col space-y-1" href={`/templates/${id}`}>
-      <div className="aspect-square relative bg-base-200 rounded-lg overflow-hidden">
+    <Link
+      className="card bg-base-100 shadow-xl"
+      href={`/${isOwner ? "edit" : "templates"}/${id}`}
+    >
+      <figure className="relative aspect-square">
         {image && (
           <Image
             src={image}
@@ -21,8 +28,14 @@ export const Template = ({
             className="object-contain"
           />
         )}
+      </figure>
+      <div className="card-body">
+        <h2 className="card-title line-clamp-1">{name}</h2>
+        <p className="line-clamp-3">{description}</p>
+        <div className="card-actions justify-end">
+          {/* <div className="badge badge-outline">Fashion</div> */}
+        </div>
       </div>
-      <p className="font-bold">{name}</p>
     </Link>
   );
 };

@@ -3,7 +3,6 @@ import { Login } from "../../components/Login";
 import Image from "next/image";
 import { MdOutlineHome, MdPermMedia } from "react-icons/md";
 import Link from "next/link";
-import { asiusUrl } from "../../env";
 import { getServerSession } from "../../lib/getServerSession";
 import { SideBarButton } from "../../components/SideBarButton";
 
@@ -12,7 +11,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
   return (
     <div className=" flex flex-col min-h-screen bg-base-300 items-center">
       <div className="flex justify-between p-2 items-center bg-base-100 w-full">
-        <Link href={asiusUrl} target="_blank">
+        <Link href="/">
           <Image src="/asius.png" width={150} height={120} alt="logo" />
         </Link>
         <div className="flex shadow-xl justify-between space-x-4">

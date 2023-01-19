@@ -1,6 +1,7 @@
 import { getMedia, uploadMedia } from "@asius/sdk";
 import { useEffect, useRef, useState } from "react";
 import { getMediaUrl } from "../../helpers";
+import { useAlerts } from "../Alert";
 import { Popup } from "../Popup";
 
 export const Media = ({
@@ -48,18 +49,20 @@ export const MediaPopup = ({
   const [file, setFile] = useState<File>();
   const [files, setFiles] = useState<string[]>();
   const ref = useRef<HTMLInputElement>(null);
+  const alert = useAlerts();
   const uploadFile = async () => {
     if (!file) return;
     const key = await uploadMedia(file);
-    if (!key) return alert("Error uploading file");
+    if (!key) return alert("Error uploading file", "error");
     onChange(getMediaUrl(key));
     setFile(undefined);
     if (ref.current) ref.current.value = "";
+    alert("File uploaded", "info");
   };
 
   const getFiles = async () => {
     const files = await getMedia(type);
-    if (!files) return alert("Error getting files");
+    if (!files) return alert("Error getting files", "error");
     setFiles(files);
   };
 

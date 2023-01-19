@@ -25,8 +25,7 @@ export const TemplateContext = ({
     setSelectedState(id);
   };
   const setTemplate = (template: TemplateType) => {
-    if (!template.isOwner) alert("You have to clone this template to edit!");
-    else setTemplateState(template);
+    setTemplateState(template);
   };
 
   useEffect(() => {

@@ -29,19 +29,15 @@ export default async function Templates({
   });
   return (
     <div>
-      <Title text="Find Template To Start" />
+      <Title text="Find template to use" />
       <SearchBar value={search} comp={comp} />
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-10">
-        <Template
-          id="blank"
-          name="Start with empty project"
-          image="/icons/add.jpeg"
-        />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
         {templates.map((template) => (
           <Template
             key={template.id}
             id={template.id}
             name={template.name}
+            description={template.description}
             image={template.preview || undefined}
           />
         ))}

@@ -1,3 +1,5 @@
+"use client";
+
 import { Player as RemotionPlayer } from "@remotion/player";
 import { Composition } from "@asius/components";
 import { PlayerProps } from "./PlayerProps";
@@ -13,7 +15,11 @@ export const Player = (props: PlayerProps) => {
     <RemotionPlayer
       component={Composition}
       durationInFrames={Math.ceil(props.duration * props.fps)}
-      inputProps={{ comps: isClient ? comps : [] }}
+      inputProps={{
+        comps: isClient ? comps : [],
+        background: props.background,
+        fps: props.fps,
+      }}
       compositionHeight={props.height}
       compositionWidth={props.width}
       {...props}

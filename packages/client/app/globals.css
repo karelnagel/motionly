@@ -71,3 +71,7 @@ body {
 .moveable-origin {
   display: none;
 }
+
+.title {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary to-primary;
+}

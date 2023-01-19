@@ -6,6 +6,7 @@ import {
 import { getMedia, getTranscription, startTranscription } from "@asius/sdk";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useAlerts } from "../../../../../../components/Alert";
 import {
   BooleanInput,
   NumberInput,
@@ -130,7 +131,7 @@ export const GetTranscriptions = ({
   const [selected, setSelected] = useState<string>();
   const [status, setStatus] = useState<string>();
   const [transcription, setTranscription] = useState<TranscriptionWord[]>();
-
+  const alert = useAlerts();
   useEffect(() => {
     if (!show) return;
     getMedia("video").then((res) => {
@@ -153,10 +154,10 @@ export const GetTranscriptions = ({
   const transcribe = async (video: string) => {
     if (!video) return;
     const res = await startTranscription(video, getMediaUrl(video));
-    if (!res) return alert("Error starting transcription");
+    if (!res) return alert("Error starting transcription", "error");
     getTrans(video);
+    alert("Transcription started", "info");
   };
-  console.log(transcription);
   return (
     <div className=" col-span-2 text-center">
       <button onClick={() => setShow(true)} className="btn btn-sm">
