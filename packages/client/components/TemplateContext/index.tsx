@@ -1,6 +1,6 @@
 import { updateTemplate } from "@asius/sdk";
 import { ComponentProps, TemplateType } from "@asius/components";
-import { ReactNode, useState } from "react";
+import { ReactNode, useRef, useState } from "react";
 import { getRandomId } from "../../helpers";
 import { Context } from "./Context";
 import { Tabs } from "../../types";
@@ -12,14 +12,14 @@ export const TemplateContext = ({
   startTemplate: TemplateType;
   children: ReactNode;
 }) => {
-  const [history, setHistory] = useState<TemplateType[]>([]);
-  const [current, setCurrent] = useState(-1);
+  const [history, setHistory] = useState<TemplateType[]>([startTemplate]);
+  const [current, setCurrent] = useState(0);
   const [selected, setSelectedState] = useState("template");
   const [template, setTemplateState] = useState(startTemplate);
   const [saveTime, setSaveTime] = useState<Date>();
   const [tab, setTab] = useState<Tabs>("props");
-  const [historyTimeout, setHistoryTimeout] = useState<NodeJS.Timeout>();
-  const [saveTimeout, setSaveTimeout] = useState<NodeJS.Timeout>();
+  const historyTimeout = useRef<NodeJS.Timeout>();
+  const saveTimeout = useRef<NodeJS.Timeout>();
 
   const setSelected = (id: string) => {
     if (selected === id) return setSelectedState("");
@@ -29,28 +29,22 @@ export const TemplateContext = ({
   const setTemplate = (template: TemplateType) => {
     setTemplateState(template);
 
-    if (historyTimeout) clearTimeout(historyTimeout);
-    setHistoryTimeout(
-      setTimeout(() => {
-        setHistory((h) => [...h.slice(0, current + 1), template]);
-        setCurrent((c) => c + 1);
-      }, 600)
-    );
+    if (historyTimeout.current) clearTimeout(historyTimeout.current);
+    historyTimeout.current = setTimeout(() => {
+      setHistory((h) => [...h.slice(0, current + 1), template]);
+      setCurrent((c) => c + 1);
+    }, 600);
 
-    if (saveTimeout) clearTimeout(saveTimeout);
-    setSaveTimeout(
-      setTimeout(async () => {
-        const result = await updateTemplate({
-          id: template.id || "",
-          template,
-        });
-        if (!result) setSaveTime(undefined);
-        setSaveTime(new Date());
-      }, 3000)
-    );
+    if (saveTimeout.current) clearTimeout(saveTimeout.current);
+    saveTimeout.current = setTimeout(async () => {
+      const result = await updateTemplate({
+        id: template.id || "",
+        template,
+      });
+      if (!result) setSaveTime(undefined);
+      setSaveTime(new Date());
+    }, 3000);
   };
-
-  console.log("herre");
 
   const undo =
     current > 0
