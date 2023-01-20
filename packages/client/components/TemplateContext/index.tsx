@@ -12,7 +12,9 @@ export const TemplateContext = ({
   startTemplate: TemplateType;
   children: ReactNode;
 }) => {
-  const [history, setHistory] = useState<TemplateType[]>([startTemplate]);
+  const [history, setHistory] = useState<TemplateType[]>([
+    JSON.parse(JSON.stringify(startTemplate)),
+  ]);
   const [current, setCurrent] = useState(0);
   const [selected, setSelectedState] = useState("template");
   const [template, setTemplateState] = useState(startTemplate);
@@ -31,7 +33,10 @@ export const TemplateContext = ({
 
     if (historyTimeout.current) clearTimeout(historyTimeout.current);
     historyTimeout.current = setTimeout(() => {
-      setHistory((h) => [...h.slice(0, current + 1), template]);
+      setHistory((h) => [
+        ...h.slice(0, current + 1),
+        JSON.parse(JSON.stringify(template)),
+      ]);
       setCurrent((c) => c + 1);
     }, 600);
 
@@ -45,7 +50,6 @@ export const TemplateContext = ({
       setSaveTime(new Date());
     }, 3000);
   };
-
   const undo =
     current > 0
       ? () => {
