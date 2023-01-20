@@ -109,7 +109,7 @@ export function ColorInput<T extends string | undefined>({
   const alpha = value?.slice(7);
   return (
     <div className="col-span-2 form-control">
-      <label className="label label-text">
+      <div className="label label-text">
         <span>{label}</span>
         <input
           type="checkbox"
@@ -119,7 +119,7 @@ export function ColorInput<T extends string | undefined>({
             onChange(e.target.checked ? ("#000000FF" as T) : undefined)
           }
         />
-      </label>
+      </div>
       {value && (
         <div
           className="pr-3 flex bg-base-200 items-center justify-end rounded-lg border leading-none overflow-hidden"
@@ -176,7 +176,7 @@ export const SelectInput = ({
     <div className="col-span-2 form-control">
       <label className="label label-text">{label}</label>
       <select
-        className="select select-bordered select-sm"
+        className="select select-bordered select-sm bg-base-200"
         value={value}
         onChange={(e) => onChange(e.target.value)}
       >
