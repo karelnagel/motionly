@@ -33,11 +33,11 @@ export const TemplateContext = ({
 
     if (historyTimeout.current) clearTimeout(historyTimeout.current);
     historyTimeout.current = setTimeout(() => {
-      setHistory((h) => [
-        ...h.slice(0, current + 1),
+      setHistory([
+        ...[...history].slice(0, current + 1),
         JSON.parse(JSON.stringify(template)),
       ]);
-      setCurrent((c) => c + 1);
+      setCurrent(current + 1);
     }, 600);
 
     if (saveTimeout.current) clearTimeout(saveTimeout.current);
@@ -54,17 +54,16 @@ export const TemplateContext = ({
     current > 0
       ? () => {
           setTemplateState(history[current - 1]);
-          setCurrent((c) => c - 1);
+          setCurrent(current - 1);
         }
       : undefined;
   const redo =
     current < history.length - 1
       ? () => {
           setTemplateState(history[current + 1]);
-          setCurrent((c) => c + 1);
+          setCurrent(current + 1);
         }
       : undefined;
-
   const find = (
     comps: ComponentProps[] = template.comps,
     id: string = selected,
