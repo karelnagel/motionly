@@ -15,6 +15,7 @@ export const EditText = ({
     <EditSection title="Text">
       <TextInput
         label="Text"
+        area
         value={comp.text}
         onChange={(text) => setComp({ ...comp, text })}
       />

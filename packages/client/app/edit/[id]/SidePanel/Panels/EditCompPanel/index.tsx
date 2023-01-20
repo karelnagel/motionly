@@ -90,11 +90,11 @@ export const EditCompPanel = () => {
         <Tab title="Animations" value="animations" tooltip="A" />
       </div>
       {tab === "animations" ? (
-        <div className="mt-4 overflow-y-auto">
+        <div className="overflow-y-auto">
           <EditAnimation comp={comp} setComp={setComp} />
         </div>
       ) : (
-        <div className="mt-4 w-full overflow-y-auto">
+        <div className="w-full overflow-y-auto">
           <EditGeneral comp={comp} setComp={setComp} />
 
           {comp.comp === "text" && <EditText comp={comp} setComp={setComp} />}

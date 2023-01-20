@@ -34,7 +34,7 @@ export const EditVideo = ({
         }))}
       />
       <NumberInput
-        label="Start From"
+        label="Start From (s)"
         value={comp.startFrom}
         onChange={(startFrom) => setComp({ ...comp, startFrom })}
       />

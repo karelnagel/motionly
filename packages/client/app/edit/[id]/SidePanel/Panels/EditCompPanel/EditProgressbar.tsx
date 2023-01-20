@@ -44,7 +44,7 @@ export const EditProgressbar = ({
       {comp.type === "square" && (
         <>
           <NumberInput
-            label="Width"
+            label="Bar Width (px)"
             value={comp.barWidth}
             onChange={(barWidth) => setComp({ ...comp, barWidth })}
           />
@@ -58,7 +58,7 @@ export const EditProgressbar = ({
       {comp.type === "circle" && (
         <>
           <NumberInput
-            label="Width"
+            label="Bar Width (px)"
             value={comp.barWidth}
             onChange={(barWidth) => setComp({ ...comp, barWidth })}
           />

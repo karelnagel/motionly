@@ -56,12 +56,12 @@ export const EditAnimation = ({
         />
       ))}
       <button
-        className=""
+        className="btn btn-primary btn-block btn-sm"
         onClick={() =>
           setComp({ ...comp, animations: [...animations, defaultAnimation] })
         }
       >
-        Add
+        Add new
       </button>
     </div>
   );
@@ -77,11 +77,12 @@ const OneAnimation = ({
   setAnimation: (i: number, value: Partial<AnimationProps>) => void;
   remove: () => void;
 }) => {
+  const units = animationProps[animation.prop].units;
   return (
     <div className="mb-4 space-y-2">
       <div className="flex justify-between">
-        <p>Animation {i + 1}</p>
-        <button onClick={remove} className="text-error">
+        <p className="font-bold">Animation {i + 1}</p>
+        <button onClick={remove} className="btn btn-xs btn-error">
           Remove
         </button>
       </div>
@@ -119,24 +120,27 @@ const OneAnimation = ({
       </div>
       <div className="grid grid-cols-2 gap-2">
         <NumberInput
-          label="Start"
+          label="Start (s)"
+          tooltip
           onChange={(start) => setAnimation(i, { start })}
           value={animation.start}
         />
         <NumberInput
-          label="Duration"
+          label="Duration (s)"
+          placeholder="MAX"
+          tooltip
           onChange={(duration) => setAnimation(i, { duration })}
           value={animation.duration}
         />
       </div>
       <div className="grid grid-cols-2 gap-2">
         <NumberInput
-          label="From"
+          label={`From ${units ? `(${units})` : ""}`}
           onChange={(from) => setAnimation(i, { from })}
           value={animation.from}
         />
         <NumberInput
-          label="To"
+          label={`To ${units ? `(${units})` : ""}`}
           onChange={(to) => setAnimation(i, { to })}
           value={animation.to}
         />

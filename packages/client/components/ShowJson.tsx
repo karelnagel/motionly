@@ -17,11 +17,8 @@ export const ShowJson = ({
   return (
     <div className="col-span-2">
       <div className="flex justify-between items-center my-2">
-        <p>{label}</p>
-        <button
-          className="bg-base-300 rounded-lg py-1 p-2"
-          onClick={() => setShowJson(!showJson)}
-        >
+        <p className="label label-text">{label}</p>
+        <button className="btn btn-xs" onClick={() => setShowJson(!showJson)}>
           {showJson ? "Inputs" : "JSON"}
         </button>
       </div>
@@ -29,7 +26,8 @@ export const ShowJson = ({
         {showJson ? (
           <TextInput
             area
-            label="Json"
+            label=""
+            className="min-h-[100px]"
             value={json}
             onChange={(json) => onChange(json)}
           />

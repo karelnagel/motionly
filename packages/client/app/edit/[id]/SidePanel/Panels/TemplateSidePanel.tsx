@@ -26,9 +26,9 @@ export const TemplateSidePanel = () => {
   };
   return (
     <div className="flex flex-col justify-between h-full w-full">
-      <div className="flex flex-col space-y-4 items-center">
+      <div className="flex flex-col space-y-2 items-center">
         <PanelTitle title="Template settings" />
-        <div className="w-full grid grid-cols-2 gap-2">
+        <div className="w-full grid grid-cols-2 gap-x-1">
           <TextInput
             label="Name"
             value={template.name}
@@ -42,14 +42,16 @@ export const TemplateSidePanel = () => {
             }
           />
           <NumberInput
-            label="W"
+            label="Width"
+            placeholder="1080"
             value={template.width}
             onChange={(width) =>
               setTemplate({ ...template, width: width || 1 })
             }
           />
           <NumberInput
-            label="H"
+            label="Height"
+            placeholder="1080"
             value={template.height}
             onChange={(height) =>
               setTemplate({ ...template, height: height || 1 })
@@ -57,12 +59,14 @@ export const TemplateSidePanel = () => {
           />
           <NumberInput
             label="FPS"
+            placeholder="30"
             value={template.fps}
             onChange={(fps) => setTemplate({ ...template, fps: fps || 1 })}
           />
           <NumberInput
             label="Duration"
             value={template.duration}
+            placeholder="10"
             onChange={(duration) =>
               setTemplate({ ...template, duration: duration || 1 })
             }
