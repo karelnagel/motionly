@@ -37,14 +37,14 @@ export const Timeline = ({
           </div>
         </div>
       </div>
-      <div className="absolute top-0 left-0 leading-none text-2xl text-primary-content flex items-center bg-base-300 space-x-2 px-2 rounded-br-lg">
+      <div className="absolute top-0 right-0 leading-none text-xl text-primary-content flex flex-col items-center bg-base-300 space-y-1 p-1 rounded-bl-lg">
+        <button onClick={() => setWidth((w) => w * 1.1)}>+</button>
         <button
           disabled={width / 1.1 < 100}
           onClick={() => setWidth((w) => (w / 1.1 > 100 ? w / 1.1 : 100))}
         >
           -
         </button>
-        <button onClick={() => setWidth((w) => w * 1.1)}>+</button>
       </div>
     </div>
   );
