@@ -38,12 +38,12 @@ export const EditTextStyle = ({
             }))}
           />
           <NumberInput
-            label="Size"
+            label="Size (px)"
             value={style.fontSize}
             onChange={(fontSize) => setStyle({ ...style, fontSize })}
           />
           <NumberInput
-            label="Height"
+            label="Height (x)"
             value={style.lineHeight}
             onChange={(lineHeight) => setStyle({ ...style, lineHeight })}
           />
@@ -86,16 +86,18 @@ export const EditTextStyle = ({
               })
             }
           />
-          <NumberInput
-            label="Outline Width"
-            value={style.outlineWidth}
-            onChange={(outlineWidth) =>
-              setStyle({
-                ...style,
-                outlineWidth,
-              })
-            }
-          />
+          {style.outlineColor && (
+            <NumberInput
+              label="Outline Width (px)"
+              value={style.outlineWidth}
+              onChange={(outlineWidth) =>
+                setStyle({
+                  ...style,
+                  outlineWidth,
+                })
+              }
+            />
+          )}
         </div>
       )}
     </div>

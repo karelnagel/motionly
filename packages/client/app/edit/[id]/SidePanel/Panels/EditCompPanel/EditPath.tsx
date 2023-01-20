@@ -23,43 +23,44 @@ export const EditPath = ({
         onChange={(path) => setComp({ ...comp, path })}
       />
       <ColorInput
-        label="Stroke color"
+        label="Stroke"
         value={comp.strokeColor}
         onChange={(strokeColor) => setComp({ ...comp, strokeColor })}
       />
-      <NumberInput
-        label="Stroke width"
-        value={comp.strokeWidth}
-        onChange={(strokeWidth) => setComp({ ...comp, strokeWidth })}
-      />
+      {comp.strokeColor && (
+        <NumberInput
+          label="Stroke width (px)"
+          value={comp.strokeWidth}
+          onChange={(strokeWidth) => setComp({ ...comp, strokeWidth })}
+        />
+      )}
       <ColorInput
-        label="Fill color"
+        label="Fill"
         value={comp.fillColor}
         onChange={(fillColor) => setComp({ ...comp, fillColor })}
       />
-      <p className="col-span-2">View box</p>
       <NumberInput
-        label="X"
+        label="Viewbox X (px)"
         value={comp.viewBoxX}
         onChange={(viewBoxX) => setComp({ ...comp, viewBoxX })}
       />
       <NumberInput
-        label="Y"
+        label="Viewbox Y (px)"
         value={comp.viewBoxY}
         onChange={(viewBoxY) => setComp({ ...comp, viewBoxY })}
       />
       <NumberInput
-        label="W"
+        label="Viewbox Width (px)"
         value={comp.viewBoxWidth}
         onChange={(viewBoxWidth) => setComp({ ...comp, viewBoxWidth })}
       />
       <NumberInput
-        label="H"
+        label="Viewbox Height (px)"
         value={comp.viewBoxHeight}
         onChange={(viewBoxHeight) => setComp({ ...comp, viewBoxHeight })}
       />
       <BooleanInput
-        label="Rounded"
+        label="Rounded (px)"
         value={comp.isRound}
         onChange={(isRound) => setComp({ ...comp, isRound })}
       />

@@ -38,27 +38,28 @@ export const EditAudiogram = ({
         }))}
       />
       <NumberInput
-        label="Bar"
+        label="Bar (px)"
         value={comp.barWidth}
         onChange={(barWidth) => setComp({ ...comp, barWidth })}
       />
       <NumberInput
-        label="Gap"
+        label="Gap (px)"
         value={comp.gap}
         onChange={(gap) => setComp({ ...comp, gap })}
       />
       <NumberInput
-        label="Round"
+        label="Round (px)"
         value={comp.roundness}
         onChange={(roundness) => setComp({ ...comp, roundness })}
       />
       <NumberInput
-        label="StartFrom"
+        label="StartFrom (s)"
         value={comp.startFrom}
         onChange={(startFrom) => setComp({ ...comp, startFrom })}
       />
       <NumberInput
         label="Multiplier"
+        placeholder="1"
         value={comp.multiplier}
         onChange={(multiplier) => setComp({ ...comp, multiplier })}
       />

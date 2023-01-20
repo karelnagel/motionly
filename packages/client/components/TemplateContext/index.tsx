@@ -1,6 +1,6 @@
 import { updateTemplate } from "@asius/sdk";
 import { ComponentProps, TemplateType } from "@asius/components";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useRef, useState } from "react";
 import { getRandomId } from "../../helpers";
 import { Context } from "./Context";
 import { Tabs } from "../../types";
@@ -12,53 +12,36 @@ export const TemplateContext = ({
   startTemplate: TemplateType;
   children: ReactNode;
 }) => {
-  const [history, setHistory] = useState<TemplateType[]>([]);
-  const [current, setCurrent] = useState(-1);
+  const [history, setHistory] = useState<TemplateType[]>([
+    JSON.parse(JSON.stringify(startTemplate)),
+  ]);
+  const [current, setCurrent] = useState(0);
   const [selected, setSelectedState] = useState("template");
   const [template, setTemplateState] = useState(startTemplate);
   const [saveTime, setSaveTime] = useState<Date>();
-  const [wasUndoOrRedo, setWasUndoOrRedo] = useState(false);
   const [tab, setTab] = useState<Tabs>("props");
+  const historyTimeout = useRef<NodeJS.Timeout>();
+  const saveTimeout = useRef<NodeJS.Timeout>();
 
   const setSelected = (id: string) => {
     if (selected === id) return setSelectedState("");
     setSelectedState(id);
   };
+
   const setTemplate = (template: TemplateType) => {
     setTemplateState(template);
-  };
 
-  useEffect(() => {
-    if (wasUndoOrRedo) return setWasUndoOrRedo(false);
-    const timeout = setTimeout(() => {
-      setHistory((h) => [...h.slice(0, current + 1), template]);
-      setCurrent((c) => c + 1);
+    if (historyTimeout.current) clearTimeout(historyTimeout.current);
+    historyTimeout.current = setTimeout(() => {
+      setHistory([
+        ...[...history].slice(0, current + 1),
+        JSON.parse(JSON.stringify(template)),
+      ]);
+      setCurrent(current + 1);
     }, 600);
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [template]);
 
-  const undo =
-    current > 0
-      ? () => {
-          setWasUndoOrRedo(true);
-          setCurrent((c) => c - 1);
-          setTemplate(history[current - 1]);
-        }
-      : undefined;
-  const redo =
-    current < history.length - 1
-      ? () => {
-          setWasUndoOrRedo(true);
-          setCurrent((c) => c + 1);
-          setTemplate(history[current + 1]);
-        }
-      : undefined;
-
-  useEffect(() => {
-    if (!template.isOwner) return;
-    const timeout = setTimeout(async () => {
+    if (saveTimeout.current) clearTimeout(saveTimeout.current);
+    saveTimeout.current = setTimeout(async () => {
       const result = await updateTemplate({
         id: template.id || "",
         template,
@@ -66,11 +49,21 @@ export const TemplateContext = ({
       if (!result) setSaveTime(undefined);
       setSaveTime(new Date());
     }, 3000);
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [template]);
-
+  };
+  const undo =
+    current > 0
+      ? () => {
+          setTemplateState(history[current - 1]);
+          setCurrent(current - 1);
+        }
+      : undefined;
+  const redo =
+    current < history.length - 1
+      ? () => {
+          setTemplateState(history[current + 1]);
+          setCurrent(current + 1);
+        }
+      : undefined;
   const find = (
     comps: ComponentProps[] = template.comps,
     id: string = selected,

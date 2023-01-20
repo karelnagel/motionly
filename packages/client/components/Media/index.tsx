@@ -84,6 +84,7 @@ export const MediaPopup = ({
           <input
             ref={ref}
             type="file"
+            className="file-input"
             onChange={(e) => setFile(e.target.files?.[0])}
           />
           <button

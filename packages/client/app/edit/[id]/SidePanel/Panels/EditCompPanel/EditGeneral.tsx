@@ -13,42 +13,52 @@ export const EditGeneral = ({
   return (
     <EditSection>
       <NumberInput
-        label="X"
+        label="X (px)"
+        placeholder="0"
         value={comp.x}
         onChange={(x) => setComp({ ...comp, x })}
       />
       <NumberInput
-        label="Y"
+        label="Y (px)"
+        placeholder="0"
         value={comp.y}
         onChange={(y) => setComp({ ...comp, y })}
       />
       <NumberInput
-        label="W"
+        label="Width (px)"
+        placeholder="MAX"
         value={comp.width}
         onChange={(width) => setComp({ ...comp, width })}
       />
       <NumberInput
-        label="H"
+        label="Height (px)"
+        placeholder="MAX"
         value={comp.height}
         onChange={(height) => setComp({ ...comp, height })}
       />
       <NumberInput
-        label="RAD"
+        label="Border Radius (px)"
         value={comp.borderRadius}
+        placeholder="0"
         onChange={(borderRadius) => setComp({ ...comp, borderRadius })}
       />
       <NumberInput
-        label="ROT"
+        label="Rotation (deg)"
+        placeholder="0"
         value={comp.rotation}
         onChange={(rotation) => setComp({ ...comp, rotation })}
       />
       <NumberInput
-        label="FROM"
+        label="From (s)"
+        tooltip
+        placeholder="0"
         value={comp.from}
         onChange={(from) => setComp({ ...comp, from })}
       />
       <NumberInput
-        label="DUR"
+        label="Duration (s)"
+        tooltip
+        placeholder="MAX"
         value={comp.duration}
         onChange={(duration) => setComp({ ...comp, duration })}
       />

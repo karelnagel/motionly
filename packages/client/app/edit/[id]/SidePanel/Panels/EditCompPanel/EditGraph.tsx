@@ -34,24 +34,26 @@ export const EditGraph = ({
         onChange={(color) => setComp({ ...comp, color })}
       />
       <NumberInput
-        label="MAX"
+        label="Max"
         value={comp.max}
         onChange={(max) => setComp({ ...comp, max })}
       />
       <NumberInput
-        label="MIN"
+        label="Min"
         value={comp.min}
         onChange={(min) => setComp({ ...comp, min })}
       />
       {comp.type === "bar" && (
         <>
           <NumberInput
-            label="Gap"
+            label="Gap (px)"
+            placeholder="0"
             value={comp.gap}
             onChange={(gap) => setComp({ ...comp, gap })}
           />
           <NumberInput
-            label="Round"
+            label="Round (px)"
+            placeholder="0"
             value={comp.roundness}
             onChange={(roundness) => setComp({ ...comp, roundness })}
           />
@@ -59,18 +61,19 @@ export const EditGraph = ({
       )}
       {comp.type === "line" && (
         <NumberInput
-          label="Stroke"
+          label="Stroke (px)"
+          placeholder="0"
           value={comp.strokeWidth}
           onChange={(strokeWidth) => setComp({ ...comp, strokeWidth })}
         />
       )}
       <ShowJson
         label="Values"
-        json={JSON.stringify(comp.src, null, 2)}
+        json={JSON.stringify(comp.src)}
         onChange={(json) => setComp({ ...comp, src: JSON.parse(json) })}
       >
         {comp.src.map((src, i) => (
-          <div key={i} className="flex space-x-1 w-full">
+          <div key={i} className="flex space-x-1 w-full items-end ">
             <NumberInput
               label={`Value ${i + 1}`}
               value={src}
@@ -82,6 +85,7 @@ export const EditGraph = ({
               }
             />
             <button
+              className="btn btn-xs btn-error"
               onClick={() =>
                 setComp({
                   ...comp,

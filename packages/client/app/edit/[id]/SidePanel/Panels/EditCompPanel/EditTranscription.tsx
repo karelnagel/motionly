@@ -50,23 +50,23 @@ export const EditTranscription = ({
           ))}
         </div>
       </ShowJson>
-
       <EditTextStyle
         setStyle={(textStyle) => setComp({ ...comp, textStyle })}
         style={comp.textStyle}
       />
-      <p className="col-span-2 text-lg mt-2 font-semibold">Animation</p>
-      <BooleanInput
-        label="Scroll by page"
-        className="col-span-2"
-        value={comp.scrollByPage}
-        onChange={(scrollByPage) => setComp({ ...comp, scrollByPage })}
-      />
+
       <NumberInput
-        label="start"
+        label="Start (s)"
         value={comp.startFrom}
         onChange={(startFrom) => setComp({ ...comp, startFrom })}
       />
+      <BooleanInput
+        label="Scroll by page"
+        className=""
+        value={comp.scrollByPage}
+        onChange={(scrollByPage) => setComp({ ...comp, scrollByPage })}
+      />
+
       <SelectInput
         label="Type"
         value={comp.animationType}

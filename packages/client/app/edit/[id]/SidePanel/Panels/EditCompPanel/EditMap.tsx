@@ -22,12 +22,12 @@ export const EditMap = ({
         onChange={(url) => setComp({ ...comp, url })}
       />
       <NumberInput
-        label="Latitude"
+        label="Latitude (deg)"
         value={comp.lat}
         onChange={(lat) => setComp({ ...comp, lat })}
       />
       <NumberInput
-        label="Longitude"
+        label="Longitude (deg)"
         value={comp.lng}
         onChange={(lng) => setComp({ ...comp, lng })}
       />
@@ -36,16 +36,18 @@ export const EditMap = ({
         value={comp.zoom}
         onChange={(zoom) => setComp({ ...comp, zoom })}
       />
-      <NumberInput
-        label="Width"
-        value={comp.strokeWidth}
-        onChange={(strokeWidth) => setComp({ ...comp, strokeWidth })}
-      />
       <ColorInput
         label="Stroke"
         value={comp.stroke}
         onChange={(stroke) => setComp({ ...comp, stroke })}
       />
+      {comp.stroke && (
+        <NumberInput
+          label="Stroke Width (px)"
+          value={comp.strokeWidth}
+          onChange={(strokeWidth) => setComp({ ...comp, strokeWidth })}
+        />
+      )}
       <ColorInput
         label="Fill"
         value={comp.fill}
@@ -56,19 +58,8 @@ export const EditMap = ({
         value={comp.bg}
         onChange={(bg) => setComp({ ...comp, bg })}
       />
-      <p className="">Marker</p>
-      <NumberInput
-        label="size"
-        value={comp.markerSize}
-        onChange={(markerSize) =>
-          setComp({
-            ...comp,
-            markerSize,
-          })
-        }
-      />
       <ColorInput
-        label="color"
+        label="Marker"
         value={comp.markerColor}
         onChange={(markerColor) =>
           setComp({
@@ -77,6 +68,18 @@ export const EditMap = ({
           })
         }
       />
+      {comp.markerColor && (
+        <NumberInput
+          label="Marker Size (px)"
+          value={comp.markerSize}
+          onChange={(markerSize) =>
+            setComp({
+              ...comp,
+              markerSize,
+            })
+          }
+        />
+      )}
     </EditSection>
   );
 };

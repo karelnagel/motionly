@@ -35,7 +35,7 @@ export const AISidePanel = () => {
       <PanelTitle title="Edit video using AI" />
       <form action="none" className="flex flex-col w-full" onSubmit={submit}>
         <textarea
-          className="bg-base-200 rounded-t-lg min-h-[100px] p-2"
+          className="bg-base-200 rounded-t-lg min-h-[100px] p-2 textarea"
           value={prompt}
           onKeyDown={commentEnterSubmit}
           placeholder="Enter your prompt here"
@@ -44,7 +44,7 @@ export const AISidePanel = () => {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="text-primary-content p-2 rounded-b-lg gradient font-semibold text-lg"
+          className="btn gradient"
         >
           Submit
         </button>

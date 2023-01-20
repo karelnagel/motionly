@@ -7,21 +7,29 @@ export function NumberInput({
   value,
   onChange,
   className,
+  tooltip,
+  placeholder = "",
 }: {
   label: string;
   value?: number;
   onChange: (value?: number) => void;
   className?: string;
+  tooltip?: boolean;
+  placeholder?: string;
 }) {
   return (
-    <div
-      className={`flex items-center space-x-3 bg-base-300 rounded-lg py-1 px-2 w-full ${className}`}
-    >
-      <label className="whitespace-nowrap shrink-0">{label}</label>
+    <div className={`form-control items-start ${className}`}>
+      <label
+        className={`label label-text ${tooltip ? "tooltip" : ""}`}
+        data-tip="Negative numbers will start from end"
+      >
+        <span>{label}</span>
+      </label>
       <input
         type="number"
+        placeholder={placeholder}
         value={value === undefined ? "" : value}
-        className=" bg-base-300 w-full"
+        className="input input-sm bg-base-200 input-bordered min-w-[50px] w-full"
         onChange={(e) =>
           onChange(e.target.value ? Number(e.target.value) : undefined)
         }
@@ -41,16 +49,16 @@ export function BooleanInput<T extends boolean | undefined>({
   className?: string;
 }) {
   return (
-    <div
-      className={`flex items-center space-x-2 bg-base-300 rounded-lg py-1 px-2 w-full ${className}`}
-    >
-      <label className="whitespace-nowrap">{label}</label>
-      <input
-        type="checkbox"
-        checked={value || false}
-        className=" bg-base-300 w-full"
-        onChange={(e) => onChange(e.target.checked as T)}
-      />
+    <div className={`form-control ${className}`}>
+      <label className="label cursor-pointer">
+        <span className="label-text">{label}</span>
+        <input
+          type="checkbox"
+          checked={value || false}
+          className="checkbox checkbox-primary"
+          onChange={(e) => onChange(e.target.checked as T)}
+        />
+      </label>
     </div>
   );
 }
@@ -60,27 +68,29 @@ export function TextInput<T extends string | undefined>({
   value,
   onChange,
   area,
+  className,
 }: {
   label: string;
   value: T;
   onChange: (value: T) => void;
   area?: boolean;
+  className?: string;
 }) {
   return (
-    <div className="flex items-center p-2 space-x-2 bg-base-300 rounded-lg py-1 px-2 col-span-2 w-full">
-      <label>{label}</label>
+    <div className={`col-span-2 form-control`}>
+      <label className="label label-text">{label}</label>
       {area ? (
         <textarea
           value={value || ""}
           onChange={(e) => onChange(e.target.value as T)}
-          className="bg-base-300 w-full"
+          className={`textarea bg-base-200 textarea-bordered ${className}`}
         />
       ) : (
         <input
           type="text"
           value={value || ""}
           onChange={(e) => onChange(e.target.value as T)}
-          className="bg-base-300 w-full"
+          className="input bg-base-200 input-bordered input-sm"
         />
       )}
     </div>
@@ -98,35 +108,54 @@ export function ColorInput<T extends string | undefined>({
   const color = value?.slice(0, 7);
   const alpha = value?.slice(7);
   return (
-    <div className="flex items-center p-2  space-x-2 bg-base-300 rounded-lg py-1 px-2 col-span-2 w-full justify-between">
-      <label>{label}</label>
-      {!value && (
-        <button onClick={() => onChange("#000000FF" as T)}>ADD</button>
-      )}
+    <div className="col-span-2 form-control">
+      <div className="label label-text">
+        <span>{label}</span>
+        <input
+          type="checkbox"
+          className="toggle toggle-primary toggle-sm"
+          checked={!!value}
+          onChange={(e) =>
+            onChange(e.target.checked ? ("#000000FF" as T) : undefined)
+          }
+        />
+      </div>
       {value && (
-        <>
-          <input
-            type="color"
-            value={color || ""}
-            onChange={(e) => onChange((e.target.value + alpha) as T)}
-            className="bg-base-300 w-10 rounded-md"
-          />
-          <input
-            type="text"
-            value={color || ""}
-            onChange={(e) => onChange((e.target.value + alpha) as T)}
-            className="bg-base-300 w-20"
-          />
-          <input
-            type="number"
-            value={alpha ? hexToPercent(alpha) : 100}
-            onChange={(e) =>
-              onChange((color + percentToHex(Number(e.target.value || 0))) as T)
-            }
-            className="bg-base-300 w-10"
-          />
-          <button onClick={() => onChange()}>X</button>
-        </>
+        <div
+          className="pr-3 flex bg-base-200 items-center justify-end rounded-lg border leading-none overflow-hidden"
+          style={{ borderColor: value }}
+        >
+          <div className="flex w-full justify-between">
+            <input
+              type="color"
+              value={color || ""}
+              onChange={(e) => onChange((e.target.value + alpha) as T)}
+              className="bg-transparent w-14 h-11 -my-2 -ml-2 p-0 mr-0"
+            />
+            <input
+              type="text"
+              value={color || ""}
+              onChange={(e) => onChange((e.target.value + alpha) as T)}
+              className=" bg-transparent w-20"
+            />
+            <div className="flex items-center">
+              <input
+                type="number"
+                value={alpha !== undefined ? hexToPercent(alpha) : ""}
+                onChange={(e) =>
+                  onChange(
+                    (color +
+                      (e.target.value
+                        ? percentToHex(Number(e.target.value))
+                        : "")) as T
+                  )
+                }
+                className="w-10 bg-transparent"
+              />
+              %
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
@@ -144,10 +173,10 @@ export const SelectInput = ({
   options: { value: string; label: string }[];
 }) => {
   return (
-    <div className="flex items-center p-2 space-x-2 bg-base-300 rounded-lg py-1 px-2 col-span-2 w-full">
-      <label>{label}</label>
+    <div className="col-span-2 form-control">
+      <label className="label label-text">{label}</label>
       <select
-        className=" w-full h-full bg-base-300"
+        className="select select-bordered select-sm bg-base-200"
         value={value}
         onChange={(e) => onChange(e.target.value)}
       >
