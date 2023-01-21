@@ -19,9 +19,9 @@ const template = Object.keys(inputProps).length
 
 const fonts = getFonts(template.comps);
 fonts?.forEach((font) => {
-  import(`@remotion/google-fonts/${font.replace(" ", "")}`).then((g) =>
-    g.loadFont()
-  );
+  import(`@remotion/google-fonts/${font.replace(" ", "")}`)
+    .then((g) => g.loadFont())
+    .catch((e) => console.log(e));
 });
 export const Root: React.FC = () => {
   return (
