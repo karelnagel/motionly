@@ -29,22 +29,21 @@ const config: DocsThemeConfig = {
   useNextSeoProps,
   head: () => {
     const { asPath } = useRouter();
-    const { frontMatter } = useConfig();
+    const { frontMatter, title: configTitle } = useConfig();
     const basePath = process.env.NEXT_PUBLIC_URL;
+    const title = frontMatter.title || configTitle || "Asius";
     return (
       <>
         <link rel="icon" type="image/x-icon" href="/favicondark.png"></link>
         <meta property="og:url" content={`${basePath}${asPath}`} />
-        <meta property="og:title" content={frontMatter.title || "Asius"} />
+        <meta property="og:title" content={title} />
         <meta
           property="og:description"
           content={frontMatter.description || "Automate your content"}
         />
         <meta
           property="og:image"
-          content={`${basePath}/api/og?title=${encodeURIComponent(
-            frontMatter.title
-          )}`}
+          content={`${basePath}/api/og?title=${encodeURIComponent(title)}`}
         />
       </>
     );
