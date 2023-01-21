@@ -72,3 +72,9 @@ export const getDuration = (
     actualDuration = maxDuration - actualFrom || 1;
   return addFrom ? actualDuration + actualFrom : actualDuration;
 };
+
+export const getFonts = (comps: ComponentProps[]) => {
+  return JSON.stringify(comps)
+    .match(/fontFamily":"(.*?)"/g)
+    ?.map((font) => font.replace(/fontFamily":"(.*?)"/g, "$1"));
+};

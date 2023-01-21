@@ -3,6 +3,7 @@ import { Composition, getInputProps } from "remotion";
 import { Composition as Comp } from "../Composition";
 import { compositions } from "./compositions";
 import { BaseProps, ComponentProps, TemplateType } from "../types";
+import { getFonts } from "../helpers";
 
 const inputProps = getInputProps() as TemplateType;
 const template = Object.keys(inputProps).length
@@ -15,6 +16,13 @@ const template = Object.keys(inputProps).length
       comps: [],
       background: "#FFFFFFFF",
     } as TemplateType);
+
+const fonts = getFonts(template.comps);
+fonts?.forEach((font) => {
+  import(`@remotion/google-fonts/${font.replace(" ", "")}`).then((g) =>
+    g.loadFont()
+  );
+});
 export const Root: React.FC = () => {
   return (
     <>

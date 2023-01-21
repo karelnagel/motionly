@@ -1,3 +1,4 @@
+import { ComponentProps } from "@asius/components";
 import { mediaBucket } from "../env";
 
 export const percentToHex = (p: number) => {
@@ -24,23 +25,11 @@ export function hexToRGBA(hex?: string) {
   return "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
 }
 
-// type Font = { family: string; weight: number };
-// export function getFonts(comps: ComponentProps[]): Font[] {
-//   return comps
-//     .map((e) => {
-//       if (e.comp === "text")
-//         return [
-//           {
-//             family: e.textStyle.fontFamily,
-//             weight: Number(e.textStyle.fontWeight) || 500,
-//           },
-//         ];
-//       if (e.comp === "div") return getFonts(e.children);
-//       else return [null];
-//     })
-//     .flat()
-//     .filter((e) => e !== null) as Font[];
-// }
+export const getFonts = (comps: ComponentProps[]) => {
+  return JSON.stringify(comps)
+    .match(/fontFamily":"(.*?)"/g)
+    ?.map((font) => font.replace(/fontFamily":"(.*?)"/g, "$1"));
+};
 
 export const getRandomImage = () => {
   const imageCount = 8;

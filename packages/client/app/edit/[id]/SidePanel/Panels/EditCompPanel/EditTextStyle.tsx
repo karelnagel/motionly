@@ -34,7 +34,7 @@ export const EditTextStyle = ({
             onChange={(fontFamily) => setStyle({ ...style, fontFamily })}
             options={getAvailableFonts().map((f) => ({
               label: f.fontFamily,
-              value: f.importName,
+              value: f.fontFamily,
             }))}
           />
           <NumberInput
