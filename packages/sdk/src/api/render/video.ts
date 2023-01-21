@@ -1,8 +1,8 @@
 import { baseUrl } from "../../consts";
 import axios from "axios";
-import { MediaProps } from "@asius/base";
+import { TemplateType } from "@asius/base";
 
-export type RenderMediaInput = MediaProps;
+export type RenderMediaInput = TemplateType;
 export type RenderMediaOutput = { renderId: string };
 
 export const renderMedia = async (

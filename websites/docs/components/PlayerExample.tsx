@@ -7,21 +7,6 @@ export function PlayerExample() {
   const [seed, setSeed] = useState("sdf");
   const [color, setColor] = useState("#FFFF00");
 
-  const modifications = [
-    {
-      id: "m5sk14y",
-      text,
-    },
-    {
-      id: "r81ebs",
-      src: `https://picsum.photos/seed/${seed}/1080/1080`,
-    },
-    {
-      id: "skz7v8m",
-      color,
-    },
-  ];
-
   return (
     <div>
       <div
@@ -56,7 +41,6 @@ export function PlayerExample() {
           width={1080}
           style={{ width: `100%` }}
           controls
-          modifications={modifications}
         />
       </div>
     </div>

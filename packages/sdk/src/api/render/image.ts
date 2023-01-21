@@ -1,8 +1,8 @@
 import { baseUrl } from "../../consts";
 import axios from "axios";
-import { MediaProps, ProgressStatus } from "@asius/base";
+import { TemplateType, ProgressStatus } from "@asius/base";
 
-export type RenderStillInput = MediaProps & { frame: number };
+export type RenderStillInput = TemplateType & { frame: number };
 export type RenderStillOutput = {
   fileUrl: string;
   cost: number;

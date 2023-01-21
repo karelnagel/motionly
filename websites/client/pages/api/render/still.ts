@@ -4,7 +4,7 @@ import { ReqRes } from "../../../types";
 import { renderStillOnLambda } from "@remotion/lambda";
 import { composition, functionName, region, serveUrl } from "../../../env";
 import { getServerSession } from "../../../lib/getServerSession";
-import { applyModifications, TemplateType } from "@asius/base";
+import { TemplateType } from "@asius/base";
 
 export default async function Still(req: NextApiRequest, res: NextApiResponse) {
   let result = null;
@@ -15,13 +15,13 @@ export default async function Still(req: NextApiRequest, res: NextApiResponse) {
   return res.status(200).json(result);
 }
 export const renderStill = async (
-  { modifications, comps, frame, ...template }: RenderStillInput,
+  { comps, frame, ...template }: RenderStillInput,
   reqRes?: ReqRes
 ): Promise<RenderStillOutput | null> => {
   const session = await getServerSession(reqRes);
   const inputProps: TemplateType = {
     ...template,
-    comps: applyModifications(comps, modifications),
+    comps,
   };
   const { estimatedPrice, renderId, url } = await renderStillOnLambda({
     serveUrl,

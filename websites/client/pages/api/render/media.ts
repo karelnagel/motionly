@@ -4,7 +4,7 @@ import { ReqRes } from "../../../types";
 import { renderMediaOnLambda } from "@remotion/lambda";
 import { functionName, region, serveUrl, composition } from "../../../env";
 import { getServerSession } from "../../../lib/getServerSession";
-import { applyModifications, TemplateType } from "@asius/base";
+import { TemplateType } from "@asius/base";
 
 export default async function Media(req: NextApiRequest, res: NextApiResponse) {
   let result = null;
@@ -15,14 +15,14 @@ export default async function Media(req: NextApiRequest, res: NextApiResponse) {
   return res.status(200).json(result);
 }
 export const renderMedia = async (
-  { modifications, comps, ...template }: RenderMediaInput,
+  { comps, ...template }: RenderMediaInput,
   reqRes?: ReqRes
 ): Promise<RenderMediaOutput | null> => {
   const session = await getServerSession(reqRes);
   if (!session?.user?.email) return null;
   const inputProps: TemplateType = {
     ...template,
-    comps: applyModifications(comps, modifications),
+    comps,
   };
   const { renderId } = await renderMediaOnLambda({
     serveUrl,

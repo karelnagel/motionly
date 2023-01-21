@@ -32,20 +32,6 @@ export const getTextStyle = ({
   };
 };
 
-export const applyModifications = (
-  comps: ComponentProps[],
-  modifications?: Partial<ComponentProps>[]
-) => {
-  return comps.map((c) => {
-    const mod = modifications?.find((m) => m.id === c.id);
-    let newComp = c;
-    if (newComp.comp === "div")
-      newComp.children = applyModifications(newComp.children, modifications);
-    if (mod) newComp = { ...newComp, ...mod } as ComponentProps;
-    return newComp;
-  });
-};
-
 // if from is negative, it's relative to the end of the video
 export const getFrom = (maxDuration: number, from?: number) => {
   if (!from) return 0;

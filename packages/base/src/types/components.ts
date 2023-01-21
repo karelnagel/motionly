@@ -243,25 +243,3 @@ export type AllComponents =
   | PathProps;
 
 export type ComponentProps = BaseProps & AllComponents;
-
-// type TextStyle={fontSize?:number;fontFamily?:string;fontWeight?:number;lineHeight?:number;textAlign?:"left"|"center"|"right";bg?:string;color?:string;outlineColor?:string;outlineWidth?:number;};
-// type TranscriptionProps={comp:"transcription";textStyle:TextStyle;scrollByPage?:boolean;animationType:"current-word"|"previous-text";animationStyle:TextStyle;};
-// type AudioProps={comp:"audio";volume:number;startFrom:number;};
-// type AudiogramProps={comp:"audiogram";position:"center"|"start"|"end";gap:number;barWidth:number;color?:string;roundness:number;startFrom?:number;smoothing?:boolean;mirror?:boolean;multiplier?:number;};
-// type DivProps={comp:"div";bg?:string;};
-// type GifProps={comp:"gif";objectFit:"cover"|"contain"|"fill"|"none";};
-// type GraphProps={comp:"graph";color?:string;type:"line"|"bar"|"pie";max?:number;min?:number;animationStart?:number;animationDuration?:number;strokeWidth?:number;gap?:number;roundness?:number;};
-// type ImageProps={comp:"image";objectFit:"cover"|"contain"|"fill"|"none";};
-// type LottieProps={comp:"lottie";backwards?:boolean;loop?:boolean;playbackRate?:number;bg?:string;};
-// type MapProps={comp:"map";lat:number;lng:number;zoom:number;fill?:string;stroke?:string;strokeWidth?:number;markerColor?:string;markerSize?:number;url?:string;bg?:string;};
-// type MockupProps={comp:"mockup";type:"iPhone"|"iPad"|"chrome"|"macbook"|"apple-watch"|"vs-code";};
-// type PathProps={comp:"path";path:string;strokeColor?:string;strokeWidth?:number;viewBoxX?:number;viewBoxY?:number;viewBoxHeight?:number;viewBoxWidth?:number;fillColor?:string;isRound?:boolean;};
-// type QRCodeProps={comp:"qrcode";text:string;color?:string;bg?:string;};
-// type TextProps={comp:"text";textStyle:TextStyle;text:string;};
-// type VideoProps={comp:"video";objectFit:"cover"|"contain"|"fill"|"none";startFrom?:number;muted?:boolean;volume?:number;offthread?:boolean;};
-// type ProgressbarProps={comp:"progressbar";type:"spotify"|"line"|"circle"|"square";color?:string;bg?:string;barWidth?:number;topRight?:boolean;};
-// type TemplateType ={id?:string;width:number;height:number;duration:number;fps:number;name?:string;public?:boolean;description?:string;comps:ComponentProps[];isOwner?:boolean;};
-// type AnimationProps={type:"rotate"|"rotateX"|"rotateY"|"rotateZ"|"scale"|"scaleX"|"scaleY"|"scaleZ"|"translate"|"translateX"|"translateY"|"translateZ"|"skew"|"skewX"|"skewY"|"perspective";start?:number;end?:number;from?:number;to?:number;duration?:number;mass?:number;damping?:number;stiffness?:number;reverse?:boolean;};
-// type BaseProps={id:string;height?:number;width?:number;x?:number;y?:number;borderRadius?:number;rotation?:number;from?:number;duration?:number;opacity?:number;animations?:AnimationProps[];};
-// type AllComponents=|TextProps|ImageProps|DivProps|VideoProps|AudioProps|AudiogramProps|LottieProps|TranscriptionProps|MockupProps|MapProps|GraphProps|QRCodeProps|ProgressbarProps|GifProps|PathProps;
-// type ComponentProps=BaseProps&AllComponents;
