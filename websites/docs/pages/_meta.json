@@ -12,6 +12,13 @@
         "title": "Docs",
         "type": "page"
     },
+    "blog": {
+        "title": "Blog",
+        "type": "page",
+        "theme": {
+            "typesetting": "article"
+        }
+    },
     "about": {
         "title": "About",
         "type": "page"

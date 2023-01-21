@@ -6,23 +6,26 @@ import { useRouter } from "next/router";
 
 const config: DocsThemeConfig = {
   logo: <Logo />,
-  project: {
-    link: "https://github.com/karelnagel",
-  },
   gitTimestamp: false,
   primaryHue: 210,
   chat: {
     link: "https://discord.gg/U8gF8jEuJA",
   },
-  // docsRepositoryBase: "https://github.com/karelnagel",
   footer: {
     text: "Asius",
+  },
+  project: {
+    icon: null,
   },
   banner: {
     text: "In beta, feedback is welcome in the discord",
     key: "Beta",
     dismissible: true,
   },
+  toc: {
+    component: null,
+  },
+  navigation: false,
   useNextSeoProps,
   head: () => {
     const { asPath } = useRouter();

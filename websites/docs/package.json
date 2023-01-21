@@ -4,9 +4,9 @@
     "description": "Nextra docs template",
     "private": true,
     "scripts": {
-        "dev": "next dev -p 3004",
+        "dev": "next dev -p 3001",
         "build": "next build",
-        "start": "next start -p 3004"
+        "start": "next start -p 3001"
     },
     "dependencies": {
         "@asius/components": "*",
