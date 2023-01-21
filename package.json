@@ -12,6 +12,7 @@
         "turbo": "^1.6.3"
     },
     "scripts": {
+        "postinstall": "patch-package",
         "build": "turbo build",
         "start": "turbo start",
         "dev": "turbo dev",
@@ -32,6 +33,8 @@
         "eslint-plugin-import": "^2.26.0",
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-react": "^7.31.11",
+        "patch-package": "^6.5.1",
+        "postinstall-postinstall": "^2.1.0",
         "prettier": "^2.8.1"
     }
 }
