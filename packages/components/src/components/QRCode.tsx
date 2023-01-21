@@ -1,6 +1,6 @@
 import ReactQRCode from "react-qr-code";
-import { StyleAndClass } from "../types";
-import { QRCodeProps } from "../types/components";
+import { StyleAndClass } from "@asius/base";
+import { QRCodeProps } from "@asius/base";
 
 export const defaultQRCodeProps: QRCodeProps = {
   comp: "qrcode",

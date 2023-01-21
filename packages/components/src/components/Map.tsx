@@ -7,8 +7,8 @@ import {
   Marker,
 } from "react-simple-maps";
 import { continueRender, delayRender } from "remotion";
-import { StyleAndClass } from "../types";
-import { MapProps } from "../types/components";
+import { StyleAndClass } from "@asius/base";
+import { MapProps } from "@asius/base";
 
 export const defaultMapProps: MapProps = {
   comp: "map",

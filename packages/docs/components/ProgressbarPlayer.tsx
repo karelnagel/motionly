@@ -1,4 +1,5 @@
-import { defaultProgressbarProps, ProgressbarTypes } from "@asius/components";
+import { ProgressbarTypes } from "@asius/base";
+import { defaultProgressbarProps } from "@asius/components";
 import { useState } from "react";
 import { DocsPlayer } from "./DocsPlayer";
 import { SelectInput } from "./SelectInput";

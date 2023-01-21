@@ -1,9 +1,9 @@
 import { useAudioData, visualizeAudio } from "@remotion/media-utils";
 import { useRef } from "react";
 import { useCurrentFrame, useVideoConfig } from "remotion";
-import { videoUrl } from "../helpers";
-import { StyleAndClass } from "../types";
-import { AudiogramProps } from "../types/components";
+import { videoUrl } from "@asius/base";
+import { StyleAndClass } from "@asius/base";
+import { AudiogramProps } from "@asius/base";
 
 export const defaultAudiogramProps: AudiogramProps = {
   comp: "audiogram",

@@ -1,5 +1,13 @@
 # @asius/player
 
+## 1.2.1
+
+### Patch Changes
+
+- Added @asius/base
+- Updated dependencies
+  - @asius/components@1.2.1
+
 ## 1.2.0
 
 ### Minor Changes

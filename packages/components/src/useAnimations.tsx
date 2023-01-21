@@ -6,13 +6,13 @@ import {
   useVideoConfig,
   Easing,
 } from "remotion";
-import { getDuration, getFrom } from "./helpers";
+import { getDuration, getFrom } from "@asius/base";
 import {
   AnimationProps,
   SpringAnimationProps,
   InterpolateAnimationProps,
   NoiseAnimationProps,
-} from "./types/animations";
+} from "@asius/base";
 
 export const useAnimation = () => {
   const frame = useCurrentFrame();

@@ -1,4 +1,4 @@
-import { MapProps } from "@asius/components";
+import { MapProps } from "@asius/base";
 import {
   ColorInput,
   NumberInput,

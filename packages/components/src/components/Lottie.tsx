@@ -4,8 +4,8 @@ import {
 } from "@remotion/lottie";
 import { useEffect, useState } from "react";
 import { continueRender, delayRender } from "remotion";
-import { StyleAndClass } from "../types";
-import { LottieProps } from "../types/components";
+import { StyleAndClass } from "@asius/base";
+import { LottieProps } from "@asius/base";
 
 export const defaultLottieProps: LottieProps = {
   comp: "lottie",

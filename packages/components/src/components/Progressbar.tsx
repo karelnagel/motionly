@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useCurrentFrame, useVideoConfig } from "remotion";
-import { StyleAndClass } from "../types";
-import { ProgressbarProps } from "../types/components";
+import { StyleAndClass } from "@asius/base";
+import { ProgressbarProps } from "@asius/base";
 
 export const defaultProgressbarProps: ProgressbarProps = {
   comp: "progressbar",

@@ -1,4 +1,4 @@
-import { TranscriptionProps, TranscriptionWord } from "../../types/components";
+import { TranscriptionProps, TranscriptionWord } from "@asius/base";
 
 export const defaultTranscriptionWords: TranscriptionWord[] = [
   {

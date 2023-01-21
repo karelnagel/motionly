@@ -1,6 +1,6 @@
 import { Component } from "../Component";
-import { StyleAndClass } from "../types";
-import { DivProps } from "../types/components";
+import { StyleAndClass } from "@asius/base";
+import { DivProps } from "@asius/base";
 
 export const defaultDivProps: DivProps = {
   comp: "div",

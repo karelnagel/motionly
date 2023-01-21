@@ -1,7 +1,7 @@
 import { AbsoluteFill } from "remotion";
 import { Component } from "./Component";
 import { useSelected } from "./SelectedContext";
-import { ComponentProps } from "./types";
+import { ComponentProps } from "@asius/base";
 
 export const Composition = ({
   comps,

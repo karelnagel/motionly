@@ -1,4 +1,4 @@
-import { LottieProps } from "@asius/components";
+import { LottieProps } from "@asius/base";
 import {
   BooleanInput,
   ColorInput,

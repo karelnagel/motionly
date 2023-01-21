@@ -1,4 +1,4 @@
-import { TranscriptionWord } from "@asius/components";
+import { TranscriptionWord } from "@asius/base";
 import axios from "axios";
 
 export const getTranscription = async (

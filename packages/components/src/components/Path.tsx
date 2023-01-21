@@ -1,6 +1,6 @@
 import { evolvePath } from "@remotion/paths";
-import { StyleAndClass } from "../types";
-import { PathProps } from "../types/components";
+import { StyleAndClass } from "@asius/base";
+import { PathProps } from "@asius/base";
 
 export const defaultPathProps: PathProps = {
   comp: "path",

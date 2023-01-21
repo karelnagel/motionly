@@ -1,6 +1,6 @@
-import { getTextStyle } from "../helpers";
-import { StyleAndClass } from "../types";
-import { TextProps } from "../types/components";
+import { getTextStyle } from "@asius/base";
+import { StyleAndClass } from "@asius/base";
+import { TextProps } from "@asius/base";
 
 export const defaultTextProps: TextProps = {
   comp: "text",

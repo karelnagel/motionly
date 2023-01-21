@@ -1,4 +1,4 @@
-import { MediaProps } from "@asius/components";
+import { MediaProps } from "@asius/base";
 import { CSSProperties } from "react";
 
 export type PlayerProps = {

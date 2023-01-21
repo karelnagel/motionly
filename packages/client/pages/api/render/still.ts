@@ -4,7 +4,7 @@ import { ReqRes } from "../../../types";
 import { renderStillOnLambda } from "@remotion/lambda";
 import { composition, functionName, region, serveUrl } from "../../../env";
 import { getServerSession } from "../../../lib/getServerSession";
-import { applyModifications, TemplateType } from "@asius/components";
+import { applyModifications, TemplateType } from "@asius/base";
 
 export default async function Still(req: NextApiRequest, res: NextApiResponse) {
   let result = null;

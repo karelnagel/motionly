@@ -1,5 +1,5 @@
 import { updateTemplate } from "@asius/sdk";
-import { ComponentProps, TemplateType } from "@asius/components";
+import { ComponentProps, TemplateType } from "@asius/base";
 import { ReactNode, useRef, useState } from "react";
 import { getRandomId } from "../../helpers";
 import { Context } from "./Context";

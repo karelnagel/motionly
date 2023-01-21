@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { ComponentProps, TextStyle } from "./types";
+import { ComponentProps, TextStyle } from "../types";
 
 export const videoUrl =
   "https://remotionlambda-24lixyhuqn.s3.us-east-1.amazonaws.com/video.mp4";

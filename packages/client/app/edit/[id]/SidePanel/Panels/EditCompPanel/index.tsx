@@ -1,4 +1,4 @@
-import { ComponentProps } from "@asius/components";
+import { ComponentProps } from "@asius/base";
 import { ReactNode } from "react";
 import { AiFillCopy, AiFillDelete } from "react-icons/ai";
 import { useTemplate } from "../../../../../../hooks/useTemplate";

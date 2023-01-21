@@ -1,4 +1,4 @@
-import { DivProps } from "@asius/components";
+import { DivProps } from "@asius/base";
 import { ColorInput } from "../../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";

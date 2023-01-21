@@ -6,8 +6,8 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { StyleAndClass } from "../types";
-import { GraphProps } from "../types/components";
+import { StyleAndClass } from "@asius/base";
+import { GraphProps } from "@asius/base";
 
 export const defaultGraphProps: GraphProps = {
   comp: "graph",

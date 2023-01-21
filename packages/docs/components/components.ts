@@ -1,4 +1,4 @@
-import { ComponentProps } from "@asius/components";
+import { ComponentProps } from "@asius/base";
 
 export const components: ComponentProps[] = [
   {

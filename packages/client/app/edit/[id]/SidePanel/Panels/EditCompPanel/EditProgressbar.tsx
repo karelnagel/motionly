@@ -1,4 +1,4 @@
-import { ProgressbarProps, ProgressbarTypes } from "@asius/components";
+import { ProgressbarProps, ProgressbarTypes } from "@asius/base";
 import {
   BooleanInput,
   ColorInput,

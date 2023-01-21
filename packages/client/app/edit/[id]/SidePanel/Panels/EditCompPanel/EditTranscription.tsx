@@ -2,7 +2,7 @@ import {
   TranscriptionAnimationTypes,
   TranscriptionProps,
   TranscriptionWord,
-} from "@asius/components";
+} from "@asius/base";
 import { getMedia, getTranscription, startTranscription } from "@asius/sdk";
 import { useEffect } from "react";
 import { useState } from "react";

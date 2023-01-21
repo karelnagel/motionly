@@ -1,4 +1,4 @@
-import { ObjectFit, VideoProps } from "@asius/components";
+import { ObjectFit, VideoProps } from "@asius/base";
 import {
   BooleanInput,
   NumberInput,

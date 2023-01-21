@@ -1,6 +1,6 @@
 import { Component } from "../Component";
-import { StyleAndClass } from "../types";
-import { MockupProps } from "../types/components";
+import { StyleAndClass } from "@asius/base";
+import { MockupProps } from "@asius/base";
 
 export const defaultMockupProps: MockupProps = {
   comp: "mockup",

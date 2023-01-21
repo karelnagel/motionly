@@ -1,6 +1,6 @@
 "use client";
 
-import { TemplateType } from "@asius/components";
+import { TemplateType } from "@asius/base";
 import { postNewTemplate } from "@asius/sdk";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";

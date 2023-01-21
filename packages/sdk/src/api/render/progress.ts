@@ -1,6 +1,6 @@
 import { baseUrl } from "../../consts";
 import axios from "axios";
-import { ProgressStatus } from "@asius/components";
+import { ProgressStatus } from "@asius/base";
 
 export type GetProgressInput = { renderId: string };
 export type GetProgressOutput = {

@@ -8,19 +8,10 @@
         "build": "next build",
         "start": "next start -p 3004"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/shuding/nextra-docs-template.git"
-    },
-    "author": "Shu Ding <g@shud.in>",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/shuding/nextra-docs-template/issues"
-    },
-    "homepage": "https://github.com/shuding/nextra-docs-template#readme",
     "dependencies": {
         "@asius/components": "*",
         "@asius/player": "*",
+        "@asius/docs": "*",
         "@tailwindcss/typography": "^0.5.8",
         "autoprefixer": "^10.4.13",
         "next": "^13.0.6",

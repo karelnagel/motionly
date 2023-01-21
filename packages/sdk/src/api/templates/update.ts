@@ -1,4 +1,4 @@
-import { TemplateType } from "@asius/components";
+import { TemplateType } from "@asius/base";
 import axios from "axios";
 import { baseUrl } from "../../consts";
 

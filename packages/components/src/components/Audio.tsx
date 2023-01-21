@@ -1,7 +1,7 @@
 import { Audio as RemotionAudio, useVideoConfig } from "remotion";
-import { videoUrl } from "../helpers";
-import { StyleAndClass } from "../types";
-import { AudioProps } from "../types/components";
+import { videoUrl } from "@asius/base";
+import { StyleAndClass } from "@asius/base";
+import { AudioProps } from "@asius/base";
 
 export const defaultAudioProps: AudioProps = {
   comp: "audio",

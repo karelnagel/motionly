@@ -1,6 +1,6 @@
 import { Img } from "remotion";
-import { StyleAndClass } from "../types";
-import { ImageProps } from "../types/components";
+import { StyleAndClass } from "@asius/base";
+import { ImageProps } from "@asius/base";
 
 export const defaultImageProps: ImageProps = {
   comp: "image",

@@ -1,6 +1,6 @@
 import { Gif as RemotionGif } from "@remotion/gif";
-import { StyleAndClass } from "../types";
-import { GifProps } from "../types/components";
+import { StyleAndClass } from "@asius/base";
+import { GifProps } from "@asius/base";
 
 export const defaultGifProps: GifProps = {
   comp: "gif",

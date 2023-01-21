@@ -2,8 +2,8 @@ import React from "react";
 import { Composition, getInputProps } from "remotion";
 import { Composition as Comp } from "../Composition";
 import { compositions } from "./compositions";
-import { BaseProps, ComponentProps, TemplateType } from "../types";
-import { getFonts } from "../helpers";
+import { BaseProps, ComponentProps, TemplateType } from "@asius/base";
+import { getFonts } from "@asius/base";
 
 const inputProps = getInputProps() as TemplateType;
 const template = Object.keys(inputProps).length

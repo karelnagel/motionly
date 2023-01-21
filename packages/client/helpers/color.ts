@@ -1,4 +1,4 @@
-import { AnimationProps } from "@asius/components";
+import { AnimationProps } from "@asius/base";
 import { random } from "remotion";
 
 export const getAnimationColor = (animation: AnimationProps) =>

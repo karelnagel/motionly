@@ -1,6 +1,4 @@
 import {
-  AllComponents,
-  BaseProps,
   defaultAudiogramProps,
   defaultAudioProps,
   defaultDivProps,
@@ -17,6 +15,7 @@ import {
   defaultVideoProps,
   defaultTranscriptionProps,
 } from "@asius/components";
+import { AllComponents, BaseProps } from "@asius/base";
 import { PanelTitle } from "../../../../../components/PanelTitle";
 import { useTemplate } from "../../../../../hooks/useTemplate";
 

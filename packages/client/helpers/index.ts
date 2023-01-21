@@ -1,4 +1,4 @@
-import { ComponentProps } from "@asius/components";
+import { ComponentProps } from "@asius/base";
 import { mediaBucket } from "../env";
 
 export const percentToHex = (p: number) => {

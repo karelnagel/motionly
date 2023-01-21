@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { TemplateType } from "@asius/components";
+import { TemplateType } from "@asius/base";
 import { TemplateContext } from "../../../components/TemplateContext";
 import { Header } from "./Header";
 import { Timeline } from "./Timeline/Timeline";

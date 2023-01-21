@@ -1,4 +1,4 @@
-import { getFrom, getDuration, ComponentProps } from "@asius/components";
+import { getFrom, getDuration, ComponentProps } from "@asius/base";
 import { useRef, useState } from "react";
 import {
   IoIosAdd,

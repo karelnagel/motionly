@@ -1,4 +1,4 @@
-import { QRCodeProps } from "@asius/components";
+import { QRCodeProps } from "@asius/base";
 import { ColorInput, TextInput } from "../../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";

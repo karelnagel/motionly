@@ -4,7 +4,7 @@ import {
   animationTypes,
   ComponentProps,
   EasingTypes,
-} from "@asius/components";
+} from "@asius/base";
 import { NumberInput, SelectInput } from "../../../../../../components/inputs";
 import { getAnimationColor } from "../../../../../../helpers/color";
 import { SetComp } from "./index";

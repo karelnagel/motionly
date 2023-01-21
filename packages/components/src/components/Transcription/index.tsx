@@ -5,9 +5,9 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { getTextStyle } from "../../helpers";
-import { StyleAndClass } from "../../types";
-import { TranscriptionProps } from "../../types/components";
+import { getTextStyle } from "@asius/base";
+import { StyleAndClass } from "@asius/base";
+import { TranscriptionProps } from "@asius/base";
 export * from "./default";
 
 export const Transcription = ({

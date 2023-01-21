@@ -1,4 +1,4 @@
-import { AllComponents, BaseProps } from "@asius/components";
+import { AllComponents, BaseProps } from "@asius/base";
 import { Player } from "@asius/player";
 
 const baseProps: BaseProps = {

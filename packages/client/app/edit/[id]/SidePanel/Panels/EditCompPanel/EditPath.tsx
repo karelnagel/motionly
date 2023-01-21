@@ -1,4 +1,4 @@
-import { PathProps } from "@asius/components";
+import { PathProps } from "@asius/base";
 import {
   BooleanInput,
   ColorInput,

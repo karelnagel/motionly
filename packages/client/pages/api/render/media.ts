@@ -4,7 +4,7 @@ import { ReqRes } from "../../../types";
 import { renderMediaOnLambda } from "@remotion/lambda";
 import { functionName, region, serveUrl, composition } from "../../../env";
 import { getServerSession } from "../../../lib/getServerSession";
-import { applyModifications, TemplateType } from "@asius/components";
+import { applyModifications, TemplateType } from "@asius/base";
 
 export default async function Media(req: NextApiRequest, res: NextApiResponse) {
   let result = null;

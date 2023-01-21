@@ -15,10 +15,10 @@ import { Lottie } from "./components/Lottie";
 import { Gif } from "./components/Gif";
 import { Path } from "./components/Path";
 import { useSelected } from "./SelectedContext";
-import { ComponentProps } from "./types";
+import { ComponentProps } from "@asius/base";
 import { useAnimation } from "./useAnimations";
-import { animationProps } from "./types/animations";
-import { getDuration, getFrom } from "./helpers";
+import { animationProps } from "@asius/base";
+import { getDuration, getFrom } from "@asius/base";
 
 export const Component = (comp: ComponentProps) => {
   const { fps, durationInFrames } = useVideoConfig();
