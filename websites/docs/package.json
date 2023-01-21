@@ -11,7 +11,7 @@
     "dependencies": {
         "@asius/components": "*",
         "@asius/player": "*",
-        "@asius/docs": "*",
+        "@asius/base": "*",
         "@tailwindcss/typography": "^0.5.8",
         "autoprefixer": "^10.4.13",
         "next": "^13.0.6",
