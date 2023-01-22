@@ -15,6 +15,7 @@ import {
   defaultTranscriptionProps,
   defaultVideoProps,
 } from "../components";
+import { defaultShape } from "../components/Shape";
 
 export const compositions = [
   defaultAudioProps,
@@ -32,4 +33,5 @@ export const compositions = [
   defaultTextProps,
   defaultTranscriptionProps,
   defaultVideoProps,
+  defaultShape,
 ];

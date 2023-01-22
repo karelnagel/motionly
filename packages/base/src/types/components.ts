@@ -196,6 +196,43 @@ export type ProgressbarProps = {
   topRight?: boolean;
 };
 
+export const ShapeTypes = {
+  rect: "Rectangle",
+  triangle: "Triangle",
+  circle: "Circle",
+  ellipse: "Ellipse",
+};
+
+export const TriangleDirection = {
+  top: "Top",
+  bottom: "Bottom",
+  left: "Left",
+  right: "Right",
+};
+
+export type ShapeProps = {
+  comp: "shape";
+  type: keyof typeof ShapeTypes;
+  fill: string;
+  stroke: string;
+  strokeWidth: number;
+  width: number;
+  height: number;
+} & (
+  | {
+      type: "rect";
+      cornerRadius?: number;
+      edgeRoundness?: number;
+    }
+  | {
+      type: "triangle";
+      cornerRadius?: number;
+      edgeRoundness?: number;
+      direction: keyof typeof TriangleDirection;
+    }
+  | { type: "circle" | "ellipse" }
+);
+
 export type TemplateType = {
   id?: string;
   width: number;
@@ -240,6 +277,7 @@ export type AllComponents =
   | QRCodeProps
   | ProgressbarProps
   | GifProps
-  | PathProps;
+  | PathProps
+  | ShapeProps;
 
 export type ComponentProps = BaseProps & AllComponents;

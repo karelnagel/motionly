@@ -19,6 +19,8 @@ import { ComponentProps } from "@asius/base";
 import { useAnimation } from "./useAnimations";
 import { animationProps } from "@asius/base";
 import { getDuration, getFrom } from "@asius/base";
+import { Shape } from "./components/Shape";
+import { useRef } from "react";
 
 export const Component = (comp: ComponentProps) => {
   const { fps, durationInFrames } = useVideoConfig();
@@ -40,16 +42,20 @@ const InsideSequence = ({
   id,
   borderRadius,
   animations = [],
-  height,
+  height: inputHeight,
   opacity,
   rotation,
-  width,
+  width: inputWidth,
   x,
   y,
   ...comp
 }: ComponentProps) => {
   const { setSelected, divRef, selected } = useSelected();
   const animation = useAnimation();
+  const ref = useRef<HTMLDivElement | null>(null);
+  const width = inputWidth || ref.current?.offsetWidth || 0;
+  const height = inputHeight || ref.current?.offsetHeight || 0;
+
   const transformAnimations = animations
     .map((anim) => {
       const { units } = animationProps[anim.prop];
@@ -59,7 +65,10 @@ const InsideSequence = ({
 
   return (
     <div
-      ref={selected === id ? divRef : undefined}
+      ref={(e) => {
+        if (ref) ref.current = e;
+        if (divRef && selected === id) divRef.current = e;
+      }}
       onClick={(e) => {
         setSelected(id);
         e.stopPropagation();
@@ -102,6 +111,9 @@ const InsideSequence = ({
       {comp.comp === "lottie" && <Lottie {...comp} />}
       {comp.comp === "gif" && <Gif {...comp} />}
       {comp.comp === "path" && <Path {...comp} />}
+      {comp.comp === "shape" && (
+        <Shape {...comp} width={width} height={height} />
+      )}
     </div>
   );
 };
