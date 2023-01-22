@@ -1,11 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import {
-  continueRender,
-  delayRender,
-  spring,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { StyleAndClass } from "@asius/base";
 import { GraphProps } from "@asius/base";
 
@@ -31,28 +24,17 @@ export const Graph = ({
   className,
   animationDuration,
   animationStart,
+  width = 0,
+  height = 0,
   ...props
 }: GraphProps & StyleAndClass) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const maxValue = max || Math.max(...values);
 
-  const ref = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(1);
-  const [height, setHeight] = useState(1);
-  const [handle] = useState(() => delayRender());
-
-  useEffect(() => {
-    if (!ref.current?.parentElement) return;
-    setHeight(ref.current.parentElement.offsetHeight);
-    setWidth(ref.current.parentElement.offsetWidth);
-    continueRender(handle);
-  }, []);
-
   if (props.type === "bar")
     return (
       <div
-        ref={ref}
         className={className}
         style={{
           display: "flex",
@@ -104,7 +86,6 @@ export const Graph = ({
     return (
       <svg
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
         viewBox={`0 0 ${width} ${height}`}
         style={style}
         className={className}

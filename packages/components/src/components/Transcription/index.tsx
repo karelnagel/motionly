@@ -19,6 +19,7 @@ export const Transcription = ({
   animationType,
   scrollByPage,
   startFrom,
+  height = 0,
 }: TranscriptionProps & StyleAndClass) => {
   const { fps } = useVideoConfig();
   const currentFrame = useCurrentFrame();
@@ -26,15 +27,13 @@ export const Transcription = ({
   if (frame < 0) frame = 0;
   const windowRef = useRef<HTMLDivElement>(null);
   const zoomRef = useRef<HTMLDivElement>(null);
+
   const [handle] = useState(() => delayRender());
   const [linesRendered, setLinesRendered] = useState(0);
   const lineHeight = (textStyle.lineHeight || 1) * (textStyle.fontSize || 1);
-  const ref = useRef<HTMLDivElement>(null);
-  const [linesPerPage, setLinesPerPage] = useState(1);
+  const linesPerPage = Math.floor(height / lineHeight);
 
   useEffect(() => {
-    const height = ref.current?.parentElement?.offsetHeight || 1;
-    setLinesPerPage(Math.floor(height / lineHeight));
     if (words && words.length > 0 && linesPerPage) {
       const linesRendered = Math.round(
         (windowRef.current?.getBoundingClientRect().height as number) /
@@ -55,7 +54,6 @@ export const Transcription = ({
   const unPlayedSubs = words.filter((s) => s.start * fps > frame);
   return (
     <div
-      ref={ref}
       className={className}
       style={{
         height: `${lineHeight * linesPerPage}px`,

@@ -1,5 +1,4 @@
 import { useAudioData, visualizeAudio } from "@remotion/media-utils";
-import { useRef } from "react";
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import { videoUrl } from "@asius/base";
 import { StyleAndClass } from "@asius/base";
@@ -32,15 +31,14 @@ export const Audiogram = ({
   className,
   multiplier = 1,
   startFrom,
+  width = 0,
+  height = 0,
 }: AudiogramProps & StyleAndClass) => {
-  const ref = useRef<HTMLDivElement>(null);
   const { fps } = useVideoConfig();
   const currentFrame = useCurrentFrame();
   let frame = startFrom ? currentFrame + startFrom * fps : currentFrame;
   if (frame < 0) frame = 0;
   const audioData = useAudioData(src);
-  const width = ref.current?.parentElement?.offsetWidth || 1;
-  const height = ref.current?.parentElement?.offsetHeight || 1;
 
   if (!src) return null;
   if (!audioData) {
@@ -65,7 +63,6 @@ export const Audiogram = ({
     : visualization;
   return (
     <div
-      ref={ref}
       className={className}
       style={{
         display: "flex",

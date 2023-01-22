@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import { StyleAndClass } from "@asius/base";
 import { ProgressbarProps } from "@asius/base";
@@ -17,20 +16,17 @@ export const Progressbar = ({
   bg: background,
   style,
   className,
+  height = 0,
+  width = 0,
   ...props
 }: ProgressbarProps & StyleAndClass) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const progress = (frame / durationInFrames) * 100;
 
-  const ref = useRef<HTMLDivElement>(null);
-  const height = ref.current?.parentElement?.offsetHeight || 1;
-  const width = ref.current?.parentElement?.offsetWidth || 1;
-
   if (props.type === "line")
     return (
       <div
-        ref={ref}
         className={className}
         style={{
           width: "100%",
@@ -56,7 +52,6 @@ export const Progressbar = ({
   if (props.type === "spotify")
     return (
       <div
-        ref={ref}
         className={className}
         style={{
           width: "100%",
@@ -108,12 +103,7 @@ export const Progressbar = ({
     const circumference = 2 * Math.PI * radius;
     const dash = circumference * (progress / 100);
     return (
-      <svg
-        ref={ref as any}
-        viewBox={`0 0 ${size} ${size}`}
-        style={style}
-        className={className}
-      >
+      <svg viewBox={`0 0 ${size} ${size}`} style={style} className={className}>
         <circle
           cx={size / 2}
           cy={size / 2}
@@ -139,7 +129,6 @@ export const Progressbar = ({
   if (props.type === "square")
     return (
       <div
-        ref={ref}
         style={{
           position: "relative",
           height: "100%",

@@ -68,6 +68,7 @@ export type TranscriptionProps = {
   scrollByPage?: boolean;
   animationType: keyof typeof TranscriptionAnimationTypes;
   animationStyle: TextStyle;
+  height?: number;
 };
 
 export type AudioProps = {
@@ -89,6 +90,8 @@ export type AudiogramProps = {
   smoothing?: boolean;
   mirror?: boolean;
   multiplier?: number;
+  height?: number;
+  width?: number;
 };
 
 export type DivProps = {
@@ -115,6 +118,8 @@ export type GraphProps = {
   strokeWidth?: number;
   gap?: number;
   roundness?: number;
+  width?: number;
+  height?: number;
 };
 export type ImageProps = {
   comp: "image";
@@ -194,6 +199,8 @@ export type ProgressbarProps = {
   bg?: string;
   barWidth?: number;
   topRight?: boolean;
+  width?: number;
+  height?: number;
 };
 
 export const ShapeTypes = {
