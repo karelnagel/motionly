@@ -5,7 +5,7 @@
     "private": false,
     "license": "MIT",
     "scripts": {
-        "build": "tsc; cd dist; rm -rf dev/",
+        "build": "tsc",
         "dev": "tsc --watch",
         "preview": "remotion preview src/dev/register.tsx",
         "render": "remotion render src/dev/register.tsx",
