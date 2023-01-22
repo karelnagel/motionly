@@ -11,7 +11,7 @@ export const defaultShape: ShapeProps = {
   strokeWidth: 2,
   edgeRoundness: 0,
   cornerRadius: 0,
-  direction: "bottom",
+  direction: "down",
 };
 
 export const Shape = (props: ShapeProps) => {
@@ -23,8 +23,8 @@ export const Shape = (props: ShapeProps) => {
         fill={props.fill}
         stroke={props.stroke}
         strokeWidth={props.strokeWidth}
-        // edgeRoundness={props.edgeRoundness}
-        // cornerRadius={props.cornerRadius}
+        edgeRoundness={props.edgeRoundness}
+        cornerRadius={props.cornerRadius}
       />
     );
   if (props.type === "rect")
@@ -35,8 +35,8 @@ export const Shape = (props: ShapeProps) => {
         fill={props.fill}
         stroke={props.stroke}
         strokeWidth={props.strokeWidth}
-        // edgeRoundness={props.edgeRoundness}
-        // cornerRadius={props.cornerRadius}
+        edgeRoundness={props.edgeRoundness}
+        cornerRadius={props.cornerRadius}
       />
     );
   else if (props.type === "circle")

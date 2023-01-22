@@ -1,4 +1,3 @@
-import { deleteTemplate } from "@asius/sdk";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAlerts } from "../../../../../components/Alert";
@@ -11,6 +10,7 @@ import {
 } from "../../../../../components/inputs";
 import { PanelTitle } from "../../../../../components/PanelTitle";
 import { useTemplate } from "../../../../../hooks/useTemplate";
+import { deleteTemplate } from "../../../../../sdk/templates/delete";
 
 export const TemplateSidePanel = () => {
   const { template, setTemplate } = useTemplate();

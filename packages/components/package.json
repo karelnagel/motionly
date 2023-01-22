@@ -9,19 +9,18 @@
         "dev": "tsc --watch",
         "preview": "remotion preview src/dev/register.tsx",
         "render": "remotion render src/dev/register.tsx",
-        "lambda:site": "npx remotion lambda sites create src/dev/register.tsx --site-name=asius",
+        "lambda:site": "npx remotion lambda sites create src/dev/register.tsx --site-name=asius-local",
         "lambda:function": "npx remotion lambda functions deploy",
         "lambda:render": "npx remotion lambda render asius"
     },
     "dependencies": {
-        "@remotion/cli": "3.3.33",
-        "@remotion/gif": "3.3.33",
-        "@remotion/lottie": "3.3.33",
-        "@remotion/shapes": "3.3.33",
-        "@remotion/media-utils": "3.3.33",
-        "@remotion/noise": "3.3.33",
-        "@remotion/paths": "3.3.33",
-        "@remotion/google-fonts": "3.3.33",
+        "@remotion/cli": "3.3.34",
+        "@remotion/gif": "3.3.34",
+        "@remotion/lottie": "3.3.34",
+        "@remotion/shapes": "3.3.34",
+        "@remotion/media-utils": "3.3.34",
+        "@remotion/noise": "3.3.34",
+        "@remotion/paths": "3.3.34",
         "@types/react-simple-maps": "^3.0.0",
         "axios": "^1.2.3",
         "lottie-web": "^5.10.0",
@@ -31,23 +30,22 @@
         "@asius/base": "*"
     },
     "peerDependencies": {
-        "@remotion/cli": "^3.3.33",
-        "@remotion/gif": "^3.3.33",
-        "@remotion/lottie": "^3.3.33",
-        "@remotion/media-utils": "^3.3.33",
-        "@remotion/shapes": "^3.3.33",
-        "@remotion/noise": "^3.3.33",
-        "@remotion/paths": "^3.3.33",
-        "@remotion/google-fonts": "3.3.33",
+        "@remotion/cli": "^3.3.34",
+        "@remotion/gif": "^3.3.34",
+        "@remotion/lottie": "^3.3.34",
+        "@remotion/media-utils": "^3.3.34",
+        "@remotion/shapes": "^3.3.34",
+        "@remotion/noise": "^3.3.34",
+        "@remotion/paths": "^3.3.34",
         "react": ">=16.8.0",
         "react-dom": ">=16.8.0",
-        "remotion": "3.3.33"
+        "remotion": "3.3.34"
     },
     "devDependencies": {
         "@types/react": "17.0.11",
         "@types/react-dom": "17.0.8",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
-        "remotion": "3.3.33"
+        "remotion": "3.3.34"
     }
 }

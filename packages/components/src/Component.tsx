@@ -100,11 +100,17 @@ const InsideSequence = ({
       {comp.comp === "image" && <Image {...comp} />}
       {comp.comp === "text" && <Text {...comp} />}
       {comp.comp === "audio" && <Audio {...comp} />}
-      {comp.comp === "audiogram" && <Audiogram {...comp} />}
-      {comp.comp === "graph" && <Graph {...comp} />}
+      {comp.comp === "audiogram" && (
+        <Audiogram {...comp} width={width} height={height} />
+      )}
+      {comp.comp === "graph" && (
+        <Graph {...comp} width={width} height={height} />
+      )}
       {comp.comp === "map" && <Map {...comp} />}
       {comp.comp === "mockup" && <Mockup {...comp} />}
-      {comp.comp === "progressbar" && <Progressbar {...comp} />}
+      {comp.comp === "progressbar" && (
+        <Progressbar {...comp} width={width} height={height} />
+      )}
       {comp.comp === "qrcode" && <QRCode {...comp} />}
       {comp.comp === "video" && <Video {...comp} />}
       {comp.comp === "transcription" && <Transcription {...comp} />}

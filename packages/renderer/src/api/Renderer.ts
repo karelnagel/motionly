@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { RendererHandler } from "./Handler";
 import { RendererOptions } from "./Options";
 
-export function Renderer(
+export function RemotionRenderer(
   ...args:
     | [RendererOptions]
     | [NextApiRequest, NextApiResponse, RendererOptions]

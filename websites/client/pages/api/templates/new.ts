@@ -1,8 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../lib/prisma";
 import { ReqRes } from "../../../types";
-import { PostNewTemplateInput, PostNewTemplateOutput } from "@asius/sdk";
 import { getServerSession } from "../../../lib/getServerSession";
+import {
+  PostNewTemplateInput,
+  PostNewTemplateOutput,
+} from "../../../sdk/templates/new";
 
 export default async function NewTemplate(
   req: NextApiRequest,

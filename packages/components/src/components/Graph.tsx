@@ -14,6 +14,8 @@ export const defaultGraphProps: GraphProps = {
   roundness: 10,
   animationDuration: 2,
   animationStart: 0,
+  width: 100,
+  height: 100,
 };
 
 export const Graph = ({

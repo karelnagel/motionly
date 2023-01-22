@@ -3,7 +3,6 @@ import {
   TranscriptionProps,
   TranscriptionWord,
 } from "@asius/base";
-import { getMedia, getTranscription, startTranscription } from "@asius/sdk";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useAlerts } from "../../../../../../components/Alert";
@@ -16,6 +15,9 @@ import {
 import { Popup } from "../../../../../../components/Popup";
 import { ShowJson } from "../../../../../../components/ShowJson";
 import { getMediaUrl } from "../../../../../../helpers";
+import { getMedia } from "../../../../../../sdk/media/get";
+import { getTranscription } from "../../../../../../sdk/media/getTranscription";
+import { startTranscription } from "../../../../../../sdk/media/startTranscription";
 import { EditSection } from "./EditSection";
 import { EditTextStyle } from "./EditTextStyle";
 import { SetComp } from "./index";

@@ -1,6 +1,5 @@
 import { TemplateType } from "@asius/base";
 import axios from "axios";
-import { baseUrl } from "../../consts";
 
 export type UpdateTemplateInput = {
   id: string;
@@ -12,7 +11,7 @@ export const updateTemplate = async ({
   template,
 }: UpdateTemplateInput): Promise<UpdateTemplateOutput | null> => {
   try {
-    const result = await axios.put(`${baseUrl}/api/templates/${id}`, template);
+    const result = await axios.put(`/api/templates/${id}`, template);
     return result.data;
   } catch (e) {
     return null;

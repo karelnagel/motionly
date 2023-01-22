@@ -1,15 +1,19 @@
-import {
-  DeleteTemplateInput,
-  DeleteTemplateOutput,
-  GetTemplateInput,
-  GetTemplateOutput,
-  renderStill,
-  UpdateTemplateInput,
-  UpdateTemplateOutput,
-} from "@asius/sdk";
+// import { renderStill } from "@asius/renderer";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "../../../lib/getServerSession";
 import { prisma } from "../../../lib/prisma";
+import {
+  DeleteTemplateInput,
+  DeleteTemplateOutput,
+} from "../../../sdk/templates/delete";
+import {
+  GetTemplateInput,
+  GetTemplateOutput,
+} from "../../../sdk/templates/get";
+import {
+  UpdateTemplateInput,
+  UpdateTemplateOutput,
+} from "../../../sdk/templates/update";
 import { ReqRes } from "../../../types";
 
 export default async function Template(
@@ -77,7 +81,7 @@ const updateTemplate = async (
   // Todo check if user is owner
   let preview = undefined;
   try {
-    preview = (await renderStill({ ...template, frame: 10 }))?.fileUrl;
+    // preview = (await renderStill({ ...template, frame: 10 }))?.fileUrl;
   } catch {
     preview = undefined;
   }

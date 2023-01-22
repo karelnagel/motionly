@@ -31,10 +31,10 @@ export const Transcription = ({
   const [handle] = useState(() => delayRender());
   const [linesRendered, setLinesRendered] = useState(0);
   const lineHeight = (textStyle.lineHeight || 1) * (textStyle.fontSize || 1);
-  const linesPerPage = Math.floor(height / lineHeight);
+  const linesPerPage = Math.floor(height / lineHeight) || 1;
 
   useEffect(() => {
-    if (words && words.length > 0 && linesPerPage) {
+    if (words) {
       const linesRendered = Math.round(
         (windowRef.current?.getBoundingClientRect().height as number) /
           (zoomRef.current?.getBoundingClientRect().height as number)

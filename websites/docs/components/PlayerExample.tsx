@@ -1,4 +1,5 @@
 import { Player } from "@asius/player";
+import { useRender } from "@asius/renderer";
 import { useState } from "react";
 import { components } from "./components";
 
@@ -6,7 +7,14 @@ export function PlayerExample() {
   const [text, setText] = useState("Your text");
   const [seed, setSeed] = useState("sdf");
   const [color, setColor] = useState("#FFFF00");
-
+  const { media, progress, fileUrl, cost, status, renderId } = useRender({
+    comps: components,
+    duration: 40,
+    fps: 30,
+    height: 1080,
+    width: 1080,
+    frame: 0,
+  });
   return (
     <div>
       <div
@@ -33,6 +41,10 @@ export function PlayerExample() {
           value={color}
           onChange={(e) => setColor(e.target.value)}
         />
+        <button onClick={() => media()}>Render</button>
+        <p>{progress}</p>
+        <p>{fileUrl}</p>
+        <p>{status}</p>
         <Player
           comps={components}
           duration={40}

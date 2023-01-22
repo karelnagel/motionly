@@ -1,6 +1,7 @@
-import { getMedia, uploadMedia } from "@asius/sdk";
 import { useEffect, useRef, useState } from "react";
 import { getMediaUrl } from "../../helpers";
+import { getMedia } from "../../sdk/media/get";
+import { uploadMedia } from "../../sdk/media/upload";
 import { useAlerts } from "../Alert";
 import { Popup } from "../Popup";
 

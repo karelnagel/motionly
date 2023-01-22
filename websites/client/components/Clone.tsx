@@ -1,9 +1,9 @@
 "use client";
 
 import { TemplateType } from "@asius/base";
-import { postNewTemplate } from "@asius/sdk";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
+import { postNewTemplate } from "../sdk/templates/new";
 import { useAlerts } from "./Alert";
 
 const emptyTemplate: TemplateType = {

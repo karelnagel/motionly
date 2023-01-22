@@ -16,6 +16,8 @@ export const defaultAudiogramProps: AudiogramProps = {
   mirror: true,
   smoothing: true,
   multiplier: 2,
+  height: 100,
+  width: 100,
 };
 
 export const Audiogram = ({

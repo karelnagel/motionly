@@ -9,6 +9,8 @@ export const defaultProgressbarProps: ProgressbarProps = {
   color: "#ff00ffff",
   bg: "#0000FFFF",
   type: "square",
+  height: 100,
+  width: 100,
 };
 
 export const Progressbar = ({

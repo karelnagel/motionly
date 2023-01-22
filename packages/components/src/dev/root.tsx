@@ -18,11 +18,11 @@ const template = Object.keys(inputProps).length
     } as TemplateType);
 
 const fonts = getFonts(template.comps);
-fonts?.forEach((font) => {
-  import(`@remotion/google-fonts/${font.replace(" ", "")}`)
-    .then((g) => g.loadFont())
-    .catch((e) => console.log(e));
-});
+// fonts?.forEach((font) => {
+//   import(`@remotion/google-fonts/${font.replace(" ", "")}`)
+//     .then((g) => g.loadFont())
+//     .catch((e) => console.log(e));
+// });
 export const Root: React.FC = () => {
   return (
     <>

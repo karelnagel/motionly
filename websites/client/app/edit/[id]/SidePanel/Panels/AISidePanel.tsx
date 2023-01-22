@@ -1,8 +1,8 @@
 import { FormEvent, useState } from "react";
 import { PanelTitle } from "../../../../../components/PanelTitle";
 import { useTemplate } from "../../../../../hooks/useTemplate";
-import { postAI } from "@asius/sdk";
 import { useAlerts } from "../../../../../components/Alert";
+import { postAI } from "../../../../../sdk/ai";
 
 export const AISidePanel = () => {
   const { template, setTemplate } = useTemplate();
