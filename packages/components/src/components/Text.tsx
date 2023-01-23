@@ -13,6 +13,7 @@ export const defaultTextProps: TextProps = {
     textAlign: "center",
   },
   text: "Hello World",
+  justifyContent: "center",
 };
 
 export const Text = ({
@@ -20,19 +21,29 @@ export const Text = ({
   text,
   style,
   className,
+  justifyContent,
 }: TextProps & StyleAndClass) => {
   const getStyle = useTextStyles();
   return (
-    <p
-      className={className}
+    <div
       style={{
-        ...getStyle(textStyle),
+        display: "flex",
+        flexDirection: "column",
+        justifyContent,
         height: "100%",
         width: "100%",
-        ...style,
       }}
     >
-      {text}
-    </p>
+      <p
+        className={className}
+        style={{
+          ...getStyle(textStyle),
+          width: "100%",
+          ...style,
+        }}
+      >
+        {text}
+      </p>
+    </div>
   );
 };

@@ -5,7 +5,11 @@ export const TextAlign = {
   center: "Center",
   right: "Right",
 };
-
+export const JustifyContent = {
+  start: "Start",
+  center: "Center",
+  end: "End",
+};
 export const ObjectFit = {
   cover: "cover",
   contain: "contain",
@@ -194,6 +198,7 @@ export type TextProps = {
   comp: "text";
   textStyle: TextStyle;
   text: string;
+  justifyContent?: keyof typeof JustifyContent;
 };
 
 export type VideoProps = {
