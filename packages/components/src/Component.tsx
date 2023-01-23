@@ -17,7 +17,6 @@ import { Path } from "./components/Path";
 import { useSelected } from "./SelectedContext";
 import { ComponentProps, transformProps } from "@asius/base";
 import { useAnimation } from "./useAnimations";
-import { animationProps } from "@asius/base";
 import { getDuration, getFrom } from "@asius/base";
 import { Shape } from "./components/Shape";
 import { useRef } from "react";
@@ -62,20 +61,22 @@ const InsideSequence = ({
   const width = inputWidth || ref.current?.offsetWidth || 0;
   const height = inputHeight || ref.current?.offsetHeight || 0;
 
-  const transformStyle = transform
-    ?.map((t) => {
-      const { units } = transformProps[t.prop];
-      return `${t.prop}(${t.value}${units || ""})`;
-    })
-    .join(" ");
+  const transformStyle =
+    transform
+      ?.map((t) => {
+        const { units } = transformProps[t.prop];
+        return `${t.prop}(${t.value}${units || ""})`;
+      })
+      .join(" ") || "";
 
-  const transformAnimations = animations
-    .map((anim) => {
-      const prop = transformProps[anim.prop as keyof typeof transformProps];
-      if (!prop) return "";
-      return `${anim.prop}(${animation(anim)}${prop.units || ""})`;
-    })
-    .join(" ");
+  const transformAnimations =
+    animations
+      .map((anim) => {
+        const prop = transformProps[anim.prop as keyof typeof transformProps];
+        if (!prop) return "";
+        return `${anim.prop}(${animation(anim)}${prop.units || ""})`;
+      })
+      .join(" ") || "";
   return (
     <div
       ref={(e) => {
