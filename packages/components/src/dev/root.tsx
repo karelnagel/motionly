@@ -3,7 +3,6 @@ import { Composition, getInputProps } from "remotion";
 import { Composition as Comp } from "../Composition";
 import { compositions } from "./compositions";
 import { BaseProps, ComponentProps, TemplateType } from "@asius/base";
-import { getFonts } from "@asius/base";
 
 const inputProps = getInputProps() as TemplateType;
 const template = Object.keys(inputProps).length
@@ -17,7 +16,7 @@ const template = Object.keys(inputProps).length
       background: "#FFFFFFFF",
     } as TemplateType);
 
-const fonts = getFonts(template.comps);
+// const fonts = getFonts(template.comps);
 // fonts?.forEach((font) => {
 //   import(`@remotion/google-fonts/${font.replace(" ", "")}`)
 //     .then((g) => g.loadFont())
@@ -39,11 +38,13 @@ export const Root: React.FC = () => {
         }}
       />
       {compositions.map((comp, i) => {
-        const baseProps: BaseProps = {
+        const baseComp: BaseProps = {
           id: "1",
           animations: [],
+          height: 1080,
+          width: 1080,
         };
-        const compProps: ComponentProps = { ...comp, ...baseProps };
+        const compProps: ComponentProps = { ...comp, ...baseComp };
         return (
           <Composition
             key={i}
@@ -53,7 +54,7 @@ export const Root: React.FC = () => {
             width={template.width}
             durationInFrames={template.duration * template.fps}
             height={template.height}
-            defaultProps={{ comps: [compProps] }}
+            defaultProps={{ comps: [compProps], background: "white" }}
           />
         );
       })}

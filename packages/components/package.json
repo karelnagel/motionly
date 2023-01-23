@@ -18,6 +18,7 @@
         "@remotion/gif": "3.3.34",
         "@remotion/lottie": "3.3.34",
         "@remotion/shapes": "3.3.34",
+        "@remotion/motion-blur": "3.3.34",
         "@remotion/media-utils": "3.3.34",
         "@remotion/noise": "3.3.34",
         "@remotion/paths": "3.3.34",

@@ -2088,6 +2088,13 @@
   dependencies:
     remotion "3.3.34"
 
+"@remotion/motion-blur@3.3.34":
+  version "3.3.34"
+  resolved "https://registry.yarnpkg.com/@remotion/motion-blur/-/motion-blur-3.3.34.tgz#cee0c8b335c17bc635d4e4a3aafaa76fdc7caa71"
+  integrity sha512-kEFkKIXfvjmw594bUGIW7/zklpgOkKw2juJwO1TWPCa1XW1INHOjeyCNM1+MrdEYRnuPU0nO1I/aHNwQI/IHvg==
+  dependencies:
+    remotion "3.3.34"
+
 "@remotion/noise@3.3.34":
   version "3.3.34"
   resolved "https://registry.yarnpkg.com/@remotion/noise/-/noise-3.3.34.tgz#21ae4a33e4e74a46b15068c8989c90adc6e79f88"

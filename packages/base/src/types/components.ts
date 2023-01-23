@@ -240,6 +240,12 @@ export type ShapeProps = {
   | { type: "circle" | "ellipse" }
 );
 
+export type MotionBlurProps = {
+  layers: number;
+  lagInFrames: number;
+  trailOpacity: number;
+};
+
 export type TemplateType = {
   id?: string;
   width: number;
@@ -267,6 +273,7 @@ export type BaseProps = {
   duration?: number;
   opacity?: number;
   animations?: AnimationProps[];
+  motionBlur?: MotionBlurProps;
 };
 
 export type AllComponents =

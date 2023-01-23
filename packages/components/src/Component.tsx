@@ -1,7 +1,7 @@
 import { Div } from "./components/Div";
 import { Text } from "./components/Text";
 import { Image } from "./components/Image";
-import { Sequence, useVideoConfig } from "remotion";
+import { AbsoluteFill, Sequence, useVideoConfig } from "remotion";
 import { Audio } from "./components/Audio";
 import { Audiogram } from "./components/Audiogram";
 import { Graph } from "./components/Graph";
@@ -21,6 +21,7 @@ import { animationProps } from "@asius/base";
 import { getDuration, getFrom } from "@asius/base";
 import { Shape } from "./components/Shape";
 import { useRef } from "react";
+import { MotionBlur } from "./MotionBlur";
 
 export const Component = (comp: ComponentProps) => {
   const { fps, durationInFrames } = useVideoConfig();
@@ -33,9 +34,11 @@ export const Component = (comp: ComponentProps) => {
     )
   );
   return (
-    <Sequence from={from} durationInFrames={duration} layout="none">
-      <InsideSequence {...comp} />
-    </Sequence>
+    <MotionBlur props={comp.motionBlur}>
+      <Sequence from={from} durationInFrames={duration} layout="none">
+        <InsideSequence {...comp} />
+      </Sequence>
+    </MotionBlur>
   );
 };
 const InsideSequence = ({
@@ -48,6 +51,7 @@ const InsideSequence = ({
   width: inputWidth,
   x,
   y,
+  motionBlur,
   ...comp
 }: ComponentProps) => {
   const { setSelected, divRef, selected } = useSelected();
@@ -62,7 +66,6 @@ const InsideSequence = ({
       return `${anim.prop}(${animation(anim)}${units || ""})`;
     })
     .join(" ");
-
   return (
     <div
       ref={(e) => {
