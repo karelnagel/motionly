@@ -22,6 +22,7 @@ import { getDuration, getFrom } from "@asius/base";
 import { Shape } from "./components/Shape";
 import { useRef } from "react";
 import { MotionBlur } from "./MotionBlur";
+import { Confetti } from "./components/Confetti";
 
 export const Component = (comp: ComponentProps) => {
   const { fps, durationInFrames } = useVideoConfig();
@@ -120,6 +121,7 @@ const InsideSequence = ({
       {comp.comp === "lottie" && <Lottie {...comp} />}
       {comp.comp === "gif" && <Gif {...comp} />}
       {comp.comp === "path" && <Path {...comp} />}
+      {comp.comp === "confetti" && <Confetti {...comp} />}
       {comp.comp === "shape" && (
         <Shape {...comp} width={width} height={height} />
       )}

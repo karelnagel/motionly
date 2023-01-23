@@ -177,6 +177,19 @@ export type QRCodeProps = {
   bg?: Color;
 };
 
+export type ConfettiProps = {
+  comp: "confetti";
+  colors?: string[];
+  count?: number;
+  angle?: number;
+  spread?: number;
+  startVelocity?: number;
+  scalar?: number;
+  ticks?: number;
+  posX: number;
+  posY: number;
+};
+
 export type TextProps = {
   comp: "text";
   textStyle: TextStyle;
@@ -309,6 +322,7 @@ export type AllComponents =
   | ProgressbarProps
   | GifProps
   | PathProps
+  | ConfettiProps
   | ShapeProps;
 
 export type ComponentProps = BaseProps & AllComponents;
