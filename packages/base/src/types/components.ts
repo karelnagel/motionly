@@ -246,12 +246,28 @@ export type MotionBlurProps = {
   trailOpacity: number;
 };
 
+export type ColorInterplate = {
+  type: "interplate";
+  colors: string[];
+  durations: number[];
+};
+
+export type BaseColor = undefined | string | ColorInterplate;
+
+export type GradientColor = {
+  type: "linear" | "radial";
+  colors: BaseColor[];
+  stops: number[];
+  angle: number;
+};
+
+export type Color = BaseColor | GradientColor;
 export type TemplateType = {
   id?: string;
   width: number;
   height: number;
   duration: number;
-  background?: string;
+  background?: Color;
   fps: number;
   name?: string;
   public?: boolean;

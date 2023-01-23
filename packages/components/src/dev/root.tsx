@@ -11,9 +11,27 @@ const template = Object.keys(inputProps).length
       height: 1080,
       width: 1080,
       fps: 30,
-      duration: 60,
+      duration: 6,
       comps: [],
-      background: "#FFFFFFFF",
+      background: "#fff",
+      // background: {
+      //   type: "linear",
+      //   angle: 45,
+      //   colors: [
+      //     {
+      //       type: "interplate",
+      //       colors: ["#000000", "#ffff00", "#f000ff"],
+      //       durations: [0, 3, 6],
+      //     },
+      //     "#fff",
+      //     {
+      //       type: "interplate",
+      //       colors: ["#0000ff", "#ff0000", "#0000f0"],
+      //       durations: [0, 3, 6],
+      //     },
+      //   ],
+      //   stops: [0, 0.5, 1],
+      // },
     } as TemplateType);
 
 // const fonts = getFonts(template.comps);

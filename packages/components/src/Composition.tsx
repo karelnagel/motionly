@@ -1,19 +1,21 @@
 import { AbsoluteFill } from "remotion";
 import { Component } from "./Component";
 import { useSelected } from "./SelectedContext";
-import { ComponentProps } from "@asius/base";
+import { Color, ComponentProps } from "@asius/base";
+import { useColors } from "./useColors";
 
 export const Composition = ({
   comps,
   background,
 }: {
   comps: ComponentProps[];
-  background?: string;
+  background?: Color;
 }) => {
   const { setSelected } = useSelected();
+  const color = useColors();
   return (
     <AbsoluteFill
-      style={{ background }}
+      style={{ background: color(background) }}
       onClick={() => setSelected("template")}
     >
       {comps.map((comp, index) => {

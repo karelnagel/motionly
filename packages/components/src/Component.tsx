@@ -1,7 +1,7 @@
 import { Div } from "./components/Div";
 import { Text } from "./components/Text";
 import { Image } from "./components/Image";
-import { AbsoluteFill, Sequence, useVideoConfig } from "remotion";
+import { Sequence, useVideoConfig } from "remotion";
 import { Audio } from "./components/Audio";
 import { Audiogram } from "./components/Audiogram";
 import { Graph } from "./components/Graph";
@@ -41,6 +41,7 @@ export const Component = (comp: ComponentProps) => {
     </MotionBlur>
   );
 };
+
 const InsideSequence = ({
   id,
   borderRadius,
@@ -51,7 +52,6 @@ const InsideSequence = ({
   width: inputWidth,
   x,
   y,
-  motionBlur,
   ...comp
 }: ComponentProps) => {
   const { setSelected, divRef, selected } = useSelected();
