@@ -9,7 +9,6 @@ export const MotionBlur = ({
   children: ReactNode;
   props?: MotionBlurProps;
 }) => {
-  console.log(props);
   if (!props) return <>{children}</>;
   return (
     <Trail {...props}>

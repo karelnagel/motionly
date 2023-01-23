@@ -14,32 +14,8 @@ const template = Object.keys(inputProps).length
       duration: 6,
       comps: [],
       background: "#fff",
-      // background: {
-      //   type: "linear",
-      //   angle: 45,
-      //   colors: [
-      //     {
-      //       type: "interplate",
-      //       colors: ["#000000", "#ffff00", "#f000ff"],
-      //       durations: [0, 3, 6],
-      //     },
-      //     "#fff",
-      //     {
-      //       type: "interplate",
-      //       colors: ["#0000ff", "#ff0000", "#0000f0"],
-      //       durations: [0, 3, 6],
-      //     },
-      //   ],
-      //   stops: [0, 0.5, 1],
-      // },
     } as TemplateType);
 
-// const fonts = getFonts(template.comps);
-// fonts?.forEach((font) => {
-//   import(`@remotion/google-fonts/${font.replace(" ", "")}`)
-//     .then((g) => g.loadFont())
-//     .catch((e) => console.log(e));
-// });
 export const Root: React.FC = () => {
   return (
     <>

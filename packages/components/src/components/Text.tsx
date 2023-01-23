@@ -8,7 +8,7 @@ export const defaultTextProps: TextProps = {
     bg: "#00000000",
     color: "#000000FF",
     fontSize: 120,
-    fontFamily: "Arial",
+    fontFamily: "Inter",
     fontWeight: 700,
     textAlign: "center",
   },

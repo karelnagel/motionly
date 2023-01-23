@@ -1271,7 +1271,7 @@ export const components: ComponentProps[] = [
     scrollByPage: false,
     textStyle: {
       fontSize: 200,
-      fontFamily: "Arial",
+      fontFamily: "Explora",
       color: "#1a77db",
       outlineColor: "#ffffff",
       outlineWidth: 20,
@@ -1317,7 +1317,7 @@ export const components: ComponentProps[] = [
       bg: "#00000000",
       color: "#eb0000FF",
       fontSize: 180,
-      fontFamily: "Arial",
+      fontFamily: "Inter",
       fontWeight: 700,
       textAlign: "center",
     },

@@ -11,7 +11,7 @@
         "render": "remotion render src/dev/register.tsx",
         "lambda:site": "npx remotion lambda sites create src/dev/register.tsx --site-name=asius-local",
         "lambda:function": "npx remotion lambda functions deploy",
-        "lambda:render": "npx remotion lambda render asius"
+        "lambda:render": "npx remotion lambda render asius-local"
     },
     "dependencies": {
         "@asius/base": "*",

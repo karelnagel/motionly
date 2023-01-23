@@ -1,8 +1,9 @@
 import { AbsoluteFill } from "remotion";
 import { Component } from "./Component";
 import { useSelected } from "./SelectedContext";
-import { Color, ComponentProps } from "@asius/base";
+import { Color, ComponentProps, getFonts } from "@asius/base";
 import { useColors } from "./useColors";
+import { useFonts } from "./useFonts";
 
 export const Composition = ({
   comps,
@@ -13,6 +14,7 @@ export const Composition = ({
 }) => {
   const { setSelected } = useSelected();
   const color = useColors();
+  useFonts(getFonts(comps) || []);
   return (
     <AbsoluteFill
       style={{ background: color(background) }}
