@@ -277,18 +277,12 @@ export type GradientColor = {
 
 export type Color = BaseColor | GradientColor;
 export type TemplateType = {
-  id?: string;
   width: number;
   height: number;
   duration: number;
   background?: Color;
   fps: number;
-  name?: string;
-  public?: boolean;
-  description?: string;
-  preview?: string;
   comps: ComponentProps[];
-  isOwner?: boolean;
 };
 
 export type BaseProps = {
