@@ -154,6 +154,7 @@ export type MockupProps = {
   comp: "mockup";
   children: ComponentProps[];
   type: keyof typeof MockupTypes;
+  bg: Color;
 };
 
 export type PathProps = {
