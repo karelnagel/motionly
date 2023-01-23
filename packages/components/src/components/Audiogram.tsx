@@ -3,6 +3,7 @@ import { useCurrentFrame, useVideoConfig } from "remotion";
 import { videoUrl } from "@asius/base";
 import { StyleAndClass } from "@asius/base";
 import { AudiogramProps } from "@asius/base";
+import { useColors } from "../useColors";
 
 export const defaultAudiogramProps: AudiogramProps = {
   comp: "audiogram",
@@ -38,6 +39,7 @@ export const Audiogram = ({
 }: AudiogramProps & StyleAndClass) => {
   const { fps } = useVideoConfig();
   const currentFrame = useCurrentFrame();
+  const getColor = useColors();
   let frame = startFrom ? currentFrame + startFrom * fps : currentFrame;
   if (frame < 0) frame = 0;
   const audioData = useAudioData(src);
@@ -83,7 +85,7 @@ export const Audiogram = ({
             style={{
               width: barWidth,
               height: height * v * multiplier,
-              backgroundColor: color,
+              backgroundColor: getColor(color),
               borderRadius: roundness,
             }}
           />

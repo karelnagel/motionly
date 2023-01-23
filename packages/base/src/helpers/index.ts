@@ -1,36 +1,7 @@
-import { CSSProperties } from "react";
-import { ComponentProps, TextStyle } from "../types";
+import { ComponentProps } from "../types";
 
 export const videoUrl =
   "https://remotionlambda-24lixyhuqn.s3.us-east-1.amazonaws.com/video.mp4";
-
-export const getTextStyle = ({
-  bg,
-  outlineColor,
-  outlineWidth,
-  ...textStyles
-}: TextStyle): CSSProperties => {
-  const shadowCount = 100;
-  const width = outlineWidth || 0;
-  return {
-    padding: 0,
-    margin: 0,
-    ...textStyles,
-    backgroundColor: bg,
-    textShadow:
-      outlineWidth && outlineColor
-        ? new Array(shadowCount)
-            .fill(0)
-            .map(
-              (_, i) =>
-                `${Math.cos(((i + 1) / shadowCount) * Math.PI * 2) * width}px ${
-                  Math.sin(((i + 1) / shadowCount) * Math.PI * 2) * width
-                }px ${outlineColor}`
-            )
-            .join(", ")
-        : undefined,
-  };
-};
 
 // if from is negative, it's relative to the end of the video
 export const getFrom = (maxDuration: number, from?: number) => {

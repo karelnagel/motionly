@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { continueRender, delayRender } from "remotion";
 import { StyleAndClass } from "@asius/base";
 import { LottieProps } from "@asius/base";
+import { useColors } from "../useColors";
 
 export const defaultLottieProps: LottieProps = {
   comp: "lottie",
@@ -23,6 +24,7 @@ export const Lottie = ({
   backwards,
 }: LottieProps & StyleAndClass) => {
   const [handle] = useState(() => delayRender("Loading Lottie animation"));
+  const getColor = useColors();
   const [animationData, setAnimationData] =
     useState<LottieAnimationData | null>(null);
   useEffect(() => {
@@ -47,7 +49,7 @@ export const Lottie = ({
       style={{
         height: "100%",
         width: "100%",
-        background,
+        background: getColor(background),
         ...style,
       }}
       animationData={animationData}

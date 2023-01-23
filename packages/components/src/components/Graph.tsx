@@ -1,6 +1,7 @@
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { StyleAndClass } from "@asius/base";
 import { GraphProps } from "@asius/base";
+import { useColors } from "../useColors";
 
 export const defaultGraphProps: GraphProps = {
   comp: "graph",
@@ -32,6 +33,7 @@ export const Graph = ({
 }: GraphProps & StyleAndClass) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  const getColor = useColors();
   const maxValue = max || Math.max(...values);
 
   if (props.type === "bar")
@@ -65,7 +67,7 @@ export const Graph = ({
               style={{
                 width: width / values.length,
                 height: height * (v / maxValue) * anim,
-                backgroundColor: color,
+                backgroundColor: getColor(color),
                 borderRadius: props.roundness,
               }}
             />
@@ -101,7 +103,7 @@ export const Graph = ({
               return `${i === 0 ? "M" : "L"} ${x} ${y}`;
             })
             .join(" ")}
-          stroke={color}
+          stroke={getColor(color)}
           strokeWidth={props.strokeWidth}
           fill="none"
         />

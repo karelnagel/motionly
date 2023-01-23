@@ -1,6 +1,7 @@
 import { Component } from "../Component";
 import { StyleAndClass } from "@asius/base";
 import { DivProps } from "@asius/base";
+import { useColors } from "../useColors";
 
 export const defaultDivProps: DivProps = {
   comp: "div",
@@ -14,6 +15,7 @@ export const Div = ({
   style,
   className,
 }: DivProps & StyleAndClass) => {
+  const color = useColors();
   return (
     <div
       className={className}
@@ -21,7 +23,7 @@ export const Div = ({
         display: "flex",
         height: "100%",
         width: "100%",
-        backgroundColor: background,
+        backgroundColor: color(background),
         ...style,
       }}
     >

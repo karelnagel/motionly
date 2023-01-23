@@ -1,6 +1,7 @@
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import { StyleAndClass } from "@asius/base";
 import { ProgressbarProps } from "@asius/base";
+import { useColors } from "../useColors";
 
 export const defaultProgressbarProps: ProgressbarProps = {
   comp: "progressbar",
@@ -15,7 +16,7 @@ export const defaultProgressbarProps: ProgressbarProps = {
 
 export const Progressbar = ({
   color,
-  bg: background,
+  bg,
   style,
   className,
   height = 0,
@@ -25,6 +26,7 @@ export const Progressbar = ({
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const progress = (frame / durationInFrames) * 100;
+  const getColor = useColors();
 
   if (props.type === "line")
     return (
@@ -34,7 +36,7 @@ export const Progressbar = ({
           width: "100%",
           height: "100%",
           position: "relative",
-          background,
+          background: getColor(bg),
           ...style,
         }}
       >
@@ -44,7 +46,7 @@ export const Progressbar = ({
             top: 0,
             left: 0,
             height: "100%",
-            backgroundColor: color,
+            background: getColor(color),
             width: `${progress}%`,
           }}
         />
@@ -72,14 +74,14 @@ export const Progressbar = ({
             height: height / 2,
             borderRadius: height / 4,
             left: 0,
-            background,
+            background: getColor(bg),
             overflow: "hidden",
           }}
         >
           <div
             style={{
               width: `${progress}%`,
-              background: color,
+              background: getColor(color),
               position: "absolute",
               left: 0,
               height: "100%",
@@ -92,7 +94,7 @@ export const Progressbar = ({
             height,
             position: "absolute",
             width: height,
-            background: color,
+            background: getColor(color),
             left: `${progress}%`,
             transform: "translate(-50%, 0)",
           }}
@@ -110,7 +112,7 @@ export const Progressbar = ({
           cx={size / 2}
           cy={size / 2}
           r={radius}
-          stroke={background}
+          stroke={getColor(bg)}
           strokeWidth={props.barWidth}
           fill="none"
         />
@@ -118,7 +120,7 @@ export const Progressbar = ({
           cx={size / 2}
           cy={size / 2}
           r={radius}
-          stroke={color}
+          stroke={getColor(color)}
           strokeWidth={props.barWidth}
           fill="none"
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
@@ -148,7 +150,7 @@ export const Progressbar = ({
               key={n}
               style={{
                 width: horizontal ? props.barWidth : `${progress}%`,
-                backgroundColor: color,
+                backgroundColor: getColor(color),
                 height: horizontal ? `${progress}%` : props.barWidth,
                 position: "absolute",
                 top: !top ? 0 : undefined,

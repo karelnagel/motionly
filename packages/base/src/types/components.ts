@@ -54,9 +54,9 @@ export type TextStyle = {
   fontWeight?: number;
   lineHeight?: number;
   textAlign?: keyof typeof TextAlign;
-  bg?: string;
-  color?: string;
-  outlineColor?: string;
+  bg?: Color;
+  color?: BaseColor;
+  outlineColor?: BaseColor;
   outlineWidth?: number;
 };
 
@@ -84,7 +84,7 @@ export type AudiogramProps = {
   position: keyof typeof AudiogramPosition;
   gap: number;
   barWidth: number;
-  color?: string;
+  color?: Color;
   roundness: number;
   startFrom?: number;
   smoothing?: boolean;
@@ -96,7 +96,7 @@ export type AudiogramProps = {
 
 export type DivProps = {
   comp: "div";
-  bg?: string;
+  bg?: Color;
   children: ComponentProps[];
 };
 
@@ -109,7 +109,7 @@ export type GifProps = {
 export type GraphProps = {
   comp: "graph";
   src: number[];
-  color?: string;
+  color?: Color;
   type: keyof typeof GraphTypes;
   max?: number;
   min?: number;
@@ -133,7 +133,7 @@ export type LottieProps = {
   backwards?: boolean;
   loop?: boolean;
   playbackRate?: number;
-  bg?: string;
+  bg?: Color;
 };
 
 export type MapProps = {
@@ -141,13 +141,13 @@ export type MapProps = {
   lat: number;
   lng: number;
   zoom: number;
-  fill?: string;
-  stroke?: string;
+  fill?: Color;
+  stroke?: BaseColor;
   strokeWidth?: number;
-  markerColor?: string;
+  markerColor?: Color;
   markerSize?: number;
   url?: string;
-  bg?: string;
+  bg?: Color;
 };
 
 export type MockupProps = {
@@ -159,21 +159,21 @@ export type MockupProps = {
 export type PathProps = {
   comp: "path";
   path: string;
-  strokeColor?: string;
+  strokeColor?: BaseColor;
   strokeWidth?: number;
   viewBoxX?: number;
   viewBoxY?: number;
   viewBoxHeight?: number;
   viewBoxWidth?: number;
-  fillColor?: string;
+  fillColor?: Color;
   isRound?: boolean;
 };
 
 export type QRCodeProps = {
   comp: "qrcode";
   text: string;
-  color?: string;
-  bg?: string;
+  color?: Color;
+  bg?: Color;
 };
 
 export type TextProps = {
@@ -195,8 +195,8 @@ export type VideoProps = {
 export type ProgressbarProps = {
   comp: "progressbar";
   type: keyof typeof ProgressbarTypes;
-  color?: string;
-  bg?: string;
+  color?: Color;
+  bg?: Color;
   barWidth?: number;
   topRight?: boolean;
   width: number;
@@ -220,8 +220,8 @@ export const TriangleDirection = {
 export type ShapeProps = {
   comp: "shape";
   type: keyof typeof ShapeTypes;
-  fill: string;
-  stroke: string;
+  fill: Color;
+  stroke: BaseColor;
   strokeWidth: number;
   width: number;
   height: number;

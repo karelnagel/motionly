@@ -5,9 +5,9 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { getTextStyle } from "@asius/base";
 import { StyleAndClass } from "@asius/base";
 import { TranscriptionProps } from "@asius/base";
+import { useTextStyles } from "../../useTextStyles";
 export * from "./default";
 
 export const Transcription = ({
@@ -32,7 +32,7 @@ export const Transcription = ({
   const [linesRendered, setLinesRendered] = useState(0);
   const lineHeight = (textStyle.lineHeight || 1) * (textStyle.fontSize || 1);
   const linesPerPage = Math.floor(height / lineHeight) || 1;
-
+  const getStyle = useTextStyles();
   useEffect(() => {
     if (words) {
       const linesRendered = Math.round(
@@ -64,7 +64,7 @@ export const Transcription = ({
       <p
         className=""
         style={{
-          ...getTextStyle(textStyle),
+          ...getStyle(textStyle),
           overflow: "clip",
           transform: `translateY(-${linesOffset * lineHeight}px)`,
         }}
@@ -81,9 +81,7 @@ export const Transcription = ({
             return (
               <span key={i}>
                 <span
-                  style={
-                    isHighlighted ? getTextStyle(animationStyle) : undefined
-                  }
+                  style={isHighlighted ? getStyle(animationStyle) : undefined}
                 >
                   {item.text}{" "}
                 </span>

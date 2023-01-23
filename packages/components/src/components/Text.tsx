@@ -1,6 +1,6 @@
-import { getTextStyle } from "@asius/base";
 import { StyleAndClass } from "@asius/base";
 import { TextProps } from "@asius/base";
+import { useTextStyles } from "../useTextStyles";
 
 export const defaultTextProps: TextProps = {
   comp: "text",
@@ -21,11 +21,12 @@ export const Text = ({
   style,
   className,
 }: TextProps & StyleAndClass) => {
+  const getStyle = useTextStyles();
   return (
     <p
       className={className}
       style={{
-        ...getTextStyle(textStyle),
+        ...getStyle(textStyle),
         height: "100%",
         width: "100%",
         ...style,

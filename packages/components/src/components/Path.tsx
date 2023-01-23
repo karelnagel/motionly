@@ -1,6 +1,7 @@
 import { evolvePath } from "@remotion/paths";
 import { StyleAndClass } from "@asius/base";
 import { PathProps } from "@asius/base";
+import { useColors } from "../useColors";
 
 export const defaultPathProps: PathProps = {
   comp: "path",
@@ -27,7 +28,7 @@ export const Path = ({
   className,
 }: PathProps & StyleAndClass) => {
   const evolution = evolvePath(1, path);
-
+  const getColor = useColors();
   return (
     <svg
       className={className}
@@ -36,8 +37,8 @@ export const Path = ({
     >
       <path
         d={path}
-        fill={fillColor || "none"}
-        stroke={strokeColor}
+        fill={getColor(fillColor) || "none"}
+        stroke={getColor(strokeColor)}
         strokeWidth={strokeWidth}
         strokeDasharray={evolution.strokeDasharray}
         strokeDashoffset={evolution.strokeDashoffset}
