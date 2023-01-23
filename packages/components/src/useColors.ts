@@ -15,7 +15,7 @@ export const getColor = (
 ): string | undefined => {
   if (!color) return undefined;
   if (typeof color === "string") return color;
-  if (color.type === "interplate") {
+  if (color.type === "interpolate") {
     const { colors, durations } = color;
     const max = Math.min(durations.length, colors.length);
     return interpolateColors(

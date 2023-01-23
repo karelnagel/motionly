@@ -260,13 +260,13 @@ export type MotionBlurProps = {
   trailOpacity: number;
 };
 
-export type ColorInterplate = {
-  type: "interplate";
+export type ColorInterpolate = {
+  type: "interpolate";
   colors: string[];
   durations: number[];
 };
 
-export type BaseColor = undefined | string | ColorInterplate;
+export type BaseColor = undefined | string | ColorInterpolate;
 
 export type GradientColor = {
   type: "linear" | "radial";
