@@ -304,6 +304,8 @@ export type BaseProps = {
   animations?: AnimationProps[];
   motionBlur?: MotionBlurProps;
   transform?: TransformProps[];
+  freeze?: number;
+  loopDuration?: number;
 };
 
 export type AllComponents =

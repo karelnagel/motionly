@@ -1,7 +1,12 @@
 import { Div } from "./components/Div";
 import { Text } from "./components/Text";
 import { Image } from "./components/Image";
-import { Sequence, useVideoConfig } from "remotion";
+import {
+  Freeze as RemotionFreeze,
+  Loop as RemotionLoop,
+  Sequence,
+  useVideoConfig,
+} from "remotion";
 import { Audio } from "./components/Audio";
 import { Audiogram } from "./components/Audiogram";
 import { Graph } from "./components/Graph";
@@ -19,7 +24,7 @@ import { ComponentProps, transformProps } from "@asius/base";
 import { useAnimation } from "./useAnimations";
 import { getDuration, getFrom } from "@asius/base";
 import { Shape } from "./components/Shape";
-import { useRef } from "react";
+import { ReactNode, useRef } from "react";
 import { MotionBlur } from "./MotionBlur";
 import { Confetti } from "./components/Confetti";
 
@@ -36,10 +41,50 @@ export const Component = (comp: ComponentProps) => {
   return (
     <MotionBlur props={comp.motionBlur}>
       <Sequence from={from} durationInFrames={duration} layout="none">
-        <InsideSequence {...comp} />
+        <Freeze frame={comp.freeze ? fps * comp.freeze : undefined}>
+          <Loop
+            durationInFrames={
+              comp.loopDuration ? fps * comp.loopDuration : undefined
+            }
+          >
+            <InsideSequence {...comp} />
+          </Loop>
+        </Freeze>
       </Sequence>
     </MotionBlur>
   );
+};
+
+export const Freeze = ({
+  frame,
+  children,
+}: {
+  frame?: number;
+  children: ReactNode;
+}) => {
+  if (!frame) return <>{children}</>;
+  else
+    return (
+      <RemotionFreeze frame={frame}>
+        <>{children}</>
+      </RemotionFreeze>
+    );
+};
+
+export const Loop = ({
+  durationInFrames,
+  children,
+}: {
+  durationInFrames?: number;
+  children: ReactNode;
+}) => {
+  if (!durationInFrames) return <>{children}</>;
+  else
+    return (
+      <RemotionLoop durationInFrames={durationInFrames} layout="none">
+        <>{children}</>
+      </RemotionLoop>
+    );
 };
 
 const InsideSequence = ({
