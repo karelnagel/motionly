@@ -1,4 +1,4 @@
-import { AnimationProps } from "./animations";
+import { AnimationProps, transformProps } from "./animations";
 
 export const TextAlign = {
   left: "Left",
@@ -285,6 +285,11 @@ export type TemplateType = {
   comps: ComponentProps[];
 };
 
+export type TransformProps = {
+  prop: keyof typeof transformProps;
+  value: number;
+};
+
 export type BaseProps = {
   id: string;
   height?: number;
@@ -298,6 +303,7 @@ export type BaseProps = {
   opacity?: number;
   animations?: AnimationProps[];
   motionBlur?: MotionBlurProps;
+  transform?: TransformProps[];
 };
 
 export type AllComponents =

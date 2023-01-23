@@ -15,7 +15,7 @@ import { Lottie } from "./components/Lottie";
 import { Gif } from "./components/Gif";
 import { Path } from "./components/Path";
 import { useSelected } from "./SelectedContext";
-import { ComponentProps } from "@asius/base";
+import { ComponentProps, transformProps } from "@asius/base";
 import { useAnimation } from "./useAnimations";
 import { animationProps } from "@asius/base";
 import { getDuration, getFrom } from "@asius/base";
@@ -53,6 +53,7 @@ const InsideSequence = ({
   width: inputWidth,
   x,
   y,
+  transform,
   ...comp
 }: ComponentProps) => {
   const { setSelected, divRef, selected } = useSelected();
@@ -61,10 +62,18 @@ const InsideSequence = ({
   const width = inputWidth || ref.current?.offsetWidth || 0;
   const height = inputHeight || ref.current?.offsetHeight || 0;
 
+  const transformStyle = transform
+    ?.map((t) => {
+      const { units } = transformProps[t.prop];
+      return `${t.prop}(${t.value}${units || ""})`;
+    })
+    .join(" ");
+
   const transformAnimations = animations
     .map((anim) => {
-      const { units } = animationProps[anim.prop];
-      return `${anim.prop}(${animation(anim)}${units || ""})`;
+      const prop = transformProps[anim.prop as keyof typeof transformProps];
+      if (!prop) return "";
+      return `${anim.prop}(${animation(anim)}${prop.units || ""})`;
     })
     .join(" ");
   return (
@@ -97,7 +106,9 @@ const InsideSequence = ({
         top: y,
         left: x,
         userSelect: "none",
-        transform: `rotate(${rotation || 0}deg) ${transformAnimations}`, // For some reason, this messes up x and y
+        transform: `rotate(${
+          rotation || 0
+        }deg) ${transformStyle} ${transformAnimations}`, // For some reason, this messes up x and y
       }}
     >
       {comp.comp === "div" && <Div {...comp} />}

@@ -1,7 +1,4 @@
-export const animationProps = {
-  blur: { label: "Blur", units: "px" },
-  opacity: { label: "Opacity", units: "%" },
-  borderRadius: { label: "Border Radius", units: "px" },
+export const transformProps = {
   rotate: { label: "Rotate", units: "deg" },
   rotateX: { label: "Rotate X", units: "deg" },
   rotateY: { label: "Rotate Y", units: "deg" },
@@ -18,6 +15,13 @@ export const animationProps = {
   skewX: { label: "Skew X", units: "deg" },
   skewY: { label: "Skew Y", units: "deg" },
   perspective: { label: "Perspective", units: "px" },
+};
+
+export const animationProps = {
+  blur: { label: "Blur", units: "px" },
+  opacity: { label: "Opacity", units: "%" },
+  borderRadius: { label: "Border Radius", units: "px" },
+  ...transformProps,
 };
 
 export const animationTypes = {
@@ -46,7 +50,7 @@ export const EasingTypes = {
 };
 export interface InterpolateAnimationProps extends BaseAnimations {
   type: "interpolate";
-  easing: keyof typeof EasingTypes;
+  easing?: keyof typeof EasingTypes;
 }
 export interface NoiseAnimationProps extends BaseAnimations {
   type: "noise";

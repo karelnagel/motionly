@@ -58,7 +58,6 @@ export const Root: React.FC = () => {
       {compositions.map((comp, i) => {
         const baseComp: BaseProps = {
           id: "1",
-          animations: [],
           height: 1080,
           width: 1080,
         };
