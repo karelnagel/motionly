@@ -1,7 +1,7 @@
-import { Component } from "../Component";
 import { StyleAndClass } from "@asius/base";
 import { DivProps } from "@asius/base";
 import { useColors } from "../useColors";
+import { Children } from "./Children";
 
 export const defaultDivProps: DivProps = {
   comp: "div",
@@ -14,6 +14,7 @@ export const Div = ({
   children,
   style,
   className,
+  isSequence,
 }: DivProps & StyleAndClass) => {
   const color = useColors();
   return (
@@ -27,9 +28,7 @@ export const Div = ({
         ...style,
       }}
     >
-      {children.map((child, index) => (
-        <Component key={index} {...child} />
-      ))}
+      <Children childs={children} isSequence={isSequence} />
     </div>
   );
 };

@@ -102,6 +102,7 @@ export type DivProps = {
   comp: "div";
   bg?: Color;
   children: ComponentProps[];
+  isSequence?: boolean;
 };
 
 export type GifProps = {
@@ -159,6 +160,7 @@ export type MockupProps = {
   children: ComponentProps[];
   type: keyof typeof MockupTypes;
   bg: Color;
+  isSequence?: boolean;
 };
 
 export type PathProps = {

@@ -36,7 +36,6 @@ export const Root: React.FC = () => {
           id: "1",
           height: 1080,
           width: 1080,
-          loopDuration: 3,
         };
         const compProps: ComponentProps = { ...comp, ...baseComp };
         return (
