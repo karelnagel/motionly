@@ -1,4 +1,7 @@
-on: workflow_dispatch
+on:  
+  push:
+    branches:
+      - master
 
 name: Render video
 jobs:
