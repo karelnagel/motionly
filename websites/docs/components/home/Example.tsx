@@ -1,6 +1,6 @@
+import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import { MdArrowForwardIos } from "react-icons/md";
-
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 const examples = [
   {
     title: "Podcast",
@@ -36,24 +36,25 @@ export const Examples = () => {
       if (mouseIn) {
         return;
       }
-      setCurrent((current + 1) % examples.length);
+      const nextCurrent = (current + 1) % examples.length;
+      setCurrent(nextCurrent);
     }, 3000);
     return () => clearInterval(interval);
   }, [current, mouseIn]);
 
   return (
-    <div className="space-y-6 max-w-screen-xl m-auto">
+    <div className="space-y-6 max-w-screen-xl m-auto text-center md:text-left">
       <div className="max-w-xl leading-[1.2] space-y-6">
-        <h2 className="text-[50px] font-semibold leading-[1.1] title">
+        <h2 className="text-4xl md:text-[50px] font-semibold leading-[1.1] title">
           Video templates for every purpose
         </h2>
-        <p className="text-xl  leading-[1.4]">
+        <p className="text-lg md:text-xl  leading-[1.4]">
           Start with a flexible template, then customize to fit your style and
           professional needs with our website builder.
         </p>
       </div>
-      <div className="flex items-center h-full justify-between">
-        <div className="flex flex-col items-start text-[40px] font-semibold leading-none">
+      <div className="items-center h-full justify-between hidden md:flex">
+        <div className="flex-col items-start text-[40px] font-semibold leading-none flex">
           {examples.map(({ title }, i) => (
             <div
               key={i}
@@ -75,7 +76,7 @@ export const Examples = () => {
                 >
                   {title}
                 </p>
-                <MdArrowForwardIos
+                <IoIosArrowForward
                   className={`text-3xl leading-none mb-1 duration-500  ${
                     current === i
                       ? "translate-x-0 opacity-100"
@@ -91,7 +92,7 @@ export const Examples = () => {
             </div>
           ))}
         </div>
-        <div className="relative  h-[400px] aspect-video">
+        <div className="relative h-[400px] aspect-video">
           {examples.map(({ video }, i) => (
             <video
               key={i}
@@ -107,6 +108,53 @@ export const Examples = () => {
               muted
               loop
             />
+          ))}
+        </div>
+      </div>
+      <div className="block md:hidden">
+        <div className="relative">
+          <video
+            className="w-full aspect-video"
+            src={examples[current].video}
+            autoPlay
+            muted
+            loop
+          />
+          <div className="absolute top-0 left-0 h-full w-full flex justify-between items-center text-2xl">
+            <div
+              className={`p-2 bg-stone-500 bg-opacity-40 rounded-full ${
+                current === 0 ? "opacity-0" : "opacity-100"
+              }`}
+            >
+              <IoIosArrowBack
+                onClick={() => {
+                  if (current !== 0) setCurrent(current - 1);
+                }}
+              />
+            </div>
+            <div
+              className={`p-2 bg-stone-500 bg-opacity-40 rounded-full ${
+                current === examples.length - 1 ? "opacity-0" : "opacity-100"
+              }`}
+            >
+              <IoIosArrowForward
+                onClick={() => {
+                  if (current !== examples.length - 1) setCurrent(current + 1);
+                }}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="flex space-x-4 justify-center mt-6">
+          {examples.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`h-3 w-3 rounded-full duration-500 ${
+                current === i ? "bg-white scale-125" : "bg-stone-500"
+              }`}
+            ></button>
           ))}
         </div>
       </div>
