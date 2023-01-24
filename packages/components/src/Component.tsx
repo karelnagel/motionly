@@ -195,10 +195,12 @@ export const Debug = ({ title }: { title: string }) => {
     <p
       style={{
         position: "fixed",
+        opacity: 0.6,
+        zIndex: 100,
         top: 0,
         left: 0,
         background: "white",
-        fontSize: "30px",
+        fontSize: "20px",
         margin: 0,
       }}
     >
