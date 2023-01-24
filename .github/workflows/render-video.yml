@@ -11,7 +11,7 @@ jobs:
       - run: sudo apt update
       - run: sudo apt install ffmpeg
       - run: npm i
-      - run: npm build
+      - run: npm run build
       - run: echo $WORKFLOW_INPUT > input-props.json
         env:
           WORKFLOW_INPUT: ${{ toJson(github.event.inputs) }}
