@@ -13,6 +13,7 @@
         "@asius/components": "*",
         "@asius/player": "*",
         "@asius/renderer": "*",
+        "@next/font": "^13.1.5",
         "@tailwindcss/typography": "^0.5.8",
         "@vercel/og": "^0.0.27",
         "autoprefixer": "^10.4.13",
