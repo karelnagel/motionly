@@ -1,4 +1,4 @@
-# @asius/base
+# @asius/renderer
 
 ## 1.3.0
 
@@ -6,8 +6,7 @@
 
 - Many changes
 
-## 1.2.1
-
 ### Patch Changes
 
-- Added @asius/base
+- Updated dependencies
+  - @asius/base@1.3.0
