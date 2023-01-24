@@ -22,8 +22,8 @@ export const Shape = (props: ShapeProps) => {
   if (props.type === "triangle")
     return (
       <Triangle
-        length={Math.min(props.width, props.height)}
-        direction={props.direction}
+        length={Math.min(props.width, props.height) - props.strokeWidth * 2}
+        direction={props.direction || "up"}
         fill={fill}
         stroke={stroke}
         strokeWidth={props.strokeWidth}
@@ -34,8 +34,8 @@ export const Shape = (props: ShapeProps) => {
   if (props.type === "rect")
     return (
       <Rect
-        height={props.height}
-        width={props.width}
+        height={props.height - props.strokeWidth * 2}
+        width={props.width - props.strokeWidth * 2}
         fill={fill}
         stroke={stroke}
         strokeWidth={props.strokeWidth}
@@ -46,7 +46,7 @@ export const Shape = (props: ShapeProps) => {
   else if (props.type === "circle")
     return (
       <Circle
-        radius={Math.min(props.width, props.height) / 2}
+        radius={Math.min(props.width, props.height) / 2 - props.strokeWidth}
         fill={fill}
         stroke={stroke}
         strokeWidth={props.strokeWidth}
@@ -55,8 +55,8 @@ export const Shape = (props: ShapeProps) => {
   else if (props.type === "ellipse")
     return (
       <Ellipse
-        rx={props.width / 2}
-        ry={props.height / 2}
+        rx={props.width / 2 - props.strokeWidth}
+        ry={props.height / 2 - props.strokeWidth}
         fill={fill}
         stroke={stroke}
         strokeWidth={props.strokeWidth}

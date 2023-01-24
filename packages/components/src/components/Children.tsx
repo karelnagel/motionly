@@ -3,16 +3,17 @@ import { Series, useVideoConfig } from "remotion";
 import { Component } from "../Component";
 
 export const Children = ({
-  childs,
+  comps,
   isSequence,
 }: {
-  childs: ComponentProps[];
+  comps?: ComponentProps[];
   isSequence?: boolean;
 }) => {
+  if (!comps) return null;
   if (!isSequence) {
     return (
       <>
-        {childs.map((child, index) => (
+        {comps.map((child, index) => (
           <Component key={index} {...child} />
         ))}
       </>
@@ -22,7 +23,7 @@ export const Children = ({
   const { fps } = useVideoConfig();
   return (
     <Series>
-      {childs.map((child, index) => (
+      {comps.map((child, index) => (
         <Series.Sequence
           key={index}
           offset={child.from ? Math.floor(child.from * fps) : undefined}

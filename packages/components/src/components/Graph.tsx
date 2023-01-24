@@ -67,7 +67,7 @@ export const Graph = ({
               style={{
                 width: width / values.length,
                 height: height * (v / maxValue) * anim,
-                backgroundColor: getColor(color),
+                background: getColor(color),
                 borderRadius: props.roundness,
               }}
             />

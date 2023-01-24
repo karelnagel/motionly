@@ -11,7 +11,11 @@ export const useFonts = async (fonts: string[]) => {
         const url = `https://fonts.googleapis.com/css?family=${fonts.join(
           "|"
         )}`;
-        await axios.get(url);
+        try {
+          await axios.get(url);
+        } catch (e) {
+          console.log(e);
+        }
         const link = document.createElement("link");
         link.href = url;
         link.rel = "stylesheet";

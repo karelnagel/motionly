@@ -48,7 +48,7 @@ export const Audiogram = ({
   if (!audioData) {
     return null;
   }
-  const maxVisibleBars = Math.floor(width / (gap + barWidth));
+  const maxVisibleBars = Math.floor(width / ((gap || 0) + barWidth));
   const numberOfSamples = Math.pow(
     2,
     Math.ceil(Math.log(maxVisibleBars / (mirror ? 2 : 1)) / Math.log(2))
@@ -85,7 +85,7 @@ export const Audiogram = ({
             style={{
               width: barWidth,
               height: height * v * multiplier,
-              backgroundColor: getColor(color),
+              background: getColor(color),
               borderRadius: roundness,
             }}
           />

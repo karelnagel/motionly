@@ -150,7 +150,7 @@ export const Progressbar = ({
               key={n}
               style={{
                 width: horizontal ? props.barWidth : `${progress}%`,
-                backgroundColor: getColor(color),
+                background: getColor(color),
                 height: horizontal ? `${progress}%` : props.barWidth,
                 position: "absolute",
                 top: !top ? 0 : undefined,

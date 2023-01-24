@@ -39,7 +39,7 @@ export const Component = (comp: ComponentProps) => {
     )
   );
   return (
-    <MotionBlur props={comp.motionBlur}>
+    <MotionBlur motion={comp.motionBlur}>
       <Sequence from={from} durationInFrames={duration} layout="none">
         <Freeze frame={comp.freeze ? fps * comp.freeze : undefined}>
           <Loop
@@ -123,65 +123,86 @@ const InsideSequence = ({
       })
       .join(" ") || "";
   return (
-    <div
-      ref={(e) => {
-        if (ref) ref.current = e;
-        if (divRef && selected === id) divRef.current = e;
-      }}
-      onClick={(e) => {
-        setSelected(id);
-        e.stopPropagation();
-      }}
+    <>
+      {id && process.env.DEBUG && <Debug title={`${id} - ${comp.comp}`} />}
+
+      <div
+        ref={(e) => {
+          if (ref) ref.current = e;
+          if (divRef && selected === id) divRef.current = e;
+        }}
+        onClick={(e) => {
+          setSelected(id);
+          e.stopPropagation();
+        }}
+        style={{
+          opacity:
+            (opacity || 1) *
+            animations
+              .filter((a) => a.prop === "opacity")
+              .reduce((acc, a) => acc * animation(a), 1),
+          borderRadius:
+            (borderRadius || 0) +
+            animations
+              .filter((a) => a.prop === "borderRadius")
+              .reduce((acc, a) => acc + animation(a), 1),
+          cursor: "pointer",
+          display: "flex",
+          overflow: "hidden",
+          width: width || "100%",
+          height: height || "100%",
+          position: "absolute",
+          top: y,
+          left: x,
+          userSelect: "none",
+          transform: `rotate(${
+            rotation || 0
+          }deg) ${transformStyle} ${transformAnimations}`, // For some reason, this messes up x and y
+        }}
+      >
+        {comp.comp === "div" && <Div {...comp} />}
+        {comp.comp === "image" && <Image {...comp} />}
+        {comp.comp === "text" && <Text {...comp} />}
+        {comp.comp === "audio" && <Audio {...comp} />}
+        {comp.comp === "audiogram" && (
+          <Audiogram {...comp} width={width} height={height} />
+        )}
+        {comp.comp === "graph" && (
+          <Graph {...comp} width={width} height={height} />
+        )}
+        {comp.comp === "map" && <Map {...comp} />}
+        {comp.comp === "mockup" && <Mockup {...comp} />}
+        {comp.comp === "progressbar" && (
+          <Progressbar {...comp} width={width} height={height} />
+        )}
+        {comp.comp === "qrcode" && <QRCode {...comp} />}
+        {comp.comp === "video" && <Video {...comp} />}
+        {comp.comp === "transcription" && <Transcription {...comp} />}
+        {comp.comp === "lottie" && <Lottie {...comp} />}
+        {comp.comp === "gif" && <Gif {...comp} />}
+        {comp.comp === "path" && <Path {...comp} />}
+        {comp.comp === "confetti" && <Confetti {...comp} />}
+        {comp.comp === "shape" && (
+          <Shape {...comp} width={width} height={height} />
+        )}
+      </div>
+    </>
+  );
+};
+
+export const Debug = ({ title }: { title: string }) => {
+  return (
+    <p
       style={{
-        opacity:
-          (opacity || 1) *
-          animations
-            .filter((a) => a.prop === "opacity")
-            .reduce((acc, a) => acc * animation(a), 1),
-        borderRadius:
-          (borderRadius || 0) +
-          animations
-            .filter((a) => a.prop === "borderRadius")
-            .reduce((acc, a) => acc + animation(a), 1),
-        cursor: "pointer",
-        display: "flex",
-        overflow: "hidden",
-        width: width || "100%",
-        height: height || "100%",
-        position: "absolute",
-        top: y,
-        left: x,
-        userSelect: "none",
-        transform: `rotate(${
-          rotation || 0
-        }deg) ${transformStyle} ${transformAnimations}`, // For some reason, this messes up x and y
+        position: "fixed",
+        top: 0,
+        left: 0,
+        background: "white",
+        fontSize: "30px",
+        margin: 0,
       }}
     >
-      {comp.comp === "div" && <Div {...comp} />}
-      {comp.comp === "image" && <Image {...comp} />}
-      {comp.comp === "text" && <Text {...comp} />}
-      {comp.comp === "audio" && <Audio {...comp} />}
-      {comp.comp === "audiogram" && (
-        <Audiogram {...comp} width={width} height={height} />
-      )}
-      {comp.comp === "graph" && (
-        <Graph {...comp} width={width} height={height} />
-      )}
-      {comp.comp === "map" && <Map {...comp} />}
-      {comp.comp === "mockup" && <Mockup {...comp} />}
-      {comp.comp === "progressbar" && (
-        <Progressbar {...comp} width={width} height={height} />
-      )}
-      {comp.comp === "qrcode" && <QRCode {...comp} />}
-      {comp.comp === "video" && <Video {...comp} />}
-      {comp.comp === "transcription" && <Transcription {...comp} />}
-      {comp.comp === "lottie" && <Lottie {...comp} />}
-      {comp.comp === "gif" && <Gif {...comp} />}
-      {comp.comp === "path" && <Path {...comp} />}
-      {comp.comp === "confetti" && <Confetti {...comp} />}
-      {comp.comp === "shape" && (
-        <Shape {...comp} width={width} height={height} />
-      )}
-    </div>
+      {title}
+    </p>
   );
 };

@@ -1237,7 +1237,7 @@ export const defaultTranscriptionProps: TranscriptionProps = {
   },
   textStyle: {
     fontSize: 100,
-    fontFamily: "Arial",
+    fontFamily: "Inter",
     color: "#FFFFFFFF",
     outlineColor: "#000000FF",
     outlineWidth: 20,

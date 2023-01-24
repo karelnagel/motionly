@@ -78,18 +78,18 @@ export type TranscriptionProps = {
 export type AudioProps = {
   comp: "audio";
   src: string;
-  volume: number;
-  startFrom: number;
+  volume?: number;
+  startFrom?: number;
 };
 
 export type AudiogramProps = {
   comp: "audiogram";
   src: string;
-  position: keyof typeof AudiogramPosition;
-  gap: number;
+  position?: keyof typeof AudiogramPosition;
+  gap?: number;
   barWidth: number;
   color?: Color;
-  roundness: number;
+  roundness?: number;
   startFrom?: number;
   smoothing?: boolean;
   mirror?: boolean;
@@ -101,14 +101,12 @@ export type AudiogramProps = {
 export type DivProps = {
   comp: "div";
   bg?: Color;
-  children: ComponentProps[];
-  isSequence?: boolean;
-};
+} & HasChildren;
 
 export type GifProps = {
   comp: "gif";
   src: string;
-  objectFit: keyof typeof ObjectFit;
+  objectFit?: keyof typeof ObjectFit;
 };
 
 export type GraphProps = {
@@ -129,7 +127,7 @@ export type GraphProps = {
 export type ImageProps = {
   comp: "image";
   src: string;
-  objectFit: keyof typeof ObjectFit;
+  objectFit?: keyof typeof ObjectFit;
 };
 
 export type LottieProps = {
@@ -154,25 +152,26 @@ export type MapProps = {
   url?: string;
   bg?: Color;
 };
-
-export type MockupProps = {
-  comp: "mockup";
-  children: ComponentProps[];
-  type: keyof typeof MockupTypes;
-  bg: Color;
+export type HasChildren = {
+  comps?: ComponentProps[];
   isSequence?: boolean;
 };
 
+export type MockupProps = {
+  comp: "mockup";
+  type: keyof typeof MockupTypes;
+  bg?: Color;
+} & HasChildren;
 export type PathProps = {
   comp: "path";
   path: string;
-  strokeColor?: BaseColor;
+  stroke?: BaseColor;
   strokeWidth?: number;
   viewBoxX?: number;
   viewBoxY?: number;
   viewBoxHeight?: number;
   viewBoxWidth?: number;
-  fillColor?: Color;
+  fill?: Color;
   isRound?: boolean;
 };
 
@@ -185,7 +184,7 @@ export type QRCodeProps = {
 
 export type ConfettiProps = {
   comp: "confetti";
-  colors?: string[];
+  colors?: BaseColor[];
   count?: number;
   angle?: number;
   spread?: number;
@@ -206,7 +205,7 @@ export type TextProps = {
 export type VideoProps = {
   comp: "video";
   src: string;
-  objectFit: keyof typeof ObjectFit;
+  objectFit?: keyof typeof ObjectFit;
   startFrom?: number;
   muted?: boolean;
   volume?: number;
@@ -248,23 +247,18 @@ export type ShapeProps = {
   height: number;
 } & (
   | {
-      type: "rect";
+      type: "triangle" | "rect";
       cornerRadius?: number;
       edgeRoundness?: number;
-    }
-  | {
-      type: "triangle";
-      cornerRadius?: number;
-      edgeRoundness?: number;
-      direction: keyof typeof TriangleDirection;
+      direction?: keyof typeof TriangleDirection;
     }
   | { type: "circle" | "ellipse" }
 );
 
 export type MotionBlurProps = {
   layers: number;
-  lagInFrames: number;
-  trailOpacity: number;
+  lag: number;
+  opacity: number;
 };
 
 export type ColorInterpolate = {
@@ -289,8 +283,7 @@ export type TemplateType = {
   duration: number;
   background?: Color;
   fps: number;
-  comps: ComponentProps[];
-};
+} & HasChildren;
 
 export type TransformProps = {
   prop: keyof typeof transformProps;

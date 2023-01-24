@@ -1,17 +1,23 @@
 import { MotionBlurProps } from "@asius/base";
 import { Trail } from "@remotion/motion-blur";
 import { ReactNode } from "react";
+import { useVideoConfig } from "remotion";
 
 export const MotionBlur = ({
-  props,
+  motion,
   children,
 }: {
   children: ReactNode;
-  props?: MotionBlurProps;
+  motion?: MotionBlurProps;
 }) => {
-  if (!props) return <>{children}</>;
+  const { fps } = useVideoConfig();
+  if (!motion) return <>{children}</>;
   return (
-    <Trail {...props}>
+    <Trail
+      lagInFrames={motion.lag * fps}
+      layers={motion.layers}
+      trailOpacity={motion.opacity}
+    >
       <>{children}</>
     </Trail>
   );

@@ -17,7 +17,6 @@ export const Player = (props: PlayerProps) => {
       inputProps={{
         comps: isClient ? comps : [],
         background: props.background,
-        fps: props.fps,
       }}
       compositionHeight={props.height}
       compositionWidth={props.width}

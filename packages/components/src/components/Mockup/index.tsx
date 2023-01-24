@@ -8,17 +8,17 @@ export const defaultMockupProps: MockupProps = {
   type: "iPhone",
   bg: "#fff",
   isSequence: true,
-  children: [],
+  comps: [],
 };
 
 export const Mockup = ({
-  children,
+  comps,
   type,
   bg,
   isSequence,
   ...props
 }: MockupProps & StyleAndClass) => {
-  const childs = <Children childs={children} isSequence={isSequence} />;
+  const childs = <Children comps={comps} isSequence={isSequence} />;
 
   if (type === "iPhone") return <Iphone bg={bg}>{childs}</Iphone>;
   return <div {...props}>{childs}</div>;

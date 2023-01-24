@@ -6,12 +6,12 @@ import { Children } from "./Children";
 export const defaultDivProps: DivProps = {
   comp: "div",
   bg: "#00000000",
-  children: [],
+  comps: [],
 };
 
 export const Div = ({
   bg: background,
-  children,
+  comps,
   style,
   className,
   isSequence,
@@ -24,11 +24,11 @@ export const Div = ({
         display: "flex",
         height: "100%",
         width: "100%",
-        backgroundColor: color(background),
+        background: color(background),
         ...style,
       }}
     >
-      <Children childs={children} isSequence={isSequence} />
+      <Children comps={comps} isSequence={isSequence} />
     </div>
   );
 };
