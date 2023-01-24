@@ -20,6 +20,7 @@
         "fast-publish": "changeset add; changeset version; changeset publish",
         "preview": "cd packages/components; yarn preview",
         "render": "cd packages/components; yarn render",
+        "test": "cd packages/components; yarn render Test",
         "lambda:site": "cd packages/components; yarn lambda:site",
         "lambda:function": "cd packages/components; yarn lambda:function",
         "lambda:render": "cd packages/components; yarn lambda:render",
