@@ -1,24 +1,26 @@
 import { AbsoluteFill } from "remotion";
-import { Component } from "./Component";
 import { useSelected } from "./SelectedContext";
-import { ComponentProps } from "./types";
+import { Color, getFonts, HasChildren } from "@asius/base";
+import { useColors } from "./useColors";
+import { useFonts } from "./useFonts";
+import { Children } from "./components/Children";
 
 export const Composition = ({
-  comps,
+  comps = [],
   background,
+  isSequence,
 }: {
-  comps: ComponentProps[];
-  background?: string;
-}) => {
+  background?: Color;
+} & HasChildren) => {
   const { setSelected } = useSelected();
+  const color = useColors();
+  useFonts(getFonts(comps) || []);
   return (
     <AbsoluteFill
-      style={{ background }}
+      style={{ background: color(background) }}
       onClick={() => setSelected("template")}
     >
-      {comps.map((comp, index) => {
-        return <Component key={index} {...comp} />;
-      })}
+      <Children comps={comps} isSequence={isSequence} />
     </AbsoluteFill>
   );
 };

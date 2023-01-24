@@ -1,4 +1,4 @@
-import { MediaProps } from "@asius/components";
+import { TemplateType } from "@asius/base";
 import { CSSProperties } from "react";
 
 export type PlayerProps = {
@@ -13,4 +13,4 @@ export type PlayerProps = {
   showVolumeControls?: boolean;
   style?: CSSProperties;
   className?: string;
-} & MediaProps;
+} & TemplateType;

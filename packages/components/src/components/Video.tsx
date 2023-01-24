@@ -3,9 +3,9 @@ import {
   useVideoConfig,
   Video as RemotionVideo,
 } from "remotion";
-import { videoUrl } from "../helpers";
-import { StyleAndClass } from "../types";
-import { VideoProps } from "../types/components";
+import { videoUrl } from "@asius/base";
+import { StyleAndClass } from "@asius/base";
+import { VideoProps } from "@asius/base";
 
 export const defaultVideoProps: VideoProps = {
   comp: "video",

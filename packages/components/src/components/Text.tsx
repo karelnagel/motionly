@@ -1,6 +1,6 @@
-import { getTextStyle } from "../helpers";
-import { StyleAndClass } from "../types";
-import { TextProps } from "../types/components";
+import { StyleAndClass } from "@asius/base";
+import { TextProps } from "@asius/base";
+import { useTextStyles } from "../useTextStyles";
 
 export const defaultTextProps: TextProps = {
   comp: "text",
@@ -8,11 +8,12 @@ export const defaultTextProps: TextProps = {
     bg: "#00000000",
     color: "#000000FF",
     fontSize: 120,
-    fontFamily: "Arial",
+    fontFamily: "Inter",
     fontWeight: 700,
     textAlign: "center",
   },
   text: "Hello World",
+  justifyContent: "center",
 };
 
 export const Text = ({
@@ -20,18 +21,29 @@ export const Text = ({
   text,
   style,
   className,
+  justifyContent,
 }: TextProps & StyleAndClass) => {
+  const getStyle = useTextStyles();
   return (
-    <p
-      className={className}
+    <div
       style={{
-        ...getTextStyle(textStyle),
+        display: "flex",
+        flexDirection: "column",
+        justifyContent,
         height: "100%",
         width: "100%",
-        ...style,
       }}
     >
-      {text}
-    </p>
+      <p
+        className={className}
+        style={{
+          ...getStyle(textStyle),
+          width: "100%",
+          ...style,
+        }}
+      >
+        {text}
+      </p>
+    </div>
   );
 };

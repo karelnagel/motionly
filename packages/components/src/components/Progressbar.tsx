@@ -1,7 +1,7 @@
-import { useRef } from "react";
 import { useCurrentFrame, useVideoConfig } from "remotion";
-import { StyleAndClass } from "../types";
-import { ProgressbarProps } from "../types/components";
+import { StyleAndClass } from "@asius/base";
+import { ProgressbarProps } from "@asius/base";
+import { useColors } from "../useColors";
 
 export const defaultProgressbarProps: ProgressbarProps = {
   comp: "progressbar",
@@ -10,33 +10,33 @@ export const defaultProgressbarProps: ProgressbarProps = {
   color: "#ff00ffff",
   bg: "#0000FFFF",
   type: "square",
+  height: 100,
+  width: 100,
 };
 
 export const Progressbar = ({
   color,
-  bg: background,
+  bg,
   style,
   className,
+  height = 0,
+  width = 0,
   ...props
 }: ProgressbarProps & StyleAndClass) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const progress = (frame / durationInFrames) * 100;
-
-  const ref = useRef<HTMLDivElement>(null);
-  const height = ref.current?.parentElement?.offsetHeight || 1;
-  const width = ref.current?.parentElement?.offsetWidth || 1;
+  const getColor = useColors();
 
   if (props.type === "line")
     return (
       <div
-        ref={ref}
         className={className}
         style={{
           width: "100%",
           height: "100%",
           position: "relative",
-          background,
+          background: getColor(bg),
           ...style,
         }}
       >
@@ -46,7 +46,7 @@ export const Progressbar = ({
             top: 0,
             left: 0,
             height: "100%",
-            backgroundColor: color,
+            background: getColor(color),
             width: `${progress}%`,
           }}
         />
@@ -56,7 +56,6 @@ export const Progressbar = ({
   if (props.type === "spotify")
     return (
       <div
-        ref={ref}
         className={className}
         style={{
           width: "100%",
@@ -75,14 +74,14 @@ export const Progressbar = ({
             height: height / 2,
             borderRadius: height / 4,
             left: 0,
-            background,
+            background: getColor(bg),
             overflow: "hidden",
           }}
         >
           <div
             style={{
               width: `${progress}%`,
-              background: color,
+              background: getColor(color),
               position: "absolute",
               left: 0,
               height: "100%",
@@ -95,7 +94,7 @@ export const Progressbar = ({
             height,
             position: "absolute",
             width: height,
-            background: color,
+            background: getColor(color),
             left: `${progress}%`,
             transform: "translate(-50%, 0)",
           }}
@@ -108,17 +107,12 @@ export const Progressbar = ({
     const circumference = 2 * Math.PI * radius;
     const dash = circumference * (progress / 100);
     return (
-      <svg
-        ref={ref as any}
-        viewBox={`0 0 ${size} ${size}`}
-        style={style}
-        className={className}
-      >
+      <svg viewBox={`0 0 ${size} ${size}`} style={style} className={className}>
         <circle
           cx={size / 2}
           cy={size / 2}
           r={radius}
-          stroke={background}
+          stroke={getColor(bg)}
           strokeWidth={props.barWidth}
           fill="none"
         />
@@ -126,7 +120,7 @@ export const Progressbar = ({
           cx={size / 2}
           cy={size / 2}
           r={radius}
-          stroke={color}
+          stroke={getColor(color)}
           strokeWidth={props.barWidth}
           fill="none"
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
@@ -139,7 +133,6 @@ export const Progressbar = ({
   if (props.type === "square")
     return (
       <div
-        ref={ref}
         style={{
           position: "relative",
           height: "100%",
@@ -157,7 +150,7 @@ export const Progressbar = ({
               key={n}
               style={{
                 width: horizontal ? props.barWidth : `${progress}%`,
-                backgroundColor: color,
+                background: getColor(color),
                 height: horizontal ? `${progress}%` : props.barWidth,
                 position: "absolute",
                 top: !top ? 0 : undefined,

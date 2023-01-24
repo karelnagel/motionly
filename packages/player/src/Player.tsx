@@ -3,14 +3,13 @@
 import { Player as RemotionPlayer } from "@remotion/player";
 import { Composition } from "@asius/components";
 import { PlayerProps } from "./PlayerProps";
-import { applyModifications } from "@asius/components";
 import { useEffect, useState } from "react";
 
 export const Player = (props: PlayerProps) => {
   const [isClient, setIsClient] = useState(false);
   useEffect(() => setIsClient(true), []);
 
-  const comps = applyModifications(props.comps, props.modifications);
+  const comps = props.comps;
   return (
     <RemotionPlayer
       component={Composition}
@@ -18,7 +17,6 @@ export const Player = (props: PlayerProps) => {
       inputProps={{
         comps: isClient ? comps : [],
         background: props.background,
-        fps: props.fps,
       }}
       compositionHeight={props.height}
       compositionWidth={props.width}

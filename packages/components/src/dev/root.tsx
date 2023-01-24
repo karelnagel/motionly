@@ -1,9 +1,9 @@
 import React from "react";
-import { Composition, getInputProps } from "remotion";
+import { Composition, Folder, getInputProps } from "remotion";
 import { Composition as Comp } from "../Composition";
 import { compositions } from "./compositions";
-import { BaseProps, ComponentProps, TemplateType } from "../types";
-import { getFonts } from "../helpers";
+import { BaseProps, ComponentProps, TemplateType } from "@asius/base";
+import { test } from "./tests";
 
 const inputProps = getInputProps() as TemplateType;
 const template = Object.keys(inputProps).length
@@ -12,17 +12,11 @@ const template = Object.keys(inputProps).length
       height: 1080,
       width: 1080,
       fps: 30,
-      duration: 60,
+      duration: 6,
       comps: [],
-      background: "#FFFFFFFF",
+      background: "#fff",
     } as TemplateType);
 
-const fonts = getFonts(template.comps);
-fonts?.forEach((font) => {
-  import(`@remotion/google-fonts/${font.replace(" ", "")}`).then((g) =>
-    g.loadFont()
-  );
-});
 export const Root: React.FC = () => {
   return (
     <>
@@ -36,27 +30,48 @@ export const Root: React.FC = () => {
         defaultProps={{
           comps: template.comps,
           background: template.background,
+          isSequence: template.isSequence,
         }}
       />
-      {compositions.map((comp, i) => {
-        const baseProps: BaseProps = {
-          id: "1",
-          animations: [],
-        };
-        const compProps: ComponentProps = { ...comp, ...baseProps };
-        return (
-          <Composition
-            key={i}
-            id={`${compProps.comp}`}
-            component={Comp}
-            fps={template.fps}
-            width={template.width}
-            durationInFrames={template.duration * template.fps}
-            height={template.height}
-            defaultProps={{ comps: [compProps] }}
-          />
-        );
-      })}
+      <Folder name="compositions">
+        {compositions.map((comp, i) => {
+          const baseComp: BaseProps = {
+            id: "1",
+            height: 1080,
+            width: 1080,
+          };
+          const compProps: ComponentProps = { ...comp, ...baseComp };
+          return (
+            <Composition
+              key={i}
+              id={`${compProps.comp}`}
+              component={Comp}
+              fps={template.fps}
+              width={template.width}
+              durationInFrames={template.duration * template.fps}
+              height={template.height}
+              defaultProps={{
+                comps: [compProps],
+                background: "white",
+                isSequence: template.isSequence,
+              }}
+            />
+          );
+        })}
+      </Folder>
+      <Composition
+        id="Test"
+        component={Comp}
+        fps={test.fps}
+        height={test.height}
+        durationInFrames={test.duration * test.fps}
+        width={test.width}
+        defaultProps={{
+          comps: test.comps,
+          background: test.background,
+          isSequence: test.isSequence,
+        }}
+      />
     </>
   );
 };

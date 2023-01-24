@@ -3,9 +3,10 @@
     "version": "1.0.0",
     "private": true,
     "workspaces": [
-        "packages/*"
+        "packages/*",
+        "websites/*"
     ],
-    "repository": "git@github.com:karelnagel/imageapi.git",
+    "repository": "git@github.com:karelnagel/asius.git",
     "author": "Karel <karel789@hotmail.com>",
     "license": "MIT",
     "devDependencies": {
@@ -19,10 +20,11 @@
         "fast-publish": "changeset add; changeset version; changeset publish",
         "preview": "cd packages/components; yarn preview",
         "render": "cd packages/components; yarn render",
+        "test": "cd packages/components; yarn render Test",
         "lambda:site": "cd packages/components; yarn lambda:site",
         "lambda:function": "cd packages/components; yarn lambda:function",
         "lambda:render": "cd packages/components; yarn lambda:render",
-        "format": "prettier --write \"packages/**/*.{js,ts,tsx}\" && eslint --fix \"packages/**/*.{js,ts,tsx}\""
+        "format": "prettier --write \"**/*.{js,ts,tsx}\" && eslint --fix \"**/*.{js,ts,tsx}\""
     },
     "dependencies": {
         "@changesets/cli": "^2.26.0",

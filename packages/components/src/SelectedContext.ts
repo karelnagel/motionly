@@ -1,8 +1,8 @@
-import { createContext, RefObject, useContext } from "react";
+import { createContext, useContext } from "react";
 
 export const SelectedContext = createContext<{
   setSelected: (id: string) => void;
-  divRef: RefObject<HTMLDivElement> | null;
+  divRef: React.MutableRefObject<HTMLDivElement | null> | null;
   selected: string;
 }>({
   setSelected: (id: string) => {

@@ -1,6 +1,6 @@
 {
     "name": "@asius/player",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "main": "dist/index.js",
     "license": "MIT",
     "private": false,
@@ -10,9 +10,9 @@
     },
     "dependencies": {
         "@asius/components": "*",
-        "@remotion/player": "3.3.19",
-        "@remotion/cli": "3.3.19",
-        "remotion": "3.3.19"
+        "@remotion/player": "3.3.34",
+        "@remotion/cli": "3.3.34",
+        "remotion": "3.3.34"
     },
     "peerDependencies": {
         "react": ">=16.8.0",

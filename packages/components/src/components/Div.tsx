@@ -1,19 +1,22 @@
-import { Component } from "../Component";
-import { StyleAndClass } from "../types";
-import { DivProps } from "../types/components";
+import { StyleAndClass } from "@asius/base";
+import { DivProps } from "@asius/base";
+import { useColors } from "../useColors";
+import { Children } from "./Children";
 
 export const defaultDivProps: DivProps = {
   comp: "div",
   bg: "#00000000",
-  children: [],
+  comps: [],
 };
 
 export const Div = ({
   bg: background,
-  children,
+  comps,
   style,
   className,
+  isSequence,
 }: DivProps & StyleAndClass) => {
+  const color = useColors();
   return (
     <div
       className={className}
@@ -21,13 +24,11 @@ export const Div = ({
         display: "flex",
         height: "100%",
         width: "100%",
-        backgroundColor: background,
+        background: color(background),
         ...style,
       }}
     >
-      {children.map((child, index) => (
-        <Component key={index} {...child} />
-      ))}
+      <Children comps={comps} isSequence={isSequence} />
     </div>
   );
 };

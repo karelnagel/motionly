@@ -7,8 +7,9 @@ import {
   Marker,
 } from "react-simple-maps";
 import { continueRender, delayRender } from "remotion";
-import { StyleAndClass } from "../types";
-import { MapProps } from "../types/components";
+import { StyleAndClass } from "@asius/base";
+import { MapProps } from "@asius/base";
+import { useColors } from "../useColors";
 
 export const defaultMapProps: MapProps = {
   comp: "map",
@@ -39,6 +40,7 @@ export const Map = ({
   const coordinates: [number, number] = [lng, lat];
   const [handle] = useState(() => delayRender());
   const [geography, setGeography] = useState(null);
+  const getColor = useColors();
 
   useEffect(() => {
     const effect = async () => {
@@ -58,7 +60,12 @@ export const Map = ({
   return (
     <ComposableMap
       className={className}
-      style={{ width: "100%", height: "100%", background, ...style }}
+      style={{
+        width: "100%",
+        height: "100%",
+        background: getColor(background),
+        ...style,
+      }}
       projectionConfig={{ center: coordinates, scale: zoom }}
     >
       <Geographies geography={geography}>
@@ -67,8 +74,8 @@ export const Map = ({
             <Geography
               key={geo.rsmKey}
               geography={geo}
-              fill={fill}
-              stroke={stroke}
+              fill={getColor(fill)}
+              stroke={getColor(stroke)}
               strokeWidth={strokeWidth}
             />
           ))
@@ -76,7 +83,9 @@ export const Map = ({
       </Geographies>
       {markerSize && markerColor && (
         <Marker coordinates={coordinates}>
-          {markerSize && <circle r={markerSize / 2} fill={markerColor} />}
+          {markerSize && (
+            <circle r={markerSize / 2} fill={getColor(markerColor)} />
+          )}
         </Marker>
       )}
     </ComposableMap>

@@ -1,13 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import {
-  continueRender,
-  delayRender,
-  spring,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
-import { StyleAndClass } from "../types";
-import { GraphProps } from "../types/components";
+import { spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { StyleAndClass } from "@asius/base";
+import { GraphProps } from "@asius/base";
+import { useColors } from "../useColors";
 
 export const defaultGraphProps: GraphProps = {
   comp: "graph",
@@ -21,6 +15,8 @@ export const defaultGraphProps: GraphProps = {
   roundness: 10,
   animationDuration: 2,
   animationStart: 0,
+  width: 100,
+  height: 100,
 };
 
 export const Graph = ({
@@ -31,28 +27,18 @@ export const Graph = ({
   className,
   animationDuration,
   animationStart,
+  width = 0,
+  height = 0,
   ...props
 }: GraphProps & StyleAndClass) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  const getColor = useColors();
   const maxValue = max || Math.max(...values);
-
-  const ref = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(1);
-  const [height, setHeight] = useState(1);
-  const [handle] = useState(() => delayRender());
-
-  useEffect(() => {
-    if (!ref.current?.parentElement) return;
-    setHeight(ref.current.parentElement.offsetHeight);
-    setWidth(ref.current.parentElement.offsetWidth);
-    continueRender(handle);
-  }, []);
 
   if (props.type === "bar")
     return (
       <div
-        ref={ref}
         className={className}
         style={{
           display: "flex",
@@ -81,7 +67,7 @@ export const Graph = ({
               style={{
                 width: width / values.length,
                 height: height * (v / maxValue) * anim,
-                backgroundColor: color,
+                background: getColor(color),
                 borderRadius: props.roundness,
               }}
             />
@@ -104,7 +90,6 @@ export const Graph = ({
     return (
       <svg
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ref={ref as any}
         viewBox={`0 0 ${width} ${height}`}
         style={style}
         className={className}
@@ -118,7 +103,7 @@ export const Graph = ({
               return `${i === 0 ? "M" : "L"} ${x} ${y}`;
             })
             .join(" ")}
-          stroke={color}
+          stroke={getColor(color)}
           strokeWidth={props.strokeWidth}
           fill="none"
         />

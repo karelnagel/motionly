@@ -1,4 +1,4 @@
-import { TranscriptionProps, TranscriptionWord } from "../../types/components";
+import { TranscriptionProps, TranscriptionWord } from "@asius/base";
 
 export const defaultTranscriptionWords: TranscriptionWord[] = [
   {
@@ -1237,7 +1237,7 @@ export const defaultTranscriptionProps: TranscriptionProps = {
   },
   textStyle: {
     fontSize: 100,
-    fontFamily: "Arial",
+    fontFamily: "Inter",
     color: "#FFFFFFFF",
     outlineColor: "#000000FF",
     outlineWidth: 20,

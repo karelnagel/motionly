@@ -1,9 +1,9 @@
 import { useAudioData, visualizeAudio } from "@remotion/media-utils";
-import { useRef } from "react";
 import { useCurrentFrame, useVideoConfig } from "remotion";
-import { videoUrl } from "../helpers";
-import { StyleAndClass } from "../types";
-import { AudiogramProps } from "../types/components";
+import { videoUrl } from "@asius/base";
+import { StyleAndClass } from "@asius/base";
+import { AudiogramProps } from "@asius/base";
+import { useColors } from "../useColors";
 
 export const defaultAudiogramProps: AudiogramProps = {
   comp: "audiogram",
@@ -17,6 +17,8 @@ export const defaultAudiogramProps: AudiogramProps = {
   mirror: true,
   smoothing: true,
   multiplier: 2,
+  height: 100,
+  width: 100,
 };
 
 export const Audiogram = ({
@@ -32,21 +34,21 @@ export const Audiogram = ({
   className,
   multiplier = 1,
   startFrom,
+  width = 0,
+  height = 0,
 }: AudiogramProps & StyleAndClass) => {
-  const ref = useRef<HTMLDivElement>(null);
   const { fps } = useVideoConfig();
   const currentFrame = useCurrentFrame();
+  const getColor = useColors();
   let frame = startFrom ? currentFrame + startFrom * fps : currentFrame;
   if (frame < 0) frame = 0;
   const audioData = useAudioData(src);
-  const width = ref.current?.parentElement?.offsetWidth || 1;
-  const height = ref.current?.parentElement?.offsetHeight || 1;
 
   if (!src) return null;
   if (!audioData) {
     return null;
   }
-  const maxVisibleBars = Math.floor(width / (gap + barWidth));
+  const maxVisibleBars = Math.floor(width / ((gap || 0) + barWidth));
   const numberOfSamples = Math.pow(
     2,
     Math.ceil(Math.log(maxVisibleBars / (mirror ? 2 : 1)) / Math.log(2))
@@ -65,7 +67,6 @@ export const Audiogram = ({
     : visualization;
   return (
     <div
-      ref={ref}
       className={className}
       style={{
         display: "flex",
@@ -84,7 +85,7 @@ export const Audiogram = ({
             style={{
               width: barWidth,
               height: height * v * multiplier,
-              backgroundColor: color,
+              background: getColor(color),
               borderRadius: roundness,
             }}
           />
