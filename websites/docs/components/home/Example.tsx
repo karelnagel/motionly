@@ -3,23 +3,23 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 const examples = [
   {
     title: "Podcast",
-    video: "/video.mp4",
+    video: "/examples/podcasts.webm",
   },
   {
     title: "Year in review",
-    video: "/div.mp4",
+    video: "/examples/podcasts.webm",
   },
   {
     title: "Mockups",
-    video: "/video.mp4",
+    video: "/examples/podcasts.webm",
   },
   {
     title: "Tweets",
-    video: "/div.mp4",
+    video: "/examples/podcasts.webm",
   },
   {
     title: "News/updates",
-    video: "/video.mp4",
+    video: "/examples/podcasts.webm",
   },
 ];
 
