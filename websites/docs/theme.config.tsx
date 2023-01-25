@@ -17,6 +17,7 @@ const config: DocsThemeConfig = {
   toc: {
     component: null,
   },
+  //fdsfsdfsd
   navigation: false,
   darkMode: false,
   nextThemes: { forcedTheme: "dark", defaultTheme: "dark" },
