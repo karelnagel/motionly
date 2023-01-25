@@ -3,16 +3,18 @@ import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
 import { Logo } from "./components/Logo";
 import { useRouter } from "next/router";
 import useNextSeoProps from "./hooks/useNextSeoProps";
+import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer";
 
 const config: DocsThemeConfig = {
   logo: <Logo />,
   gitTimestamp: false,
-  primaryHue: 210,
+  primaryHue: 313,
   chat: {
     link: "https://discord.gg/U8gF8jEuJA",
   },
   footer: {
-    text: "Asius",
+    component: () => <Footer />,
   },
   project: {
     icon: null,
@@ -26,7 +28,13 @@ const config: DocsThemeConfig = {
     component: null,
   },
   navigation: false,
+  darkMode: false,
+  nextThemes: { forcedTheme: "dark", defaultTheme: "dark" },
+  navbar: {
+    component: ({ items }) => <Navbar items={items} />,
+  },
   useNextSeoProps,
+  components: {},
   head: () => {
     const { asPath } = useRouter();
     const { frontMatter, title: configTitle } = useConfig();
