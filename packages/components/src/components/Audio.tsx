@@ -2,6 +2,7 @@ import { Audio as RemotionAudio, useVideoConfig } from "remotion";
 import { videoUrl } from "@asius/base";
 import { StyleAndClass } from "@asius/base";
 import { AudioProps } from "@asius/base";
+import { getSrc } from "../helpers";
 
 export const defaultAudioProps: AudioProps = {
   comp: "audio",
@@ -20,7 +21,7 @@ export const Audio = ({
   return (
     <RemotionAudio
       startFrom={startFrom ? Math.floor(startFrom * fps) : undefined}
-      src={src}
+      src={getSrc(src)}
       volume={volume}
     />
   );

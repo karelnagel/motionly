@@ -11,11 +11,11 @@ import { Audio } from "./components/Audio";
 import { Audiogram } from "./components/Audiogram";
 import { Graph } from "./components/Graph";
 import { Map } from "./components/Map";
-import { Mockup } from "./components/Mockup";
+import { Mockup } from "./components/Mockup/index";
 import { Progressbar } from "./components/Progressbar";
 import { QRCode } from "./components/QRCode";
 import { Video } from "./components/Video";
-import { Transcription } from "./components/Transcription";
+import { Transcription } from "./components/Transcription/index";
 import { Lottie } from "./components/Lottie";
 import { Gif } from "./components/Gif";
 import { Path } from "./components/Path";
@@ -177,7 +177,9 @@ const InsideSequence = ({
         )}
         {comp.comp === "qrcode" && <QRCode {...comp} />}
         {comp.comp === "video" && <Video {...comp} />}
-        {comp.comp === "transcription" && <Transcription {...comp} />}
+        {comp.comp === "transcription" && (
+          <Transcription {...comp} height={height} />
+        )}
         {comp.comp === "lottie" && <Lottie {...comp} />}
         {comp.comp === "gif" && <Gif {...comp} />}
         {comp.comp === "path" && <Path {...comp} />}

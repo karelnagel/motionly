@@ -6,6 +6,7 @@ import {
 import { videoUrl } from "@asius/base";
 import { StyleAndClass } from "@asius/base";
 import { VideoProps } from "@asius/base";
+import { getSrc } from "../helpers";
 
 export const defaultVideoProps: VideoProps = {
   comp: "video",
@@ -28,7 +29,7 @@ export const Video = ({
 }: VideoProps & StyleAndClass) => {
   const { fps } = useVideoConfig();
   const props = {
-    src,
+    src: getSrc(src),
     className,
     muted,
     volume,

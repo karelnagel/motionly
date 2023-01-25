@@ -3,23 +3,23 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 const examples = [
   {
     title: "Podcast",
-    video: "/video.mp4",
+    video: "/examples/podcasts.webm",
   },
   {
     title: "Year in review",
-    video: "/div.mp4",
+    video: "/examples/yir.webm",
   },
   {
     title: "Mockups",
-    video: "/video.mp4",
+    video: "/examples/mockups.webm",
   },
   {
     title: "Tweets",
-    video: "/div.mp4",
+    video: "/examples/tweets.webm",
   },
   {
-    title: "News/updates",
-    video: "/video.mp4",
+    title: "Subtitles",
+    video: "/examples/subtitles.webm",
   },
 ];
 
@@ -37,7 +37,7 @@ export const Examples = () => {
       }
       const nextCurrent = (current + 1) % examples.length;
       setCurrent(nextCurrent);
-    }, 3000);
+    }, 10000);
     return () => clearInterval(interval);
   }, [current, mouseIn]);
 

@@ -149,7 +149,7 @@ export type MapProps = {
   strokeWidth?: number;
   markerColor?: Color;
   markerSize?: number;
-  url?: string;
+  src?: string;
   bg?: Color;
 };
 export type HasChildren = {
