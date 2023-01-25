@@ -4,8 +4,8 @@ export default function useNextSeoProps() {
   const { route } = useRouter();
   if (route !== "/") {
     return {
-      titleTemplate: "%s – Asius",
+      titleTemplate: "%s – Motionly",
     };
   }
-  return "Asius";
+  return "Motionly";
 }
