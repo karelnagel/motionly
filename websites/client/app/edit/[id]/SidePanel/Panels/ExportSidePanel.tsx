@@ -62,7 +62,7 @@ export const ExportSidePanel = () => {
       <p>
         Use this json in{" "}
         <a
-          href="https://motionly.dev/docs/sdk"
+          href="https://motionly.video/docs/sdk"
           className="text-primary"
           target="_blank"
           rel="noreferrer"
@@ -71,7 +71,7 @@ export const ExportSidePanel = () => {
         </a>{" "}
         or
         <a
-          href="https://motionly.dev/docs/player"
+          href="https://motionly.video/docs/player"
           className="text-primary"
           target="_blank"
           rel="noreferrer"

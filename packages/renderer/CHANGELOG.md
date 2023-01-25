@@ -1,12 +1,12 @@
 # @motionly/renderer
 
-## 1.3.0
+## 1.4.0
 
 ### Minor Changes
 
-- Many changes
+- renamed to motionly
 
 ### Patch Changes
 
 - Updated dependencies
-  - @motionly/base@1.3.0
+  - @motionly/base@1.4.0
