@@ -1,6 +1,6 @@
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { StyleAndClass } from "@asius/base";
-import { GraphProps } from "@asius/base";
+import { StyleAndClass } from "@motionly/base";
+import { GraphProps } from "@motionly/base";
 import { useColors } from "../useColors";
 
 export const defaultGraphProps: GraphProps = {

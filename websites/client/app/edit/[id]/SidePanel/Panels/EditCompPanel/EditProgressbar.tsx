@@ -1,4 +1,4 @@
-import { ProgressbarProps, ProgressbarTypes } from "@asius/base";
+import { ProgressbarProps, ProgressbarTypes } from "@motionly/base";
 import {
   BooleanInput,
   ColorInput,

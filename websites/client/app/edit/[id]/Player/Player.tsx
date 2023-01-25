@@ -1,5 +1,5 @@
 import { Player as RemotionPlayer, PlayerRef } from "@remotion/player";
-import { Composition, SelectedContext } from "@asius/components";
+import { Composition, SelectedContext } from "@motionly/components";
 import { RefObject, useRef, useState } from "react";
 import { useShiftKey } from "../../../../hooks/useShiftKey";
 import Moveable from "react-moveable";

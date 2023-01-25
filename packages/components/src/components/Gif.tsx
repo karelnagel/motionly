@@ -1,6 +1,6 @@
 import { Gif as RemotionGif, GifFillMode } from "@remotion/gif";
-import { StyleAndClass } from "@asius/base";
-import { GifProps } from "@asius/base";
+import { StyleAndClass } from "@motionly/base";
+import { GifProps } from "@motionly/base";
 import { getSrc } from "../helpers";
 
 export const defaultGifProps: GifProps = {

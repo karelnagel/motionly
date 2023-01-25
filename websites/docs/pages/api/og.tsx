@@ -39,7 +39,7 @@ export default function handler(req: NextRequest) {
             }}
           >
             <img
-              alt="Asius"
+              alt="Motionly"
               height={200}
               src={`${process.env.NEXT_PUBLIC_URL}/favicondark.png`}
               style={{ margin: "0 30px" }}

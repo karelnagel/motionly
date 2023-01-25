@@ -1,4 +1,4 @@
-# @asius/renderer
+# @motionly/renderer
 
 ## 1.3.0
 
@@ -9,4 +9,4 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @asius/base@1.3.0
+  - @motionly/base@1.3.0

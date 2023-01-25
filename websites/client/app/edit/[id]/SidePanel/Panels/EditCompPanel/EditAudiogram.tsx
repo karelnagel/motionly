@@ -1,4 +1,4 @@
-import { AudiogramProps, AudiogramPosition } from "@asius/base";
+import { AudiogramProps, AudiogramPosition } from "@motionly/base";
 import {
   BooleanInput,
   ColorInput,

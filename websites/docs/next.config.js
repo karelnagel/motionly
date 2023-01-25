@@ -6,12 +6,12 @@ const withNextra = require("nextra")({
   redirects: [
     {
       source: "/calendly",
-      destination: "https://calendly.com/asius/contact-us",
+      destination: "https://calendly.com/motionly/contact-us",
       permanent: true,
     },
     {
       source: "/revolut",
-      destination: "https://revolut.me/asius",
+      destination: "https://revolut.me/motionly",
       permanent: true,
     },
     {

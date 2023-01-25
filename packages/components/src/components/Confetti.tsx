@@ -1,5 +1,5 @@
-import { ConfettiProps } from "@asius/base";
-import RemotionConfetti from "@asius/confetti";
+import { ConfettiProps } from "@motionly/base";
+import RemotionConfetti from "@motionly/confetti";
 import { useColors } from "../useColors";
 
 export const defaultConfetti: ConfettiProps = {

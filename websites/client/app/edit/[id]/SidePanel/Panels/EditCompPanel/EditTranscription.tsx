@@ -2,7 +2,7 @@ import {
   TranscriptionAnimationTypes,
   TranscriptionProps,
   TranscriptionWord,
-} from "@asius/base";
+} from "@motionly/base";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useAlerts } from "../../../../../../components/Alert";

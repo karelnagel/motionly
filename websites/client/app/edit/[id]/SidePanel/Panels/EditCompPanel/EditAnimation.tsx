@@ -4,7 +4,7 @@ import {
   animationTypes,
   ComponentProps,
   EasingTypes,
-} from "@asius/base";
+} from "@motionly/base";
 import { NumberInput, SelectInput } from "../../../../../../components/inputs";
 import { getAnimationColor } from "../../../../../../helpers/color";
 import { SetComp } from "./index";

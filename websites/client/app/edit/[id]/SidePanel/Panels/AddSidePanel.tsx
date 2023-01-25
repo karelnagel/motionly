@@ -14,8 +14,8 @@ import {
   defaultTextProps,
   defaultVideoProps,
   defaultTranscriptionProps,
-} from "@asius/components";
-import { AllComponents, BaseProps } from "@asius/base";
+} from "@motionly/components";
+import { AllComponents, BaseProps } from "@motionly/base";
 import { PanelTitle } from "../../../../../components/PanelTitle";
 import { useTemplate } from "../../../../../hooks/useTemplate";
 

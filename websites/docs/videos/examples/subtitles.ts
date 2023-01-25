@@ -1,4 +1,4 @@
-import { TemplateType } from "@asius/base";
+import { TemplateType } from "@motionly/base";
 
 export const subtitles: TemplateType = {
   duration: 10,

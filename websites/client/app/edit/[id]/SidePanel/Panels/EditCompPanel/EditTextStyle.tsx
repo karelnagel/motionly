@@ -1,4 +1,4 @@
-import { TextAlign, TextStyle } from "@asius/base";
+import { TextAlign, TextStyle } from "@motionly/base";
 import {
   NumberInput,
   SelectInput,

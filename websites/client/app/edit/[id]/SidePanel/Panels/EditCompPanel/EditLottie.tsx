@@ -1,4 +1,4 @@
-import { LottieProps } from "@asius/base";
+import { LottieProps } from "@motionly/base";
 import {
   BooleanInput,
   ColorInput,

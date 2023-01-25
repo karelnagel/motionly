@@ -1,4 +1,4 @@
-import { AnimationProps, getFrom, getDuration } from "@asius/base";
+import { AnimationProps, getFrom, getDuration } from "@motionly/base";
 import { getAnimationColor } from "../../../../helpers/color";
 
 export const Animation = ({

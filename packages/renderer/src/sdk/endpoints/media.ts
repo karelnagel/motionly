@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TemplateType } from "@asius/base";
+import { TemplateType } from "@motionly/base";
 import { baseUrl } from "../../env";
 
 export type RenderMediaInput = TemplateType;

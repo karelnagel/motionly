@@ -1,7 +1,7 @@
 "use client";
 
 import { Player as RemotionPlayer } from "@remotion/player";
-import { Composition } from "@asius/components";
+import { Composition } from "@motionly/components";
 import { PlayerProps } from "./PlayerProps";
 import { useEffect, useState } from "react";
 

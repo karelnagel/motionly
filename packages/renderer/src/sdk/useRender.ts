@@ -1,4 +1,4 @@
-import { ProgressStatus } from "@asius/base";
+import { ProgressStatus } from "@motionly/base";
 import { useEffect, useState } from "react";
 import { renderStill, RenderStillInput } from "./endpoints/still";
 import { getProgress as getProgressSdk } from "./endpoints/progress";

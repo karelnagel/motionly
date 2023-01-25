@@ -1,5 +1,5 @@
-import { StyleAndClass } from "@asius/base";
-import { DivProps } from "@asius/base";
+import { StyleAndClass } from "@motionly/base";
+import { DivProps } from "@motionly/base";
 import { useColors } from "../useColors";
 import { Children } from "./Children";
 

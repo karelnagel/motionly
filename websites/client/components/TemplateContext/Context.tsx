@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { ComponentProps, TemplateType } from "@asius/base";
+import { ComponentProps, TemplateType } from "@motionly/base";
 import { createContext } from "react";
 import { Tabs } from "../../types";
 

@@ -1,4 +1,4 @@
-# @asius/base
+# @motionly/base
 
 ## 1.3.0
 
@@ -10,4 +10,4 @@
 
 ### Patch Changes
 
-- Added @asius/base
+- Added @motionly/base

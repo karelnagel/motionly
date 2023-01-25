@@ -1,4 +1,4 @@
-import { MotionBlurProps } from "@asius/base";
+import { MotionBlurProps } from "@motionly/base";
 import { Trail } from "@remotion/motion-blur";
 import { ReactNode } from "react";
 import { useVideoConfig } from "remotion";

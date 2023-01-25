@@ -4,8 +4,8 @@ import {
 } from "@remotion/lottie";
 import { useEffect, useState } from "react";
 import { continueRender, delayRender } from "remotion";
-import { StyleAndClass } from "@asius/base";
-import { LottieProps } from "@asius/base";
+import { StyleAndClass } from "@motionly/base";
+import { LottieProps } from "@motionly/base";
 import { useColors } from "../useColors";
 import { getSrc } from "../helpers";
 

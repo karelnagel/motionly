@@ -1,3 +1,3 @@
-# @asius/components
+# @motionly/components
 
-Find more info [here](https://asius.dev)
+Find more info [here](https://motionly.dev)

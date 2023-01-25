@@ -1,4 +1,4 @@
-import { QRCodeProps } from "@asius/base";
+import { QRCodeProps } from "@motionly/base";
 import { ColorInput, TextInput } from "../../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";

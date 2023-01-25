@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PanelTitle } from "../../../../../components/PanelTitle";
 import { BooleanInput, NumberInput } from "../../../../../components/inputs";
 import { useTemplate } from "../../../../../hooks/useTemplate";
-import { useRender } from "@asius/renderer";
+import { useRender } from "@motionly/renderer";
 
 export const ExportSidePanel = () => {
   const { template, setTemplate } = useTemplate();
@@ -62,21 +62,21 @@ export const ExportSidePanel = () => {
       <p>
         Use this json in{" "}
         <a
-          href="https://asius.dev/docs/sdk"
+          href="https://motionly.dev/docs/sdk"
           className="text-primary"
           target="_blank"
           rel="noreferrer"
         >
-          @asius/sdk
+          @motionly/sdk
         </a>{" "}
         or
         <a
-          href="https://asius.dev/docs/player"
+          href="https://motionly.dev/docs/player"
           className="text-primary"
           target="_blank"
           rel="noreferrer"
         >
-          @asius/player
+          @motionly/player
         </a>
       </p>
       <textarea

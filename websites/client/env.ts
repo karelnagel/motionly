@@ -8,12 +8,12 @@ export const region = process.env.REMOTION_REGION as any;
 export const serveUrl = process.env.REMOTION_SERVE_URL || "";
 export const composition = "Main";
 
-export const asiusUrl = process.env.NEXT_PUBLIC_ASIUS_URL || "";
+export const motionlyUrl = process.env.NEXT_PUBLIC_ASIUS_URL || "";
 export const apiUrl = process.env.NEXT_PUBLIC_ASIUS_API_URL || "";
 export const url = process.env.NEXT_PUBLIC_URL || "";
 export const signatureVersion = "v4";
 
-export const mediaBucket = "asius-media";
+export const mediaBucket = "motionly-media";
 export const awsClientConfig = {
   region,
   credentials: {

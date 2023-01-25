@@ -1,4 +1,4 @@
-# @asius/player
+# @motionly/player
 
 ## 1.3.0
 
@@ -9,15 +9,15 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @asius/components@1.3.0
+  - @motionly/components@1.3.0
 
 ## 1.2.1
 
 ### Patch Changes
 
-- Added @asius/base
+- Added @motionly/base
 - Updated dependencies
-  - @asius/components@1.2.1
+  - @motionly/components@1.2.1
 
 ## 1.2.0
 
@@ -28,7 +28,7 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @asius/components@1.2.0
+  - @motionly/components@1.2.0
 
 ## 1.1.0
 
@@ -39,7 +39,7 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @asius/components@1.1.0
+  - @motionly/components@1.1.0
 
 ## 1.0.3
 
@@ -47,8 +47,8 @@
 
 - idk
 - Updated dependencies
-  - @asius/components@1.0.4
-  - @asius/components@2.0.1
+  - @motionly/components@1.0.4
+  - @motionly/components@2.0.1
 
 ## 1.0.2
 
@@ -62,5 +62,5 @@
 
 - test
 - Updated dependencies
-  - @asius/components@1.0.1
-  - @asius/components@1.0.1
+  - @motionly/components@1.0.1
+  - @motionly/components@1.0.1

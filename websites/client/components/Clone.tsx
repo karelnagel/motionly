@@ -1,6 +1,6 @@
 "use client";
 
-import { TemplateType } from "@asius/base";
+import { TemplateType } from "@motionly/base";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
 import { postNewTemplate } from "../sdk/templates/new";

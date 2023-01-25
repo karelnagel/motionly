@@ -1,4 +1,4 @@
-import { DivProps } from "@asius/base";
+import { DivProps } from "@motionly/base";
 import { ColorInput } from "../../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";

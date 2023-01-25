@@ -1,4 +1,4 @@
-import { TextProps } from "@asius/base";
+import { TextProps } from "@motionly/base";
 import { TextInput } from "../../../../../../components/inputs";
 import { EditTextStyle } from "./EditTextStyle";
 import { SetComp } from "./index";

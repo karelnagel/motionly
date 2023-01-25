@@ -1,8 +1,8 @@
 import { useAudioData, visualizeAudio } from "@remotion/media-utils";
 import { useCurrentFrame, useVideoConfig } from "remotion";
-import { videoUrl } from "@asius/base";
-import { StyleAndClass } from "@asius/base";
-import { AudiogramProps } from "@asius/base";
+import { videoUrl } from "@motionly/base";
+import { StyleAndClass } from "@motionly/base";
+import { AudiogramProps } from "@motionly/base";
 import { useColors } from "../useColors";
 import { getSrc } from "../helpers";
 

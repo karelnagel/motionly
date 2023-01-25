@@ -5,8 +5,8 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { StyleAndClass } from "@asius/base";
-import { TranscriptionProps } from "@asius/base";
+import { StyleAndClass } from "@motionly/base";
+import { TranscriptionProps } from "@motionly/base";
 import { useTextStyles } from "../../useTextStyles";
 export * from "./default";
 

@@ -20,8 +20,8 @@ export const Hero = () => {
             Automate your content
           </h1>
           <p className=" text-[18px] md:text-[24px] leading-[1.6] font-medium text-center max-w-[600px] opacity-90">
-            With Asius you can automate your video editing and integrate videos
-            with dynamic data on your site.
+            With Motionly you can automate your video editing and integrate
+            videos with dynamic data on your site.
           </p>
         </div>
 

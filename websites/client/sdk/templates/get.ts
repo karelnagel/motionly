@@ -1,4 +1,4 @@
-import { TemplateType } from "@asius/base";
+import { TemplateType } from "@motionly/base";
 import axios from "axios";
 
 export interface GetTemplateInput {

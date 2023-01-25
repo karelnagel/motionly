@@ -1,4 +1,4 @@
-# @asius/components
+# @motionly/components
 
 ## 1.3.0
 
@@ -9,16 +9,16 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @asius/confetti@1.3.0
-  - @asius/base@1.3.0
+  - @motionly/confetti@1.3.0
+  - @motionly/base@1.3.0
 
 ## 1.2.1
 
 ### Patch Changes
 
-- Added @asius/base
+- Added @motionly/base
 - Updated dependencies
-  - @asius/base@1.2.1
+  - @motionly/base@1.2.1
 
 ## 1.2.0
 
@@ -56,7 +56,7 @@
 
 - idk
 - Updated dependencies
-  - @asius/components@2.0.1
+  - @motionly/components@2.0.1
 
 ## 1.0.3
 
@@ -76,4 +76,4 @@
 
 - test
 - Updated dependencies
-  - @asius/components@1.0.1
+  - @motionly/components@1.0.1

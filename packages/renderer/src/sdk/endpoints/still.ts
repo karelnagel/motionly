@@ -1,6 +1,6 @@
 import { baseUrl } from "../../env";
 import axios from "axios";
-import { TemplateType, ProgressStatus } from "@asius/base";
+import { TemplateType, ProgressStatus } from "@motionly/base";
 
 export type RenderStillInput = TemplateType & { frame: number };
 export type RenderStillOutput = {

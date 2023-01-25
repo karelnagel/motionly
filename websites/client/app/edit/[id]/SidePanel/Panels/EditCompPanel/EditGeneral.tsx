@@ -1,4 +1,4 @@
-import { ComponentProps } from "@asius/base";
+import { ComponentProps } from "@motionly/base";
 import { NumberInput } from "../../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";

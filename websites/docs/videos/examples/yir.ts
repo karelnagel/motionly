@@ -1,4 +1,4 @@
-import { TemplateType } from "@asius/base";
+import { TemplateType } from "@motionly/base";
 
 export const yir: TemplateType = {
   duration: 10,
@@ -35,7 +35,7 @@ export const yir: TemplateType = {
         {
           comp: "image",
           objectFit: "cover",
-          src: "https://asius-media.s3.amazonaws.com/clcl1mck50000mf0816lo9n01/qRxbC9Xq_400x400.jpg",
+          src: "https://motionly-media.s3.amazonaws.com/clcl1mck50000mf0816lo9n01/qRxbC9Xq_400x400.jpg",
           id: "4e5o7ef",
           x: 92.07682750000029,
           y: 153.45257609999996,
