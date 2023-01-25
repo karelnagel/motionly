@@ -1,14 +1,14 @@
 import { TemplateType } from "@asius/base";
-import { mockups } from "./mockups";
 import { podcasts } from "./podcasts";
 import { tweets } from "./tweets";
-import { updates } from "./updates";
+import { subtitles } from "./subtitles";
 import { yir } from "./yir";
+import { mockups } from "./mockups";
 
 export const examples: { [key: string]: TemplateType } = {
   mockups,
   podcasts,
   yir,
-  updates,
+  subtitles,
   tweets,
 };

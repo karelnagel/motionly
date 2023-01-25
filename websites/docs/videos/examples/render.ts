@@ -28,17 +28,17 @@ export const render = async () => {
       outputLocation,
     });
     console.log("Done!");
-    await new Promise((resolve, reject) => {
-      exec(
-        `ffmpeg -i  public/examples/${example}.webm -filter_complex "[0:v]split[x][y];[x]palettegen[z];[y][z]paletteuse" public/examples/${example}.gif`,
-        (error, stdout, stderr) => {
-          if (error) {
-            reject(error);
-          }
-          resolve(stdout ? stdout : stderr);
-        }
-      );
-    });
+    // await new Promise((resolve, reject) => {
+    //   exec(
+    //     `ffmpeg -i  public/examples/${example}.webm -filter_complex "[0:v]split[x][y];[x]palettegen[z];[y][z]paletteuse" public/examples/${example}.gif`,
+    //     (error, stdout, stderr) => {
+    //       if (error) {
+    //         reject(error);
+    //       }
+    //       resolve(stdout ? stdout : stderr);
+    //     }
+    //   );
+    // });
   }
 };
 render();

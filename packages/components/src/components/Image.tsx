@@ -1,6 +1,7 @@
 import { Img } from "remotion";
 import { StyleAndClass } from "@asius/base";
 import { ImageProps } from "@asius/base";
+import { getSrc } from "../helpers";
 
 export const defaultImageProps: ImageProps = {
   comp: "image",
@@ -17,7 +18,7 @@ export const Image = ({
   if (!src) return null;
   return (
     <Img
-      src={src}
+      src={getSrc(src)}
       draggable={false}
       className={className}
       style={{

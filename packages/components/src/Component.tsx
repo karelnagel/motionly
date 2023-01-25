@@ -177,7 +177,9 @@ const InsideSequence = ({
         )}
         {comp.comp === "qrcode" && <QRCode {...comp} />}
         {comp.comp === "video" && <Video {...comp} />}
-        {comp.comp === "transcription" && <Transcription {...comp} />}
+        {comp.comp === "transcription" && (
+          <Transcription {...comp} height={height} />
+        )}
         {comp.comp === "lottie" && <Lottie {...comp} />}
         {comp.comp === "gif" && <Gif {...comp} />}
         {comp.comp === "path" && <Path {...comp} />}

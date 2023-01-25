@@ -7,6 +7,7 @@ import { continueRender, delayRender } from "remotion";
 import { StyleAndClass } from "@asius/base";
 import { LottieProps } from "@asius/base";
 import { useColors } from "../useColors";
+import { getSrc } from "../helpers";
 
 export const defaultLottieProps: LottieProps = {
   comp: "lottie",
@@ -30,7 +31,7 @@ export const Lottie = ({
   useEffect(() => {
     if (!src) return;
 
-    fetch(src)
+    fetch(getSrc(src))
       .then((data) => data.json())
       .then((json) => {
         setAnimationData(json);

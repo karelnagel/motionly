@@ -10,6 +10,7 @@ import { continueRender, delayRender } from "remotion";
 import { StyleAndClass } from "@asius/base";
 import { MapProps } from "@asius/base";
 import { useColors } from "../useColors";
+import { getSrc } from "../helpers";
 
 export const defaultMapProps: MapProps = {
   comp: "map",
@@ -26,7 +27,7 @@ export const defaultMapProps: MapProps = {
 export const Map = ({
   zoom,
   fill,
-  url = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json",
+  src = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json",
   stroke,
   strokeWidth,
   style,
@@ -45,7 +46,7 @@ export const Map = ({
   useEffect(() => {
     const effect = async () => {
       try {
-        const res = await axios.get(url, { timeout: 2000 });
+        const res = await axios.get(getSrc(src), { timeout: 2000 });
         setGeography(res.data);
         continueRender(handle);
       } catch (err) {
@@ -54,7 +55,7 @@ export const Map = ({
       }
     };
     effect();
-  }, [url]);
+  }, [src]);
 
   if (!geography) return null;
   return (

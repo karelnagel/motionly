@@ -7,19 +7,19 @@ const examples = [
   },
   {
     title: "Year in review",
-    video: "/examples/podcasts.webm",
+    video: "/examples/yir.webm",
   },
   {
     title: "Mockups",
-    video: "/examples/podcasts.webm",
+    video: "/examples/mockups.webm",
   },
   {
     title: "Tweets",
-    video: "/examples/podcasts.webm",
+    video: "/examples/tweets.webm",
   },
   {
-    title: "News/updates",
-    video: "/examples/podcasts.webm",
+    title: "Subtitles",
+    video: "/examples/subtitles.webm",
   },
 ];
 
@@ -37,7 +37,7 @@ export const Examples = () => {
       }
       const nextCurrent = (current + 1) % examples.length;
       setCurrent(nextCurrent);
-    }, 3000);
+    }, 10000);
     return () => clearInterval(interval);
   }, [current, mouseIn]);
 
