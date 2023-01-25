@@ -1,4 +1,4 @@
-import { MapProps } from "@asius/base";
+import { MapProps } from "@motionly/base";
 import {
   ColorInput,
   NumberInput,

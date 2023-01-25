@@ -1,4 +1,4 @@
-import { TemplateType } from "@asius/base";
+import { TemplateType } from "@motionly/base";
 
 export const tweets: TemplateType = {
   duration: 10,
@@ -10,7 +10,7 @@ export const tweets: TemplateType = {
       comp: "video",
       objectFit: "cover",
       startFrom: 0,
-      src: "https://asius-media.s3.amazonaws.com/clcl1mck50000mf0816lo9n01/Ocean - 74888.mp4",
+      src: "https://motionly-media.s3.amazonaws.com/clcl1mck50000mf0816lo9n01/Ocean - 74888.mp4",
       muted: false,
       volume: 100,
       id: "ysf426y",
@@ -51,7 +51,7 @@ export const tweets: TemplateType = {
         {
           comp: "image",
           objectFit: "cover",
-          src: "https://asius-media.s3.amazonaws.com/clcl1mck50000mf0816lo9n01/qRxbC9Xq_400x400.jpg",
+          src: "https://motionly-media.s3.amazonaws.com/clcl1mck50000mf0816lo9n01/qRxbC9Xq_400x400.jpg",
           id: "tk68tmq",
           x: 22.140776099999993,
           y: 16.35842010000001,

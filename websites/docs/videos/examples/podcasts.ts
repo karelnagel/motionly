@@ -1,4 +1,4 @@
-import { TemplateType, videoUrl } from "@asius/base";
+import { TemplateType, videoUrl } from "@motionly/base";
 
 export const podcasts: TemplateType = {
   duration: 10,

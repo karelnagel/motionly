@@ -1,6 +1,6 @@
 {
-    "name": "@asius/components",
-    "version": "1.3.0",
+    "name": "@motionly/components",
+    "version": "1.4.0",
     "main": "dist/index.js",
     "private": false,
     "license": "MIT",
@@ -9,13 +9,13 @@
         "dev": "tsc --watch",
         "preview": "remotion preview src/dev/register.tsx",
         "render": "remotion render src/dev/register.tsx",
-        "lambda:site": "npx remotion lambda sites create src/dev/register.tsx --site-name=asius-local",
+        "lambda:site": "npx remotion lambda sites create src/dev/register.tsx --site-name=motionly-local",
         "lambda:function": "npx remotion lambda functions deploy",
-        "lambda:render": "npx remotion lambda render asius-local"
+        "lambda:render": "npx remotion lambda render motionly-local"
     },
     "dependencies": {
-        "@asius/base": "*",
-        "@asius/confetti": "*",
+        "@motionly/base": "*",
+        "@motionly/confetti": "*",
         "@remotion/cli": "3.3.34",
         "@remotion/gif": "3.3.34",
         "@remotion/lottie": "3.3.34",

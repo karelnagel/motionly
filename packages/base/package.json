@@ -1,6 +1,6 @@
 {
-    "name": "@asius/base",
-    "version": "1.3.0",
+    "name": "@motionly/base",
+    "version": "1.4.0",
     "main": "dist/index.js",
     "private": false,
     "license": "MIT",

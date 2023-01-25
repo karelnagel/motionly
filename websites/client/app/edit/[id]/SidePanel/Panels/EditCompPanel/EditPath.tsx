@@ -1,4 +1,4 @@
-import { PathProps } from "@asius/base";
+import { PathProps } from "@motionly/base";
 import {
   BooleanInput,
   ColorInput,

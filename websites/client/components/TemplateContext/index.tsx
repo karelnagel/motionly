@@ -1,4 +1,4 @@
-import { ComponentProps, TemplateType } from "@asius/base";
+import { ComponentProps, TemplateType } from "@motionly/base";
 import { ReactNode, useRef, useState } from "react";
 import { getRandomId } from "../../helpers";
 import { Context } from "./Context";

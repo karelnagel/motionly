@@ -1,4 +1,4 @@
-import { Color, ComponentProps, TemplateType, videoUrl } from "@asius/base";
+import { Color, ComponentProps, TemplateType, videoUrl } from "@motionly/base";
 import { defaultPathProps, defaultTranscriptionProps } from "../../components";
 const duration = 2;
 const linearColor: Color = {

@@ -12,10 +12,10 @@
         "render-examples": "ts-node videos/examples/render.ts"
     },
     "dependencies": {
-        "@asius/base": "*",
-        "@asius/components": "*",
-        "@asius/player": "*",
-        "@asius/renderer": "*",
+        "@motionly/base": "*",
+        "@motionly/components": "*",
+        "@motionly/player": "*",
+        "@motionly/renderer": "*",
         "@next/font": "^13.1.5",
         "@tailwindcss/typography": "^0.5.8",
         "@vercel/og": "^0.0.27",

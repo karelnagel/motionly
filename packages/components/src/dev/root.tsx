@@ -2,7 +2,7 @@ import React from "react";
 import { Composition, Folder, getInputProps } from "remotion";
 import { Composition as Comp } from "../Composition";
 import { compositions } from "./compositions";
-import { BaseProps, ComponentProps, TemplateType } from "@asius/base";
+import { BaseProps, ComponentProps, TemplateType } from "@motionly/base";
 import { test } from "./tests";
 
 const inputProps = getInputProps() as TemplateType;

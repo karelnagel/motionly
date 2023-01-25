@@ -8,8 +8,8 @@ export const Installation = () => {
           <code>sdfddsff</code>
         </pre>
       </Tab>
-      <Tab>```bash copy yarn add @asius/player ```</Tab>
-      <Tab>```bash copy yarn add @asius/player ```</Tab>
+      <Tab>```bash copy yarn add @motionly/player ```</Tab>
+      <Tab>```bash copy yarn add @motionly/player ```</Tab>
     </Tabs>
   );
 };

@@ -1,4 +1,4 @@
-import { ImageProps, ObjectFit } from "@asius/base";
+import { ImageProps, ObjectFit } from "@motionly/base";
 import { SelectInput } from "../../../../../../components/inputs";
 import { Media } from "../../../../../../components/Media";
 import { EditSection } from "./EditSection";

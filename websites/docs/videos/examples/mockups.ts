@@ -1,4 +1,4 @@
-import { ComponentProps, TemplateType } from "@asius/base";
+import { ComponentProps, TemplateType } from "@motionly/base";
 
 const mockup = (i: number): ComponentProps => ({
   comp: "mockup",

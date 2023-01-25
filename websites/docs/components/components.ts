@@ -1,4 +1,4 @@
-import { ComponentProps } from "@asius/base";
+import { ComponentProps } from "@motionly/base";
 
 export const components: ComponentProps[] = [
   {

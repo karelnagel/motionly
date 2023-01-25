@@ -1,4 +1,4 @@
-import { ShapeProps } from "@asius/base";
+import { ShapeProps } from "@motionly/base";
 import { Rect, Triangle, Circle, Ellipse } from "@remotion/shapes";
 import { useColors } from "../useColors";
 

@@ -1,4 +1,4 @@
-import { GraphProps, GraphTypes } from "@asius/base";
+import { GraphProps, GraphTypes } from "@motionly/base";
 import {
   ColorInput,
   NumberInput,

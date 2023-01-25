@@ -1,4 +1,4 @@
-// import { renderStill } from "@asius/renderer";
+// import { renderStill } from "@motionly/renderer";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "../../../lib/getServerSession";
 import { prisma } from "../../../lib/prisma";

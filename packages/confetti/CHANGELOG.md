@@ -1,7 +1,7 @@
-# @asius/confetti
+# @motionly/confetti
 
-## 1.3.0
+## 1.4.0
 
 ### Minor Changes
 
-- Many changes
+- renamed to motionly

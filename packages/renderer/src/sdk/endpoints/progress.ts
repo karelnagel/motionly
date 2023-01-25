@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ProgressStatus } from "@asius/base";
+import { ProgressStatus } from "@motionly/base";
 import { baseUrl } from "../../env";
 
 export type GetProgressInput = { renderId: string };

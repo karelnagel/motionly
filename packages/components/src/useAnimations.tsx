@@ -6,13 +6,13 @@ import {
   useVideoConfig,
   Easing,
 } from "remotion";
-import { getDuration, getFrom } from "@asius/base";
+import { getDuration, getFrom } from "@motionly/base";
 import {
   AnimationProps,
   SpringAnimationProps,
   InterpolateAnimationProps,
   NoiseAnimationProps,
-} from "@asius/base";
+} from "@motionly/base";
 
 export const useAnimation = () => {
   const frame = useCurrentFrame();

@@ -1,12 +1,12 @@
 import { Img } from "remotion";
-import { StyleAndClass } from "@asius/base";
-import { ImageProps } from "@asius/base";
+import { StyleAndClass } from "@motionly/base";
+import { ImageProps } from "@motionly/base";
 import { getSrc } from "../helpers";
 
 export const defaultImageProps: ImageProps = {
   comp: "image",
   objectFit: "cover",
-  src: "https://picsum.photos/seed/asius/1080/1080",
+  src: "https://picsum.photos/seed/motionly/1080/1080",
 };
 
 export const Image = ({

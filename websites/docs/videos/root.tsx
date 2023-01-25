@@ -1,7 +1,7 @@
 import React from "react";
 import { Composition, Folder } from "remotion";
 import { examples } from "./examples";
-import { Composition as Comp } from "@asius/components";
+import { Composition as Comp } from "@motionly/components";
 
 export const Root: React.FC = () => {
   return (

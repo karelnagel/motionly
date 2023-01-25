@@ -1,5 +1,5 @@
-import { StyleAndClass } from "@asius/base";
-import { MockupProps } from "@asius/base";
+import { StyleAndClass } from "@motionly/base";
+import { MockupProps } from "@motionly/base";
 import { Iphone } from "./IPhone";
 import { Children } from "../Children";
 

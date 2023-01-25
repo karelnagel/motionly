@@ -1,13 +1,7 @@
-# @asius/base
+# @motionly/base
 
-## 1.3.0
+## 1.4.0
 
 ### Minor Changes
 
-- Many changes
-
-## 1.2.1
-
-### Patch Changes
-
-- Added @asius/base
+- renamed to motionly

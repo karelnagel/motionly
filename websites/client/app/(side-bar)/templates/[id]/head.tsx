@@ -14,7 +14,7 @@ export default async function Head({
     `https://fonts.googleapis.com/css2?family=${font}&display=swap`;
   return (
     <>
-      <title>Asius editor</title>
+      <title>Motionly editor</title>
       {fonts.map((font, i) => (
         <link
           key={i}

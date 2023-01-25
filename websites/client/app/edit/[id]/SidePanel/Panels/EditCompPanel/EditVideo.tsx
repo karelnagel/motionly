@@ -1,4 +1,4 @@
-import { ObjectFit, VideoProps } from "@asius/base";
+import { ObjectFit, VideoProps } from "@motionly/base";
 import {
   BooleanInput,
   NumberInput,

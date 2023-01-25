@@ -1,5 +1,5 @@
 import { renderMediaOnLambda } from "@remotion/lambda/client";
-import { TemplateType } from "@asius/base";
+import { TemplateType } from "@motionly/base";
 import { RenderMediaInput, RenderMediaOutput } from "../../sdk";
 import { composition, functionName, region, serveUrl } from "../../env";
 

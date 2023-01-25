@@ -12,7 +12,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
     <div className=" flex flex-col min-h-screen bg-base-300 items-center">
       <div className="flex justify-between p-2 items-center bg-base-100 w-full">
         <Link href="/">
-          <Image src="/asius.png" width={150} height={120} alt="logo" />
+          <Image src="/motionly.png" width={150} height={120} alt="logo" />
         </Link>
         <div className="flex shadow-xl justify-between space-x-4">
           <SideBarButton href="/" text="Home">

@@ -1,5 +1,5 @@
-import { AllComponents, BaseProps } from "@asius/base";
-import { Player } from "@asius/player";
+import { AllComponents, BaseProps } from "@motionly/base";
+import { Player } from "@motionly/player";
 
 const baseProps: BaseProps = {
   id: "",

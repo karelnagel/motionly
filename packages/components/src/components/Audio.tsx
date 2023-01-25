@@ -1,7 +1,7 @@
 import { Audio as RemotionAudio, useVideoConfig } from "remotion";
-import { videoUrl } from "@asius/base";
-import { StyleAndClass } from "@asius/base";
-import { AudioProps } from "@asius/base";
+import { videoUrl } from "@motionly/base";
+import { StyleAndClass } from "@motionly/base";
+import { AudioProps } from "@motionly/base";
 import { getSrc } from "../helpers";
 
 export const defaultAudioProps: AudioProps = {

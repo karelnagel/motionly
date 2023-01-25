@@ -1,4 +1,4 @@
-import { Color } from "@asius/base";
+import { Color } from "@motionly/base";
 import { interpolateColors, useCurrentFrame, useVideoConfig } from "remotion";
 
 export const useColors = () => {

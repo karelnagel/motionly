@@ -1,4 +1,4 @@
-import { AudioProps } from "@asius/base";
+import { AudioProps } from "@motionly/base";
 import { NumberInput } from "../../../../../../components/inputs";
 import { Media } from "../../../../../../components/Media";
 import { EditSection } from "./EditSection";

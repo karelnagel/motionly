@@ -1,4 +1,4 @@
-import { TextStyle } from "@asius/base";
+import { TextStyle } from "@motionly/base";
 import { CSSProperties } from "react";
 import { useColors } from "./useColors";
 

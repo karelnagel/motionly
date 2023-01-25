@@ -1,4 +1,4 @@
-import { TranscriptionProps, TranscriptionWord } from "@asius/base";
+import { TranscriptionProps, TranscriptionWord } from "@motionly/base";
 
 export const defaultTranscriptionWords: TranscriptionWord[] = [
   {

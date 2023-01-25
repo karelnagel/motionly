@@ -1,5 +1,5 @@
-import { StyleAndClass } from "@asius/base";
-import { TextProps } from "@asius/base";
+import { StyleAndClass } from "@motionly/base";
+import { TextProps } from "@motionly/base";
 import { useTextStyles } from "../useTextStyles";
 
 export const defaultTextProps: TextProps = {

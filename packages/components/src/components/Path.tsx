@@ -1,6 +1,6 @@
 import { evolvePath } from "@remotion/paths";
-import { StyleAndClass } from "@asius/base";
-import { PathProps } from "@asius/base";
+import { StyleAndClass } from "@motionly/base";
+import { PathProps } from "@motionly/base";
 import { useColors } from "../useColors";
 
 export const defaultPathProps: PathProps = {

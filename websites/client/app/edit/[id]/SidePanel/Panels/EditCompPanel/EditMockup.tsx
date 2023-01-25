@@ -1,4 +1,4 @@
-import { MockupProps, MockupTypes } from "@asius/base";
+import { MockupProps, MockupTypes } from "@motionly/base";
 import { SelectInput } from "../../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";

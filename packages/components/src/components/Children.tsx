@@ -1,4 +1,4 @@
-import { ComponentProps } from "@asius/base";
+import { ComponentProps } from "@motionly/base";
 import { Series, useVideoConfig } from "remotion";
 import { Component } from "../Component";
 

@@ -1,4 +1,4 @@
-import { TemplateType } from "@asius/base";
+import { TemplateType } from "@motionly/base";
 import { podcasts } from "./podcasts";
 import { tweets } from "./tweets";
 import { subtitles } from "./subtitles";
