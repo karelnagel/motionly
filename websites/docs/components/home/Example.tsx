@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 const examples = [
@@ -71,7 +70,7 @@ export const Examples = () => {
               <div className="flex items-end space-x-3 ">
                 <p
                   className={`${
-                    current === i ? "text-white" : "text-stone-500"
+                    current === i ? "opacity-100" : "opacity-30"
                   } duration-300`}
                 >
                   {title}
@@ -85,7 +84,7 @@ export const Examples = () => {
                 />
               </div>
               <div
-                className={`absolute left-0 bottom-1 bg-white h-[3px]  duration-[400ms] delay-150 ${
+                className={`absolute left-0 bottom-1 bg-base-content h-[3px] duration-[400ms] delay-150 ${
                   current === i ? "w-full" : "w-0"
                 }`}
               />
@@ -122,8 +121,8 @@ export const Examples = () => {
           />
           <div className="absolute top-0 left-0 h-full w-full flex justify-between items-center text-2xl">
             <div
-              className={`p-2 bg-stone-500 bg-opacity-40 rounded-full ${
-                current === 0 ? "opacity-0" : "opacity-100"
+              className={`p-2 bg-base-content text-base-100 cursor-pointer rounded-full ${
+                current === 0 ? "opacity-0" : "opacity-40"
               }`}
             >
               <IoIosArrowBack
@@ -133,8 +132,8 @@ export const Examples = () => {
               />
             </div>
             <div
-              className={`p-2 bg-stone-500 bg-opacity-40 rounded-full ${
-                current === examples.length - 1 ? "opacity-0" : "opacity-100"
+              className={`p-2 bg-base-content text-base-100 cursor-pointer rounded-full ${
+                current === examples.length - 1 ? "opacity-0" : "opacity-40"
               }`}
             >
               <IoIosArrowForward
@@ -151,8 +150,8 @@ export const Examples = () => {
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className={`h-3 w-3 rounded-full duration-500 ${
-                current === i ? "bg-white scale-125" : "bg-stone-500"
+              className={`h-3 w-3 bg-base-content rounded-full duration-500 ${
+                current === i ? " scale-125" : "opacity-30"
               }`}
             ></button>
           ))}

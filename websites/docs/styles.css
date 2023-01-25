@@ -3,11 +3,16 @@
 @tailwind utilities;
 
 .title {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-blue-600;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary to-primary;
 }
 .gradient {
-  @apply bg-gradient-to-r from-pink-500 to-blue-600;
+  @apply bg-gradient-to-r from-secondary to-primary;
 }
 .demo {
-  @apply hover:bg-gradient-to-tr hover:text-white bg-gray-500 bg-opacity-10 rounded-3xl flex items-center p-3  hover:to-blue-600 hover:from-pink-500 hover:scale-105 duration-300 cursor-pointer;
+  @apply hover:bg-gradient-to-tr hover:text-white bg-gray-500 bg-opacity-10 rounded-3xl flex items-center p-3  hover:to-primary hover:from-secondary hover:scale-105 duration-300 cursor-pointer;
+}
+
+html[class~="dark"] body {
+  @apply !bg-base-100 !text-base-content;
+  /* background-color: #111021 !important; */
 }
