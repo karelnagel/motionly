@@ -13,7 +13,7 @@ export const Navbar = ({
       <div className="flex p-2 md:p-3 justify-between items-center font-sans max-w-screen-xl mx-auto">
         <Link href="/">
           <Image
-            src="/motionly.jpg"
+            src="/motionly.png"
             width={250}
             height={30}
             alt="logo"

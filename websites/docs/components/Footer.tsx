@@ -32,7 +32,7 @@ const socialsButtons = [
 export const Footer = () => {
   return (
     <div className="bg-base-300 flex flex-col items-center p-3 py-6 space-y-5">
-      <Image src="/motionly.jpg" width={300} height={300} alt="logo" />
+      <Image src="/motionly.png" width={300} height={300} alt="logo" />
       <h1 className="title text-2xl font-medium leading-[1.3]">Follow along</h1>
       <div className="flex display-flex space-x-7 md:space-x-3 md:text-2xl font-bold">
 
