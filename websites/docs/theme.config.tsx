@@ -7,22 +7,13 @@ import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 
 const config: DocsThemeConfig = {
-  logo: <Logo />,
   gitTimestamp: false,
   primaryHue: 313,
-  chat: {
-    link: "https://discord.gg/U8gF8jEuJA",
-  },
   footer: {
     component: () => <Footer />,
   },
   project: {
     icon: null,
-  },
-  banner: {
-    text: "In beta, feedback is welcome in the discord",
-    key: "Beta",
-    dismissible: true,
   },
   toc: {
     component: null,
@@ -34,7 +25,6 @@ const config: DocsThemeConfig = {
     component: ({ items }) => <Navbar items={items} />,
   },
   useNextSeoProps,
-  components: {},
   head: () => {
     const { asPath } = useRouter();
     const { frontMatter, title: configTitle } = useConfig();
