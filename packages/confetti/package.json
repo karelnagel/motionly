@@ -3,7 +3,7 @@
   "main": "dist/index.js",
   "private": false,
   "license": "MIT",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch"
