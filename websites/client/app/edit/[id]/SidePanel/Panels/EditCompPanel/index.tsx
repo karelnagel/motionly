@@ -6,6 +6,7 @@ import { Tabs } from "../../../../../../types";
 import { EditAnimation } from "./EditAnimation";
 import { EditAudio } from "./EditAudio";
 import { EditAudiogram } from "./EditAudiogram";
+import { EditConfetti } from "./EditConfetti";
 import { EditDiv } from "./EditDiv";
 import { EditGeneral } from "./EditGeneral";
 import { EditGif } from "./EditGif";
@@ -126,6 +127,7 @@ export const EditCompPanel = () => {
           )}
           {comp.comp === "video" && <EditVideo comp={comp} setComp={setComp} />}
           {comp.comp === "shape" && <EditShape comp={comp} setComp={setComp} />}
+          {comp.comp === "confetti" && <EditConfetti comp={comp} setComp={setComp} />}
         </div>
       )}
     </div>
