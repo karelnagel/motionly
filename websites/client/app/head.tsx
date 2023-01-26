@@ -4,7 +4,7 @@ export default function Head() {
       <title>Motionly</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta name="description" content="Programmatic videos" />
-      <link rel="icon" href="/favicon.png" />
+      <link rel="icon" href="/logo.png" />
     </>
   );
 }

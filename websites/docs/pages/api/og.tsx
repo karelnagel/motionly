@@ -41,7 +41,7 @@ export default function handler(req: NextRequest) {
             <img
               alt="Motionly"
               height={200}
-              src={`${process.env.NEXT_PUBLIC_URL}/favicondark.png`}
+              src={`${process.env.NEXT_PUBLIC_URL}/logo.png`}
               style={{ margin: "0 30px" }}
               width={232}
             />
