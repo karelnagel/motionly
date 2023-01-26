@@ -17,6 +17,7 @@ import { EditMockup } from "./EditMockup";
 import { EditPath } from "./EditPath";
 import { EditProgressbar } from "./EditProgressbar";
 import { EditQRCode } from "./EditQRCode";
+import { EditShape } from "./EditShape";
 import { EditText } from "./EditText";
 import { EditTranscription } from "./EditTranscription";
 import { EditVideo } from "./EditVideo";
@@ -124,6 +125,7 @@ export const EditCompPanel = () => {
             <EditTranscription comp={comp} setComp={setComp} />
           )}
           {comp.comp === "video" && <EditVideo comp={comp} setComp={setComp} />}
+          {comp.comp === "shape" && <EditShape comp={comp} setComp={setComp} />}
         </div>
       )}
     </div>

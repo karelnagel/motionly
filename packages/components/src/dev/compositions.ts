@@ -16,7 +16,7 @@ import {
   defaultVideoProps,
 } from "../components";
 import { defaultConfetti } from "../components/Confetti";
-import { defaultShape } from "../components/Shape";
+import { defaultShapeProps } from "../components/Shape";
 
 export const compositions = [
   defaultAudioProps,
@@ -34,6 +34,6 @@ export const compositions = [
   defaultTextProps,
   defaultTranscriptionProps,
   defaultVideoProps,
-  defaultShape,
+  defaultShapeProps,
   defaultConfetti,
 ];

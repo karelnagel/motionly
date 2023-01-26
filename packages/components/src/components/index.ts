@@ -13,3 +13,5 @@ export * from "./Video";
 export * from "./Gif";
 export * from "./Lottie";
 export * from "./Path";
+export * from "./Shape";
+export * from "./Confetti";

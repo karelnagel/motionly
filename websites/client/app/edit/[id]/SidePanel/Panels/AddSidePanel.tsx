@@ -12,6 +12,7 @@ import {
   defaultProgressbarProps,
   defaultQRCodeProps,
   defaultTextProps,
+  defaultShapeProps,
   defaultVideoProps,
   defaultTranscriptionProps,
 } from "@motionly/components";
@@ -69,6 +70,7 @@ export const AddSidePanel = () => {
         {Add("Path", defaultPathProps, "Animate SVG paths")}
         {Add("Progressbar", defaultProgressbarProps, "Show video progress")}
         {Add("QR Code", defaultQRCodeProps, "Add QR code to your link")}
+        {Add("Shape", defaultShapeProps, "Add different shapes")}
       </div>
     </div>
   );
