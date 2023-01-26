@@ -1,12 +1,12 @@
 "use client";
 
-import { TemplateType } from "@motionly/base";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
 import { postNewTemplate } from "../sdk/templates/new";
+import { Template } from "../types";
 import { useAlerts } from "./Alert";
 
-const emptyTemplate: TemplateType = {
+const emptyTemplate: Template = {
   name: "Empty",
   description: "This is an empty template",
   width: 1080,
@@ -23,7 +23,7 @@ export const Clone = ({
 }: {
   children: ReactNode;
   className?: string;
-  template?: TemplateType;
+  template?: Template;
 }) => {
   const router = useRouter();
   const alert = useAlerts();

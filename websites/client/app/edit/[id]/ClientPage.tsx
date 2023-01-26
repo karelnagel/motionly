@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import { TemplateType } from "@motionly/base";
 import { TemplateContext } from "../../../components/TemplateContext";
 import { Header } from "./Header";
 import { Timeline } from "./Timeline/Timeline";
@@ -10,11 +9,12 @@ import { HotKeys } from "../../../components/HotKeys";
 import { PlayerDiv } from "./Player/PlayerDiv";
 import { SidePanel } from "./SidePanel/SidePanel";
 import { TimelineDiv } from "./Timeline/TimelineDiv";
+import { Template } from "../../../types";
 
 export function ClientPageWrapper({
   template: startTemplate,
 }: {
-  template: TemplateType;
+  template: Template;
 }) {
   return (
     <TemplateContext startTemplate={startTemplate}>

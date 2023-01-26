@@ -1,3 +1,4 @@
+import { TemplateType } from "@motionly/base";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ISODateString } from "next-auth";
 
@@ -13,4 +14,13 @@ export type SessionWithId = {
     id?: string | null;
   };
   expires: ISODateString;
+};
+
+export type Template = TemplateType & {
+  isOwner?: boolean;
+  public?: boolean;
+  name: string;
+  description: string;
+  id?: string;
+  preview?: string;
 };

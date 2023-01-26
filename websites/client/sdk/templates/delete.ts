@@ -1,9 +1,9 @@
-import { TemplateType } from "@motionly/base";
 import axios from "axios";
+import { Template } from "../../types";
 import { GetTemplateInput } from "./get";
 
 export type DeleteTemplateInput = GetTemplateInput;
-export type DeleteTemplateOutput = TemplateType;
+export type DeleteTemplateOutput = Template;
 export const deleteTemplate = async ({
   id,
 }: DeleteTemplateInput): Promise<DeleteTemplateOutput | null> => {

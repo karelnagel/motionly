@@ -18,7 +18,7 @@ export const TimelineComp = ({
   parentId,
 }: {
   comp: ComponentProps;
-  comps: ComponentProps[];
+  comps?: ComponentProps[];
   parentDuration: number;
   parentId: string;
 }) => {
@@ -96,7 +96,7 @@ export const TimelineComp = ({
                 </button>
               </div>
             )}
-            {hasChildren && comp.children.length > 0 && (
+            {hasChildren && comp.comps && comp.comps.length > 0 && (
               <div
                 className="tooltip tooltip-left text-lg"
                 data-tip={!minimize ? "Minimize" : "Maximize"}
@@ -113,14 +113,14 @@ export const TimelineComp = ({
             )}
           </div>
         </div>
-        {hasChildren && comp.children.length > 0 && !minimize && (
+        {hasChildren && comp.comps && comp.comps.length > 0 && !minimize && (
           <div className="space-y-2 py-2">
-            {comp.children.map((child, i) => (
+            {comp.comps.map((child, i) => (
               <TimelineComp
                 key={i}
                 parentId={comp.id}
                 comp={child}
-                comps={comp.children}
+                comps={comp.comps}
                 parentDuration={duration}
               />
             ))}
@@ -142,13 +142,13 @@ export const TimelineComp = ({
 
 export const CompMoveable = ({
   divRef,
-  comps,
+  comps = [],
   parentDuration,
   comp,
   parentId,
 }: {
   divRef: React.RefObject<HTMLDivElement>;
-  comps: ComponentProps[];
+  comps?: ComponentProps[];
   parentDuration: number;
   comp: ComponentProps;
   parentId: string;

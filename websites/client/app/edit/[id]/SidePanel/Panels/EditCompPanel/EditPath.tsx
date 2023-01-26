@@ -24,10 +24,10 @@ export const EditPath = ({
       />
       <ColorInput
         label="Stroke"
-        value={comp.strokeColor}
-        onChange={(strokeColor) => setComp({ ...comp, strokeColor })}
+        value={comp.stroke}
+        onChange={(stroke) => setComp({ ...comp, stroke })}
       />
-      {comp.strokeColor && (
+      {comp.stroke && (
         <NumberInput
           label="Stroke width (px)"
           value={comp.strokeWidth}
@@ -36,8 +36,8 @@ export const EditPath = ({
       )}
       <ColorInput
         label="Fill"
-        value={comp.fillColor}
-        onChange={(fillColor) => setComp({ ...comp, fillColor })}
+        value={comp.fill}
+        onChange={(fill) => setComp({ ...comp, fill })}
       />
       <NumberInput
         label="Viewbox X (px)"
