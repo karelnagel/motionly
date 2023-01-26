@@ -3,7 +3,7 @@ import { getServerSession } from "../../../lib/getServerSession";
 import { getTemplate } from "../../../pages/api/templates/[id]";
 import { ClientPageWrapper } from "./ClientPage";
 
-export const revalidate = 0;
+export const dynamic = "force-dynamic";
 
 export default async function Page({
   params: { id },

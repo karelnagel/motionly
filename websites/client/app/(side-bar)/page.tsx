@@ -3,7 +3,7 @@ import { Template } from "../../components/Template";
 import { Title } from "../../components/Title";
 import { prisma } from "../../lib/prisma";
 
-export const revalidate = 1;
+export const dynamic = "force-dynamic";
 
 export default async function Templates({
   searchParams,
