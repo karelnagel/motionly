@@ -6,6 +6,7 @@ import { Tabs } from "../../../../../../types";
 import { EditAnimation } from "./EditAnimation";
 import { EditAudio } from "./EditAudio";
 import { EditAudiogram } from "./EditAudiogram";
+import { EditConfetti } from "./EditConfetti";
 import { EditDiv } from "./EditDiv";
 import { EditGeneral } from "./EditGeneral";
 import { EditGif } from "./EditGif";
@@ -17,6 +18,7 @@ import { EditMockup } from "./EditMockup";
 import { EditPath } from "./EditPath";
 import { EditProgressbar } from "./EditProgressbar";
 import { EditQRCode } from "./EditQRCode";
+import { EditShape } from "./EditShape";
 import { EditText } from "./EditText";
 import { EditTranscription } from "./EditTranscription";
 import { EditVideo } from "./EditVideo";
@@ -124,6 +126,8 @@ export const EditCompPanel = () => {
             <EditTranscription comp={comp} setComp={setComp} />
           )}
           {comp.comp === "video" && <EditVideo comp={comp} setComp={setComp} />}
+          {comp.comp === "shape" && <EditShape comp={comp} setComp={setComp} />}
+          {comp.comp === "confetti" && <EditConfetti comp={comp} setComp={setComp} />}
         </div>
       )}
     </div>

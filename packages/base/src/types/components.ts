@@ -256,9 +256,9 @@ export type ShapeProps = {
 );
 
 export type MotionBlurProps = {
-  layers: number;
-  lag: number;
-  opacity: number;
+  layers?: number;
+  lag?: number;
+  opacity?: number;
 };
 
 export type ColorInterpolate = {
@@ -287,7 +287,7 @@ export type TemplateType = {
 
 export type TransformProps = {
   prop: keyof typeof transformProps;
-  value: number;
+  value?: number;
 };
 
 export type BaseProps = {

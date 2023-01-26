@@ -41,7 +41,9 @@ export const Component = (comp: ComponentProps) => {
   return (
     <MotionBlur motion={comp.motionBlur}>
       <Sequence from={from} durationInFrames={duration} layout="none">
-        <Freeze frame={comp.freeze ? fps * comp.freeze : undefined}>
+        <Freeze
+          frame={comp.freeze !== undefined ? fps * comp.freeze : undefined}
+        >
           <Loop
             durationInFrames={
               comp.loopDuration ? fps * comp.loopDuration : undefined
@@ -62,7 +64,7 @@ export const Freeze = ({
   frame?: number;
   children: ReactNode;
 }) => {
-  if (!frame) return <>{children}</>;
+  if (frame === undefined) return <>{children}</>;
   else
     return (
       <RemotionFreeze frame={frame}>

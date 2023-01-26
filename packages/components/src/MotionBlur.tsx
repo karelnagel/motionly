@@ -13,10 +13,10 @@ export const MotionBlur = ({
   const { fps } = useVideoConfig();
   if (!motion) return <>{children}</>;
   return (
-    <Trail
-      lagInFrames={motion.lag * fps}
-      layers={motion.layers}
-      trailOpacity={motion.opacity}
+    <Trail 
+      lagInFrames={motion.lag ? motion.lag : 0.1 * fps}
+      layers={motion.layers || 50}
+      trailOpacity={motion.opacity || 1}
     >
       <>{children}</>
     </Trail>
