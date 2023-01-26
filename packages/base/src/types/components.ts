@@ -256,9 +256,9 @@ export type ShapeProps = {
 );
 
 export type MotionBlurProps = {
-  layers: number;
-  lag: number;
-  opacity: number;
+  layers?: number;
+  lag?: number;
+  opacity?: number;
 };
 
 export type ColorInterpolate = {

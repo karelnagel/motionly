@@ -1,5 +1,5 @@
 import { ComponentProps } from "@motionly/base";
-import { NumberInput } from "../../../../../../components/inputs";
+import { BooleanInput, NumberInput } from "../../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 
@@ -62,6 +62,51 @@ export const EditGeneral = ({
         value={comp.duration}
         onChange={(duration) => setComp({ ...comp, duration })}
       />
+      <NumberInput
+        label="Loop duration (s)"
+        value={comp.loopDuration}
+        onChange={(loopDuration) => setComp({ ...comp, loopDuration })}
+      />
+      <NumberInput
+        label="Freeze (s)"
+        value={comp.freeze}
+        onChange={(freeze) => setComp({ ...comp, freeze })}
+      />
+      <BooleanInput
+        label="Motion Blur"
+        value={!!comp.motionBlur}
+        onChange={(motionBlur) =>
+          setComp({ ...comp, motionBlur: motionBlur ? {} : undefined })
+        }
+      />
+      {comp.motionBlur && (
+        <>
+          <NumberInput
+            label="Motion Blur Lag (s)"
+            value={comp.motionBlur.lag}
+            placeholder="0.1"
+            onChange={(lag) =>
+              setComp({ ...comp, motionBlur: { ...comp.motionBlur, lag } })
+            }
+          />
+          <NumberInput
+            label="Motion Blur Layers"
+            value={comp.motionBlur.layers}
+            placeholder="50"
+            onChange={(layers) =>
+              setComp({ ...comp, motionBlur: { ...comp.motionBlur, layers } })
+            }
+          />
+          <NumberInput
+            label="Motion Blur Opacity"
+            value={comp.motionBlur.opacity}
+            placeholder="1"
+            onChange={(opacity) =>
+              setComp({ ...comp, motionBlur: { ...comp.motionBlur, opacity } })
+            }
+          />
+        </>
+      )}
     </EditSection>
   );
 };
