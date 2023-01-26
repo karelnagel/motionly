@@ -1,5 +1,9 @@
-import { ComponentProps } from "@motionly/base";
-import { BooleanInput, NumberInput } from "../../../../../../components/inputs";
+import { ComponentProps, transformProps } from "@motionly/base";
+import {
+  BooleanInput,
+  NumberInput,
+  SelectInput,
+} from "../../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 
@@ -74,6 +78,7 @@ export const EditGeneral = ({
       />
       <BooleanInput
         label="Motion Blur"
+        className="col-span-2"
         value={!!comp.motionBlur}
         onChange={(motionBlur) =>
           setComp({ ...comp, motionBlur: motionBlur ? {} : undefined })
@@ -107,6 +112,69 @@ export const EditGeneral = ({
           />
         </>
       )}
+      {comp.transform?.map(({ prop, value }, i) => (
+        <>
+          <SelectInput
+            key={i}
+            label={`Transform ${i + 1}`}
+            value={prop}
+            onChange={(prop) =>
+              setComp({
+                ...comp,
+                transform: comp.transform?.map((t, j) =>
+                  i === j
+                    ? { ...t, prop: prop as keyof typeof transformProps }
+                    : t
+                ),
+              })
+            }
+            options={Object.entries(transformProps).map(
+              ([value, { label }]) => ({
+                label,
+                value,
+              })
+            )}
+          />
+          <NumberInput
+            key={i}
+            label={`Transform ${i + 1}`}
+            value={value}
+            onChange={(value) =>
+              setComp({
+                ...comp,
+                transform: comp.transform?.map((t, j) =>
+                  i === j ? { ...t, value: value } : t
+                ),
+              })
+            }
+          />
+          <button
+            className="btn btn-xs btn-error"
+            onClick={() =>
+              setComp({
+                ...comp,
+                transform: comp.transform?.filter((_, j) => i !== j),
+              })
+            }
+          >
+            Remove
+          </button>
+        </>
+      ))}
+      <button
+        className="btn col-span-2"
+        onClick={() => {
+          setComp({
+            ...comp,
+            transform: [
+              ...(comp.transform ?? []),
+              { prop: "translateX", value: 0 },
+            ],
+          });
+        }}
+      >
+        Add transform
+      </button>
     </EditSection>
   );
 };

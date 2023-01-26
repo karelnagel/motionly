@@ -287,7 +287,7 @@ export type TemplateType = {
 
 export type TransformProps = {
   prop: keyof typeof transformProps;
-  value: number;
+  value?: number;
 };
 
 export type BaseProps = {
