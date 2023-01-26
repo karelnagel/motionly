@@ -44,7 +44,7 @@ export const Examples = () => {
   return (
     <div className="space-y-6 max-w-screen-xl m-auto text-center md:text-left">
       <div className="max-w-xl leading-[1.2] space-y-6">
-        <h2 className="text-4xl md:text-[50px] font-semibold leading-[1.1] title">
+        <h2 className="text-4xl md:text-[50px] font-semibold leading-[1.1] text-transparent bg-clip-text bg-gradient-to-tl to-purple-400 from-pink-600">
           Video templates for every purpose
         </h2>
         <p className="text-lg md:text-xl  leading-[1.4]">

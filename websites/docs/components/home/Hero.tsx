@@ -4,7 +4,7 @@ import Link from "next/link";
 export const Hero = () => {
   return (
     <div className="relative overflow-hidden">
-      <div className="relative flex flex-col items-center w-full pt-10 md:pt-28 space-y-8">
+      <div className="relative flex flex-col items-center w-full pt-10 pb-3 md:pt-28 space-y-8">
         <div className="relative">
           <Image
             src={"/logo.gif"}
@@ -24,13 +24,14 @@ export const Hero = () => {
             videos with dynamic data on your site.
           </p>
         </div>
-
-        <div className="flex space-x-5 md:space-x-10 text-xl md:text-2xl font-bold">
-          <Link href="mailto:info@motionly.video">
-            <button className=" rounded-lg p-2 px-4 bg-gradient-to-br from-secondary to-primary text-primary-content ">
-              Contact us
+        <div className="flex space-x-5 md:space-x-10  text-xl md:text-2xl font-medium">
+            <button className=" animate-pulse rounded-full p-4 px-4 text-gray-300 bg-gradient-to-r from-secondary to-primary transition transform hover:opacity-100 hover:scale-110 duration-500 "
+                    onClick={e=> {
+                      e.preventDefault();
+                      scrollTo( {top: 890, behavior: 'smooth', })
+                    }}>
+              Get started
             </button>
-          </Link>
         </div>
       </div>
     </div>
