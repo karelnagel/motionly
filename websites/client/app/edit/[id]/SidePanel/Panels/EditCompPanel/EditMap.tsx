@@ -17,9 +17,9 @@ export const EditMap = ({
   return (
     <EditSection title="Map">
       <TextInput
-        label="Url"
-        value={comp.url}
-        onChange={(url) => setComp({ ...comp, url })}
+        label="Src"
+        value={comp.src}
+        onChange={(src) => setComp({ ...comp, src })}
       />
       <NumberInput
         label="Latitude (deg)"

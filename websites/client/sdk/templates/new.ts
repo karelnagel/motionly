@@ -1,8 +1,8 @@
-import { TemplateType } from "@motionly/base";
 import axios from "axios";
+import { Template } from "../../types";
 
-export type PostNewTemplateInput = TemplateType;
-export type PostNewTemplateOutput = TemplateType;
+export type PostNewTemplateInput = Template;
+export type PostNewTemplateOutput = Template;
 
 export const postNewTemplate = async (
   input: PostNewTemplateInput

@@ -23,6 +23,7 @@ export const Player = ({
   const divRef = useRef<HTMLDivElement>(null);
   const [isClient, setIsClient] = useState(false);
   useEffect(() => setIsClient(true), []);
+  if (!comps) return null;
   return (
     <div
       style={{ width: width * scale, height: height * scale }}

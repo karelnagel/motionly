@@ -67,7 +67,9 @@ export const getTemplate = async (
     fps,
     public: template.public,
     isOwner,
-    background: background || undefined,
+    background: background?.includes("type")
+      ? JSON.parse(background)
+      : background,
     preview: preview || undefined,
   };
 };
@@ -95,7 +97,7 @@ const updateTemplate = async (
         name: template.name,
         public: template.public,
         description: template.description,
-        background: template.background,
+        background: JSON.stringify(template.background),
         fps: template.fps,
         duration: template.duration,
         preview,

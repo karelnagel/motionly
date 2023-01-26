@@ -16,7 +16,7 @@ export const AISidePanel = () => {
       return alert("Please wait for the previous request to finish", "warning");
     setStatus("loading");
 
-    const result = await postAI(template.comps, prompt);
+    const result = await postAI(template.comps!, prompt);
     if (!result) setStatus("error");
     else {
       setTemplate({ ...template, comps: result });
