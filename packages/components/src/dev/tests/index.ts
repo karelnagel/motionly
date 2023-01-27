@@ -3,25 +3,43 @@ import { defaultPathProps, defaultTranscriptionProps } from "../../components";
 const duration = 2;
 const linearColor: Color = {
   type: "linear",
-  colors: [
+  gradients: [
     {
-      type: "interpolate",
-      colors: ["#ff0", "#f0f", "#0ff", "#ff0"],
-      durations: [0, 1, 2, 3],
+      stop: 0,
+      color: {
+        type: "interpolate",
+        colors: [
+          { color: "#ff0", start: 0 },
+          { color: "#f0f", start: 1 },
+          { color: "#0ff", start: 2 },
+          { color: "#ff0", start: 3 },
+        ],
+      },
     },
     {
-      type: "interpolate",
-      colors: ["#f0f", "#0ff", "#ff0", "#f0f"],
-      durations: [0, 1, 2, 3],
+      stop: 0,
+      color: {
+        type: "interpolate",
+        colors: [
+          { color: "#f0f", start: 0 },
+          { color: "#0ff", start: 1 },
+          { color: "#ff0", start: 2 },
+          { color: "#f0f", start: 3 },
+        ],
+      },
     },
   ],
   angle: 0,
-  stops: [0, 1],
 };
+
 const interpolateColor: Color = {
   type: "interpolate",
-  colors: ["#ff0", "#f0f", "#0ff", "#ff0"],
-  durations: [0, 1, 2, 3],
+  colors: [
+    { color: "#f0f", start: 0 },
+    { color: "#0ff", start: 1 },
+    { color: "#ff0", start: 2 },
+    { color: "#f0f", start: 3 },
+  ],
 };
 const box: ComponentProps = {
   id: "",
@@ -44,22 +62,6 @@ export const test: TemplateType = {
   },
   isSequence: true,
   comps: [
-    {
-      id: "div bg flashing black and white on loop",
-      comp: "div",
-      comps: [],
-      x: 50,
-      y: 50,
-      height: 300,
-      width: 300,
-      loopDuration: 0.6,
-      duration,
-      bg: {
-        type: "interpolate",
-        colors: ["#000", "#fff", "#000"],
-        durations: [0.2, 0.4, 0.6],
-      },
-    },
     {
       id: "linear gradeint with colors interpolateing",
       comp: "div",
@@ -84,20 +86,8 @@ export const test: TemplateType = {
       loopDuration: 0.6,
       bg: {
         type: "radial",
-        colors: [
-          {
-            type: "interpolate",
-            colors: ["#ff0", "#f0f", "#0ff", "#ff0"],
-            durations: [0, 0.2, 0.4, 0.6],
-          },
-          {
-            type: "interpolate",
-            colors: ["#f0f", "#0ff", "#ff0", "#f0f"],
-            durations: [0, 0.2, 0.4, 0.6],
-          },
-        ],
+        gradients: linearColor.gradients,
         angle: 0,
-        stops: [0, 1],
       },
     },
     {
@@ -191,7 +181,7 @@ export const test: TemplateType = {
       animationDuration: 2.5,
       animationStart: 0,
       type: "line",
-      color: { ...interpolateColor, durations: [0, 1, 2, 3] },
+      color: { ...interpolateColor },
       width: 400,
     },
     {
@@ -367,7 +357,7 @@ export const test: TemplateType = {
         fontSize: 100,
         bg: linearColor,
         color: interpolateColor,
-        outlineColor:{
+        outlineColor: {
           type: "basic",
           color: "#FFFFFFFF",
         },

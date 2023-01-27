@@ -1298,18 +1298,23 @@ export const podcasts: TemplateType = {
       type: "iPhone",
       bg: {
         type: "linear",
-        colors: [
+        gradients: [
           {
-            type: "basic",
-            color: "#FFFFFFFF",
+            stop: 0,
+            color: {
+              type: "basic",
+              color: "#FFFFFFFF",
+            },
           },
           {
-            type: "basic",
-            color: "#FFFFFFFF",
+            stop: 1,
+            color: {
+              type: "basic",
+              color: "#000FFFFF",
+            },
           },
         ],
         angle: 45,
-        stops: [0, 1],
       },
       animations: [
         {
@@ -1334,19 +1339,8 @@ export const podcasts: TemplateType = {
           comp: "div",
           id: "dsa",
           bg: {
-            type: "linear",
-            colors: [
-              {
-                type: "basic",
-                color: "#FFFFFFFF",
-              },
-              {
-                type: "basic",
-                color: "#FFFFFFFF",
-              },
-            ],
-            angle: 45,
-            stops: [0, 1],
+            type: "basic",
+            color: "#000000FF",
           },
           comps: [
             {
