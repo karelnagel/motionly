@@ -19,6 +19,7 @@ export const getColor = (
   if (color.type === "interpolate") {
     const { colors = [], durations = [] } = color;
     const max = Math.min(durations.length, colors.length);
+    if (!max) return undefined;
     return interpolateColors(
       frame,
       durations.slice(0, max).map((d) => Math.ceil(d * fps)),
