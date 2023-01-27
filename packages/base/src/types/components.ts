@@ -32,6 +32,7 @@ export const GraphTypes = {
 };
 export const MockupTypes = {
   iPhone: "iPhone",
+  samsung: "Samsung",
   chrome: "Chrome",
   macbook: "Macbook",
   iPad: "iPad",
@@ -267,13 +268,17 @@ export type BasicColor = {
 };
 export type ColorInterpolate = {
   type: "interpolate";
-  colors?: string[];
-  durations?: number[];
+  colors?: {
+    color?: string;
+    start?: number;
+  }[];
 };
 export type GradientColor = {
   type: "linear" | "radial";
-  colors?: BaseColor[];
-  stops?: number[];
+  gradients?: {
+    color?: BaseColor;
+    stop?: number;
+  }[];
   angle?: number;
 };
 

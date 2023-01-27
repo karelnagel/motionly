@@ -59,6 +59,7 @@ export const EditTextStyle = ({
           />
           <ColorInput
             label="BG"
+            gradients
             value={style.bg}
             onChange={(bg) => setStyle({ ...style, bg })}
           />

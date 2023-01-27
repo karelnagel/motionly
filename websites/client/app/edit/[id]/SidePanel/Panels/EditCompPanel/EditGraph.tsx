@@ -29,6 +29,7 @@ export const EditGraph = ({
         }))}
       />
       <ColorInput
+        gradients
         label="Color"
         value={comp.color}
         onChange={(color) => setComp({ ...comp, color })}
