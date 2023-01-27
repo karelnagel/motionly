@@ -22,7 +22,7 @@ const config: DocsThemeConfig = {
   darkMode: false,
   nextThemes: { forcedTheme: "dark", defaultTheme: "dark" },
   navbar: {
-    component: ({ items }) => <Navbar items={items} />,
+    component: () => <Navbar />,
   },
   useNextSeoProps,
   head: () => {

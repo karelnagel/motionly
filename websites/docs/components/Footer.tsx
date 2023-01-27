@@ -3,6 +3,7 @@ import {FaDiscord} from "react-icons/fa";
 import {AiOutlineLinkedin} from "react-icons/ai";
 import {CgMail} from "react-icons/cg";
 import {BsFacebook, BsTwitter, BsInstagram} from "react-icons/bs";
+import { useRouter } from "next/router";
 const socialsButtons = [
   /*
   {
@@ -32,6 +33,7 @@ const socialsButtons = [
   },
 ];
 export const Footer = () => {
+  const router= useRouter();
   return (
     <div className="bg-base-300 flex flex-col items-center p-3 py-6 space-y-5">
       <Image src="/motionly.png" width={300} height={300} alt="logo" />

@@ -40,7 +40,7 @@ export const Help = () => {
   };
 
   return (
-    <div className="flex justify-between m-auto  max-w-screen-xl ">
+    <div id="Contact" className="flex justify-between m-auto  max-w-screen-xl px-6">
       <div className='pb-4 max-w-3xl space-y-8 md:space-y-14'>
       <div className=" p-6 w-96 rounded-lg bg-gray-500 bg-opacity-10">
           <form className="text-center" onSubmit={onSubmit}>

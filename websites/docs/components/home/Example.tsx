@@ -42,7 +42,7 @@ export const Examples = () => {
   }, [current, mouseIn]);
 
   return (
-    <div className="space-y-6 max-w-screen-xl m-auto text-center md:text-left">
+    <div className="space-y-6 max-w-screen-xl m-auto text-center md:text-left px-6">
       <div className="max-w-xl leading-[1.2] space-y-6">
         <h2 className="text-4xl md:text-[50px] font-semibold leading-[1.1] text-transparent bg-clip-text bg-gradient-to-tl to-purple-400 from-pink-600">
           Video templates for every purpose
@@ -52,7 +52,7 @@ export const Examples = () => {
           professional needs with our website builder.
         </p>
       </div>
-      <div className="items-center h-full justify-between hidden md:flex">
+      <div className="items-center h-full justify-between hidden lg:flex">
         <div className="flex-col items-start text-[40px] font-semibold leading-none flex">
           {examples.map(({ title }, i) => (
             <div
@@ -110,7 +110,7 @@ export const Examples = () => {
           ))}
         </div>
       </div>
-      <div className="block md:hidden">
+      <div className="block lg:hidden">
         <div className="relative">
           <video
             className="w-full aspect-video"
