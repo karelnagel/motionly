@@ -4,7 +4,8 @@ import { interpolateColors, useCurrentFrame, useVideoConfig } from "remotion";
 export const useColors = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  return (color: Color) => {
+  return (color?: Color) => {
+    if (!color) return undefined;
     return getColor(color, frame, fps);
   };
 };
@@ -14,9 +15,9 @@ export const getColor = (
   fps = 30
 ): string | undefined => {
   if (!color) return undefined;
-  if (typeof color === "string") return color;
+  if (color.type === "basic") return color.color;
   if (color.type === "interpolate") {
-    const { colors, durations } = color;
+    const { colors = [], durations = [] } = color;
     const max = Math.min(durations.length, colors.length);
     return interpolateColors(
       frame,
@@ -25,13 +26,13 @@ export const getColor = (
     );
   }
   if (color.type === "linear") {
-    const { colors, stops, angle } = color;
+    const { colors = [], stops = [], angle = 90 } = color;
     return `linear-gradient(${angle}deg, ${colors
       .map((c, i) => `${getColor(c, frame)} ${stops[i] * 100}%`)
       .join(", ")})`;
   }
   if (color.type === "radial") {
-    const { colors, stops } = color;
+    const { colors = [], stops = [] } = color;
     return `radial-gradient(${colors
       .map((c, i) => `${getColor(c, frame)} ${stops[i] * 100}%`)
       .join(", ")})`;

@@ -5,7 +5,10 @@ export const podcasts: TemplateType = {
   fps: 30,
   height: 480,
   width: 854,
-  background: "white",
+  background: {
+    type: "basic",
+    color: "#FFFFFFFF",
+  },
   comps: [
     {
       comp: "audio",
@@ -1243,12 +1246,18 @@ export const podcasts: TemplateType = {
       ],
       animationType: "current-word",
       animationStyle: {
-        color: "#fa0000FF",
+        color: {
+          type: "basic",
+          color: "#FFFFFFFF",
+        },
       },
       textStyle: {
         fontSize: 45,
         fontFamily: "Inter",
-        color: "#000000",
+        color: {
+          type: "basic",
+          color: "#FFFFFFFF",
+        },
         fontWeight: 800,
         lineHeight: 1.3,
         textAlign: "center",
@@ -1278,7 +1287,10 @@ export const podcasts: TemplateType = {
       y: 30,
       src: "/video.mp4",
       width: 540,
-      color: "black",
+      color: {
+        type: "basic",
+        color: "#FFFFFFFF",
+      },
     },
     {
       comp: "mockup",
@@ -1286,7 +1298,16 @@ export const podcasts: TemplateType = {
       type: "iPhone",
       bg: {
         type: "linear",
-        colors: ["#121212", "#003f00"],
+        colors: [
+          {
+            type: "basic",
+            color: "#FFFFFFFF",
+          },
+          {
+            type: "basic",
+            color: "#FFFFFFFF",
+          },
+        ],
         angle: 45,
         stops: [0, 1],
       },
@@ -1314,7 +1335,16 @@ export const podcasts: TemplateType = {
           id: "dsa",
           bg: {
             type: "linear",
-            colors: ["#00000000", "#00000080"],
+            colors: [
+              {
+                type: "basic",
+                color: "#FFFFFFFF",
+              },
+              {
+                type: "basic",
+                color: "#FFFFFFFF",
+              },
+            ],
             angle: 45,
             stops: [0, 1],
           },
@@ -1330,7 +1360,10 @@ export const podcasts: TemplateType = {
               textStyle: {
                 fontFamily: "Inter",
                 fontSize: 16,
-                color: "white",
+                color: {
+                  type: "basic",
+                  color: "#FFFFFFFF",
+                },
                 lineHeight: 1.2,
               },
             },
@@ -1344,7 +1377,10 @@ export const podcasts: TemplateType = {
               textStyle: {
                 fontFamily: "Inter",
                 fontSize: 13,
-                color: "rgba(255,255,255,0.6)",
+                color: {
+                  type: "basic",
+                  color: "#FFFFFFFF",
+                },
                 lineHeight: 1.2,
               },
             },
@@ -1356,8 +1392,14 @@ export const podcasts: TemplateType = {
               y: 380,
               x: 10,
               height: 10,
-              color: "white",
-              bg: "rgba(255,255,255,0.2)",
+              color: {
+                type: "basic",
+                color: "#FFFFFFFF",
+              },
+              bg: {
+                type: "basic",
+                color: "#FFFFFFFF",
+              },
             },
           ],
         },

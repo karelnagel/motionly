@@ -24,13 +24,22 @@ export const tweets: TemplateType = {
     },
     {
       comp: "div",
-      bg: "#ffffffFF",
+      bg: {
+        type: "basic",
+        color: "#FFFFFFFF",
+      },
       comps: [
         {
           comp: "text",
           textStyle: {
-            bg: "#00000000",
-            color: "#000000FF",
+            bg: {
+              type: "basic",
+              color: "#FFFFFFFF",
+            },
+            color: {
+              type: "basic",
+              color: "#FFFFFFFF",
+            },
             fontSize: 22,
             fontFamily: "Arial",
             fontWeight: 700,
@@ -66,8 +75,14 @@ export const tweets: TemplateType = {
         {
           comp: "text",
           textStyle: {
-            bg: "#00000000",
-            color: "#000000FF",
+            bg: {
+              type: "basic",
+              color: "#FFFFFFFF",
+            },
+            color: {
+              type: "basic",
+              color: "#FFFFFFFF",
+            },
             fontSize: 22,
             fontFamily: "Arial",
             fontWeight: 400,
@@ -88,8 +103,14 @@ export const tweets: TemplateType = {
         {
           comp: "text",
           textStyle: {
-            bg: "#00000000",
-            color: "#000000FF",
+            bg: {
+              type: "basic",
+              color: "#FFFFFFFF",
+            },
+            color: {
+              type: "basic",
+              color: "#FFFFFFFF",
+            },
             fontSize: 30,
             fontFamily: "Arial",
             fontWeight: 400,

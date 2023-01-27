@@ -14,7 +14,10 @@ export const defaultAudiogramProps: AudiogramProps = {
   gap: 3,
   position: "center",
   roundness: 8,
-  color: "#000FF0FF",
+  color: {
+    type: "basic",
+    color: "#000FFFFF",
+  },
   mirror: true,
   smoothing: true,
   multiplier: 2,

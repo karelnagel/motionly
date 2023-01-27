@@ -38,7 +38,10 @@ export const test: TemplateType = {
   height: 400,
   duration: 96,
   fps: 30,
-  background: "#fff",
+  background: {
+    type: "basic",
+    color: "#FFFFFFFF",
+  },
   isSequence: true,
   comps: [
     {
@@ -244,7 +247,10 @@ export const test: TemplateType = {
       lat: 40.7128,
       lng: -74.006,
       zoom: 120,
-      markerColor: "#f00",
+      markerColor: {
+        type: "basic",
+        color: "#FF00FFFF",
+      },
       markerSize: 20,
       duration,
     },
@@ -254,11 +260,20 @@ export const test: TemplateType = {
       lat: 25.2048,
       lng: 55.2708,
       zoom: 120,
-      markerColor: "#f00",
+      markerColor: {
+        type: "basic",
+        color: "#000FFFFF",
+      },
       markerSize: 20,
       duration,
-      fill: "#0f0",
-      stroke: "#00f",
+      fill: {
+        type: "basic",
+        color: "#FFFF00FF",
+      },
+      stroke: {
+        type: "basic",
+        color: "#FF00FFFF",
+      },
       strokeWidth: 1,
     },
     {
@@ -275,7 +290,10 @@ export const test: TemplateType = {
       id: "path",
       duration,
       fill: interpolateColor,
-      stroke: "red",
+      stroke: {
+        type: "basic",
+        color: "#FFFF00FF",
+      },
     },
     {
       id: "progressbar",
@@ -295,7 +313,10 @@ export const test: TemplateType = {
       color: interpolateColor,
       barWidth: 20,
       type: "circle",
-      bg: "#000",
+      bg: {
+        type: "basic",
+        color: "#000000FF",
+      },
     },
     {
       id: "progressbar",
@@ -306,7 +327,10 @@ export const test: TemplateType = {
       color: interpolateColor,
       barWidth: 20,
       type: "spotify",
-      bg: "#000",
+      bg: {
+        type: "basic",
+        color: "#F00FFFFF",
+      },
     },
     {
       id: "progressbar",
@@ -317,7 +341,10 @@ export const test: TemplateType = {
       color: linearColor,
       barWidth: 20,
       type: "square",
-      bg: "#000",
+      bg: {
+        type: "basic",
+        color: "#F00FFFFF",
+      },
     },
     {
       id: "qrcode",
@@ -326,7 +353,10 @@ export const test: TemplateType = {
       height: 200,
       text: "https://www.youtube.com/watch?v=QH2-TGUlwu4",
       color: interpolateColor,
-      bg: "#000",
+      bg: {
+        type: "basic",
+        color: "#FFF000FF",
+      },
     },
     {
       id: "text",
@@ -337,7 +367,10 @@ export const test: TemplateType = {
         fontSize: 100,
         bg: linearColor,
         color: interpolateColor,
-        outlineColor: "white",
+        outlineColor:{
+          type: "basic",
+          color: "#FFFFFFFF",
+        },
         outlineWidth: 10,
       },
     },
@@ -349,10 +382,16 @@ export const test: TemplateType = {
       width: 400,
       textStyle: {
         fontSize: 100,
-        color: "black",
+        color: {
+          type: "basic",
+          color: "#000000FF",
+        },
       },
       animationStyle: {
-        color: "red",
+        color: {
+          type: "basic",
+          color: "#00FFFFFF",
+        },
       },
     },
     {
@@ -390,7 +429,10 @@ export const test: TemplateType = {
       width: 300,
       type: "circle",
       fill: interpolateColor,
-      stroke: "red",
+      stroke: {
+        type: "basic",
+        color: "#00FFFFFF",
+      },
       strokeWidth: 10,
     },
     {
@@ -402,7 +444,10 @@ export const test: TemplateType = {
       width: 400,
       fill: interpolateColor,
       edgeRoundness: 0.9,
-      stroke: "red",
+      stroke: {
+        type: "basic",
+        color: "#00FFFFFF",
+      },
       strokeWidth: 10,
     },
     {
@@ -414,7 +459,10 @@ export const test: TemplateType = {
       width: 600,
       strokeWidth: 10,
       fill: interpolateColor,
-      stroke: "red",
+      stroke: {
+        type: "basic",
+        color: "#00FFFFFF",
+      },
       edgeRoundness: 0.9,
       direction: "down",
     },
@@ -427,7 +475,10 @@ export const test: TemplateType = {
       width: 400,
       strokeWidth: 10,
       fill: interpolateColor,
-      stroke: "red",
+      stroke: {
+        type: "basic",
+        color: "#00FFFFFF",
+      },
     },
     {
       comp: "confetti",

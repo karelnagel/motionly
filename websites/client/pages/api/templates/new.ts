@@ -47,7 +47,7 @@ const postNewTemplate = async (
   return {
     ...result,
     comps: JSON.parse(result.comps),
-    background: result.background || undefined,
+    background: result.background ? JSON.parse(result.background) : undefined,
     preview: result.preview || undefined,
   };
 };

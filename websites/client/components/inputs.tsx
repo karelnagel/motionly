@@ -97,70 +97,74 @@ export function TextInput<T extends string | undefined>({
     </div>
   );
 }
+export function OneColorInput({
+  value,
+  onChange,
+}: {
+  value?: string;
+  onChange: (value?: string) => void;
+}) {
+  if (!value) return null;
+  const color = value.slice(0, 7);
+  const alpha = value.slice(7);
+
+  return (
+    <div
+      className="pr-3 flex bg-base-200 items-center justify-end rounded-lg border leading-none overflow-hidden"
+      style={{ borderColor: value }}
+    >
+      <div className="flex w-full justify-between">
+        <input
+          type="color"
+          value={color || ""}
+          onChange={(e) => onChange(e.target.value + alpha)}
+          className="bg-transparent w-14 h-11 -my-2 -ml-2 p-0 mr-0"
+        />
+        <input
+          type="text"
+          value={color || ""}
+          onChange={(e) => onChange(e.target.value + alpha)}
+          className=" bg-transparent w-20"
+        />
+        <div className="flex items-center">
+          <input
+            type="number"
+            value={alpha !== undefined ? hexToPercent(alpha) : ""}
+            onChange={(e) =>
+              onChange(
+                color +
+                  (e.target.value ? percentToHex(Number(e.target.value)) : "")
+              )
+            }
+            className="w-10 bg-transparent"
+          />
+          %
+        </div>
+      </div>
+    </div>
+  );
+}
 export function ColorInput<T extends BaseColor | Color>({
   label,
   value,
   onChange,
 }: {
   label: string;
-  value: T;
+  value?: T;
   onChange: (value?: T) => void;
 }) {
-  return null;
-  // const color = value?.slice(0, 7);
-  // const alpha = value?.slice(7);
-  // return (
-  //   <div className="col-span-2 form-control">
-  //     <div className="label label-text">
-  //       <span>{label}</span>
-  //       <input
-  //         type="checkbox"
-  //         className="toggle toggle-primary toggle-sm"
-  //         checked={!!value}
-  //         onChange={(e) =>
-  //           onChange(e.target.checked ? ("#000000FF" as T) : undefined)
-  //         }
-  //       />
-  //     </div>
-  //     {value && (
-  //       <div
-  //         className="pr-3 flex bg-base-200 items-center justify-end rounded-lg border leading-none overflow-hidden"
-  //         style={{ borderColor: value }}
-  //       >
-  //         <div className="flex w-full justify-between">
-  //           <input
-  //             type="color"
-  //             value={color || ""}
-  //             onChange={(e) => onChange((e.target.value + alpha) as T)}
-  //             className="bg-transparent w-14 h-11 -my-2 -ml-2 p-0 mr-0"
-  //           />
-  //           <input
-  //             type="text"
-  //             value={color || ""}
-  //             onChange={(e) => onChange((e.target.value + alpha) as T)}
-  //             className=" bg-transparent w-20"
-  //           />
-  //           <div className="flex items-center">
-  //             <input
-  //               type="number"
-  //               value={alpha !== undefined ? hexToPercent(alpha) : ""}
-  //               onChange={(e) =>
-  //                 onChange(
-  //                   (color +
-  //                     (e.target.value
-  //                       ? percentToHex(Number(e.target.value))
-  //                       : "")) as T
-  //                 )
-  //               }
-  //               className="w-10 bg-transparent"
-  //             />
-  //             %
-  //           </div>
-  //         </div>
-  //       </div>
-  //     )}
-  //   </div>
-  // );
+  return (
+    <div className="col-span-2">
+      {value?.type === "basic" ? (
+        <OneColorInput
+          value={value.color}
+          onChange={(v) => onChange({ ...value, color: v })}
+        />
+      ) : (
+        <div></div>
+      )}
+    </div>
+  );
 }
 
 export const SelectInput = ({

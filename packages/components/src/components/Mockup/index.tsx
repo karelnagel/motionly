@@ -6,7 +6,10 @@ import { Children } from "../Children";
 export const defaultMockupProps: MockupProps = {
   comp: "mockup",
   type: "iPhone",
-  bg: "#fff",
+  bg: {
+    type: "basic",
+    color: "#FFFFFFFF",
+  },
   isSequence: true,
   comps: [],
 };

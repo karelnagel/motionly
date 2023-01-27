@@ -6,7 +6,7 @@ export const Iphone = ({
   bg,
 }: {
   children?: React.ReactNode;
-  bg: Color;
+  bg?: Color;
 }) => {
   const getColor = useColors();
 

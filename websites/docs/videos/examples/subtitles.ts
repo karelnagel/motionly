@@ -8,7 +8,10 @@ export const subtitles: TemplateType = {
   comps: [
     {
       comp: "div",
-      bg: "#00000000",
+      bg: {
+        type: "basic",
+        color: "#000000FF",
+      },
       comps: [
         {
           comp: "video",
@@ -1818,16 +1821,25 @@ export const subtitles: TemplateType = {
           animationType: "current-word",
           animationStyle: {
             outlineWidth: 20,
-            color: "#ff0000FF",
+            color: {
+              type: "basic",
+              color: "#FFFFFFFF",
+            },
           },
           textStyle: {
             fontSize: 40,
             fontFamily: "Arial",
-            color: "#000000FF",
+            color: {
+              type: "basic",
+              color: "#FFFFFFFF",
+            },
             fontWeight: 800,
             lineHeight: 1.3,
             textAlign: "center",
-            bg: "#ffffffFF",
+            bg: {
+              type: "basic",
+              color: "#FFFFFFFF",
+            },
           },
           id: "eu3bte2",
           x: 50.173737000000024,
