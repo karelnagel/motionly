@@ -153,7 +153,7 @@ export type MapProps = {
   bg?: Color;
 };
 export type HasChildren = {
-  comps?: ComponentProps[];
+  comps: ComponentProps[];
   isSequence?: boolean;
 };
 

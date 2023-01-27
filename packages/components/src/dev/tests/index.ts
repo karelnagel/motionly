@@ -30,6 +30,7 @@ const box: ComponentProps = {
   height: 100,
   width: 100,
   duration,
+  comps: [],
 };
 
 export const test: TemplateType = {
@@ -72,6 +73,7 @@ export const test: TemplateType = {
       id: "radial gradient",
       comp: "div",
       duration,
+      comps: [],
       x: 50,
       y: 50,
       height: 300,
@@ -266,6 +268,7 @@ export const test: TemplateType = {
       duration,
       loopDuration: 0.6,
       bg: linearColor,
+      comps: [],
     },
     {
       ...defaultPathProps,

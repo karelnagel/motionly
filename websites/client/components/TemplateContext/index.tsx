@@ -73,8 +73,7 @@ export const TemplateContext = ({
     let newParentId = parentId;
     if (sel) return [sel, parentId];
     for (const comp of comps) {
-      if (comp.comp === "div" || comp.comp === "mockup")
-        [sel, newParentId] = find(comp.comps, id, comp.id);
+      if ("comps" in comp) [sel, newParentId] = find(comp.comps, id, comp.id);
       if (sel) return [sel, newParentId];
     }
     return [sel, ""];
@@ -89,7 +88,7 @@ export const TemplateContext = ({
     let newComps = currentComps;
     newComps = fn(newComps, currentParentId);
     for (const comp of newComps) {
-      if (comp.comp === "div" || comp.comp === "mockup") {
+      if ("comps" in comp) {
         const children = updateTree(fn, comp.comps, comp.id);
         comp.comps = children;
       }
@@ -124,7 +123,7 @@ export const TemplateContext = ({
 
   const setRandomIds = (comp: ComponentProps) => {
     const newComp = { ...comp, id: getRandomId() };
-    if (newComp.comp === "div" || newComp.comp === "mockup") {
+    if ("comps" in newComp) {
       newComp.comps = newComp.comps?.map((c) => setRandomIds(c));
     }
     return newComp;

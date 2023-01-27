@@ -28,7 +28,7 @@ export const TimelineComp = ({
   const isSelected = selected === comp.id;
   const from = getFrom(parentDuration, comp.from);
   const duration = getDuration(parentDuration, comp.from, comp.duration);
-  const hasChildren = comp.comp === "div" || comp.comp === "mockup";
+  const hasChildren = "comps" in comp;
   return (
     <div className="relative cursor-pointer">
       <div

@@ -84,6 +84,14 @@ export const EditGeneral = ({
           setComp({ ...comp, motionBlur: motionBlur ? {} : undefined })
         }
       />
+      {"comps" in comp && (
+        <BooleanInput
+          label="Play in Sequence"
+          className="col-span-2"
+          value={comp.isSequence}
+          onChange={(isSequence) => setComp({ ...comp, isSequence })}
+        />
+      )}
       {comp.motionBlur && (
         <>
           <NumberInput
