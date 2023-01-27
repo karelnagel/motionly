@@ -97,7 +97,10 @@ const updateTemplate = async (
         name: template.name,
         public: template.public,
         description: template.description,
-        background: JSON.stringify(template.background),
+        background:
+          typeof template.background === "object"
+            ? JSON.stringify(template.background)
+            : template.background,
         fps: template.fps,
         duration: template.duration,
         preview,

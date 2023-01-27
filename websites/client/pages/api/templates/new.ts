@@ -35,7 +35,10 @@ const postNewTemplate = async (
       fps: input.fps,
       name: input.name + " (Copy)",
       description: input.description,
-      background: JSON.stringify(input.background),
+      background:
+        typeof input.background === "object"
+          ? JSON.stringify(input.background)
+          : input.background,
       preview: input.preview,
       public: false,
       user: { connect: { email: session.user.email } },

@@ -8,19 +8,20 @@ export const useFonts = async (fonts: string[]) => {
   useEffect(() => {
     const load = async () => {
       if (fonts.length > 0) {
-        const url = `https://fonts.googleapis.com/css?family=${fonts.join(
-          "|"
-        )}`;
         try {
+          const url = `https://fonts.googleapis.com/css?family=${fonts.join(
+            "|"
+          )}`;
           await axios.get(url);
+
+          const link = document.createElement("link");
+          link.href = url;
+          link.rel = "stylesheet";
+          link.type = "text/css";
+          document.head.appendChild(link);
         } catch (e) {
           console.log(e);
         }
-        const link = document.createElement("link");
-        link.href = url;
-        link.rel = "stylesheet";
-        link.type = "text/css";
-        document.head.appendChild(link);
       }
       continueRender(handle);
     };
