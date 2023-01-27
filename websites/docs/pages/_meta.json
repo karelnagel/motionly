@@ -4,7 +4,6 @@
         "type": "page",
         "display": "hidden",
         "theme": {
-            "typesetting": "article",
             "layout": "full"
         }
     },
