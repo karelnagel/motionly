@@ -1,5 +1,11 @@
 # @motionly/confetti
 
+## 1.4.2
+
+### Patch Changes
+
+- Changed colors and text animations
+
 ## 1.4.1
 
 ### Patch Changes

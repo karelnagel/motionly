@@ -1,5 +1,14 @@
 # @motionly/components
 
+## 1.4.2
+
+### Patch Changes
+
+- Changed colors and text animations
+- Updated dependencies
+  - @motionly/confetti@1.4.2
+  - @motionly/base@1.4.2
+
 ## 1.4.1
 
 ### Patch Changes

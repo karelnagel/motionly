@@ -1,6 +1,6 @@
 {
     "name": "@motionly/components",
-    "version": "1.4.1",
+    "version": "1.4.2",
     "main": "dist/index.js",
     "private": false,
     "license": "MIT",
