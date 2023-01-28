@@ -200,6 +200,7 @@ export type TextProps = {
   comp: "text";
   textStyle: TextStyle;
   text: string;
+  animations?: AnimationProps[];
   justifyContent?: keyof typeof JustifyContent;
 };
 

@@ -164,7 +164,7 @@ const InsideSequence = ({
       >
         {comp.comp === "div" && <Div {...comp} />}
         {comp.comp === "image" && <Image {...comp} />}
-        {comp.comp === "text" && <Text {...comp} />}
+        {comp.comp === "text" && <Text {...comp} animations={animations} />}
         {comp.comp === "audio" && <Audio {...comp} />}
         {comp.comp === "audiogram" && (
           <Audiogram {...comp} width={width} height={height} />
