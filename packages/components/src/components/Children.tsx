@@ -13,8 +13,8 @@ export const Children = ({
   if (!isSequence) {
     return (
       <>
-        {comps.map((child, index) => (
-          <Component key={index} {...child} />
+        {comps.map((child) => (
+          <Component key={child.id} {...child} />
         ))}
       </>
     );
@@ -23,9 +23,9 @@ export const Children = ({
   const { fps } = useVideoConfig();
   return (
     <Series>
-      {comps.map((child, index) => (
+      {comps.map((child) => (
         <Series.Sequence
-          key={index}
+          key={child.id}
           offset={child.from ? Math.floor(child.from * fps) : undefined}
           layout="none"
           durationInFrames={
