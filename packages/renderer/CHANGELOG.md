@@ -1,5 +1,13 @@
 # @motionly/renderer
 
+## 1.4.2
+
+### Patch Changes
+
+- Changed colors and text animations
+- Updated dependencies
+  - @motionly/base@1.4.2
+
 ## 1.4.1
 
 ### Patch Changes

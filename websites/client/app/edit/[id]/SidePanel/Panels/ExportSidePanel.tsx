@@ -2,22 +2,22 @@ import { useState } from "react";
 import { PanelTitle } from "../../../../../components/PanelTitle";
 import { BooleanInput, NumberInput } from "../../../../../components/inputs";
 import { useTemplate } from "../../../../../hooks/useTemplate";
-// import { useRender } from "@motionly/renderer/dist/sdk";
+import { useRender } from "@motionly/renderer/dist/sdk";
 
 export const ExportSidePanel = () => {
   const { template, setTemplate } = useTemplate();
   const [frame, setFrame] = useState(0);
   const [renderStill, setRenderStill] = useState(false);
-  // const { media, still, cost, progress, fileUrl, status } = useRender({
-  //   ...template,
-  //   frame,
-  // });
+  const { media, still, cost, progress, fileUrl, status } = useRender({
+    ...template,
+    frame,
+  });
   return (
     <div className="flex flex-col items-center space-y-3 w-full overflow-y-auto overflow-x-clip">
       <PanelTitle title="Export your video" />
       <div className="space-y-2 w-full">
         <div className="flex space-x-2 justify-between">
-          {/* {!!cost && <p>${cost}</p>}
+          {!!cost && <p>${cost}</p>}
           {fileUrl && (
             <a
               href={fileUrl}
@@ -28,7 +28,7 @@ export const ExportSidePanel = () => {
             >
               LINK
             </a>
-          )} */}
+          )}
         </div>
 
         <div className="grid grid-cols-2 w-full">
@@ -45,7 +45,7 @@ export const ExportSidePanel = () => {
             />
           )}
         </div>
-        {/* <div
+        <div
           onClick={renderStill ? still : media}
           className="w-full p-2 cursor-pointer text-center relative bg-base-200 rounded-lg shadow-lg overflow-hidden text-primary-content whitespace-nowrap"
         >
@@ -56,7 +56,7 @@ export const ExportSidePanel = () => {
             style={{ width: `${(progress ?? 1) * 100}%` }}
           />
           <p className="relative">Render {renderStill ? "image" : "video"}</p>
-        </div> */}
+        </div>
       </div>
       <p className="text-xl font-semibold pt-6">Export</p>
       <p>
