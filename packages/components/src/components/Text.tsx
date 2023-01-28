@@ -60,7 +60,7 @@ export const Text = ({
       const text = textAnimations[0].value;
       value = text?.slice(
         0,
-        text.length * textAnimations.reduce((a, b) => a + animate(b), 0)
+        Math.round(text.length * textAnimations.reduce((a, b) => a + animate(b), 0))
       );
     }
     if (value !== undefined)
