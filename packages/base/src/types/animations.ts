@@ -17,11 +17,20 @@ export const transformProps = {
   perspective: { label: "Perspective", units: "px" },
 };
 
-export const animationProps = {
+export const otherAnimations = {
   blur: { label: "Blur", units: "px" },
   opacity: { label: "Opacity", units: "%" },
   borderRadius: { label: "Border Radius", units: "px" },
   ...transformProps,
+};
+
+export const textAnimations = {
+  text: { label: "Text", units: undefined },
+  number: { label: "Number", units: undefined },
+};
+export const animationProps = {
+  ...otherAnimations,
+  ...textAnimations,
 };
 
 export const animationTypes = {
@@ -57,6 +66,19 @@ export interface NoiseAnimationProps extends BaseAnimations {
   speed?: number;
 }
 
-export type AnimationProps = {
-  prop: keyof typeof animationProps;
-} & (NoiseAnimationProps | InterpolateAnimationProps | SpringAnimationProps);
+export type AnimationProps = (
+  | NoiseAnimationProps
+  | InterpolateAnimationProps
+  | SpringAnimationProps
+) &
+  (
+    | {
+        prop: keyof typeof otherAnimations;
+      }
+    | {
+        prop: "text";
+        value?: string;
+        variable?: string;
+      }
+    | { prop: "number"; variable?: string }
+  );

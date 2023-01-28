@@ -5,7 +5,11 @@ import {
   ComponentProps,
   EasingTypes,
 } from "@motionly/base";
-import { NumberInput, SelectInput } from "../../../../../../components/inputs";
+import {
+  NumberInput,
+  SelectInput,
+  TextInput,
+} from "../../../../../../components/inputs";
 import { getAnimationColor } from "../../../../../../helpers/color";
 import { SetComp } from "./index";
 
@@ -183,6 +187,20 @@ const OneAnimation = ({
             value,
             label,
           }))}
+        />
+      )}
+      {(animation.prop === "text" || animation.prop === "number") && (
+        <TextInput
+          label="Variable"
+          onChange={(variable) => setAnimation(i, { variable })}
+          value={animation.variable}
+        />
+      )}
+      {animation.prop === "text" && (
+        <TextInput
+          label="Value"
+          onChange={(value) => setAnimation(i, { value })}
+          value={animation.value}
         />
       )}
     </div>
