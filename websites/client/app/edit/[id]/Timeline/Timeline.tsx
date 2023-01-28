@@ -27,7 +27,7 @@ export const Timeline = ({
           <div className="flex flex-col space-y-2">
             {template.comps?.map((comp, i) => (
               <TimelineComp
-                key={i}
+                key={comp.id}
                 parentId=""
                 comp={comp}
                 comps={template.comps}
