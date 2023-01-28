@@ -1,5 +1,5 @@
 import { MockupProps, MockupTypes } from "@motionly/base";
-import { SelectInput } from "../../../../../../components/inputs";
+import { ColorInput, SelectInput } from "../../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
 
@@ -25,6 +25,12 @@ export const EditMockup = ({
           value,
           label,
         }))}
+      />
+      <ColorInput
+        gradients
+        label="Background"
+        value={comp.bg}
+        onChange={(bg) => setComp({ ...comp, bg })}
       />
     </EditSection>
   );
