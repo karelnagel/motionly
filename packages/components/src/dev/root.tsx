@@ -14,7 +14,10 @@ const template = Object.keys(inputProps).length
       fps: 30,
       duration: 6,
       comps: [],
-      background: "#fff",
+      background: {
+        type: "basic",
+        color: "#FFFFFFFF",
+      },
     } as TemplateType);
 
 export const Root: React.FC = () => {
@@ -52,7 +55,10 @@ export const Root: React.FC = () => {
               height={template.height}
               defaultProps={{
                 comps: [compProps],
-                background: "white",
+                background: {
+                  type: "basic",
+                  color: "#FFFFFFFF",
+                },
                 isSequence: template.isSequence,
               }}
             />

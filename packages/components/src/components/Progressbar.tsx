@@ -7,8 +7,14 @@ export const defaultProgressbarProps: ProgressbarProps = {
   comp: "progressbar",
   barWidth: 30,
   topRight: false,
-  color: "#ff00ffff",
-  bg: "#0000FFFF",
+  color: {
+    type: "basic",
+    color: "#FF00FFFF",
+  },
+  bg: {
+    type: "basic",
+    color: "#00FFFFFF",
+  },
   type: "square",
   height: 100,
   width: 100,

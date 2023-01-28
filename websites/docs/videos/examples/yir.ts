@@ -30,7 +30,10 @@ export const yir: TemplateType = {
     },
     {
       comp: "div",
-      bg: "#00000000",
+      bg:{
+        type: "basic",
+        color: "#FFFFFFFF",
+      },
       comps: [
         {
           comp: "image",
@@ -73,8 +76,14 @@ export const yir: TemplateType = {
         {
           comp: "text",
           textStyle: {
-            bg: "#00000000",
-            color: "#ffffffFF",
+            bg: {
+              type: "basic",
+              color: "#FFFFFFFF",
+            },
+            color:{
+              type: "basic",
+              color: "#FFFFFFFF",
+            },
             fontSize: 70,
             fontFamily: "Arial",
             fontWeight: 700,
@@ -118,8 +127,14 @@ export const yir: TemplateType = {
         {
           comp: "text",
           textStyle: {
-            bg: "#00000000",
-            color: "#ffffffFF",
+            bg: {
+              type: "basic",
+              color: "#FFFFFFFF",
+            },
+            color: {
+              type: "basic",
+              color: "#FFFFFFFF",
+            },
             fontSize: 50,
             fontFamily: "Arial",
             fontWeight: 700,
@@ -171,12 +186,18 @@ export const yir: TemplateType = {
     },
     {
       comp: "div",
-      bg: "#00000000",
+      bg: {
+        type: "basic",
+        color: "#FFFFFFFF",
+      },
       comps: [
         {
           comp: "text",
           textStyle: {
-            color: "#ffffffFF",
+            color: {
+              type: "basic",
+              color: "#FFFFFFFF",
+            },
             fontSize: 60,
             fontFamily: "Arial",
             fontWeight: 700,
@@ -213,7 +234,10 @@ export const yir: TemplateType = {
             2, 5, 2, 9, 5, 3, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
             17, 18, 19, 20,
           ],
-          color: "#ff14ebFF",
+          color: {
+            type: "basic",
+            color: "#FFFFFFFF",
+          },
           gap: 3,
           roundness: 10,
           animationDuration: 2,
@@ -242,8 +266,14 @@ export const yir: TemplateType = {
     {
       comp: "text",
       textStyle: {
-        bg: "#b83287FF",
-        color: "#ffffffFF",
+        bg: {
+          type: "basic",
+          color: "#FFFFFFFF",
+        },
+        color: {
+          type: "basic",
+          color: "#FFFFFFFF",
+        },
         fontSize: 40,
         fontFamily: "Inter",
         fontWeight: 700,

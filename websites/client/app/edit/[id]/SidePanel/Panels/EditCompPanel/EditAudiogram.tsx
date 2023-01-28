@@ -75,6 +75,7 @@ export const EditAudiogram = ({
       />
       <ColorInput
         label="Color"
+        gradients
         value={comp.color}
         onChange={(color) => setComp({ ...comp, color })}
       />

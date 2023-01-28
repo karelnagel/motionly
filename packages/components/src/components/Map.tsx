@@ -17,10 +17,19 @@ export const defaultMapProps: MapProps = {
   lat: 48.85,
   lng: 2.29,
   zoom: 300,
-  markerColor: "#FF0000",
+  markerColor: {
+    type: "basic",
+    color: "#00FFFFFF",
+  },
   markerSize: 20,
-  fill: "#0000FFFF",
-  stroke: "#FFFFFFFF",
+  fill: {
+    type: "basic",
+    color: "#FF00FFFF",
+  },
+  stroke: {
+    type: "basic",
+    color: "#FFFF00FF",
+  },
   strokeWidth: 2,
 };
 

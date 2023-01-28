@@ -13,7 +13,10 @@ const emptyTemplate: Template = {
   height: 1080,
   fps: 30,
   duration: 10,
-  background: "#FFFFFFFF",
+  background: {
+    type: "basic",
+    color: "#FFFFFFFF",
+  },
   comps: [],
 };
 export const Clone = ({

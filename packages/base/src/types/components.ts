@@ -32,6 +32,7 @@ export const GraphTypes = {
 };
 export const MockupTypes = {
   iPhone: "iPhone",
+  samsung: "Samsung",
   chrome: "Chrome",
   macbook: "Macbook",
   iPad: "iPad",
@@ -153,7 +154,7 @@ export type MapProps = {
   bg?: Color;
 };
 export type HasChildren = {
-  comps?: ComponentProps[];
+  comps: ComponentProps[];
   isSequence?: boolean;
 };
 
@@ -240,8 +241,8 @@ export const TriangleDirection = {
 export type ShapeProps = {
   comp: "shape";
   type: keyof typeof ShapeTypes;
-  fill: Color;
-  stroke: BaseColor;
+  fill?: Color;
+  stroke?: BaseColor;
   strokeWidth: number;
   width: number;
   height: number;
@@ -261,22 +262,29 @@ export type MotionBlurProps = {
   opacity?: number;
 };
 
+export type BasicColor = {
+  type: "basic";
+  color?: string;
+};
 export type ColorInterpolate = {
   type: "interpolate";
-  colors: string[];
-  durations: number[];
+  colors?: {
+    color?: string;
+    start?: number;
+  }[];
 };
-
-export type BaseColor = undefined | string | ColorInterpolate;
-
 export type GradientColor = {
   type: "linear" | "radial";
-  colors: BaseColor[];
-  stops: number[];
-  angle: number;
+  gradients?: {
+    color?: BaseColor;
+    stop?: number;
+  }[];
+  angle?: number;
 };
 
+export type BaseColor = BasicColor | ColorInterpolate;
 export type Color = BaseColor | GradientColor;
+
 export type TemplateType = {
   width: number;
   height: number;

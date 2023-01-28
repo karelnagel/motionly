@@ -1,4 +1,4 @@
-import { ConfettiProps } from "@motionly/base";
+import { BaseColor, ConfettiProps } from "@motionly/base";
 import { ColorInput, NumberInput } from "../../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
@@ -60,7 +60,7 @@ export const EditConfetti = ({
               ...comp,
               colors: colors
                 .map((c, j) => (i === j ? color : c))
-                .filter((c) => c),
+                .filter((c) => c) as BaseColor[],
             })
           }
           label="Colors"
@@ -69,7 +69,13 @@ export const EditConfetti = ({
       <button
         className="btn"
         onClick={() =>
-          setComp({ ...comp, colors: [...(comp.colors || []), "#FFFFFFFF"] })
+          setComp({
+            ...comp,
+            colors: [
+              ...(comp.colors || []),
+              { type: "basic", color: "#FFFFFFFF" },
+            ],
+          })
         }
       >
         Add color

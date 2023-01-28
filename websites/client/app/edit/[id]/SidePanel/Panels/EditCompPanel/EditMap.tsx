@@ -54,6 +54,7 @@ export const EditMap = ({
         onChange={(fill) => setComp({ ...comp, fill })}
       />
       <ColorInput
+        gradients
         label="Background"
         value={comp.bg}
         onChange={(bg) => setComp({ ...comp, bg })}

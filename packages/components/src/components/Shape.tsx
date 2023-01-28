@@ -7,8 +7,14 @@ export const defaultShapeProps: ShapeProps = {
   type: "triangle",
   width: 100,
   height: 100,
-  fill: "yellow",
-  stroke: "black",
+  fill: {
+    type: "basic",
+    color: "#00FFFFFF",
+  },
+  stroke: {
+    type: "basic",
+    color: "#000000FF",
+  },
   strokeWidth: 2,
   edgeRoundness: 0,
   cornerRadius: 0,

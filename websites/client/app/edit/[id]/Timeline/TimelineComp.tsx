@@ -1,15 +1,11 @@
 import { getFrom, getDuration, ComponentProps } from "@motionly/base";
 import { useRef, useState } from "react";
-import {
-  IoIosAdd,
-  IoIosArrowDown,
-  IoIosArrowUp,
-  IoIosRemove,
-} from "react-icons/io";
+import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import Moveable from "react-moveable";
 import { useTemplate } from "../../../../hooks/useTemplate";
 import { isPanel } from "../../../../helpers";
 import { Animation } from "./Animation";
+import { ShowHide } from "../../../../components/ShowHide";
 
 export const TimelineComp = ({
   comp,
@@ -23,12 +19,12 @@ export const TimelineComp = ({
   parentId: string;
 }) => {
   const { selected, setSelected, changeParent } = useTemplate();
-  const [minimize, setMinimize] = useState(false);
+  const [show, setShow] = useState(true);
   const divRef = useRef<HTMLDivElement>(null);
   const isSelected = selected === comp.id;
   const from = getFrom(parentDuration, comp.from);
   const duration = getDuration(parentDuration, comp.from, comp.duration);
-  const hasChildren = comp.comp === "div" || comp.comp === "mockup";
+  const hasChildren = "comps" in comp;
   return (
     <div className="relative cursor-pointer">
       <div
@@ -99,21 +95,14 @@ export const TimelineComp = ({
             {hasChildren && comp.comps && comp.comps.length > 0 && (
               <div
                 className="tooltip tooltip-left text-lg"
-                data-tip={!minimize ? "Minimize" : "Maximize"}
+                data-tip={show ? "Minimize" : "Maximize"}
               >
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setMinimize((m) => !m);
-                  }}
-                >
-                  {!minimize ? <IoIosArrowDown /> : <IoIosArrowUp />}
-                </button>
+                <ShowHide setShow={setShow} show={show} />
               </div>
             )}
           </div>
         </div>
-        {hasChildren && comp.comps && comp.comps.length > 0 && !minimize && (
+        {hasChildren && comp.comps && comp.comps.length > 0 && show && (
           <div className="space-y-2 py-2">
             {comp.comps.map((child, i) => (
               <TimelineComp

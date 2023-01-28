@@ -13,6 +13,7 @@ export const EditDiv = ({
   return (
     <EditSection title="Div">
       <ColorInput
+        gradients
         label="BG"
         value={comp.bg}
         onChange={(bg) => setComp({ ...comp, bg })}

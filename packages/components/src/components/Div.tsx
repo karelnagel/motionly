@@ -5,7 +5,10 @@ import { Children } from "./Children";
 
 export const defaultDivProps: DivProps = {
   comp: "div",
-  bg: "#00000000",
+  bg: {
+    type: "basic",
+    color: "#FFFFFFFF",
+  },
   comps: [],
 };
 

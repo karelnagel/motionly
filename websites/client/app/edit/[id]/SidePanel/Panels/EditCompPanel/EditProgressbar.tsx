@@ -19,10 +19,12 @@ export const EditProgressbar = ({
     <EditSection title="Progressbar">
       <ColorInput
         label="Color"
+        gradients
         value={comp.color}
         onChange={(color) => setComp({ ...comp, color })}
       />
       <ColorInput
+        gradients
         label="Background"
         value={comp.bg}
         onChange={(bg) => setComp({ ...comp, bg })}

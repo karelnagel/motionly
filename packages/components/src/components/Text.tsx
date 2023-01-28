@@ -5,8 +5,14 @@ import { useTextStyles } from "../useTextStyles";
 export const defaultTextProps: TextProps = {
   comp: "text",
   textStyle: {
-    bg: "#00000000",
-    color: "#000000FF",
+    bg: {
+      type: "basic",
+      color: "#000000FF",
+    },
+    color: {
+      type: "basic",
+      color: "#00FFFFFF",
+    },
     fontSize: 120,
     fontFamily: "Inter",
     fontWeight: 700,

@@ -39,6 +39,7 @@ export const EditLottie = ({
       />
 
       <ColorInput
+        gradients
         label="Background"
         value={comp.bg}
         onChange={(bg) => setComp({ ...comp, bg })}
