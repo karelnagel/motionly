@@ -15,16 +15,14 @@ export const Navbar = () => {
   const router = useRouter();
 
   return (
-    <div
-      className={`${
-        router.pathname === "/" ? "absolute top-0" : "relative"
-      } z-20 w-full`}
-    >
+    <div className="relative z-20 w-full">
       <div className="max-w-screen-xl mx-auto px-2 grid grid-cols-5 items-center">
-        <Image src={logo} alt="logo" className=" w-60 col-span-2" />
-        <div className="relative">
+        <Link href="/" className=" w-60 col-span-2">
+          <Image src={logo} alt="logo" className="w-60" />
+        </Link>
+        <Link href="/">
           <Image src={logoGif} alt="logo" className=" h-20 object-contain" />
-        </div>
+        </Link>
         <div className="flex items-center space-x-6 col-span-2 w-full justify-end">
           <div className="flex space-x-5">
             {items.map((item) => (

@@ -29,7 +29,7 @@ const examples = [
 export const Hero = () => {
   return (
     <div className="relative flex items-center justify-between px-4">
-      <div className="flex flex-col space-y-6 items-start max-w-lg my-52">
+      <div className="flex flex-col space-y-6 items-start max-w-lg my-32">
         <h1 className="title font-semibold uppercase leading-[1] text-[85px] ">
           Automate your content
         </h1>
@@ -46,18 +46,12 @@ export const Hero = () => {
         </Link>
       </div>
       <div>
-        <div className="relative">
+        <div className="relative w-[95%]">
           <Bubble height={76} top={32} left={6} />
           <Bubble height={8} top={99} left={65} />
           <Bubble height={14} top={84} left={83} />
           <Bubble height={13} top={-10} left={65} />
           <Bubble height={33} top={-8} left={80} />
-          {/* <Bubble height={70} bottom className="h-[424px] -bottom-3 -left-4 " />
-          <Bubble className="h-[43px] -bottom-10 right-40 " />
-          <Bubble className="h-[76px] -bottom-0 right-10 " />
-          <Bubble className="h-[189px] -top-8 -right-5 " />
-          <Bubble className="h-[189px] -top-8 -right-5 " />
-          <Bubble className="h-[70px] -top-10 right-48 " /> */}
           <video
             style={{
               transform: "perspective(1000px) rotateY(-13deg) rotateX(10deg)",
