@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ["Montserrat", "sans-serif"],
       },
       animation: {
         "slide-from-right-100": "slide-from-right 0.1s ease-in-out",
@@ -102,8 +102,8 @@ module.exports = {
           "100%": { transform: "translateX(0%)" },
         },
         "slide-from-left": {
-          "0%": { transform: "translateX(-100%)"},
-          "100%": { transform: "translateX(0%)"},
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0%)" },
         },
         "slide-from-up": {
           "0%": { transform: "translateY(100%)" },
@@ -120,17 +120,18 @@ module.exports = {
     themes: [
       {
         mytheme: {
-          primary: "#ED009C",
-          secondary: "#c04e50",
-          accent: "#37cdbe",
-          neutral: "#3d4451",
-          "base-100": "#111021",
+          primary: "#5FBFF9",
+          secondary: "#A276FF",
+          accent: "#16BAC5",
+          neutral: "#FFFFFF",
+          "base-100": "#171D1C",
+          "base-content": "#EFE9F4"
         },
       },
     ],
   },
   plugins: [
-    require("@tailwindcss/typography"), 
+    require("@tailwindcss/typography"),
     require("daisyui"),
     require("tailwindcss-animation-delay")
   ],
