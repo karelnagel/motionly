@@ -28,7 +28,7 @@ const examples = [
 ];
 export const Hero = () => {
   return (
-    <div className="relative flex items-center justify-between px-4">
+    <div className="relative flex items-center justify-between px-4 flex-col md:flex-row">
       <div className="flex flex-col space-y-6 items-start max-w-lg my-32">
         <h1 className="title font-semibold uppercase leading-[1] text-[85px] ">
           Automate your content

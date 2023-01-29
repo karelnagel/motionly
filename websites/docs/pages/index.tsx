@@ -6,6 +6,7 @@ import { Montserrat } from "@next/font/google";
 import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import Head from "next/head";
+import { Mission } from "../components/home/Mission";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -23,6 +24,8 @@ export const Home = () => {
       <Navbar />
       <div className="max-w-[1200px] px-2 mx-auto" style={montserrat.style}>
         <Hero />
+        <Divider />
+        <Mission />
         <Divider />
         <Examples />
         <Divider />
