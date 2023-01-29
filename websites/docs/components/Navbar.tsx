@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { IoIosArrowForward } from "react-icons/io";
 import logo from "../public/motionly.png";
 import logoGif from "../public/motionly.gif";
+import { Button } from "./Button";
 
 const items = [
   { name: "Docs", route: "/docs" },
@@ -13,7 +13,6 @@ const items = [
 
 export const Navbar = () => {
   const router = useRouter();
-
   return (
     <div className="relative z-20 w-full">
       <div className="max-w-screen-xl mx-auto px-2 grid grid-cols-3 md:grid-cols-5 items-center">
@@ -44,9 +43,7 @@ export const Navbar = () => {
             ))}
           </div>
           <Link href="/#contact">
-            <button className="btn btn-gradient text-[17px] font-semibold flex !w-auto !uppercase items-center space-x-2">
-              Contact us <IoIosArrowForward className="text-2xl" />
-            </button>
+          <Button text="CONTACT US" className="text-[17px] font-semibold p-1 pl-4"/>
           </Link>
         </div>
       </div>

@@ -27,3 +27,10 @@ html[class~="dark"] body {
 .btn-gradient {
   @apply bg-gradient-to-r from-primary to-secondary text-base-content border-none;
 }
+
+.formbox {
+  @apply bg-accent  text-base-content rounded-lg p-4 bg-opacity-40 
+  transform transition duration-300 focus:bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
+  hover:bg-opacity-70 hover:outline-none hover:ring-2 hover:ring-primary;
+}
+
