@@ -7,6 +7,7 @@ import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import Head from "next/head";
 import { Mission } from "../components/home/Mission";
+import { Interactive } from "../components/home/Interactive";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -26,6 +27,8 @@ export const Home = () => {
         <Hero />
         <Divider />
         <Mission />
+        <Divider />
+        <Interactive />
         <Divider />
         <Examples />
         <Divider />
