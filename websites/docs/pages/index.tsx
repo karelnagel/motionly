@@ -1,7 +1,7 @@
 import { Divider } from "../components/Divider";
 import { Help } from "../components/home/Help";
 import { Hero } from "../components/home/Hero";
-import { Examples } from "../components/home/Example";
+import { Examples } from "../components/home/Examples";
 import { Montserrat } from "@next/font/google";
 import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
