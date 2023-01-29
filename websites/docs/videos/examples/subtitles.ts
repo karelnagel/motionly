@@ -1823,7 +1823,7 @@ export const subtitles: TemplateType = {
             outlineWidth: 20,
             color: {
               type: "basic",
-              color: "#FFFFFFFF",
+              color: "#f00",
             },
           },
           textStyle: {
@@ -1831,7 +1831,7 @@ export const subtitles: TemplateType = {
             fontFamily: "Arial",
             color: {
               type: "basic",
-              color: "#FFFFFFFF",
+              color: "#000",
             },
             fontWeight: 800,
             lineHeight: 1.3,

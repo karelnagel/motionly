@@ -1,63 +1,24 @@
-import { ComponentProps } from "@motionly/base";
 import { Player } from "@motionly/player";
 import { useState } from "react";
-
-export const template = ({
-  name,
-  birthday,
-  color,
-}: {
-  name: string;
-  birthday: string;
-  color: string;
-}): ComponentProps[] => [
-  {
-    comp: "text",
-    text: name,
-    id: "name",
-    x: 100,
-    textStyle: {
-      fontSize: 75,
-      lineHeight: 1,
-      color: {
-        type: "basic",
-        color,
-      },
-    },
-  },
-  {
-    comp: "text",
-    text: birthday,
-    x: 100,
-    y: 100,
-    id: "date",
-    textStyle: {
-      fontSize: 75,
-      lineHeight: 1,
-      color: {
-        type: "basic",
-        color,
-      },
-    },
-  },
-];
+import { interactive } from "../../videos/examples/interactive";
 
 export const Interactive = () => {
   const [name, setName] = useState("Steve Jobs");
   const [birthday, setBirthday] = useState("");
-  const [selectedColor, setColor] = useState("#2F9AD6");
-  const Color = ({ color }: { color: string }) => {
+  const [color, setColor] = useState("#2F9AD6");
+  const Color = ({ color: buttonColor }: { color: string }) => {
     return (
       <div
-        onClick={() => setColor(color)}
+        onClick={() => setColor(buttonColor)}
         style={{
-          background: color,
-          borderWidth: selectedColor === color ? `3px` : undefined,
+          background: buttonColor,
+          borderWidth: color === buttonColor ? `3px` : undefined,
         }}
         className="w-10 h-10 rounded-full cursor-pointer border-base-content"
       />
     );
   };
+  const template = interactive({ name, color, birthday });
   return (
     <div className="space-y-4 md:space-y-10">
       <div className="max-w-4xl space-y-5">
@@ -94,12 +55,12 @@ export const Interactive = () => {
         </div>
         <div className="h-full w-full">
           <Player
-            comps={template({ name, birthday, color: selectedColor })}
-            duration={10}
-            fps={30}
-            height={1080}
+            comps={template.comps}
+            duration={template.duration}
+            fps={template.fps}
+            height={template.height}
             controls
-            width={1920}
+            width={template.width}
             className="rounded-lg md:rounded-[40px] bg-base-content"
             style={{ width: "100%" }}
           />

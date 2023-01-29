@@ -3,7 +3,6 @@ import { renderMedia } from "@remotion/renderer";
 import path from "path";
 import { getCompositions } from "@remotion/renderer";
 import { examples } from ".";
-import { exec } from "child_process";
 
 export const render = async () => {
   const entry = "./videos/register";
@@ -14,31 +13,18 @@ export const render = async () => {
   const comps = await getCompositions(bundleLocation, {});
   for (const example of Object.keys(examples)) {
     const composition = comps.find((c) => c.id === example);
-    const outputLocation = `public/examples/${example}.webm`;
+    const outputLocation = `public/examples/${example}.mp4`;
     console.log("Attempting to render:", outputLocation);
 
     await renderMedia({
       composition,
       serveUrl: bundleLocation,
-      codec: "vp8",
-      imageFormat: "png",
-      pixelFormat: "yuva420p",
-      everyNthFrame: 1,
-      numberOfGifLoops: 0,
+      codec: "h264",
+      imageFormat: "jpeg",
+      quality:100,
       outputLocation,
     });
     console.log("Done!");
-    // await new Promise((resolve, reject) => {
-    //   exec(
-    //     `ffmpeg -i  public/examples/${example}.webm -filter_complex "[0:v]split[x][y];[x]palettegen[z];[y][z]paletteuse" public/examples/${example}.gif`,
-    //     (error, stdout, stderr) => {
-    //       if (error) {
-    //         reject(error);
-    //       }
-    //       resolve(stdout ? stdout : stderr);
-    //     }
-    //   );
-    // });
   }
 };
 render();
