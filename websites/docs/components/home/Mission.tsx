@@ -1,7 +1,7 @@
 import phone from "../../public/phone.png";
 import Image from "next/image";
 import { Bubble } from "../Bubble";
-import { IoIosArrowForward } from "react-icons/io";
+import { Arrows } from "../Arrows";
 
 export const Mission = () => {
   return (
@@ -26,6 +26,9 @@ export const Mission = () => {
               height: `80.4%`,
               width: "64.1%",
             }}
+            autoPlay
+            muted
+            loop
           />
         </div>
 
@@ -40,11 +43,7 @@ export const Mission = () => {
           their message through dynamic, data-driven videos that can be easily
           modified to fit any marketing strategy or campaign and much more.
         </p>
-        <div className="flex">
-          {new Array(5).fill(0).map((_, i) => (
-            <IoIosArrowForward key={i} className="text-3xl" />
-          ))}
-        </div>
+        <Arrows />
       </div>
     </div>
   );

@@ -4,33 +4,11 @@ import { IoIosArrowForward } from "react-icons/io";
 import laptop from "../../public/laptop.png";
 import { Bubble } from "../Bubble";
 
-const examples = [
-  {
-    title: "Podcast",
-    video: "/examples/podcasts.webm",
-  },
-  {
-    title: "Year in review",
-    video: "/examples/yir.webm",
-  },
-  {
-    title: "Mockups",
-    video: "/examples/mockups.webm",
-  },
-  {
-    title: "Tweets",
-    video: "/examples/tweets.webm",
-  },
-  {
-    title: "Subtitles",
-    video: "/examples/subtitles.webm",
-  },
-];
 export const Hero = () => {
   return (
     <div className="relative flex items-center justify-between px-4 flex-col md:flex-row">
       <div className="flex flex-col space-y-6 items-start max-w-lg my-32">
-        <h1 className="title font-semibold uppercase leading-[1] text-[85px] ">
+        <h1 className="title font-semibold uppercase leading-[1] text-[85px] tracking-wide">
           Automate your content
         </h1>
         <p className="text-[22px] leading-[30px] font-light">
@@ -62,6 +40,9 @@ export const Hero = () => {
             }}
             className="absolute object-cover rounded-lg"
             src="/examples/tweets.webm"
+            autoPlay
+            loop
+            muted
           />
 
           <Image src={laptop} alt="laptop" className="mt-20 relative" />

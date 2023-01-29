@@ -8,12 +8,13 @@ import { Navbar } from "../components/Navbar";
 import Head from "next/head";
 import { Mission } from "../components/home/Mission";
 import { Interactive } from "../components/home/Interactive";
+import { FAQ } from "../components/home/FAQ";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const Home = () => {
   return (
-    <div className="bg-base-100 text-base-content w-full h-full">
+    <div className="bg-base-100 text-base-content">
       <Head>
         <link rel="icon" type="image/x-icon" href="/logo.png"></link>
         <meta property="og:url" content={`https://motionly.video/`} />
@@ -31,6 +32,8 @@ export const Home = () => {
         <Interactive />
         <Divider />
         <Examples />
+        <Divider />
+        <FAQ />
         <Divider />
         <Help />
         <Footer />
