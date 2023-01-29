@@ -42,18 +42,36 @@ export const Examples = () => {
   }, [current, mouseIn]);
 
   return (
-    <div className="space-y-6 max-w-screen-xl m-auto text-center md:text-left px-6">
-      <div className="max-w-xl leading-[1.2] space-y-6">
-        <h2 className="text-4xl md:text-[50px] font-semibold leading-[1.1] text-transparent bg-clip-text bg-gradient-to-tl to-purple-400 from-pink-600">
+    <div className="space-y-10">
+      <div className="max-w-[690px] space-y-6 md:ml-auto ">
+        <h2 className="text-[75px] font-semibold leading-none title">
           Video templates for every purpose
         </h2>
-        <p className="text-lg md:text-xl  leading-[1.4]">
+        <p className="text-[22px] leading-[30px]">
           Start with a flexible template, then customize to fit your style and
           professional needs with our website builder.
         </p>
       </div>
-      <div className="items-center h-full justify-between hidden lg:flex">
-        <div className="flex-col items-start text-[40px] font-semibold leading-none flex">
+      <div className="items-center h-full justify-between hidden md:flex">
+        <div className="relative w-full max-h-[400px] aspect-video">
+          {examples.map(({ video }, i) => (
+            <video
+              key={i}
+              ref={current === i ? vidRef : null}
+              src={video}
+              className={`absolute top-0 h-full ease-out rounded-xl  ${
+                current === i
+                  ? "opacity-100 translate-x-0 z-20 duration-700"
+                  : "opacity-0 translate-x-10 z-0"
+              }`}
+              autoPlay
+              preload="auto"
+              muted
+              loop
+            />
+          ))}
+        </div>
+        <div className="flex-col pr-4 items-end text-[40px] font-semibold leading-none flex">
           {examples.map(({ title }, i) => (
             <div
               key={i}
@@ -68,49 +86,31 @@ export const Examples = () => {
               }}
             >
               <div className="flex items-end space-x-3 ">
+                <IoIosArrowBack
+                  className={`text-3xl text-primary leading-none mb-1 duration-500  ${
+                    current === i
+                      ? "translate-x-0 opacity-100"
+                      : "opacity-0 translate-x-2"
+                  }`}
+                />
                 <p
                   className={`${
-                    current === i ? "opacity-100" : "opacity-30"
-                  } duration-300`}
+                    current === i ? "text-primary" : "opacity-30"
+                  } duration-300 whitespace-nowrap`}
                 >
                   {title}
                 </p>
-                <IoIosArrowForward
-                  className={`text-3xl leading-none mb-1 duration-500  ${
-                    current === i
-                      ? "translate-x-0 opacity-100"
-                      : "opacity-0 -translate-x-2"
-                  }`}
-                />
               </div>
               <div
-                className={`absolute left-0 bottom-1 bg-base-content h-[3px] duration-[400ms] delay-150 ${
+                className={`absolute right-0 bottom-1 h-[3px] duration-[400ms] bg-primary delay-150 ${
                   current === i ? "w-full" : "w-0"
                 }`}
               />
             </div>
           ))}
         </div>
-        <div className="relative h-[400px] aspect-video">
-          {examples.map(({ video }, i) => (
-            <video
-              key={i}
-              ref={current === i ? vidRef : null}
-              src={video}
-              className={`absolute top-0 h-full ease-out rounded-xl  ${
-                current === i
-                  ? "opacity-100 translate-x-0 z-20 duration-700"
-                  : "opacity-0 -translate-x-10 z-0"
-              }`}
-              autoPlay
-              preload="auto"
-              muted
-              loop
-            />
-          ))}
-        </div>
       </div>
-      <div className="block lg:hidden">
+      <div className="block md:hidden">
         <div className="relative">
           <video
             className="w-full aspect-video"
