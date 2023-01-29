@@ -14,13 +14,14 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const Home = () => {
   return (
-    <div className="bg-base-100 text-base-content">
+    <div className="bg-base-100 text-base-content w-full">
       <Head>
         <link rel="icon" type="image/x-icon" href="/logo.png"></link>
         <meta property="og:url" content={`https://motionly.video/`} />
         <meta property="og:title" content={"Motionly"} />
         <meta property="og:description" content={"Automate your content"} />
         <title>Motionly</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
         <meta property="og:image" content={"/logowbg.png"} />
       </Head>
       <Navbar />

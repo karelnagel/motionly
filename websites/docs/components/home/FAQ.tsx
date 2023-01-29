@@ -49,39 +49,40 @@ const Question = ({ question, answer }: (typeof questions)[0]) => {
         onClick={() => setShow(!show)}
         className="flex justify-between cursor-pointer w-full "
       >
-        <p className="font-medium text-[22px]">{question}</p>
+        <p className="font-medium text-[18px] md:text-[22px]">{question}</p>
         <button className="text-3xl leading-none">
           {show ? <IoIosRemove /> : <IoIosAdd />}
         </button>
       </div>
-      {show && <div className="text-[18px]">{answer}</div>}
+      {show && <div className="text-[16px] md:text-[18px]">{answer}</div>}
     </div>
   );
 };
+
 export const FAQ = () => {
   return (
-    <div className="relative space-y-6">
-      <p className="text-[75px] font-semibold leading-none title">
+    <div className="relative space-y-6 ">
+      <p className="text-[50px] md:text-[75px] font-semibold leading-none title">
         We’ve got you
         <br /> covered!
       </p>
-      <div className="flex gap-20 flex-col md:flex-row">
+      <div className="flex gap-7 md:gap-20 flex-col md:flex-row">
         <div className="space-y-6">
-          <p className="max-w-lg text-[22px] leading-[30px]">
+          <p className="max-w-lg text-[18px] md:text-[22px] leading-[30px]">
             Start with a flexible template, then customize to fit your style and
             professional needs with our website builder.
           </p>
           <Arrows />
         </div>
-        <div className="w-full">
+        <div className="w-full z-20">
           {questions.map((q, i) => (
             <Question key={i} {...q} />
           ))}
         </div>
       </div>
-      <Bubble height={40} left={-10} top={85} />
-      <Bubble height={10} left={8} top={114} />
-      <Bubble height={18} left={8} top={80} />
+      <Bubble width={20} left={-10} top={85} />
+      <Bubble width={4} left={8} top={114} />
+      <Bubble width={8} left={8} top={80} />
     </div>
   );
 };

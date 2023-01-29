@@ -3,21 +3,21 @@ import { CSSProperties } from "react";
 export const Bubble = ({
   className,
   style,
-  height,
+  width: width,
   top,
   left,
 }: {
   className?: string;
   style?: CSSProperties;
-  height?: number;
+  width?: number;
   top?: number;
   left?: number;
 }) => {
   return (
     <div
-      className={`absolute bg-accent rounded-full aspect-square ${className}`}
+      className={`absolute bg-accent rounded-full aspect-square -z-0 ${className}`}
       style={{
-        height: `${height}%`,
+        width: `${width}%`,
         top: `${top}%`,
         left: `${left}%`,
         ...style,

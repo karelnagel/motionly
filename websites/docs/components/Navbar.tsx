@@ -16,15 +16,19 @@ export const Navbar = () => {
 
   return (
     <div className="relative z-20 w-full">
-      <div className="max-w-screen-xl mx-auto px-2 grid grid-cols-5 items-center">
-        <Link href="/" className=" w-60 col-span-2">
+      <div className="max-w-screen-xl mx-auto px-2 grid grid-cols-3 md:grid-cols-5 items-center">
+        <Link href="/" className=" w-60 col-span-2 hidden md:block">
           <Image src={logo} alt="logo" className="w-60" />
         </Link>
-        <Link href="/">
-          <Image src={logoGif} alt="logo" className=" h-20 object-contain" />
+        <Link href="/" className="flex justify-start md:justify-center">
+          <Image
+            src={logoGif}
+            alt="logo"
+            className="w-16 md:w-20 object-contain "
+          />
         </Link>
         <div className="flex items-center space-x-6 col-span-2 w-full justify-end">
-          <div className="flex space-x-5">
+          <div className=" space-x-5 hidden md:flex">
             {items.map((item) => (
               <Link
                 href={item.route}

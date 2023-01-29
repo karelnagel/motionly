@@ -35,6 +35,7 @@ const config: DocsThemeConfig = {
         <link rel="icon" type="image/x-icon" href="/logo.png"></link>
         <meta property="og:url" content={`${basePath}${asPath}`} />
         <meta property="og:title" content={title} />
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
         <meta
           property="og:description"
           content={frontMatter.description || "Automate your content"}

@@ -59,17 +59,17 @@ export const Interactive = () => {
     );
   };
   return (
-    <div className="space-y-10">
+    <div className="space-y-4 md:space-y-10">
       <div className="max-w-4xl space-y-5">
-        <h2 className="text-[75px] leading-none title font-semibold">
+        <h2 className="text-[50px] md:text-[75px] leading-none title font-semibold">
           Whatever your needs are, Motionly is for you
         </h2>
-        <p className="font-light text-[22px]">
+        <p className="font-light text-[18px] md:text-[22px]">
           Play the video, then tweak the parameters below the video.
         </p>
       </div>
       <div className="flex gap-0 md:gap-40 flex-col md:flex-row">
-        <div className="flex flex-col py-7 min-w-[350px] space-y-3">
+        <div className="flex flex-col py-4 md:py-7 min-w-[350px] space-y-3">
           <input
             className="input bg-base-300 w-full"
             placeholder="Enter your name"
@@ -100,7 +100,7 @@ export const Interactive = () => {
             height={1080}
             controls
             width={1920}
-            className="rounded-[40px] bg-base-content"
+            className="rounded-lg md:rounded-[40px] bg-base-content"
             style={{ width: "100%" }}
           />
         </div>
