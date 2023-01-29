@@ -20,7 +20,7 @@ export const Mission = () => {
           }}
         >
           <video
-            src="/examples/podcasts.webm"
+            src="/examples/phone.mp4"
             className=" object-cover rounded-[8%]"
             style={{
               height: `80.4%`,

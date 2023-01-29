@@ -39,7 +39,7 @@ export const Hero = () => {
               left: "18%",
             }}
             className="absolute object-cover rounded-lg"
-            src="/examples/tweets.webm"
+            src="/examples/main.mp4"
             autoPlay
             loop
             muted
