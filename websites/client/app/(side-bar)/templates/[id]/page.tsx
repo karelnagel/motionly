@@ -4,6 +4,8 @@ import { getServerSession } from "../../../../lib/getServerSession";
 import { getTemplate } from "../../../../pages/api/templates/[id]";
 import { Player } from "./Player";
 
+export const dynamic = "force-dynamic";
+
 export default async function Edit({
   params: { id },
 }: {

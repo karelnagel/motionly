@@ -1,6 +1,6 @@
 import ReactQRCode from "react-qr-code";
-import { StyleAndClass } from "@asius/base";
-import { QRCodeProps } from "@asius/base";
+import { StyleAndClass } from "@motionly/base";
+import { QRCodeProps } from "@motionly/base";
 import { useColors } from "../useColors";
 
 export const defaultQRCodeProps: QRCodeProps = {

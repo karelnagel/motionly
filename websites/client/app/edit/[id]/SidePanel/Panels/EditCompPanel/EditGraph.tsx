@@ -1,4 +1,4 @@
-import { GraphProps, GraphTypes } from "@asius/base";
+import { GraphProps, GraphTypes } from "@motionly/base";
 import {
   ColorInput,
   NumberInput,
@@ -29,6 +29,7 @@ export const EditGraph = ({
         }))}
       />
       <ColorInput
+        gradients
         label="Color"
         value={comp.color}
         onChange={(color) => setComp({ ...comp, color })}

@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PanelTitle } from "../../../../../components/PanelTitle";
 import { BooleanInput, NumberInput } from "../../../../../components/inputs";
 import { useTemplate } from "../../../../../hooks/useTemplate";
-import { useRender } from "@asius/renderer";
+import { useRender } from "@motionly/renderer/dist/sdk";
 
 export const ExportSidePanel = () => {
   const { template, setTemplate } = useTemplate();
@@ -12,6 +12,18 @@ export const ExportSidePanel = () => {
     ...template,
     frame,
   });
+  const [json, setJson] = useState(
+    JSON.stringify({ ...template, comps: template.comps }, null, 2)
+  );
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    try {
+      setTemplate(JSON.parse(json));
+      setError(false);
+    } catch (e) {
+      setError(true);
+    }
+  }, [json]);
   return (
     <div className="flex flex-col items-center space-y-3 w-full overflow-y-auto overflow-x-clip">
       <PanelTitle title="Export your video" />
@@ -62,29 +74,29 @@ export const ExportSidePanel = () => {
       <p>
         Use this json in{" "}
         <a
-          href="https://asius.dev/docs/sdk"
+          href="https://motionly.video/docs/sdk"
           className="text-primary"
           target="_blank"
           rel="noreferrer"
         >
-          @asius/sdk
+          @motionly/sdk
         </a>{" "}
         or
         <a
-          href="https://asius.dev/docs/player"
+          href="https://motionly.video/docs/player"
           className="text-primary"
           target="_blank"
           rel="noreferrer"
         >
-          @asius/player
+          @motionly/player
         </a>
       </p>
       <textarea
-        value={JSON.stringify(template.comps, null, 2)}
-        onChange={(e) =>
-          setTemplate({ ...template, comps: JSON.parse(e.target.value) })
-        }
-        className="w-full min-h-[600px] bg-base-200 rounded-lg p-2"
+        value={json}
+        onChange={(e) => setJson(e.target.value)}
+        className={`w-full min-h-[600px] ${
+          error ? "bg-error text-error-content" : "bg-base-200"
+        } rounded-lg p-2`}
       />
     </div>
   );

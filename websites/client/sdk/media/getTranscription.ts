@@ -1,4 +1,4 @@
-import { TranscriptionWord } from "@asius/base";
+import { TranscriptionWord } from "@motionly/base";
 import axios from "axios";
 
 export const getTranscription = async (

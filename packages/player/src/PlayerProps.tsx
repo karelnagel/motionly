@@ -1,4 +1,4 @@
-import { TemplateType } from "@asius/base";
+import { TemplateType } from "@motionly/base";
 import { CSSProperties } from "react";
 
 export type PlayerProps = {

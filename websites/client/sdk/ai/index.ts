@@ -1,4 +1,4 @@
-import { ComponentProps } from "@asius/base";
+import { ComponentProps } from "@motionly/base";
 import axios from "axios";
 
 export const postAI = async (

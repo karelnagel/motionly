@@ -1,4 +1,4 @@
-import { LottieProps } from "@asius/base";
+import { LottieProps } from "@motionly/base";
 import {
   BooleanInput,
   ColorInput,
@@ -39,6 +39,7 @@ export const EditLottie = ({
       />
 
       <ColorInput
+        gradients
         label="Background"
         value={comp.bg}
         onChange={(bg) => setComp({ ...comp, bg })}

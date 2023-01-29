@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .title {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary to-primary;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
 }
 .gradient {
   @apply bg-gradient-to-r from-secondary to-primary;
@@ -12,7 +12,25 @@
   @apply hover:bg-gradient-to-tr hover:text-white bg-gray-500 bg-opacity-10 rounded-3xl flex items-center p-3  hover:to-primary hover:from-secondary hover:scale-105 duration-300 cursor-pointer;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 html[class~="dark"] body {
   @apply !bg-base-100 !text-base-content;
   /* background-color: #111021 !important; */
 }
+
+.btn {
+  @apply rounded-full normal-case;
+}
+
+.btn-gradient {
+  @apply bg-gradient-to-r from-primary to-secondary text-base-content border-none;
+}
+
+.formbox {
+  @apply bg-accent  text-base-content rounded-lg p-4 bg-opacity-40 
+  transform transition duration-300 focus:bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
+  hover:bg-opacity-70 hover:outline-none hover:ring-2 hover:ring-primary;
+}
+

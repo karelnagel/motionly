@@ -1,12 +1,28 @@
-# @asius/renderer
+# @motionly/renderer
 
-## 1.3.0
+## 1.4.2
+
+### Patch Changes
+
+- Changed colors and text animations
+- Updated dependencies
+  - @motionly/base@1.4.2
+
+## 1.4.1
+
+### Patch Changes
+
+- removed things from npm
+- Updated dependencies
+  - @motionly/base@1.4.1
+
+## 1.4.0
 
 ### Minor Changes
 
-- Many changes
+- renamed to motionly
 
 ### Patch Changes
 
 - Updated dependencies
-  - @asius/base@1.3.0
+  - @motionly/base@1.4.0

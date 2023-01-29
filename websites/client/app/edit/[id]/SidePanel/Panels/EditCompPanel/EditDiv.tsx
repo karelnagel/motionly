@@ -1,4 +1,4 @@
-import { DivProps } from "@asius/base";
+import { DivProps } from "@motionly/base";
 import { ColorInput } from "../../../../../../components/inputs";
 import { EditSection } from "./EditSection";
 import { SetComp } from "./index";
@@ -13,6 +13,7 @@ export const EditDiv = ({
   return (
     <EditSection title="Div">
       <ColorInput
+        gradients
         label="BG"
         value={comp.bg}
         onChange={(bg) => setComp({ ...comp, bg })}

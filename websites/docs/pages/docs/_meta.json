@@ -1,7 +1,7 @@
 {
-    "index": "What is Asius?",
-    "components": "@asius/components",
-    "player": "@asius/player",
-    "sdk": "@asius/sdk",
+    "index": "What is Motionly?",
+    "components": "@motionly/components",
+    "player": "@motionly/player",
+    "sdk": "@motionly/sdk",
     "types": "Types"
 }

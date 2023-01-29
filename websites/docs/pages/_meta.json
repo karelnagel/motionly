@@ -1,10 +1,9 @@
 {
     "index": {
-        "title": "Asius",
+        "title": "Motionly",
         "type": "page",
         "display": "hidden",
         "theme": {
-            "typesetting": "article",
             "layout": "full"
         }
     },

@@ -1,4 +1,4 @@
-import { TextAlign, TextStyle } from "@asius/base";
+import { TextAlign, TextStyle } from "@motionly/base";
 import {
   NumberInput,
   SelectInput,
@@ -59,6 +59,7 @@ export const EditTextStyle = ({
           />
           <ColorInput
             label="BG"
+            gradients
             value={style.bg}
             onChange={(bg) => setStyle({ ...style, bg })}
           />

@@ -1,4 +1,4 @@
-import { AnimationProps } from "@asius/base";
+import { AnimationProps } from "@motionly/base";
 import { random } from "remotion";
 
 export const getAnimationColor = (animation: AnimationProps) =>

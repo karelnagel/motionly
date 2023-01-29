@@ -1,13 +1,19 @@
-# @asius/base
+# @motionly/base
 
-## 1.3.0
-
-### Minor Changes
-
-- Many changes
-
-## 1.2.1
+## 1.4.2
 
 ### Patch Changes
 
-- Added @asius/base
+- Changed colors and text animations
+
+## 1.4.1
+
+### Patch Changes
+
+- removed things from npm
+
+## 1.4.0
+
+### Minor Changes
+
+- renamed to motionly

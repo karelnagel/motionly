@@ -11,18 +11,18 @@ import { Audio } from "./components/Audio";
 import { Audiogram } from "./components/Audiogram";
 import { Graph } from "./components/Graph";
 import { Map } from "./components/Map";
-import { Mockup } from "./components/Mockup";
+import { Mockup } from "./components/Mockup/index";
 import { Progressbar } from "./components/Progressbar";
 import { QRCode } from "./components/QRCode";
 import { Video } from "./components/Video";
-import { Transcription } from "./components/Transcription";
+import { Transcription } from "./components/Transcription/index";
 import { Lottie } from "./components/Lottie";
 import { Gif } from "./components/Gif";
 import { Path } from "./components/Path";
 import { useSelected } from "./SelectedContext";
-import { ComponentProps, transformProps } from "@asius/base";
+import { ComponentProps, transformProps } from "@motionly/base";
 import { useAnimation } from "./useAnimations";
-import { getDuration, getFrom } from "@asius/base";
+import { getDuration, getFrom } from "@motionly/base";
 import { Shape } from "./components/Shape";
 import { ReactNode, useRef } from "react";
 import { MotionBlur } from "./MotionBlur";
@@ -41,7 +41,9 @@ export const Component = (comp: ComponentProps) => {
   return (
     <MotionBlur motion={comp.motionBlur}>
       <Sequence from={from} durationInFrames={duration} layout="none">
-        <Freeze frame={comp.freeze ? fps * comp.freeze : undefined}>
+        <Freeze
+          frame={comp.freeze !== undefined ? fps * comp.freeze : undefined}
+        >
           <Loop
             durationInFrames={
               comp.loopDuration ? fps * comp.loopDuration : undefined
@@ -62,7 +64,7 @@ export const Freeze = ({
   frame?: number;
   children: ReactNode;
 }) => {
-  if (!frame) return <>{children}</>;
+  if (frame === undefined) return <>{children}</>;
   else
     return (
       <RemotionFreeze frame={frame}>
@@ -149,8 +151,8 @@ const InsideSequence = ({
           cursor: "pointer",
           display: "flex",
           overflow: "hidden",
-          width: width || "100%",
-          height: height || "100%",
+          width: inputWidth || "100%",
+          height: inputHeight || "100%",
           position: "absolute",
           top: y,
           left: x,
@@ -162,7 +164,7 @@ const InsideSequence = ({
       >
         {comp.comp === "div" && <Div {...comp} />}
         {comp.comp === "image" && <Image {...comp} />}
-        {comp.comp === "text" && <Text {...comp} />}
+        {comp.comp === "text" && <Text {...comp} animations={animations} />}
         {comp.comp === "audio" && <Audio {...comp} />}
         {comp.comp === "audiogram" && (
           <Audiogram {...comp} width={width} height={height} />
@@ -177,7 +179,9 @@ const InsideSequence = ({
         )}
         {comp.comp === "qrcode" && <QRCode {...comp} />}
         {comp.comp === "video" && <Video {...comp} />}
-        {comp.comp === "transcription" && <Transcription {...comp} />}
+        {comp.comp === "transcription" && (
+          <Transcription {...comp} height={height} />
+        )}
         {comp.comp === "lottie" && <Lottie {...comp} />}
         {comp.comp === "gif" && <Gif {...comp} />}
         {comp.comp === "path" && <Path {...comp} />}

@@ -1,13 +1,11 @@
 {
-    "name": "imageapi",
+    "name": "motionly",
     "version": "1.0.0",
     "private": true,
     "workspaces": [
         "packages/*",
         "websites/*"
     ],
-    "repository": "git@github.com:karelnagel/asius.git",
-    "author": "Karel <karel789@hotmail.com>",
     "license": "MIT",
     "devDependencies": {
         "turbo": "^1.6.3"

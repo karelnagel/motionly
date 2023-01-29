@@ -1,12 +1,10 @@
 # Using &lt;Player&gt;
 
-
-
 ## Example NextJS app
 
-[website](https://asius-example.vercel.app/)
+[website](https://motionly-example.vercel.app/)
 
-[github](https://github.com/karelnagel/asius-example)
+[github](https://github.com/karelnagel/motionly-example)
 
 ## Usage
 
@@ -15,7 +13,7 @@
 This is a list of [ComponentProps](/docs/componentProps)
 
 ```ts copy filename="components.ts"
-import { ComponentProps } from "@asius/components";
+import { ComponentProps } from "@motionly/components";
 
 export const components: ComponentProps[] = [
   {
@@ -137,7 +135,7 @@ export const components: ComponentProps[] = [
 
 ```tsx copy filename="index.tsx"
 import { components } from "./components";
-import { ComponentProps } from "@asius/components";
+import { ComponentProps } from "@motionly/components";
 
 export default function Home() {
   const [text, setText] = useState("Your text");
@@ -193,7 +191,7 @@ export default function Home() {
 }
 ```
 
-### 3. Enjoy your video (and maybe add rendering with [`@asius/sdk`](/docs/sdk))
+### 3. Enjoy your video (and maybe add rendering with [`@motionly/sdk`](/docs/sdk))
 
 import { PlayerExample } from "../../../components/PlayerExample";
 

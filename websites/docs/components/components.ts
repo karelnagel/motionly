@@ -1,4 +1,4 @@
-import { ComponentProps } from "@asius/base";
+import { ComponentProps } from "@motionly/base";
 
 export const components: ComponentProps[] = [
   {
@@ -1265,15 +1265,24 @@ export const components: ComponentProps[] = [
     ],
     animationType: "current-word",
     animationStyle: {
-      outlineColor: "#ffa3a3",
+      outlineColor: {
+        type: "basic",
+        color: "#FFFFFFFF",
+      },
       outlineWidth: 20,
     },
     scrollByPage: false,
     textStyle: {
       fontSize: 200,
       fontFamily: "Explora",
-      color: "#1a77db",
-      outlineColor: "#ffffff",
+      color: {
+        type: "basic",
+        color: "#FFFFFFFF",
+      },
+      outlineColor: {
+        type: "basic",
+        color: "#FFFFFFFF",
+      },
       outlineWidth: 20,
       fontWeight: 800,
       lineHeight: 1.2,
@@ -1299,7 +1308,10 @@ export const components: ComponentProps[] = [
     gap: 1,
     position: "end",
     roundness: 5,
-    color: "#000FF0",
+    color: {
+      type: "basic",
+      color: "#FFFFFFFF",
+    },
     mirror: true,
     smoothing: true,
     id: "skz7v8m",
@@ -1314,8 +1326,14 @@ export const components: ComponentProps[] = [
   {
     comp: "text",
     textStyle: {
-      bg: "#00000000",
-      color: "#eb0000FF",
+      bg: {
+        type: "basic",
+        color: "#FFFFFFFF",
+      },
+      color: {
+        type: "basic",
+        color: "#FFFFFFFF",
+      },
       fontSize: 180,
       fontFamily: "Inter",
       fontWeight: 700,

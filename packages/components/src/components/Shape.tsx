@@ -1,14 +1,20 @@
-import { ShapeProps } from "@asius/base";
+import { ShapeProps } from "@motionly/base";
 import { Rect, Triangle, Circle, Ellipse } from "@remotion/shapes";
 import { useColors } from "../useColors";
 
-export const defaultShape: ShapeProps = {
+export const defaultShapeProps: ShapeProps = {
   comp: "shape",
   type: "triangle",
   width: 100,
   height: 100,
-  fill: "yellow",
-  stroke: "black",
+  fill: {
+    type: "basic",
+    color: "#00FFFFFF",
+  },
+  stroke: {
+    type: "basic",
+    color: "#000000FF",
+  },
   strokeWidth: 2,
   edgeRoundness: 0,
   cornerRadius: 0,
@@ -28,7 +34,7 @@ export const Shape = (props: ShapeProps) => {
         stroke={stroke}
         strokeWidth={props.strokeWidth}
         edgeRoundness={props.edgeRoundness}
-        cornerRadius={props.cornerRadius}
+        cornerRadius={props.edgeRoundness===undefined ?props.cornerRadius:undefined}
       />
     );
   if (props.type === "rect")
@@ -40,7 +46,7 @@ export const Shape = (props: ShapeProps) => {
         stroke={stroke}
         strokeWidth={props.strokeWidth}
         edgeRoundness={props.edgeRoundness}
-        cornerRadius={props.cornerRadius}
+        cornerRadius={props.edgeRoundness===undefined ?props.cornerRadius:undefined}
       />
     );
   else if (props.type === "circle")

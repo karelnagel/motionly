@@ -1,18 +1,18 @@
-import { ComponentProps, TemplateType } from "@asius/base";
+import { ComponentProps } from "@motionly/base";
 import { ReactNode, useRef, useState } from "react";
 import { getRandomId } from "../../helpers";
 import { Context } from "./Context";
-import { Tabs } from "../../types";
+import { Tabs, Template } from "../../types";
 import { updateTemplate } from "../../sdk/templates/update";
 
 export const TemplateContext = ({
   startTemplate,
   children,
 }: {
-  startTemplate: TemplateType;
+  startTemplate: Template;
   children: ReactNode;
 }) => {
-  const [history, setHistory] = useState<TemplateType[]>([
+  const [history, setHistory] = useState<Template[]>([
     JSON.parse(JSON.stringify(startTemplate)),
   ]);
   const [current, setCurrent] = useState(0);
@@ -28,7 +28,7 @@ export const TemplateContext = ({
     setSelectedState(id);
   };
 
-  const setTemplate = (template: TemplateType) => {
+  const setTemplate = (template: Template) => {
     setTemplateState(template);
 
     if (historyTimeout.current) clearTimeout(historyTimeout.current);
@@ -65,7 +65,7 @@ export const TemplateContext = ({
         }
       : undefined;
   const find = (
-    comps: ComponentProps[] = template.comps,
+    comps: ComponentProps[] = template.comps || [],
     id: string = selected,
     parentId = ""
   ): [ComponentProps | null, string] => {
@@ -73,8 +73,7 @@ export const TemplateContext = ({
     let newParentId = parentId;
     if (sel) return [sel, parentId];
     for (const comp of comps) {
-      if (comp.comp === "div" || comp.comp === "mockup")
-        [sel, newParentId] = find(comp.children, id, comp.id);
+      if ("comps" in comp) [sel, newParentId] = find(comp.comps, id, comp.id);
       if (sel) return [sel, newParentId];
     }
     return [sel, ""];
@@ -83,15 +82,15 @@ export const TemplateContext = ({
 
   const updateTree = (
     fn: (comp: ComponentProps[], parentId: string) => ComponentProps[],
-    currentComps: ComponentProps[] = template.comps,
+    currentComps: ComponentProps[] = template.comps || [],
     currentParentId = ""
   ) => {
     let newComps = currentComps;
     newComps = fn(newComps, currentParentId);
     for (const comp of newComps) {
-      if (comp.comp === "div" || comp.comp === "mockup") {
-        const children = updateTree(fn, comp.children, comp.id);
-        comp.children = children;
+      if ("comps" in comp) {
+        const children = updateTree(fn, comp.comps, comp.id);
+        comp.comps = children;
       }
     }
     if (!currentParentId) setTemplate({ ...template, comps: newComps });
@@ -119,13 +118,13 @@ export const TemplateContext = ({
     updateTree((comps) => {
       return comps.filter((comp) => comp.id !== id);
     });
-    setSelected(template.comps.find((c) => c.id !== id)?.id || "");
+    setSelected(template.comps?.find((c) => c.id !== id)?.id || "");
   };
 
   const setRandomIds = (comp: ComponentProps) => {
     const newComp = { ...comp, id: getRandomId() };
-    if (newComp.comp === "div" || newComp.comp === "mockup") {
-      newComp.children = newComp.children.map((c) => setRandomIds(c));
+    if ("comps" in newComp) {
+      newComp.comps = newComp.comps?.map((c) => setRandomIds(c));
     }
     return newComp;
   };

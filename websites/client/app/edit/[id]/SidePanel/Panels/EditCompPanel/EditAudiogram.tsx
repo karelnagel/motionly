@@ -1,4 +1,4 @@
-import { AudiogramProps, AudiogramPosition } from "@asius/base";
+import { AudiogramProps, AudiogramPosition } from "@motionly/base";
 import {
   BooleanInput,
   ColorInput,
@@ -75,6 +75,7 @@ export const EditAudiogram = ({
       />
       <ColorInput
         label="Color"
+        gradients
         value={comp.color}
         onChange={(color) => setComp({ ...comp, color })}
       />

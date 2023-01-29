@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import Transcribe from "aws-sdk/clients/transcribeservice";
 import { getServerSession } from "../../../lib/getServerSession";
 import axios from "axios";
-import { TranscriptionWord } from "@asius/base";
+import { TranscriptionWord } from "@motionly/base";
 import { awsClientConfig } from "../../../env";
 
 const transcribe = new Transcribe(awsClientConfig);

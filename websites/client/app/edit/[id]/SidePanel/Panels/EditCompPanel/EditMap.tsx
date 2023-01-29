@@ -1,4 +1,4 @@
-import { MapProps } from "@asius/base";
+import { MapProps } from "@motionly/base";
 import {
   ColorInput,
   NumberInput,
@@ -17,9 +17,9 @@ export const EditMap = ({
   return (
     <EditSection title="Map">
       <TextInput
-        label="Url"
-        value={comp.url}
-        onChange={(url) => setComp({ ...comp, url })}
+        label="Src"
+        value={comp.src}
+        onChange={(src) => setComp({ ...comp, src })}
       />
       <NumberInput
         label="Latitude (deg)"
@@ -54,6 +54,7 @@ export const EditMap = ({
         onChange={(fill) => setComp({ ...comp, fill })}
       />
       <ColorInput
+        gradients
         label="Background"
         value={comp.bg}
         onChange={(bg) => setComp({ ...comp, bg })}

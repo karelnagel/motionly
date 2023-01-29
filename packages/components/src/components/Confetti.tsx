@@ -1,12 +1,12 @@
-import { ConfettiProps } from "@asius/base";
-import RemotionConfetti from "@asius/confetti";
+import { ConfettiProps } from "@motionly/base";
+import RemotionConfetti from "@motionly/confetti";
 import { useColors } from "../useColors";
 
-export const defaultConfetti: ConfettiProps = {
+export const defaultConfettiProps: ConfettiProps = {
   comp: "confetti",
-  posX: 550,
-  posY: 550,
-  angle: -90,
+  posX: 0,
+  posY: 0,
+  angle: -45,
 };
 
 export const Confetti = ({ posX, posY, colors, ...props }: ConfettiProps) => {

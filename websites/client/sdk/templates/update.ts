@@ -1,11 +1,11 @@
-import { TemplateType } from "@asius/base";
 import axios from "axios";
+import { Template } from "../../types";
 
 export type UpdateTemplateInput = {
   id: string;
-  template: TemplateType;
+  template: Template;
 };
-export type UpdateTemplateOutput = TemplateType;
+export type UpdateTemplateOutput = Template;
 export const updateTemplate = async ({
   id,
   template,

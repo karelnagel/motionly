@@ -25,7 +25,7 @@ export const TemplateSidePanel = () => {
     router.push("/");
   };
   return (
-    <div className="flex flex-col justify-between h-full w-full">
+    <div className="flex flex-col justify-between h-full w-full overflow-auto">
       <div className="flex flex-col space-y-2 items-center">
         <PanelTitle title="Template settings" />
         <div className="w-full grid grid-cols-2 gap-x-1">
@@ -73,6 +73,7 @@ export const TemplateSidePanel = () => {
           />
           <ColorInput
             label="Background"
+            gradients
             value={template.background}
             onChange={(background) => setTemplate({ ...template, background })}
           />
@@ -86,13 +87,13 @@ export const TemplateSidePanel = () => {
         </div>
       </div>
       <div className="flex justify-between">
-        <Clone template={template} className="btn">
+        <Clone template={template} className="btn btn-sm">
           Duplicate
         </Clone>
-        <Link href={`/templates/${template.id}`} className="btn">
+        <Link href={`/templates/${template.id}`} className="btn btn-sm">
           View
         </Link>
-        <button onClick={delTemplate} className="btn btn-error">
+        <button onClick={delTemplate} className="btn btn-error btn-sm">
           Delete
         </button>
       </div>

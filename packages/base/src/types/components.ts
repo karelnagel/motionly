@@ -31,12 +31,15 @@ export const GraphTypes = {
   pie: "Pie",
 };
 export const MockupTypes = {
-  iPhone: "iPhone",
-  chrome: "Chrome",
+  iphone: "iPhone",
+  samsung: "Samsung",
   macbook: "Macbook",
-  iPad: "iPad",
-  "apple-watch": "Apple Watch",
-  "vs-code": "VS Code",
+  macbook2: "Macbook 2",
+  ipad: "iPad",
+  watch: "Apple Watch",
+  monitor: "Monitor",
+  iphone14:"iPhone 14",
+
 };
 export const ProgressbarTypes = {
   spotify: "Spotify",
@@ -149,11 +152,11 @@ export type MapProps = {
   strokeWidth?: number;
   markerColor?: Color;
   markerSize?: number;
-  url?: string;
+  src?: string;
   bg?: Color;
 };
 export type HasChildren = {
-  comps?: ComponentProps[];
+  comps: ComponentProps[];
   isSequence?: boolean;
 };
 
@@ -199,6 +202,7 @@ export type TextProps = {
   comp: "text";
   textStyle: TextStyle;
   text: string;
+  animations?: AnimationProps[];
   justifyContent?: keyof typeof JustifyContent;
 };
 
@@ -240,8 +244,8 @@ export const TriangleDirection = {
 export type ShapeProps = {
   comp: "shape";
   type: keyof typeof ShapeTypes;
-  fill: Color;
-  stroke: BaseColor;
+  fill?: Color;
+  stroke?: BaseColor;
   strokeWidth: number;
   width: number;
   height: number;
@@ -256,27 +260,34 @@ export type ShapeProps = {
 );
 
 export type MotionBlurProps = {
-  layers: number;
-  lag: number;
-  opacity: number;
+  layers?: number;
+  lag?: number;
+  opacity?: number;
 };
 
+export type BasicColor = {
+  type: "basic";
+  color?: string;
+};
 export type ColorInterpolate = {
   type: "interpolate";
-  colors: string[];
-  durations: number[];
+  colors?: {
+    color?: string;
+    start?: number;
+  }[];
 };
-
-export type BaseColor = undefined | string | ColorInterpolate;
-
 export type GradientColor = {
   type: "linear" | "radial";
-  colors: BaseColor[];
-  stops: number[];
-  angle: number;
+  gradients?: {
+    color?: BaseColor;
+    stop?: number;
+  }[];
+  angle?: number;
 };
 
+export type BaseColor = BasicColor | ColorInterpolate;
 export type Color = BaseColor | GradientColor;
+
 export type TemplateType = {
   width: number;
   height: number;
@@ -287,7 +298,7 @@ export type TemplateType = {
 
 export type TransformProps = {
   prop: keyof typeof transformProps;
-  value: number;
+  value?: number;
 };
 
 export type BaseProps = {

@@ -1,7 +1,7 @@
 "use client";
 
-import { Player as AsiusPlayer, PlayerProps } from "@asius/player";
+import { Player as MotionlyPlayer, PlayerProps } from "@motionly/player";
 
 export const Player = (props: PlayerProps) => {
-  return <AsiusPlayer {...props} />;
+  return <MotionlyPlayer {...props} />;
 };

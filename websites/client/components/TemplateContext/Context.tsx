@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { ComponentProps, TemplateType } from "@asius/base";
+import { ComponentProps } from "@motionly/base";
 import { createContext } from "react";
-import { Tabs } from "../../types";
+import { Tabs, Template } from "../../types";
 
 export const Context = createContext({
-  template: {} as TemplateType,
-  setTemplate: (template: TemplateType) => {},
+  template: {} as Template,
+  setTemplate: (template: Template) => {},
   setComp: (element: Partial<ComponentProps>) => {},
   addComp: (comp?: ComponentProps) => {},
   deleteComp: () => {},

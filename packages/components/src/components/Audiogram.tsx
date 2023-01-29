@@ -1,9 +1,10 @@
 import { useAudioData, visualizeAudio } from "@remotion/media-utils";
 import { useCurrentFrame, useVideoConfig } from "remotion";
-import { videoUrl } from "@asius/base";
-import { StyleAndClass } from "@asius/base";
-import { AudiogramProps } from "@asius/base";
+import { videoUrl } from "@motionly/base";
+import { StyleAndClass } from "@motionly/base";
+import { AudiogramProps } from "@motionly/base";
 import { useColors } from "../useColors";
+import { getSrc } from "../helpers";
 
 export const defaultAudiogramProps: AudiogramProps = {
   comp: "audiogram",
@@ -13,7 +14,10 @@ export const defaultAudiogramProps: AudiogramProps = {
   gap: 3,
   position: "center",
   roundness: 8,
-  color: "#000FF0FF",
+  color: {
+    type: "basic",
+    color: "#000FFFFF",
+  },
   mirror: true,
   smoothing: true,
   multiplier: 2,
@@ -42,9 +46,9 @@ export const Audiogram = ({
   const getColor = useColors();
   let frame = startFrom ? currentFrame + startFrom * fps : currentFrame;
   if (frame < 0) frame = 0;
-  const audioData = useAudioData(src);
-
   if (!src) return null;
+
+  const audioData = useAudioData(getSrc(src));
   if (!audioData) {
     return null;
   }

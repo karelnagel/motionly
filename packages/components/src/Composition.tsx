@@ -1,6 +1,6 @@
 import { AbsoluteFill } from "remotion";
 import { useSelected } from "./SelectedContext";
-import { Color, getFonts, HasChildren } from "@asius/base";
+import { Color, getFonts, HasChildren } from "@motionly/base";
 import { useColors } from "./useColors";
 import { useFonts } from "./useFonts";
 import { Children } from "./components/Children";

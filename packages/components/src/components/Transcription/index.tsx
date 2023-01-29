@@ -5,8 +5,8 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { StyleAndClass } from "@asius/base";
-import { TranscriptionProps } from "@asius/base";
+import { StyleAndClass } from "@motionly/base";
+import { TranscriptionProps } from "@motionly/base";
 import { useTextStyles } from "../../useTextStyles";
 export * from "./default";
 
@@ -79,7 +79,7 @@ export const Transcription = ({
             )
               isHighlighted = true;
             return (
-              <span key={i}>
+              <span key={item.text + item.start + item.end}>
                 <span
                   style={isHighlighted ? getStyle(animationStyle) : undefined}
                 >
@@ -90,7 +90,7 @@ export const Transcription = ({
           })}
         </span>
         {unPlayedSubs.map((item, i) => (
-          <span key={i}>{item.text} </span>
+          <span key={item.text + item.start + item.end}>{item.text} </span>
         ))}
       </p>
       <div ref={zoomRef} style={{ height: lineHeight, position: "absolute" }} />

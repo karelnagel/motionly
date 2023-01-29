@@ -1,4 +1,4 @@
-import { TranscriptionProps, TranscriptionWord } from "@asius/base";
+import { TranscriptionProps, TranscriptionWord } from "@motionly/base";
 
 export const defaultTranscriptionWords: TranscriptionWord[] = [
   {
@@ -1232,14 +1232,23 @@ export const defaultTranscriptionProps: TranscriptionProps = {
   src: defaultTranscriptionWords,
   animationType: "current-word",
   animationStyle: {
-    outlineColor: "#0000FFFF",
+    outlineColor: {
+      type: "basic",
+      color: "#00FFFFFF",
+    },
     outlineWidth: 20,
   },
   textStyle: {
     fontSize: 100,
     fontFamily: "Inter",
-    color: "#FFFFFFFF",
-    outlineColor: "#000000FF",
+    color: {
+      type: "basic",
+      color: "#FFFFFFFF",
+    },
+    outlineColor: {
+      type: "basic",
+      color: "#000FFFFF",
+    },
     outlineWidth: 20,
     fontWeight: 800,
     lineHeight: 1.3,

@@ -3,16 +3,16 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev1": "next dev",
-        "build1": "next build ",
-        "start1": "next start",
+        "dev": "next dev",
+        "build": "next build ",
+        "start": "next start",
         "lint": "next lint"
     },
     "dependencies": {
-        "@asius/base": "*",
-        "@asius/components": "*",
-        "@asius/player": "*",
-        "@asius/renderer": "*",
+        "@motionly/base": "*",
+        "@motionly/components": "*",
+        "@motionly/player": "*",
+        "@motionly/renderer": "*",
         "@next-auth/prisma-adapter": "^1.0.5",
         "@prisma/client": "^4.6.1",
         "@remotion/cli": "3.3.34",

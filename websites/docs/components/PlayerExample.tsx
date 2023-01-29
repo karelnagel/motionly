@@ -1,5 +1,5 @@
-import { Player } from "@asius/player";
-import { useRender } from "@asius/renderer";
+import { Player } from "@motionly/player";
+import { useRender } from "@motionly/renderer";
 import { useState } from "react";
 import { components } from "./components";
 

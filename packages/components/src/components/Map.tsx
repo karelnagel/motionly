@@ -7,26 +7,36 @@ import {
   Marker,
 } from "react-simple-maps";
 import { continueRender, delayRender } from "remotion";
-import { StyleAndClass } from "@asius/base";
-import { MapProps } from "@asius/base";
+import { StyleAndClass } from "@motionly/base";
+import { MapProps } from "@motionly/base";
 import { useColors } from "../useColors";
+import { getSrc } from "../helpers";
 
 export const defaultMapProps: MapProps = {
   comp: "map",
   lat: 48.85,
   lng: 2.29,
   zoom: 300,
-  markerColor: "#FF0000",
+  markerColor: {
+    type: "basic",
+    color: "#00FFFFFF",
+  },
   markerSize: 20,
-  fill: "#0000FFFF",
-  stroke: "#FFFFFFFF",
+  fill: {
+    type: "basic",
+    color: "#FF00FFFF",
+  },
+  stroke: {
+    type: "basic",
+    color: "#FFFF00FF",
+  },
   strokeWidth: 2,
 };
 
 export const Map = ({
   zoom,
   fill,
-  url = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json",
+  src = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json",
   stroke,
   strokeWidth,
   style,
@@ -45,7 +55,7 @@ export const Map = ({
   useEffect(() => {
     const effect = async () => {
       try {
-        const res = await axios.get(url, { timeout: 2000 });
+        const res = await axios.get(getSrc(src), { timeout: 2000 });
         setGeography(res.data);
         continueRender(handle);
       } catch (err) {
@@ -54,7 +64,7 @@ export const Map = ({
       }
     };
     effect();
-  }, [url]);
+  }, [src]);
 
   if (!geography) return null;
   return (

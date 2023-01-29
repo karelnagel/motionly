@@ -1,3 +1,3 @@
-import { RemotionRenderer } from "@asius/renderer";
+import { RemotionRenderer } from "@motionly/renderer";
 
 export default RemotionRenderer({ middleware: undefined });

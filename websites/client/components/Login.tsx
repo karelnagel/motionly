@@ -29,7 +29,7 @@ export function Login() {
       ) : (
         <div className="flex items-center text-lg whitespace-nowrap space-x-2">
           <Image
-            src="/icons/google.webp"
+            src="/icons/google.png"
             alt="google"
             width={30}
             height={30}

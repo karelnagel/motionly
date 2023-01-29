@@ -1,19 +1,22 @@
 "use client";
 
-import { TemplateType } from "@asius/base";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
 import { postNewTemplate } from "../sdk/templates/new";
+import { Template } from "../types";
 import { useAlerts } from "./Alert";
 
-const emptyTemplate: TemplateType = {
+const emptyTemplate: Template = {
   name: "Empty",
   description: "This is an empty template",
   width: 1080,
   height: 1080,
   fps: 30,
   duration: 10,
-  background: "#FFFFFFFF",
+  background: {
+    type: "basic",
+    color: "#FFFFFFFF",
+  },
   comps: [],
 };
 export const Clone = ({
@@ -23,7 +26,7 @@ export const Clone = ({
 }: {
   children: ReactNode;
   className?: string;
-  template?: TemplateType;
+  template?: Template;
 }) => {
   const router = useRouter();
   const alert = useAlerts();

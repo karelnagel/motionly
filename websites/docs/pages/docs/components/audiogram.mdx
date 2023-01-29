@@ -5,7 +5,7 @@ Easily add audiogram to your remotion videos
 ## Usage
 
 ```tsx
-import { Component, AudiogramProps } from "@asius/components";
+import { Component, AudiogramProps } from "@motionly/components";
 
 const audiogram: AudiogramProps = {
   type: "audiogram",
@@ -26,43 +26,54 @@ return <Audiogram {...audiogram} />;
 ```
 
 import { DocsPlayer } from "../../../components/DocsPlayer";
-import { defaultAudiogramProps } from "@asius/components";
+import { defaultAudiogramProps } from "@motionly/components";
 
 <DocsPlayer {...defaultAudiogramProps} />
 
 ## API
 
 ### type
+
 = `audiogram`
 
 ### src
-The source of the video or audio file 
+
+The source of the video or audio file
 
 ### position
+
 - start
 - center
 - end
 
 ### gap
+
 The gap between the bars
 
 ### barWidth
+
 The width of the bars
 
 ### roundness
+
 The roundness of the bars
 
 ### color
+
 The color of the bars
 
 ### mirror
+
 Boolean to mirror the bars
 
 ### smoothing
+
 Boolean to smooth the bars
 
 ### height
+
 The height of the audiogram
 
 ### width
+
 The width of the audiogram

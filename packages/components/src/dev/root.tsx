@@ -2,7 +2,7 @@ import React from "react";
 import { Composition, Folder, getInputProps } from "remotion";
 import { Composition as Comp } from "../Composition";
 import { compositions } from "./compositions";
-import { BaseProps, ComponentProps, TemplateType } from "@asius/base";
+import { BaseProps, ComponentProps, TemplateType } from "@motionly/base";
 import { test } from "./tests";
 
 const inputProps = getInputProps() as TemplateType;
@@ -14,7 +14,10 @@ const template = Object.keys(inputProps).length
       fps: 30,
       duration: 6,
       comps: [],
-      background: "#fff",
+      background: {
+        type: "basic",
+        color: "#FFFFFFFF",
+      },
     } as TemplateType);
 
 export const Root: React.FC = () => {
@@ -52,7 +55,10 @@ export const Root: React.FC = () => {
               height={template.height}
               defaultProps={{
                 comps: [compProps],
-                background: "white",
+                background: {
+                  type: "basic",
+                  color: "#FFFFFFFF",
+                },
                 isSequence: template.isSequence,
               }}
             />

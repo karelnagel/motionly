@@ -1,52 +1,52 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import logo from "../public/motionly.png";
+import logoGif from "../public/motionly.gif";
+import { Button } from "./Button";
 
-export const Navbar = ({
-  items,
-}: {
-  items: { name: string; route: string }[];
-}) => {
+const items = [
+  { name: "Docs", route: "/docs" },
+  { name: "Blog", route: "/blog" },
+  { name: "About", route: "/about" },
+];
+
+export const Navbar = () => {
   const router = useRouter();
   return (
-    <div>
-      <div className="flex p-2 md:p-3 justify-between items-center font-sans max-w-screen-xl mx-auto">
-        <Link href="/">
+    <div className="relative z-20 w-full">
+      <div className="max-w-screen-xl mx-auto px-2 grid grid-cols-3 md:grid-cols-5 items-center">
+        <Link href="/" className=" w-60 col-span-2 hidden md:block">
+          <Image src={logo} alt="logo" className="w-60" />
+        </Link>
+        <Link href="/" className="flex justify-start md:justify-center">
           <Image
-            src="/motionly.jpg"
-            width={250}
-            height={30}
+            src={logoGif}
             alt="logo"
-            className="hidden md:block"
-          />
-          <Image
-            src="/logo.png"
-            width={50}
-            height={50}
-            alt="logo"
-            className="md:hidden"
+            className="w-16 md:w-20 object-contain "
           />
         </Link>
-        <div className="flex space-x-2 md:space-x-4">
-          {items.map((item) => (
-            <Link
-              href={item.route}
-              key={item.route}
-              className={`capitalize font-medium text-lg md:text-xl block hover:scale-105 duration-200 ${
-                router.pathname.includes(item.route)
-                  ? "text-primary"
-                  : "hover:text-primary "
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
+        <div className="flex items-center space-x-6 col-span-2 w-full justify-end">
+          <div className=" space-x-5 hidden md:flex">
+            {items.map((item) => (
+              <Link
+                href={item.route}
+                key={item.route}
+                className={` font-light text-[20px] md:text-xl hover:scale-105 duration-200 ${
+                  router.pathname.includes(item.route)
+                    ? "text-primary"
+                    : "hover:text-primary"
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+          <Link href="/#contact">
+          <Button text="CONTACT US" className="text-[17px] font-semibold p-1 pl-4"/>
+          </Link>
         </div>
       </div>
-      <div
-        className="bg-gradient-to-l from-secondary to-primary w-full"
-        style={{ height: "2px" }}
-      />
     </div>
   );
 };

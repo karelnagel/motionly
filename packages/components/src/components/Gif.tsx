@@ -1,6 +1,7 @@
 import { Gif as RemotionGif, GifFillMode } from "@remotion/gif";
-import { StyleAndClass } from "@asius/base";
-import { GifProps } from "@asius/base";
+import { StyleAndClass } from "@motionly/base";
+import { GifProps } from "@motionly/base";
+import { getSrc } from "../helpers";
 
 export const defaultGifProps: GifProps = {
   comp: "gif",
@@ -12,7 +13,7 @@ export const Gif = ({ src, objectFit, style }: GifProps & StyleAndClass) => {
   if (!src) return null;
   return (
     <RemotionGif
-      src={src}
+      src={getSrc(src)}
       fit={objectFit as GifFillMode}
       style={{
         height: "100%",

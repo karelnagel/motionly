@@ -1,10 +1,10 @@
-import { TemplateType } from "@asius/base";
 import axios from "axios";
+import { Template } from "../../types";
 
 export interface GetTemplateInput {
   id: string;
 }
-export type GetTemplateOutput = TemplateType;
+export type GetTemplateOutput = Template;
 
 export const getTemplate = async ({
   id,

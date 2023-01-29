@@ -1,6 +1,5 @@
 import React from "react";
 import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
-import { Logo } from "./components/Logo";
 import { useRouter } from "next/router";
 import useNextSeoProps from "./hooks/useNextSeoProps";
 import { Navbar } from "./components/Navbar";
@@ -8,7 +7,7 @@ import { Footer } from "./components/Footer";
 
 const config: DocsThemeConfig = {
   gitTimestamp: false,
-  primaryHue: 313,
+  primaryHue: 321,
   footer: {
     component: () => <Footer />,
   },
@@ -18,23 +17,25 @@ const config: DocsThemeConfig = {
   toc: {
     component: null,
   },
+  //fdsfsdfsd
   navigation: false,
   darkMode: false,
   nextThemes: { forcedTheme: "dark", defaultTheme: "dark" },
   navbar: {
-    component: ({ items }) => <Navbar items={items} />,
+    component: () => <Navbar />,
   },
   useNextSeoProps,
   head: () => {
     const { asPath } = useRouter();
     const { frontMatter, title: configTitle } = useConfig();
     const basePath = process.env.NEXT_PUBLIC_URL;
-    const title = frontMatter.title || configTitle || "Asius";
+    const title = frontMatter.title || configTitle || "Motionly";
     return (
       <>
-        <link rel="icon" type="image/x-icon" href="/favicondark.png"></link>
+        <link rel="icon" type="image/x-icon" href="/logo.png"></link>
         <meta property="og:url" content={`${basePath}${asPath}`} />
         <meta property="og:title" content={title} />
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
         <meta
           property="og:description"
           content={frontMatter.description || "Automate your content"}
