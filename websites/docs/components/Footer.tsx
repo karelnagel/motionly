@@ -1,58 +1,112 @@
 import Image from "next/image";
-import {FaDiscord} from "react-icons/fa";
-import {AiOutlineLinkedin} from "react-icons/ai";
-import {CgMail} from "react-icons/cg";
-import {BsFacebook, BsTwitter, BsInstagram} from "react-icons/bs";
+import { FaDiscord } from "react-icons/fa";
+import { AiOutlineLinkedin } from "react-icons/ai";
+import { CgMail } from "react-icons/cg";
+import { BsFacebook, BsTwitter, BsInstagram } from "react-icons/bs";
 import { useRouter } from "next/router";
-const socialsButtons = [
-  /*
+import Link from "next/link";
+const navLinks = [
   {
-    icon: <BsFacebook/>,
-    link: "https://www.facebook.com/motionlyvideo",
+    title: "Product",
+    items: [{
+      name: "Demo",
+      href: "/",
+    },
+    {
+      name: "Examples",
+      href: "/features",
+    },
+    {
+      name: "Pricing",
+      href: "/pricing",
+    },
+    {
+      name: "About",
+      href: "/about",
+    }
+    ],
   },
   {
-    icon: <BsTwitter/>,
-    link: "https://twitter.com/motionlyvideo",
+    title: "Legal",
+    items: [
+      {
+        name: "Privacy Policy",
+        href: "/privacy",
+      },
+      {
+        name: "Terms and Conditions",
+        href: "/terms",
+      },
+      {
+        name: "Cookie Policy",
+        href: "/cookies",
+      },
+      {
+        name: "Refund Policy",
+        href: "/refundpolicy",
+      }]
   },
   {
-    icon: <BsInstagram/>,
-    link: "https://www.instagram.com/motionlyvideo/",
+    title: "Help",
+    items: [
+      {
+        name: "FAQ",
+        href: "/#faq",
+      },
+      {
+        name: "Blog",
+        href: "/blog",
+      },
+      {
+        name: "Docs",
+        href: "/docs",
+      }]
   },
-  */
   {
-    icon: <CgMail size={30}/>,
-    link: "mailto:info@motionly.video",
+    title: "Follow us",
+    items: [
+      {
+        name: "Linkedin",
+        href: "https://www.linkedin.com/company/motionlyvideo/",
+      },
+      {
+        name: "Discord",
+        href: "https://discord.gg/6Z2Z5Z7",
+      }/*
+      {
+        name: "Instagram",
+        href: "",
+      },
+      {
+        name: "Facebook",
+        href: "",
+      }
+      */
+    ]
   },
-  {
-    icon: <AiOutlineLinkedin size={30}/>,
-    link: "https://www.linkedin.com/company/motionlyvideo/",
-  },
-  {
-    icon: <FaDiscord size={30}/>,
-    link: "https://discord.gg/6Z2Z5Z7",
-  },
-];
+]
 export const Footer = () => {
-  const router= useRouter();
+  const router = useRouter();
   return (
-    <div className="bg-base-300 flex flex-col items-center p-3 py-6 space-y-5">
-      <Image src="/motionly.png" width={300} height={300} alt="logo" />
-      <h1 className="title text-2xl font-medium leading-[1.3]">Follow along</h1>
-      <div className="flex display-flex space-x-3 md:space-x-3 md:text-2xl font-bold">
 
-        {socialsButtons.map((social, i) => (
-          <a
-            key={i}
-            href={social.link} target="_blank" rel="noreferrer"  >
-            <button             
-            className="text-xl rounded-full p-2 px-2 opacity-70 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 
-            transform transition duration-300 ease-in-out hover:opacity-100 hover:scale-125 hover:shadow-lg">
-            {social.icon}
-            </button>
-          </a>
-        ))}
+    <div className="relative w-full pt-4 pb-12">
+      <div className="max-w-screen-xl grid gap-2 grid-cols-2 md:grid-cols-6 space-y-12 md:space-y-6 text-center md:text-left">
+        <div className="col-span-2 flex flex-col items-center text-center max-w-xd  md:max-w-md space-y-3">
+          <Image src="/motionly.gif" width={150} height={150} alt="logo" />
+          <a className="text-[#8f8f8f]  font-normal"
+            href="mailto:info@motionly.video">info@motionly.video</a>
+          <p className="col-span-2 font-normal text-xl text-[#8f8f8f]">© 2023 Motionly. All rights reserved.</p>
         </div>
-        <p className="opacity-30">© 2023 Motionly</p>
+        {navLinks.map((nav, i) => (
+          <div key={i} className="flex flex-col space-y-8 md:space">
+            <h1 className=" text-[25px] font-medium">{nav.title}</h1>
+            <div className="flex flex-col space-y-2">
+              {nav.items.map((item, i) => (
+                <Link key={i} className="text-[#8f8f8f] text-[20px] font-medium hover:scale-105 duration-200" href={item.href} > {item.name}</Link>
+              ))}
+            </div>
+          </div>))}
+      </div>
     </div>
   );
 };

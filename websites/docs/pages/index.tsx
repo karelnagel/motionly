@@ -14,7 +14,7 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const Home = () => {
   return (
-    <div className="bg-base-100 text-base-content w-full">
+    <div className="bg-base-100 text-base-content w-full overflow-hidden">
       <Head>
         <link rel="icon" type="image/x-icon" href="/logo.png"></link>
         <meta property="og:url" content={`https://motionly.video/`} />
@@ -25,7 +25,7 @@ export const Home = () => {
         <meta property="og:image" content={"/logowbg.png"} />
       </Head>
       <Navbar />
-      <div className="max-w-[1200px] px-2 mx-auto" style={montserrat.style}>
+      <div className="max-w-[1200px] px-2 mx-auto text-center md:text-left" style={montserrat.style}>
         <Hero />
         <Divider />
         <Mission />
@@ -37,6 +37,7 @@ export const Home = () => {
         <FAQ />
         <Divider />
         <Help />
+        <Divider />
         <Footer />
       </div>
     </div>

@@ -61,7 +61,7 @@ const Question = ({ question, answer }: (typeof questions)[0]) => {
 
 export const FAQ = () => {
   return (
-    <div className="relative space-y-6 ">
+    <div id="faq" className="relative space-y-6 ">
       <p className="text-[50px] md:text-[75px] font-semibold leading-none title">
         We’ve got you
         <br /> covered!
