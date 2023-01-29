@@ -31,13 +31,15 @@ export const GraphTypes = {
   pie: "Pie",
 };
 export const MockupTypes = {
-  iPhone: "iPhone",
+  iphone: "iPhone",
   samsung: "Samsung",
-  chrome: "Chrome",
   macbook: "Macbook",
-  iPad: "iPad",
-  "apple-watch": "Apple Watch",
-  "vs-code": "VS Code",
+  macbook2: "Macbook 2",
+  ipad: "iPad",
+  watch: "Apple Watch",
+  monitor: "Monitor",
+  iphone14:"iPhone 14",
+
 };
 export const ProgressbarTypes = {
   spotify: "Spotify",
