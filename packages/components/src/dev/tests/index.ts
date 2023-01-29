@@ -269,7 +269,7 @@ export const test: TemplateType = {
     {
       comp: "mockup",
       id: "mockup",
-      type: "iPhone",
+      type: "iphone",
       duration,
       loopDuration: 0.6,
       bg: linearColor,
