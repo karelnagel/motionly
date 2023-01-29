@@ -6,9 +6,9 @@ import { Bubble } from "../Bubble";
 
 export const Hero = () => {
   return (
-    <div className="relative flex items-center justify-between px-4 flex-col md:flex-row">
-      <div className="flex flex-col space-y-6 items-start max-w-lg my-32">
-        <h1 className="title font-semibold uppercase leading-[1] text-[85px] tracking-wide">
+    <div className="relative flex items-center justify-between px-4 flex-col-reverse md:flex-row my-10 md:my-32">
+      <div className="flex flex-col space-y-6 items-start max-w-lg">
+        <h1 className="title font-semibold uppercase leading-[1] text-[50px] md:text-[85px] tracking-wide">
           Automate your content
         </h1>
         <p className="text-[22px] leading-[30px] font-light">
@@ -24,7 +24,7 @@ export const Hero = () => {
         </Link>
       </div>
       <div>
-        <div className="relative w-[95%]">
+        <div className="relative w-[95%] mb-10 md:mb-0">
           <Bubble width={65} top={32} left={6} />
           <Bubble width={6} top={99} left={65} />
           <Bubble width={12} top={84} left={83} />
@@ -45,7 +45,7 @@ export const Hero = () => {
             muted
           />
 
-          <Image src={laptop} alt="laptop" className="mt-20 relative" />
+          <Image src={laptop} alt="laptop" className="relative" />
         </div>
       </div>
     </div>

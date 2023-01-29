@@ -44,10 +44,10 @@ export const Examples = () => {
   return (
     <div className="space-y-10">
       <div className="max-w-[690px] space-y-6 md:ml-auto ">
-        <h2 className="text-[75px] font-semibold leading-none title">
+        <h2 className="text-[50px] md:text-[75px] font-semibold leading-none title">
           Video templates for every purpose
         </h2>
-        <p className="text-[22px] leading-[30px]">
+        <p className="text-[18px] md:text-[22px] leading-[30px]">
           Start with a flexible template, then customize to fit your style and
           professional needs with our website builder.
         </p>

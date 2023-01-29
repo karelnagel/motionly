@@ -6,7 +6,7 @@ import { Arrows } from "../Arrows";
 export const Mission = () => {
   return (
     <div className="flex justify-between items-center md:items-start flex-col-reverse md:flex-row">
-      <div className="relative">
+      <div className="relative w-[60%] md:w-auto">
         <Bubble width={99} top={28} left={-8} />
         <Bubble width={20} top={19} left={-10} />
         <Bubble width={35} top={4} left={65} />
@@ -35,10 +35,10 @@ export const Mission = () => {
         <Image src={phone} alt="phone" className="relative" />
       </div>
       <div className="max-w-xl flex flex-col space-y-8">
-        <h2 className="font-semibold text-[85px] leading-none title">
+        <h2 className="font-semibold text-[50px] md:text-[85px] leading-none title">
           Your goals, our services
         </h2>
-        <p className="font-light text-[30px] leading-none">
+        <p className="font-light text-[22px] md:text-[30px] leading-none">
           Our mission is to transform how businesses of all sizes communicate
           their message through dynamic, data-driven videos that can be easily
           modified to fit any marketing strategy or campaign and much more.
