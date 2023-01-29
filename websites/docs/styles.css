@@ -12,13 +12,18 @@
   @apply hover:bg-gradient-to-tr hover:text-white bg-gray-500 bg-opacity-10 rounded-3xl flex items-center p-3  hover:to-primary hover:from-secondary hover:scale-105 duration-300 cursor-pointer;
 }
 
-html{
+html {
   scroll-behavior: smooth;
-
 }
 html[class~="dark"] body {
   @apply !bg-base-100 !text-base-content;
   /* background-color: #111021 !important; */
 }
 
+.btn {
+  @apply rounded-full normal-case;
+}
 
+.btn-gradient {
+  @apply bg-gradient-to-r from-primary to-secondary text-base-content border-none;
+}

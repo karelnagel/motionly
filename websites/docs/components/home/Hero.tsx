@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
+import laptop from "../../public/laptop.png";
+import { Bubble } from "../Bubble";
+
 const examples = [
   {
     title: "Podcast",
@@ -25,63 +28,49 @@ const examples = [
 ];
 export const Hero = () => {
   return (
-    <div className="relative overflow-hidden ">
-      <Image
-        className=" absolute bottom-0 object-cover "
-        alt=""
-        src={"/figma-bg.png"}
-        layout="fill"
-      ></Image>
-      <div id="laptop" className=" relative pt-24 px-6 max-h-screen max-w-screen-xl m-auto">
-        <div className=" absolute hidden lg:flex  -right-[400px] top-[140px] w-[1300px] h-[800px]
-        animate-slide-from-right-1800">
+    <div className="relative flex items-center justify-between px-4">
+      <div className="flex flex-col space-y-6 items-start max-w-lg my-52">
+        <h1 className="title font-semibold uppercase leading-[1] text-[85px] ">
+          Automate your content
+        </h1>
+        <p className="text-[22px] leading-[30px] font-light">
+          Automate your video editing and integrate
+          <br /> videos with dynamic data on your site.
+        </p>
+        <Link
+          href="#contact"
+          className="btn btn-gradient text-[24px] font-semibold leading-[30px] flex items-center space-x-3"
+        >
+          Get started
+          <IoIosArrowForward className="text-3xl" />
+        </Link>
+      </div>
+      <div>
+        <div className="relative">
+          <Bubble height={76} top={32} left={6} />
+          <Bubble height={8} top={99} left={65} />
+          <Bubble height={14} top={84} left={83} />
+          <Bubble height={13} top={-10} left={65} />
+          <Bubble height={33} top={-8} left={80} />
+          {/* <Bubble height={70} bottom className="h-[424px] -bottom-3 -left-4 " />
+          <Bubble className="h-[43px] -bottom-10 right-40 " />
+          <Bubble className="h-[76px] -bottom-0 right-10 " />
+          <Bubble className="h-[189px] -top-8 -right-5 " />
+          <Bubble className="h-[189px] -top-8 -right-5 " />
+          <Bubble className="h-[70px] -top-10 right-48 " /> */}
           <video
-            height={832}
-            width={1280}
-            src="/examples/podcasts.webm"
-            muted
-            autoPlay
-            loop
-            className="absolute h-[47.2%] w-[46.3%] left-[25.5%] top-[24.8%] object-fill rounded-md "
-          ></video>
-          <Image
-            src={"/laptopreal.png"}
-            alt=""
-            height={832}
-            width={1280}
-            className=" object-cover  "
-          >
-          </Image>
-        </div>
-        <div className=" flex justify-between m-auto   max-w-screen-xl min-h-screen md:text-left pt-10 pb-3 md:pt-32 space-y-4">
-          <div className="flex  flex-col max-w-xl min-h-fill   ">
-            <div className="relative max-w-lg space-y-4 flex flex-col ">
-              <h1 className="title text-[50px] md:text-[85px] font-semibold leading-[1.1]
-              animate-slide-from-left-300">
-                AUTOMATE
-              </h1>
-              <h1 className="title text-[50px] md:text-[85px] font-semibold leading-[1.1]
-              animate-slide-from-left-400 ">
-                YOUR
-              </h1>
-              <h1 className="title text-[50px] md:text-[85px] font-semibold leading-[1.1]
-              animate-slide-from-left-600">
-                Content
-              </h1>
-              <p className=" text-[16px] md:text-[22px] leading-[1.6] font-normal text-left 
-              animate-slide-from-left-2400">
-                Automate your video editing and integrate videos with dynamic data on your site.
-              </p>
-            </div>
-            <div className="flex space-x-5 md:space-x-10 pt-12 text-xl md:text-2xl font-medium
-            animate-slide-from-left-2000">
-              <a href="#Contact" className=" animate-pulse rounded-full p-4 px-4 text-gray-300 bg-gradient-to-l from-secondary to-primary transition transform hover:!opacity-100 hover:scale-110 duration-500 "
-              >
-                Get started
-                <IoIosArrowForward className="inline text-4xl pb-0" />
-              </a>
-            </div>
-          </div>
+            style={{
+              transform: "perspective(1000px) rotateY(-13deg) rotateX(10deg)",
+              height: "60%",
+              width: "78%",
+              top: "10%",
+              left: "18%",
+            }}
+            className="absolute object-cover rounded-lg"
+            src="/examples/tweets.webm"
+          />
+
+          <Image src={laptop} alt="laptop" className="mt-20 relative" />
         </div>
       </div>
     </div>
