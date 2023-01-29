@@ -7,12 +7,9 @@ export const tweets: TemplateType = {
   width: 854,
   comps: [
     {
-      comp: "video",
+      comp: "image",
       objectFit: "cover",
-      startFrom: 0,
-      src: "https://motionly-media.s3.amazonaws.com/clcl1mck50000mf0816lo9n01/Ocean - 74888.mp4",
-      muted: false,
-      volume: 100,
+      src: "https://picsum.photos/seed/sadfdasasd/1920/1080",
       id: "ysf426y",
       x: 0,
       y: 0,
@@ -32,13 +29,9 @@ export const tweets: TemplateType = {
         {
           comp: "text",
           textStyle: {
-            bg: {
-              type: "basic",
-              color: "#FFFFFFFF",
-            },
             color: {
               type: "basic",
-              color: "#FFFFFFFF",
+              color: "#000",
             },
             fontSize: 22,
             fontFamily: "Arial",
@@ -60,7 +53,7 @@ export const tweets: TemplateType = {
         {
           comp: "image",
           objectFit: "cover",
-          src: "https://motionly-media.s3.amazonaws.com/clcl1mck50000mf0816lo9n01/qRxbC9Xq_400x400.jpg",
+          src: "https://picsum.photos/seed/sadfsd/1920/1080",
           id: "tk68tmq",
           x: 22.140776099999993,
           y: 16.35842010000001,
@@ -75,13 +68,9 @@ export const tweets: TemplateType = {
         {
           comp: "text",
           textStyle: {
-            bg: {
-              type: "basic",
-              color: "#FFFFFFFF",
-            },
             color: {
               type: "basic",
-              color: "#FFFFFFFF",
+              color: "#000",
             },
             fontSize: 22,
             fontFamily: "Arial",
@@ -103,13 +92,9 @@ export const tweets: TemplateType = {
         {
           comp: "text",
           textStyle: {
-            bg: {
-              type: "basic",
-              color: "#FFFFFFFF",
-            },
             color: {
               type: "basic",
-              color: "#FFFFFFFF",
+              color: "#000",
             },
             fontSize: 30,
             fontFamily: "Arial",

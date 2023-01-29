@@ -12,7 +12,7 @@ export const podcasts: TemplateType = {
   comps: [
     {
       comp: "audio",
-      src: videoUrl,
+      src: "https://remotionlambda-24lixyhuqn.s3.us-east-1.amazonaws.com/video.mp4",
       id: "audio",
     },
     {
@@ -1248,7 +1248,7 @@ export const podcasts: TemplateType = {
       animationStyle: {
         color: {
           type: "basic",
-          color: "#FFFFFFFF",
+          color: "#ff0000FF",
         },
       },
       textStyle: {
@@ -1256,7 +1256,7 @@ export const podcasts: TemplateType = {
         fontFamily: "Inter",
         color: {
           type: "basic",
-          color: "#FFFFFFFF",
+          color: "#000000FF",
         },
         fontWeight: 800,
         lineHeight: 1.3,
@@ -1289,7 +1289,7 @@ export const podcasts: TemplateType = {
       width: 540,
       color: {
         type: "basic",
-        color: "#FFFFFFFF",
+        color: "#ff0000FF",
       },
     },
     {
@@ -1340,12 +1340,12 @@ export const podcasts: TemplateType = {
           id: "dsa",
           bg: {
             type: "basic",
-            color: "#000000FF",
+            color: "#0000004D",
           },
           comps: [
             {
               comp: "text",
-              id: "text",
+              id: "text2",
               x: 15,
               y: 320,
               width: 200,
@@ -1392,12 +1392,14 @@ export const podcasts: TemplateType = {
               },
               bg: {
                 type: "basic",
-                color: "#FFFFFFFF",
+                color: "#FFFFFF80",
               },
             },
           ],
         },
       ],
+      width: 248,
+      height: 480,
     },
   ],
 };

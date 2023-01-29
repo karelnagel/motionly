@@ -9,7 +9,7 @@ export const yir: TemplateType = {
     {
       comp: "image",
       objectFit: "cover",
-      src: "https://picsum.photos/seed/hdssddssgdsdsd/1920/1080",
+      src: "https://picsum.photos/seed/hdsddsd/1920/1080",
       id: "qs0uxd",
       x: 0,
       y: 0,
@@ -38,7 +38,7 @@ export const yir: TemplateType = {
         {
           comp: "image",
           objectFit: "cover",
-          src: "https://motionly-media.s3.amazonaws.com/clcl1mck50000mf0816lo9n01/qRxbC9Xq_400x400.jpg",
+          src: "https://picsum.photos/seed/sadfsfdd/1920/1080",
           id: "4e5o7ef",
           x: 92.07682750000029,
           y: 153.45257609999996,
@@ -76,13 +76,9 @@ export const yir: TemplateType = {
         {
           comp: "text",
           textStyle: {
-            bg: {
-              type: "basic",
-              color: "#FFFFFFFF",
-            },
             color:{
               type: "basic",
-              color: "#FFFFFFFF",
+              color: "#000",
             },
             fontSize: 70,
             fontFamily: "Arial",
@@ -127,13 +123,9 @@ export const yir: TemplateType = {
         {
           comp: "text",
           textStyle: {
-            bg: {
-              type: "basic",
-              color: "#FFFFFFFF",
-            },
             color: {
               type: "basic",
-              color: "#FFFFFFFF",
+              color: "#000",
             },
             fontSize: 50,
             fontFamily: "Arial",
@@ -186,17 +178,13 @@ export const yir: TemplateType = {
     },
     {
       comp: "div",
-      bg: {
-        type: "basic",
-        color: "#FFFFFFFF",
-      },
       comps: [
         {
           comp: "text",
           textStyle: {
             color: {
               type: "basic",
-              color: "#FFFFFFFF",
+              color: "#000",
             },
             fontSize: 60,
             fontFamily: "Arial",
@@ -236,7 +224,7 @@ export const yir: TemplateType = {
           ],
           color: {
             type: "basic",
-            color: "#FFFFFFFF",
+            color: "#000",
           },
           gap: 3,
           roundness: 10,
@@ -268,7 +256,7 @@ export const yir: TemplateType = {
       textStyle: {
         bg: {
           type: "basic",
-          color: "#FFFFFFFF",
+          color: "#f00",
         },
         color: {
           type: "basic",
