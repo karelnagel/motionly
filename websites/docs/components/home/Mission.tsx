@@ -7,9 +7,9 @@ export const Mission = () => {
   return (
     <div className="flex justify-between items-center md:items-start flex-col-reverse md:flex-row">
       <div className="relative">
-        <Bubble height={60} top={28} left={-8} />
-        <Bubble height={10} top={19} left={-10} />
-        <Bubble height={20} top={4} left={65} />
+        <Bubble width={99} top={28} left={-8} />
+        <Bubble width={20} top={19} left={-10} />
+        <Bubble width={35} top={4} left={65} />
         <div
           className="absolute h-full w-full"
           style={{

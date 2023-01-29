@@ -25,11 +25,11 @@ export const Hero = () => {
       </div>
       <div>
         <div className="relative w-[95%]">
-          <Bubble height={76} top={32} left={6} />
-          <Bubble height={8} top={99} left={65} />
-          <Bubble height={14} top={84} left={83} />
-          <Bubble height={13} top={-10} left={65} />
-          <Bubble height={33} top={-8} left={80} />
+          <Bubble width={65} top={32} left={6} />
+          <Bubble width={6} top={99} left={65} />
+          <Bubble width={12} top={84} left={83} />
+          <Bubble width={10} top={-10} left={65} />
+          <Bubble width={25} top={-8} left={80} />
           <video
             style={{
               transform: "perspective(1000px) rotateY(-13deg) rotateX(10deg)",

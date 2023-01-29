@@ -60,7 +60,7 @@ const Question = ({ question, answer }: (typeof questions)[0]) => {
 };
 export const FAQ = () => {
   return (
-    <div className="relative space-y-6">
+    <div className="relative space-y-6 ">
       <p className="text-[75px] font-semibold leading-none title">
         We’ve got you
         <br /> covered!
@@ -73,15 +73,15 @@ export const FAQ = () => {
           </p>
           <Arrows />
         </div>
-        <div className="w-full">
+        <div className="w-full z-20">
           {questions.map((q, i) => (
             <Question key={i} {...q} />
           ))}
         </div>
       </div>
-      <Bubble height={40} left={-10} top={85} />
-      <Bubble height={10} left={8} top={114} />
-      <Bubble height={18} left={8} top={80} />
+      <Bubble width={20} left={-10} top={85} />
+      <Bubble width={4} left={8} top={114} />
+      <Bubble width={8} left={8} top={80} />
     </div>
   );
 };
