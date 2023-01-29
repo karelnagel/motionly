@@ -3,7 +3,7 @@ import { ComponentProps, TemplateType } from "@motionly/base";
 const mockup = (i: number): ComponentProps => ({
   comp: "mockup",
   id: "mockup" + i,
-  type: "iPhone",
+  type: "iphone",
   x: 600 - i * 275,
   y: 50,
   width: 300,

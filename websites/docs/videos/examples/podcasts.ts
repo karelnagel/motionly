@@ -1295,7 +1295,7 @@ export const podcasts: TemplateType = {
     {
       comp: "mockup",
       id: "sd",
-      type: "iPhone",
+      type: "iphone",
       bg: {
         type: "linear",
         gradients: [
