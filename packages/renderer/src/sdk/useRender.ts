@@ -1,11 +1,12 @@
-import { ProgressStatus } from "@motionly/base";
+import { ProgressStatus, TemplateType } from "@motionly/base";
 import { useEffect, useState } from "react";
-import { renderStill, RenderStillInput } from "./endpoints/still";
+import { renderStill } from "./endpoints/still";
 import { getProgress as getProgressSdk } from "./endpoints/progress";
 import { renderMedia } from "./endpoints/media";
 
 export const useRender = (
-  videoInput: RenderStillInput,
+  videoInput: TemplateType,
+  frame: number = 0,
   refreshInterval = 1000
 ) => {
   const [renderId, setRenderId] = useState("");
@@ -45,7 +46,7 @@ export const useRender = (
   };
   const still = async () => {
     init();
-    const result = await renderStill(videoInput);
+    const result = await renderStill({ ...videoInput, frame });
     if (!result) return setStatus("error");
 
     setCost(result.cost);
