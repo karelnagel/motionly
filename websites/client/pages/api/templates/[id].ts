@@ -50,6 +50,7 @@ export const getTemplate = async (
     duration,
     name,
     description,
+    inputs,
     comps,
     fps,
     background,
@@ -58,6 +59,7 @@ export const getTemplate = async (
   const isOwner = session?.user?.email === template.user.email;
   return {
     comps: JSON.parse(comps),
+    inputs: inputs ? JSON.parse(inputs) : undefined,
     width,
     height,
     name,
@@ -86,7 +88,7 @@ const updateTemplate = async (
     preview = undefined;
   }
   try {
-    const { comps, ...result } = await prisma.template.update({
+    const { comps, inputs, ...result } = await prisma.template.update({
       where: { id },
       data: {
         comps: JSON.stringify(template.comps),
@@ -95,6 +97,7 @@ const updateTemplate = async (
         name: template.name,
         public: template.public,
         description: template.description,
+        inputs: template.inputs ? JSON.stringify(template.inputs) : undefined,
         background: template.background
           ? JSON.stringify(template.background)
           : undefined,
@@ -108,6 +111,7 @@ const updateTemplate = async (
 
     return {
       comps: JSON.parse(comps),
+      inputs: inputs ? JSON.parse(inputs) : undefined,
       duration: result.duration,
       fps: result.fps,
       isOwner,
@@ -129,12 +133,15 @@ const updateTemplate = async (
 const deleteTemplate = async ({
   id,
 }: DeleteTemplateInput): Promise<DeleteTemplateOutput | null> => {
-  const { comps, ...result } = await prisma.template.delete({ where: { id } });
+  const { comps, inputs, ...result } = await prisma.template.delete({
+    where: { id },
+  });
 
   return {
     ...result,
     comps: JSON.parse(comps),
     background: result.background ? JSON.parse(result.background) : undefined,
     preview: result.preview || undefined,
+    inputs: inputs ? JSON.parse(inputs) : undefined,
   };
 };

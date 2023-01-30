@@ -1,32 +1,25 @@
-import { QRCodeProps } from "@motionly/base";
-import { ColorInput, TextInput } from "../../../../../../components/inputs";
+import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
 import { EditSection } from "./EditSection";
-import { SetComp } from "./index";
 
-export const EditQRCode = ({
-  comp,
-  setComp,
-}: {
-  comp: QRCodeProps;
-  setComp: SetComp;
-}) => {
+const input: UserInput[] = [
+  {
+    prop: "text",
+    type: "text",
+  },
+  {
+    prop: "color",
+    type: "color",
+  },
+  {
+    prop: "bg",
+    type: "color",
+  },
+];
+
+export const EditQRCode = () => {
   return (
     <EditSection title="QR Code">
-      <TextInput
-        label="Text"
-        value={comp.text}
-        onChange={(text) => setComp({ ...comp, text })}
-      />
-      <ColorInput
-        label="Color"
-        value={comp.color}
-        onChange={(color) => setComp({ ...comp, color })}
-      />
-      <ColorInput
-        label="Background"
-        value={comp.bg}
-        onChange={(bg) => setComp({ ...comp, bg })}
-      />
+      <Inputs inputs={input} />
     </EditSection>
   );
 };

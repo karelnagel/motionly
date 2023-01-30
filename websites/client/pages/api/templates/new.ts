@@ -33,6 +33,7 @@ const postNewTemplate = async (
       height: input.height,
       duration: input.duration,
       fps: input.fps,
+      inputs: input.inputs ? JSON.stringify(input.inputs) : undefined,
       name: input.name + " (Copy)",
       description: input.description,
       background:
@@ -49,5 +50,6 @@ const postNewTemplate = async (
     comps: JSON.parse(result.comps),
     background: result.background ? JSON.parse(result.background) : undefined,
     preview: result.preview || undefined,
+    inputs: result.inputs ? JSON.parse(result.inputs) : undefined,
   };
 };

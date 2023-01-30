@@ -280,12 +280,10 @@ export const GradientInput = ({
 };
 
 export function ColorInput<T extends BaseColor | Color>({
-  label,
   value,
   onChange,
   gradients,
 }: {
-  label: string;
   value?: T;
   onChange: (value?: T) => void;
   gradients?: boolean;
@@ -293,19 +291,16 @@ export function ColorInput<T extends BaseColor | Color>({
   const [show, setShow] = useState(true);
   return (
     <div className="col-span-2 mt-2">
-      <div className="flex justify-between items-center space-x-2">
-        <p className="label label-text w-full">{label}</p>
-        <Select
-          type={value?.type}
-          onChange={(type) =>
-            onChange(type ? ({ ...value, type } as T) : undefined)
-          }
-          hasGradients={gradients}
-        />
-        {value && value.type !== "basic" && (
-          <ShowHide show={show} setShow={setShow} />
-        )}
-      </div>
+      <Select
+        type={value?.type}
+        onChange={(type) =>
+          onChange(type ? ({ ...value, type } as T) : undefined)
+        }
+        hasGradients={gradients}
+      />
+      {value && value.type !== "basic" && (
+        <ShowHide show={show} setShow={setShow} />
+      )}
       {value?.type === "basic" && (
         <OneColorInput
           value={value.color}

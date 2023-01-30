@@ -1,4 +1,4 @@
-import { ComponentProps } from "../types";
+import { ComponentProps, TemplateType } from "../types";
 
 export const videoUrl =
   "https://remotionlambda-24lixyhuqn.s3.us-east-1.amazonaws.com/video.mp4";
@@ -35,3 +35,21 @@ export const getFonts = (comps: ComponentProps[]) => {
     .match(/fontFamily":"(.*?)"/g)
     ?.map((font) => font.replace(/fontFamily":"(.*?)"/g, "$1"));
 };
+
+export function applyInputs<T extends TemplateType>(template: T) {
+  const newTemplate = { ...template };
+  if (!newTemplate.inputs) return newTemplate;
+  for (const input of newTemplate.inputs) {
+    if (!input.properties) continue;
+    for (const prop of input.properties) {
+      if (!prop.id || prop.id === "template") {
+        (newTemplate as any)[prop.prop] = input.value;
+      } else if (prop.id) {
+        const comp = newTemplate.comps.find((comp) => comp.id === prop.id);
+        if (comp) (comp as any)[prop.prop] = input.value;
+        // Todo make recursive
+      }
+    }
+  }
+  return newTemplate;
+}

@@ -1,71 +1,40 @@
-import { ProgressbarProps, ProgressbarTypes } from "@motionly/base";
-import {
-  BooleanInput,
-  ColorInput,
-  NumberInput,
-  SelectInput,
-} from "../../../../../../components/inputs";
+import { ProgressbarTypes } from "@motionly/base";
+import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
 import { EditSection } from "./EditSection";
-import { SetComp } from "./index";
 
-export const EditProgressbar = ({
-  comp,
-  setComp,
-}: {
-  comp: ProgressbarProps;
-  setComp: SetComp;
-}) => {
+const inputs: UserInput[] = [
+  {
+    prop: "color",
+    type: "color",
+  },
+  {
+    prop: "bg",
+    type: "color",
+  },
+  {
+    prop: "type",
+    type: "select",
+    options: Object.entries(ProgressbarTypes).map(([value, label]) => ({
+      value,
+      label,
+    })),
+  },
+  {
+    prop: "barWidth",
+    type: "number",
+    if: (comp) => comp.type === "square" || comp.type === "circle",
+  },
+  {
+    prop: "topRight",
+    type: "checkbox",
+    if: (comp) => comp.type === "square",
+  },
+];
+
+export const EditProgressbar = () => {
   return (
     <EditSection title="Progressbar">
-      <ColorInput
-        label="Color"
-        gradients
-        value={comp.color}
-        onChange={(color) => setComp({ ...comp, color })}
-      />
-      <ColorInput
-        gradients
-        label="Background"
-        value={comp.bg}
-        onChange={(bg) => setComp({ ...comp, bg })}
-      />
-      <SelectInput
-        label="Type"
-        value={comp.type}
-        onChange={(type) =>
-          setComp({
-            ...comp,
-            type: type as keyof typeof ProgressbarTypes,
-          })
-        }
-        options={Object.entries(ProgressbarTypes).map(([value, label]) => ({
-          value,
-          label,
-        }))}
-      />
-      {comp.type === "square" && (
-        <>
-          <NumberInput
-            label="Bar Width (px)"
-            value={comp.barWidth}
-            onChange={(barWidth) => setComp({ ...comp, barWidth })}
-          />
-          <BooleanInput
-            label="Top right corner"
-            value={comp.topRight}
-            onChange={(topRight) => setComp({ ...comp, topRight })}
-          />
-        </>
-      )}
-      {comp.type === "circle" && (
-        <>
-          <NumberInput
-            label="Bar Width (px)"
-            value={comp.barWidth}
-            onChange={(barWidth) => setComp({ ...comp, barWidth })}
-          />
-        </>
-      )}
+      <Inputs inputs={inputs} />
     </EditSection>
   );
 };

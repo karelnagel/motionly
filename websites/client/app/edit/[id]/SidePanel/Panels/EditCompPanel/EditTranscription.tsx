@@ -6,36 +6,57 @@ import {
 import { useEffect } from "react";
 import { useState } from "react";
 import { useAlerts } from "../../../../../../components/Alert";
-import {
-  BooleanInput,
-  NumberInput,
-  SelectInput,
-  TextInput,
-} from "../../../../../../components/inputs";
+import { Input } from "../../../../../../components/inputs";
+import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
 import { Popup } from "../../../../../../components/Popup";
 import { ShowJson } from "../../../../../../components/ShowJson";
 import { getMediaUrl } from "../../../../../../helpers";
+import { useTemplate } from "../../../../../../hooks/useTemplate";
 import { getMedia } from "../../../../../../sdk/media/get";
 import { getTranscription } from "../../../../../../sdk/media/getTranscription";
 import { startTranscription } from "../../../../../../sdk/media/startTranscription";
 import { EditSection } from "./EditSection";
-import { EditTextStyle } from "./EditTextStyle";
-import { SetComp } from "./index";
 
-export const EditTranscription = ({
-  comp,
-  setComp,
-}: {
-  comp: TranscriptionProps;
-  setComp: SetComp;
-}) => {
+const inputs: UserInput[] = [
+  {
+    prop: "textStyle",
+    type: "style",
+  },
+  {
+    prop: "startFrom",
+    type: "number",
+  },
+  {
+    prop: "scrollByPage",
+    type: "checkbox",
+  },
+  {
+    prop: "animationType",
+    type: "select",
+    options: Object.entries(TranscriptionAnimationTypes).map(
+      ([value, label]) => ({
+        value,
+        label,
+      })
+    ),
+  },
+  {
+    prop: "animationStyle",
+    type: "style",
+  },
+];
+export const EditTranscription = () => {
+  const { setComp, selectedComp } = useTemplate();
+  const comp = selectedComp as TranscriptionProps;
   return (
     <EditSection title="Transcription">
       <GetTranscriptions onChange={(src) => setComp({ ...comp, src })} />
       <ShowJson
         label="Words"
         json={JSON.stringify(comp.src, null, 2)}
-        onChange={(json) => setComp({ ...comp, src: JSON.parse(json) })}
+        onChange={(json) =>
+          setComp({ ...comp, src: json ? JSON.parse(json) : comp.src })
+        }
       >
         <div className="col-span-2 w-full space-y-2">
           {comp.src.map((word, i) => (
@@ -52,53 +73,11 @@ export const EditTranscription = ({
           ))}
         </div>
       </ShowJson>
-      <EditTextStyle
-        setStyle={(textStyle) => setComp({ ...comp, textStyle })}
-        style={comp.textStyle}
-      />
-
-      <NumberInput
-        label="Start (s)"
-        value={comp.startFrom}
-        onChange={(startFrom) => setComp({ ...comp, startFrom })}
-      />
-      <BooleanInput
-        label="Scroll by page"
-        className=""
-        value={comp.scrollByPage}
-        onChange={(scrollByPage) => setComp({ ...comp, scrollByPage })}
-      />
-
-      <SelectInput
-        label="Type"
-        value={comp.animationType}
-        onChange={(animationType) =>
-          setComp({
-            ...comp,
-            animationType:
-              animationType as keyof typeof TranscriptionAnimationTypes,
-          })
-        }
-        options={Object.entries(TranscriptionAnimationTypes).map(
-          ([value, label]) => ({
-            value,
-            label,
-          })
-        )}
-      />
-      <EditTextStyle
-        label="Animation style"
-        setStyle={(animationStyle) =>
-          setComp({
-            ...comp,
-            animationStyle,
-          })
-        }
-        style={comp.animationStyle}
-      />
+      <Inputs inputs={inputs} />
     </EditSection>
   );
 };
+
 const Word = ({
   word: { text, start, end },
   setWord,
@@ -108,17 +87,24 @@ const Word = ({
 }) => {
   return (
     <div className="grid grid-cols-4 w-full gap-2">
-      <TextInput
+      <Input
+        type="text"
         label="T"
         value={text}
         onChange={(text) => setWord({ text })}
       />
-      <NumberInput
+      <Input
+        type="number"
         label="S"
         value={start}
         onChange={(start) => setWord({ start })}
       />
-      <NumberInput label="E" value={end} onChange={(end) => setWord({ end })} />
+      <Input
+        type="number"
+        label="E"
+        value={end}
+        onChange={(end) => setWord({ end })}
+      />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { PanelTitle } from "../../../../../components/PanelTitle";
-import { BooleanInput, NumberInput } from "../../../../../components/inputs";
+import { Input } from "../../../../../components/inputs";
 import { useTemplate } from "../../../../../hooks/useTemplate";
 import { useRender } from "@motionly/renderer/dist/sdk";
 
@@ -8,10 +8,12 @@ export const ExportSidePanel = () => {
   const { template, setTemplate } = useTemplate();
   const [frame, setFrame] = useState(0);
   const [renderStill, setRenderStill] = useState(false);
-  const { media, still, cost, progress, fileUrl, status } = useRender({
-    ...template,
-    frame,
-  });
+  const { media, still, cost, progress, fileUrl, status } = useRender(
+    {
+      ...template,
+    },
+    frame
+  );
   const [json, setJson] = useState(
     JSON.stringify({ ...template, comps: template.comps }, null, 2)
   );
@@ -44,13 +46,15 @@ export const ExportSidePanel = () => {
         </div>
 
         <div className="grid grid-cols-2 w-full">
-          <BooleanInput
+          <Input
+            type="checkbox"
             label="Image"
             value={renderStill}
-            onChange={setRenderStill}
+            onChange={() => setRenderStill((r) => !r)}
           />
           {renderStill && (
-            <NumberInput
+            <Input
+              type="number"
               label="Frame"
               onChange={(e) => setFrame(e || 0)}
               value={frame}
