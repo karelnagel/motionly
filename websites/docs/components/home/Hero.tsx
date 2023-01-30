@@ -18,7 +18,7 @@ export const Hero = () => {
           <br /> videos with dynamic data on your site.
         </p>
         <Link href="/#contact">
-          <Button text="Get started" className="text-[24px] font-semibold p-3 pl-6
+          <Button text="Get started" className="text-[24px] font-normal p-3 pl-6
         animate-slide-from-left-700"/>
         </Link>
       </div>

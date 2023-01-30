@@ -26,7 +26,7 @@ export const Navbar = () => {
             className="w-16 md:w-20 object-contain "
           />
         </Link>
-        <div className="flex items-center space-x-6 col-span-2 w-full justify-end">
+        <div className="flex items-center space-x-10 col-span-2 w-full justify-end">
           <div className=" space-x-5 hidden md:flex">
             {items.map((item) => (
               <Link
@@ -43,7 +43,7 @@ export const Navbar = () => {
             ))}
           </div>
           <Link href="/#contact">
-          <Button text="CONTACT US" className="text-[17px] font-semibold p-1 pl-4"/>
+          <Button text="CONTACT US" className="text-[17px] font-normal p-1 pl-4 whitespace-nowrap"/>
           </Link>
         </div>
       </div>
