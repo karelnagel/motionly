@@ -45,9 +45,16 @@ export function applyInputs<T extends TemplateType>(template: T) {
       if (!prop.id || prop.id === "template") {
         (newTemplate as any)[prop.prop] = input.value;
       } else if (prop.id) {
-        const comp = newTemplate.comps.find((comp) => comp.id === prop.id);
-        if (comp) (comp as any)[prop.prop] = input.value;
-        // Todo make recursive
+        const recursive = (comps: ComponentProps[]) => {
+          for (const comp of comps) {
+            if (comp.id === prop.id) {
+              (comp as any)[prop.prop] = input.value;
+            } else if ("comps" in comp && comp.comps.length > 0) {
+              recursive(comp.comps);
+            }
+          }
+        };
+        recursive(newTemplate.comps);
       }
     }
   }
