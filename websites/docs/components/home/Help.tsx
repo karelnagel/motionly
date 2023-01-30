@@ -5,7 +5,7 @@ import axios from "axios";
 
 export const Help = () => {
 
-  const [formState, setFormState] = useState<"loading" | "sent" | "error">();
+  const [formState, setFormState] = useState<"" | "loading" | "sent" | "error">();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
@@ -26,13 +26,22 @@ export const Help = () => {
       if (res.status === 200 && res.data.success) {
         setFormState("sent");
         console.log("Success", res);
+        setTimeout(() => {
+          setFormState("");
+        }, 3000);
       } else {
         setFormState("error");
         console.log("Error", res);
+        setTimeout(() => {
+          setFormState("");
+        }, 10000);
       }
     } catch (error) {
       setFormState("error");
       console.log("Error", error);
+      setTimeout(() => {
+        setFormState("");
+      }, 10000);
     }
   };
   return (
@@ -42,7 +51,7 @@ export const Help = () => {
         className="relative flex flex-col-reverse px-4 py-8 md:flex-row z-20 "
       >
         <div className=" pb-4 pt-12 max-w-xl w-full">
-          <div className=" p-6  ">
+          <div className=" p-6">
             <form className="flex flex-col items-center space-y-6 " onSubmit={onSubmit}>
               <input
                 type="text"
@@ -70,17 +79,19 @@ export const Help = () => {
               />
               <Button submit text="Submit" className="p-3 pl-6" />
             </form>
+            <div className="h-6 mt-2">
             {formState === "sent" && (
-              <p className="text-success text-xs mt-2">
-                Form submitted successfully!
+              <p className="title text-base font-semibold text-center ">
+                Message sent!
               </p>
             )}
             {formState === "loading" && (
-              <p className="text-info text-xs mt-2">Sending...</p>
+              <p className="text-info text-base font-normal  text-center ">Sending...</p>
             )}
             {formState === "error" && (
-              <p className="text-error text-xs mt-2">Form sending failed!</p>
+              <p className="text-error text-base font-normal text-center ">Message sending failed!</p>
             )}
+            </div>
           </div>
         </div>
         <div className="md:ml-8  max-w-lg ">
