@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { TextInput } from "./inputs";
+import { Input } from "./inputs";
 
 export const ShowJson = ({
   children,
@@ -10,7 +10,7 @@ export const ShowJson = ({
   children: ReactNode;
   label: string;
   json: string;
-  onChange: (j: string) => void;
+  onChange: (j?: string) => void;
 }) => {
   const [showJson, setShowJson] = useState(true);
 
@@ -24,8 +24,8 @@ export const ShowJson = ({
       </div>
       <div>
         {showJson ? (
-          <TextInput
-            area
+          <Input
+            type="textarea"
             label=""
             className="min-h-[100px]"
             value={json}

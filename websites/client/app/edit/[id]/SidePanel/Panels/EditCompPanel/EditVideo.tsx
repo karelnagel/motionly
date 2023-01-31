@@ -1,58 +1,42 @@
-import { ObjectFit, VideoProps } from "@motionly/base";
-import {
-  BooleanInput,
-  NumberInput,
-  SelectInput,
-} from "../../../../../../components/inputs";
-import { Media } from "../../../../../../components/Media";
+import { ObjectFit } from "@motionly/base";
+import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
 import { EditSection } from "./EditSection";
-import { SetComp } from "./index";
 
-export const EditVideo = ({
-  comp,
-  setComp,
-}: {
-  comp: VideoProps;
-  setComp: SetComp;
-}) => {
+const inputs: UserInput[] = [
+  {
+    prop: "src",
+    type: "video",
+  },
+  {
+    prop: "objectFit",
+    type: "select",
+    options: Object.entries(ObjectFit).map(([value, label]) => ({
+      value,
+      label,
+    })),
+  },
+  {
+    prop: "startFrom",
+    type: "number",
+  },
+  {
+    prop: "muted",
+    type: "checkbox",
+  },
+  {
+    prop: "volume",
+    type: "number",
+  },
+  {
+    prop: "offthread",
+    type: "checkbox",
+  },
+];
+
+export const EditVideo = () => {
   return (
     <EditSection title="Video">
-      <Media
-        value={comp.src}
-        onChange={(src) => setComp({ ...comp, src })}
-        type="video"
-      />
-      <SelectInput
-        label="Fit"
-        value={comp.objectFit}
-        onChange={(objectFit) =>
-          setComp({ ...comp, objectFit: objectFit as keyof typeof ObjectFit })
-        }
-        options={Object.entries(ObjectFit).map(([value, label]) => ({
-          value,
-          label,
-        }))}
-      />
-      <NumberInput
-        label="Start From (s)"
-        value={comp.startFrom}
-        onChange={(startFrom) => setComp({ ...comp, startFrom })}
-      />
-      <BooleanInput
-        label="Muted"
-        value={comp.muted}
-        onChange={(muted) => setComp({ ...comp, muted })}
-      />
-      <NumberInput
-        label="Volume"
-        value={comp.volume}
-        onChange={(volume) => setComp({ ...comp, volume })}
-      />
-      <BooleanInput
-        label="Offthread"
-        value={comp.offthread}
-        onChange={(offthread) => setComp({ ...comp, offthread })}
-      />
+      <Inputs inputs={inputs} />
     </EditSection>
   );
 };

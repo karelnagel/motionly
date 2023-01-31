@@ -6,6 +6,7 @@ import { EditCompPanel } from "./Panels/EditCompPanel";
 import { ExportSidePanel } from "./Panels/ExportSidePanel";
 import { SidePanelDiv } from "./SidePanelDiv";
 import { TemplateSidePanel } from "./Panels/TemplateSidePanel";
+import { InputsPanel } from "./Panels/InputsPanel";
 
 export const SidePanel = () => {
   const { selected } = useTemplate();
@@ -17,6 +18,7 @@ export const SidePanel = () => {
       {selected === "export" && <ExportSidePanel />}
       {selected === "add" && <AddSidePanel />}
       {selected === "ai" && <AISidePanel />}
+      {selected === "inputs" && <InputsPanel />}
     </SidePanelDiv>
   );
 };

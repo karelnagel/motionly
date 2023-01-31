@@ -41,7 +41,7 @@ export const getRandomId = () => {
 };
 
 export const isPanel = (selected: string) => {
-  return ["template", "export", "add", "ai"].includes(selected);
+  return ["template", "export", "add", "ai", "inputs"].includes(selected);
 };
 
 export const getMediaUrl = (key: string) => {

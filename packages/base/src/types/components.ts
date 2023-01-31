@@ -38,8 +38,7 @@ export const MockupTypes = {
   ipad: "iPad",
   watch: "Apple Watch",
   monitor: "Monitor",
-  iphone14:"iPhone 14",
-
+  iphone14: "iPhone 14",
 };
 export const ProgressbarTypes = {
   spotify: "Spotify",
@@ -288,14 +287,6 @@ export type GradientColor = {
 export type BaseColor = BasicColor | ColorInterpolate;
 export type Color = BaseColor | GradientColor;
 
-export type TemplateType = {
-  width: number;
-  height: number;
-  duration: number;
-  background?: Color;
-  fps: number;
-} & HasChildren;
-
 export type TransformProps = {
   prop: keyof typeof transformProps;
   value?: number;
@@ -339,3 +330,32 @@ export type AllComponents =
   | ShapeProps;
 
 export type ComponentProps = BaseProps & AllComponents;
+export const inputTypes = {
+  image: "image",
+  video: "video",
+  gif: "gif",
+  text: "text",
+  number: "number",
+  color: "color",
+  checkbox: "checkbox",
+  textarea: "textarea",
+  select: "select",
+  style: "style",
+};
+
+export type Input = {
+  id: string;
+  label?: string;
+  type?: keyof typeof inputTypes;
+  value?: any;
+  properties?: { id?: string; prop: string }[];
+};
+
+export type TemplateType = {
+  width: number;
+  height: number;
+  duration: number;
+  background?: Color;
+  fps: number;
+  inputs?: Input[];
+} & HasChildren;

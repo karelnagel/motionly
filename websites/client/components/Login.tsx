@@ -2,6 +2,7 @@
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import google from "../public/icons/google.png";
 
 export function Login() {
   const { data } = useSession();
@@ -15,9 +16,9 @@ export function Login() {
           {data.user.image && (
             <Image
               src={data.user.image}
+              alt="user"
               width={30}
               height={30}
-              alt="user"
               className="rounded-lg object-cover"
             />
           )}
@@ -28,13 +29,7 @@ export function Login() {
         </div>
       ) : (
         <div className="flex items-center text-lg whitespace-nowrap space-x-2">
-          <Image
-            src="/icons/google.png"
-            alt="google"
-            width={30}
-            height={30}
-            className=""
-          />
+          <Image priority src={google} alt="google" className="w-[30px]" />
           <p className="w-full text-center font-medium hidden sm:flex">
             Login with Google
           </p>

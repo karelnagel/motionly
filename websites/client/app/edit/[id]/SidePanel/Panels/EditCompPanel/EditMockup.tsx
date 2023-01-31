@@ -1,37 +1,26 @@
-import { MockupProps, MockupTypes } from "@motionly/base";
-import { ColorInput, SelectInput } from "../../../../../../components/inputs";
+import { MockupTypes } from "@motionly/base";
+import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
 import { EditSection } from "./EditSection";
-import { SetComp } from "./index";
 
-export const EditMockup = ({
-  comp,
-  setComp,
-}: {
-  comp: MockupProps;
-  setComp: SetComp;
-}) => {
+const inputs: UserInput[] = [
+  {
+    prop: "type",
+    type: "select",
+    options: Object.entries(MockupTypes).map(([value, label]) => ({
+      value,
+      label,
+    })),
+  },
+  {
+    prop: "bg",
+    type: "color",
+  },
+];
+
+export const EditMockup = () => {
   return (
     <EditSection title="Mockup">
-      <SelectInput
-        label="Type"
-        value={comp.type}
-        onChange={(type) =>
-          setComp({
-            ...comp,
-            type: type as keyof typeof MockupTypes,
-          })
-        }
-        options={Object.entries(MockupTypes).map(([value, label]) => ({
-          value,
-          label,
-        }))}
-      />
-      <ColorInput
-        gradients
-        label="Background"
-        value={comp.bg}
-        onChange={(bg) => setComp({ ...comp, bg })}
-      />
+      <Inputs inputs={inputs} />
     </EditSection>
   );
 };

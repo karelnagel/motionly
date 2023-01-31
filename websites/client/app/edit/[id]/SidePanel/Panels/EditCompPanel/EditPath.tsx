@@ -1,94 +1,50 @@
-import { PathProps } from "@motionly/base";
-import {
-  BooleanInput,
-  ColorInput,
-  NumberInput,
-  TextInput,
-} from "../../../../../../components/inputs";
+import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
 import { EditSection } from "./EditSection";
-import { SetComp } from "./index";
 
-export const EditPath = ({
-  comp,
-  setComp,
-}: {
-  comp: PathProps;
-  setComp: SetComp;
-}) => {
+const inputs: UserInput[] = [
+  {
+    prop: "path",
+    type: "text",
+  },
+  {
+    prop: "stroke",
+    type: "color",
+  },
+  {
+    prop: "strokeWidth",
+    type: "number",
+    if: (comp) => comp.stroke,
+  },
+  {
+    prop: "fill",
+    type: "color",
+  },
+  {
+    prop: "viewBoxX",
+    type: "number",
+  },
+  {
+    prop: "viewBoxY",
+    type: "number",
+  },
+  {
+    prop: "viewBoxWidth",
+    type: "number",
+  },
+  {
+    prop: "viewBoxHeight",
+    type: "number",
+  },
+  {
+    prop: "isRound",
+    type: "checkbox",
+  },
+];
+
+export const EditPath = () => {
   return (
     <EditSection title="Path">
-      <TextInput
-        label="Path"
-        value={comp.path}
-        onChange={(path) => setComp({ ...comp, path })}
-      />
-      <ColorInput
-        label="Stroke"
-        value={comp.stroke}
-        onChange={(stroke) => setComp({ ...comp, stroke })}
-      />
-      {comp.stroke && (
-        <NumberInput
-          label="Stroke width (px)"
-          value={comp.strokeWidth}
-          onChange={(strokeWidth) => setComp({ ...comp, strokeWidth })}
-        />
-      )}
-      <ColorInput
-        label="Fill"
-        value={comp.fill}
-        onChange={(fill) => setComp({ ...comp, fill })}
-      />
-      <NumberInput
-        label="Viewbox X (px)"
-        value={comp.viewBoxX}
-        onChange={(viewBoxX) => setComp({ ...comp, viewBoxX })}
-      />
-      <NumberInput
-        label="Viewbox Y (px)"
-        value={comp.viewBoxY}
-        onChange={(viewBoxY) => setComp({ ...comp, viewBoxY })}
-      />
-      <NumberInput
-        label="Viewbox Width (px)"
-        value={comp.viewBoxWidth}
-        onChange={(viewBoxWidth) => setComp({ ...comp, viewBoxWidth })}
-      />
-      <NumberInput
-        label="Viewbox Height (px)"
-        value={comp.viewBoxHeight}
-        onChange={(viewBoxHeight) => setComp({ ...comp, viewBoxHeight })}
-      />
-      <BooleanInput
-        label="Rounded (px)"
-        value={comp.isRound}
-        onChange={(isRound) => setComp({ ...comp, isRound })}
-      />
-      {/* <p className="col-span-2">Animation</p>
-      <NumberInput
-        label="Duration"
-        value={comp.animation.duration}
-        onChange={(duration) =>
-          setComp({
-            ...comp,
-            animation: { ...comp.animation, duration },
-          })
-        }
-      />
-      <NumberInput
-        label="Form"
-        value={comp.animation.from}
-        onChange={(from) =>
-          setComp({ ...comp, animation: { ...comp.animation, from } })
-        }
-      />
-      <NumberInput
-        label="To"
-        value={comp.animation.to}
-        onChange={(to) =>
-          setComp({ ...comp, animation: { ...comp.animation, to } })
-        }
-      /> */}
+      <Inputs inputs={inputs} />
     </EditSection>
   );
 };

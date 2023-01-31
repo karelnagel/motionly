@@ -1,59 +1,53 @@
 import { BaseColor, ConfettiProps } from "@motionly/base";
-import { ColorInput, NumberInput } from "../../../../../../components/inputs";
+import { Input } from "../../../../../../components/inputs";
+import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
+import { useTemplate } from "../../../../../../hooks/useTemplate";
 import { EditSection } from "./EditSection";
-import { SetComp } from "./index";
 
-export const EditConfetti = ({
-  comp,
-  setComp,
-}: {
-  comp: ConfettiProps;
-  setComp: SetComp;
-}) => {
+const inputs: UserInput[] = [
+  {
+    prop: "angle",
+    type: "number",
+  },
+  {
+    prop: "count",
+    type: "number",
+  },
+  {
+    prop: "posX",
+    type: "number",
+  },
+  {
+    prop: "posY",
+    type: "number",
+  },
+  {
+    prop: "scalar",
+    type: "number",
+  },
+  {
+    prop: "spread",
+    type: "number",
+  },
+  {
+    prop: "startVelocity",
+    type: "number",
+  },
+  {
+    prop: "ticks",
+    type: "number",
+  },
+];
+export const EditConfetti = () => {
+  const { selectedComp, setComp } = useTemplate();
+  const comp = selectedComp as ConfettiProps;
+
   return (
     <EditSection title="Audio">
-      <NumberInput
-        value={comp.angle}
-        onChange={(angle) => setComp({ ...comp, angle })}
-        label="Angle"
-      />
-      <NumberInput
-        value={comp.count}
-        onChange={(count) => setComp({ ...comp, count })}
-        label="Count"
-      />
-      <NumberInput
-        value={comp.posX}
-        onChange={(posX) => setComp({ ...comp, posX })}
-        label="Position X"
-      />
-      <NumberInput
-        value={comp.posY}
-        onChange={(posY) => setComp({ ...comp, posY })}
-        label="Position Y"
-      />
-      <NumberInput
-        value={comp.scalar}
-        onChange={(scalar) => setComp({ ...comp, scalar })}
-        label="Scalar"
-      />
-      <NumberInput
-        value={comp.spread}
-        onChange={(spread) => setComp({ ...comp, spread })}
-        label="Spread"
-      />
-      <NumberInput
-        value={comp.startVelocity}
-        onChange={(startVelocity) => setComp({ ...comp, startVelocity })}
-        label="Start Velocity"
-      />
-      <NumberInput
-        value={comp.ticks}
-        onChange={(ticks) => setComp({ ...comp, ticks })}
-        label="Ticks"
-      />
+      <Inputs inputs={inputs} />
       {comp.colors?.map((c, i, colors) => (
-        <ColorInput
+        <Input
+          type="select"
           value={c}
           onChange={(color) =>
             setComp({

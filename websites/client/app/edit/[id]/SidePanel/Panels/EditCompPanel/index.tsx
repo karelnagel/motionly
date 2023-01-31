@@ -97,37 +97,25 @@ export const EditCompPanel = () => {
         </div>
       ) : (
         <div className="w-full overflow-y-auto">
-          <EditGeneral comp={comp} setComp={setComp} />
+          <EditGeneral />
 
-          {comp.comp === "text" && <EditText comp={comp} setComp={setComp} />}
-          {comp.comp === "audio" && <EditAudio comp={comp} setComp={setComp} />}
-          {comp.comp === "audiogram" && (
-            <EditAudiogram comp={comp} setComp={setComp} />
-          )}
-          {comp.comp === "div" && <EditDiv comp={comp} setComp={setComp} />}
-          {comp.comp === "gif" && <EditGif comp={comp} setComp={setComp} />}
-          {comp.comp === "graph" && <EditGraph comp={comp} setComp={setComp} />}
-          {comp.comp === "image" && <EditImage comp={comp} setComp={setComp} />}
-          {comp.comp === "lottie" && (
-            <EditLottie comp={comp} setComp={setComp} />
-          )}
-          {comp.comp === "map" && <EditMap comp={comp} setComp={setComp} />}
-          {comp.comp === "mockup" && (
-            <EditMockup comp={comp} setComp={setComp} />
-          )}
-          {comp.comp === "path" && <EditPath comp={comp} setComp={setComp} />}
-          {comp.comp === "progressbar" && (
-            <EditProgressbar comp={comp} setComp={setComp} />
-          )}
-          {comp.comp === "qrcode" && (
-            <EditQRCode comp={comp} setComp={setComp} />
-          )}
-          {comp.comp === "transcription" && (
-            <EditTranscription comp={comp} setComp={setComp} />
-          )}
-          {comp.comp === "video" && <EditVideo comp={comp} setComp={setComp} />}
-          {comp.comp === "shape" && <EditShape comp={comp} setComp={setComp} />}
-          {comp.comp === "confetti" && <EditConfetti comp={comp} setComp={setComp} />}
+          {comp.comp === "text" && <EditText />}
+          {comp.comp === "audio" && <EditAudio />}
+          {comp.comp === "audiogram" && <EditAudiogram />}
+          {comp.comp === "div" && <EditDiv />}
+          {comp.comp === "gif" && <EditGif />}
+          {comp.comp === "graph" && <EditGraph />}
+          {comp.comp === "image" && <EditImage />}
+          {comp.comp === "lottie" && <EditLottie />}
+          {comp.comp === "map" && <EditMap />}
+          {comp.comp === "mockup" && <EditMockup />}
+          {comp.comp === "path" && <EditPath />}
+          {comp.comp === "progressbar" && <EditProgressbar />}
+          {comp.comp === "qrcode" && <EditQRCode />}
+          {comp.comp === "transcription" && <EditTranscription />}
+          {comp.comp === "video" && <EditVideo />}
+          {comp.comp === "shape" && <EditShape />}
+          {comp.comp === "confetti" && <EditConfetti />}
         </div>
       )}
     </div>
