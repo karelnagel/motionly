@@ -45,10 +45,6 @@ const inputs: UserInput[] = [
     prop: "opacity",
     type: "number",
   },
-  {
-    prop: "bg",
-    type: "color",
-  },
 ];
 export const EditGeneral = () => {
   const { selectedComp, setComp } = useTemplate();

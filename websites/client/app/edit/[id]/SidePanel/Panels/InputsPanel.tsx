@@ -16,7 +16,7 @@ export const InputsPanel = () => {
     );
   };
   return (
-    <div className="w-full">
+    <div className="w-full overflow-auto">
       {template.inputs?.map((input) => (
         <div key={input.id} className="w-full">
           <Input
