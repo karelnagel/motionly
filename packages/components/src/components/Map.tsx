@@ -48,7 +48,7 @@ export const Map = ({
   markerSize,
 }: MapProps & StyleAndClass) => {
   const coordinates: [number, number] = [lng, lat];
-  const [handle] = useState(() => delayRender());
+  const [handle] = useState(() => delayRender("Loading Map"));
   const [geography, setGeography] = useState(null);
   const fillC = useColor(fill);
   const strokeC = useColor(stroke);

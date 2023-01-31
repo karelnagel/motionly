@@ -28,7 +28,7 @@ export const Transcription = ({
   const windowRef = useRef<HTMLDivElement>(null);
   const zoomRef = useRef<HTMLDivElement>(null);
 
-  const [handle] = useState(() => delayRender());
+  const [handle] = useState(() => delayRender("Loading Transcription"));
   const [linesRendered, setLinesRendered] = useState(0);
   const lineHeight = (textStyle.lineHeight || 1) * (textStyle.fontSize || 1);
   const linesPerPage = Math.floor(height / lineHeight) || 1;

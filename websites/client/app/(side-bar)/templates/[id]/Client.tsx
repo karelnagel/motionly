@@ -1,19 +1,17 @@
 "use client";
 
-import { applyInputs } from "@motionly/base";
 import { Player } from "@motionly/player";
 import { useRender } from "@motionly/renderer/dist/sdk";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import {  useState } from "react";
 import { IoIosBrush, IoIosCopy } from "react-icons/io";
 import { Clone } from "../../../../components/Clone";
 import { Input } from "../../../../components/inputs";
 import { Template } from "../../../../types";
 
 export const Client = ({ startTemplate }: { startTemplate: Template }) => {
-  const [templateState, setTemplate] = useState(startTemplate);
-  const template = useMemo(() => applyInputs(templateState), [templateState]);
+  const [template, setTemplate] = useState(startTemplate);
   const { data: session } = useSession();
   const { media, fileUrl, progress, status } = useRender(template);
   return (

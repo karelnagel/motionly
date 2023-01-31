@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { continueRender, delayRender } from "remotion";
 
 export const useFonts = async (fonts: string[] = []) => {
-  const [handle] = useState(() => delayRender());
+  const [handle] = useState(() => delayRender("Loading fonts"));
 
   useEffect(() => {
     const load = async () => {

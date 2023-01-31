@@ -1,4 +1,4 @@
-import { applyInputs, ComponentProps } from "@motionly/base";
+import { ComponentProps } from "@motionly/base";
 import { ReactNode, useRef, useState } from "react";
 import { getRandomId } from "../../helpers";
 import { Context } from "./Context";
@@ -168,7 +168,7 @@ export const TemplateContext = ({
         setComps,
         setSelected,
         setTemplate,
-        template: applyInputs(template),
+        template,
         undo,
         tab,
         setTab,
