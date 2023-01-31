@@ -97,6 +97,7 @@ export const Header = () => {
         <Button title="AI" value="ai" tooltip="1" />
         <Button title="Add" value="add" tooltip="2" />
         <Button title="Template" value="template" tooltip="3" />
+        <Button title="Inputs" value="inputs" tooltip="4" />
         <Button title="Export" value="export" tooltip="4" />
       </div>
     </div>

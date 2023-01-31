@@ -13,7 +13,6 @@ export function PlayerExample() {
     fps: 30,
     height: 1080,
     width: 1080,
-    frame: 0,
   });
   return (
     <div>

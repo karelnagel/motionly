@@ -4,7 +4,7 @@ import { IoIosClose } from "react-icons/io";
 export const Popup = ({
   hide,
   children,
-  className = "flex flex-col items-center space-y-3",
+  className,
 }: {
   hide: () => void;
   children: ReactNode;
@@ -19,13 +19,15 @@ export const Popup = ({
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className="bg-base-300 rounded-lg p-10 relative"
+        className="bg-base-300 rounded-lg p-4 md:p-10 relative"
       >
         <IoIosClose
           onClick={hide}
           className="absolute top-3 right-3 text-4xl cursor-pointer"
         />
-        <div className={className}>{children}</div>
+        <div className={`flex flex-col items-center space-y-3 ${className}`}>
+          {children}
+        </div>
       </div>
     </div>
   );

@@ -61,15 +61,19 @@ CREATE TABLE "ApiKey" (
 -- CreateTable
 CREATE TABLE "Template" (
     "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
+    "name" TEXT NOT NULL DEFAULT '',
     "description" TEXT NOT NULL DEFAULT '',
     "width" INTEGER NOT NULL,
     "height" INTEGER NOT NULL,
     "duration" INTEGER NOT NULL,
+    "background" TEXT,
+    "preview" TEXT,
+    "fps" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3),
     "public" BOOLEAN NOT NULL DEFAULT false,
     "comps" TEXT NOT NULL,
+    "inputs" TEXT,
     "userId" TEXT NOT NULL,
 
     CONSTRAINT "Template_pkey" PRIMARY KEY ("id")

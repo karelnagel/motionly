@@ -81,7 +81,7 @@ export const MediaPopup = ({
 
       <div>
         <p className="text-xl font-semibold">Upload new file</p>
-        <div className="flex items-center">
+        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 items-center">
           <input
             ref={ref}
             type="file"
@@ -97,7 +97,7 @@ export const MediaPopup = ({
           </button>
         </div>
         <p className="text-xl font-semibold mt-4">Select from existing</p>
-        <div className="grid grid-cols-5 gap-2 max-h-60 overflow-auto">
+        <div className="grid grid-cols-3 md:grid-cols-5 gap-2 max-h-60 overflow-auto">
           {files ? (
             files.map((file) => (
               <div

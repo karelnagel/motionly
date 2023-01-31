@@ -1,33 +1,24 @@
-import { AudioProps } from "@motionly/base";
-import { NumberInput } from "../../../../../../components/inputs";
-import { Media } from "../../../../../../components/Media";
+import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
 import { EditSection } from "./EditSection";
-import { SetComp } from "./index";
+const inputs: UserInput[] = [
+  {
+    prop: "src",
+    type: "video",
+  },
+  {
+    prop: "volume",
+    type: "number",
+  },
+  {
+    prop: "startFrom",
+    type: "number",
+  },
+];
 
-export const EditAudio = ({
-  comp,
-  setComp,
-}: {
-  comp: AudioProps;
-  setComp: SetComp;
-}) => {
+export const EditAudio = () => {
   return (
     <EditSection title="Audio">
-      <Media
-        value={comp.src}
-        onChange={(src) => setComp({ ...comp, src })}
-        type="video"
-      />
-      <NumberInput
-        label="volume"
-        value={comp.volume}
-        onChange={(volume) => setComp({ ...comp, volume })}
-      />
-      <NumberInput
-        label="start"
-        value={comp.startFrom}
-        onChange={(startFrom) => setComp({ ...comp, startFrom })}
-      />
+      <Inputs inputs={inputs} />
     </EditSection>
   );
 };

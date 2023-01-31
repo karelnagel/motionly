@@ -81,6 +81,7 @@ model Template {
   updatedAt   DateTime? @updatedAt
   public      Boolean   @default(false)
   comps       String
+  inputs      String?
   userId      String
   user        User      @relation(fields: [userId], references: [id])
 }

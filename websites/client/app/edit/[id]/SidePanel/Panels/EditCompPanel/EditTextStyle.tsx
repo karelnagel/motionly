@@ -1,9 +1,5 @@
 import { TextAlign, TextStyle } from "@motionly/base";
-import {
-  NumberInput,
-  SelectInput,
-  ColorInput,
-} from "../../../../../../components/inputs";
+import { Input } from "../../../../../../components/inputs";
 import { getAvailableFonts } from "@remotion/google-fonts";
 import { useState } from "react";
 import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md";
@@ -28,7 +24,8 @@ export const EditTextStyle = ({
       </div>
       {show && (
         <div className="grid grid-cols-2 gap-2 pl-2">
-          <SelectInput
+          <Input
+            type="select"
             label="Font"
             value={style.fontFamily}
             onChange={(fontFamily) => setStyle({ ...style, fontFamily })}
@@ -37,33 +34,38 @@ export const EditTextStyle = ({
               value: f.fontFamily,
             }))}
           />
-          <NumberInput
+          <Input
+            type="number"
             label="Size (px)"
             value={style.fontSize}
             onChange={(fontSize) => setStyle({ ...style, fontSize })}
           />
-          <NumberInput
+          <Input
+            type="number"
             label="Height (x)"
             value={style.lineHeight}
             onChange={(lineHeight) => setStyle({ ...style, lineHeight })}
           />
-          <NumberInput
+          <Input
+            type="number"
             label="Weight"
             value={style.fontWeight}
             onChange={(fontWeight) => setStyle({ ...style, fontWeight })}
           />
-          <ColorInput
+          <Input
+            type="color"
             label="Color"
             value={style.color}
             onChange={(color) => setStyle({ ...style, color })}
           />
-          <ColorInput
+          <Input
+            type="color"
             label="BG"
-            gradients
             value={style.bg}
             onChange={(bg) => setStyle({ ...style, bg })}
           />
-          <SelectInput
+          <Input
+            type="select"
             label="Align"
             value={style.textAlign}
             onChange={(textAlign) =>
@@ -77,7 +79,8 @@ export const EditTextStyle = ({
               value: a,
             }))}
           />
-          <ColorInput
+          <Input
+            type="color"
             label="Outline Color"
             value={style.outlineColor}
             onChange={(outlineColor) =>
@@ -88,7 +91,8 @@ export const EditTextStyle = ({
             }
           />
           {style.outlineColor && (
-            <NumberInput
+            <Input
+              type="number"
               label="Outline Width (px)"
               value={style.outlineWidth}
               onChange={(outlineWidth) =>

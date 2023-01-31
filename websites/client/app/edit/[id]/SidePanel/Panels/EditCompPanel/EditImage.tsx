@@ -1,34 +1,26 @@
-import { ImageProps, ObjectFit } from "@motionly/base";
-import { SelectInput } from "../../../../../../components/inputs";
-import { Media } from "../../../../../../components/Media";
+import { ObjectFit } from "@motionly/base";
+import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
 import { EditSection } from "./EditSection";
-import { SetComp } from "./index";
 
-export const EditImage = ({
-  comp,
-  setComp,
-}: {
-  comp: ImageProps;
-  setComp: SetComp;
-}) => {
+const inputs: UserInput[] = [
+  {
+    prop: "src",
+    type: "image",
+  },
+  {
+    prop: "objectFit",
+    type: "select",
+    options: Object.entries(ObjectFit).map(([value, label]) => ({
+      value,
+      label,
+    })),
+  },
+];
+
+export const EditImage = () => {
   return (
     <EditSection title="Image">
-      <Media
-        value={comp.src}
-        onChange={(src) => setComp({ ...comp, src })}
-        type="image"
-      />
-      <SelectInput
-        label="Fit"
-        value={comp.objectFit}
-        onChange={(objectFit) =>
-          setComp({ ...comp, objectFit: objectFit as keyof typeof ObjectFit })
-        }
-        options={Object.entries(ObjectFit).map(([value, label]) => ({
-          value,
-          label,
-        }))}
-      />
+      <Inputs inputs={inputs} />
     </EditSection>
   );
 };

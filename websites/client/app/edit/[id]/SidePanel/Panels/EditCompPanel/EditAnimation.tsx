@@ -5,11 +5,7 @@ import {
   ComponentProps,
   EasingTypes,
 } from "@motionly/base";
-import {
-  NumberInput,
-  SelectInput,
-  TextInput,
-} from "../../../../../../components/inputs";
+import { Input } from "../../../../../../components/inputs";
 import { getAnimationColor } from "../../../../../../helpers/color";
 import { SetComp } from "./index";
 
@@ -95,7 +91,8 @@ const OneAnimation = ({
         className="h-[3px] rounded-full"
       />
       <div className="grid grid-cols-4 gap-2">
-        <SelectInput
+        <Input
+          type="select"
           label="Prop"
           value={animation.prop}
           onChange={(prop) =>
@@ -108,7 +105,8 @@ const OneAnimation = ({
             label,
           }))}
         />
-        <SelectInput
+        <Input
+          type="select"
           label="Type"
           value={animation.type}
           onChange={(type) =>
@@ -123,27 +121,29 @@ const OneAnimation = ({
         />
       </div>
       <div className="grid grid-cols-2 gap-2">
-        <NumberInput
+        <Input
+          type="number"
           label="Start (s)"
-          tooltip
           onChange={(start) => setAnimation(i, { start })}
           value={animation.start}
         />
-        <NumberInput
+        <Input
+          type="number"
           label="Duration (s)"
           placeholder="MAX"
-          tooltip
           onChange={(duration) => setAnimation(i, { duration })}
           value={animation.duration}
         />
       </div>
       <div className="grid grid-cols-2 gap-2">
-        <NumberInput
+        <Input
+          type="number"
           label={`From ${units ? `(${units})` : ""}`}
           onChange={(from) => setAnimation(i, { from })}
           value={animation.from}
         />
-        <NumberInput
+        <Input
+          type="number"
           label={`To ${units ? `(${units})` : ""}`}
           onChange={(to) => setAnimation(i, { to })}
           value={animation.to}
@@ -152,17 +152,22 @@ const OneAnimation = ({
 
       {animation.type === "spring" && (
         <div className="grid grid-cols-3 gap-2">
-          <NumberInput
+          <Input
+            type="number"
             label="Mass"
             onChange={(mass) => setAnimation(i, { mass })}
             value={animation.mass}
           />
-          <NumberInput
+
+          <Input
+            type="number"
             label="Damping"
             onChange={(damping) => setAnimation(i, { damping })}
             value={animation.damping}
           />
-          <NumberInput
+
+          <Input
+            type="number"
             label="Stiffness"
             onChange={(stiffness) => setAnimation(i, { stiffness })}
             value={animation.stiffness}
@@ -170,14 +175,16 @@ const OneAnimation = ({
         </div>
       )}
       {animation.type === "noise" && (
-        <NumberInput
+        <Input
+          type="number"
           label="Speed"
           onChange={(speed) => setAnimation(i, { speed })}
           value={animation.speed}
         />
       )}
       {animation.type === "interpolate" && (
-        <SelectInput
+        <Input
+          type="number"
           label="Easing"
           onChange={(easing) =>
             setAnimation(i, { easing: easing as keyof typeof EasingTypes })
@@ -190,14 +197,16 @@ const OneAnimation = ({
         />
       )}
       {(animation.prop === "text" || animation.prop === "number") && (
-        <TextInput
+        <Input
+          type="text"
           label="Variable"
           onChange={(variable) => setAnimation(i, { variable })}
           value={animation.variable}
         />
       )}
       {animation.prop === "text" && (
-        <TextInput
+        <Input
+          type="text"
           label="Value"
           onChange={(value) => setAnimation(i, { value })}
           value={animation.value}

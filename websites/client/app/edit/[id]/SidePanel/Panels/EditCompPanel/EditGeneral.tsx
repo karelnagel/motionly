@@ -1,82 +1,60 @@
 import { ComponentProps, transformProps } from "@motionly/base";
-import {
-  BooleanInput,
-  NumberInput,
-  SelectInput,
-} from "../../../../../../components/inputs";
+import { Input } from "../../../../../../components/inputs";
+import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
+import { useTemplate } from "../../../../../../hooks/useTemplate";
 import { EditSection } from "./EditSection";
-import { SetComp } from "./index";
 
-export const EditGeneral = ({
-  comp,
-  setComp,
-}: {
-  comp: ComponentProps;
-  setComp: SetComp;
-}) => {
+const inputs: UserInput[] = [
+  {
+    prop: "x",
+    type: "number",
+  },
+  {
+    prop: "y",
+    type: "number",
+  },
+  {
+    prop: "width",
+    type: "number",
+  },
+  {
+    prop: "height",
+    type: "number",
+  },
+  {
+    prop: "borderRadius",
+    type: "number",
+  },
+  {
+    prop: "rotation",
+    type: "number",
+  },
+  {
+    prop: "from",
+    type: "number",
+  },
+  {
+    prop: "duration",
+    type: "number",
+  },
+  {
+    prop: "loopDuration",
+    type: "number",
+  },
+  {
+    prop: "opacity",
+    type: "number",
+  },
+];
+export const EditGeneral = () => {
+  const { selectedComp, setComp } = useTemplate();
+  const comp = selectedComp as ComponentProps;
+
   return (
     <EditSection>
-      <NumberInput
-        label="X (px)"
-        placeholder="0"
-        value={comp.x}
-        onChange={(x) => setComp({ ...comp, x })}
-      />
-      <NumberInput
-        label="Y (px)"
-        placeholder="0"
-        value={comp.y}
-        onChange={(y) => setComp({ ...comp, y })}
-      />
-      <NumberInput
-        label="Width (px)"
-        placeholder="MAX"
-        value={comp.width}
-        onChange={(width) => setComp({ ...comp, width })}
-      />
-      <NumberInput
-        label="Height (px)"
-        placeholder="MAX"
-        value={comp.height}
-        onChange={(height) => setComp({ ...comp, height })}
-      />
-      <NumberInput
-        label="Border Radius (px)"
-        value={comp.borderRadius}
-        placeholder="0"
-        onChange={(borderRadius) => setComp({ ...comp, borderRadius })}
-      />
-      <NumberInput
-        label="Rotation (deg)"
-        placeholder="0"
-        value={comp.rotation}
-        onChange={(rotation) => setComp({ ...comp, rotation })}
-      />
-      <NumberInput
-        label="From (s)"
-        tooltip
-        placeholder="0"
-        value={comp.from}
-        onChange={(from) => setComp({ ...comp, from })}
-      />
-      <NumberInput
-        label="Duration (s)"
-        tooltip
-        placeholder="MAX"
-        value={comp.duration}
-        onChange={(duration) => setComp({ ...comp, duration })}
-      />
-      <NumberInput
-        label="Loop duration (s)"
-        value={comp.loopDuration}
-        onChange={(loopDuration) => setComp({ ...comp, loopDuration })}
-      />
-      <NumberInput
-        label="Freeze (s)"
-        value={comp.freeze}
-        onChange={(freeze) => setComp({ ...comp, freeze })}
-      />
-      <BooleanInput
+      <Inputs inputs={inputs} />
+      <Input
+        type="checkbox"
         label="Motion Blur"
         className="col-span-2"
         value={!!comp.motionBlur}
@@ -85,7 +63,8 @@ export const EditGeneral = ({
         }
       />
       {"comps" in comp && (
-        <BooleanInput
+        <Input
+          type="checkbox"
           label="Play in Sequence"
           className="col-span-2"
           value={comp.isSequence}
@@ -94,7 +73,8 @@ export const EditGeneral = ({
       )}
       {comp.motionBlur && (
         <>
-          <NumberInput
+          <Input
+            type="number"
             label="Motion Blur Lag (s)"
             value={comp.motionBlur.lag}
             placeholder="0.1"
@@ -102,7 +82,8 @@ export const EditGeneral = ({
               setComp({ ...comp, motionBlur: { ...comp.motionBlur, lag } })
             }
           />
-          <NumberInput
+          <Input
+            type="number"
             label="Motion Blur Layers"
             value={comp.motionBlur.layers}
             placeholder="50"
@@ -110,7 +91,8 @@ export const EditGeneral = ({
               setComp({ ...comp, motionBlur: { ...comp.motionBlur, layers } })
             }
           />
-          <NumberInput
+          <Input
+            type="number"
             label="Motion Blur Opacity"
             value={comp.motionBlur.opacity}
             placeholder="1"
@@ -122,7 +104,8 @@ export const EditGeneral = ({
       )}
       {comp.transform?.map(({ prop, value }, i) => (
         <>
-          <SelectInput
+          <Input
+            type="select"
             key={i}
             label={`Transform ${i + 1}`}
             value={prop}
@@ -143,7 +126,8 @@ export const EditGeneral = ({
               })
             )}
           />
-          <NumberInput
+          <Input
+            type="number"
             key={i}
             label={`Transform ${i + 1}`}
             value={value}

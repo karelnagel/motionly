@@ -1,23 +1,16 @@
-import { DivProps } from "@motionly/base";
-import { ColorInput } from "../../../../../../components/inputs";
+import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
 import { EditSection } from "./EditSection";
-import { SetComp } from "./index";
 
-export const EditDiv = ({
-  comp,
-  setComp,
-}: {
-  comp: DivProps;
-  setComp: SetComp;
-}) => {
+const inputs: UserInput[] = [
+  {
+    prop: "bg",
+    type: "color",
+  },
+];
+export const EditDiv = () => {
   return (
     <EditSection title="Div">
-      <ColorInput
-        gradients
-        label="BG"
-        value={comp.bg}
-        onChange={(bg) => setComp({ ...comp, bg })}
-      />
+      <Inputs inputs={inputs} />
     </EditSection>
   );
 };
