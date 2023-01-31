@@ -28,11 +28,12 @@ export const Transcription = ({
   const windowRef = useRef<HTMLDivElement>(null);
   const zoomRef = useRef<HTMLDivElement>(null);
 
-  const [handle] = useState(() => delayRender());
+  const [handle] = useState(() => delayRender("Loading Transcription"));
   const [linesRendered, setLinesRendered] = useState(0);
   const lineHeight = (textStyle.lineHeight || 1) * (textStyle.fontSize || 1);
   const linesPerPage = Math.floor(height / lineHeight) || 1;
-  const getStyle = useTextStyles();
+  const txtStyle = useTextStyles(textStyle);
+  const animStyle = useTextStyles(animationStyle);
   useEffect(() => {
     if (words) {
       const linesRendered = Math.round(
@@ -64,7 +65,7 @@ export const Transcription = ({
       <p
         className=""
         style={{
-          ...getStyle(textStyle),
+          ...txtStyle,
           overflow: "clip",
           transform: `translateY(-${linesOffset * lineHeight}px)`,
         }}
@@ -80,9 +81,7 @@ export const Transcription = ({
               isHighlighted = true;
             return (
               <span key={item.text + item.start + item.end}>
-                <span
-                  style={isHighlighted ? getStyle(animationStyle) : undefined}
-                >
+                <span style={isHighlighted ? animStyle : undefined}>
                   {item.text}{" "}
                 </span>
               </span>

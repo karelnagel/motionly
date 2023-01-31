@@ -1,6 +1,6 @@
 import { ConfettiProps } from "@motionly/base";
 import RemotionConfetti from "@motionly/confetti";
-import { useColors } from "../useColors";
+import { useColor } from "../useColor";
 
 export const defaultConfettiProps: ConfettiProps = {
   comp: "confetti",
@@ -10,14 +10,13 @@ export const defaultConfettiProps: ConfettiProps = {
 };
 
 export const Confetti = ({ posX, posY, colors, ...props }: ConfettiProps) => {
-  const color = useColors();
   return (
     <RemotionConfetti
       {...{
         ...props,
         x: posX,
         y: posY,
-        colors: colors?.map((c) => color(c)).filter((c) => c) as string[],
+        colors: colors?.map((c) => useColor(c)).filter((c) => c) as string[],
       }}
     />
   );

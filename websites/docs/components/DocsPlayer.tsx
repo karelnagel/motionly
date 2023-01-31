@@ -15,12 +15,14 @@ const baseProps: BaseProps = {
 export const DocsPlayer = (props: AllComponents) => {
   return (
     <Player
-      width={1080}
-      height={600}
-      fps={30}
+      template={{
+        comps: [{ ...baseProps, ...props }],
+        duration: 10,
+        fps: 30,
+        width: 1080,
+        height: 600,
+      }}
       controls
-      comps={[{ ...baseProps, ...props }]}
-      duration={10}
       autoPlay
       style={{ width: "100%" }}
     />

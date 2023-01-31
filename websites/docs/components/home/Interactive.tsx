@@ -55,12 +55,8 @@ export const Interactive = () => {
         </div>
         <div className="h-full w-full">
           <Player
-            comps={template.comps}
-            duration={template.duration}
-            fps={template.fps}
-            height={template.height}
+            template={template}
             controls
-            width={template.width}
             className="rounded-lg md:rounded-[40px] bg-base-content"
             style={{ width: "100%" }}
           />

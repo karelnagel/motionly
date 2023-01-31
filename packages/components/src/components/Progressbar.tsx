@@ -1,7 +1,7 @@
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import { StyleAndClass } from "@motionly/base";
 import { ProgressbarProps } from "@motionly/base";
-import { useColors } from "../useColors";
+import { useColor } from "../useColor";
 
 export const defaultProgressbarProps: ProgressbarProps = {
   comp: "progressbar",
@@ -32,7 +32,8 @@ export const Progressbar = ({
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const progress = (frame / durationInFrames) * 100;
-  const getColor = useColors();
+  const background = useColor(bg);
+  const colorC = useColor(color);
 
   if (props.type === "line")
     return (
@@ -42,7 +43,7 @@ export const Progressbar = ({
           width: "100%",
           height: "100%",
           position: "relative",
-          background: getColor(bg),
+          background,
           ...style,
         }}
       >
@@ -52,7 +53,7 @@ export const Progressbar = ({
             top: 0,
             left: 0,
             height: "100%",
-            background: getColor(color),
+            background: colorC,
             width: `${progress}%`,
           }}
         />
@@ -80,14 +81,14 @@ export const Progressbar = ({
             height: height / 2,
             borderRadius: height / 4,
             left: 0,
-            background: getColor(bg),
+            background,
             overflow: "hidden",
           }}
         >
           <div
             style={{
               width: `${progress}%`,
-              background: getColor(color),
+              background: colorC,
               position: "absolute",
               left: 0,
               height: "100%",
@@ -100,7 +101,7 @@ export const Progressbar = ({
             height,
             position: "absolute",
             width: height,
-            background: getColor(color),
+            background,
             left: `${progress}%`,
             transform: "translate(-50%, 0)",
           }}
@@ -118,7 +119,7 @@ export const Progressbar = ({
           cx={size / 2}
           cy={size / 2}
           r={radius}
-          stroke={getColor(bg)}
+          stroke={background}
           strokeWidth={props.barWidth}
           fill="none"
         />
@@ -126,7 +127,7 @@ export const Progressbar = ({
           cx={size / 2}
           cy={size / 2}
           r={radius}
-          stroke={getColor(color)}
+          stroke={colorC}
           strokeWidth={props.barWidth}
           fill="none"
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
@@ -156,7 +157,7 @@ export const Progressbar = ({
               key={n}
               style={{
                 width: horizontal ? props.barWidth : `${progress}%`,
-                background: getColor(color),
+                background: colorC,
                 height: horizontal ? `${progress}%` : props.barWidth,
                 position: "absolute",
                 top: !top ? 0 : undefined,
