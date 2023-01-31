@@ -14,4 +14,5 @@ export type PlayerProps = {
   showVolumeControls?: boolean;
   style?: CSSProperties;
   className?: string;
-} & TemplateType;
+  template: TemplateType;
+};

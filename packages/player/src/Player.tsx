@@ -3,23 +3,24 @@
 import { Player as RemotionPlayer } from "@remotion/player";
 import { Composition } from "@motionly/components";
 import { PlayerProps } from "./PlayerProps";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { applyInputs } from "@motionly/base";
 
-export const Player = (props: PlayerProps) => {
+export const Player = ({ template, ...props }: PlayerProps) => {
   const [isClient, setIsClient] = useState(false);
   useEffect(() => setIsClient(true), []);
-
-  const comps = props.comps;
+  const temp = useMemo(() => applyInputs(template), [template]);
   return (
     <RemotionPlayer
       component={Composition}
-      durationInFrames={Math.ceil(props.duration * props.fps)}
+      fps={temp.fps}
+      durationInFrames={Math.ceil(temp.duration * temp.fps)}
       inputProps={{
-        comps: isClient ? comps : [],
-        background: props.background,
+        comps: isClient ? temp.comps : [],
+        background: temp.background,
       }}
-      compositionHeight={props.height}
-      compositionWidth={props.width}
+      compositionHeight={temp.height}
+      compositionWidth={temp.width}
       {...props}
     />
   );

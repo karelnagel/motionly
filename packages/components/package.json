@@ -9,7 +9,8 @@
         "dev": "tsc --watch",
         "preview": "remotion preview src/dev/register.tsx",
         "render": "remotion render src/dev/register.tsx",
-        "lambda:site": "npx remotion lambda sites create src/dev/register.tsx --site-name=motionly-local",
+        "lambda:motionly": "npx remotion lambda sites create src/dev/register.tsx --site-name=motionly",
+        "lambda:motionly-local": "npx remotion lambda sites create src/dev/register.tsx --site-name=motionly-local",
         "lambda:function": "npx remotion lambda functions deploy",
         "lambda:render": "npx remotion lambda render motionly-local"
     },

@@ -88,12 +88,7 @@ export const Client = ({ startTemplate }: { startTemplate: Template }) => {
       </div>
       <Player
         loop
-        width={template.width}
-        height={template.height}
-        fps={template.fps}
-        comps={template.comps}
-        background={template.background}
-        duration={template.duration}
+        template={template}
         allowFullscreen
         clickToPlay
         controls
