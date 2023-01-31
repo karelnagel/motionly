@@ -1,3 +1,4 @@
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -8,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Montserrat", "sans-serif"],
+        montserrat: ["Montserrat", "sans-serif"]
       },
       animation: {
         "slide-from-right-100": "slide-from-right 0.1s ease-in-out",
