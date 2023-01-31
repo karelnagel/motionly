@@ -38,6 +38,7 @@ export const Component = (comp: ComponentProps) => {
     () => Math.floor(getFrom(durationInFrames, (comp.from || 0) * fps)),
     [durationInFrames, fps, comp.from]
   );
+  
   const duration = useMemo(
     () =>
       Math.floor(
