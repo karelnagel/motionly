@@ -104,6 +104,7 @@ export const Footer = () => {
   return (
 
     <div className="flex flex-col relative w-full">
+      <div className=" h-[6px] w-full bg-primary mt-14" />
       <div className=" max-w-screen-xl  my-8">
         <div className="relative flex flex-col items-center md:flex-row md:justify-between mx-10 space-y-8 md:space-y-0 md:mr-44">
           <Image src={logo} width={300} height={100} alt="logo" />
@@ -139,8 +140,8 @@ export const Footer = () => {
         <div className="col-span-2 ">
           <div className="flex flex-col items-center md:items-baseline md:flex md:flex-col space-y-4 md:space max-w-[250px]">
             <div className="flex flex-col md:flex md items-left md:items-left ">
-            <h1 className=" title text-[18px] font-normal">Subscribe</h1>
-            <div className="w-8 h-[2px] bg-gradient-to-r from-primary to-secondary" />
+              <h1 className=" title text-[18px] font-normal">Subscribe</h1>
+              <div className="w-8 h-[2px] bg-gradient-to-r from-primary to-secondary" />
             </div>
             <div className=" flex-col space-y-2 ">
               <input className="formbox rounded-md p-1" type="email" placeholder="Enter your email" />
@@ -149,7 +150,7 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="mt-12 ">
+      <div className="mt-12">
         <div className=" top-0 left-0 w-full h-[1px] bg-gradient-to-r from-primary to-secondary" />
         <div className="md:flex md:justify-between mx-4 md:mx-12 my-5 ">
           <div className="md:flex md:flex-row space-x-3">

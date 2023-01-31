@@ -37,7 +37,6 @@ export const Home = () => {
         <FAQ />
         <Divider />
         <Help />
-        <div className=" h-[6px] w-full bg-primary mt-14" />
         <Footer />
       </div>
     </div>
