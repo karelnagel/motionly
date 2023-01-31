@@ -17,6 +17,8 @@ export function Login() {
             <Image
               src={data.user.image}
               alt="user"
+              width={30}
+              height={30}
               className="rounded-lg object-cover"
             />
           )}

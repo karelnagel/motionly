@@ -35,7 +35,7 @@ export function ClientPage() {
           Template page
         </Link>
       </div>
-      <div className="flex-col hidden md:flex">
+      <div className="flex-col hidden md:flex h-screen ">
         <Header />
         <div className=" w-full flex h-full">
           <PlayerDiv playerRef={playerRef} />
