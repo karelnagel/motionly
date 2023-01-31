@@ -8,18 +8,13 @@ export const config = {
 export default function handler(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
-
-    const hasTitle = searchParams.has("title");
-    const title = hasTitle
-      ? searchParams.get("title")?.slice(0, 100)
-      : "My default title";
+    const title = searchParams.get("title") || "Motionly";
 
     return new ImageResponse(
       (
         <div
           style={{
-            background: "black",
-            backgroundSize: "150px 150px",
+            background: "#171D1C",
             height: "100%",
             width: "100%",
             display: "flex",
@@ -40,15 +35,29 @@ export default function handler(req: NextRequest) {
           >
             <img
               alt="Motionly"
-              height={200}
+              height={140}
               src={`${process.env.NEXT_PUBLIC_URL}/logo.png`}
-              style={{ margin: "0 30px" }}
-              width={232}
+              width={140}
             />
           </div>
           <div
             style={{
-              fontSize: 60,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              justifyItems: "center",
+            }}
+          >
+            <img
+              alt="Motionly"
+              height={120}
+              src={`${process.env.NEXT_PUBLIC_URL}/motionly.png`}
+              width={700}
+            />
+          </div>
+          <div
+            style={{
+              fontSize: 80,
               fontStyle: "normal",
               letterSpacing: "-0.025em",
               color: "white",
