@@ -1,7 +1,7 @@
 import ReactQRCode from "react-qr-code";
 import { StyleAndClass } from "@motionly/base";
 import { QRCodeProps } from "@motionly/base";
-import { useColors } from "../useColors";
+import { useColor } from "../useColor";
 
 export const defaultQRCodeProps: QRCodeProps = {
   comp: "qrcode",
@@ -15,14 +15,15 @@ export const QRCode = ({
   style,
   className,
 }: QRCodeProps & StyleAndClass) => {
-  const getColor = useColors();
+  const fgColor = useColor(color);
+  const bgColor = useColor(bg);
   return (
     <ReactQRCode
       className={className}
       style={{ width: "100%", height: "100%", ...style }}
       value={text}
-      fgColor={getColor(color)}
-      bgColor={getColor(bg)}
+      fgColor={fgColor}
+      bgColor={bgColor}
     />
   );
 };

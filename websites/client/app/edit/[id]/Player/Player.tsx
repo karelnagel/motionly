@@ -1,10 +1,10 @@
-import { Player as RemotionPlayer, PlayerRef } from "@remotion/player";
-import { Composition, SelectedContext } from "@motionly/components";
-import { RefObject, useRef, useState } from "react";
+import { PlayerRef } from "@remotion/player";
+import { SelectedContext } from "@motionly/components";
+import { RefObject, useRef } from "react";
 import { useShiftKey } from "../../../../hooks/useShiftKey";
 import Moveable from "react-moveable";
-import { useEffect } from "react";
 import { useTemplate } from "../../../../hooks/useTemplate";
+import { Player as MotionlyPlayer } from "@motionly/player";
 
 export const Player = ({
   playerRef,
@@ -13,36 +13,21 @@ export const Player = ({
   playerRef: RefObject<PlayerRef>;
   scale: number;
 }) => {
-  const {
-    template: { width, height, fps, duration, comps, background },
-    selectedComp,
-    setSelected,
-    setComp,
-  } = useTemplate();
+  const { template, selectedComp, setSelected, setComp } = useTemplate();
   const lockAspectRatio = useShiftKey();
   const divRef = useRef<HTMLDivElement>(null);
-  const [isClient, setIsClient] = useState(false);
-  useEffect(() => setIsClient(true), []);
-  if (!comps) return null;
+  const { width, height, comps } = template;
   return (
     <div
-      style={{ width: width * scale, height: height * scale }}
+      style={{ width: template.width * scale, height: template.height * scale }}
       className="absolute"
     >
       <SelectedContext.Provider
         value={{ divRef, setSelected, selected: selectedComp?.id || "" }}
       >
-        <RemotionPlayer
-          ref={playerRef}
-          component={Composition}
-          compositionHeight={height}
-          compositionWidth={width}
-          durationInFrames={duration * fps}
-          fps={fps}
-          inputProps={{
-            comps: isClient ? comps : [],
-            background,
-          }}
+        <MotionlyPlayer
+          playerRef={playerRef}
+          template={template}
           style={{ width: "100%", height: "100%" }}
           spaceKeyToPlayOrPause
           className="bg-base-100"

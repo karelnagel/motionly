@@ -1,7 +1,7 @@
 import { evolvePath } from "@remotion/paths";
 import { StyleAndClass } from "@motionly/base";
 import { PathProps } from "@motionly/base";
-import { useColors } from "../useColors";
+import { useColor } from "../useColor";
 
 export const defaultPathProps: PathProps = {
   comp: "path",
@@ -34,7 +34,8 @@ export const Path = ({
   className,
 }: PathProps & StyleAndClass) => {
   const evolution = evolvePath(1, path);
-  const getColor = useColors();
+  const fillC = useColor(fill);
+  const strokeC = useColor(stroke);
   return (
     <svg
       className={className}
@@ -43,8 +44,8 @@ export const Path = ({
     >
       <path
         d={path}
-        fill={getColor(fill) || "none"}
-        stroke={getColor(stroke)}
+        fill={fillC || "none"}
+        stroke={strokeC}
         strokeWidth={strokeWidth}
         strokeDasharray={evolution.strokeDasharray}
         strokeDashoffset={evolution.strokeDashoffset}

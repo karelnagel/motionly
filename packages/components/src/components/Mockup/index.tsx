@@ -10,7 +10,7 @@ import { Monitor } from "./monitor";
 import { Samsung } from "./samsung";
 import { Watch } from "./watch";
 import { CSSProperties } from "react";
-import { useColors } from "../../useColors";
+import { useColor } from "../../useColor";
 
 export const svgStyle: CSSProperties = {
   position: "relative",
@@ -72,7 +72,7 @@ export const Mockup = ({
   isSequence,
   ...props
 }: MockupProps & StyleAndClass) => {
-  const getColor = useColors();
+  const background = useColor(bg);
 
   return (
     <div style={{ position: "relative" }}>
@@ -85,7 +85,7 @@ export const Mockup = ({
           right: `${mockups[type]?.right || 4}%`,
           borderRadius: `${mockups[type]?.borderRadius || 7}%`,
           overflow: "hidden",
-          background: getColor(bg),
+          background,
         }}
       >
         <Children comps={comps} isSequence={isSequence} />

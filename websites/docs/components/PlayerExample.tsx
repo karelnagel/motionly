@@ -45,11 +45,13 @@ export function PlayerExample() {
         <p>{fileUrl}</p>
         <p>{status}</p>
         <Player
-          comps={components}
-          duration={40}
-          fps={30}
-          height={1080}
-          width={1080}
+          template={{
+            comps: components,
+            duration: 40,
+            fps: 30,
+            width: 1080,
+            height: 600,
+          }}
           style={{ width: `100%` }}
           controls
         />

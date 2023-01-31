@@ -19,7 +19,8 @@
         "preview": "cd packages/components; yarn preview",
         "render": "cd packages/components; yarn render",
         "test": "cd packages/components; yarn render Test",
-        "lambda:site": "cd packages/components; yarn lambda:site",
+        "lambda:motionly": "cd packages/components; yarn lambda:motionly",
+        "lambda:motionly-local": "cd packages/components; yarn lambda:motionly-local",
         "lambda:function": "cd packages/components; yarn lambda:function",
         "lambda:render": "cd packages/components; yarn lambda:render",
         "format": "prettier --write \"**/*.{js,ts,tsx}\" && eslint --fix \"**/*.{js,ts,tsx}\""

@@ -1,7 +1,7 @@
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { StyleAndClass } from "@motionly/base";
 import { GraphProps } from "@motionly/base";
-import { useColors } from "../useColors";
+import { useColor } from "../useColor";
 
 export const defaultGraphProps: GraphProps = {
   comp: "graph",
@@ -36,7 +36,7 @@ export const Graph = ({
 }: GraphProps & StyleAndClass) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const getColor = useColors();
+  const background = useColor(color);
   const maxValue = max || Math.max(...values);
 
   if (props.type === "bar")
@@ -70,7 +70,7 @@ export const Graph = ({
               style={{
                 width: width / values.length,
                 height: height * (v / maxValue) * anim,
-                background: getColor(color),
+                background,
                 borderRadius: props.roundness,
               }}
             />
@@ -106,7 +106,7 @@ export const Graph = ({
               return `${i === 0 ? "M" : "L"} ${x} ${y}`;
             })
             .join(" ")}
-          stroke={getColor(color)}
+          stroke={background}
           strokeWidth={props.strokeWidth}
           fill="none"
         />

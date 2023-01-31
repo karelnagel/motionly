@@ -33,16 +33,7 @@ export default function Insider() {
           </div>
         ))}
       </div>
-      <Player
-        comps={template.comps}
-        duration={template.duration}
-        fps={template.fps}
-        height={template.height}
-        width={template.width}
-        background={template.background}
-        controls
-        style={{ width: "100%" }}
-      />
+      <Player template={template} controls style={{ width: "100%" }} />
 
       <button disabled={status === "rendering"} className="btn" onClick={media}>
         Render

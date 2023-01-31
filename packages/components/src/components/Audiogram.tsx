@@ -3,7 +3,7 @@ import { useCurrentFrame, useVideoConfig } from "remotion";
 import { videoUrl } from "@motionly/base";
 import { StyleAndClass } from "@motionly/base";
 import { AudiogramProps } from "@motionly/base";
-import { useColors } from "../useColors";
+import { useColor } from "../useColor";
 import { getSrc } from "../helpers";
 
 export const defaultAudiogramProps: AudiogramProps = {
@@ -43,7 +43,7 @@ export const Audiogram = ({
 }: AudiogramProps & StyleAndClass) => {
   const { fps } = useVideoConfig();
   const currentFrame = useCurrentFrame();
-  const getColor = useColors();
+  const background = useColor(color);
   let frame = startFrom ? currentFrame + startFrom * fps : currentFrame;
   if (frame < 0) frame = 0;
   if (!src) return null;
@@ -89,7 +89,7 @@ export const Audiogram = ({
             style={{
               width: barWidth,
               height: height * v * multiplier,
-              background: getColor(color),
+              background,
               borderRadius: roundness,
             }}
           />

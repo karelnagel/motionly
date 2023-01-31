@@ -2,8 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { continueRender, delayRender } from "remotion";
 
-export const useFonts = async (fonts: string[]) => {
-  const [handle] = useState(() => delayRender());
+export const useFonts = async (fonts: string[] = []) => {
+  const [handle] = useState(() => delayRender("Loading fonts"));
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const load = async () => {
@@ -24,7 +25,8 @@ export const useFonts = async (fonts: string[]) => {
         }
       }
       continueRender(handle);
+      setLoaded(true);
     };
-    load();
+    if (!loaded) load();
   }, [fonts]);
 };

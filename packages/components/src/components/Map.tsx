@@ -9,7 +9,7 @@ import {
 import { continueRender, delayRender } from "remotion";
 import { StyleAndClass } from "@motionly/base";
 import { MapProps } from "@motionly/base";
-import { useColors } from "../useColors";
+import { useColor } from "../useColor";
 import { getSrc } from "../helpers";
 
 export const defaultMapProps: MapProps = {
@@ -41,16 +41,19 @@ export const Map = ({
   strokeWidth,
   style,
   className,
-  bg: background,
+  bg,
   lat,
   lng,
   markerColor,
   markerSize,
 }: MapProps & StyleAndClass) => {
   const coordinates: [number, number] = [lng, lat];
-  const [handle] = useState(() => delayRender());
+  const [handle] = useState(() => delayRender("Loading Map"));
   const [geography, setGeography] = useState(null);
-  const getColor = useColors();
+  const fillC = useColor(fill);
+  const strokeC = useColor(stroke);
+  const marker = useColor(markerColor);
+  const background = useColor(bg);
 
   useEffect(() => {
     const effect = async () => {
@@ -73,7 +76,7 @@ export const Map = ({
       style={{
         width: "100%",
         height: "100%",
-        background: getColor(background),
+        background,
         ...style,
       }}
       projectionConfig={{ center: coordinates, scale: zoom }}
@@ -84,8 +87,8 @@ export const Map = ({
             <Geography
               key={geo.rsmKey}
               geography={geo}
-              fill={getColor(fill)}
-              stroke={getColor(stroke)}
+              fill={fillC}
+              stroke={strokeC}
               strokeWidth={strokeWidth}
             />
           ))
@@ -93,9 +96,7 @@ export const Map = ({
       </Geographies>
       {markerSize && markerColor && (
         <Marker coordinates={coordinates}>
-          {markerSize && (
-            <circle r={markerSize / 2} fill={getColor(markerColor)} />
-          )}
+          {markerSize && <circle r={markerSize / 2} fill={marker} />}
         </Marker>
       )}
     </ComposableMap>
