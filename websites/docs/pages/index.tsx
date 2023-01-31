@@ -21,11 +21,14 @@ export const Home = () => {
         <meta property="og:title" content={"Motionly"} />
         <meta property="og:description" content={"Automate your content"} />
         <title>Motionly</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta property="og:image" content={"/logowbg.png"} />
       </Head>
       <Navbar />
-      <div className="max-w-[1200px] px-2 mx-auto text-center md:text-left" style={montserrat.style}>
+      <div
+        className="flex flex-col max-w-[1200px] px-2 mx-auto text-center md:text-left "
+        style={montserrat.style}
+      >
         <Hero />
         <Divider />
         <Mission />
@@ -37,7 +40,10 @@ export const Home = () => {
         <FAQ />
         <Divider />
         <Help />
-        <Footer />
+        <div className="-mb-14">
+          <Divider />
+          </div>
+          <Footer />
       </div>
     </div>
   );
