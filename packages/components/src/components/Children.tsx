@@ -9,6 +9,7 @@ export const Children = ({
   comps?: ComponentProps[];
   isSequence?: boolean;
 }) => {
+  const { fps } = useVideoConfig();
   if (!comps) return null;
   if (!isSequence) {
     return (
@@ -20,7 +21,6 @@ export const Children = ({
     );
   }
 
-  const { fps } = useVideoConfig();
   return (
     <Series>
       {comps.map((child) => (

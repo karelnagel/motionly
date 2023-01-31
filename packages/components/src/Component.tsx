@@ -30,6 +30,10 @@ import { Confetti } from "./components/Confetti";
 
 export const Component = (comp: ComponentProps) => {
   const { fps, durationInFrames } = useVideoConfig();
+  const ref = useRef<HTMLDivElement | null>(null);
+  const width = comp.width || ref.current?.offsetWidth || 0;
+  const height = comp.height || ref.current?.offsetHeight || 0;
+
   const from = useMemo(
     () => Math.floor(getFrom(durationInFrames, (comp.from || 0) * fps)),
     [durationInFrames, fps, comp.from]
@@ -56,7 +60,39 @@ export const Component = (comp: ComponentProps) => {
               comp.loopDuration ? fps * comp.loopDuration : undefined
             }
           >
-            <InsideSequence {...comp} />
+            <InsideSequence {...comp}>
+              <div ref={ref} style={{ height: "100%", width: `100%` }}>
+                {comp.comp === "div" && <Div {...comp} />}
+                {comp.comp === "image" && <Image {...comp} />}
+                {comp.comp === "text" && (
+                  <Text {...comp} animations={comp.animations} />
+                )}
+                {comp.comp === "audio" && <Audio {...comp} />}
+                {comp.comp === "audiogram" && (
+                  <Audiogram {...comp} width={width} height={height} />
+                )}
+                {comp.comp === "graph" && (
+                  <Graph {...comp} width={width} height={height} />
+                )}
+                {comp.comp === "map" && <Map {...comp} />}
+                {comp.comp === "mockup" && <Mockup {...comp} />}
+                {comp.comp === "progressbar" && (
+                  <Progressbar {...comp} width={width} height={height} />
+                )}
+                {comp.comp === "qrcode" && <QRCode {...comp} />}
+                {comp.comp === "video" && <Video {...comp} />}
+                {comp.comp === "transcription" && (
+                  <Transcription {...comp} height={height} />
+                )}
+                {comp.comp === "lottie" && <Lottie {...comp} />}
+                {comp.comp === "gif" && <Gif {...comp} />}
+                {comp.comp === "path" && <Path {...comp} />}
+                {comp.comp === "confetti" && <Confetti {...comp} />}
+                {comp.comp === "shape" && (
+                  <Shape {...comp} width={width} height={height} />
+                )}
+              </div>
+            </InsideSequence>
           </Loop>
         </Freeze>
       </Sequence>
@@ -107,13 +143,10 @@ const InsideSequence = ({
   x,
   y,
   transform,
-  ...comp
-}: ComponentProps) => {
+  children,
+}: ComponentProps & { children: ReactNode }) => {
   const { setSelected, divRef, selected } = useSelected();
   const animation = useAnimation();
-  const ref = useRef<HTMLDivElement | null>(null);
-  const width = inputWidth || ref.current?.offsetWidth || 0;
-  const height = inputHeight || ref.current?.offsetHeight || 0;
 
   const transformStyle = useMemo(
     () =>
@@ -145,17 +178,13 @@ const InsideSequence = ({
 
   const borderAnimations = animations.filter((a) => a.prop === "borderRadius");
   const border = borderAnimations.length
-    ? borderRadius +
-      borderAnimations.reduce((acc, a) => acc + animation(a), 1)
+    ? borderRadius + borderAnimations.reduce((acc, a) => acc + animation(a), 1)
     : borderRadius;
 
   return (
     <>
-      {id && process.env.DEBUG && <Debug title={`${id} - ${comp.comp}`} />}
-
       <div
-        ref={(e) => {
-          if (ref) ref.current = e;
+        ref={(e) =>{
           if (divRef && selected === id) divRef.current = e;
         }}
         onClick={(e) => {
@@ -179,53 +208,8 @@ const InsideSequence = ({
           }deg) ${transformStyle} ${transformAnimations}`, // For some reason, this messes up x and y
         }}
       >
-        {comp.comp === "div" && <Div {...comp} />}
-        {comp.comp === "image" && <Image {...comp} />}
-        {comp.comp === "text" && <Text {...comp} animations={animations} />}
-        {comp.comp === "audio" && <Audio {...comp} />}
-        {comp.comp === "audiogram" && (
-          <Audiogram {...comp} width={width} height={height} />
-        )}
-        {comp.comp === "graph" && (
-          <Graph {...comp} width={width} height={height} />
-        )}
-        {comp.comp === "map" && <Map {...comp} />}
-        {comp.comp === "mockup" && <Mockup {...comp} />}
-        {comp.comp === "progressbar" && (
-          <Progressbar {...comp} width={width} height={height} />
-        )}
-        {comp.comp === "qrcode" && <QRCode {...comp} />}
-        {comp.comp === "video" && <Video {...comp} />}
-        {comp.comp === "transcription" && (
-          <Transcription {...comp} height={height} />
-        )}
-        {comp.comp === "lottie" && <Lottie {...comp} />}
-        {comp.comp === "gif" && <Gif {...comp} />}
-        {comp.comp === "path" && <Path {...comp} />}
-        {comp.comp === "confetti" && <Confetti {...comp} />}
-        {comp.comp === "shape" && (
-          <Shape {...comp} width={width} height={height} />
-        )}
+        {children}
       </div>
     </>
-  );
-};
-
-export const Debug = ({ title }: { title: string }) => {
-  return (
-    <p
-      style={{
-        position: "fixed",
-        opacity: 0.6,
-        zIndex: 100,
-        top: 0,
-        left: 0,
-        background: "white",
-        fontSize: "20px",
-        margin: 0,
-      }}
-    >
-      {title}
-    </p>
   );
 };
