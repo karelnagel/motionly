@@ -1,6 +1,6 @@
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
-export const Arrows = ({ direction }: { direction: string }) => {
+export const Arrows = ({ direction }: { direction?: string }) => {
   return (
     <div className="hidden md:flex">
       {new Array(5)
