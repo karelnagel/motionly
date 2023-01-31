@@ -1,6 +1,6 @@
 import { ShapeProps } from "@motionly/base";
 import { Rect, Triangle, Circle, Ellipse } from "@remotion/shapes";
-import { useColors } from "../useColors";
+import { useColor } from "../useColor";
 
 export const defaultShapeProps: ShapeProps = {
   comp: "shape",
@@ -22,9 +22,8 @@ export const defaultShapeProps: ShapeProps = {
 };
 
 export const Shape = (props: ShapeProps) => {
-  const getColor = useColors();
-  const fill = getColor(props.fill);
-  const stroke = getColor(props.stroke);
+  const fill = useColor(props.fill);
+  const stroke = useColor(props.stroke);
   if (props.type === "triangle")
     return (
       <Triangle
@@ -34,7 +33,9 @@ export const Shape = (props: ShapeProps) => {
         stroke={stroke}
         strokeWidth={props.strokeWidth}
         edgeRoundness={props.edgeRoundness}
-        cornerRadius={props.edgeRoundness===undefined ?props.cornerRadius:undefined}
+        cornerRadius={
+          props.edgeRoundness === undefined ? props.cornerRadius : undefined
+        }
       />
     );
   if (props.type === "rect")
@@ -46,7 +47,9 @@ export const Shape = (props: ShapeProps) => {
         stroke={stroke}
         strokeWidth={props.strokeWidth}
         edgeRoundness={props.edgeRoundness}
-        cornerRadius={props.edgeRoundness===undefined ?props.cornerRadius:undefined}
+        cornerRadius={
+          props.edgeRoundness === undefined ? props.cornerRadius : undefined
+        }
       />
     );
   else if (props.type === "circle")

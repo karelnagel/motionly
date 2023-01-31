@@ -1,5 +1,7 @@
 import { StyleAndClass } from "@motionly/base";
 import { TextProps } from "@motionly/base";
+import { useMemo } from "react";
+import { useCurrentFrame } from "remotion";
 import { useAnimation } from "../useAnimations";
 import { useTextStyles } from "../useTextStyles";
 
@@ -39,12 +41,16 @@ export const Text = ({
   justifyContent,
   animations,
 }: TextProps & StyleAndClass) => {
-  const getStyle = useTextStyles();
+  const styles = useTextStyles(textStyle);
   const animate = useAnimation();
-
+  const frame = useCurrentFrame();
   let animatedText = text;
-  const variables = extractVariables(text);
-  variables.forEach((v) => {
+
+  const variables = useMemo(() => {
+    return extractVariables(text);
+  }, [text]);
+
+  for (const v of variables) {
     const numberAnimations = animations?.filter(
       (a) => a.prop === "number" && a.variable === v
     );
@@ -60,12 +66,15 @@ export const Text = ({
       const text = textAnimations[0].value;
       value = text?.slice(
         0,
-        Math.round(text.length * textAnimations.reduce((a, b) => a + animate(b), 0))
+        Math.round(
+          text.length * textAnimations.reduce((a, b) => a + animate(b), 0)
+        )
       );
     }
     if (value !== undefined)
       animatedText = animatedText.replace(`{{${v}}}`, value);
-  });
+  }
+
   return (
     <div
       style={{
@@ -79,7 +88,7 @@ export const Text = ({
       <p
         className={className}
         style={{
-          ...getStyle(textStyle),
+          ...styles,
           width: "100%",
           whiteSpace: "pre-wrap",
           ...style,

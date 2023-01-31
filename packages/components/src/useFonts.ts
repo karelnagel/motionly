@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { continueRender, delayRender } from "remotion";
 
-export const useFonts = async (fonts: string[]) => {
+export const useFonts = async (fonts: string[] = []) => {
   const [handle] = useState(() => delayRender());
 
   useEffect(() => {

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { continueRender, delayRender } from "remotion";
 import { StyleAndClass } from "@motionly/base";
 import { LottieProps } from "@motionly/base";
-import { useColors } from "../useColors";
+import { useColor } from "../useColor";
 import { getSrc } from "../helpers";
 
 export const defaultLottieProps: LottieProps = {
@@ -21,11 +21,11 @@ export const Lottie = ({
   playbackRate,
   style,
   className,
-  bg: background,
+  bg,
   backwards,
 }: LottieProps & StyleAndClass) => {
   const [handle] = useState(() => delayRender("Loading Lottie animation"));
-  const getColor = useColors();
+  const background = useColor(bg);
   const [animationData, setAnimationData] =
     useState<LottieAnimationData | null>(null);
   useEffect(() => {
@@ -50,7 +50,7 @@ export const Lottie = ({
       style={{
         height: "100%",
         width: "100%",
-        background: getColor(background),
+        background,
         ...style,
       }}
       animationData={animationData}

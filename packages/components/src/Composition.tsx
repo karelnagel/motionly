@@ -1,7 +1,7 @@
 import { AbsoluteFill } from "remotion";
 import { useSelected } from "./SelectedContext";
 import { Color, getFonts, HasChildren } from "@motionly/base";
-import { useColors } from "./useColors";
+import { useColor } from "./useColor";
 import { useFonts } from "./useFonts";
 import { Children } from "./components/Children";
 
@@ -13,11 +13,11 @@ export const Composition = ({
   background?: Color;
 } & HasChildren) => {
   const { setSelected } = useSelected();
-  const color = useColors();
-  useFonts(getFonts(comps) || []);
+  const bg = useColor(background);
+  useFonts(getFonts(comps));
   return (
     <AbsoluteFill
-      style={{ background: color(background) }}
+      style={{ background: bg }}
       onClick={() => setSelected("template")}
     >
       <Children comps={comps} isSequence={isSequence} />

@@ -24,19 +24,26 @@ import { ComponentProps, transformProps } from "@motionly/base";
 import { useAnimation } from "./useAnimations";
 import { getDuration, getFrom } from "@motionly/base";
 import { Shape } from "./components/Shape";
-import { ReactNode, useRef } from "react";
+import { ReactNode, useMemo, useRef } from "react";
 import { MotionBlur } from "./MotionBlur";
 import { Confetti } from "./components/Confetti";
 
 export const Component = (comp: ComponentProps) => {
   const { fps, durationInFrames } = useVideoConfig();
-  const from = Math.floor(getFrom(durationInFrames, (comp.from || 0) * fps));
-  const duration = Math.floor(
-    getDuration(
-      durationInFrames,
-      (comp.from || 0) * fps,
-      (comp.duration || 0) * fps
-    )
+  const from = useMemo(
+    () => Math.floor(getFrom(durationInFrames, (comp.from || 0) * fps)),
+    [durationInFrames, fps, comp.from]
+  );
+  const duration = useMemo(
+    () =>
+      Math.floor(
+        getDuration(
+          durationInFrames,
+          (comp.from || 0) * fps,
+          (comp.duration || 0) * fps
+        )
+      ),
+    [durationInFrames, fps, comp.duration, comp.from]
   );
   return (
     <MotionBlur motion={comp.motionBlur}>
@@ -91,10 +98,10 @@ export const Loop = ({
 
 const InsideSequence = ({
   id,
-  borderRadius,
+  borderRadius = 0,
   animations = [],
   height: inputHeight,
-  opacity,
+  opacity = 1,
   rotation,
   width: inputWidth,
   x,
@@ -108,13 +115,16 @@ const InsideSequence = ({
   const width = inputWidth || ref.current?.offsetWidth || 0;
   const height = inputHeight || ref.current?.offsetHeight || 0;
 
-  const transformStyle =
-    transform
-      ?.map((t) => {
-        const { units } = transformProps[t.prop];
-        return `${t.prop}(${t.value}${units || ""})`;
-      })
-      .join(" ") || "";
+  const transformStyle = useMemo(
+    () =>
+      transform
+        ?.map((t) => {
+          const { units } = transformProps[t.prop];
+          return `${t.prop}(${t.value}${units || ""})`;
+        })
+        .join(" ") || "",
+    [transform]
+  );
 
   const transformAnimations =
     animations
@@ -124,6 +134,29 @@ const InsideSequence = ({
         return `${anim.prop}(${animation(anim)}${prop.units || ""})`;
       })
       .join(" ") || "";
+
+  const opacityAnimations = animations.filter((a) => a.prop === "opacity");
+  const opac = opacityAnimations.length
+    ? useMemo(
+        () =>
+          opacity *
+          animations
+            .filter((a) => a.prop === "opacity")
+            .reduce((acc, a) => acc * animation(a), 1),
+        [opacity, animations, animation]
+      )
+    : opacity;
+
+  const borderAnimations = animations.filter((a) => a.prop === "borderRadius");
+  const border = borderAnimations.length
+    ? useMemo(
+        () =>
+          borderRadius +
+          borderAnimations.reduce((acc, a) => acc + animation(a), 1),
+        [borderRadius, animations, animation]
+      )
+    : borderRadius;
+
   return (
     <>
       {id && process.env.DEBUG && <Debug title={`${id} - ${comp.comp}`} />}
@@ -138,16 +171,8 @@ const InsideSequence = ({
           e.stopPropagation();
         }}
         style={{
-          opacity:
-            (opacity || 1) *
-            animations
-              .filter((a) => a.prop === "opacity")
-              .reduce((acc, a) => acc * animation(a), 1),
-          borderRadius:
-            (borderRadius || 0) +
-            animations
-              .filter((a) => a.prop === "borderRadius")
-              .reduce((acc, a) => acc + animation(a), 1),
+          opacity: opac,
+          borderRadius: border,
           cursor: "pointer",
           display: "flex",
           overflow: "hidden",
