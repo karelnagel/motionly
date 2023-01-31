@@ -45,7 +45,7 @@ export const Help = () => {
     }
   };
   return (
-    <div className="relative">
+    <div className="relative ">
       <div
         id="contact"
         className="relative flex flex-col-reverse px-4 py-8 md:flex-row z-20 "

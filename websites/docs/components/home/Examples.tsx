@@ -43,7 +43,7 @@ export const Examples = () => {
 
   return (
     <div className="space-y-10">
-      <div className="max-w-[690px] space-y-6 md:ml-auto ">
+      <div className="max-w-[690px] space-y-6 md:ml-auto text-right ">
         <h2 className="text-[50px] md:text-[75px] font-semibold leading-none title">
           Video templates for every purpose
         </h2>
