@@ -87,6 +87,7 @@ export const Client = ({ startTemplate }: { startTemplate: Template }) => {
         </div>
       </div>
       <Player
+        loop
         width={template.width}
         height={template.height}
         fps={template.fps}

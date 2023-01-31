@@ -6,6 +6,7 @@ export type PlayerProps = {
   autoPlay?: boolean;
   clickToPlay?: boolean;
   controls?: boolean;
+  loop?: boolean;
   doubleClickToFullscreen?: boolean;
   moveToBeginningWhenEnded?: boolean;
   initiallyShowControls?: boolean;

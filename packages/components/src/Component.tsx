@@ -137,24 +137,16 @@ const InsideSequence = ({
 
   const opacityAnimations = animations.filter((a) => a.prop === "opacity");
   const opac = opacityAnimations.length
-    ? useMemo(
-        () =>
-          opacity *
-          animations
-            .filter((a) => a.prop === "opacity")
-            .reduce((acc, a) => acc * animation(a), 1),
-        [opacity, animations, animation]
-      )
+    ? opacity *
+      animations
+        .filter((a) => a.prop === "opacity")
+        .reduce((acc, a) => acc * animation(a), 1)
     : opacity;
 
   const borderAnimations = animations.filter((a) => a.prop === "borderRadius");
   const border = borderAnimations.length
-    ? useMemo(
-        () =>
-          borderRadius +
-          borderAnimations.reduce((acc, a) => acc + animation(a), 1),
-        [borderRadius, animations, animation]
-      )
+    ? borderRadius +
+      borderAnimations.reduce((acc, a) => acc + animation(a), 1)
     : borderRadius;
 
   return (

@@ -1,7 +1,6 @@
 import { StyleAndClass } from "@motionly/base";
 import { TextProps } from "@motionly/base";
 import { useMemo } from "react";
-import { useCurrentFrame } from "remotion";
 import { useAnimation } from "../useAnimations";
 import { useTextStyles } from "../useTextStyles";
 
@@ -43,7 +42,6 @@ export const Text = ({
 }: TextProps & StyleAndClass) => {
   const styles = useTextStyles(textStyle);
   const animate = useAnimation();
-  const frame = useCurrentFrame();
   let animatedText = text;
 
   const variables = useMemo(() => {
