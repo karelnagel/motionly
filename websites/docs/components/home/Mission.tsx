@@ -32,7 +32,12 @@ export const Mission = () => {
           />
         </div>
 
-        <Image src={phone} alt="phone" className="relative" />
+        <Image
+          src={phone}
+          priority
+          alt="phone"
+          className="relative"
+        />
       </div>
       <div className="max-w-xl flex flex-col space-y-8 md:text-right md:items-end">
         <h2 className="font-semibold text-[50px] md:text-[85px] leading-none title">
@@ -44,7 +49,7 @@ export const Mission = () => {
           modified to fit any marketing strategy or campaign and much more.
         </p>
         <div className="mt-6 mr-6">
-        <Arrows direction="left"/>
+          <Arrows direction="left" />
         </div>
       </div>
     </div>
