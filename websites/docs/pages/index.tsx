@@ -19,6 +19,7 @@ export const Home = () => {
         <meta property="og:url" content={`https://motionly.video/`} />
         <meta property="og:title" content={"Motionly"} />
         <meta property="og:description" content={"Automate your content"} />
+        <meta property="og:image" content="https://motionly.video/api/og" />
         <title>Motionly</title>
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta property="og:image" content={"/logowbg.png"} />

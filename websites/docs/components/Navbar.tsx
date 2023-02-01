@@ -17,10 +17,16 @@ export const Navbar = () => {
     <div className="relative z-20 w-full">
       <div className="max-w-screen-xl mx-auto px-2 grid grid-cols-3 md:grid-cols-5 items-center">
         <Link href="/" className=" w-60 col-span-2 hidden md:block">
-          <Image src={logo} alt="logo" className="w-60" />
+          <Image
+            src={logo}
+            priority
+            alt="logo"
+            className="w-60"
+          />
         </Link>
         <Link href="/" className="flex justify-start md:justify-center">
           <Image
+            priority
             src={logoGif}
             alt="logo"
             className="w-16 md:w-20 object-contain "
@@ -43,7 +49,10 @@ export const Navbar = () => {
             ))}
           </div>
           <Link href="/#contact">
-          <Button text="CONTACT US" className="text-[17px] font-normal p-1 pl-4 whitespace-nowrap"/>
+            <Button
+              text="CONTACT US"
+              className="text-[17px] font-normal p-1 pl-4 whitespace-nowrap"
+            />
           </Link>
         </div>
       </div>
