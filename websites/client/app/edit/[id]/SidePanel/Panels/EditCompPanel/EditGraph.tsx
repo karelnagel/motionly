@@ -44,8 +44,8 @@ const inputs: UserInput[] = [
 ];
 
 export const EditGraph = () => {
-  const { selectedComp, setComp } = useTemplate();
-  const comp = selectedComp as GraphProps;
+  const comp = useTemplate((t) => t.comp) as GraphProps;
+  const setComp = useTemplate((t) => t.setComp);
 
   return (
     <EditSection title="Graph">

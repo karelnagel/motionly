@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { PanelTitle } from "../../../../../components/PanelTitle";
 import { Input } from "../../../../../components/inputs";
-import { useTemplate } from "../../../../../hooks/useTemplate";
 import { useRender } from "@motionly/renderer/dist/sdk";
+import { useTemplate } from "../../../../../hooks/useTemplate";
 
 export const ExportSidePanel = () => {
-  const { template, setTemplate } = useTemplate();
+  const setTemplate = useTemplate((t) => t.setTemplate);
+  const template = useTemplate((t) => t.template);
   const [frame, setFrame] = useState(0);
   const [renderStill, setRenderStill] = useState(false);
   const { media, still, cost, progress, fileUrl, status } = useRender(

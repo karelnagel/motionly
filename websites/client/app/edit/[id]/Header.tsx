@@ -3,13 +3,8 @@ import { IoIosArrowBack, IoMdRedo, IoMdUndo } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { useTemplate } from "../../../hooks/useTemplate";
 
-export const TimeAfter = ({
-  time,
-  className,
-}: {
-  time: Date;
-  className?: string;
-}) => {
+export const TimeAfter = ({ className }: { className?: string }) => {
+  const time = useTemplate((s) => s.saveTime);
   const [date, setDate] = useState(new Date());
   useEffect(() => {
     const timer = setInterval(() => {
@@ -19,6 +14,8 @@ export const TimeAfter = ({
       clearInterval(timer); // Return a funtion to clear the timer so that it will stop being called on unmount
     };
   }, []);
+  if (!time) return null;
+
   const diff = +date - +time;
   const seconds = Math.floor(diff / 1000);
   return (
@@ -29,8 +26,13 @@ export const TimeAfter = ({
 };
 
 export const Header = () => {
-  const { template, setSelected, selected, saveTime, undo, redo } =
-    useTemplate();
+  const name = useTemplate((s) => s.template.name);
+  const setSelected = useTemplate((s) => s.setSelected);
+  const selected = useTemplate((s) => s.selected);
+  const undo = useTemplate((s) => s.undo);
+  const redo = useTemplate((s) => s.redo);
+  const future = useTemplate((s) => s.future);
+  const past = useTemplate((s) => s.past);
 
   const Button = ({
     title,
@@ -66,13 +68,11 @@ export const Header = () => {
           onClick={() => setSelected("template")}
           className="text-[22px] font-bold cursor-pointer"
         >
-          {template.name}
+          {name}
         </span>
-        {saveTime && (
-          <span className="text-[10px] opacity-60">
-            saved <TimeAfter time={saveTime} />
-          </span>
-        )}
+        <span className="text-[10px] opacity-60">
+          saved <TimeAfter />
+        </span>
       </p>
       <div className="flex items-center space-x-4 font-bold w-full justify-end">
         <div className="flex text-2xl space-x-2">
@@ -80,7 +80,7 @@ export const Header = () => {
             <IoMdUndo
               onClick={undo}
               className={`${
-                undo ? "cursor-pointer" : "opacity-30 cursor-default"
+                past.length ? "cursor-pointer" : "opacity-30 cursor-default"
               }`}
             />
           </div>
@@ -88,7 +88,7 @@ export const Header = () => {
             <IoMdRedo
               onClick={redo}
               className={`${
-                redo ? "cursor-pointer" : "opacity-30 cursor-default"
+                future.length ? "cursor-pointer" : "opacity-30 cursor-default"
               }`}
             />
           </div>

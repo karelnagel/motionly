@@ -10,8 +10,8 @@ import { Input } from "../../../../../../components/inputs";
 import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
 import { Popup } from "../../../../../../components/Popup";
 import { ShowJson } from "../../../../../../components/ShowJson";
-import { getMediaUrl } from "../../../../../../helpers";
 import { useTemplate } from "../../../../../../hooks/useTemplate";
+import { getMediaUrl } from "../../../../../../helpers";
 import { getMedia } from "../../../../../../sdk/media/get";
 import { getTranscription } from "../../../../../../sdk/media/getTranscription";
 import { startTranscription } from "../../../../../../sdk/media/startTranscription";
@@ -46,8 +46,9 @@ const inputs: UserInput[] = [
   },
 ];
 export const EditTranscription = () => {
-  const { setComp, selectedComp } = useTemplate();
-  const comp = selectedComp as TranscriptionProps;
+  const comp = useTemplate((t) => t.comp) as TranscriptionProps;
+  const setComp = useTemplate((t) => t.setComp);
+
   return (
     <EditSection title="Transcription">
       <GetTranscriptions onChange={(src) => setComp({ ...comp, src })} />

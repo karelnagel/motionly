@@ -10,18 +10,19 @@ export type UserInput = {
   options?: { value: string; label: string }[];
 };
 export const Inputs = ({ inputs }: { inputs: UserInput[] }) => {
-  const { selectedComp, setComp } = useTemplate();
+  const comp = useTemplate((t) => t.comp);
+  const setComp = useTemplate((t) => t.setComp);
   return (
     <>
       {inputs
-        .filter((c) => (c.if ? c.if(selectedComp) : true))
+        .filter((c) => (c.if ? c.if(comp) : true))
         .map(({ prop, type }) => (
           <Input
             key={prop}
             prop={prop}
             type={type}
             label={prop}
-            value={(selectedComp as any)[prop]}
+            value={(comp as any)[prop]}
             onChange={(value) => setComp({ [prop]: value })}
           />
         ))}

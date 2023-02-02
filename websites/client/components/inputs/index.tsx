@@ -4,8 +4,8 @@ import { Color, inputTypes, TextStyle } from "@motionly/base";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { EditTextStyle } from "../../app/edit/[id]/SidePanel/Panels/EditCompPanel/EditTextStyle";
 import { getRandomId } from "../../helpers";
-import { useTemplate } from "../../hooks/useTemplate";
 import { Media } from "../Media";
+import { useTemplate } from "../../hooks/useTemplate";
 import { ColorInput } from "./color";
 export * from "./color";
 
@@ -18,7 +18,9 @@ export const VariableSelect = ({
   type: keyof typeof inputTypes;
   value: any;
 }) => {
-  const { template, setTemplate, selected } = useTemplate();
+  const template = useTemplate((t) => t.template);
+  const setTemplate = useTemplate((t) => t.setTemplate);
+  const selected = useTemplate((t) => t.selected);
 
   return (
     <div

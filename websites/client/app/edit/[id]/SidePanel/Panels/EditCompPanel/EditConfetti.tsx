@@ -39,8 +39,8 @@ const inputs: UserInput[] = [
   },
 ];
 export const EditConfetti = () => {
-  const { selectedComp, setComp } = useTemplate();
-  const comp = selectedComp as ConfettiProps;
+  const setComp = useTemplate((t) => t.setComp);
+  const comp = useTemplate((t) => t.comp) as ConfettiProps;
 
   return (
     <EditSection title="Audio">

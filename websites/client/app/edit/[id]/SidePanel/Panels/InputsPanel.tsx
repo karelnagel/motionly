@@ -1,10 +1,11 @@
 import { Input as InputType, inputTypes } from "@motionly/base";
 import { Input } from "../../../../../components/inputs";
-import { getRandomId } from "../../../../../helpers";
 import { useTemplate } from "../../../../../hooks/useTemplate";
+import { getRandomId } from "../../../../../helpers";
 
 export const InputsPanel = () => {
-  const { template, setTemplate } = useTemplate();
+  const setTemplate = useTemplate((t) => t.setTemplate);
+  const template = useTemplate((t) => t.template);
   const setInputs = (inputs?: InputType[]) => {
     setTemplate({ ...template, inputs });
   };

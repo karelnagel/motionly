@@ -1,4 +1,4 @@
-import { ComponentProps, transformProps } from "@motionly/base";
+import { transformProps } from "@motionly/base";
 import { Input } from "../../../../../../components/inputs";
 import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
 import { useTemplate } from "../../../../../../hooks/useTemplate";
@@ -47,8 +47,9 @@ const inputs: UserInput[] = [
   },
 ];
 export const EditGeneral = () => {
-  const { selectedComp, setComp } = useTemplate();
-  const comp = selectedComp as ComponentProps;
+  const comp = useTemplate((t) => t.comp);
+  const setComp = useTemplate((t) => t.setComp);
+  if (!comp) return null;
 
   return (
     <EditSection>

@@ -1,11 +1,12 @@
 import { FormEvent, useState } from "react";
 import { PanelTitle } from "../../../../../components/PanelTitle";
-import { useTemplate } from "../../../../../hooks/useTemplate";
 import { useAlerts } from "../../../../../components/Alert";
 import { postAI } from "../../../../../sdk/ai";
+import { useTemplate } from "../../../../../hooks/useTemplate";
 
 export const AISidePanel = () => {
-  const { template, setTemplate } = useTemplate();
+  const template = useTemplate((t) => t.template);
+  const setTemplate = useTemplate((t) => t.setTemplate);
   const [prompt, setPrompt] = useState("");
   const [status, setStatus] = useState<"loading" | "done" | "error">();
   const alert = useAlerts();

@@ -10,7 +10,7 @@ export const Timeline = ({
 }: {
   playerRef: RefObject<PlayerRef>;
 }) => {
-  const { template } = useTemplate();
+  const template = useTemplate((t) => t.template);
   const [width, setWidth] = useLocalStorage("timelineWidth", 100);
   return (
     <div className="overflow-x-auto h-full relative">

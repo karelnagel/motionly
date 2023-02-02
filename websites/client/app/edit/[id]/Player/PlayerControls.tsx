@@ -21,9 +21,7 @@ export const PlayerControls = ({
   setScale: (s?: number) => void;
   playerRef: RefObject<PlayerRef>;
 }) => {
-  const {
-    template: { fps },
-  } = useTemplate();
+  const fps = useTemplate((t) => t.template.fps);
   const frame = useCurrentPlayerFrame(playerRef);
   const [isPlaying, setIsPlaying] = useState(false);
 

@@ -8,7 +8,8 @@ import { useTemplate } from "../../../../../hooks/useTemplate";
 import { deleteTemplate } from "../../../../../sdk/templates/delete";
 
 export const TemplateSidePanel = () => {
-  const { template, setTemplate } = useTemplate();
+  const setTemplate = useTemplate((t) => t.setTemplate);
+  const template = useTemplate((t) => t.template);
   const router = useRouter();
   const alert = useAlerts();
 

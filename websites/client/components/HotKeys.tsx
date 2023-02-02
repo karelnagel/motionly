@@ -4,15 +4,14 @@ import { useCurrentPlayerFrame } from "../hooks/useCurrentPlayerFrame";
 import { useTemplate } from "../hooks/useTemplate";
 
 export function HotKeys({ playerRef }: { playerRef: RefObject<PlayerRef> }) {
-  const {
-    undo,
-    redo,
-    setSelected,
-    setTab,
-    deleteComp,
-    addComp,
-    template: { fps },
-  } = useTemplate();
+  const undo = useTemplate((t) => t.undo);
+  const redo = useTemplate((t) => t.redo);
+  const setSelected = useTemplate((t) => t.setSelected);
+  const setTab = useTemplate((t) => t.setTab);
+  const deleteComp = useTemplate((t) => t.deleteComp);
+  const addComp = useTemplate((t) => t.addComp);
+  const fps = useTemplate((t) => t.template.fps);
+
   const frame = useCurrentPlayerFrame(playerRef);
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {

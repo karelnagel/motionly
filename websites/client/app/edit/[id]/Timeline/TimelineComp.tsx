@@ -2,10 +2,10 @@ import { getFrom, getDuration, ComponentProps } from "@motionly/base";
 import { useRef, useState } from "react";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import Moveable from "react-moveable";
-import { useTemplate } from "../../../../hooks/useTemplate";
 import { isPanel } from "../../../../helpers";
 import { Animation } from "./Animation";
 import { ShowHide } from "../../../../components/ShowHide";
+import { useTemplate } from "../../../../hooks/useTemplate";
 
 export const TimelineComp = ({
   comp,
@@ -18,7 +18,10 @@ export const TimelineComp = ({
   parentDuration: number;
   parentId: string;
 }) => {
-  const { selected, setSelected, changeParent } = useTemplate();
+  const selected = useTemplate((t) => t.selected);
+  const setSelected = useTemplate((t) => t.setSelected);
+  const changeParent = useTemplate((t) => t.changeParent);
+
   const [show, setShow] = useState(true);
   const divRef = useRef<HTMLDivElement>(null);
   const isSelected = selected === comp.id;
@@ -142,7 +145,8 @@ export const CompMoveable = ({
   comp: ComponentProps;
   parentId: string;
 }) => {
-  const { setComp, setComps } = useTemplate();
+  const setComp = useTemplate((t) => t.setComp);
+  const setComps = useTemplate((t) => t.setComps);
   return (
     <Moveable
       target={divRef}

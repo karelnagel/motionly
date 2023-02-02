@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { TemplateContext } from "../../../components/TemplateContext";
+import { useEffect, useRef } from "react";
 import { Header } from "./Header";
 import { Timeline } from "./Timeline/Timeline";
 import { PlayerRef } from "@remotion/player";
@@ -18,15 +17,13 @@ export function ClientPageWrapper({
 }: {
   template: Template;
 }) {
-  return (
-    <TemplateContext startTemplate={startTemplate}>
-      <ClientPage />
-    </TemplateContext>
-  );
+  const init = useTemplate((s) => s.init);
+  useEffect(() => init(startTemplate), []);
+  return <ClientPage />;
 }
 export function ClientPage() {
   const playerRef = useRef<PlayerRef>(null);
-  const { template } = useTemplate();
+  const template = useTemplate((t) => t.template);
   return (
     <div className="bg-base-300 w-screen h-screen overflow-hidden">
       <div className="flex md:hidden flex-col items-center justify-center h-full space-y-3">

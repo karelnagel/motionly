@@ -41,14 +41,12 @@ export const PanelTitle = ({
   );
 };
 export const EditCompPanel = () => {
-  const {
-    selectedComp: comp,
-    setTab,
-    tab,
-    addComp,
-    setComp,
-    deleteComp,
-  } = useTemplate();
+  const comp = useTemplate((t) => t.comp);
+  const setComp = useTemplate((t) => t.setComp);
+  const deleteComp = useTemplate((t) => t.deleteComp);
+  const tab = useTemplate((t) => t.tab);
+  const setTab = useTemplate((t) => t.setTab);
+  const addComp = useTemplate((t) => t.addComp);
   if (!comp) return null;
   const Tab = ({
     title,
