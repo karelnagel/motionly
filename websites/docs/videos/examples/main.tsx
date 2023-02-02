@@ -5,7 +5,7 @@ export const main: TemplateType = {
   fps: 30,
   height: 1080,
   width: 1920,
-  background: {
+  bg: {
     type: "basic",
     color: "#FFFFFFFF",
   },

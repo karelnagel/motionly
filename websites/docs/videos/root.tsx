@@ -19,7 +19,7 @@ export const Root: React.FC = () => {
             height={e.height}
             defaultProps={{
               comps: e.comps,
-              background: e.background,
+              bg: e.bg,
             }}
           />
         ))}
@@ -38,7 +38,7 @@ export const Root: React.FC = () => {
               height={temp.height}
               defaultProps={{
                 comps: temp.comps,
-                background: temp.background,
+                bg: temp.bg,
               }}
             />
           );

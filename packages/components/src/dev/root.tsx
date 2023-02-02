@@ -32,7 +32,7 @@ export const Root: React.FC = () => {
         height={template.height}
         defaultProps={{
           comps: template.comps,
-          background: template.background,
+          bg: template.bg,
           isSequence: template.isSequence,
         }}
       />
@@ -55,7 +55,7 @@ export const Root: React.FC = () => {
               height={template.height}
               defaultProps={{
                 comps: [compProps],
-                background: {
+                bg: {
                   type: "basic",
                   color: "#FFFFFFFF",
                 },
@@ -74,7 +74,7 @@ export const Root: React.FC = () => {
         width={test.width}
         defaultProps={{
           comps: test.comps,
-          background: test.background,
+          bg: test.bg,
           isSequence: test.isSequence,
         }}
       />

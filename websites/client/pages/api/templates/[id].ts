@@ -69,7 +69,6 @@ export const getTemplate = async (
     fps,
     public: template.public,
     isOwner,
-    background: background ? JSON.parse(background) : undefined,
     preview: preview || undefined,
   };
 };
@@ -98,9 +97,6 @@ const updateTemplate = async (
         public: template.public,
         description: template.description,
         inputs: template.inputs ? JSON.stringify(template.inputs) : undefined,
-        background: template.background
-          ? JSON.stringify(template.background)
-          : undefined,
         fps: template.fps,
         duration: template.duration,
         preview,
@@ -119,7 +115,6 @@ const updateTemplate = async (
       width: result.width,
       height: result.height,
       description: result.description,
-      background: result.background ? JSON.parse(result.background) : undefined,
       preview: result.preview || undefined,
       name: result.name,
       id: result.id,
@@ -140,7 +135,6 @@ const deleteTemplate = async ({
   return {
     ...result,
     comps: JSON.parse(comps),
-    background: result.background ? JSON.parse(result.background) : undefined,
     preview: result.preview || undefined,
     inputs: inputs ? JSON.parse(inputs) : undefined,
   };

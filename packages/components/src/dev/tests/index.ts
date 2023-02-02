@@ -56,7 +56,7 @@ export const test: TemplateType = {
   height: 400,
   duration: 96,
   fps: 30,
-  background: {
+  bg: {
     type: "basic",
     color: "#FFFFFFFF",
   },

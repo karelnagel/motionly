@@ -24,7 +24,7 @@ export const Player = ({
       durationInFrames={Math.ceil(temp.duration * temp.fps)}
       inputProps={{
         comps: temp.comps,
-        background: temp.background,
+        bg: temp.bg,
       }}
       compositionHeight={temp.height}
       compositionWidth={temp.width}

@@ -5,7 +5,7 @@ export const phone: TemplateType = {
   fps: 30,
   height: 1920,
   width: 1080,
-  background: {
+  bg: {
     type: "basic",
     color: "#FFFFFFFF",
   },

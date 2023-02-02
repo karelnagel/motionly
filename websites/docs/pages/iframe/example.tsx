@@ -128,7 +128,7 @@ const baseTemplate: TemplateType = {
   height: 1080,
   duration: 10,
   fps: 30,
-  background: {
+  bg: {
     type: "basic",
     color: "#ff0000FF",
   },

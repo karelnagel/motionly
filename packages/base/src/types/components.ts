@@ -102,7 +102,6 @@ export type AudiogramProps = {
 
 export type DivProps = {
   comp: "div";
-  bg?: Color;
 } & HasChildren;
 
 export type GifProps = {
@@ -157,12 +156,12 @@ export type MapProps = {
 export type HasChildren = {
   comps: ComponentProps[];
   isSequence?: boolean;
+  bg?: Color;
 };
 
 export type MockupProps = {
   comp: "mockup";
   type: keyof typeof MockupTypes;
-  bg?: Color;
 } & HasChildren;
 export type PathProps = {
   comp: "path";
@@ -355,7 +354,6 @@ export type TemplateType = {
   width: number;
   height: number;
   duration: number;
-  background?: Color;
   fps: number;
   inputs?: Input[];
 } & HasChildren;

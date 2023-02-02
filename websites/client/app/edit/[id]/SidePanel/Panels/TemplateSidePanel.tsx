@@ -86,8 +86,8 @@ export const TemplateSidePanel = () => {
             type="color"
             label="Background"
             prop="background"
-            value={template.background}
-            onChange={(background) => setTemplate({ ...template, background })}
+            value={template.bg}
+            onChange={(bg) => setTemplate({ ...template, bg })}
           />
           <Input
             type="checkbox"

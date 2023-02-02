@@ -5,7 +5,7 @@ export const podcasts: TemplateType = {
   fps: 30,
   height: 480,
   width: 854,
-  background: {
+  bg: {
     type: "basic",
     color: "#FFFFFFFF",
   },

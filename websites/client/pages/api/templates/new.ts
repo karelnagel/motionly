@@ -36,10 +36,6 @@ const postNewTemplate = async (
       inputs: input.inputs ? JSON.stringify(input.inputs) : undefined,
       name: input.name + " (Copy)",
       description: input.description,
-      background:
-        typeof input.background === "object"
-          ? JSON.stringify(input.background)
-          : input.background,
       preview: input.preview,
       public: false,
       user: { connect: { email: session.user.email } },
@@ -48,7 +44,6 @@ const postNewTemplate = async (
   return {
     ...result,
     comps: JSON.parse(result.comps),
-    background: result.background ? JSON.parse(result.background) : undefined,
     preview: result.preview || undefined,
     inputs: result.inputs ? JSON.parse(result.inputs) : undefined,
   };

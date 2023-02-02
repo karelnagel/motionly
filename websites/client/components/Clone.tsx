@@ -13,7 +13,7 @@ const emptyTemplate: Template = {
   height: 1080,
   fps: 30,
   duration: 10,
-  background: {
+  bg: {
     type: "basic",
     color: "#FFFFFFFF",
   },

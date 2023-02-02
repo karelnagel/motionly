@@ -6,15 +6,9 @@ import { useFonts } from "./useFonts";
 import { Children } from "./components/Children";
 import { ReactNode } from "react";
 
-export const Composition = ({
-  comps = [],
-  background,
-  isSequence,
-}: {
-  background?: Color;
-} & HasChildren) => {
+export const Composition = ({ comps = [], bg, isSequence }: HasChildren) => {
   return (
-    <Background background={background} comps={comps}>
+    <Background background={bg} comps={comps}>
       <Children comps={comps} isSequence={isSequence} />
     </Background>
   );
