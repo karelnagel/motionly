@@ -2,6 +2,7 @@ import { ComponentProps } from "@motionly/base";
 import { Project, Tabs } from "../types";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
+import { WritableDraft } from "immer/dist/internal";
 import { useCallback } from "react";
 
 interface Store {
@@ -22,6 +23,12 @@ interface Store {
   changeParent: (parentId: string) => void;
   setComps: (comps: ComponentProps[], parentId: string) => void;
   init: (template: Project) => void;
+  set: (
+    nextStateOrUpdater:
+      | Store
+      | Partial<Store>
+      | ((state: WritableDraft<Store>) => void)
+  ) => void;
 }
 
 const project: Project = {
@@ -49,6 +56,7 @@ export const useStore = create(
     parentId: undefined,
     saveTime: undefined,
     init: (project: Project) => set({ project }),
+    set,
     setProject: (project: Partial<Project>) =>
       set((state) => ({ project: { ...state.project, ...project } })),
 

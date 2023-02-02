@@ -8,7 +8,7 @@ import { useStore } from "../../../../../hooks/useStore";
 import { deleteProject } from "../../../../../sdk/templates/delete";
 
 export const TemplateSidePanel = () => {
-  // const setTemplate = useTemplate((t) => t.setTemplate);
+  const set = useStore((t) => t.set);
   const project = useStore((t) => t.project);
   const router = useRouter();
   const alert = useAlerts();
@@ -29,21 +29,20 @@ export const TemplateSidePanel = () => {
             type="text"
             label="Name"
             value={project.name}
-            onChange={
-              (name) => {}
-              // setTemplate({ ...template, name: name || template.name })
+            onChange={(name) =>
+              set((state) => {
+                state.project.name = name || "";
+              })
             }
           />
           <Input
             type="text"
             label="Description"
             value={project.description}
-            onChange={
-              (description) => {}
-              // setTemplate({
-              //   ...template,
-              //   description: description || template.description,
-              // })
+            onChange={(description) =>
+              set((state) => {
+                state.project.description = description || "";
+              })
             }
           />
           <Input
@@ -52,9 +51,10 @@ export const TemplateSidePanel = () => {
             placeholder="1080"
             prop="width"
             value={project.template.width}
-            onChange={
-              (width) => {}
-              // setTemplate({ ...project, width: width || 1 })
+            onChange={(width) =>
+              set((state) => {
+                state.project.template.width = width || 1;
+              })
             }
           />
           <Input
@@ -63,9 +63,10 @@ export const TemplateSidePanel = () => {
             placeholder="1080"
             prop="height"
             value={project.template.height}
-            onChange={
-              (height) => {}
-              // setTemplate({ ...template, height: height || 1 })
+            onChange={(height) =>
+              set((state) => {
+                state.project.template.height = height || 1;
+              })
             }
           />
           <Input
@@ -74,9 +75,10 @@ export const TemplateSidePanel = () => {
             placeholder="30"
             prop="fps"
             value={project.template.fps}
-            onChange={
-              (fps) => {}
-              // setTemplate({ ...template, fps: fps || 1 })
+            onChange={(fps) =>
+              set((state) => {
+                state.project.template.fps = fps || 1;
+              })
             }
           />
           <Input
@@ -85,9 +87,10 @@ export const TemplateSidePanel = () => {
             value={project.template.duration}
             prop="duration"
             placeholder="10"
-            onChange={
-              (duration) => {}
-              // setTemplate({ ...template, duration: duration || 1 })
+            onChange={(duration) =>
+              set((state) => {
+                state.project.template.duration = duration || 1;
+              })
             }
           />
           <Input
@@ -95,18 +98,20 @@ export const TemplateSidePanel = () => {
             label="Background"
             prop="background"
             value={project.template.bg}
-            onChange={
-              (bg) => {}
-              // setTemplate({ ...template, bg })
+            onChange={(bg) =>
+              set((state) => {
+                state.project.template.bg = bg;
+              })
             }
           />
           <Input
             type="checkbox"
             label="Public"
             value={project.public}
-            onChange={
-              (public_) => {}
-              // setTemplate({ ...template, public: public_ })
+            onChange={(public_) =>
+              set((state) => {
+                state.project.public = public_;
+              })
             }
           />
         </div>
