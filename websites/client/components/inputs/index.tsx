@@ -5,7 +5,7 @@ import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { EditTextStyle } from "../../app/edit/[id]/SidePanel/Panels/EditCompPanel/EditTextStyle";
 import { getRandomId } from "../../helpers";
 import { Media } from "../Media";
-import { useTemplate } from "../../hooks/useTemplate";
+import { useStore } from "../../hooks/useStore";
 import { ColorInput } from "./color";
 export * from "./color";
 
@@ -18,9 +18,9 @@ export const VariableSelect = ({
   type: keyof typeof inputTypes;
   value: any;
 }) => {
-  const template = useTemplate((t) => t.project.template);
+  const template = useStore((t) => t.project.template);
   // const setTemplate = useTemplate((t) => t.setTemplate);
-  const selected = useTemplate((t) => t.selected);
+  const selected = useStore((t) => t.selected);
 
   return (
     <div
@@ -96,10 +96,10 @@ export function Input<T extends any>({
   options?: { value: string; label: string }[];
   prop?: string;
 }) {
-  const template = useTemplate((t) => t.project.template);
+  const template = useStore((t) => t.project.template);
   // const setTemplate = useTemplate((t) => t.setTemplate);
-  const selected = useTemplate((t) => t.selected);
-  const setSelected = useTemplate((t) => t.setSelected);
+  const selected = useStore((t) => t.selected);
+  const setSelected = useStore((t) => t.setSelected);
 
   const input = prop
     ? template.inputs?.find((input) =>

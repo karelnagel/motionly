@@ -4,7 +4,7 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { useCallback } from "react";
 
-interface TemplateStore {
+interface Store {
   project: Project;
   past: Project[];
   future: Project[];
@@ -38,8 +38,8 @@ const project: Project = {
   name: "",
 };
 
-export const useTemplate = create(
-  immer<TemplateStore>((set, get) => ({
+export const useStore = create(
+  immer<Store>((set, get) => ({
     project,
     past: [],
     future: [],
@@ -87,7 +87,7 @@ export const useTemplate = create(
 );
 
 export const useComponent = (id?: string) => {
-  return useTemplate(
+  return useStore(
     useCallback(
       (state) => state.project.template.components[id || state.selected],
       [id]

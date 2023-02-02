@@ -2,7 +2,7 @@ import { GraphProps, GraphTypes } from "@motionly/base";
 import { Input } from "../../../../../../components/inputs";
 import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
 import { ShowJson } from "../../../../../../components/ShowJson";
-import { useComponent, useTemplate } from "../../../../../../hooks/useTemplate";
+import { useComponent, useStore } from "../../../../../../hooks/useStore";
 import { EditSection } from "./EditSection";
 
 const inputs: UserInput[] = [
@@ -45,7 +45,7 @@ const inputs: UserInput[] = [
 
 export const EditGraph = () => {
   const comp = useComponent() as GraphProps;
-  const setComp = useTemplate((t) => t.setComp);
+  const setComp = useStore((t) => t.setComp);
 
   return (
     <EditSection title="Graph">

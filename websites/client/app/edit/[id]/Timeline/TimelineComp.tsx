@@ -5,7 +5,7 @@ import Moveable from "react-moveable";
 import { isPanel } from "../../../../helpers";
 import { Animation } from "./Animation";
 import { ShowHide } from "../../../../components/ShowHide";
-import { useComponent, useTemplate } from "../../../../hooks/useTemplate";
+import { useComponent, useStore } from "../../../../hooks/useStore";
 
 export const TimelineComp = ({
   id,
@@ -14,10 +14,10 @@ export const TimelineComp = ({
   id: string;
   parentDuration: number;
 }) => {
-  const selected = useTemplate((t) => t.selected);
+  const selected = useStore((t) => t.selected);
   const comp = useComponent(id);
-  const setSelected = useTemplate((t) => t.setSelected);
-  const changeParent = useTemplate((t) => t.changeParent);
+  const setSelected = useStore((t) => t.setSelected);
+  const changeParent = useStore((t) => t.changeParent);
 
   const [show, setShow] = useState(true);
   const divRef = useRef<HTMLDivElement>(null);
@@ -130,8 +130,8 @@ export const CompMoveable = ({
   parentDuration: number;
   comp: ComponentProps;
 }) => {
-  const setComp = useTemplate((t) => t.setComp);
-  const setComps = useTemplate((t) => t.setComps);
+  const setComp = useStore((t) => t.setComp);
+  const setComps = useStore((t) => t.setComps);
   return (
     <Moveable
       target={divRef}

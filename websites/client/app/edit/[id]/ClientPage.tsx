@@ -10,16 +10,16 @@ import { SidePanel } from "./SidePanel/SidePanel";
 import { TimelineDiv } from "./Timeline/TimelineDiv";
 import { Project } from "../../../types";
 import Link from "next/link";
-import { useTemplate } from "../../../hooks/useTemplate";
+import { useStore } from "../../../hooks/useStore";
 
 export function ClientPageWrapper({ project }: { project: Project }) {
-  const init = useTemplate((s) => s.init);
+  const init = useStore((s) => s.init);
   useEffect(() => init(project), []);
   return <ClientPage />;
 }
 export function ClientPage() {
   const playerRef = useRef<PlayerRef>(null);
-  const id = useTemplate((t) => t.project.id);
+  const id = useStore((t) => t.project.id);
   return (
     <div className="bg-base-300 w-screen h-screen overflow-hidden">
       <div className="flex md:hidden flex-col items-center justify-center h-full space-y-3">

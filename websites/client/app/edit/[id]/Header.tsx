@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { IoIosArrowBack, IoMdRedo, IoMdUndo } from "react-icons/io";
 import { useEffect, useState } from "react";
-import { useTemplate } from "../../../hooks/useTemplate";
+import { useStore } from "../../../hooks/useStore";
 
 export const TimeAfter = ({ className }: { className?: string }) => {
-  const time = useTemplate((s) => s.saveTime);
+  const time = useStore((s) => s.saveTime);
   const [date, setDate] = useState(new Date());
   useEffect(() => {
     const timer = setInterval(() => {
@@ -26,13 +26,13 @@ export const TimeAfter = ({ className }: { className?: string }) => {
 };
 
 export const Header = () => {
-  const name = useTemplate((s) => s.project.name);
-  const setSelected = useTemplate((s) => s.setSelected);
-  const selected = useTemplate((s) => s.selected);
-  const undo = useTemplate((s) => s.undo);
-  const redo = useTemplate((s) => s.redo);
-  const future = useTemplate((s) => s.future);
-  const past = useTemplate((s) => s.past);
+  const name = useStore((s) => s.project.name);
+  const setSelected = useStore((s) => s.setSelected);
+  const selected = useStore((s) => s.selected);
+  const undo = useStore((s) => s.undo);
+  const redo = useStore((s) => s.redo);
+  const future = useStore((s) => s.future);
+  const past = useStore((s) => s.past);
 
   const Button = ({
     title,

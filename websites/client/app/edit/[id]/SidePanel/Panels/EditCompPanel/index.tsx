@@ -1,7 +1,7 @@
 import { ComponentProps } from "@motionly/base";
 import { ReactNode } from "react";
 import { AiFillCopy, AiFillDelete } from "react-icons/ai";
-import { useComponent, useTemplate } from "../../../../../../hooks/useTemplate";
+import { useComponent, useStore } from "../../../../../../hooks/useStore";
 import { Tabs } from "../../../../../../types";
 import { EditAnimation } from "./EditAnimation";
 import { EditAudio } from "./EditAudio";
@@ -42,11 +42,11 @@ export const PanelTitle = ({
 };
 export const EditCompPanel = () => {
   const comp = useComponent();
-  const setComp = useTemplate((t) => t.setComp);
-  const deleteComp = useTemplate((t) => t.deleteComp);
-  const tab = useTemplate((t) => t.tab);
-  const setTab = useTemplate((t) => t.setTab);
-  const addComp = useTemplate((t) => t.addComp);
+  const setComp = useStore((t) => t.setComp);
+  const deleteComp = useStore((t) => t.deleteComp);
+  const tab = useStore((t) => t.tab);
+  const setTab = useStore((t) => t.setTab);
+  const addComp = useStore((t) => t.addComp);
   if (!comp) return null;
   const Tab = ({
     title,

@@ -1,6 +1,6 @@
 import { inputTypes } from "@motionly/base";
 import { Input } from ".";
-import { useComponent, useTemplate } from "../../hooks/useTemplate";
+import { useComponent, useStore } from "../../hooks/useStore";
 
 export type UserInput = {
   prop: string;
@@ -11,7 +11,7 @@ export type UserInput = {
 };
 export const Inputs = ({ inputs }: { inputs: UserInput[] }) => {
   const comp = useComponent();
-  const setComp = useTemplate((t) => t.setComp);
+  const setComp = useStore((t) => t.setComp);
   return (
     <>
       {inputs

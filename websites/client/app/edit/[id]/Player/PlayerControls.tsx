@@ -9,7 +9,7 @@ import {
   IoIosVolumeOff,
   IoMdExpand,
 } from "react-icons/io";
-import { useTemplate } from "../../../../hooks/useTemplate";
+import { useStore } from "../../../../hooks/useStore";
 import { useCurrentPlayerFrame } from "../../../../hooks/useCurrentPlayerFrame";
 
 export const PlayerControls = ({
@@ -21,7 +21,7 @@ export const PlayerControls = ({
   setScale: (s?: number) => void;
   playerRef: RefObject<PlayerRef>;
 }) => {
-  const fps = useTemplate((t) => t.project.template.fps);
+  const fps = useStore((t) => t.project.template.fps);
   const frame = useCurrentPlayerFrame(playerRef);
   const [isPlaying, setIsPlaying] = useState(false);
 

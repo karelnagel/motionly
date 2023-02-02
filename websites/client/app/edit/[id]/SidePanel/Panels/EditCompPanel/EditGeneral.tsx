@@ -1,7 +1,7 @@
 import { transformProps } from "@motionly/base";
 import { Input } from "../../../../../../components/inputs";
 import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
-import { useComponent, useTemplate } from "../../../../../../hooks/useTemplate";
+import { useComponent, useStore } from "../../../../../../hooks/useStore";
 import { EditSection } from "./EditSection";
 
 const inputs: UserInput[] = [
@@ -48,7 +48,7 @@ const inputs: UserInput[] = [
 ];
 export const EditGeneral = () => {
   const comp = useComponent();
-  const setComp = useTemplate((t) => t.setComp);
+  const setComp = useStore((t) => t.setComp);
   if (!comp) return null;
 
   return (

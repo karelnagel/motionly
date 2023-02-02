@@ -4,7 +4,7 @@ import { RefObject, useRef } from "react";
 import { useShiftKey } from "../../../../hooks/useShiftKey";
 import Moveable from "react-moveable";
 import { Player as MotionlyPlayer } from "@motionly/player";
-import { useComponent, useTemplate } from "../../../../hooks/useTemplate";
+import { useComponent, useStore } from "../../../../hooks/useStore";
 
 export const Player = ({
   playerRef,
@@ -13,14 +13,14 @@ export const Player = ({
   playerRef: RefObject<PlayerRef>;
   scale: number;
 }) => {
-  const template = useTemplate((t) => t.project.template);
+  const template = useStore((t) => t.project.template);
   const comp = useComponent();
-  const setComp = useTemplate((t) => t.setComp);
-  const setSelected = useTemplate((t) => t.setSelected);
+  const setComp = useStore((t) => t.setComp);
+  const setSelected = useStore((t) => t.setSelected);
 
   const lockAspectRatio = useShiftKey();
   const divRef = useRef<HTMLDivElement>(null);
-  const { width, height, } = template;
+  const { width, height } = template;
   return (
     <div
       style={{ width: template.width * scale, height: template.height * scale }}

@@ -6,10 +6,10 @@ import { ExportSidePanel } from "./Panels/ExportSidePanel";
 import { SidePanelDiv } from "./SidePanelDiv";
 import { TemplateSidePanel } from "./Panels/TemplateSidePanel";
 import { InputsPanel } from "./Panels/InputsPanel";
-import { useTemplate } from "../../../../hooks/useTemplate";
+import { useStore } from "../../../../hooks/useStore";
 
 export const SidePanel = () => {
-  const selected = useTemplate((t) => t.selected);
+  const selected = useStore((t) => t.selected);
 
   return (
     <SidePanelDiv show={!!selected}>
