@@ -4,7 +4,7 @@ import { RefObject, useRef } from "react";
 import { useShiftKey } from "../../../../hooks/useShiftKey";
 import Moveable from "react-moveable";
 import { Player as MotionlyPlayer } from "@motionly/player";
-import { useTemplate } from "../../../../hooks/useTemplate";
+import { useComponent, useTemplate } from "../../../../hooks/useTemplate";
 
 export const Player = ({
   playerRef,
@@ -13,14 +13,14 @@ export const Player = ({
   playerRef: RefObject<PlayerRef>;
   scale: number;
 }) => {
-  const template = useTemplate((t) => t.template);
-  const comp = useTemplate((t) => t.comp);
+  const template = useTemplate((t) => t.project.template);
+  const comp = useComponent();
   const setComp = useTemplate((t) => t.setComp);
   const setSelected = useTemplate((t) => t.setSelected);
 
   const lockAspectRatio = useShiftKey();
   const divRef = useRef<HTMLDivElement>(null);
-  const { width, height, comps } = template;
+  const { width, height, } = template;
   return (
     <div
       style={{ width: template.width * scale, height: template.height * scale }}
@@ -60,26 +60,26 @@ export const Player = ({
             center: true,
             middle: true,
           }}
-          horizontalGuidelines={[
-            ...comps
-              .filter((c) => c.id !== comp.id)
-              .map((c) => [c.x, (c.x || 0) + (c.width || 0)])
-              .flat()
-              .filter((x) => x),
-            0,
-            width / 2,
-            width,
-          ].map((x) => (x || 0) * scale)}
-          verticalGuidelines={[
-            ...comps
-              .filter((c) => c.id !== comp.id)
-              .map((c) => [c.y, (c.y || 0) + (c.height || 0)])
-              .flat()
-              .filter((x) => x),
-            0,
-            height / 2,
-            height,
-          ].map((x) => (x || 0) * scale)}
+          // horizontalGuidelines={[
+          //   ...comps
+          //     .filter((c) => c.id !== comp.id)
+          //     .map((c) => [c.x, (c.x || 0) + (c.width || 0)])
+          //     .flat()
+          //     .filter((x) => x),
+          //   0,
+          //   width / 2,
+          //   width,
+          // ].map((x) => (x || 0) * scale)}
+          // verticalGuidelines={[
+          //   ...comps
+          //     .filter((c) => c.id !== comp.id)
+          //     .map((c) => [c.y, (c.y || 0) + (c.height || 0)])
+          //     .flat()
+          //     .filter((x) => x),
+          //   0,
+          //   height / 2,
+          //   height,
+          // ].map((x) => (x || 0) * scale)}
           onDrag={(e) => {
             setComp({
               ...comp,

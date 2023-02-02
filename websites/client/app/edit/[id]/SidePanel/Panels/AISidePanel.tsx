@@ -5,8 +5,8 @@ import { postAI } from "../../../../../sdk/ai";
 import { useTemplate } from "../../../../../hooks/useTemplate";
 
 export const AISidePanel = () => {
-  const template = useTemplate((t) => t.template);
-  const setTemplate = useTemplate((t) => t.setTemplate);
+  const template = useTemplate((t) => t.project.template);
+  const setProject = useTemplate((t) => t.setProject);
   const [prompt, setPrompt] = useState("");
   const [status, setStatus] = useState<"loading" | "done" | "error">();
   const alert = useAlerts();
@@ -17,10 +17,10 @@ export const AISidePanel = () => {
       return alert("Please wait for the previous request to finish", "warning");
     setStatus("loading");
 
-    const result = await postAI(template.comps!, prompt);
+    const result = await postAI(template.components, prompt);
     if (!result) setStatus("error");
     else {
-      setTemplate({ ...template, comps: result });
+      // setProject({ ...template, : result });
       setStatus("done");
     }
   };

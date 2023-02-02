@@ -1,12 +1,12 @@
 import axios from "axios";
-import { Template } from "../../types";
-import { GetTemplateInput } from "./get";
+import { Project } from "../../types";
+import { GetProjectInput } from "./get";
 
-export type DeleteTemplateInput = GetTemplateInput;
-export type DeleteTemplateOutput = Template;
-export const deleteTemplate = async ({
+export type DeleteProjectInput = GetProjectInput;
+export type DeleteProjectOutput = Project;
+export const deleteProject = async ({
   id,
-}: DeleteTemplateInput): Promise<DeleteTemplateOutput | null> => {
+}: DeleteProjectInput): Promise<DeleteProjectOutput | null> => {
   try {
     const result = await axios.delete(`/api/templates/${id}`);
     return result.data;

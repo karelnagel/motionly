@@ -10,7 +10,7 @@ export function HotKeys({ playerRef }: { playerRef: RefObject<PlayerRef> }) {
   const setTab = useTemplate((t) => t.setTab);
   const deleteComp = useTemplate((t) => t.deleteComp);
   const addComp = useTemplate((t) => t.addComp);
-  const fps = useTemplate((t) => t.template.fps);
+  const fps = useTemplate((t) => t.project.template.fps);
 
   const frame = useCurrentPlayerFrame(playerRef);
   const handleKeyDown = useCallback(

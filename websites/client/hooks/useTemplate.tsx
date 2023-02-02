@@ -2,6 +2,7 @@ import { ComponentProps } from "@motionly/base";
 import { Project, Tabs } from "../types";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
+import { useCallback } from "react";
 
 interface TemplateStore {
   project: Project;
@@ -9,9 +10,7 @@ interface TemplateStore {
   future: Project[];
   selected: string;
   tab: Tabs;
-  comp?: ComponentProps;
-  parentId?: string;
-  setTemplate: (template: Partial<Template>) => void;
+  setProject: (template: Partial<Project>) => void;
   setComp: (comp: Partial<ComponentProps>) => void;
   deleteComp: () => void;
   addComp: (comp?: ComponentProps, parentId?: string) => void;
@@ -22,15 +21,17 @@ interface TemplateStore {
   redo: () => void;
   changeParent: (parentId: string) => void;
   setComps: (comps: ComponentProps[], parentId: string) => void;
-  init: (template: Template) => void;
+  init: (template: Project) => void;
 }
 
-const template: Project = {
+const project: Project = {
   template: {
-    components: {
-      byIds: {},
-      baseIds: [],
-    },
+    childIds: [],
+    components: {},
+    duration: 6,
+    fps: 30,
+    height: 1080,
+    width: 1080,
   },
   description: "",
   id: "",
@@ -39,7 +40,7 @@ const template: Project = {
 
 export const useTemplate = create(
   immer<TemplateStore>((set, get) => ({
-    template,
+    project,
     past: [],
     future: [],
     selected: "template",
@@ -47,8 +48,9 @@ export const useTemplate = create(
     comp: undefined,
     parentId: undefined,
     saveTime: undefined,
-    init: (template: Template) => set({ template }),
-    setTemplate: (template: Partial<Template>) => {},
+    init: (project: Project) => set({ project }),
+    setProject: (project: Partial<Project>) =>
+      set((state) => ({ project: { ...state.project, ...project } })),
 
     setComp: (comp: Partial<ComponentProps>) => {},
 
@@ -62,36 +64,33 @@ export const useTemplate = create(
 
     undo: () =>
       set((state) => {
-        const template = state.past.pop();
-        if (!template) return {};
-        return {
-          template,
-          future: [...state.future, state.template],
-          past: state.past,
-        };
+        const project = state.past.pop();
+        if (!project) return;
+        state.future.push(state.project);
+        state.project = project;
       }),
 
     redo: () =>
       set((state) => {
-        const template = state.future.pop();
-        if (!template) return {};
-        return {
-          template,
-          past: [...state.past, state.template],
-          future: state.future,
-        };
+        const project = state.future.pop();
+        if (!project) return;
+        state.past.push(state.project);
+        state.project = project;
       }),
 
     setSelected: (id: string) =>
       set((state) => {
-        const selected = state.selected === id ? "" : id;
-        const [comp, parentId] = find(state.template.comps, selected);
-        return {
-          selected,
-          comp: comp || undefined,
-          parentId,
-        };
+        state.selected = state.selected === id ? "" : id;
       }),
     setTab: (tab: Tabs) => set({ tab }),
   }))
 );
+
+export const useComponent = (id?: string) => {
+  return useTemplate(
+    useCallback(
+      (state) => state.project.template.components[id || state.selected],
+      [id]
+    )
+  );
+};

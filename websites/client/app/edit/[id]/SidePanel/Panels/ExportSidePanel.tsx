@@ -5,23 +5,19 @@ import { useRender } from "@motionly/renderer/dist/sdk";
 import { useTemplate } from "../../../../../hooks/useTemplate";
 
 export const ExportSidePanel = () => {
-  const setTemplate = useTemplate((t) => t.setTemplate);
-  const template = useTemplate((t) => t.template);
+  // const setTemplate = useTemplate((t) => t.setTemplate);
+  const template = useTemplate((t) => t.project.template);
   const [frame, setFrame] = useState(0);
   const [renderStill, setRenderStill] = useState(false);
   const { media, still, cost, progress, fileUrl, status } = useRender(
-    {
-      ...template,
-    },
+    template,
     frame
   );
-  const [json, setJson] = useState(
-    JSON.stringify({ ...template, comps: template.comps }, null, 2)
-  );
+  const [json, setJson] = useState(JSON.stringify(template, null, 2));
   const [error, setError] = useState(false);
   useEffect(() => {
     try {
-      setTemplate(JSON.parse(json));
+      // setTemplate(JSON.parse(json));
       setError(false);
     } catch (e) {
       setError(true);

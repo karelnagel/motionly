@@ -5,20 +5,17 @@ import Moveable from "react-moveable";
 import { isPanel } from "../../../../helpers";
 import { Animation } from "./Animation";
 import { ShowHide } from "../../../../components/ShowHide";
-import { useTemplate } from "../../../../hooks/useTemplate";
+import { useComponent, useTemplate } from "../../../../hooks/useTemplate";
 
 export const TimelineComp = ({
-  comp,
-  comps,
+  id,
   parentDuration,
-  parentId,
 }: {
-  comp: ComponentProps;
-  comps?: ComponentProps[];
+  id: string;
   parentDuration: number;
-  parentId: string;
 }) => {
   const selected = useTemplate((t) => t.selected);
+  const comp = useComponent(id);
   const setSelected = useTemplate((t) => t.setSelected);
   const changeParent = useTemplate((t) => t.changeParent);
 
@@ -27,7 +24,7 @@ export const TimelineComp = ({
   const isSelected = selected === comp.id;
   const from = getFrom(parentDuration, comp.from);
   const duration = getDuration(parentDuration, comp.from, comp.duration);
-  const hasChildren = "comps" in comp;
+  const hasChildren = "childIds" in comp;
   return (
     <div className="relative cursor-pointer">
       <div
@@ -80,7 +77,7 @@ export const TimelineComp = ({
                 </button>
               </div>
             )}
-            {isSelected && parentId && (
+            {isSelected && comp.parentId && (
               <div
                 className="tooltip tooltip-left"
                 data-tip="Remove from group"
@@ -95,7 +92,7 @@ export const TimelineComp = ({
                 </button>
               </div>
             )}
-            {hasChildren && comp.comps && comp.comps.length > 0 && (
+            {hasChildren && comp.childIds.length > 0 && (
               <div
                 className="tooltip tooltip-left text-lg"
                 data-tip={show ? "Minimize" : "Maximize"}
@@ -105,16 +102,10 @@ export const TimelineComp = ({
             )}
           </div>
         </div>
-        {hasChildren && comp.comps && comp.comps.length > 0 && show && (
+        {hasChildren && comp.childIds.length > 0 && show && (
           <div className="space-y-2 py-2">
-            {comp.comps.map((child, i) => (
-              <TimelineComp
-                key={i}
-                parentId={comp.id}
-                comp={child}
-                comps={comp.comps}
-                parentDuration={duration}
-              />
+            {comp.childIds.map((id, i) => (
+              <TimelineComp key={i} id={id} parentDuration={duration} />
             ))}
           </div>
         )}
@@ -122,10 +113,8 @@ export const TimelineComp = ({
       {isSelected && (
         <CompMoveable
           divRef={divRef}
-          comps={comps}
           parentDuration={parentDuration}
           comp={comp}
-          parentId={parentId}
         />
       )}
     </div>
@@ -134,16 +123,12 @@ export const TimelineComp = ({
 
 export const CompMoveable = ({
   divRef,
-  comps = [],
   parentDuration,
   comp,
-  parentId,
 }: {
   divRef: React.RefObject<HTMLDivElement>;
-  comps?: ComponentProps[];
   parentDuration: number;
   comp: ComponentProps;
-  parentId: string;
 }) => {
   const setComp = useTemplate((t) => t.setComp);
   const setComps = useTemplate((t) => t.setComps);
@@ -171,16 +156,16 @@ export const CompMoveable = ({
         center: true,
         middle: true,
       }}
-      horizontalGuidelines={[
-        ...comps.map((c) => [c.from, (c.from || 0) + (c.duration || 0)]).flat(),
-        0,
-        parentDuration / 2,
-        parentDuration,
-      ].map(
-        (x) =>
-          ((x || 0) / parentDuration) *
-          (divRef.current?.parentElement?.offsetWidth || 1)
-      )}
+      // horizontalGuidelines={[
+      //   ...comps.map((c) => [c.from, (c.from || 0) + (c.duration || 0)]).flat(),
+      //   0,
+      //   parentDuration / 2,
+      //   parentDuration,
+      // ].map(
+      //   (x) =>
+      //     ((x || 0) / parentDuration) *
+      //     (divRef.current?.parentElement?.offsetWidth || 1)
+      // )}
       onDrag={({ delta, beforeDist }) => {
         const newComp = {
           ...comp,
@@ -193,12 +178,12 @@ export const CompMoveable = ({
 
         if (!indexChange) return setComp(newComp);
 
-        const oldIndex = comps.findIndex((c) => c.id === comp.id);
-        const newIndex = oldIndex + indexChange;
-        const newComps = [...comps];
-        newComps.splice(oldIndex, 1);
-        newComps.splice(newIndex, 0, newComp);
-        setComps(newComps, parentId);
+        // const oldIndex = comps.findIndex((c) => c.id === comp.id);
+        // const newIndex = oldIndex + indexChange;
+        // const newComps = [...comps];
+        // newComps.splice(oldIndex, 1);
+        // newComps.splice(newIndex, 0, newComp);
+        // setComps(newComps, parentId);
       }}
       onResize={({ width, delta, target }) => {
         const duration =

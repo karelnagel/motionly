@@ -26,7 +26,7 @@ export const TimeAfter = ({ className }: { className?: string }) => {
 };
 
 export const Header = () => {
-  const name = useTemplate((s) => s.template.name);
+  const name = useTemplate((s) => s.project.name);
   const setSelected = useTemplate((s) => s.setSelected);
   const selected = useTemplate((s) => s.selected);
   const undo = useTemplate((s) => s.undo);

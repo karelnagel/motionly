@@ -23,5 +23,5 @@ export type Project = {
   description: string;
   id?: string;
   preview?: string;
-  template?: TemplateType;
+  template: TemplateType;
 };

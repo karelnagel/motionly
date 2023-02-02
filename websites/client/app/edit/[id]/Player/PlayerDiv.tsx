@@ -11,7 +11,7 @@ export const PlayerDiv = ({
 }) => {
   const playerDivRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState<number>();
-  const template = useTemplate((t) => t.template);
+  const template = useTemplate((t) => t.project.template);
   const getScale = () => {
     if (
       playerDivRef.current?.clientHeight &&

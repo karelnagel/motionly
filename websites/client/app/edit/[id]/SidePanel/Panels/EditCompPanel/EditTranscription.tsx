@@ -10,7 +10,7 @@ import { Input } from "../../../../../../components/inputs";
 import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
 import { Popup } from "../../../../../../components/Popup";
 import { ShowJson } from "../../../../../../components/ShowJson";
-import { useTemplate } from "../../../../../../hooks/useTemplate";
+import { useComponent, useTemplate } from "../../../../../../hooks/useTemplate";
 import { getMediaUrl } from "../../../../../../helpers";
 import { getMedia } from "../../../../../../sdk/media/get";
 import { getTranscription } from "../../../../../../sdk/media/getTranscription";
@@ -46,7 +46,7 @@ const inputs: UserInput[] = [
   },
 ];
 export const EditTranscription = () => {
-  const comp = useTemplate((t) => t.comp) as TranscriptionProps;
+  const comp = useComponent() as TranscriptionProps;
   const setComp = useTemplate((t) => t.setComp);
 
   return (

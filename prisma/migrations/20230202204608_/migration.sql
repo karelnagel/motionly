@@ -59,24 +59,18 @@ CREATE TABLE "ApiKey" (
 );
 
 -- CreateTable
-CREATE TABLE "Template" (
+CREATE TABLE "Project" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL DEFAULT '',
     "description" TEXT NOT NULL DEFAULT '',
-    "width" INTEGER NOT NULL,
-    "height" INTEGER NOT NULL,
-    "duration" INTEGER NOT NULL,
-    "background" TEXT,
     "preview" TEXT,
-    "fps" INTEGER NOT NULL,
+    "template" JSONB NOT NULL,
     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3),
     "public" BOOLEAN NOT NULL DEFAULT false,
-    "comps" TEXT NOT NULL,
-    "inputs" TEXT,
     "userId" TEXT NOT NULL,
 
-    CONSTRAINT "Template_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Project_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -120,7 +114,7 @@ ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId"
 ALTER TABLE "ApiKey" ADD CONSTRAINT "ApiKey_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Template" ADD CONSTRAINT "Template_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Project" ADD CONSTRAINT "Project_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "File" ADD CONSTRAINT "File_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

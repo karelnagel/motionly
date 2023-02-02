@@ -1,82 +1,62 @@
-// import { renderStill } from "@motionly/renderer";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "../../../lib/getServerSession";
 import { prisma } from "../../../lib/prisma";
 import {
-  DeleteTemplateInput,
-  DeleteTemplateOutput,
+  DeleteProjectInput,
+  DeleteProjectOutput,
 } from "../../../sdk/templates/delete";
+import { GetProjectInput, GetProjectOutput } from "../../../sdk/templates/get";
 import {
-  GetTemplateInput,
-  GetTemplateOutput,
-} from "../../../sdk/templates/get";
-import {
-  UpdateTemplateInput,
-  UpdateTemplateOutput,
+  UpdateProjectInput,
+  UpdateProjectOutput,
 } from "../../../sdk/templates/update";
 import { ReqRes } from "../../../types";
 
-export default async function Template(
+export default async function Project(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   let result = null;
   const id = req.query.id as string;
-  if (req.method === "GET") result = await getTemplate({ id }, { req, res });
+  if (req.method === "GET") result = await getProject({ id }, { req, res });
   else if (req.method === "PUT")
-    result = await updateTemplate({ id, template: req.body }, { req, res });
-  else if (req.method === "DELETE") result = await deleteTemplate({ id });
+    result = await updateProject({ id, project: req.body }, { req, res });
+  else if (req.method === "DELETE") result = await deleteProject({ id });
 
   if (!result) return res.status(404).end();
   return res.status(200).json(result);
 }
 
-export const getTemplate = async (
-  { id }: GetTemplateInput,
+export const getProject = async (
+  { id }: GetProjectInput,
   reqRes?: ReqRes
-): Promise<GetTemplateOutput | null> => {
+): Promise<GetProjectOutput | null> => {
   const session = await getServerSession(reqRes);
-  const template = await prisma.template.findFirst({
+  const project = await prisma.project.findFirst({
     where: {
       id,
       OR: [{ public: true }, { user: { email: session?.user?.email } }],
     },
     include: { user: true },
   });
-  if (!template) return null;
-  const {
-    width,
-    height,
-    duration,
-    name,
-    description,
-    inputs,
-    comps,
-    fps,
-    background,
-    preview,
-  } = template;
-  const isOwner = session?.user?.email === template.user.email;
+  if (!project) return null;
+  const { name, description, preview, template } = project;
+  const isOwner = session?.user?.email === project.user.email;
   return {
-    comps: JSON.parse(comps),
-    inputs: inputs ? JSON.parse(inputs) : undefined,
-    width,
-    height,
+    template: template as any,
     name,
     description,
     id,
-    duration,
-    fps,
-    public: template.public,
+    public: project.public,
     isOwner,
     preview: preview || undefined,
   };
 };
 
-const updateTemplate = async (
-  { id, template }: UpdateTemplateInput,
+const updateProject = async (
+  { id, project }: UpdateProjectInput,
   reqRes?: ReqRes
-): Promise<UpdateTemplateOutput | null> => {
+): Promise<UpdateProjectOutput | null> => {
   const session = await getServerSession(reqRes);
   if (!session?.user?.email) return null;
   // Todo check if user is owner
@@ -87,18 +67,13 @@ const updateTemplate = async (
     preview = undefined;
   }
   try {
-    const { comps, inputs, ...result } = await prisma.template.update({
+    const result = await prisma.project.update({
       where: { id },
       data: {
-        comps: JSON.stringify(template.comps),
-        width: template.width,
-        height: template.height,
-        name: template.name,
-        public: template.public,
-        description: template.description,
-        inputs: template.inputs ? JSON.stringify(template.inputs) : undefined,
-        fps: template.fps,
-        duration: template.duration,
+        name: project.name,
+        public: project.public,
+        description: project.description,
+        template: project.template as any,
         preview,
       },
       include: { user: true },
@@ -106,18 +81,13 @@ const updateTemplate = async (
     const isOwner = session.user.email === result.user.email;
 
     return {
-      comps: JSON.parse(comps),
-      inputs: inputs ? JSON.parse(inputs) : undefined,
-      duration: result.duration,
-      fps: result.fps,
       isOwner,
       public: result.public,
-      width: result.width,
-      height: result.height,
       description: result.description,
       preview: result.preview || undefined,
       name: result.name,
       id: result.id,
+      template: result.template as any,
     };
   } catch (e) {
     console.log(e);
@@ -125,17 +95,16 @@ const updateTemplate = async (
   }
 };
 
-const deleteTemplate = async ({
+const deleteProject = async ({
   id,
-}: DeleteTemplateInput): Promise<DeleteTemplateOutput | null> => {
-  const { comps, inputs, ...result } = await prisma.template.delete({
+}: DeleteProjectInput): Promise<DeleteProjectOutput | null> => {
+  const result = await prisma.project.delete({
     where: { id },
   });
 
   return {
     ...result,
-    comps: JSON.parse(comps),
     preview: result.preview || undefined,
-    inputs: inputs ? JSON.parse(inputs) : undefined,
+    template: result.template as any,
   };
 };

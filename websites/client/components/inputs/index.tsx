@@ -18,8 +18,8 @@ export const VariableSelect = ({
   type: keyof typeof inputTypes;
   value: any;
 }) => {
-  const template = useTemplate((t) => t.template);
-  const setTemplate = useTemplate((t) => t.setTemplate);
+  const template = useTemplate((t) => t.project.template);
+  // const setTemplate = useTemplate((t) => t.setTemplate);
   const selected = useTemplate((t) => t.selected);
 
   return (
@@ -30,41 +30,43 @@ export const VariableSelect = ({
       {template.inputs?.map((input) => (
         <button
           key={input.id}
-          onClick={() =>
-            setTemplate({
-              ...template,
-              inputs: template.inputs?.map((inp) =>
-                input.id === inp.id
-                  ? {
-                      ...inp,
-                      properties: [
-                        ...(inp.properties || []),
-                        { prop, id: selected },
-                      ],
-                    }
-                  : inp
-              ),
-            })
+          onClick={
+            () => {}
+            // setTemplate({
+            //   ...template,
+            //   inputs: template.inputs?.map((inp) =>
+            //     input.id === inp.id
+            //       ? {
+            //           ...inp,
+            //           properties: [
+            //             ...(inp.properties || []),
+            //             { prop, id: selected },
+            //           ],
+            //         }
+            //       : inp
+            //   ),
+            // })
           }
         >
           {input.label}
         </button>
       ))}
       <button
-        onClick={() =>
-          setTemplate({
-            ...template,
-            inputs: [
-              ...(template.inputs || []),
-              {
-                id: getRandomId(),
-                type,
-                label: prop,
-                value,
-                properties: [{ prop, id: selected }],
-              },
-            ],
-          })
+        onClick={
+          () => {}
+          // setTemplate({
+          //   ...template,
+          //   inputs: [
+          //     ...(template.inputs || []),
+          //     {
+          //       id: getRandomId(),
+          //       type,
+          //       label: prop,
+          //       value,
+          //       properties: [{ prop, id: selected }],
+          //     },
+          //   ],
+          // })
         }
       >
         Add new
@@ -94,7 +96,11 @@ export function Input<T extends any>({
   options?: { value: string; label: string }[];
   prop?: string;
 }) {
-  const { template, setTemplate, setSelected, selected } = useTemplate();
+  const template = useTemplate((t) => t.project.template);
+  // const setTemplate = useTemplate((t) => t.setTemplate);
+  const selected = useTemplate((t) => t.selected);
+  const setSelected = useTemplate((t) => t.setSelected);
+
   const input = prop
     ? template.inputs?.find((input) =>
         input.properties?.find((p) => p.id === selected && p.prop === prop)
@@ -118,16 +124,17 @@ export function Input<T extends any>({
         {prop && input && (
           <IoIosRemove
             className="cursor-pointer"
-            onClick={() =>
-              setTemplate({
-                ...template,
-                inputs: template.inputs?.map((i) => ({
-                  ...i,
-                  properties: i.properties?.filter(
-                    (i) => i.id !== selected && i.prop !== prop
-                  ),
-                })),
-              })
+            onClick={
+              () => {}
+              // setTemplate({
+              //   ...template,
+              //   inputs: template.inputs?.map((i) => ({
+              //     ...i,
+              //     properties: i.properties?.filter(
+              //       (i) => i.id !== selected && i.prop !== prop
+              //     ),
+              //   })),
+              // })
             }
           />
         )}

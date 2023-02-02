@@ -1,7 +1,7 @@
 import { BaseColor, ConfettiProps } from "@motionly/base";
 import { Input } from "../../../../../../components/inputs";
 import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
-import { useTemplate } from "../../../../../../hooks/useTemplate";
+import { useComponent, useTemplate } from "../../../../../../hooks/useTemplate";
 import { EditSection } from "./EditSection";
 
 const inputs: UserInput[] = [
@@ -40,7 +40,7 @@ const inputs: UserInput[] = [
 ];
 export const EditConfetti = () => {
   const setComp = useTemplate((t) => t.setComp);
-  const comp = useTemplate((t) => t.comp) as ConfettiProps;
+  const comp = useComponent() as ConfettiProps;
 
   return (
     <EditSection title="Audio">

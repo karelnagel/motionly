@@ -4,40 +4,42 @@ import { Player } from "@motionly/player";
 import { useRender } from "@motionly/renderer/dist/sdk";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import {  useState } from "react";
+import { useState } from "react";
 import { IoIosBrush, IoIosCopy } from "react-icons/io";
 import { Clone } from "../../../../components/Clone";
 import { Input } from "../../../../components/inputs";
+import { Project } from "../../../../types";
 
-export const Client = ({ startTemplate }: { startTemplate: Template }) => {
-  const [template, setTemplate] = useState(startTemplate);
+export const Client = ({ startProject }: { startProject: Project }) => {
+  const [project, setProject] = useState(startProject);
   const { data: session } = useSession();
-  const { media, fileUrl, progress, status } = useRender(template);
+  const { media, fileUrl, progress, status } = useRender(project.template);
+  const template = project.template;
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
       <div className="space-y-3 flex flex-col items-stretch ">
         <div className="flex justify-between">
-          <p className="text-3xl font-bold col-span-4">{template.name}</p>
+          <p className="text-3xl font-bold col-span-4">{project.name}</p>
           <div className="space-x-1 hidden md:flex">
-            {template.isOwner && (
+            {project.isOwner && (
               <Link
-                href={`/edit/${template.id}`}
+                href={`/edit/${project.id}`}
                 className="btn btn-square btn-sm"
               >
                 <IoIosBrush className="" />
               </Link>
             )}
             {session?.user && (
-              <Clone template={template} className="btn btn-square btn-sm">
+              <Clone project={project} className="btn btn-square btn-sm">
                 <IoIosCopy />
               </Clone>
             )}
           </div>
         </div>
-        {template.public && (
+        {project.public && (
           <span className="badge badge-primary font-bold">PUBLIC</span>
         )}
-        <p className="text-lg">{template.description}</p>
+        <p className="text-lg">{project.description}</p>
         <p>
           <b>Duration:</b> {template.duration} seconds
         </p>
@@ -49,11 +51,11 @@ export const Client = ({ startTemplate }: { startTemplate: Template }) => {
             key={input.id}
             label={input.label || ""}
             onChange={(i) =>
-              setTemplate({
-                ...template,
-                inputs: template.inputs?.map((inp) =>
-                  inp.id === input.id ? { ...inp, value: i } : inp
-                ),
+              setProject({
+                ...project,
+                // inputs: template.inputs?.map((inp) =>
+                //   inp.id === input.id ? { ...inp, value: i } : inp
+                // ),
               })
             }
             value={input.value}
