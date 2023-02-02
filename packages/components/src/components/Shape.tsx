@@ -1,6 +1,6 @@
 import { ShapeProps } from "@motionly/base";
 import { Rect, Triangle, Circle, Ellipse } from "@remotion/shapes";
-import { useColor } from "../useColor";
+import { useColor } from "../hooks/useColor";
 
 export const defaultShapeProps: ShapeProps = {
   comp: "shape",

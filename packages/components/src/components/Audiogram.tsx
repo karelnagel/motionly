@@ -3,7 +3,7 @@ import { useCurrentFrame, useVideoConfig } from "remotion";
 import { videoUrl } from "@motionly/base";
 import { StyleAndClass } from "@motionly/base";
 import { AudiogramProps } from "@motionly/base";
-import { useColor } from "../useColor";
+import { useColor } from "../hooks/useColor";
 import { getSrc } from "../helpers";
 
 export const defaultAudiogramProps: AudiogramProps = {

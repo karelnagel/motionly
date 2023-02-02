@@ -8,7 +8,6 @@ import {  useState } from "react";
 import { IoIosBrush, IoIosCopy } from "react-icons/io";
 import { Clone } from "../../../../components/Clone";
 import { Input } from "../../../../components/inputs";
-import { Template } from "../../../../types";
 
 export const Client = ({ startTemplate }: { startTemplate: Template }) => {
   const [template, setTemplate] = useState(startTemplate);

@@ -48,13 +48,7 @@ const mockup = (i: number): ComponentProps => ({
       speed: 2,
     },
   ],
-  comps: [
-    {
-      comp: "image",
-      id: "image",
-      src: `https://picsum.photos/seed/${i + 203}/600/600`,
-    },
-  ],
+  childIds: [],
 });
 
 export const mockups: TemplateType = {
@@ -62,5 +56,6 @@ export const mockups: TemplateType = {
   fps: 30,
   height: 480,
   width: 854,
-  comps: [mockup(0), mockup(1), mockup(2)],
+  components: {},
+  childIds: [],
 };

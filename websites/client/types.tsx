@@ -16,11 +16,12 @@ export type SessionWithId = {
   expires: ISODateString;
 };
 
-export type Template = TemplateType & {
+export type Project = {
   isOwner?: boolean;
   public?: boolean;
   name: string;
   description: string;
   id?: string;
   preview?: string;
+  template?: TemplateType;
 };

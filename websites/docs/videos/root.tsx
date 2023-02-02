@@ -18,8 +18,10 @@ export const Root: React.FC = () => {
             width={e.width}
             height={e.height}
             defaultProps={{
-              comps: e.comps,
               bg: e.bg,
+              components: e.components,
+              childIds: e.childIds,
+              isSequence: e.isSequence,
             }}
           />
         ))}
@@ -37,7 +39,9 @@ export const Root: React.FC = () => {
               width={temp.width}
               height={temp.height}
               defaultProps={{
-                comps: temp.comps,
+                components: temp.components,
+                childIds: temp.childIds,
+                isSequence: temp.isSequence,
                 bg: temp.bg,
               }}
             />

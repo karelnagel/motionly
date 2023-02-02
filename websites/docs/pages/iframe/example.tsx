@@ -2,75 +2,8 @@ import { Input, TemplateType } from "@motionly/base";
 import { useEffect, useRef, useState } from "react";
 
 const baseTemplate: TemplateType = {
-  comps: [
-    {
-      comp: "image",
-      objectFit: "cover",
-      src: "https://picsum.photos/seed/motionly/1080/1080",
-      id: "57xdgoo",
-      x: 0,
-      y: 0,
-      width: 1080,
-      height: 336,
-      borderRadius: 0,
-      duration: 0,
-      from: 0,
-      rotation: 0,
-      animations: [],
-    },
-    {
-      comp: "text",
-      textStyle: {
-        bg: {
-          type: "basic",
-          color: "#ffffffFF",
-        },
-        color: {
-          type: "basic",
-          color: "#000000FF",
-        },
-        fontSize: 120,
-        fontFamily: "Inter",
-        fontWeight: 700,
-        textAlign: "center",
-      },
-      text: "Hello World",
-      justifyContent: "center",
-      id: "xdm6o1",
-      x: 134.70577960000006,
-      y: 453.6761802,
-      width: 745,
-      height: 500,
-      borderRadius: 0,
-      duration: 0,
-      from: 0,
-      rotation: 0,
-      animations: [
-        {
-          prop: "translateX",
-          type: "spring",
-          start: 0.1,
-          from: -1000,
-          to: 1,
-          duration: 0,
-          mass: 1,
-          damping: 14,
-          stiffness: 80,
-        },
-        {
-          prop: "translateX",
-          type: "spring",
-          start: -2,
-          from: 0,
-          to: 1000,
-          duration: 0,
-          mass: 1,
-          damping: 14,
-          stiffness: 80,
-        },
-      ],
-    },
-  ],
+  components: {},
+  childIds: [],
   inputs: [
     {
       id: "1iunl",
@@ -159,7 +92,7 @@ export default function TestIFrame() {
       inputs: template.inputs.map((i) => (i.id === id ? { ...i, value } : i)),
     }));
   };
-  
+
   return (
     <div className="max-w-screen-md m-auto mt-10 space-y-10 p-2">
       <iframe

@@ -19,9 +19,9 @@ import { Transcription } from "./components/Transcription/index";
 import { Lottie } from "./components/Lottie";
 import { Gif } from "./components/Gif";
 import { Path } from "./components/Path";
-import { useSelected } from "./SelectedContext";
+import { useSelected } from "./hooks/useSelected";
 import { ComponentProps, transformProps } from "@motionly/base";
-import { useAnimation } from "./useAnimations";
+import { useAnimation } from "./hooks/useAnimations";
 import { getDuration, getFrom } from "@motionly/base";
 import { Shape } from "./components/Shape";
 import { ReactNode, useMemo, useRef } from "react";
@@ -38,7 +38,7 @@ export const Component = (comp: ComponentProps) => {
     () => Math.floor(getFrom(durationInFrames, (comp.from || 0) * fps)),
     [durationInFrames, fps, comp.from]
   );
-  
+
   const duration = useMemo(
     () =>
       Math.floor(
@@ -185,7 +185,7 @@ const InsideSequence = ({
   return (
     <>
       <div
-        ref={(e) =>{
+        ref={(e) => {
           if (divRef && selected === id) divRef.current = e;
         }}
         onClick={(e) => {

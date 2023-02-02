@@ -9,27 +9,6 @@ export const main: TemplateType = {
     type: "basic",
     color: "#FFFFFFFF",
   },
-  comps: [
-    {
-      comp: "text",
-      textStyle: {
-        color: {
-          type: "basic",
-          color: "#ff0000FF",
-        },
-        fontSize: 140,
-        fontFamily: "Inter",
-        fontWeight: 700,
-        textAlign: "center",
-      },
-      text: "Main video",
-      justifyContent: "center",
-      id: "0hydoq",
-      borderRadius: 0,
-      duration: 0,
-      from: 0,
-      rotation: 0,
-      animations: [],
-    },
-  ],
+  childIds: [],
+  components: {},
 };

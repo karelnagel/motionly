@@ -13,18 +13,19 @@ const baseProps: BaseProps = {
   duration: 0,
 };
 export const DocsPlayer = (props: AllComponents) => {
-  return (
-    <Player
-      template={{
-        comps: [{ ...baseProps, ...props }],
-        duration: 10,
-        fps: 30,
-        width: 1080,
-        height: 600,
-      }}
-      controls
-      autoPlay
-      style={{ width: "100%" }}
-    />
-  );
+  return null;
+  // return (
+  //   <Player
+  //     template={{
+  //       comps: [{ ...baseProps, ...props }],
+  //       duration: 10,
+  //       fps: 30,
+  //       width: 1080,
+  //       height: 600,
+  //     }}
+  //     controls
+  //     autoPlay
+  //     style={{ width: "100%" }}
+  //   />
+  // );
 };

@@ -1,4 +1,4 @@
-import { ComponentProps, TemplateType } from "../types";
+import { ComponentProps, Components, TemplateType } from "../types";
 
 export const videoUrl =
   "https://remotionlambda-24lixyhuqn.s3.us-east-1.amazonaws.com/video.mp4";
@@ -30,13 +30,13 @@ export const getDuration = (
   return addFrom ? actualDuration + actualFrom : actualDuration;
 };
 
-export const getFonts = (comps: ComponentProps[]) => {
+export const getFonts = (comps: Components) => {
   return JSON.stringify(comps)
     .match(/fontFamily":"(.*?)"/g)
     ?.map((font) => font.replace(/fontFamily":"(.*?)"/g, "$1"));
 };
 
-export function applyInputs<T extends TemplateType>(template: T) {
+export function applyInputs(template: TemplateType) {
   const newTemplate = { ...template };
   if (!newTemplate.inputs) return newTemplate;
   for (const input of newTemplate.inputs) {
@@ -45,16 +45,21 @@ export function applyInputs<T extends TemplateType>(template: T) {
       if (!prop.id || prop.id === "template") {
         (newTemplate as any)[prop.prop] = input.value;
       } else if (prop.id) {
-        const recursive = (comps: ComponentProps[]) => {
-          for (const comp of comps) {
-            if (comp.id === prop.id) {
-              (comp as any)[prop.prop] = input.value;
-            } else if ("comps" in comp && comp.comps.length > 0) {
-              recursive(comp.comps);
-            }
-          }
-        };
-        recursive(newTemplate.comps);
+        const comp = template.components[prop.id] as any;
+        if (!comp) continue;
+        const props = prop.prop.split(".");
+        if (props.length === 1 && comp) {
+          comp[props[0]] = input.value;
+        } else if (props.length === 2 && comp?.[props[0]]) {
+          comp[props[0]][props[1]] = input.value;
+        } else if (props.length === 3 && comp?.[props[0]]?.[props[1]]) {
+          comp[props[0]][props[1]][props[2]] = input.value;
+        } else if (
+          props.length === 4 &&
+          comp?.[props[0]]?.[props[1]]?.[props[2]]
+        ) {
+          comp[props[0]][props[1]][props[2]][props[3]] = input.value;
+        }
       }
     }
   }

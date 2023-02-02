@@ -9,7 +9,7 @@ import {
 import { continueRender, delayRender } from "remotion";
 import { StyleAndClass } from "@motionly/base";
 import { MapProps } from "@motionly/base";
-import { useColor } from "../useColor";
+import { useColor } from "../hooks/useColor";
 import { getSrc } from "../helpers";
 
 export const defaultMapProps: MapProps = {

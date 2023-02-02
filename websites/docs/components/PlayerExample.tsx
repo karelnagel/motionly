@@ -7,13 +7,16 @@ export function PlayerExample() {
   const [text, setText] = useState("Your text");
   const [seed, setSeed] = useState("sdf");
   const [color, setColor] = useState("#FFFF00");
-  const { media, progress, fileUrl, cost, status, renderId } = useRender({
-    comps: components,
+  const template = {
+    components: {},
+    childIds: [],
     duration: 40,
     fps: 30,
     height: 1080,
     width: 1080,
-  });
+  };
+  const { media, progress, fileUrl, cost, status, renderId } =
+    useRender(template);
   return (
     <div>
       <div
@@ -44,17 +47,7 @@ export function PlayerExample() {
         <p>{progress}</p>
         <p>{fileUrl}</p>
         <p>{status}</p>
-        <Player
-          template={{
-            comps: components,
-            duration: 40,
-            fps: 30,
-            width: 1080,
-            height: 600,
-          }}
-          style={{ width: `100%` }}
-          controls
-        />
+        <Player template={template} style={{ width: `100%` }} controls />
       </div>
     </div>
   );

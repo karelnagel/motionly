@@ -1,8 +1,8 @@
 import { StyleAndClass } from "@motionly/base";
 import { TextProps } from "@motionly/base";
 import { useMemo } from "react";
-import { useAnimation } from "../useAnimations";
-import { useTextStyles } from "../useTextStyles";
+import { useAnimation } from "../hooks/useAnimations";
+import { useTextStyles } from "../hooks/useTextStyles";
 
 export const defaultTextProps: TextProps = {
   comp: "text",

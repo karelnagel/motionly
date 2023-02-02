@@ -1,6 +1,6 @@
 import { ConfettiProps } from "@motionly/base";
 import RemotionConfetti from "@motionly/confetti";
-import { useColor } from "../useColor";
+import { useColor } from "../hooks/useColor";
 
 export const defaultConfettiProps: ConfettiProps = {
   comp: "confetti",

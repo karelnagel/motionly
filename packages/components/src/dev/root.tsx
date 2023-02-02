@@ -13,8 +13,9 @@ const template = Object.keys(inputProps).length
       width: 1080,
       fps: 30,
       duration: 6,
-      comps: [],
-      background: {
+      childIds: [],
+      components: {},
+      bg: {
         type: "basic",
         color: "#FFFFFFFF",
       },
@@ -31,15 +32,17 @@ export const Root: React.FC = () => {
         width={template.width}
         height={template.height}
         defaultProps={{
-          comps: template.comps,
+          components: template.components,
+          childIds: template.childIds,
           bg: template.bg,
           isSequence: template.isSequence,
         }}
       />
       <Folder name="compositions">
         {compositions.map((comp, i) => {
+          const id = `${comp.comp}-${i}`;
           const baseComp: BaseProps = {
-            id: "1",
+            id: id,
             height: 1080,
             width: 1080,
           };
@@ -54,7 +57,8 @@ export const Root: React.FC = () => {
               durationInFrames={template.duration * template.fps}
               height={template.height}
               defaultProps={{
-                comps: [compProps],
+                components: { [id]: compProps },
+                childIds: [id],
                 bg: {
                   type: "basic",
                   color: "#FFFFFFFF",
@@ -73,7 +77,8 @@ export const Root: React.FC = () => {
         durationInFrames={test.duration * test.fps}
         width={test.width}
         defaultProps={{
-          comps: test.comps,
+          components: test.components,
+          childIds: test.childIds,
           bg: test.bg,
           isSequence: test.isSequence,
         }}

@@ -1,30 +1,41 @@
 import { AbsoluteFill } from "remotion";
-import { useSelected } from "./SelectedContext";
-import { Color, ComponentProps, getFonts, HasChildren } from "@motionly/base";
-import { useColor } from "./useColor";
-import { useFonts } from "./useFonts";
+import { useSelected } from "./hooks/useSelected";
+import {
+  Color,
+  Components,
+  getFonts,
+  HasChildren,
+} from "@motionly/base";
+import { useColor } from "./hooks/useColor";
+import { useFonts } from "./hooks/useFonts";
 import { Children } from "./components/Children";
 import { ReactNode } from "react";
+import { ComponentsProvider } from "./hooks/useComponents";
 
-export const Composition = ({ comps = [], bg, isSequence }: HasChildren) => {
+export const Composition = ({
+  childIds,
+  bg,
+  isSequence,
+  components,
+}: HasChildren & { components: Components }) => {
+  useFonts(getFonts(components));
   return (
-    <Background background={bg} comps={comps}>
-      <Children comps={comps} isSequence={isSequence} />
-    </Background>
+    <ComponentsProvider components={components}>
+      <Background background={bg}>
+        <Children childIds={childIds} isSequence={isSequence} />
+      </Background>
+    </ComponentsProvider>
   );
 };
 
 export const Background = ({
   background,
   children,
-  comps,
 }: {
   background?: Color;
   children: ReactNode;
-  comps: ComponentProps[];
 }) => {
   const { setSelected } = useSelected();
-  useFonts(getFonts(comps));
   const bg = useColor(background);
   return (
     <AbsoluteFill

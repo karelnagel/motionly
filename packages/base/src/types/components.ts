@@ -154,7 +154,7 @@ export type MapProps = {
   bg?: Color;
 };
 export type HasChildren = {
-  comps: ComponentProps[];
+  childIds: string[];
   isSequence?: boolean;
   bg?: Color;
 };
@@ -307,6 +307,7 @@ export type BaseProps = {
   transform?: TransformProps[];
   freeze?: number;
   loopDuration?: number;
+  parentId?: string;
 };
 
 export type AllComponents =
@@ -349,11 +350,12 @@ export type Input = {
   value?: any;
   properties?: { id?: string; prop: string }[];
 };
-
+export type Components = { [key: string]: ComponentProps };
 export type TemplateType = {
   width: number;
   height: number;
   duration: number;
   fps: number;
   inputs?: Input[];
+  components: Components;
 } & HasChildren;
