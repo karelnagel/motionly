@@ -201,7 +201,6 @@ export type TextProps = {
   comp: "text";
   textStyle: TextStyle;
   text: string;
-  animations?: AnimationProps[];
   justifyContent?: keyof typeof JustifyContent;
 };
 
@@ -303,7 +302,12 @@ export type BaseProps = {
   from?: number;
   duration?: number;
   opacity?: number;
-  animations?: AnimationProps[];
+  animations?: {
+    byIds: {
+      [id: string]: AnimationProps;
+    };
+    allIds: string[];
+  };
   motionBlur?: MotionBlurProps;
   transform?: TransformProps[];
   freeze?: number;

@@ -40,21 +40,22 @@ export const TimelineComp = ({
         }}
       >
         <div
-          onClick={() => setSelected(comp.id)}
           className={`relative flex h-[40px] items-center px-2 rounded-sm overflow-hidden justify-between ${
             isSelected
               ? "bg-gradient-to-r from-secondary to bg-primary text-primary-content"
               : "bg-base-300"
           }`}
         >
-          {comp.animations?.map((a, i) => (
-            <Animation
-              key={i}
-              index={i}
-              animation={a}
-              parentDuration={duration}
-            />
-          ))}
+          <div className="absolute top-0 left-0 h-full w-full flex flex-col space-y-[2px] py-[2px] overflow-hidden">
+            {comp.animations?.allIds.map((id, i) => (
+              <Animation
+                key={i}
+                animation={comp.animations?.byIds[id]}
+                parentDuration={duration}
+              />
+            ))}
+          </div>
+
           <div className="whitespace-nowrap overflow-hidden text-ellipsis w-full">
             <p className="sticky left-0 right-0">
               {comp.comp}-{comp.id}

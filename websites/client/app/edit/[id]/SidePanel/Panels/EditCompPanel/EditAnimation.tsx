@@ -5,68 +5,62 @@ import {
   EasingTypes,
 } from "@motionly/base";
 import { Input } from "../../../../../../components/inputs";
+import { getRandomId } from "../../../../../../helpers";
 import { getAnimationColor } from "../../../../../../helpers/color";
 import { useComponent, useStore } from "../../../../../../hooks/useStore";
-
-const defaultAnimation: AnimationProps = {
-  prop: "scale",
-  type: "spring",
-  start: 0.1,
-  from: 0,
-  to: 1,
-  duration: 0,
-  mass: 1,
-  damping: 14,
-  stiffness: 80,
-};
 
 export const EditAnimation = ({}: {}) => {
   const comp = useComponent();
   const setComp = useStore((t) => t.setComp);
-  const animations = comp.animations || [];
-return null;
-  // return (
-  //   <div>
-  //     {animations.map((animation, i) => (
-  //       <OneAnimation
-  //         key={i}
-  //         animation={animation}
-  //         i={i}
-  //         remove={() =>
-  //           setComp({
-  //             ...comp,
-  //             animations: animations.filter((_, j) => j !== i),
-  //           })
-  //         }
-  //       />
-  //     ))}
-  //     <button
-  //       className="btn btn-primary btn-block btn-sm"
-  //       onClick={() =>
-  //         setComp({ ...comp, animations: [...animations, defaultAnimation] })
-  //       }
-  //     >
-  //       Add new
-  //     </button>
-  //   </div>
-  // );
+  const animations = comp.animations;
+  return (
+    <div>
+      {animations?.allIds.map((id, i) => (
+        <OneAnimation key={id} id={id} />
+      ))}
+      <button
+        className="btn btn-primary btn-block btn-sm"
+        onClick={() =>
+          setComp((c) => {
+            const id = getRandomId();
+            if (!c.animations) c.animations = { allIds: [], byIds: {} };
+            c.animations.allIds.push(id);
+            c.animations.byIds[id] = {
+              id,
+              prop: "scale",
+              type: "spring",
+            };
+          })
+        }
+      >
+        Add new
+      </button>
+    </div>
+  );
 };
-const OneAnimation = ({
-  animation,
-  i,
-  setAnimation,
-  remove,
-}: {
-  animation: AnimationProps;
-  i: number;
-  setAnimation: (i: number, value: Partial<AnimationProps>) => void;
-  remove: () => void;
-}) => {
+const OneAnimation = ({ id }: { id: string }) => {
+  const animation = useStore(
+    (t) => t.project.template.components[t.selected].animations?.byIds[id]
+  );
+  if (!animation) return null;
+
+  const setComp = useStore((t) => t.setComp);
+  const remove = () => {
+    setComp((c) => {
+      c.animations!.allIds = c.animations!.allIds.filter((i) => i !== id);
+      delete c.animations!.byIds[id];
+    });
+  };
+  const setAnimation = (func: (a: AnimationProps) => void) => {
+    setComp((c) => {
+      func(c.animations!.byIds[id]);
+    });
+  };
   const units = animationProps[animation.prop].units;
   return (
     <div className="mb-4 space-y-2">
       <div className="flex justify-between">
-        <p className="font-bold">Animation {i + 1}</p>
+        <p className="font-bold">Animation {id}</p>
         <button onClick={remove} className="btn btn-xs btn-error">
           Remove
         </button>
@@ -81,8 +75,8 @@ const OneAnimation = ({
           label="Prop"
           value={animation.prop}
           onChange={(prop) =>
-            setAnimation(i, {
-              prop: prop as keyof typeof animationProps,
+            setAnimation((a) => {
+              a.prop = prop as keyof typeof animationProps;
             })
           }
           options={Object.entries(animationProps).map(([value, { label }]) => ({
@@ -94,9 +88,9 @@ const OneAnimation = ({
           type="select"
           label="Type"
           value={animation.type}
-          onChange={(type) =>
-            setAnimation(i, {
-              type: type as keyof typeof animationTypes,
+          onChange={(type_) =>
+            setAnimation((c) => {
+              c.type = type_ as keyof typeof animationTypes;
             })
           }
           options={Object.entries(animationTypes).map(([value, label]) => ({
@@ -109,14 +103,22 @@ const OneAnimation = ({
         <Input
           type="number"
           label="Start (s)"
-          onChange={(start) => setAnimation(i, { start })}
+          onChange={(start) =>
+            setAnimation((a) => {
+              a.start = start;
+            })
+          }
           value={animation.start}
         />
         <Input
           type="number"
           label="Duration (s)"
           placeholder="MAX"
-          onChange={(duration) => setAnimation(i, { duration })}
+          onChange={(duration) =>
+            setAnimation((a) => {
+              a.duration = duration;
+            })
+          }
           value={animation.duration}
         />
       </div>
@@ -124,13 +126,21 @@ const OneAnimation = ({
         <Input
           type="number"
           label={`From ${units ? `(${units})` : ""}`}
-          onChange={(from) => setAnimation(i, { from })}
+          onChange={(from) =>
+            setAnimation((a) => {
+              a.from = from;
+            })
+          }
           value={animation.from}
         />
         <Input
           type="number"
           label={`To ${units ? `(${units})` : ""}`}
-          onChange={(to) => setAnimation(i, { to })}
+          onChange={(to) =>
+            setAnimation((a) => {
+              a.to = to;
+            })
+          }
           value={animation.to}
         />
       </div>
@@ -140,21 +150,33 @@ const OneAnimation = ({
           <Input
             type="number"
             label="Mass"
-            onChange={(mass) => setAnimation(i, { mass })}
+            onChange={(mass) =>
+              setAnimation((a) => {
+                if (a.type === "spring") a.mass = mass;
+              })
+            }
             value={animation.mass}
           />
 
           <Input
             type="number"
             label="Damping"
-            onChange={(damping) => setAnimation(i, { damping })}
+            onChange={(damping) =>
+              setAnimation((a) => {
+                if (a.type === "spring") a.damping = damping;
+              })
+            }
             value={animation.damping}
           />
 
           <Input
             type="number"
             label="Stiffness"
-            onChange={(stiffness) => setAnimation(i, { stiffness })}
+            onChange={(stiffness) =>
+              setAnimation((a) => {
+                if (a.type === "spring") a.stiffness = stiffness;
+              })
+            }
             value={animation.stiffness}
           />
         </div>
@@ -163,7 +185,11 @@ const OneAnimation = ({
         <Input
           type="number"
           label="Speed"
-          onChange={(speed) => setAnimation(i, { speed })}
+          onChange={(speed) =>
+            setAnimation((a) => {
+              if (a.type === "noise") a.speed = speed;
+            })
+          }
           value={animation.speed}
         />
       )}
@@ -172,7 +198,9 @@ const OneAnimation = ({
           type="number"
           label="Easing"
           onChange={(easing) =>
-            setAnimation(i, { easing: easing as keyof typeof EasingTypes })
+            setAnimation((a) => {
+              if (a.type === "interpolate") a.easing = easing;
+            })
           }
           value={animation.easing}
           options={Object.entries(EasingTypes).map(([value, label]) => ({
@@ -185,7 +213,12 @@ const OneAnimation = ({
         <Input
           type="text"
           label="Variable"
-          onChange={(variable) => setAnimation(i, { variable })}
+          onChange={(variable) =>
+            setAnimation((a) => {
+              if (a.prop === "text" || a.prop === "number")
+                a.variable = variable;
+            })
+          }
           value={animation.variable}
         />
       )}
@@ -193,7 +226,11 @@ const OneAnimation = ({
         <Input
           type="text"
           label="Value"
-          onChange={(value) => setAnimation(i, { value })}
+          onChange={(value) =>
+            setAnimation((a) => {
+              if (a.prop === "text") a.value = value;
+            })
+          }
           value={animation.value}
         />
       )}

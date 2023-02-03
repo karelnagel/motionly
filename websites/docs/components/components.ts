@@ -31,7 +31,6 @@ export const components: ComponentProps[] = [
     duration: 0,
     from: 0,
     rotation: 0,
-    animations: [],
   },
   {
     comp: "transcription",
@@ -1296,7 +1295,6 @@ export const components: ComponentProps[] = [
     duration: 0,
     from: 0,
     rotation: 0,
-    animations: [],
   },
   {
     comp: "audiogram",
@@ -1321,7 +1319,6 @@ export const components: ComponentProps[] = [
     duration: 0,
     from: 0,
     rotation: 0,
-    animations: [],
   },
   {
     comp: "text",
@@ -1349,6 +1346,5 @@ export const components: ComponentProps[] = [
     duration: 0,
     from: 0,
     rotation: 0,
-    animations: [],
   },
 ];
