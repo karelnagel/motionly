@@ -167,16 +167,16 @@ export const CompMoveable = ({
       //     (divRef.current?.parentElement?.offsetWidth || 1)
       // )}
       onDrag={({ delta, beforeDist }) => {
-        const newComp = {
-          ...comp,
-          from:
-            (comp.from || 0) +
-            (delta[0] / (divRef.current?.parentElement?.offsetWidth || 1)) *
-              parentDuration,
-        };
+        const from =
+          (comp.from || 0) +
+          (delta[0] / (divRef.current?.parentElement?.offsetWidth || 1)) *
+            parentDuration;
         const indexChange = Math.round(beforeDist[1] / 48);
 
-        if (!indexChange) return setComp(newComp);
+        if (!indexChange)
+          return setComp((c) => {
+            c.from = from;
+          });
 
         // const oldIndex = comps.findIndex((c) => c.id === comp.id);
         // const newIndex = oldIndex + indexChange;
@@ -186,12 +186,11 @@ export const CompMoveable = ({
         // setComps(newComps, parentId);
       }}
       onResize={({ width, delta, target }) => {
-        const duration =
+        const duration: number =
           (width / (divRef.current?.parentElement?.offsetWidth || 1)) *
           parentDuration;
-        setComp({
-          ...comp,
-          duration,
+        setComp((c) => {
+          c.duration = duration;
         });
         delta[0] && (target.style.width = `${width}px`);
       }}

@@ -23,7 +23,11 @@ export const Inputs = ({ inputs }: { inputs: UserInput[] }) => {
             type={type}
             label={prop}
             value={(comp as any)[prop]}
-            onChange={(value) => setComp({ [prop]: value })}
+            onChange={(value) =>
+              setComp((c: any) => {
+                c[prop] = value;
+              })
+            }
           />
         ))}
     </>

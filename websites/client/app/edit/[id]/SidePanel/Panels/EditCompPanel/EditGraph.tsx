@@ -45,7 +45,7 @@ const inputs: UserInput[] = [
 
 export const EditGraph = () => {
   const comp = useComponent() as GraphProps;
-  const setComp = useStore((t) => t.setComp);
+  const setComp = useStore((t) => t.setComp)<GraphProps>;
 
   return (
     <EditSection title="Graph">
@@ -54,7 +54,9 @@ export const EditGraph = () => {
         label="Values"
         json={JSON.stringify(comp.src)}
         onChange={(json) =>
-          setComp({ ...comp, src: json ? JSON.parse(json) : comp.src })
+          setComp((c) => {
+            if (json) c.src = JSON.parse(json);
+          })
         }
       >
         {comp.src.map((src, i) => (
@@ -64,18 +66,16 @@ export const EditGraph = () => {
               label={`Value ${i + 1}`}
               value={src}
               onChange={(e) =>
-                setComp({
-                  ...comp,
-                  src: comp.src.map((v, j) => (j === i ? e || 0 : v)),
+                setComp((c) => {
+                  c.src = c.src.map((v, j) => (j === i ? e || 0 : v));
                 })
               }
             />
             <button
               className="btn btn-xs btn-error"
               onClick={() =>
-                setComp({
-                  ...comp,
-                  src: comp.src.filter((v, j) => j !== i),
+                setComp((c) => {
+                  c.src = comp.src.filter((v, j) => j !== i);
                 })
               }
             >
@@ -85,7 +85,11 @@ export const EditGraph = () => {
         ))}
         <button
           className="bg-primary p-2 rounded-lg text-primary-content px-3"
-          onClick={() => setComp({ ...comp, src: [...comp.src, 1] })}
+          onClick={() =>
+            setComp((c) => {
+              c.src.push(1);
+            })
+          }
         >
           Add
         </button>

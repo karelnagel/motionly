@@ -1,4 +1,4 @@
-import { ComponentProps } from "@motionly/base";
+import { AllComponents, BaseProps, ComponentProps } from "@motionly/base";
 import { Project, Tabs } from "../types";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
@@ -13,7 +13,9 @@ interface Store {
   selected: string;
   tab: Tabs;
   setProject: (template: Partial<Project>) => void;
-  setComp: (comp: Partial<ComponentProps>) => void;
+  setComp: <T extends AllComponents>(
+    func: (state: WritableDraft<T & BaseProps>) => void
+  ) => void;
   deleteComp: () => void;
   addComp: (comp?: ComponentProps, parentId?: string) => void;
   saveTime: Date | undefined;
@@ -59,22 +61,14 @@ export const useStore = create(
     setProject: (project: Partial<Project>) =>
       set((state) => ({ project: { ...state.project, ...project } })),
 
-    setComp: (comp: Partial<ComponentProps>) => {
-      set((state) => ({
-        project: {
-          ...state.project,
-          template: {
-            ...state.project.template,
-            components: {
-              ...state.project.template.components,
-              [state.selected]: {
-                ...state.project.template.components[state.selected],
-                ...comp,
-              },
-            },
-          },
-        },
-      }));
+    setComp: <T extends AllComponents>(
+      func: (state: WritableDraft<T & BaseProps>) => void
+    ) => {
+      set((state) => {
+        const comp = state.project.template.components[state.selected];
+        if (!comp) return;
+        func(comp as WritableDraft<T & BaseProps>);
+      });
     },
 
     setComps: (newComps: ComponentProps[], parentId: string) => {},
@@ -123,7 +117,7 @@ export const useStore = create(
   }))
 );
 
-export const useComponent = (id?: string) => {
+export const useComponent = (id?: string): ComponentProps => {
   return useStore(
     useCallback(
       (state) => state.project.template.components[id || state.selected],

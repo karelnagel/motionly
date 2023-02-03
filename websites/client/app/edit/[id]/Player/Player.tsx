@@ -16,7 +16,7 @@ export const Player = ({
   const template = useStore((t) => t.project.template);
   const comp = useComponent();
   const setSelected = useStore((t) => t.setSelected);
-  const set = useStore((t) => t.set);
+  const setComp = useStore((t) => t.setComp);
 
   const lockAspectRatio = useShiftKey();
   const divRef = useRef<HTMLDivElement>(null);
@@ -81,16 +81,14 @@ export const Player = ({
           //   height,
           // ].map((x) => (x || 0) * scale)}
           onDrag={(e) => {
-            set((s) => {
-              const comp = s.project.template.components[s.selected];
+            setComp((comp) => {
               comp.x = (comp.x || 0) + e.delta[0];
               comp.y = (comp.y || 0) + e.delta[1];
             });
           }}
           keepRatio={lockAspectRatio}
           onResize={({ height, width, delta, target }) => {
-            set((s) => {
-              const comp = s.project.template.components[s.selected];
+            setComp((comp) => {
               comp.width = width;
               comp.height = height;
             });
@@ -98,9 +96,8 @@ export const Player = ({
             delta[1] && (target.style.height = `${height}px`);
           }}
           onRotate={(e) =>
-            set((s) => {
-              s.project.template.components[s.selected].rotation =
-                e.absoluteRotation;
+            setComp((comp) => {
+              comp.rotation = e.absoluteRotation;
             })
           }
         />

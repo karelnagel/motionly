@@ -54,24 +54,31 @@ export const EditGeneral = () => {
   return (
     <EditSection>
       <Inputs inputs={inputs} />
-      <Input
-        type="checkbox"
-        label="Motion Blur"
-        className="col-span-2"
-        value={!!comp.motionBlur}
-        onChange={(motionBlur) =>
-          setComp({ ...comp, motionBlur: motionBlur ? {} : undefined })
-        }
-      />
+
       {"childIds" in comp && (
         <Input
           type="checkbox"
           label="Play in Sequence"
           className="col-span-2"
           value={comp.isSequence}
-          onChange={(isSequence) => setComp({ ...comp, isSequence })}
+          onChange={(isSequence) =>
+            setComp((c) => {
+              if ("childIds" in c) c.isSequence = isSequence;
+            })
+          }
         />
       )}
+      <Input
+        type="checkbox"
+        label="Motion Blur"
+        className="col-span-2"
+        value={!!comp.motionBlur}
+        onChange={(motionBlur) =>
+          setComp((c) => {
+            c.motionBlur = motionBlur ? {} : undefined;
+          })
+        }
+      />
       {comp.motionBlur && (
         <>
           <Input
@@ -80,7 +87,9 @@ export const EditGeneral = () => {
             value={comp.motionBlur.lag}
             placeholder="0.1"
             onChange={(lag) =>
-              setComp({ ...comp, motionBlur: { ...comp.motionBlur, lag } })
+              setComp((c) => {
+                c.motionBlur!.lag = lag;
+              })
             }
           />
           <Input
@@ -89,7 +98,9 @@ export const EditGeneral = () => {
             value={comp.motionBlur.layers}
             placeholder="50"
             onChange={(layers) =>
-              setComp({ ...comp, motionBlur: { ...comp.motionBlur, layers } })
+              setComp((c) => {
+                c.motionBlur!.layers = layers;
+              })
             }
           />
           <Input
@@ -98,7 +109,9 @@ export const EditGeneral = () => {
             value={comp.motionBlur.opacity}
             placeholder="1"
             onChange={(opacity) =>
-              setComp({ ...comp, motionBlur: { ...comp.motionBlur, opacity } })
+              setComp((c) => {
+                c.motionBlur!.opacity = opacity;
+              })
             }
           />
         </>
@@ -111,13 +124,12 @@ export const EditGeneral = () => {
             label={`Transform ${i + 1}`}
             value={prop}
             onChange={(prop) =>
-              setComp({
-                ...comp,
-                transform: comp.transform?.map((t, j) =>
+              setComp((c) => {
+                c.transform = c.transform?.map((t, j) =>
                   i === j
                     ? { ...t, prop: prop as keyof typeof transformProps }
                     : t
-                ),
+                );
               })
             }
             options={Object.entries(transformProps).map(
@@ -133,20 +145,18 @@ export const EditGeneral = () => {
             label={`Transform ${i + 1}`}
             value={value}
             onChange={(value) =>
-              setComp({
-                ...comp,
-                transform: comp.transform?.map((t, j) =>
+              setComp((c) => {
+                c.transform = c.transform?.map((t, j) =>
                   i === j ? { ...t, value: value } : t
-                ),
+                );
               })
             }
           />
           <button
             className="btn btn-xs btn-error"
             onClick={() =>
-              setComp({
-                ...comp,
-                transform: comp.transform?.filter((_, j) => i !== j),
+              setComp((c) => {
+                c.transform = c.transform?.filter((_, j) => i !== j);
               })
             }
           >
@@ -157,12 +167,8 @@ export const EditGeneral = () => {
       <button
         className="btn col-span-2"
         onClick={() => {
-          setComp({
-            ...comp,
-            transform: [
-              ...(comp.transform ?? []),
-              { prop: "translateX", value: 0 },
-            ],
+          setComp((c) => {
+            c.transform?.push({ prop: "translateX", value: 0 });
           });
         }}
       >

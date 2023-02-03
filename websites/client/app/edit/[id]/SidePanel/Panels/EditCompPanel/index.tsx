@@ -91,7 +91,7 @@ export const EditCompPanel = () => {
       </div>
       {tab === "animations" ? (
         <div className="overflow-y-auto">
-          <EditAnimation comp={comp} setComp={setComp} />
+          <EditAnimation />
         </div>
       ) : (
         <div className="w-full overflow-y-auto">

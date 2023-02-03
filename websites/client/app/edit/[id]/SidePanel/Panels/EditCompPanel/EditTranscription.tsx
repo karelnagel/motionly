@@ -47,16 +47,24 @@ const inputs: UserInput[] = [
 ];
 export const EditTranscription = () => {
   const comp = useComponent() as TranscriptionProps;
-  const setComp = useStore((t) => t.setComp);
+  const setComp = useStore((t) => t.setComp)<TranscriptionProps>;
 
   return (
     <EditSection title="Transcription">
-      <GetTranscriptions onChange={(src) => setComp({ ...comp, src })} />
+      <GetTranscriptions
+        onChange={(src) =>
+          setComp((c) => {
+            c.src = src;
+          })
+        }
+      />
       <ShowJson
         label="Words"
         json={JSON.stringify(comp.src, null, 2)}
         onChange={(json) =>
-          setComp({ ...comp, src: json ? JSON.parse(json) : comp.src })
+          setComp((c) => {
+            if (json) c.src = JSON.parse(json);
+          })
         }
       >
         <div className="col-span-2 w-full space-y-2">
@@ -65,9 +73,8 @@ export const EditTranscription = () => {
               key={i}
               word={word}
               setWord={(n) =>
-                setComp({
-                  ...comp,
-                  src: comp.src.map((w, j) => (i === j ? { ...w, ...n } : w)),
+                setComp((c) => {
+                  c.src = c.src.map((w, j) => (i === j ? { ...w, ...n } : w));
                 })
               }
             />

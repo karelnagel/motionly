@@ -2,12 +2,11 @@ import {
   animationProps,
   AnimationProps,
   animationTypes,
-  ComponentProps,
   EasingTypes,
 } from "@motionly/base";
 import { Input } from "../../../../../../components/inputs";
 import { getAnimationColor } from "../../../../../../helpers/color";
-import { SetComp } from "./index";
+import { useComponent, useStore } from "../../../../../../hooks/useStore";
 
 const defaultAnimation: AnimationProps = {
   prop: "scale",
@@ -21,50 +20,36 @@ const defaultAnimation: AnimationProps = {
   stiffness: 80,
 };
 
-export const EditAnimation = ({
-  comp: { animations = [], ...comp },
-  setComp,
-}: {
-  comp: ComponentProps;
-  setComp: SetComp;
-}) => {
-  const setAnimation = (index: number, value: Partial<AnimationProps>) => {
-    setComp({
-      ...comp,
-      animations: animations.map((a, i) => {
-        if (i === index) {
-          return { ...a, ...value } as AnimationProps;
-        }
-        return a;
-      }),
-    });
-  };
-  return (
-    <div>
-      {animations.map((animation, i) => (
-        <OneAnimation
-          key={i}
-          animation={animation}
-          i={i}
-          setAnimation={setAnimation}
-          remove={() =>
-            setComp({
-              ...comp,
-              animations: animations.filter((_, j) => j !== i),
-            })
-          }
-        />
-      ))}
-      <button
-        className="btn btn-primary btn-block btn-sm"
-        onClick={() =>
-          setComp({ ...comp, animations: [...animations, defaultAnimation] })
-        }
-      >
-        Add new
-      </button>
-    </div>
-  );
+export const EditAnimation = ({}: {}) => {
+  const comp = useComponent();
+  const setComp = useStore((t) => t.setComp);
+  const animations = comp.animations || [];
+return null;
+  // return (
+  //   <div>
+  //     {animations.map((animation, i) => (
+  //       <OneAnimation
+  //         key={i}
+  //         animation={animation}
+  //         i={i}
+  //         remove={() =>
+  //           setComp({
+  //             ...comp,
+  //             animations: animations.filter((_, j) => j !== i),
+  //           })
+  //         }
+  //       />
+  //     ))}
+  //     <button
+  //       className="btn btn-primary btn-block btn-sm"
+  //       onClick={() =>
+  //         setComp({ ...comp, animations: [...animations, defaultAnimation] })
+  //       }
+  //     >
+  //       Add new
+  //     </button>
+  //   </div>
+  // );
 };
 const OneAnimation = ({
   animation,

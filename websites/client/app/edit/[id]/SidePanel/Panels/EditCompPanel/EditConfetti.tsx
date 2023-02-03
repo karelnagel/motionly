@@ -39,7 +39,7 @@ const inputs: UserInput[] = [
   },
 ];
 export const EditConfetti = () => {
-  const setComp = useStore((t) => t.setComp);
+  const setComp = useStore((t) => t.setComp)<ConfettiProps>;
   const comp = useComponent() as ConfettiProps;
 
   return (
@@ -50,11 +50,10 @@ export const EditConfetti = () => {
           type="select"
           value={c}
           onChange={(color) =>
-            setComp({
-              ...comp,
-              colors: colors
+            setComp((c) => {
+              c.colors = colors
                 .map((c, j) => (i === j ? color : c))
-                .filter((c) => c) as BaseColor[],
+                .filter((c) => c) as BaseColor[];
             })
           }
           label="Colors"
@@ -63,12 +62,9 @@ export const EditConfetti = () => {
       <button
         className="btn"
         onClick={() =>
-          setComp({
-            ...comp,
-            colors: [
-              ...(comp.colors || []),
-              { type: "basic", color: "#FFFFFFFF" },
-            ],
+          setComp((c) => {
+            if (!c.colors) c.colors = [];
+            c.colors.push({ type: "basic", color: "#FFFFFFFF" });
           })
         }
       >
