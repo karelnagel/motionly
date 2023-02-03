@@ -14,10 +14,10 @@ export const defaultDivProps: DivProps = {
 
 export const Div = ({
   bg,
-  childIds,
   style,
   className,
   isSequence,
+  comps,
 }: DivProps & StyleAndClass) => {
   const background = useColor(bg);
   return (
@@ -31,7 +31,7 @@ export const Div = ({
         ...style,
       }}
     >
-      <Children childIds={childIds} isSequence={isSequence} />
+      <Children comps={comps} isSequence={isSequence} />
     </div>
   );
 };

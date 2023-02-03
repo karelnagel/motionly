@@ -1,22 +1,21 @@
+import { ComponentProps } from "@motionly/base";
 import { Series, useVideoConfig } from "remotion";
 import { Component } from "../Component";
-import { useComponents } from "../hooks/useComponents";
 
 export const Children = ({
-  childIds,
+  comps,
   isSequence,
 }: {
-  childIds?: string[];
+  comps?: ComponentProps[];
   isSequence?: boolean;
 }) => {
   const { fps } = useVideoConfig();
-  const components = useComponents();
-  if (!childIds) return null;
+  if (!comps) return null;
   if (!isSequence) {
     return (
       <>
-        {childIds.map((id) => (
-          <Component key={id} {...components[id]} />
+        {comps.map((comp) => (
+          <Component key={comp.id} {...comp} />
         ))}
       </>
     );
@@ -24,18 +23,17 @@ export const Children = ({
 
   return (
     <Series>
-      {childIds.map((id) => {
-        const child = components[id];
+      {comps.map((comp) => {
         return (
           <Series.Sequence
-            key={id}
-            offset={child.from ? Math.floor(child.from * fps) : undefined}
+            key={comp.id}
+            offset={comp.from ? Math.floor(comp.from * fps) : undefined}
             layout="none"
             durationInFrames={
-              child.duration ? Math.floor(child.duration * fps) : 1
+              comp.duration ? Math.floor(comp.duration * fps) : 1
             }
           >
-            <Component {...child} from={0} duration={0} />
+            <Component {...comp} from={0} duration={0} />
           </Series.Sequence>
         );
       })}

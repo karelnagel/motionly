@@ -181,7 +181,6 @@ const InsideSequence = ({
   const border = borderAnimations.length
     ? borderRadius + borderAnimations.reduce((acc, a) => acc + animation(a), 1)
     : borderRadius;
-
   return (
     <>
       <div
@@ -201,10 +200,8 @@ const InsideSequence = ({
           width: inputWidth || "100%",
           height: inputHeight || "100%",
           position: "absolute",
-          top: y,
-          left: x,
           userSelect: "none",
-          transform: `rotate(${
+          transform: `translate(${x}px,${y}px) rotate(${
             rotation || 0
           }deg) ${transformStyle} ${transformAnimations}`, // For some reason, this messes up x and y
         }}

@@ -2,6 +2,7 @@ import { AbsoluteFill } from "remotion";
 import { useSelected } from "./hooks/useSelected";
 import {
   Color,
+  ComponentProps,
   Components,
   getFonts,
   HasChildren,
@@ -9,8 +10,21 @@ import {
 import { useColor } from "./hooks/useColor";
 import { useFonts } from "./hooks/useFonts";
 import { Children } from "./components/Children";
-import { ReactNode } from "react";
-import { ComponentsProvider } from "./hooks/useComponents";
+import { ReactNode, useMemo } from "react";
+
+const toTree = (
+  components: Components,
+  childIds: string[]
+): ComponentProps[] => {
+  const tree = childIds.map((id) => {
+    const comp = components[id];
+    if ("childIds" in comp) {
+      comp.comps = toTree(components, comp.childIds);
+    }
+    return comp;
+  });
+  return tree;
+};
 
 export const Composition = ({
   childIds,
@@ -19,12 +33,14 @@ export const Composition = ({
   components,
 }: HasChildren & { components: Components }) => {
   useFonts(getFonts(components));
+  const comps = useMemo(
+    () => toTree(components, childIds),
+    [components, childIds]
+  );
   return (
-    <ComponentsProvider components={components}>
-      <Background background={bg}>
-        <Children childIds={childIds} isSequence={isSequence} />
-      </Background>
-    </ComponentsProvider>
+    <Background background={bg}>
+      <Children comps={comps} isSequence={isSequence} />
+    </Background>
   );
 };
 

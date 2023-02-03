@@ -4,6 +4,7 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { WritableDraft } from "immer/dist/internal";
 import { useCallback } from "react";
+import { getRandomId } from "../helpers";
 
 interface Store {
   project: Project;
@@ -52,21 +53,49 @@ export const useStore = create(
     future: [],
     selected: "template",
     tab: "props",
-    comp: undefined,
-    parentId: undefined,
     saveTime: undefined,
     init: (project: Project) => set({ project }),
     set,
     setProject: (project: Partial<Project>) =>
       set((state) => ({ project: { ...state.project, ...project } })),
 
-    setComp: (comp: Partial<ComponentProps>) => {},
+    setComp: (comp: Partial<ComponentProps>) => {
+      set((state) => ({
+        project: {
+          ...state.project,
+          template: {
+            ...state.project.template,
+            components: {
+              ...state.project.template.components,
+              [state.selected]: {
+                ...state.project.template.components[state.selected],
+                ...comp,
+              },
+            },
+          },
+        },
+      }));
+    },
 
     setComps: (newComps: ComponentProps[], parentId: string) => {},
 
     deleteComp: () => {},
 
-    addComp: (comp1?: ComponentProps, parentId: string = "") => {},
+    addComp: (comp?: ComponentProps, parentId?: string) =>
+      set((state) => {
+        const newComp =
+          comp || state.project.template.components[state.selected];
+        if (!newComp) return;
+        newComp.id = getRandomId();
+
+        const parent = parentId
+          ? state.project.template.components[parentId]
+          : state.project.template;
+        if (!parent || !("childIds" in parent)) return;
+        parent.childIds.push(newComp.id);
+        newComp.parentId = parentId;
+        state.project.template.components[newComp.id] = newComp;
+      }),
 
     changeParent: (newParentId: string) => {},
 

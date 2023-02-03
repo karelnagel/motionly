@@ -66,11 +66,10 @@ const mockups: {
 };
 
 export const Mockup = ({
-  childIds,
   type,
   bg,
   isSequence,
-  ...props
+  comps,
 }: MockupProps & StyleAndClass) => {
   const background = useColor(bg);
 
@@ -88,7 +87,7 @@ export const Mockup = ({
           background,
         }}
       >
-        <Children childIds={childIds} isSequence={isSequence} />
+        <Children comps={comps} isSequence={isSequence} />
       </div>
       {type === "iphone" && <Iphone />}
       {type === "ipad" && <IPad />}

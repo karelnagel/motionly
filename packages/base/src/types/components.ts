@@ -157,6 +157,7 @@ export type HasChildren = {
   childIds: string[];
   isSequence?: boolean;
   bg?: Color;
+  comps?: ComponentProps[];
 };
 
 export type MockupProps = {
