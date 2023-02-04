@@ -112,7 +112,19 @@ export const useStore = create(
 
         setComps: (newComps: ComponentProps[], parentId: string) => {},
 
-        deleteComp: () => {},
+        deleteComp: () => {
+          set((s) => {
+            const comp = s.project.template.components[s.selected];
+            const parent = comp.parentId
+              ? s.project.template.components[comp.parentId]
+              : s.project.template;
+            if (!parent || !("childIds" in parent)) return;
+            parent.childIds = parent.childIds.filter((id) => id !== s.selected);
+            delete s.project.template.components[s.selected];
+            s.selected =
+              s.project.template.components[s.project.template.childIds[0]]?.id;
+          });
+        },
 
         addComp: (comp?: ComponentProps, parentId?: string) =>
           set((state) => {

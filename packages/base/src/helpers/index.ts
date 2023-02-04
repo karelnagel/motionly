@@ -49,7 +49,7 @@ export const toTree = (
 ): ComponentProps[] => {
   const tree = childIds.map((id) => {
     let comp = components[id];
-    comp = applyInputs(comp, inputs, comp.compInputs);
+    comp = applyInputs(comp, inputs, comp?.compInputs);
     if ("childIds" in comp) {
       comp.comps = [
         ...(comp.comps || []),
@@ -66,7 +66,7 @@ export function applyInputs<T>(
   inputs: { [key: string]: Input },
   compInputs?: CompInput[]
 ): T {
-  const newComp = JSON.parse(JSON.stringify(comp));
+  const newComp = JSON.parse(JSON.stringify(comp || {}));
   for (const input of compInputs || []) {
     const inputVal = inputs[input.id]?.value;
     if (inputVal === undefined) continue;
