@@ -9,6 +9,7 @@ import { IoIosBrush, IoIosCopy } from "react-icons/io";
 import { Clone } from "../../../../components/Clone";
 import { Input } from "../../../../components/inputs";
 import { Project } from "../../../../types";
+import produce from "immer";
 
 export const Client = ({ startProject }: { startProject: Project }) => {
   const [project, setProject] = useState(startProject);
@@ -46,22 +47,27 @@ export const Client = ({ startProject }: { startProject: Project }) => {
         <p>
           <b>Dimensions:</b> {template.width} x {template.height}
         </p>
-        {template.inputs?.map((input) => (
-          <Input
-            key={input.id}
-            label={input.label || ""}
-            onChange={(i) =>
-              setProject({
-                ...project,
-                // inputs: template.inputs?.map((inp) =>
-                //   inp.id === input.id ? { ...inp, value: i } : inp
-                // ),
-              })
-            }
-            value={input.value}
-            type={input.type || "text"}
-          />
-        ))}
+        {template.inputs?.allIds.map((inputId) => {
+          const input = template.inputs?.byIds[inputId];
+          if (!input) return null;
+          return (
+            <Input
+              key={inputId}
+              label={input.label || ""}
+              onChange={(i) => {
+                setProject(
+                  produce((draft) => {
+                    const input = draft.template.inputs?.byIds[inputId];
+                    if (!input) return;
+                    input.value = i;
+                  })
+                );
+              }}
+              value={input.value}
+              type={input.type || "text"}
+            />
+          );
+        })}
         <div className="flex flex-col  space-y-2 justify-between">
           {status && <p>Status: {status}</p>}
           {status && (

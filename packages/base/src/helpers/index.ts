@@ -37,15 +37,16 @@ export const getFonts = (comps: Components) => {
 };
 
 export function applyInputs(template: TemplateType) {
-  const newTemplate = { ...template };
+  const newTemplate = JSON.parse(JSON.stringify(template)) as TemplateType;
   if (!newTemplate.inputs) return newTemplate;
-  for (const input of newTemplate.inputs) {
-    if (!input.properties) continue;
+  for (const inputId of newTemplate.inputs.allIds) {
+    const input = newTemplate.inputs?.byIds[inputId];
+    if (!input?.properties) continue;
     for (const prop of input.properties) {
       if (!prop.id || prop.id === "template") {
         (newTemplate as any)[prop.prop] = input.value;
       } else if (prop.id) {
-        const comp = template.components[prop.id] as any;
+        const comp = newTemplate.components[prop.id] as any;
         if (!comp) continue;
         const props = prop.prop.split(".");
         if (props.length === 1 && comp) {

@@ -73,6 +73,7 @@ const OneAnimation = ({ id }: { id: string }) => {
         <Input
           type="select"
           label="Prop"
+          prop={`animations.byIds.${id}.prop`}
           value={animation.prop}
           onChange={(prop) =>
             setAnimation((a) => {
@@ -87,6 +88,7 @@ const OneAnimation = ({ id }: { id: string }) => {
         <Input
           type="select"
           label="Type"
+          prop={`animations.byIds.${id}.type`}
           value={animation.type}
           onChange={(type_) =>
             setAnimation((c) => {
@@ -103,6 +105,7 @@ const OneAnimation = ({ id }: { id: string }) => {
         <Input
           type="number"
           label="Start (s)"
+          prop={`animations.byIds.${id}.start`}
           onChange={(start) =>
             setAnimation((a) => {
               a.start = start;
@@ -114,6 +117,7 @@ const OneAnimation = ({ id }: { id: string }) => {
           type="number"
           label="Duration (s)"
           placeholder="MAX"
+          prop={`animations.byIds.${id}.duration`}
           onChange={(duration) =>
             setAnimation((a) => {
               a.duration = duration;
@@ -125,6 +129,7 @@ const OneAnimation = ({ id }: { id: string }) => {
       <div className="grid grid-cols-2 gap-2">
         <Input
           type="number"
+          prop={`animations.byIds.${id}.from`}
           label={`From ${units ? `(${units})` : ""}`}
           onChange={(from) =>
             setAnimation((a) => {
@@ -136,6 +141,7 @@ const OneAnimation = ({ id }: { id: string }) => {
         <Input
           type="number"
           label={`To ${units ? `(${units})` : ""}`}
+          prop={`animations.byIds.${id}.to`}
           onChange={(to) =>
             setAnimation((a) => {
               a.to = to;
@@ -150,6 +156,7 @@ const OneAnimation = ({ id }: { id: string }) => {
           <Input
             type="number"
             label="Mass"
+            prop={`animations.byIds.${id}.mass`}
             onChange={(mass) =>
               setAnimation((a) => {
                 if (a.type === "spring") a.mass = mass;
@@ -161,6 +168,7 @@ const OneAnimation = ({ id }: { id: string }) => {
           <Input
             type="number"
             label="Damping"
+            prop={`animations.byIds.${id}.damping`}
             onChange={(damping) =>
               setAnimation((a) => {
                 if (a.type === "spring") a.damping = damping;
@@ -172,6 +180,7 @@ const OneAnimation = ({ id }: { id: string }) => {
           <Input
             type="number"
             label="Stiffness"
+            prop={`animations.byIds.${id}.stiffness`}
             onChange={(stiffness) =>
               setAnimation((a) => {
                 if (a.type === "spring") a.stiffness = stiffness;
@@ -185,6 +194,7 @@ const OneAnimation = ({ id }: { id: string }) => {
         <Input
           type="number"
           label="Speed"
+          prop={`animations.byIds.${id}.speed`}
           onChange={(speed) =>
             setAnimation((a) => {
               if (a.type === "noise") a.speed = speed;
@@ -197,6 +207,7 @@ const OneAnimation = ({ id }: { id: string }) => {
         <Input
           type="number"
           label="Easing"
+          prop={`animations.byIds.${id}.easing`}
           onChange={(easing) =>
             setAnimation((a) => {
               if (a.type === "interpolate") a.easing = easing;
@@ -213,6 +224,7 @@ const OneAnimation = ({ id }: { id: string }) => {
         <Input
           type="text"
           label="Variable"
+          prop={`animations.byIds.${id}.variable`}
           onChange={(variable) =>
             setAnimation((a) => {
               if (a.prop === "text" || a.prop === "number")
@@ -226,6 +238,7 @@ const OneAnimation = ({ id }: { id: string }) => {
         <Input
           type="text"
           label="Value"
+          prop={`animations.byIds.${id}.value`}
           onChange={(value) =>
             setAnimation((a) => {
               if (a.prop === "text") a.value = value;

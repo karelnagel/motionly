@@ -356,11 +356,12 @@ export type Input = {
   properties?: { id?: string; prop: string }[];
 };
 export type Components = { [key: string]: ComponentProps };
+export type Inputs = { byIds: { [key: string]: Input }; allIds: string[] };
 export type TemplateType = {
   width: number;
   height: number;
   duration: number;
   fps: number;
-  inputs?: Input[];
+  inputs?: Inputs;
   components: Components;
 } & HasChildren;

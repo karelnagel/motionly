@@ -3,10 +3,10 @@
 import { Color, inputTypes, TextStyle } from "@motionly/base";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { EditTextStyle } from "../../app/edit/[id]/SidePanel/Panels/EditCompPanel/EditTextStyle";
-import { getRandomId } from "../../helpers";
 import { Media } from "../Media";
 import { useStore } from "../../hooks/useStore";
 import { ColorInput } from "./color";
+import { getRandomId } from "../../helpers";
 export * from "./color";
 
 export const VariableSelect = ({
@@ -18,59 +18,53 @@ export const VariableSelect = ({
   type: keyof typeof inputTypes;
   value: any;
 }) => {
-  const template = useStore((t) => t.project.template);
-  // const setTemplate = useTemplate((t) => t.setTemplate);
+  const inputs = useStore((t) => t.project.template.inputs);
   const selected = useStore((t) => t.selected);
+  const set = useStore((t) => t.set);
 
   return (
     <div
       className="absolute dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40 cursor-pointer"
       tabIndex={0}
     >
-      {template.inputs?.map((input) => (
-        <button
-          key={input.id}
-          onClick={
-            () => {}
-            // setTemplate({
-            //   ...template,
-            //   inputs: template.inputs?.map((inp) =>
-            //     input.id === inp.id
-            //       ? {
-            //           ...inp,
-            //           properties: [
-            //             ...(inp.properties || []),
-            //             { prop, id: selected },
-            //           ],
-            //         }
-            //       : inp
-            //   ),
-            // })
-          }
-        >
-          {input.label}
-        </button>
-      ))}
-      <button
-        onClick={
-          () => {}
-          // setTemplate({
-          //   ...template,
-          //   inputs: [
-          //     ...(template.inputs || []),
-          //     {
-          //       id: getRandomId(),
-          //       type,
-          //       label: prop,
-          //       value,
-          //       properties: [{ prop, id: selected }],
-          //     },
-          //   ],
-          // })
+      {inputs?.allIds.map((id) => {
+        const input = inputs.byIds[id];
+        if (input.type !== type) return null;
+        return (
+          <p
+            key={id}
+            onClick={() =>
+              set((s) => {
+                const input = s.project.template.inputs!.byIds[id];
+                if (!input.properties) input.properties = [];
+                input.properties.push({ prop, id: selected });
+              })
+            }
+          >
+            {input.label}
+          </p>
+        );
+      })}
+      <p
+        onClick={() =>
+          set((s) => {
+            const id = getRandomId();
+            if (!s.project.template.inputs)
+              s.project.template.inputs = { allIds: [], byIds: {} };
+            const inputs = s.project.template.inputs;
+            inputs.allIds.push(id);
+            inputs.byIds[id] = {
+              id,
+              label: prop,
+              type,
+              value,
+              properties: [{ id: selected, prop }],
+            };
+          })
         }
       >
         Add new
-      </button>
+      </p>
     </div>
   );
 };
@@ -96,13 +90,13 @@ export function Input<T extends any>({
   options?: { value: string; label: string }[];
   prop?: string;
 }) {
-  const template = useStore((t) => t.project.template);
-  // const setTemplate = useTemplate((t) => t.setTemplate);
+  const inputs = useStore((t) => t.project.template.inputs?.byIds);
   const selected = useStore((t) => t.selected);
   const setSelected = useStore((t) => t.setSelected);
+  const set = useStore((t) => t.set);
 
   const input = prop
-    ? template.inputs?.find((input) =>
+    ? Object.values(inputs || {}).find((input) =>
         input.properties?.find((p) => p.id === selected && p.prop === prop)
       )
     : undefined;
@@ -124,18 +118,7 @@ export function Input<T extends any>({
         {prop && input && (
           <IoIosRemove
             className="cursor-pointer"
-            onClick={
-              () => {}
-              // setTemplate({
-              //   ...template,
-              //   inputs: template.inputs?.map((i) => ({
-              //     ...i,
-              //     properties: i.properties?.filter(
-              //       (i) => i.id !== selected && i.prop !== prop
-              //     ),
-              //   })),
-              // })
-            }
+            onClick={() => set((s) => {})} //Todo
           />
         )}
       </div>

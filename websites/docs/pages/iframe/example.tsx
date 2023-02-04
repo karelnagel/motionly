@@ -4,59 +4,7 @@ import { useEffect, useRef, useState } from "react";
 const baseTemplate: TemplateType = {
   components: {},
   childIds: [],
-  inputs: [
-    {
-      id: "1iunl",
-      type: "textarea",
-      label: "Text",
-      value: "Hello World",
-      properties: [
-        {
-          prop: "text",
-          id: "xdm6o1",
-        },
-      ],
-    },
-    {
-      id: "b8e0gxs",
-      type: "image",
-      label: "Image src",
-      value: "https://picsum.photos/seed/motionly/1080/1080",
-      properties: [
-        {
-          prop: "src",
-          id: "57xdgoo",
-        },
-      ],
-    },
-    {
-      id: "wper7dj",
-      type: "number",
-      label: "Image height",
-      value: 336,
-      properties: [
-        {
-          prop: "height",
-          id: "57xdgoo",
-        },
-      ],
-    },
-    {
-      id: "33zg3db",
-      type: "color",
-      label: "Bg color",
-      value: {
-        type: "basic",
-        color: "#ff0000",
-      },
-      properties: [
-        {
-          prop: "background",
-          id: "template",
-        },
-      ],
-    },
-  ],
+
   width: 1080,
   height: 1080,
   duration: 10,
@@ -87,10 +35,14 @@ export default function TestIFrame() {
   }, [template]);
 
   const setValue = (id: string, value: any) => {
-    setTemplate((prev) => ({
-      ...prev,
-      inputs: template.inputs.map((i) => (i.id === id ? { ...i, value } : i)),
-    }));
+    setTemplate((prev) => {
+      const newTemplate = { ...prev };
+      const input = newTemplate.inputs?.byIds[id];
+      if (input) {
+        input.value = value;
+      }
+      return newTemplate;
+    });
   };
 
   return (
@@ -102,8 +54,12 @@ export default function TestIFrame() {
         style={{ aspectRatio: `${template.width}/${template.height}` }}
       />
       <div className="flex flex-col space-y-2">
-        {template.inputs.map((input) => (
-          <Input input={input} key={input.id} setValue={setValue} />
+        {template.inputs?.allIds.map((inputId) => (
+          <Input
+            input={template.inputs.byIds[inputId]}
+            key={inputId}
+            setValue={setValue}
+          />
         ))}
       </div>
     </div>
