@@ -4,7 +4,7 @@ import { Color, inputTypes, TextStyle } from "@motionly/base";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { EditTextStyle } from "../../app/edit/[id]/SidePanel/Panels/EditCompPanel/EditTextStyle";
 import { Media } from "../Media";
-import { useStore } from "../../hooks/useStore";
+import { useComponent, useStore } from "../../hooks/useStore";
 import { ColorInput } from "./color";
 import { getRandomId } from "../../helpers";
 export * from "./color";
@@ -19,8 +19,8 @@ export const VariableSelect = ({
   value: any;
 }) => {
   const inputs = useStore((t) => t.project.template.inputs);
-  const selected = useStore((t) => t.selected);
   const set = useStore((t) => t.set);
+  const setComp = useStore((t) => t.setComp);
 
   return (
     <div
@@ -34,10 +34,12 @@ export const VariableSelect = ({
           <p
             key={id}
             onClick={() =>
-              set((s) => {
-                const input = s.project.template.inputs!.byIds[id];
-                if (!input.properties) input.properties = [];
-                input.properties.push({ prop, id: selected });
+              setComp((s) => {
+                if (!s.compInputs) s.compInputs = [];
+                s.compInputs.push({
+                  id,
+                  prop,
+                });
               })
             }
           >
@@ -46,9 +48,9 @@ export const VariableSelect = ({
         );
       })}
       <p
-        onClick={() =>
+        onClick={() => {
+          const id = getRandomId();
           set((s) => {
-            const id = getRandomId();
             if (!s.project.template.inputs)
               s.project.template.inputs = { allIds: [], byIds: {} };
             const inputs = s.project.template.inputs;
@@ -58,10 +60,13 @@ export const VariableSelect = ({
               label: prop,
               type,
               value,
-              properties: [{ id: selected, prop }],
             };
-          })
-        }
+          });
+          setComp((s) => {
+            if (!s.compInputs) s.compInputs = [];
+            s.compInputs.push({ id, prop });
+          });
+        }}
       >
         Add new
       </p>
@@ -90,16 +95,13 @@ export function Input<T extends any>({
   options?: { value: string; label: string }[];
   prop?: string;
 }) {
-  const inputs = useStore((t) => t.project.template.inputs?.byIds);
-  const selected = useStore((t) => t.selected);
   const setSelected = useStore((t) => t.setSelected);
-  const set = useStore((t) => t.set);
-
-  const input = prop
-    ? Object.values(inputs || {}).find((input) =>
-        input.properties?.find((p) => p.id === selected && p.prop === prop)
-      )
-    : undefined;
+  const setComp = useStore((t) => t.setComp);
+  const comp = useComponent();
+  const inputId = comp?.compInputs?.find((i) => i.prop === prop)?.id;
+  const input = useStore((t) =>
+    inputId ? t.project.template.inputs?.byIds[inputId] : undefined
+  );
 
   return (
     <div
@@ -118,7 +120,11 @@ export function Input<T extends any>({
         {prop && input && (
           <IoIosRemove
             className="cursor-pointer"
-            onClick={() => set((s) => {})} //Todo
+            onClick={() =>
+              setComp((s) => {
+                s.compInputs = s.compInputs?.filter((i) => i.prop !== prop);
+              })
+            }
           />
         )}
       </div>

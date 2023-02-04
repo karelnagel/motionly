@@ -12,7 +12,7 @@ import { useComponent, useStore } from "../../../../../../hooks/useStore";
 export const EditAnimation = ({}: {}) => {
   const comp = useComponent();
   const setComp = useStore((t) => t.setComp);
-  const animations = comp.animations;
+  const animations = comp?.animations;
   return (
     <div>
       {animations?.allIds.map((id, i) => (

@@ -16,6 +16,7 @@ export const TimelineComp = ({
 }) => {
   const selected = useStore((t) => t.selected);
   const comp = useComponent(id);
+  if (!comp) return null;
   const setSelected = useStore((t) => t.setSelected);
   const changeParent = useStore((t) => t.changeParent);
 

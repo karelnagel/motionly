@@ -290,7 +290,10 @@ export type TransformProps = {
   prop: keyof typeof transformProps;
   value?: number;
 };
-
+export type CompInput = {
+  id: string;
+  prop: string;
+};
 export type BaseProps = {
   id: string;
   height?: number;
@@ -313,6 +316,7 @@ export type BaseProps = {
   freeze?: number;
   loopDuration?: number;
   parentId?: string;
+  compInputs?: CompInput[];
 };
 
 export type AllComponents =
@@ -353,7 +357,6 @@ export type Input = {
   label?: string;
   type?: keyof typeof inputTypes;
   value?: any;
-  properties?: { id?: string; prop: string }[];
 };
 export type Components = { [key: string]: ComponentProps };
 export type Inputs = { byIds: { [key: string]: Input }; allIds: string[] };
@@ -364,4 +367,5 @@ export type TemplateType = {
   fps: number;
   inputs?: Inputs;
   components: Components;
+  templateInputs?: CompInput[];
 } & HasChildren;
