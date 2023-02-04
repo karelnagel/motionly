@@ -23,7 +23,7 @@ interface Store {
   setTab: (tab: Tabs) => void;
   undo: () => void;
   redo: () => void;
-  changeParent: (parentId: string) => void;
+  changeParent: (parentId?: string) => void;
   setComps: (comps: ComponentProps[], parentId: string) => void;
   init: (template: Project) => void;
   set: (
@@ -91,7 +91,28 @@ export const useStore = create(
         state.project.template.components[newComp.id] = newComp;
       }),
 
-    changeParent: (newParentId: string) => {},
+    changeParent: (newParentId?: string) => {
+      set((state) => {
+        const comp = state.project.template.components[state.selected];
+        if (!comp) return;
+
+        const oldParent = comp.parentId
+          ? state.project.template.components[comp.parentId]
+          : state.project.template;
+        if (oldParent && "childIds" in oldParent)
+          oldParent.childIds = oldParent.childIds.filter(
+            (id) => id !== state.selected
+          );
+
+        const newParent = newParentId
+          ? state.project.template.components[newParentId]
+          : state.project.template;
+        if (newParent && "childIds" in newParent)
+          newParent.childIds.push(state.selected);
+
+        comp.parentId = newParentId;
+      });
+    },
 
     undo: () =>
       set((state) => {
