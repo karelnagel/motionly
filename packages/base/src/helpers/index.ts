@@ -78,7 +78,6 @@ export function applyInputs<T>(
     }
     currentProp[props[props.length - 1]] = inputVal;
   }
-  console.log(newComp, inputs, compInputs);
   return newComp;
 }
 
