@@ -29,10 +29,10 @@ export function ClientPage() {
           Project page
         </Link>
       </div>
-      <div className="flex- hidden md:flex h-screen ">
+      <div className="hidden md:flex h-screen w-screen ">
         <LeftBar />
-        <div className="flex flex-col">
-          <div className=" w-full flex h-full">
+        <div className="flex flex-col w-full">
+          <div className="flex h-full">
             <LeftPanel />
             <PlayerDiv playerRef={playerRef} />
             <SidePanel />
