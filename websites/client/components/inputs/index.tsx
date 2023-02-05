@@ -2,7 +2,7 @@
 
 import { Color, inputTypes, TextStyle } from "@motionly/base";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
-import { EditTextStyle } from "../../app/edit/[id]/SidePanel/Panels/EditCompPanel/EditTextStyle";
+import { EditTextStyle } from "../../app/edit/[id]/Right/Panels/EditCompPanel/EditTextStyle";
 import { Media } from "../Media";
 import { useComponent, useStore } from "../../hooks/useStore";
 import { ColorInput } from "./color";

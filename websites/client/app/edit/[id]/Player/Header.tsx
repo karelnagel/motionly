@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { IoIosArrowBack, IoMdRedo, IoMdUndo } from "react-icons/io";
-import { useStore } from "../../../hooks/useStore";
+import { useStore } from "../../../../hooks/useStore";
 
 export const Header = () => {
   const name = useStore((s) => s.project.name);
@@ -41,7 +41,6 @@ export const Header = () => {
           <IoIosArrowBack className="text-3xl font-bold" />
         </Link>
         <Button title="Add" value="add" tooltip="2" />
-
       </div>
       <p className="flex flex-col items-center space-y-1 leading-none">
         <input

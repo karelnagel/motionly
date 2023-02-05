@@ -1,6 +1,7 @@
 import { PlayerRef } from "@remotion/player";
 import { RefObject, useEffect, useRef, useState } from "react";
 import { useStore } from "../../../../hooks/useStore";
+import { Header } from "./Header";
 import { Player } from "./Player";
 import { PlayerControls } from "./PlayerControls";
 
@@ -35,9 +36,10 @@ export const PlayerDiv = ({
 
   return (
     <div className="w-full relative h-full overflow-hidden flex flex-col">
+      <Header />
       <div
         ref={playerDivRef}
-        className="flex items-center justify-center h-full relative m-4"
+        className="flex items-center justify-center h-full relative "
       >
         <Player playerRef={playerRef} scale={scale || 0.2} />
       </div>

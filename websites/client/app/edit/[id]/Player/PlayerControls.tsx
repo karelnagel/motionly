@@ -40,8 +40,8 @@ export const PlayerControls = ({
   const className =
     "cursor-pointer w-[45px] aspect-square p-1 font-bold hover:text-primary hover:shadow-md hover:scale-110 duration-150 rounded-full";
   return (
-    <div className="pt-0 p-3 shrink-0 w-full relative">
-      <div className="w-full grid grid-cols-3 panel text-3xl p-3">
+    <div className="shrink-0 w-full relative">
+      <div className="w-full grid grid-cols-3  text-3xl p-3">
         <input
           type="number"
           value={frame ? Math.round(frame / fps) : 0}
