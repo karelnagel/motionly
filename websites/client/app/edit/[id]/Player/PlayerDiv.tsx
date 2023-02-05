@@ -43,7 +43,7 @@ export const PlayerDiv = ({
       >
         <Player playerRef={playerRef} scale={scale || 0.2} />
       </div>
-      <PlayerControls scale={scale} setScale={setScale} playerRef={playerRef} />
+      <PlayerControls playerRef={playerRef} />
     </div>
   );
 };
