@@ -1,6 +1,6 @@
 import { PlayerRef } from "@remotion/player";
 import { RefObject } from "react";
-import { useTemplate } from "../../../../hooks/useTemplate";
+import { useStore } from "../../../../hooks/useStore";
 import { useCurrentPlayerFrame } from "../../../../hooks/useCurrentPlayerFrame";
 import { useLocalStorage } from "../../../../hooks/useLocalStorage";
 import { TimelineComp } from "./TimelineComp";
@@ -10,7 +10,7 @@ export const Timeline = ({
 }: {
   playerRef: RefObject<PlayerRef>;
 }) => {
-  const { template } = useTemplate();
+  const template = useStore((t) => t.project.template);
   const [width, setWidth] = useLocalStorage("timelineWidth", 100);
   return (
     <div className="overflow-x-auto h-full relative">
@@ -25,12 +25,10 @@ export const Timeline = ({
         />
         <div className="overflow-y-scroll h-full overflow-x-hidden px-3 pb-2">
           <div className="flex flex-col space-y-2">
-            {template.comps?.map((comp, i) => (
+            {template.childIds?.map((id, i) => (
               <TimelineComp
-                key={comp.id}
-                parentId=""
-                comp={comp}
-                comps={template.comps}
+                key={id}
+                id={id}
                 parentDuration={template.duration}
               />
             ))}

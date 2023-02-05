@@ -1,7 +1,7 @@
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { StyleAndClass } from "@motionly/base";
 import { GraphProps } from "@motionly/base";
-import { useColor } from "../useColor";
+import { useColor } from "../hooks/useColor";
 
 export const defaultGraphProps: GraphProps = {
   comp: "graph",

@@ -3,8 +3,8 @@ import { SelectedContext } from "@motionly/components";
 import { RefObject, useRef } from "react";
 import { useShiftKey } from "../../../../hooks/useShiftKey";
 import Moveable from "react-moveable";
-import { useTemplate } from "../../../../hooks/useTemplate";
 import { Player as MotionlyPlayer } from "@motionly/player";
+import { useComponent, useStore } from "../../../../hooks/useStore";
 
 export const Player = ({
   playerRef,
@@ -13,28 +13,29 @@ export const Player = ({
   playerRef: RefObject<PlayerRef>;
   scale: number;
 }) => {
-  const { template, selectedComp, setSelected, setComp } = useTemplate();
+  const template = useStore((t) => t.project.template);
+  const comp = useComponent();
+  const setSelected = useStore((t) => t.setSelected);
+  const setComp = useStore((t) => t.setComp);
+
   const lockAspectRatio = useShiftKey();
   const divRef = useRef<HTMLDivElement>(null);
-  const { width, height, comps } = template;
   return (
     <div
       style={{ width: template.width * scale, height: template.height * scale }}
-      className="absolute"
     >
       <SelectedContext.Provider
-        value={{ divRef, setSelected, selected: selectedComp?.id || "" }}
+        value={{ divRef, setSelected, selected: comp?.id || "" }}
       >
         <MotionlyPlayer
           playerRef={playerRef}
           template={template}
           style={{ width: "100%", height: "100%" }}
           spaceKeyToPlayOrPause
-          className="bg-base-100"
           loop
         />
       </SelectedContext.Provider>
-      {selectedComp && (
+      {comp && (
         <Moveable
           target={divRef}
           scale={scale}
@@ -56,46 +57,46 @@ export const Player = ({
             center: true,
             middle: true,
           }}
-          horizontalGuidelines={[
-            ...comps
-              .filter((c) => c.id !== selectedComp.id)
-              .map((c) => [c.x, (c.x || 0) + (c.width || 0)])
-              .flat()
-              .filter((x) => x),
-            0,
-            width / 2,
-            width,
-          ].map((x) => (x || 0) * scale)}
-          verticalGuidelines={[
-            ...comps
-              .filter((c) => c.id !== selectedComp.id)
-              .map((c) => [c.y, (c.y || 0) + (c.height || 0)])
-              .flat()
-              .filter((x) => x),
-            0,
-            height / 2,
-            height,
-          ].map((x) => (x || 0) * scale)}
+          // horizontalGuidelines={[
+          //   ...comps
+          //     .filter((c) => c.id !== comp.id)
+          //     .map((c) => [c.x, (c.x || 0) + (c.width || 0)])
+          //     .flat()
+          //     .filter((x) => x),
+          //   0,
+          //   width / 2,
+          //   width,
+          // ].map((x) => (x || 0) * scale)}
+          // verticalGuidelines={[
+          //   ...comps
+          //     .filter((c) => c.id !== comp.id)
+          //     .map((c) => [c.y, (c.y || 0) + (c.height || 0)])
+          //     .flat()
+          //     .filter((x) => x),
+          //   0,
+          //   height / 2,
+          //   height,
+          // ].map((x) => (x || 0) * scale)}
           onDrag={(e) => {
-            setComp({
-              ...selectedComp,
-              x: (selectedComp.x || 0) + e.delta[0],
-              y: (selectedComp.y || 0) + e.delta[1],
+            setComp((comp) => {
+              comp.x = (comp.x || 0) + e.delta[0];
+              comp.y = (comp.y || 0) + e.delta[1];
             });
           }}
           keepRatio={lockAspectRatio}
           onResize={({ height, width, delta, target }) => {
-            setComp({
-              ...selectedComp,
-              width: width || 1,
-              height: height || 1,
+            setComp((comp) => {
+              comp.width = width;
+              comp.height = height;
             });
             delta[0] && (target.style.width = `${width}px`);
             delta[1] && (target.style.height = `${height}px`);
           }}
-          onRotate={(e) => {
-            setComp({ ...selectedComp, rotation: e.absoluteRotation });
-          }}
+          onRotate={(e) =>
+            setComp((comp) => {
+              comp.rotation = e.absoluteRotation;
+            })
+          }
         />
       )}
     </div>

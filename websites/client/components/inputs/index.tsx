@@ -2,11 +2,11 @@
 
 import { Color, inputTypes, TextStyle } from "@motionly/base";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
-import { EditTextStyle } from "../../app/edit/[id]/SidePanel/Panels/EditCompPanel/EditTextStyle";
-import { getRandomId } from "../../helpers";
-import { useTemplate } from "../../hooks/useTemplate";
+import { EditTextStyle } from "../../app/edit/[id]/Right/Panels/EditCompPanel/EditTextStyle";
 import { Media } from "../Media";
+import { useComponent, useStore } from "../../hooks/useStore";
 import { ColorInput } from "./color";
+import { getRandomId } from "../../helpers";
 export * from "./color";
 
 export const VariableSelect = ({
@@ -18,55 +18,58 @@ export const VariableSelect = ({
   type: keyof typeof inputTypes;
   value: any;
 }) => {
-  const { template, setTemplate, selected } = useTemplate();
+  const inputs = useStore((t) => t.project.template.inputs);
+  const set = useStore((t) => t.set);
+  const setComp = useStore((t) => t.setComp);
 
   return (
     <div
       className="absolute dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40 cursor-pointer"
       tabIndex={0}
     >
-      {template.inputs?.map((input) => (
-        <button
-          key={input.id}
-          onClick={() =>
-            setTemplate({
-              ...template,
-              inputs: template.inputs?.map((inp) =>
-                input.id === inp.id
-                  ? {
-                      ...inp,
-                      properties: [
-                        ...(inp.properties || []),
-                        { prop, id: selected },
-                      ],
-                    }
-                  : inp
-              ),
-            })
-          }
-        >
-          {input.label}
-        </button>
-      ))}
-      <button
-        onClick={() =>
-          setTemplate({
-            ...template,
-            inputs: [
-              ...(template.inputs || []),
-              {
-                id: getRandomId(),
-                type,
-                label: prop,
-                value,
-                properties: [{ prop, id: selected }],
-              },
-            ],
-          })
-        }
+      {inputs?.allIds.map((id) => {
+        const input = inputs.byIds[id];
+        if (input.type !== type) return null;
+        return (
+          <p
+            key={id}
+            onClick={() =>
+              setComp((s) => {
+                if (!s.compInputs) s.compInputs = [];
+                s.compInputs.push({
+                  id,
+                  prop,
+                });
+              })
+            }
+          >
+            {input.label}
+          </p>
+        );
+      })}
+      <p
+        onClick={() => {
+          const id = getRandomId();
+          set((s) => {
+            if (!s.project.template.inputs)
+              s.project.template.inputs = { allIds: [], byIds: {} };
+            const inputs = s.project.template.inputs;
+            inputs.allIds.push(id);
+            inputs.byIds[id] = {
+              id,
+              label: prop,
+              type,
+              value,
+            };
+          });
+          setComp((s) => {
+            if (!s.compInputs) s.compInputs = [];
+            s.compInputs.push({ id, prop });
+          });
+        }}
       >
         Add new
-      </button>
+      </p>
     </div>
   );
 };
@@ -92,12 +95,13 @@ export function Input<T extends any>({
   options?: { value: string; label: string }[];
   prop?: string;
 }) {
-  const { template, setTemplate, setSelected, selected } = useTemplate();
-  const input = prop
-    ? template.inputs?.find((input) =>
-        input.properties?.find((p) => p.id === selected && p.prop === prop)
-      )
-    : undefined;
+  const setSelected = useStore((t) => t.setSelected);
+  const setComp = useStore((t) => t.setComp);
+  const comp = useComponent();
+  const inputId = comp?.compInputs?.find((i) => i.prop === prop)?.id;
+  const input = useStore((t) =>
+    inputId ? t.project.template.inputs?.byIds[inputId] : undefined
+  );
 
   return (
     <div
@@ -117,14 +121,8 @@ export function Input<T extends any>({
           <IoIosRemove
             className="cursor-pointer"
             onClick={() =>
-              setTemplate({
-                ...template,
-                inputs: template.inputs?.map((i) => ({
-                  ...i,
-                  properties: i.properties?.filter(
-                    (i) => i.id !== selected && i.prop !== prop
-                  ),
-                })),
+              setComp((s) => {
+                s.compInputs = s.compInputs?.filter((i) => i.prop !== prop);
               })
             }
           />

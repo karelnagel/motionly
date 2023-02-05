@@ -64,7 +64,7 @@ export function OneColorInput({
         <div className="flex items-center">
           <input
             type="number"
-            value={alpha !== undefined ? hexToPercent(alpha) : ""}
+            value={alpha ? hexToPercent(alpha) : ""}
             onChange={(e) =>
               onChange(
                 color +

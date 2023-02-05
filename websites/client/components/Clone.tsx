@@ -2,42 +2,45 @@
 
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
-import { postNewTemplate } from "../sdk/templates/new";
-import { Template } from "../types";
+import { postNewProject } from "../sdk/templates/new";
+import { Project } from "../types";
 import { useAlerts } from "./Alert";
 
-const emptyTemplate: Template = {
+const emptyProject: Project = {
   name: "Empty",
   description: "This is an empty template",
-  width: 1080,
-  height: 1080,
-  fps: 30,
-  duration: 10,
-  background: {
-    type: "basic",
-    color: "#FFFFFFFF",
+  template: {
+    width: 1080,
+    height: 1080,
+    fps: 30,
+    duration: 10,
+    bg: {
+      type: "basic",
+      color: "#FFFFFFFF",
+    },
+    childIds: [],
+    components: {},
   },
-  comps: [],
 };
 export const Clone = ({
   children,
   className,
-  template = emptyTemplate,
+  project = emptyProject,
 }: {
   children: ReactNode;
   className?: string;
-  template?: Template;
+  project?: Project;
 }) => {
   const router = useRouter();
   const alert = useAlerts();
   const clone = async () => {
-    const newTemplate = await postNewTemplate({
-      ...template,
+    const newProject = await postNewProject({
+      ...project,
       id: undefined,
-      name: `${template.name}`,
+      name: `${project.name}`,
     });
-    if (!newTemplate) return alert("Failed to clone template", "error");
-    router.push(`/edit/${newTemplate.id}`);
+    if (!newProject) return alert("Failed to clone template", "error");
+    router.push(`/edit/${newProject.id}`);
     alert("Cloned template", "success");
   };
 

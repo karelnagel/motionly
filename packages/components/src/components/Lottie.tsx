@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { continueRender, delayRender } from "remotion";
 import { StyleAndClass } from "@motionly/base";
 import { LottieProps } from "@motionly/base";
-import { useColor } from "../useColor";
+import { useColor } from "../hooks/useColor";
 import { getSrc } from "../helpers";
 
 export const defaultLottieProps: LottieProps = {

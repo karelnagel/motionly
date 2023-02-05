@@ -1,7 +1,7 @@
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import { StyleAndClass } from "@motionly/base";
 import { ProgressbarProps } from "@motionly/base";
-import { useColor } from "../useColor";
+import { useColor } from "../hooks/useColor";
 
 export const defaultProgressbarProps: ProgressbarProps = {
   comp: "progressbar",

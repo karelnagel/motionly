@@ -1,17 +1,17 @@
 import axios from "axios";
-import { Template } from "../../types";
+import { Project } from "../../types";
 
-export type UpdateTemplateInput = {
+export type UpdateProjectInput = {
   id: string;
-  template: Template;
+  project: Project;
 };
-export type UpdateTemplateOutput = Template;
-export const updateTemplate = async ({
+export type UpdateProjectOutput = Project;
+export const updateProject = async ({
   id,
-  template,
-}: UpdateTemplateInput): Promise<UpdateTemplateOutput | null> => {
+  project,
+}: UpdateProjectInput): Promise<UpdateProjectOutput | null> => {
   try {
-    const result = await axios.put(`/api/templates/${id}`, template);
+    const result = await axios.put(`/api/templates/${id}`, project);
     return result.data;
   } catch (e) {
     return null;

@@ -1,18 +1,17 @@
 import { PlayerRef } from "@remotion/player";
 import { RefObject, useCallback, useEffect } from "react";
 import { useCurrentPlayerFrame } from "../hooks/useCurrentPlayerFrame";
-import { useTemplate } from "../hooks/useTemplate";
+import { useStore } from "../hooks/useStore";
 
 export function HotKeys({ playerRef }: { playerRef: RefObject<PlayerRef> }) {
-  const {
-    undo,
-    redo,
-    setSelected,
-    setTab,
-    deleteComp,
-    addComp,
-    template: { fps },
-  } = useTemplate();
+  const undo = useStore((t) => t.undo);
+  const redo = useStore((t) => t.redo);
+  const setSelected = useStore((t) => t.setSelected);
+  const setTab = useStore((t) => t.setTab);
+  const deleteComp = useStore((t) => t.deleteComp);
+  const addComp = useStore((t) => t.addComp);
+  const fps = useStore((t) => t.project.template.fps);
+
   const frame = useCurrentPlayerFrame(playerRef);
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {

@@ -10,7 +10,7 @@ import { Monitor } from "./monitor";
 import { Samsung } from "./samsung";
 import { Watch } from "./watch";
 import { CSSProperties } from "react";
-import { useColor } from "../../useColor";
+import { useColor } from "../../hooks/useColor";
 
 export const svgStyle: CSSProperties = {
   position: "relative",
@@ -21,7 +21,7 @@ export const defaultMockupProps: MockupProps = {
   comp: "mockup",
   type: "iphone",
   isSequence: true,
-  comps: [],
+  childIds: [],
 };
 
 const mockups: {
@@ -66,11 +66,10 @@ const mockups: {
 };
 
 export const Mockup = ({
-  comps,
   type,
   bg,
   isSequence,
-  ...props
+  comps,
 }: MockupProps & StyleAndClass) => {
   const background = useColor(bg);
 

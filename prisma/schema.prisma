@@ -46,14 +46,14 @@ model VerificationToken {
 }
 
 model User {
-  id            String     @id @default(cuid())
+  id            String    @id @default(cuid())
   name          String?
-  email         String?    @unique
+  email         String?   @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
-  templates     Template[]
+  templates     Project[]
   files         File[]
   apiKeys       ApiKey[]
 }
@@ -67,21 +67,15 @@ model ApiKey {
   userId    String
 }
 
-model Template {
+model Project {
   id          String    @id @default(cuid())
   name        String    @default("")
   description String    @default("")
-  width       Int
-  height      Int
-  duration    Int
-  background  String?
   preview     String?
-  fps         Int
+  template    Json
   createdAt   DateTime? @default(now())
   updatedAt   DateTime? @updatedAt
   public      Boolean   @default(false)
-  comps       String
-  inputs      String?
   userId      String
   user        User      @relation(fields: [userId], references: [id])
 }

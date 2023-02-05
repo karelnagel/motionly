@@ -3,43 +3,34 @@ import { prisma } from "../../../lib/prisma";
 import { ReqRes } from "../../../types";
 import { getServerSession } from "../../../lib/getServerSession";
 import {
-  PostNewTemplateInput,
-  PostNewTemplateOutput,
+  PostNewProjectInput,
+  PostNewProjectOutput,
 } from "../../../sdk/templates/new";
 
-export default async function NewTemplate(
+export default async function NewProject(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   let result = null;
   if (req.method === "POST")
-    result = await postNewTemplate(req.body, { req, res });
+    result = await postNewProject(req.body, { req, res });
 
   if (!result) return res.status(404).end();
   return res.status(200).json(result);
 }
 
-const postNewTemplate = async (
-  input: PostNewTemplateInput,
+const postNewProject = async (
+  input: PostNewProjectInput,
   reqRes?: ReqRes
-): Promise<PostNewTemplateOutput | null> => {
+): Promise<PostNewProjectOutput | null> => {
   const session = await getServerSession(reqRes);
 
   if (!session?.user?.email) return null;
-  const result = await prisma.template.create({
+  const result = await prisma.project.create({
     data: {
-      comps: JSON.stringify(input.comps),
-      width: input.width,
-      height: input.height,
-      duration: input.duration,
-      fps: input.fps,
-      inputs: input.inputs ? JSON.stringify(input.inputs) : undefined,
+      template: input.template as any,
       name: input.name + " (Copy)",
       description: input.description,
-      background:
-        typeof input.background === "object"
-          ? JSON.stringify(input.background)
-          : input.background,
       preview: input.preview,
       public: false,
       user: { connect: { email: session.user.email } },
@@ -47,9 +38,7 @@ const postNewTemplate = async (
   });
   return {
     ...result,
-    comps: JSON.parse(result.comps),
-    background: result.background ? JSON.parse(result.background) : undefined,
     preview: result.preview || undefined,
-    inputs: result.inputs ? JSON.parse(result.inputs) : undefined,
+    template: result.template as any,
   };
 };

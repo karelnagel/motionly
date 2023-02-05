@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export const Template = ({
+export const Project = ({
   name,
   description,
   image,

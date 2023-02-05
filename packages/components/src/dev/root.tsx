@@ -2,23 +2,30 @@ import React from "react";
 import { Composition, Folder, getInputProps } from "remotion";
 import { Composition as Comp } from "../Composition";
 import { compositions } from "./compositions";
-import { BaseProps, ComponentProps, TemplateType } from "@motionly/base";
+import {
+  BaseProps,
+  ComponentProps,
+  prepareTemplate,
+  TemplateType,
+} from "@motionly/base";
 import { test } from "./tests";
 
 const inputProps = getInputProps() as TemplateType;
-const template = Object.keys(inputProps).length
+const inputTemplate = Object.keys(inputProps).length
   ? inputProps
   : ({
       height: 1080,
       width: 1080,
       fps: 30,
       duration: 6,
-      comps: [],
-      background: {
+      childIds: [],
+      components: {},
+      bg: {
         type: "basic",
         color: "#FFFFFFFF",
       },
     } as TemplateType);
+const template = prepareTemplate(inputTemplate);
 
 export const Root: React.FC = () => {
   return (
@@ -31,15 +38,17 @@ export const Root: React.FC = () => {
         width={template.width}
         height={template.height}
         defaultProps={{
-          comps: template.comps,
-          background: template.background,
+          comps: template.comps || [],
+          childIds: template.childIds,
+          bg: template.bg,
           isSequence: template.isSequence,
         }}
       />
       <Folder name="compositions">
         {compositions.map((comp, i) => {
+          const id = `${comp.comp}-${i}`;
           const baseComp: BaseProps = {
-            id: "1",
+            id: id,
             height: 1080,
             width: 1080,
           };
@@ -55,7 +64,7 @@ export const Root: React.FC = () => {
               height={template.height}
               defaultProps={{
                 comps: [compProps],
-                background: {
+                bg: {
                   type: "basic",
                   color: "#FFFFFFFF",
                 },
@@ -73,8 +82,8 @@ export const Root: React.FC = () => {
         durationInFrames={test.duration * test.fps}
         width={test.width}
         defaultProps={{
-          comps: test.comps,
-          background: test.background,
+          comps: Object.values(test.components),
+          bg: test.bg,
           isSequence: test.isSequence,
         }}
       />

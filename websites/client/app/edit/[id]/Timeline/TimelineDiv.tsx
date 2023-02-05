@@ -6,15 +6,16 @@ export const TimelineDiv = ({ children }: { children: ReactNode }) => {
   const [timelineHeigth, setTimelineHeight] = useLocalStorage("timeline1", 250);
 
   return (
-    <div className="p-3 pt-0 shrink-0">
-      <div style={{ height: timelineHeigth }} className="panel relative">
-        {children}
-        <Resize
-          value={timelineHeigth}
-          setValue={setTimelineHeight}
-          isHorizontal
-        />
-      </div>
+    <div
+      style={{ height: timelineHeigth }}
+      className=" shrink-0 bg-base-100 border-t border-base-300 flex flex-col relative"
+    >
+      {children}
+      <Resize
+        value={timelineHeigth}
+        setValue={setTimelineHeight}
+        isHorizontal
+      />
     </div>
   );
 };

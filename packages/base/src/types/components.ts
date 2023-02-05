@@ -102,7 +102,6 @@ export type AudiogramProps = {
 
 export type DivProps = {
   comp: "div";
-  bg?: Color;
 } & HasChildren;
 
 export type GifProps = {
@@ -155,14 +154,15 @@ export type MapProps = {
   bg?: Color;
 };
 export type HasChildren = {
-  comps: ComponentProps[];
+  childIds: string[];
   isSequence?: boolean;
+  bg?: Color;
+  comps?: ComponentProps[];
 };
 
 export type MockupProps = {
   comp: "mockup";
   type: keyof typeof MockupTypes;
-  bg?: Color;
 } & HasChildren;
 export type PathProps = {
   comp: "path";
@@ -201,7 +201,6 @@ export type TextProps = {
   comp: "text";
   textStyle: TextStyle;
   text: string;
-  animations?: AnimationProps[];
   justifyContent?: keyof typeof JustifyContent;
 };
 
@@ -291,7 +290,10 @@ export type TransformProps = {
   prop: keyof typeof transformProps;
   value?: number;
 };
-
+export type CompInput = {
+  id: string;
+  prop: string;
+};
 export type BaseProps = {
   id: string;
   height?: number;
@@ -303,11 +305,18 @@ export type BaseProps = {
   from?: number;
   duration?: number;
   opacity?: number;
-  animations?: AnimationProps[];
+  animations?: {
+    byIds: {
+      [id: string]: AnimationProps;
+    };
+    allIds: string[];
+  };
   motionBlur?: MotionBlurProps;
   transform?: TransformProps[];
   freeze?: number;
   loopDuration?: number;
+  parentId?: string;
+  compInputs?: CompInput[];
 };
 
 export type AllComponents =
@@ -348,14 +357,15 @@ export type Input = {
   label?: string;
   type?: keyof typeof inputTypes;
   value?: any;
-  properties?: { id?: string; prop: string }[];
 };
-
+export type Components = { [key: string]: ComponentProps };
+export type Inputs = { byIds: { [key: string]: Input }; allIds: string[] };
 export type TemplateType = {
   width: number;
   height: number;
   duration: number;
-  background?: Color;
   fps: number;
-  inputs?: Input[];
+  inputs?: Inputs;
+  components: Components;
+  templateInputs?: CompInput[];
 } & HasChildren;

@@ -1,6 +1,7 @@
 import { PlayerRef } from "@remotion/player";
 import { RefObject, useEffect, useRef, useState } from "react";
-import { useTemplate } from "../../../../hooks/useTemplate";
+import { useStore } from "../../../../hooks/useStore";
+import { Header } from "./Header";
 import { Player } from "./Player";
 import { PlayerControls } from "./PlayerControls";
 
@@ -11,7 +12,8 @@ export const PlayerDiv = ({
 }) => {
   const playerDivRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState<number>();
-  const { template } = useTemplate();
+  const template = useStore((t) => t.project.template);
+  const setSelected = useStore((t) => t.setSelected);
   const getScale = () => {
     if (
       playerDivRef.current?.clientHeight &&
@@ -32,16 +34,19 @@ export const PlayerDiv = ({
       }).disconnect();
     };
   }, []);
-
   return (
-    <div className="w-full relative h-full overflow-hidden flex flex-col">
+    <div className="w-full relative h-full overflow-hidden flex flex-col bg-base-200">
+      <Header />
       <div
         ref={playerDivRef}
-        className="flex items-center justify-center h-full relative m-4"
+        onClick={() => setSelected(undefined)}
+        className="flex items-center justify-center h-full relative mx-2"
       >
-        <Player playerRef={playerRef} scale={scale || 0.2} />
+        <div className="absolute top-0 left-0 h-full w-full max-w-full flex items-center justify-center">
+          <Player playerRef={playerRef} scale={scale || 0.2} />
+        </div>
       </div>
-      <PlayerControls scale={scale} setScale={setScale} playerRef={playerRef} />
+      <PlayerControls playerRef={playerRef} />
     </div>
   );
 };

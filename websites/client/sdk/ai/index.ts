@@ -1,10 +1,10 @@
-import { ComponentProps } from "@motionly/base";
+import { Components } from "@motionly/base";
 import axios from "axios";
 
 export const postAI = async (
-  comps: ComponentProps[],
+  comps: Components,
   prompt: string
-): Promise<ComponentProps[] | null> => {
+): Promise<Components | null> => {
   try {
     const result = await axios.post("/api/ai", { comps, prompt });
     return result.data;

@@ -1,6 +1,6 @@
 import { Login } from "../../../components/Login";
 import { getServerSession } from "../../../lib/getServerSession";
-import { getTemplate } from "../../../pages/api/templates/[id]";
+import { getProject } from "../../../pages/api/templates/[id]";
 import { ClientPageWrapper } from "./ClientPage";
 
 export const dynamic = "force-dynamic";
@@ -19,8 +19,8 @@ export default async function Page({
         <Login />
       </div>
     );
-  const template = await getTemplate({ id });
+  const template = await getProject({ id });
   if (!template) return <div>Template not found!</div>;
   if (!template.isOwner) return <div>{"You can't edit this template!"}</div>;
-  return <ClientPageWrapper template={template} />;
+  return <ClientPageWrapper project={template} />;
 }

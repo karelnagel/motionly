@@ -1,14 +1,14 @@
 import axios from "axios";
-import { Template } from "../../types";
+import { Project } from "../../types";
 
-export interface GetTemplateInput {
+export interface GetProjectInput {
   id: string;
 }
-export type GetTemplateOutput = Template;
+export type GetProjectOutput = Project;
 
 export const getTemplate = async ({
   id,
-}: GetTemplateInput): Promise<GetTemplateOutput | null> => {
+}: GetProjectInput): Promise<GetProjectOutput | null> => {
   try {
     const result = await axios.get(`/api/templates/${id}`);
     return result.data;

@@ -1,20 +1,23 @@
 import { AbsoluteFill } from "remotion";
-import { useSelected } from "./SelectedContext";
-import { Color, ComponentProps, getFonts, HasChildren } from "@motionly/base";
-import { useColor } from "./useColor";
-import { useFonts } from "./useFonts";
+import { useSelected } from "./hooks/useSelected";
+import { Color, ComponentProps, getFonts } from "@motionly/base";
+import { useColor } from "./hooks/useColor";
+import { useFonts } from "./hooks/useFonts";
 import { Children } from "./components/Children";
 import { ReactNode } from "react";
 
 export const Composition = ({
-  comps = [],
-  background,
+  bg,
   isSequence,
+  comps,
 }: {
-  background?: Color;
-} & HasChildren) => {
+  comps?: ComponentProps[];
+  bg?: Color;
+  isSequence?: boolean;
+}) => {
+  useFonts(getFonts(comps));
   return (
-    <Background background={background} comps={comps}>
+    <Background background={bg}>
       <Children comps={comps} isSequence={isSequence} />
     </Background>
   );
@@ -23,14 +26,11 @@ export const Composition = ({
 export const Background = ({
   background,
   children,
-  comps,
 }: {
   background?: Color;
   children: ReactNode;
-  comps: ComponentProps[];
 }) => {
   const { setSelected } = useSelected();
-  useFonts(getFonts(comps));
   const bg = useColor(background);
   return (
     <AbsoluteFill

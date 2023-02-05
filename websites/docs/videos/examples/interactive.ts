@@ -14,36 +14,7 @@ export const interactive = ({
     fps: 30,
     width: 1920,
     height: 1080,
-    comps: [
-      {
-        comp: "text",
-        text: name,
-        id: "name",
-        x: 100,
-        textStyle: {
-          fontSize: 75,
-          lineHeight: 1,
-          color: {
-            type: "basic",
-            color,
-          },
-        },
-      },
-      {
-        comp: "text",
-        text: birthday,
-        x: 100,
-        y: 100,
-        id: "date",
-        textStyle: {
-          fontSize: 75,
-          lineHeight: 1,
-          color: {
-            type: "basic",
-            color,
-          },
-        },
-      },
-    ],
+    components: {},
+    childIds: [],
   };
 };
