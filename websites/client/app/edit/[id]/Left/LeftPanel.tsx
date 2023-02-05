@@ -33,9 +33,7 @@ export const LeftDiv = ({
         }}
         className="h-full bg-base-300 relative"
       >
-        <div className="absolute top-0 left-0 flex h-full w-full">
-          {children}
-        </div>
+        <div className=" h-full w-full p-2 flex flex-col">{children}</div>
         <Resize value={sideWidth} setValue={setSideWidth} reverse />
       </div>
     </div>
