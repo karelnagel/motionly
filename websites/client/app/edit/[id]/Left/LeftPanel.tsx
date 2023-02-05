@@ -1,7 +1,6 @@
 import { useLeft } from "../../../../hooks/useLeft";
 import { lazy, ReactNode, Suspense } from "react";
 import { Resize } from "../../../../components/Resize";
-import { useLocalStorage } from "../../../../hooks/useLocalStorage";
 import { LeftTabs } from "./Tabs";
 
 export const LeftPanel = () => {
@@ -24,17 +23,18 @@ export const LeftDiv = ({
   show: boolean;
   children: ReactNode;
 }) => {
-  const [sideWidth, setSideWidth] = useLocalStorage("left", 300);
+  const width = useLeft((t) => t.width);
+  const setWidth = useLeft((t) => t.setWidth);
   return (
     <div className="h-full ">
       <div
         style={{
-          width: show ? sideWidth : 0,
+          width: show ? width : 0,
         }}
         className="h-full bg-base-300 relative"
       >
         <div className=" h-full w-full p-2 flex flex-col">{children}</div>
-        <Resize value={sideWidth} setValue={setSideWidth} reverse />
+        <Resize value={width} setValue={setWidth} reverse />
       </div>
     </div>
   );
