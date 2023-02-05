@@ -1,8 +1,5 @@
-import {
-  IoIosCloudDone,
-  IoMdRedo,
-  IoMdUndo,
-} from "react-icons/io";
+import { IoIosCloudDone, IoMdRedo, IoMdUndo } from "react-icons/io";
+import { useLeft } from "../../../../hooks/useLeft";
 import { useStore } from "../../../../hooks/useStore";
 
 export const Header = () => {
@@ -13,6 +10,7 @@ export const Header = () => {
   const redo = useStore((s) => s.redo);
   const future = useStore((s) => s.future);
   const past = useStore((s) => s.past);
+  const setTab = useLeft((s) => s.setTab);
 
   return (
     <div className="shrink-0 flex justify-between items-center p-3">
@@ -52,7 +50,12 @@ export const Header = () => {
             />
           </div>
         </div>
-        <button className="btn btn-primary btn-sm">export </button>
+        <button
+          className="btn btn-primary btn-sm"
+          onClick={() => setTab("export")}
+        >
+          export{" "}
+        </button>
       </div>
     </div>
   );

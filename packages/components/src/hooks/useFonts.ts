@@ -25,13 +25,11 @@ export const useFonts = async (fonts: string[] = []) => {
 
   useEffect(() => {
     const fontsToLoad = fonts.filter((f) => !loadedFonts.includes(f));
-    if (fontsToLoad?.length) {
-      loadFonts(fonts)
-        .then(() => {
-          setLoadedFonts((f) => [...f, ...fontsToLoad]);
-          continueRender(handle);
-        })
-        .catch((e) => console.log(e));
-    }
+    loadFonts(fonts)
+      .then(() => {
+        setLoadedFonts((f) => [...f, ...fontsToLoad]);
+        continueRender(handle);
+      })
+      .catch((e) => console.log(e));
   }, [fonts]);
 };

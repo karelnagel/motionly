@@ -8,7 +8,7 @@ import {
 import { IoShapesSharp, IoText } from "react-icons/io5";
 import { AiOutlineDatabase } from "react-icons/ai";
 import { HiVariable } from "react-icons/hi";
-
+import { CiExport } from "react-icons/ci";
 export const LeftTabs = {
   template: {
     name: "Template",
@@ -54,6 +54,11 @@ export const LeftTabs = {
     name: "AI",
     Icon: IoIosSunny,
     Component: () => import("./AI"),
+  },
+  export: {
+    name: "Export",
+    Icon: CiExport,
+    Component: () => import("./Export"),
   },
 };
 export type LeftTabs = keyof typeof LeftTabs;
