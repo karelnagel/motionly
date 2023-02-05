@@ -27,14 +27,12 @@ export const LeftBar = () => {
               <div
                 key={i}
                 onClick={() => setTab(key as LeftTabs)}
-                className={`flex flex-col items-center cursor-pointer text-base-content-2 group duration-150 space-y-1 py-1 ${
-                  tab === key
-                    ? "bg-base-300 "
-                    : " "
+                className={`flex flex-col items-center cursor-pointer text-base-content-2 duration-150 space-y-1 py-1 hover:opacity-100 ${
+                  tab === key ? "bg-base-300 " : "opacity-60"
                 }`}
               >
-                <Icon className="h-6 w-6 group-hover:scale-110 duration-150" />
-                <p className="text-[11px] text-center group-hover:scale-110 duration-150">
+                <Icon className="h-6 w-6 " />
+                <p className="text-[11px] text-center ">
                   {value.name}
                 </p>
               </div>
