@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { LeftTabs } from "../app/edit/[id]/Left/Tabs";
 import { MediaTabs } from "../components/MediaTab";
-import { persist, createJSONStorage } from "zustand/middleware";
+import { persist } from "zustand/middleware";
 interface LeftStore {
   tab?: LeftTabs;
   mediaTab: MediaTabs;

@@ -25,7 +25,7 @@ export default function Template() {
         <div className="w-full grid grid-cols-2 gap-x-1">
       
           <Input
-            type="text"
+            type="textarea"
             label="Description"
             value={project.description}
             onChange={(description) =>
