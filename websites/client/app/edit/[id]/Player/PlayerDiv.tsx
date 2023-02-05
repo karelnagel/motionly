@@ -33,15 +33,16 @@ export const PlayerDiv = ({
       }).disconnect();
     };
   }, []);
-
   return (
     <div className="w-full relative h-full overflow-hidden flex flex-col bg-base-200">
       <Header />
       <div
         ref={playerDivRef}
-        className="flex items-center justify-center h-full relative "
+        className="flex items-center justify-center h-full relative mx-2"
       >
-        <Player playerRef={playerRef} scale={scale || 0.2} />
+        <div className="absolute top-0 left-0 h-full w-full max-w-full flex items-center justify-center">
+          <Player playerRef={playerRef} scale={scale || 0.2} />
+        </div>
       </div>
       <PlayerControls playerRef={playerRef} />
     </div>

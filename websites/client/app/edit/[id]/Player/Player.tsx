@@ -20,11 +20,9 @@ export const Player = ({
 
   const lockAspectRatio = useShiftKey();
   const divRef = useRef<HTMLDivElement>(null);
-  const { width, height } = template;
   return (
     <div
       style={{ width: template.width * scale, height: template.height * scale }}
-      className="absolute"
     >
       <SelectedContext.Provider
         value={{ divRef, setSelected, selected: comp?.id || "" }}
@@ -34,7 +32,6 @@ export const Player = ({
           template={template}
           style={{ width: "100%", height: "100%" }}
           spaceKeyToPlayOrPause
-          className="bg-base-100"
           loop
         />
       </SelectedContext.Provider>
