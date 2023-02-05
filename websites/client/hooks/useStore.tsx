@@ -80,6 +80,7 @@ export const useStore = create(
               });
               setStore((s) => {
                 s.saveTime = result ? new Date() : undefined;
+                s.saveTimeout = undefined;
               });
             }, 3000);
           });

@@ -1,12 +1,14 @@
-import Link from "next/link";
-import { IoIosArrowBack, IoMdRedo, IoMdUndo } from "react-icons/io";
+import {
+  IoIosCloudDone,
+  IoMdRedo,
+  IoMdUndo,
+} from "react-icons/io";
 import { useStore } from "../../../../hooks/useStore";
 
 export const Header = () => {
   const name = useStore((s) => s.project.name);
-  const setSelected = useStore((s) => s.setSelected);
+  const saveTimeout = useStore((s) => s.saveTimeout);
   const set = useStore((s) => s.set);
-  const selected = useStore((s) => s.selected);
   const undo = useStore((s) => s.undo);
   const redo = useStore((s) => s.redo);
   const future = useStore((s) => s.future);
@@ -25,6 +27,13 @@ export const Header = () => {
         className="text-[18px] font-bold bg-transparent input input-xs w-40"
       />
       <div className="flex items-center space-x-4 font-bold ">
+        <button
+          className={`${
+            saveTimeout ? "loading" : ""
+          } btn btn-disabled btn-sm text-xl`}
+        >
+          {!saveTimeout && <IoIosCloudDone />}
+        </button>
         <div className="flex text-2xl space-x-2">
           <div className="tooltip tooltip-bottom" data-tip="⌘ + Z">
             <IoMdUndo
