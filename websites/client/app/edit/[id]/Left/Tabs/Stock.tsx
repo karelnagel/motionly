@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { getStock } from "../../../../../sdk/stock";
 import { useStore } from "../../../../../hooks/useStore";
 import { getRandomId } from "../../../../../helpers";
+import Link from "next/link";
 
 export default function Stock() {
   const mediaTab = useLeft((t) => t.mediaTab);
@@ -50,20 +51,21 @@ export default function Stock() {
         </form>
 
         <div className="flex flex-col space-y-4 h-full">
-          {media?.map(({ logo, media }, i) => (
+          {media?.map(({ logo, media, url }, i) => (
             <div key={i} className="space-y-2">
-              <img src={logo} className="h-8" />
+              <Link href={url} target="_blank">
+                <img src={logo} className="h-8" />
+              </Link>
               <div className="grid grid-cols-3 gap-2">
                 {media.map(({ icon, src }) => (
                   <button
                     key={src}
                     onClick={() => add(src)}
-                    className="w-full aspect-square"
+                    className="w-full aspect-square bg-base-200  rounded-lg overflow-hidden"
                   >
-                    <img
-                      src={icon}
-                      className=" h-full w-full object-cover rounded-lg"
-                    />
+                    {(mediaTab === "image" || mediaTab === "video") && (
+                      <img src={icon} className=" h-full w-full object-cover" />
+                    )}
                   </button>
                 ))}
               </div>

@@ -11,10 +11,17 @@ export default async function Stock(req: NextApiRequest, res: NextApiResponse) {
   );
   const results: StockResult[] = [];
   for (const source of validSources) {
-    const media = query
-      ? await source.search(type as MediaTabs, query as string)
-      : await source.initial(type as MediaTabs);
-    results.push({ name: source.name, logo: source.logo, media });
+    const media = await source.search(
+      type as MediaTabs,
+      query ? 21 : 9,
+      query as string
+    );
+    results.push({
+      name: source.name,
+      logo: source.logo,
+      url: source.url,
+      media,
+    });
   }
   res.status(200).json(results);
 }

@@ -1,21 +1,27 @@
 import { MediaTabs } from "../../types";
 import { Pexels } from "./pexels";
+import { Pixabay } from "./pixabay";
 
 export type StockSrc = {
   icon: string;
   src: string;
 };
 export type StockResult = {
-    name: string;
-    logo: string;
-    media: StockSrc[];
-  };
+  name: string;
+  logo: string;
+  url: string;
+  media: StockSrc[];
+};
 export type Source = {
   name: string;
   logo: string;
+  url: string;
   types: MediaTabs[];
-  search: (type: MediaTabs, query: string) => Promise<StockSrc[]>;
-  initial: (type: MediaTabs) => Promise<StockSrc[]>;
+  search: (
+    type: MediaTabs,
+    perPage: number,
+    query?: string
+  ) => Promise<StockSrc[]>;
 };
 
-export const StockSources: Source[] = [Pexels];
+export const StockSources: Source[] = [Pexels, Pixabay];
