@@ -1,42 +1,58 @@
+import {
+  IoIosAlbums,
+  IoIosSettings,
+  IoIosImages,
+  IoIosCode,
+  IoIosSunny,
+} from "react-icons/io";
+import { IoShapesSharp, IoText } from "react-icons/io5";
+import { AiOutlineDatabase } from "react-icons/ai";
+import { HiVariable } from "react-icons/hi";
+
 export const LeftTabs = {
   template: {
     name: "Template",
-    icon: "/icons/template.png",
+    Icon: IoIosSettings,
     Component: () => import("./Template"),
+  },
+  inputs: {
+    name: "Inputs",
+    Icon: HiVariable,
+    Component: () => import("./Inputs"),
   },
   media: {
     name: "Media",
-    icon: "/icons/media.png",
+    Icon: IoIosAlbums,
     Component: () => import("./Media"),
   },
   stock: {
     name: "Stock media",
-    icon: "/icons/stock.png",
+    Icon: IoIosImages,
     Component: () => import("./Stock"),
   },
   elements: {
     name: "Elements",
-    icon: "/icons/elements.png",
+    Icon: IoShapesSharp,
     Component: () => import("./Elements"),
   },
   text: {
     name: "Text",
-    icon: "/icons/text.png",
+    Icon: IoText,
     Component: () => import("./Text"),
   },
   data: {
     name: "Data",
-    icon: "/icons/data.png",
+    Icon: AiOutlineDatabase,
     Component: () => import("./Data"),
   },
   code: {
     name: "Code",
-    icon: "/icons/code.png",
+    Icon: IoIosCode,
     Component: () => import("./Code"),
   },
   ai: {
     name: "AI",
-    icon: "/icons/ai.png",
+    Icon: IoIosSunny,
     Component: () => import("./AI"),
   },
 };

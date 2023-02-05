@@ -16,23 +16,26 @@ export const LeftBar = () => {
             src="/logo.png"
             alt="logo"
             className=""
-            width={60}
-            height={60}
+            width={50}
+            height={50}
           />
         </Link>
-        <div className="flex flex-col w-full space-y-2">
-          {Object.entries(LeftTabs).map(([key, value], i) => (
-            <div
-              key={i}
-              onClick={() => setTab(key as LeftTabs)}
-              className={`flex flex-col items-center cursor-pointer hover:opacity-100 duration-200 ${
-                tab === key ? "bg-base-300" : " opacity-70"
-              }`}
-            >
-              <Image src={value.icon} alt={value.name} width={40} height={40} />
-              <p className="text-xs text-center">{value.name}</p>
-            </div>
-          ))}
+        <div className="flex flex-col w-full space-y-4">
+          {Object.entries(LeftTabs).map(([key, value], i) => {
+            const Icon = value.Icon;
+            return (
+              <div
+                key={i}
+                onClick={() => setTab(key as LeftTabs)}
+                className={`flex flex-col items-center cursor-pointer text-base-content-2 hover:opacity-100 duration-200 space-y-1 py-1 ${
+                  tab === key ? "bg-primary" : " "
+                }`}
+              >
+                <Icon className="h-6 w-6" />
+                <p className="text-[11px] text-center">{value.name}</p>
+              </div>
+            );
+          })}
         </div>
       </div>
       <Link href="/" className="pb-4 text-2xl">
