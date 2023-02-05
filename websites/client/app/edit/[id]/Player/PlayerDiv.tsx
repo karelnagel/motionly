@@ -13,6 +13,7 @@ export const PlayerDiv = ({
   const playerDivRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState<number>();
   const template = useStore((t) => t.project.template);
+  const setSelected = useStore((t) => t.setSelected);
   const getScale = () => {
     if (
       playerDivRef.current?.clientHeight &&
@@ -38,6 +39,7 @@ export const PlayerDiv = ({
       <Header />
       <div
         ref={playerDivRef}
+        onClick={() => setSelected(undefined)}
         className="flex items-center justify-center h-full relative mx-2"
       >
         <div className="absolute top-0 left-0 h-full w-full max-w-full flex items-center justify-center">

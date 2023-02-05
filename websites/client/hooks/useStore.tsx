@@ -23,7 +23,7 @@ interface Store {
   deleteComp: () => void;
   addComp: (comp?: ComponentProps, parentId?: string) => void;
   saveTime: Date | undefined;
-  setSelected: (id: string) => void;
+  setSelected: (id?: string) => void;
   setTab: (tab: Tabs) => void;
   undo: () => void;
   redo: () => void;
@@ -181,7 +181,7 @@ export const useStore = create(
             state.project = project;
           }, "save"),
 
-        setSelected: (id: string) => set({ selected: id }, "none"),
+        setSelected: (id?: string) => set({ selected: id }, "none"),
         setTab: (tab: Tabs) => set({ tab }, "none"),
       };
     })
