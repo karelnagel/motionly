@@ -3,7 +3,7 @@ import { Source } from ".";
 import { MediaTabs } from "../../types";
 
 const getImage = (e: any) =>
-  `https://i.vimeocdn.com/video/${e.picture_id}_100.75.jpg`;
+  `https://i.vimeocdn.com/video/${e.picture_id}_200x150.jpg`;
 
 const key = process.env.PIXABAY_API;
 export const Pixabay: Source = {
