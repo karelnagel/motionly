@@ -41,10 +41,10 @@ export function ClientPage() {
           <TimelineDiv>
             <Timeline playerRef={playerRef} />
           </TimelineDiv>
-          <HotKeys playerRef={playerRef} />
         </div>
         <RightBar />
       </div>
+      <HotKeys playerRef={playerRef} />
     </div>
   );
 }

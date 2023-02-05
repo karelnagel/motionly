@@ -25,3 +25,10 @@ export type Project = {
   preview?: string;
   template: TemplateType;
 };
+export const MediaTabs = {
+  video: "Video",
+  image: "Image",
+  audio: "Audio",
+  gif: "GIF",
+};
+export type MediaTabs = keyof typeof MediaTabs;

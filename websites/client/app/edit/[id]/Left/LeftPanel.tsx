@@ -26,14 +26,16 @@ export const LeftDiv = ({
   const width = useLeft((t) => t.width);
   const setWidth = useLeft((t) => t.setWidth);
   return (
-    <div className="h-full ">
+    <div className="h-full">
       <div
         style={{
           width: show ? width : 0,
         }}
         className="h-full bg-base-300 relative"
       >
-        <div className=" h-full w-full p-2 flex flex-col">{children}</div>
+        <div className="absolute top-0 left-0 h-full w-full p-2 flex flex-col">
+          {children}
+        </div>
         <Resize value={width} setValue={setWidth} reverse />
       </div>
     </div>

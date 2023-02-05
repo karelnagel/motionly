@@ -1,13 +1,5 @@
 import { useLeft } from "../hooks/useLeft";
-
-const MediaTabs = {
-  video: "Video",
-  image: "Image",
-  audio: "Audio",
-  gif: "GIF",
-};
-export type MediaTabs = keyof typeof MediaTabs;
-
+import { MediaTabs } from "../types";
 export default function Media() {
   const mediaTab = useLeft((t) => t.mediaTab);
   const setMediaTab = useLeft((t) => t.setMediaTab);
