@@ -63,7 +63,7 @@ export default function Stock() {
                     onClick={() => add(src)}
                     className="w-full aspect-square bg-base-200  rounded-lg overflow-hidden"
                   >
-                    {(mediaTab === "image" || mediaTab === "video") && (
+                    {mediaTab !== "audio" && (
                       <img src={icon} className=" h-full w-full object-cover" />
                     )}
                   </button>

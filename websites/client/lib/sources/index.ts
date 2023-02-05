@@ -1,4 +1,5 @@
 import { MediaTabs } from "../../types";
+import { Giphy } from "./giphy";
 import { Pexels } from "./pexels";
 import { Pixabay } from "./pixabay";
 
@@ -24,4 +25,4 @@ export type Source = {
   ) => Promise<StockSrc[]>;
 };
 
-export const StockSources: Source[] = [Pexels, Pixabay];
+export const StockSources: Source[] = [Pexels, Pixabay, Giphy];
