@@ -181,10 +181,7 @@ export const useStore = create(
             state.project = project;
           }, "save"),
 
-        setSelected: (id: string) =>
-          set((state) => {
-            state.selected = state.selected === id ? "" : id;
-          }, "none"),
+        setSelected: (id: string) => set({ selected: id }, "none"),
         setTab: (tab: Tabs) => set({ tab }, "none"),
       };
     })
