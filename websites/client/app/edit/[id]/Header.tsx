@@ -1,33 +1,11 @@
 import Link from "next/link";
 import { IoIosArrowBack, IoMdRedo, IoMdUndo } from "react-icons/io";
-import { useEffect, useState } from "react";
 import { useStore } from "../../../hooks/useStore";
-
-export const TimeAfter = ({ className }: { className?: string }) => {
-  const time = useStore((s) => s.saveTime);
-  const [date, setDate] = useState(new Date());
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setDate(new Date());
-    }, 1000);
-    return () => {
-      clearInterval(timer); // Return a funtion to clear the timer so that it will stop being called on unmount
-    };
-  }, []);
-  if (!time) return null;
-
-  const diff = +date - +time;
-  const seconds = Math.floor(diff / 1000);
-  return (
-    <span className={className}>
-      {seconds <= 0 ? "now" : `${seconds} seconds ago`}
-    </span>
-  );
-};
 
 export const Header = () => {
   const name = useStore((s) => s.project.name);
   const setSelected = useStore((s) => s.setSelected);
+  const set = useStore((s) => s.set);
   const selected = useStore((s) => s.selected);
   const undo = useStore((s) => s.undo);
   const redo = useStore((s) => s.redo);
@@ -62,17 +40,20 @@ export const Header = () => {
         <Link href="/">
           <IoIosArrowBack className="text-3xl font-bold" />
         </Link>
+        <Button title="Add" value="add" tooltip="2" />
+
       </div>
       <p className="flex flex-col items-center space-y-1 leading-none">
-        <span
-          onClick={() => setSelected("template")}
-          className="text-[22px] font-bold cursor-pointer"
-        >
-          {name}
-        </span>
-        <span className="text-[10px] opacity-60">
-          saved <TimeAfter />
-        </span>
+        <input
+          value={name}
+          placeholder="Untitled"
+          onChange={(e) =>
+            set((s) => {
+              s.project.name = e.target.value;
+            })
+          }
+          className="text-[22px] font-bold text-center bg-transparent input input-sm "
+        />
       </p>
       <div className="flex items-center space-x-4 font-bold w-full justify-end">
         <div className="flex text-2xl space-x-2">
@@ -94,11 +75,10 @@ export const Header = () => {
           </div>
         </div>
 
-        <Button title="AI" value="ai" tooltip="1" />
-        <Button title="Add" value="add" tooltip="2" />
+        {/* <Button title="AI" value="ai" tooltip="1" /> */}
         <Button title="Template" value="template" tooltip="3" />
         <Button title="Inputs" value="inputs" tooltip="4" />
-        <Button title="Export" value="export" tooltip="4" />
+        {/* <Button title="Export" value="export" tooltip="4" /> */}
       </div>
     </div>
   );
