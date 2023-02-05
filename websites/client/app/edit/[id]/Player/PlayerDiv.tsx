@@ -35,7 +35,7 @@ export const PlayerDiv = ({
   }, []);
 
   return (
-    <div className="w-full relative h-full overflow-hidden flex flex-col">
+    <div className="w-full relative h-full overflow-hidden flex flex-col bg-base-200">
       <Header />
       <div
         ref={playerDivRef}

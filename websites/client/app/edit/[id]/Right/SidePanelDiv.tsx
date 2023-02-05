@@ -9,14 +9,14 @@ export const SidePanelDiv = ({
   show: boolean;
   children: ReactNode;
 }) => {
-  const [sideWidth, setSideWidth] = useLocalStorage("side", 380);
+  const [sideWidth, setSideWidth] = useLocalStorage("side", 200);
   return (
     <div className="h-full ">
       <div
         style={{
           width: show ? sideWidth : 0,
         }}
-        className="h-full bg-base-100 relative"
+        className="h-full bg-base-300 relative"
       >
         <div className="absolute top-0 left-0 flex h-full p-3 w-full">
           {children}

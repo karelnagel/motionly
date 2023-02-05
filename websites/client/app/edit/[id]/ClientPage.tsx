@@ -12,6 +12,7 @@ import Link from "next/link";
 import { useStore } from "../../../hooks/useStore";
 import { LeftBar } from "./Left/LeftBar";
 import { LeftPanel } from "./Left/LeftPanel";
+import { RightBar } from "./Right/RightBar";
 
 export function ClientPageWrapper({ project }: { project: Project }) {
   const init = useStore((s) => s.init);
@@ -42,7 +43,7 @@ export function ClientPage() {
           </TimelineDiv>
           <HotKeys playerRef={playerRef} />
         </div>
-        <div className="w-10 bg-red-500"></div>
+        <RightBar />
       </div>
     </div>
   );

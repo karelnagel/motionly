@@ -31,7 +31,7 @@ export const LeftDiv = ({
         style={{
           width: show ? sideWidth : 0,
         }}
-        className="h-full bg-base-200 relative"
+        className="h-full bg-base-300 relative"
       >
         <div className="absolute top-0 left-0 flex h-full w-full">
           {children}
