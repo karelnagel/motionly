@@ -1,5 +1,6 @@
+import { ComponentProps, getFonts } from "@motionly/base";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { continueRender, delayRender } from "remotion";
 
 const loadFonts = async (fonts: string[]) => {
@@ -19,9 +20,10 @@ const loadFonts = async (fonts: string[]) => {
   }
 };
 
-export const useFonts = async (fonts: string[] = []) => {
+export const useFonts = async (comps?: ComponentProps[]) => {
   const [handle] = useState(() => delayRender("Loading fonts"));
   const [loadedFonts, setLoadedFonts] = useState([] as string[]);
+  const fonts = useMemo(() => getFonts(comps), [comps]) || [];
 
   useEffect(() => {
     const fontsToLoad = fonts.filter((f) => !loadedFonts.includes(f));
@@ -31,5 +33,5 @@ export const useFonts = async (fonts: string[] = []) => {
         continueRender(handle);
       })
       .catch((e) => console.log(e));
-  }, [fonts]);
+  }, [fonts.toString()]);
 };

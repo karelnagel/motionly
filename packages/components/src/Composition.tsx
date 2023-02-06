@@ -15,7 +15,7 @@ export const Composition = ({
   bg?: Color;
   isSequence?: boolean;
 }) => {
-  useFonts(getFonts(comps));
+  useFonts(comps);
   return (
     <Background background={bg}>
       <Children comps={comps} isSequence={isSequence} />
