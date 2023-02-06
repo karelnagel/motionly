@@ -1,11 +1,11 @@
 import { FormEvent, useState } from "react";
 import { useAlerts } from "../../../../../components/Alert";
-import { useStore } from "../../../../../hooks/useStore";
+import { useProject } from "../../../../../hooks/useStore";
 import { postAI } from "../../../../../sdk/ai";
 
 export default function Ai() {
-  const template = useStore((t) => t.project.template);
-  const setProject = useStore((t) => t.setProject);
+  const template = useProject((t) => t.project.template);
+  const setProject = useProject((t) => t.setProject);
   const [prompt, setPrompt] = useState("");
   const [status, setStatus] = useState<"loading" | "done" | "error">();
   const alert = useAlerts();

@@ -1,10 +1,10 @@
 import { ComponentProps } from "@motionly/base";
 import { useCallback } from "react";
-import { useStore } from "./useStore";
+import { useProject } from "./useStore";
 
 export const useComponent = (id?: string): ComponentProps | undefined => {
   return (
-    useStore(
+    useProject(
       useCallback(
         (state) => state.project.template.components[id || state.selected],
         [id]

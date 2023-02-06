@@ -4,12 +4,12 @@ import { useAlerts } from "../../../../../components/Alert";
 import { Clone } from "../../../../../components/Clone";
 import { Input } from "../../../../../components/inputs";
 import { PanelTitle } from "../../../../../components/PanelTitle";
-import { useStore } from "../../../../../hooks/useStore";
+import { useProject } from "../../../../../hooks/useStore";
 import { deleteProject } from "../../../../../sdk/templates/delete";
 
 export const TemplateSidePanel = () => {
-  const set = useStore((t) => t.set);
-  const project = useStore((t) => t.project);
+  const set = useProject((t) => t.set);
+  const project = useProject((t) => t.project);
   const router = useRouter();
   const alert = useAlerts();
 

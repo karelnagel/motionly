@@ -2,14 +2,14 @@ import MediaTab from "../../../../../components/MediaTab";
 import { useLeft } from "../../../../../hooks/useLeft";
 import { useEffect } from "react";
 import { getStock } from "../../../../../sdk/stock";
-import { useStore } from "../../../../../hooks/useStore";
+import { useProject } from "../../../../../hooks/useStore";
 import { getRandomId } from "../../../../../helpers";
 import Link from "next/link";
 
 export default function Stock() {
   const mediaTab = useLeft((t) => t.mediaTab);
   const setTab = useLeft((t) => t.setTab);
-  const addComp = useStore((s) => s.addComp);
+  const addComp = useProject((s) => s.addComp);
   const media = useLeft((s) => s.media);
   const setMedia = useLeft((s) => s.setMedia);
   const query = useLeft((s) => s.query);

@@ -9,7 +9,7 @@ import { SidePanel } from "./Right/SidePanel";
 import { TimelineDiv } from "./Timeline/TimelineDiv";
 import { Project } from "../../../types";
 import Link from "next/link";
-import { ProjectProvider, useStore } from "../../../hooks/useStore";
+import { ProjectProvider, useProject } from "../../../hooks/useStore";
 import { LeftBar } from "./Left/LeftBar";
 import { LeftPanel } from "./Left/LeftPanel";
 import { RightBar } from "./Right/RightBar";
@@ -23,7 +23,7 @@ export function ClientPageWrapper({ project }: { project: Project }) {
 }
 export function ClientPage() {
   const playerRef = useRef<PlayerRef>(null);
-  const id = useStore((t) => t.project.id);
+  const id = useProject((t) => t.project.id);
   return (
     <div className="bg-base-300 w-screen h-screen overflow-hidden">
       <div className="flex md:hidden flex-col items-center justify-center h-full space-y-3">

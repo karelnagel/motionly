@@ -1,11 +1,10 @@
 import { SidePanelDiv } from "./SidePanelDiv";
-import { useStore } from "../../../../hooks/useStore";
+import { useProject } from "../../../../hooks/useStore";
 
 export const SidePanel = () => {
-  const selected = useStore((t) => t.selected);
+  const selected = useProject((t) => t.selected);
 
-  return (
-    <SidePanelDiv show={!!selected}>
-    </SidePanelDiv>
-  );
+  return <SidePanelDiv show={!!selected}>
+    a
+  </SidePanelDiv>;
 };

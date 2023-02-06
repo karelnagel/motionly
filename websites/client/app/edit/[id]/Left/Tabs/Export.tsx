@@ -3,13 +3,13 @@ import { useCallback } from "react";
 import { IoImage } from "react-icons/io5";
 import { MdOutlineMovieCreation } from "react-icons/md";
 import { useRender } from "../../../../../hooks/useRender";
-import { useStore } from "../../../../../hooks/useStore";
+import { useProject } from "../../../../../hooks/useStore";
 
 export default function Export() {
   const allRenders = useRender((s) => s.allRenders);
   const renderId = useRender((s) => s.renderId);
   const status = useRender((s) => s.status);
-  const template = useStore((s) => s.project.template);
+  const template = useProject((s) => s.project.template);
   const renderMedia = useRender((s) => s.renderMedia);
   const renderStill = useRender((s) => s.renderStill);
 

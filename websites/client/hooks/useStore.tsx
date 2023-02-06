@@ -1,6 +1,6 @@
 import { AllComponents, BaseProps, ComponentProps } from "@motionly/base";
 import { Project, Tabs } from "../types";
-import { createStore, useStore as zustandUseStore } from "zustand";
+import { createStore, useStore } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { WritableDraft } from "immer/dist/internal";
 import { getRandomId } from "../helpers";
@@ -62,13 +62,13 @@ export function ProjectProvider({
   );
 }
 
-export function useStore<T>(
+export function useProject<T>(
   selector: (state: ProjectStore) => T,
   equalityFn?: (left: T, right: T) => boolean
 ): T {
   const store = useContext(ProjectContext);
   if (!store) throw new Error("Missing BearContext.Provider in the tree");
-  return zustandUseStore(store, selector, equalityFn);
+  return useStore(store, selector, equalityFn);
 }
 
 export const createProjectStore = (project: Project) => {

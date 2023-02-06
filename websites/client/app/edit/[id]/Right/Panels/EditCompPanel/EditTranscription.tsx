@@ -10,7 +10,7 @@ import { Input } from "../../../../../../components/inputs";
 import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
 import { Popup } from "../../../../../../components/Popup";
 import { ShowJson } from "../../../../../../components/ShowJson";
-import {  useStore } from "../../../../../../hooks/useStore";
+import { useProject } from "../../../../../../hooks/useStore";
 import { getMediaUrl } from "../../../../../../helpers";
 import { getMedia } from "../../../../../../sdk/media/get";
 import { getTranscription } from "../../../../../../sdk/media/getTranscription";
@@ -48,7 +48,7 @@ const inputs: UserInput[] = [
 ];
 export const EditTranscription = () => {
   const comp = useComponent() as TranscriptionProps;
-  const setComp = useStore((t) => t.setComp)<TranscriptionProps>;
+  const setComp = useProject((t) => t.setComp)<TranscriptionProps>;
 
   return (
     <EditSection title="Transcription">

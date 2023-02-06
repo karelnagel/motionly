@@ -3,7 +3,7 @@ import { Input } from "../../../../../../components/inputs";
 import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
 import { ShowJson } from "../../../../../../components/ShowJson";
 import { useComponent } from "../../../../../../hooks/useComponent";
-import { useStore } from "../../../../../../hooks/useStore";
+import { useProject } from "../../../../../../hooks/useStore";
 import { EditSection } from "./EditSection";
 
 const inputs: UserInput[] = [
@@ -46,7 +46,7 @@ const inputs: UserInput[] = [
 
 export const EditGraph = () => {
   const comp = useComponent() as GraphProps;
-  const setComp = useStore((t) => t.setComp)<GraphProps>;
+  const setComp = useProject((t) => t.setComp)<GraphProps>;
 
   return (
     <EditSection title="Graph">
