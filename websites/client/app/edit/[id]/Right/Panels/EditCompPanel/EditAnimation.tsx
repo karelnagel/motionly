@@ -7,11 +7,12 @@ import {
 import { Input } from "../../../../../../components/inputs";
 import { getRandomId } from "../../../../../../helpers";
 import { getAnimationColor } from "../../../../../../helpers/color";
-import { useComponent, useStore } from "../../../../../../hooks/useStore";
+import { useComponent } from "../../../../../../hooks/useComponent";
+import { useProject } from "../../../../../../hooks/useStore";
 
 export const EditAnimation = ({}: {}) => {
   const comp = useComponent();
-  const setComp = useStore((t) => t.setComp);
+  const setComp = useProject((t) => t.setComp);
   const animations = comp?.animations;
   return (
     <div>
@@ -39,12 +40,12 @@ export const EditAnimation = ({}: {}) => {
   );
 };
 const OneAnimation = ({ id }: { id: string }) => {
-  const animation = useStore(
+  const animation = useProject(
     (t) => t.project.template.components[t.selected].animations?.byIds[id]
   );
   if (!animation) return null;
 
-  const setComp = useStore((t) => t.setComp);
+  const setComp = useProject((t) => t.setComp);
   const remove = () => {
     setComp((c) => {
       c.animations!.allIds = c.animations!.allIds.filter((i) => i !== id);

@@ -1,7 +1,8 @@
 import { BaseColor, ConfettiProps } from "@motionly/base";
 import { Input } from "../../../../../../components/inputs";
 import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
-import { useComponent, useStore } from "../../../../../../hooks/useStore";
+import { useComponent } from "../../../../../../hooks/useComponent";
+import { useProject } from "../../../../../../hooks/useStore";
 import { EditSection } from "./EditSection";
 
 const inputs: UserInput[] = [
@@ -39,7 +40,7 @@ const inputs: UserInput[] = [
   },
 ];
 export const EditConfetti = () => {
-  const setComp = useStore((t) => t.setComp)<ConfettiProps>;
+  const setComp = useProject((t) => t.setComp)<ConfettiProps>;
   const comp = useComponent() as ConfettiProps;
 
   return (

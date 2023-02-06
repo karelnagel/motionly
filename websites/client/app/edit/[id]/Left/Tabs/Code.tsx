@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { useStore } from "../../../../../hooks/useStore";
+import { useProject } from "../../../../../hooks/useStore";
 
 const CodeEditor = dynamic(
   () => import("@uiw/react-textarea-code-editor").then((mod) => mod.default),
@@ -8,8 +8,8 @@ const CodeEditor = dynamic(
 );
 
 export default function Code() {
-  const template = useStore((t) => t.project.template);
-  const set = useStore((t) => t.set);
+  const template = useProject((t) => t.project.template);
+  const set = useProject((t) => t.set);
   const [json, setJson] = useState(JSON.stringify(template, null, 2));
   const [error, setError] = useState(false);
   useEffect(() => {

@@ -19,10 +19,10 @@ import {
 } from "@motionly/components";
 import { AllComponents, BaseProps } from "@motionly/base";
 import { PanelTitle } from "../../../../../components/PanelTitle";
-import { useStore } from "../../../../../hooks/useStore";
+import { useProject } from "../../../../../hooks/useStore";
 
 export const AddSidePanel = () => {
-  const addComp = useStore((t) => t.addComp);
+  const addComp = useProject((t) => t.addComp);
   const baseComp: BaseProps = {
     id: "0",
     x: 0,

@@ -1,11 +1,11 @@
 import { inputTypes } from "@motionly/base";
 import { Input } from "../../../../../components/inputs";
 import { getRandomId } from "../../../../../helpers";
-import { useStore } from "../../../../../hooks/useStore";
+import { useProject } from "../../../../../hooks/useStore";
 
 export const InputsPanel = () => {
-  const inputs = useStore((t) => t.project.template.inputs);
-  const set = useStore((t) => t.set);
+  const inputs = useProject((t) => t.project.template.inputs);
+  const set = useProject((t) => t.set);
   return (
     <div className="w-full overflow-auto">
       {inputs?.allIds.map((id) => (
@@ -35,8 +35,8 @@ export const InputsPanel = () => {
 };
 
 export const OneInput = ({ id }: { id: string }) => {
-  const input = useStore((t) => t.project.template.inputs?.byIds[id]);
-  const set = useStore((t) => t.set);
+  const input = useProject((t) => t.project.template.inputs?.byIds[id]);
+  const set = useProject((t) => t.set);
   if (!input) return null;
 
   return (
@@ -79,7 +79,7 @@ export const OneInput = ({ id }: { id: string }) => {
         className="btn btn-error btn-xs"
         onClick={() =>
           set((s) => {
-            const inputs = s.project.template.inputs!
+            const inputs = s.project.template.inputs!;
             inputs.allIds = inputs.allIds.filter((i) => i !== id);
             delete inputs.byIds[id];
           })

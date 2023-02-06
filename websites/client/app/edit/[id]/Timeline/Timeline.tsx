@@ -1,6 +1,6 @@
 import { PlayerRef } from "@remotion/player";
 import { RefObject } from "react";
-import { useStore } from "../../../../hooks/useStore";
+import { useProject } from "../../../../hooks/useStore";
 import { useCurrentPlayerFrame } from "../../../../hooks/useCurrentPlayerFrame";
 import { useLocalStorage } from "../../../../hooks/useLocalStorage";
 import { TimelineComp } from "./TimelineComp";
@@ -10,7 +10,7 @@ export const Timeline = ({
 }: {
   playerRef: RefObject<PlayerRef>;
 }) => {
-  const template = useStore((t) => t.project.template);
+  const template = useProject((t) => t.project.template);
   const [width, setWidth] = useLocalStorage("timelineWidth", 100);
   return (
     <div className="overflow-x-auto h-full relative">

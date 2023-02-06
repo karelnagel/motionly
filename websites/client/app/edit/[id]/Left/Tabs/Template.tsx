@@ -3,12 +3,12 @@ import { useRouter } from "next/navigation";
 import { useAlerts } from "../../../../../components/Alert";
 import { Clone } from "../../../../../components/Clone";
 import { Input } from "../../../../../components/inputs";
-import { useStore } from "../../../../../hooks/useStore";
+import { useProject } from "../../../../../hooks/useStore";
 import { deleteProject } from "../../../../../sdk/templates/delete";
 
 export default function Template() {
-  const set = useStore((t) => t.set);
-  const project = useStore((t) => t.project);
+  const set = useProject((t) => t.set);
+  const project = useProject((t) => t.project);
   const router = useRouter();
   const alert = useAlerts();
 
@@ -23,7 +23,6 @@ export default function Template() {
     <div className="flex flex-col justify-between h-full w-full overflow-auto">
       <div className="flex flex-col space-y-2 items-center">
         <div className="w-full grid grid-cols-2 gap-x-1">
-      
           <Input
             type="textarea"
             label="Description"

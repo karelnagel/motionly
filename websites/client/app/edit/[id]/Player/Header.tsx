@@ -1,15 +1,15 @@
 import { IoIosCloudDone, IoMdRedo, IoMdUndo } from "react-icons/io";
 import { useLeft } from "../../../../hooks/useLeft";
-import { useStore } from "../../../../hooks/useStore";
+import { useProject } from "../../../../hooks/useStore";
 
 export const Header = () => {
-  const name = useStore((s) => s.project.name);
-  const saveTimeout = useStore((s) => s.saveTimeout);
-  const set = useStore((s) => s.set);
-  const undo = useStore((s) => s.undo);
-  const redo = useStore((s) => s.redo);
-  const future = useStore((s) => s.future);
-  const past = useStore((s) => s.past);
+  const name = useProject((s) => s.project.name);
+  const saveTimeout = useProject((s) => s.saveTimeout);
+  const set = useProject((s) => s.set);
+  const undo = useProject((s) => s.undo);
+  const redo = useProject((s) => s.redo);
+  const future = useProject((s) => s.future);
+  const past = useProject((s) => s.past);
   const setTab = useLeft((s) => s.setTab);
 
   return (

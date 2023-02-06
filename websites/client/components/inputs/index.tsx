@@ -4,9 +4,10 @@ import { Color, inputTypes, TextStyle } from "@motionly/base";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { EditTextStyle } from "../../app/edit/[id]/Right/Panels/EditCompPanel/EditTextStyle";
 import { Media } from "../Media";
-import { useComponent, useStore } from "../../hooks/useStore";
+import { useProject } from "../../hooks/useStore";
 import { ColorInput } from "./color";
 import { getRandomId } from "../../helpers";
+import { useComponent } from "../../hooks/useComponent";
 export * from "./color";
 
 export const VariableSelect = ({
@@ -18,9 +19,9 @@ export const VariableSelect = ({
   type: keyof typeof inputTypes;
   value: any;
 }) => {
-  const inputs = useStore((t) => t.project.template.inputs);
-  const set = useStore((t) => t.set);
-  const setComp = useStore((t) => t.setComp);
+  const inputs = useProject((t) => t.project.template.inputs);
+  const set = useProject((t) => t.set);
+  const setComp = useProject((t) => t.setComp);
 
   return (
     <div
@@ -95,11 +96,11 @@ export function Input<T extends any>({
   options?: { value: string; label: string }[];
   prop?: string;
 }) {
-  const setSelected = useStore((t) => t.setSelected);
-  const setComp = useStore((t) => t.setComp);
+  const setSelected = useProject((t) => t.setSelected);
+  const setComp = useProject((t) => t.setComp);
   const comp = useComponent();
   const inputId = comp?.compInputs?.find((i) => i.prop === prop)?.id;
-  const input = useStore((t) =>
+  const input = useProject((t) =>
     inputId ? t.project.template.inputs?.byIds[inputId] : undefined
   );
 
