@@ -7,7 +7,8 @@ import {
 import { Input } from "../../../../../../components/inputs";
 import { getRandomId } from "../../../../../../helpers";
 import { getAnimationColor } from "../../../../../../helpers/color";
-import { useComponent, useStore } from "../../../../../../hooks/useStore";
+import { useComponent } from "../../../../../../hooks/useComponent";
+import {  useStore } from "../../../../../../hooks/useStore";
 
 export const EditAnimation = ({}: {}) => {
   const comp = useComponent();

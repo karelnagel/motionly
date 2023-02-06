@@ -1,7 +1,8 @@
 import { ComponentProps } from "@motionly/base";
 import { ReactNode } from "react";
 import { AiFillCopy, AiFillDelete } from "react-icons/ai";
-import { useComponent, useStore } from "../../../../../../hooks/useStore";
+import { useComponent } from "../../../../../../hooks/useComponent";
+import {  useStore } from "../../../../../../hooks/useStore";
 import { Tabs } from "../../../../../../types";
 import { EditAnimation } from "./EditAnimation";
 import { EditAudio } from "./EditAudio";

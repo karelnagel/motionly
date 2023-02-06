@@ -10,12 +10,13 @@ import { Input } from "../../../../../../components/inputs";
 import { Inputs, UserInput } from "../../../../../../components/inputs/Inputs";
 import { Popup } from "../../../../../../components/Popup";
 import { ShowJson } from "../../../../../../components/ShowJson";
-import { useComponent, useStore } from "../../../../../../hooks/useStore";
+import {  useStore } from "../../../../../../hooks/useStore";
 import { getMediaUrl } from "../../../../../../helpers";
 import { getMedia } from "../../../../../../sdk/media/get";
 import { getTranscription } from "../../../../../../sdk/media/getTranscription";
 import { startTranscription } from "../../../../../../sdk/media/startTranscription";
 import { EditSection } from "./EditSection";
+import { useComponent } from "../../../../../../hooks/useComponent";
 
 const inputs: UserInput[] = [
   {

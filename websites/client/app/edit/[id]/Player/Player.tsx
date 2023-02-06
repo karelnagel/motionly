@@ -4,7 +4,8 @@ import { RefObject, useRef } from "react";
 import { useShiftKey } from "../../../../hooks/useShiftKey";
 import Moveable from "react-moveable";
 import { Player as MotionlyPlayer } from "@motionly/player";
-import { useComponent, useStore } from "../../../../hooks/useStore";
+import {  useStore } from "../../../../hooks/useStore";
+import { useComponent } from "../../../../hooks/useComponent";
 
 export const Player = ({
   playerRef,

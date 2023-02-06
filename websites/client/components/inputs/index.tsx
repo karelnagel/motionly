@@ -4,9 +4,10 @@ import { Color, inputTypes, TextStyle } from "@motionly/base";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { EditTextStyle } from "../../app/edit/[id]/Right/Panels/EditCompPanel/EditTextStyle";
 import { Media } from "../Media";
-import { useComponent, useStore } from "../../hooks/useStore";
+import { useStore } from "../../hooks/useStore";
 import { ColorInput } from "./color";
 import { getRandomId } from "../../helpers";
+import { useComponent } from "../../hooks/useComponent";
 export * from "./color";
 
 export const VariableSelect = ({
