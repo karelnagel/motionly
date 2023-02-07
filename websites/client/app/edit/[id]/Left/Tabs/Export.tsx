@@ -4,6 +4,8 @@ import { IoImage } from "react-icons/io5";
 import { MdOutlineMovieCreation } from "react-icons/md";
 import { useRender } from "../../../../../hooks/useRender";
 import { useProject } from "../../../../../hooks/useProject";
+import { ReactNode } from "react";
+import { usePlayer } from "../../../../../hooks/usePlayer";
 
 export default function Export() {
   const allRenders = useRender((s) => s.allRenders);
@@ -11,20 +13,18 @@ export default function Export() {
   const status = useRender((s) => s.status);
   const template = useProject((s) => s.project.template);
   const renderMedia = useRender((s) => s.renderMedia);
-  const renderStill = useRender((s) => s.renderStill);
 
   return (
     <div className="flex flex-col w-full h-full space-y-4">
       <div>
         <p className="font-semibold my-2">Render</p>
         <div className="grid grid-cols-2 gap-2">
-          <button
-            className="btn btn-sm"
-            disabled={status === "rendering"}
-            onClick={() => renderStill(template, 0)}
-          >
-            Current frame
-          </button>
+          <RenderStill>
+            <button className="btn btn-sm" disabled={status === "rendering"}>
+              Current frame
+            </button>
+          </RenderStill>
+
           <button
             disabled={status === "rendering"}
             className="btn btn-sm btn-primary"
@@ -48,6 +48,16 @@ export default function Export() {
     </div>
   );
 }
+
+const RenderStill = ({ children }: { children: ReactNode }) => {
+  const renderStill = useRender((s) => s.renderStill);
+  const template = useProject((s) => s.project.template);
+  const frame = usePlayer((s) => s.frame);
+  return (
+    <div onClick={() => renderStill(template, frame)}>{children}</div>
+  );
+};
+
 export const Render = ({ id }: { id: string }) => {
   const render = useRender(useCallback((s) => s.renders[id], [id]));
   if (!render) return null;

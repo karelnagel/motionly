@@ -1,8 +1,8 @@
-import { SidePanelDiv } from "./RightDiv";
+import { RightDiv } from "./RightDiv";
 import { useProject } from "../../../../hooks/useProject";
 
-export const SidePanel = () => {
+export const RightPanel = () => {
   const selected = useProject((t) => t.selected);
 
-  return <SidePanelDiv show={!!selected}>a</SidePanelDiv>;
+  return <RightDiv show={!!selected}>a</RightDiv>;
 };

@@ -1,9 +1,11 @@
-import { PlayerRef } from "@remotion/player";
-import { RefObject, useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useCurrentPlayerFrame } from "../hooks/useCurrentPlayerFrame";
+import { usePlayer } from "../hooks/usePlayer";
 import { useProject } from "../hooks/useProject";
 
-export function HotKeys({ playerRef }: { playerRef: RefObject<PlayerRef> }) {
+export function HotKeys() {
+  useCurrentPlayerFrame();
+
   const undo = useProject((t) => t.undo);
   const redo = useProject((t) => t.redo);
   const setSelected = useProject((t) => t.setSelected);
@@ -11,8 +13,8 @@ export function HotKeys({ playerRef }: { playerRef: RefObject<PlayerRef> }) {
   const deleteComp = useProject((t) => t.deleteComp);
   const addComp = useProject((t) => t.addComp);
   const fps = useProject((t) => t.project.template.fps);
-
-  const frame = useCurrentPlayerFrame(playerRef);
+  const playerRef = usePlayer((t) => t.playerRef);
+  const frame = usePlayer((t) => t.frame);
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
       const isInput =
@@ -28,22 +30,20 @@ export function HotKeys({ playerRef }: { playerRef: RefObject<PlayerRef> }) {
       } else if (event.key === "c" && event.metaKey && !isInput) {
         addComp();
       } else if (event.key === " " && !isInput) {
-        playerRef.current?.toggle();
+        playerRef?.toggle();
       } else if (
         (event.key === "l" || event.key === "ArrowRight") &&
         !isInput
       ) {
-        playerRef.current?.seekTo(frame + 5 * fps);
+        playerRef?.seekTo(frame + 5 * fps);
       } else if ((event.key === "j" || event.key === "ArrowLeft") && !isInput) {
-        playerRef.current?.seekTo(frame - 5 * fps);
+        playerRef?.seekTo(frame - 5 * fps);
       } else if (event.key === "m" && !isInput) {
-        playerRef.current?.isMuted()
-          ? playerRef.current?.unmute()
-          : playerRef.current?.mute();
+        playerRef?.isMuted() ? playerRef?.unmute() : playerRef?.mute();
       } else if (event.key === "f" && !isInput) {
-        playerRef.current?.isFullscreen()
-          ? playerRef.current?.exitFullscreen()
-          : playerRef.current?.requestFullscreen();
+        playerRef?.isFullscreen()
+          ? playerRef?.exitFullscreen()
+          : playerRef?.requestFullscreen();
       } else if (event.key === "1" && !isInput) {
         setSelected("ai");
       } else if (event.key === "2" && !isInput) {

@@ -33,7 +33,6 @@ export default function Stock() {
       objectFit: "cover",
     });
   };
-
   return (
     <div className="flex flex-col w-full justify-between h-full space-y-4">
       <div className="space-y-4 flex flex-col overflow-y-auto overflow-x-hidden ">

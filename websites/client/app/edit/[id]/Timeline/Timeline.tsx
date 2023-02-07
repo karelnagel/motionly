@@ -1,15 +1,9 @@
-import { PlayerRef } from "@remotion/player";
-import { RefObject } from "react";
 import { useProject } from "../../../../hooks/useProject";
-import { useCurrentPlayerFrame } from "../../../../hooks/useCurrentPlayerFrame";
 import { TimelineComp } from "./TimelineComp";
 import { useTimeline } from "../../../../hooks/useTimeline";
+import { usePlayer } from "../../../../hooks/usePlayer";
 
-export const Timeline = ({
-  playerRef,
-}: {
-  playerRef: RefObject<PlayerRef>;
-}) => {
+export const Timeline = () => {
   const template = useProject((t) => t.project.template);
   const width = useTimeline((t) => t.width);
   const setWidth = useTimeline((t) => t.setWidth);
@@ -19,11 +13,7 @@ export const Timeline = ({
         className="h-full w-full flex flex-col"
         style={{ width: `${width}%` }}
       >
-        <TimelineBar
-          playerRef={playerRef}
-          duration={template.duration}
-          fps={template.fps}
-        />
+        <TimelineBar duration={template.duration} fps={template.fps} />
         <div className="overflow-y-scroll h-full overflow-x-hidden px-3 pb-2">
           <div className="flex flex-col space-y-2">
             {template.childIds?.map((id, i) => (
@@ -45,16 +35,14 @@ export const Timeline = ({
 };
 
 export const TimelineBar = ({
-  playerRef,
   duration,
   fps,
 }: {
-  playerRef: RefObject<PlayerRef>;
   duration: number;
   fps: number;
 }) => {
-  const frame = useCurrentPlayerFrame(playerRef);
-
+  const frame = usePlayer((s) => s.frame);
+  const playerRef = usePlayer((s) => s.playerRef);
   return (
     <div className="h-14 w-full relative p-3 pr-7">
       <div className="relative">
@@ -80,7 +68,7 @@ export const TimelineBar = ({
           type="range"
           value={frame}
           onChange={(e) => {
-            playerRef.current?.seekTo(Number(e.currentTarget.value));
+            playerRef?.seekTo(Number(e.currentTarget.value));
           }}
           step={1}
           min={0}

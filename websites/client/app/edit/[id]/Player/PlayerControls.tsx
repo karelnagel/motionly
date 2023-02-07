@@ -1,5 +1,3 @@
-import { PlayerRef } from "@remotion/player";
-import { RefObject, useEffect, useState } from "react";
 import {
   IoIosPlay,
   IoIosPause,
@@ -9,74 +7,49 @@ import {
   IoIosVolumeOff,
   IoMdExpand,
 } from "react-icons/io";
+import { usePlayer } from "../../../../hooks/usePlayer";
 import { useProject } from "../../../../hooks/useProject";
-import { useCurrentPlayerFrame } from "../../../../hooks/useCurrentPlayerFrame";
 
-export const PlayerControls = ({
-  playerRef,
-}: {
-  playerRef: RefObject<PlayerRef>;
-}) => {
+export const PlayerControls = () => {
   const fps = useProject((t) => t.project.template.fps);
-  const frame = useCurrentPlayerFrame(playerRef);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  useEffect(() => {
-    if (!playerRef.current) {
-      return;
-    }
-    playerRef.current.addEventListener("play", () => {
-      setIsPlaying(true);
-    });
-    playerRef.current.addEventListener("pause", () => {
-      setIsPlaying(false);
-    });
-  }, [playerRef.current]);
-
+  const playerRef = usePlayer((t) => t.playerRef);
+  const isPlaying = usePlayer((t) => t.isPlaying);
+  const frame = usePlayer((t) => t.frame);
   const className =
     "cursor-pointer w-[45px] aspect-square p-1 font-bold hover:text-primary hover:shadow-md hover:scale-110 duration-150 rounded-full";
   return (
     <div className=" shrink-0 w-full text-3xl p-3 flex items-center justify-center space-x-5">
       <div className="tooltip" data-tip="M">
-        {playerRef.current?.isMuted() ? (
-          <IoIosVolumeOff
-            onClick={playerRef.current?.unmute}
-            className={className}
-          />
+        {playerRef?.isMuted() ? (
+          <IoIosVolumeOff onClick={playerRef?.unmute} className={className} />
         ) : (
-          <IoIosVolumeHigh
-            onClick={playerRef.current?.mute}
-            className={className}
-          />
+          <IoIosVolumeHigh onClick={playerRef?.mute} className={className} />
         )}
       </div>
       <div className="tooltip" data-tip="← / J">
         <IoIosSkipBackward
           className={className}
-          onClick={() => playerRef.current?.seekTo(frame - 5 * fps)}
+          onClick={() => playerRef?.seekTo(frame - 5 * fps)}
         />
       </div>
       <div className="tooltip" data-tip="⎵">
         {isPlaying ? (
-          <IoIosPause
-            onClick={playerRef.current?.pause}
-            className={className}
-          />
+          <IoIosPause onClick={playerRef?.pause} className={className} />
         ) : (
-          <IoIosPlay onClick={playerRef.current?.play} className={className} />
+          <IoIosPlay onClick={playerRef?.play} className={className} />
         )}
       </div>
 
       <div className="tooltip" data-tip="→ / L">
         <IoIosSkipForward
           className={className}
-          onClick={() => playerRef.current?.seekTo(frame + 5 * fps)}
+          onClick={() => playerRef?.seekTo(frame + 5 * fps)}
         />
       </div>
       <div className="tooltip" data-tip="F">
         <IoMdExpand
           className={className}
-          onClick={() => playerRef.current?.requestFullscreen()}
+          onClick={() => playerRef?.requestFullscreen()}
         />
       </div>
     </div>

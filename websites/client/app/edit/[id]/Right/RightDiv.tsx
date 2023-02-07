@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Resize } from "../../../../components/Resize";
 import { useRight } from "../../../../hooks/useRight";
 
-export const SidePanelDiv = ({
+export const RightDiv = ({
   show,
   children,
 }: {
