@@ -51,10 +51,13 @@ export const exportSlice = (set: SetType, get: GetType): ExportSlice => {
         }, 2000);
       timeout();
     },
-    renderStill: async (template: TemplateType, frame: number = 0) => {
+    renderStill: async (template: TemplateType) => {
       if (get().status === "rendering") return;
       set({ status: "rendering" });
-      const res = await motionlyRenderStill({ ...template, frame });
+      const res = await motionlyRenderStill({
+        ...template,
+        frame: get().player.frame,
+      });
       set((s) => {
         if (!res) {
           s.status = "error";

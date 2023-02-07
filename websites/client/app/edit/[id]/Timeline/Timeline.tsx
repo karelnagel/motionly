@@ -1,6 +1,5 @@
 import { useProject } from "../../../../hooks/useProject";
 import { TimelineComp } from "./TimelineComp";
-import { usePlayer } from "../../../../hooks/useProject/playerSlice";
 
 export const Timeline = () => {
   const template = useProject((t) => t.project.template);
@@ -40,8 +39,8 @@ export const TimelineBar = ({
   duration: number;
   fps: number;
 }) => {
-  const frame = usePlayer((s) => s.frame);
-  const playerRef = usePlayer((s) => s.playerRef);
+  const frame = useProject((s) => s.player.frame);
+  const playerRef = useProject((s) => s.player.playerRef);
   return (
     <div className="h-14 w-full relative p-3 pr-7">
       <div className="relative">

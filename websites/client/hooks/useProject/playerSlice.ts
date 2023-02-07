@@ -1,8 +1,7 @@
-import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
 import { PlayerRef } from "@remotion/player";
+import { SetType } from ".";
 
-interface PlayerStore {
+export interface PlayerSlice {
   scale: number;
   setScale: (scale: number) => void;
   frame: number;
@@ -13,14 +12,24 @@ interface PlayerStore {
   setIsPlaying: (isPlaying: boolean) => void;
 }
 
-export const usePlayer = create(
-  immer<PlayerStore>((set) => ({
-    frame: 0,
-    scale: 0.2,
-    isPlaying: false,
-    setIsPlaying: (isPlaying) => set({ isPlaying }),
-    setScale: (scale) => set({ scale }),
-    setPlayerRef: (ref) => set({ playerRef: ref }),
-    setFrame: (frame) => set({ frame }),
-  }))
-);
+export const playerSlice = (set: SetType): PlayerSlice => ({
+  frame: 0,
+  scale: 0.2,
+  isPlaying: false,
+  setIsPlaying: (isPlaying) =>
+    set((s) => {
+      s.player.isPlaying = isPlaying;
+    }),
+  setScale: (scale) =>
+    set((s) => {
+      s.player.scale = scale;
+    }),
+  setPlayerRef: (playerRef) =>
+    set((s) => {
+      s.player.playerRef = playerRef;
+    }),
+  setFrame: (frame) =>
+    set((s) => {
+      s.player.frame = frame;
+    }),
+});

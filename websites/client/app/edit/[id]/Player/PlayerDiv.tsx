@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { usePlayer } from "../../../../hooks/useProject/playerSlice";
 import { useProject } from "../../../../hooks/useProject";
 import { Header } from "./Header";
 import { Player } from "./Player";
@@ -7,7 +6,7 @@ import { PlayerControls } from "./PlayerControls";
 
 export const PlayerDiv = () => {
   const playerDivRef = useRef<HTMLDivElement>(null);
-  const setScale = usePlayer((t) => t.setScale);
+  const setScale = useProject((t) => t.player.setScale);
   const template = useProject((t) => t.project.template);
   const setSelected = useProject((t) => t.setSelected);
   const getScale = () => {

@@ -5,7 +5,6 @@ import Moveable from "react-moveable";
 import { Player as MotionlyPlayer } from "@motionly/player";
 import { useProject } from "../../../../hooks/useProject";
 import { useComponent } from "../../../../hooks/useComponent";
-import { usePlayer } from "../../../../hooks/useProject/playerSlice";
 
 export const Player = () => {
   const template = useProject((t) => t.project.template);
@@ -14,8 +13,8 @@ export const Player = () => {
   const setComp = useProject((t) => t.setComp);
   const lockAspectRatio = useShiftKey();
   const divRef = useRef<HTMLDivElement>(null);
-  const scale = usePlayer((t) => t.scale);
-  const setPlayerRef = usePlayer((t) => t.setPlayerRef);
+  const scale = useProject((t) => t.player.scale);
+  const setPlayerRef = useProject((t) => t.player.setPlayerRef);
   return (
     <div
       style={{ width: template.width * scale, height: template.height * scale }}
@@ -24,7 +23,7 @@ export const Player = () => {
         value={{ divRef, setSelected, selected: comp?.id || "" }}
       >
         <MotionlyPlayer
-          ref={(ref) => setPlayerRef(ref || undefined)}
+          ref={(ref) => setPlayerRef?.(ref || undefined)}
           template={template}
           style={{ width: "100%", height: "100%" }}
           spaceKeyToPlayOrPause

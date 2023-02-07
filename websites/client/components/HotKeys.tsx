@@ -1,6 +1,5 @@
 import { useCallback, useEffect } from "react";
 import { useCurrentPlayerFrame } from "../hooks/useCurrentPlayerFrame";
-import { usePlayer } from "../hooks/useProject/playerSlice";
 import { useProject } from "../hooks/useProject";
 
 export function HotKeys() {
@@ -9,12 +8,11 @@ export function HotKeys() {
   const undo = useProject((t) => t.undo);
   const redo = useProject((t) => t.redo);
   const setSelected = useProject((t) => t.setSelected);
-  const setTab = useProject((t) => t.setTab);
   const deleteComp = useProject((t) => t.deleteComp);
   const addComp = useProject((t) => t.addComp);
   const fps = useProject((t) => t.project.template.fps);
-  const playerRef = usePlayer((t) => t.playerRef);
-  const frame = usePlayer((t) => t.frame);
+  const playerRef = useProject((t) => t.player.playerRef);
+  const frame = useProject((t) => t.player.frame);
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
       const isInput =
@@ -54,10 +52,6 @@ export function HotKeys() {
         setSelected("export");
       } else if (event.key === "0" && !isInput) {
         setSelected("");
-      } else if (event.key === "p" && !isInput) {
-        setTab("props");
-      } else if (event.key === "a" && !isInput) {
-        setTab("animations");
       } else return;
       event.preventDefault();
     },
@@ -70,7 +64,6 @@ export function HotKeys() {
       frame,
       deleteComp,
       addComp,
-      setTab,
     ]
   );
 
@@ -82,7 +75,6 @@ export function HotKeys() {
   }, [
     addComp,
     deleteComp,
-    setTab,
     undo,
     redo,
     setSelected,

@@ -4,8 +4,6 @@ import { ISODateString } from "next-auth";
 
 export type ReqRes = { req: NextApiRequest; res: NextApiResponse };
 
-export type Tabs = "props" | "animations";
-
 export type SessionWithId = {
   user?: {
     name?: string | null;

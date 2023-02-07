@@ -1,5 +1,5 @@
 import { AllComponents, BaseProps, ComponentProps } from "@motionly/base";
-import { Project, Tabs } from "../../types";
+import { Project } from "../../types";
 import { WritableDraft } from "immer/dist/internal";
 import { getRandomId } from "../../helpers";
 import { updateProject } from "../../sdk/templates/update";
@@ -12,7 +12,6 @@ export type ProjectSlice = {
   past: Project[];
   future: Project[];
   selected: string;
-  tab: Tabs;
   setProject: (template: Partial<Project>) => void;
   setComp: <T extends AllComponents>(
     func: (state: WritableDraft<T & BaseProps>) => void
@@ -21,7 +20,6 @@ export type ProjectSlice = {
   addComp: (comp?: ComponentProps, parentId?: string) => void;
   saveTime: Date | undefined;
   setSelected: (id?: string) => void;
-  setTab: (tab: Tabs) => void;
   undo: () => void;
   redo: () => void;
   changeParent: (parentId?: string) => void;
@@ -78,7 +76,6 @@ export const projectSlice = (
     past: [],
     future: [],
     selected: "template",
-    tab: "props",
     saveTime: undefined,
     set,
     setProject: (project: Partial<Project>) =>
@@ -165,7 +162,6 @@ export const projectSlice = (
       }, "save"),
 
     setSelected: (id?: string) => set({ selected: id }, "none"),
-    setTab: (tab: Tabs) => set({ tab }, "none"),
     ...exportSlice(setStore, get),
   };
 };
