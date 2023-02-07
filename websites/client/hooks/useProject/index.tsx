@@ -86,6 +86,7 @@ export const createProjectStore = (project: Project) => {
                   "lastProject",
                   "historyTimeout",
                   "saveTimeout",
+                  "playerIsPlaying",
                 ].includes(key)
             )
           ),
