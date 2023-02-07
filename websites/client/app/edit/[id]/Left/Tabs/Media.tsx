@@ -1,9 +1,8 @@
 import MediaTab from "../../../../../components/MediaTab";
-import { useLeft } from "../../../../../hooks/useProject/leftSlice";
+import { useProject } from "../../../../../hooks/useProject";
 
 export default function Media() {
-  const mediaTab = useLeft((t) => t.mediaTab);
-  const setTab = useLeft((t) => t.setTab);
+  const setTab = useProject((t) => t.left.setTab);
   return (
     <div className="flex flex-col w-full justify-between h-full">
       <div>

@@ -1,10 +1,10 @@
-import { useLeft } from "../../../../hooks/useProject/leftSlice";
 import { lazy, ReactNode, Suspense } from "react";
 import { Resize } from "../../../../components/Resize";
 import { LeftTabs } from "./Tabs";
+import { useProject } from "../../../../hooks/useProject";
 
 export const LeftPanel = () => {
-  const tab = useLeft((t) => t.tab);
+  const tab = useProject((t) => t.left.tab);
   if (!tab) return null;
   const Component = lazy(LeftTabs[tab].Component);
   return (
@@ -23,8 +23,8 @@ export const LeftDiv = ({
   show: boolean;
   children: ReactNode;
 }) => {
-  const width = useLeft((t) => t.width);
-  const setWidth = useLeft((t) => t.setWidth);
+  const width = useProject((t) => t.left.width);
+  const setWidth = useProject((t) => t.left.setWidth);
   return (
     <div className="h-full">
       <div

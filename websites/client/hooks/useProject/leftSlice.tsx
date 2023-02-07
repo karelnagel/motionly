@@ -1,11 +1,9 @@
-import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
 import { LeftTabs } from "../../app/edit/[id]/Left/Tabs";
-import { persist } from "zustand/middleware";
 import { MediaTabs } from "../../types";
 import { StockResult } from "../../lib/sources";
+import { GetType, SetType } from ".";
 
-interface LeftStore {
+export interface LeftSlice {
   tab?: LeftTabs;
   mediaTab: MediaTabs;
   setMediaTab: (tab: MediaTabs) => void;
@@ -20,23 +18,31 @@ interface LeftStore {
 
 const minWidth = 270;
 const maxWidth = 500;
-export const useLeft = create(
-  persist(
-    immer<LeftStore>((set, get) => {
-      return {
-        tab: "template",
-        width: 300,
-        mediaTab: "video",
-        query: "",
-        setMediaTab: (tab: MediaTabs) => set({ mediaTab: tab }),
-        setTab: (tab?: LeftTabs) =>
-          set((s) => ({ tab: s.tab === tab ? undefined : tab })),
-        setWidth: (width: number) =>
-          set({ width: Math.max(Math.min(width, maxWidth), minWidth) }),
-        setQuery: (query: string) => set({ query }),
-        setMedia: (media?: StockResult[]) => set({ media }),
-      };
-    }),
-    { name: "left" }
-  )
-);
+export const leftSlice = (set: SetType, get: GetType): LeftSlice => {
+  return {
+    tab: "template",
+    width: 300,
+    mediaTab: "video",
+    query: "",
+    setMediaTab: (tab: MediaTabs) =>
+      set((s) => {
+        s.left.mediaTab = tab;
+      }),
+    setTab: (tab?: LeftTabs) =>
+      set((s) => {
+        s.left.tab = s.left.tab === tab ? undefined : tab;
+      }),
+    setWidth: (width: number) =>
+      set((s) => {
+        s.left.width = Math.max(Math.min(width, maxWidth), minWidth);
+      }),
+    setQuery: (query: string) =>
+      set((s) => {
+        s.left.query = query;
+      }),
+    setMedia: (media?: StockResult[]) =>
+      set((s) => {
+        s.left.media = media;
+      }),
+  };
+};

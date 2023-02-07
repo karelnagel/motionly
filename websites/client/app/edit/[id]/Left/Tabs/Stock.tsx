@@ -1,5 +1,4 @@
 import MediaTab from "../../../../../components/MediaTab";
-import { useLeft } from "../../../../../hooks/useProject/leftSlice";
 import { useEffect } from "react";
 import { getStock } from "../../../../../sdk/stock";
 import { useProject } from "../../../../../hooks/useProject";
@@ -7,13 +6,13 @@ import { getRandomId } from "../../../../../helpers";
 import Link from "next/link";
 
 export default function Stock() {
-  const mediaTab = useLeft((t) => t.mediaTab);
-  const setTab = useLeft((t) => t.setTab);
+  const mediaTab = useProject((t) => t.left.mediaTab);
+  const setTab = useProject((t) => t.left.setTab);
   const addComp = useProject((s) => s.addComp);
-  const media = useLeft((s) => s.media);
-  const setMedia = useLeft((s) => s.setMedia);
-  const query = useLeft((s) => s.query);
-  const setQuery = useLeft((s) => s.setQuery);
+  const media = useProject((s) => s.left.media);
+  const setMedia = useProject((s) => s.left.setMedia);
+  const query = useProject((s) => s.left.query);
+  const setQuery = useProject((s) => s.left.setQuery);
 
   useEffect(() => {
     getStock(mediaTab, query || undefined).then((res) =>
