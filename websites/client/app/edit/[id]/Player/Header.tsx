@@ -1,6 +1,6 @@
 import { IoIosCloudDone, IoMdRedo, IoMdUndo } from "react-icons/io";
 import { useLeft } from "../../../../hooks/useLeft";
-import { useProject } from "../../../../hooks/useStore";
+import { useProject } from "../../../../hooks/useProject";
 
 export const Header = () => {
   const name = useProject((s) => s.project.name);

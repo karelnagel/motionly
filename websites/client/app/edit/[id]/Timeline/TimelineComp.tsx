@@ -5,7 +5,7 @@ import Moveable from "react-moveable";
 import { isPanel } from "../../../../helpers";
 import { Animation } from "./Animation";
 import { ShowHide } from "../../../../components/ShowHide";
-import { useProject } from "../../../../hooks/useStore";
+import { useProject } from "../../../../hooks/useProject";
 import { useComponent } from "../../../../hooks/useComponent";
 
 export const TimelineComp = ({

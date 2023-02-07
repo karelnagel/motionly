@@ -2,7 +2,7 @@ import MediaTab from "../../../../../components/MediaTab";
 import { useLeft } from "../../../../../hooks/useLeft";
 import { useEffect } from "react";
 import { getStock } from "../../../../../sdk/stock";
-import { useProject } from "../../../../../hooks/useStore";
+import { useProject } from "../../../../../hooks/useProject";
 import { getRandomId } from "../../../../../helpers";
 import Link from "next/link";
 

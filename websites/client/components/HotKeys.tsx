@@ -1,7 +1,7 @@
 import { PlayerRef } from "@remotion/player";
 import { RefObject, useCallback, useEffect } from "react";
 import { useCurrentPlayerFrame } from "../hooks/useCurrentPlayerFrame";
-import { useProject } from "../hooks/useStore";
+import { useProject } from "../hooks/useProject";
 
 export function HotKeys({ playerRef }: { playerRef: RefObject<PlayerRef> }) {
   const undo = useProject((t) => t.undo);

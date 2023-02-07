@@ -3,7 +3,7 @@
 import { Color, inputTypes, TextStyle } from "@motionly/base";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { Media } from "../Media";
-import { useProject } from "../../hooks/useStore";
+import { useProject } from "../../hooks/useProject";
 import { ColorInput } from "./color";
 import { getRandomId } from "../../helpers";
 import { useComponent } from "../../hooks/useComponent";

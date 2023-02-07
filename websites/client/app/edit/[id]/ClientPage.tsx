@@ -9,7 +9,7 @@ import { SidePanel } from "./Right/RightPanel";
 import { TimelineDiv } from "./Timeline/TimelineDiv";
 import { Project } from "../../../types";
 import Link from "next/link";
-import { ProjectProvider, useProject } from "../../../hooks/useStore";
+import { ProjectProvider, useProject } from "../../../hooks/useProject";
 import { LeftBar } from "./Left/LeftBar";
 import { LeftPanel } from "./Left/LeftPanel";
 import { RightBar } from "./Right/RightBar";

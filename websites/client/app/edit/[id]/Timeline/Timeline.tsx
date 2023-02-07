@@ -1,6 +1,6 @@
 import { PlayerRef } from "@remotion/player";
 import { RefObject } from "react";
-import { useProject } from "../../../../hooks/useStore";
+import { useProject } from "../../../../hooks/useProject";
 import { useCurrentPlayerFrame } from "../../../../hooks/useCurrentPlayerFrame";
 import { TimelineComp } from "./TimelineComp";
 import { useTimeline } from "../../../../hooks/useTimeline";
@@ -38,11 +38,7 @@ export const Timeline = ({
       </div>
       <div className="absolute top-0 right-0 leading-none text-xl text-primary-content flex flex-col items-center bg-base-300 space-y-1 p-1 rounded-bl-lg">
         <button onClick={() => setWidth(width * 1.1)}>+</button>
-        <button
-          onClick={() => setWidth(width / 1.1)}
-        >
-          -
-        </button>
+        <button onClick={() => setWidth(width / 1.1)}>-</button>
       </div>
     </div>
   );

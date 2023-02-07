@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { useAlerts } from "../../../../../components/Alert";
 import { Clone } from "../../../../../components/Clone";
 import { Input } from "../../../../../components/inputs";
-import { useProject } from "../../../../../hooks/useStore";
+import { useProject } from "../../../../../hooks/useProject";
 import { deleteProject } from "../../../../../sdk/templates/delete";
 
 export default function Template() {

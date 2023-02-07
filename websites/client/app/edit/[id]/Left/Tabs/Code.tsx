@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { useProject } from "../../../../../hooks/useStore";
+import { useProject } from "../../../../../hooks/useProject";
 
 const CodeEditor = dynamic(
   () => import("@uiw/react-textarea-code-editor").then((mod) => mod.default),

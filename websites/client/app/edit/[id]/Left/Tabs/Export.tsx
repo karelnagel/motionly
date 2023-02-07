@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { IoImage } from "react-icons/io5";
 import { MdOutlineMovieCreation } from "react-icons/md";
 import { useRender } from "../../../../../hooks/useRender";
-import { useProject } from "../../../../../hooks/useStore";
+import { useProject } from "../../../../../hooks/useProject";
 
 export default function Export() {
   const allRenders = useRender((s) => s.allRenders);

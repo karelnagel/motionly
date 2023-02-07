@@ -1,7 +1,7 @@
 import { inputTypes } from "@motionly/base";
 import { Input } from "../../../../../components/inputs";
 import { getRandomId } from "../../../../../helpers";
-import { useProject } from "../../../../../hooks/useStore";
+import { useProject } from "../../../../../hooks/useProject";
 
 export default function Media() {
   const inputs = useProject((t) => t.project.template.inputs);

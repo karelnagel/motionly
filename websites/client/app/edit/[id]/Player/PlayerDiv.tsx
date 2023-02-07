@@ -1,6 +1,6 @@
 import { PlayerRef } from "@remotion/player";
 import { RefObject, useEffect, useRef, useState } from "react";
-import { useProject } from "../../../../hooks/useStore";
+import { useProject } from "../../../../hooks/useProject";
 import { Header } from "./Header";
 import { Player } from "./Player";
 import { PlayerControls } from "./PlayerControls";

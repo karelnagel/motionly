@@ -9,7 +9,7 @@ import {
   IoIosVolumeOff,
   IoMdExpand,
 } from "react-icons/io";
-import { useProject } from "../../../../hooks/useStore";
+import { useProject } from "../../../../hooks/useProject";
 import { useCurrentPlayerFrame } from "../../../../hooks/useCurrentPlayerFrame";
 
 export const PlayerControls = ({
