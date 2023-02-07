@@ -11,6 +11,7 @@ import { exportSlice, ExportSlice } from "./exportSlice";
 import { ProjectSlice, projectSlice } from "./projectSlice";
 import { leftSlice, LeftSlice } from "./leftSlice";
 import { rightSlice, RightSlice } from "./rightSlice";
+import { timelineSlice, TimelineSlice } from "./timelineSlice";
 
 export type SetInput =
   | ProjectStore
@@ -24,7 +25,9 @@ export type SetType = (
 export type GetType = () => ProjectStore;
 
 export type ProjectStore = ProjectSlice &
-  ExportSlice & { left: LeftSlice } & { right: RightSlice };
+  ExportSlice & { left: LeftSlice } & { right: RightSlice } & {
+    timeline: TimelineSlice;
+  };
 
 type ProjectContext = ReturnType<typeof createProjectStore>;
 export const ProjectContext = createContext<ProjectContext | null>(null);
@@ -61,6 +64,7 @@ export const createProjectStore = (project: Project) => {
     persist(
       immer<ProjectStore>((set, get) => {
         return {
+          timeline: timelineSlice(set),
           left: leftSlice(set, get),
           right: rightSlice(set, get),
           ...projectSlice(set, get, project),

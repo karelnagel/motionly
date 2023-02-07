@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 import { Resize } from "../../../../components/Resize";
-import { useTimeline } from "../../../../hooks/useProject/timelineSlice";
+import { useProject } from "../../../../hooks/useProject";
 
 export const TimelineDiv = ({ children }: { children: ReactNode }) => {
-  const height = useTimeline((t) => t.height);
-  const setHeight = useTimeline((t) => t.setHeight);
+  const height = useProject((t) => t.timeline.height);
+  const setHeight = useProject((t) => t.timeline.setHeight);
   return (
     <div
       style={{ height: height }}

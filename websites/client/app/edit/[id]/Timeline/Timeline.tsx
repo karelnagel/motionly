@@ -1,12 +1,11 @@
 import { useProject } from "../../../../hooks/useProject";
 import { TimelineComp } from "./TimelineComp";
-import { useTimeline } from "../../../../hooks/useProject/timelineSlice";
 import { usePlayer } from "../../../../hooks/useProject/playerSlice";
 
 export const Timeline = () => {
   const template = useProject((t) => t.project.template);
-  const width = useTimeline((t) => t.width);
-  const setWidth = useTimeline((t) => t.setWidth);
+  const width = useProject((t) => t.timeline.width);
+  const setWidth = useProject((t) => t.timeline.setWidth);
   return (
     <div className="overflow-x-auto h-full relative">
       <div
