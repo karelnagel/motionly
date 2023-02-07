@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-import { LeftTabs } from "../app/edit/[id]/Left/Tabs";
+import { LeftTabs } from "../../app/edit/[id]/Left/Tabs";
 import { persist } from "zustand/middleware";
-import { MediaTabs } from "../types";
-import { StockResult } from "../lib/sources";
+import { MediaTabs } from "../../types";
+import { StockResult } from "../../lib/sources";
 
 interface LeftStore {
   tab?: LeftTabs;

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { usePlayer } from "./usePlayer";
+import { usePlayer } from "./useProject/playerSlice";
 
 export const useCurrentPlayerFrame = () => {
   const setFrame = usePlayer((s) => s.setFrame);

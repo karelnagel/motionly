@@ -1,23 +1,29 @@
 import { AllComponents, BaseProps, ComponentProps } from "@motionly/base";
-import { Project, Tabs } from "../types";
+import { Project, Tabs } from "../../types";
 import { createStore, useStore } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { WritableDraft } from "immer/dist/internal";
-import { getRandomId } from "../helpers";
-import { updateProject } from "../sdk/templates/update";
+import { getRandomId } from "../../helpers";
+import { updateProject } from "../../sdk/templates/update";
 import { createContext } from "react";
 import { useRef } from "react";
 import { ReactNode } from "react";
 import { useContext } from "react";
 import { persist } from "zustand/middleware";
-import { renderSlice, RenderStore } from "./useRender";
+import { exportSlice, ExportSlice } from "./exportSlice";
 
-type SetType =
+type SetInput =
   | ProjectStore
   | Partial<ProjectStore>
   | ((state: WritableDraft<ProjectStore>) => void);
 
-type ProjectStore = {
+export type SetType = (
+  nextStateOrUpdater: SetInput,
+  shouldReplace?: boolean | undefined
+) => void;
+export type GetType = () => ProjectStore;
+
+export type ProjectStore = {
   project: Project;
   lastProject?: Project;
   past: Project[];
@@ -37,10 +43,10 @@ type ProjectStore = {
   redo: () => void;
   changeParent: (parentId?: string) => void;
   setComps: (comps: ComponentProps[], parentId: string) => void;
-  set: (s: SetType) => void;
+  set: (s: SetInput) => void;
   historyTimeout?: ReturnType<typeof setTimeout>;
   saveTimeout?: ReturnType<typeof setTimeout>;
-} & RenderStore;
+} & ExportSlice;
 
 type ProjectContext = ReturnType<typeof createProjectStore>;
 export const ProjectContext = createContext<ProjectContext | null>(null);
@@ -77,7 +83,7 @@ export const createProjectStore = (project: Project) => {
     persist(
       immer<ProjectStore>((setStore, get) => {
         const set = (
-          s: SetType,
+          s: SetInput,
           type: "history" | "save" | "both" | "none" = "both"
         ) => {
           if (type === "both" || type === "history") {
@@ -211,7 +217,7 @@ export const createProjectStore = (project: Project) => {
 
           setSelected: (id?: string) => set({ selected: id }, "none"),
           setTab: (tab: Tabs) => set({ tab }, "none"),
-          ...renderSlice(setStore, get),
+          ...exportSlice(setStore, get),
         };
       }),
       { name: project.id || "" }

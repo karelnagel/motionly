@@ -5,7 +5,7 @@ import {
   renderStill as motionlyRenderStill,
   getProgress as motionlyGetProgress,
 } from "@motionly/renderer/dist/sdk";
-import { WritableDraft } from "immer/dist/internal";
+import { GetType, SetType } from ".";
 
 type Render = Partial<GetProgressOutput> & {
   id: string;
@@ -13,7 +13,7 @@ type Render = Partial<GetProgressOutput> & {
   type: "media" | "still";
 };
 
-export interface RenderStore {
+export interface ExportSlice {
   renders: { [id: string]: Render };
   allRenders: string[];
   renderId?: string;
@@ -23,16 +23,7 @@ export interface RenderStore {
   getProgress: () => Promise<void>;
 }
 
-export const renderSlice = (
-  set: (
-    nextStateOrUpdater:
-      | RenderStore
-      | Partial<RenderStore>
-      | ((state: WritableDraft<RenderStore>) => void),
-    shouldReplace?: boolean | undefined
-  ) => void,
-  get: () => RenderStore
-) => {
+export const exportSlice = (set: SetType, get: GetType) => {
   return {
     renders: {},
     allRenders: [],

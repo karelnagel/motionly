@@ -7,7 +7,7 @@ import {
   IoIosVolumeOff,
   IoMdExpand,
 } from "react-icons/io";
-import { usePlayer } from "../../../../hooks/usePlayer";
+import { usePlayer } from "../../../../hooks/useProject/playerSlice";
 import { useProject } from "../../../../hooks/useProject";
 
 export const PlayerControls = () => {

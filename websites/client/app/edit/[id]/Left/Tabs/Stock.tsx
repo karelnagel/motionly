@@ -1,5 +1,5 @@
 import MediaTab from "../../../../../components/MediaTab";
-import { useLeft } from "../../../../../hooks/useLeft";
+import { useLeft } from "../../../../../hooks/useProject/leftSlice";
 import { useEffect } from "react";
 import { getStock } from "../../../../../sdk/stock";
 import { useProject } from "../../../../../hooks/useProject";

@@ -1,5 +1,5 @@
 import { IoIosCloudDone, IoMdRedo, IoMdUndo } from "react-icons/io";
-import { useLeft } from "../../../../hooks/useLeft";
+import { useLeft } from "../../../../hooks/useProject/leftSlice";
 import { useProject } from "../../../../hooks/useProject";
 
 export const Header = () => {

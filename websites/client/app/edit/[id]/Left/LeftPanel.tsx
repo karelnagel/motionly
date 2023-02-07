@@ -1,4 +1,4 @@
-import { useLeft } from "../../../../hooks/useLeft";
+import { useLeft } from "../../../../hooks/useProject/leftSlice";
 import { lazy, ReactNode, Suspense } from "react";
 import { Resize } from "../../../../components/Resize";
 import { LeftTabs } from "./Tabs";

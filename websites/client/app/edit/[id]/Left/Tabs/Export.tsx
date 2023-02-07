@@ -4,7 +4,7 @@ import { IoImage } from "react-icons/io5";
 import { MdOutlineMovieCreation } from "react-icons/md";
 import { useProject } from "../../../../../hooks/useProject";
 import { ReactNode } from "react";
-import { usePlayer } from "../../../../../hooks/usePlayer";
+import { usePlayer } from "../../../../../hooks/useProject/playerSlice";
 
 export default function Export() {
   const allRenders = useProject((s) => s.allRenders);

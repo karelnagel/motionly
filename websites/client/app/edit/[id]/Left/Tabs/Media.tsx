@@ -1,5 +1,5 @@
 import MediaTab from "../../../../../components/MediaTab";
-import { useLeft } from "../../../../../hooks/useLeft";
+import { useLeft } from "../../../../../hooks/useProject/leftSlice";
 
 export default function Media() {
   const mediaTab = useLeft((t) => t.mediaTab);
@@ -9,7 +9,9 @@ export default function Media() {
       <div>
         <MediaTab />
       </div>
-      <button onClick={() => setTab("stock")} className="btn btn-sm">Use stock media</button>
+      <button onClick={() => setTab("stock")} className="btn btn-sm">
+        Use stock media
+      </button>
     </div>
   );
 }

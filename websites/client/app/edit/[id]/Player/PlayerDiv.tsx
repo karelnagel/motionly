@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { usePlayer } from "../../../../hooks/usePlayer";
+import { usePlayer } from "../../../../hooks/useProject/playerSlice";
 import { useProject } from "../../../../hooks/useProject";
 import { Header } from "./Header";
 import { Player } from "./Player";

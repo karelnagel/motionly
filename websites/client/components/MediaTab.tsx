@@ -1,4 +1,4 @@
-import { useLeft } from "../hooks/useLeft";
+import { useLeft } from "../hooks/useProject/leftSlice";
 import { MediaTabs } from "../types";
 export default function Media() {
   const mediaTab = useLeft((t) => t.mediaTab);

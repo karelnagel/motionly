@@ -1,7 +1,7 @@
 import { useProject } from "../../../../hooks/useProject";
 import { TimelineComp } from "./TimelineComp";
-import { useTimeline } from "../../../../hooks/useTimeline";
-import { usePlayer } from "../../../../hooks/usePlayer";
+import { useTimeline } from "../../../../hooks/useProject/timelineSlice";
+import { usePlayer } from "../../../../hooks/useProject/playerSlice";
 
 export const Timeline = () => {
   const template = useProject((t) => t.project.template);

@@ -5,7 +5,7 @@ import Moveable from "react-moveable";
 import { Player as MotionlyPlayer } from "@motionly/player";
 import { useProject } from "../../../../hooks/useProject";
 import { useComponent } from "../../../../hooks/useComponent";
-import { usePlayer } from "../../../../hooks/usePlayer";
+import { usePlayer } from "../../../../hooks/useProject/playerSlice";
 
 export const Player = () => {
   const template = useProject((t) => t.project.template);

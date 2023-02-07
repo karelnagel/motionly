@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { useCurrentPlayerFrame } from "../hooks/useCurrentPlayerFrame";
-import { usePlayer } from "../hooks/usePlayer";
+import { usePlayer } from "../hooks/useProject/playerSlice";
 import { useProject } from "../hooks/useProject";
 
 export function HotKeys() {

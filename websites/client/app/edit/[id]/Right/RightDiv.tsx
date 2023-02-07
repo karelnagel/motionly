@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Resize } from "../../../../components/Resize";
-import { useRight } from "../../../../hooks/useRight";
+import { useRight } from "../../../../hooks/useProject/rightSlice";
 
 export const RightDiv = ({
   show,

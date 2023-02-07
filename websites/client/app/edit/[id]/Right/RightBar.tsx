@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { IoIosHelp } from "react-icons/io";
-import { RightTabs, useRight } from "../../../../hooks/useRight";
+import { RightTabs, useRight } from "../../../../hooks/useProject/rightSlice";
 
 export const RightBar = () => {
   const setTab = useRight((s) => s.setTab);

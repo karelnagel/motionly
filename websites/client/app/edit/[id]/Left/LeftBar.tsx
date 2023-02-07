@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosArrowBack } from "react-icons/io";
-import { useLeft } from "../../../../hooks/useLeft";
+import { useLeft } from "../../../../hooks/useProject/leftSlice";
 import { LeftTabs } from "./Tabs";
 
 export const LeftBar = () => {
@@ -32,9 +32,7 @@ export const LeftBar = () => {
                 }`}
               >
                 <Icon className="h-6 w-6 " />
-                <p className="text-[11px] text-center ">
-                  {value.name}
-                </p>
+                <p className="text-[11px] text-center ">{value.name}</p>
               </div>
             );
           })}
