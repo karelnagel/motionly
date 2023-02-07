@@ -25,7 +25,7 @@ export const Hero = () => {
           <Button
             text="Get started"
             className="text-[24px] font-normal p-3 pl-6
-        animate-slide-from-left-700"
+        animate-slide-from-left-700 bg-secondary"
           />
         </Link>
       </div>
