@@ -1,19 +1,18 @@
 import MediaTab from "../../../../../components/MediaTab";
-import { useLeft } from "../../../../../hooks/useLeft";
 import { useEffect } from "react";
 import { getStock } from "../../../../../sdk/stock";
-import { useProject } from "../../../../../hooks/useStore";
+import { useProject } from "../../../../../hooks/useProject";
 import { getRandomId } from "../../../../../helpers";
 import Link from "next/link";
 
 export default function Stock() {
-  const mediaTab = useLeft((t) => t.mediaTab);
-  const setTab = useLeft((t) => t.setTab);
+  const mediaTab = useProject((t) => t.leftMediaTab);
+  const setTab = useProject((t) => t.leftSetTab);
   const addComp = useProject((s) => s.addComp);
-  const media = useLeft((s) => s.media);
-  const setMedia = useLeft((s) => s.setMedia);
-  const query = useLeft((s) => s.query);
-  const setQuery = useLeft((s) => s.setQuery);
+  const media = useProject((s) => s.leftMedia);
+  const setMedia = useProject((s) => s.leftSetMedia);
+  const query = useProject((s) => s.leftQuery);
+  const setQuery = useProject((s) => s.leftSetQuery);
 
   useEffect(() => {
     getStock(mediaTab, query || undefined).then((res) =>
@@ -33,7 +32,6 @@ export default function Stock() {
       objectFit: "cover",
     });
   };
-
   return (
     <div className="flex flex-col w-full justify-between h-full space-y-4">
       <div className="space-y-4 flex flex-col overflow-y-auto overflow-x-hidden ">

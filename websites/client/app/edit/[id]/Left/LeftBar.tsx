@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosArrowBack } from "react-icons/io";
-import { useLeft } from "../../../../hooks/useLeft";
+import { useProject } from "../../../../hooks/useProject";
 import { LeftTabs } from "./Tabs";
 
 export const LeftBar = () => {
-  const setTab = useLeft((s) => s.setTab);
-  const tab = useLeft((s) => s.tab);
+  const setTab = useProject((s) => s.leftSetTab);
+  const tab = useProject((s) => s.leftTab);
 
   return (
     <div className="h-full shrink-0 flex flex-col justify-between items-center bg-base-100 border-r border-base-300">
@@ -32,9 +32,7 @@ export const LeftBar = () => {
                 }`}
               >
                 <Icon className="h-6 w-6 " />
-                <p className="text-[11px] text-center ">
-                  {value.name}
-                </p>
+                <p className="text-[11px] text-center ">{value.name}</p>
               </div>
             );
           })}

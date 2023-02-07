@@ -1,6 +1,5 @@
 import { IoIosCloudDone, IoMdRedo, IoMdUndo } from "react-icons/io";
-import { useLeft } from "../../../../hooks/useLeft";
-import { useProject } from "../../../../hooks/useStore";
+import { useProject } from "../../../../hooks/useProject";
 
 export const Header = () => {
   const name = useProject((s) => s.project.name);
@@ -10,7 +9,7 @@ export const Header = () => {
   const redo = useProject((s) => s.redo);
   const future = useProject((s) => s.future);
   const past = useProject((s) => s.past);
-  const setTab = useLeft((s) => s.setTab);
+  const setTab = useProject((s) => s.leftSetTab);
 
   return (
     <div className="shrink-0 flex justify-between items-center p-3">

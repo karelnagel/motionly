@@ -2,16 +2,14 @@ import Link from "next/link";
 import { useCallback } from "react";
 import { IoImage } from "react-icons/io5";
 import { MdOutlineMovieCreation } from "react-icons/md";
-import { useRender } from "../../../../../hooks/useRender";
-import { useProject } from "../../../../../hooks/useStore";
+import { useProject } from "../../../../../hooks/useProject";
 
 export default function Export() {
-  const allRenders = useRender((s) => s.allRenders);
-  const renderId = useRender((s) => s.renderId);
-  const status = useRender((s) => s.status);
+  const allRenders = useProject((s) => s.allRenders);
+  const status = useProject((s) => s.status);
   const template = useProject((s) => s.project.template);
-  const renderMedia = useRender((s) => s.renderMedia);
-  const renderStill = useRender((s) => s.renderStill);
+  const renderMedia = useProject((s) => s.renderMedia);
+  const renderStill = useProject((s) => s.renderStill);
 
   return (
     <div className="flex flex-col w-full h-full space-y-4">
@@ -20,11 +18,12 @@ export default function Export() {
         <div className="grid grid-cols-2 gap-2">
           <button
             className="btn btn-sm"
+            onClick={() => renderStill(template)}
             disabled={status === "rendering"}
-            onClick={() => renderStill(template, 0)}
           >
             Current frame
           </button>
+
           <button
             disabled={status === "rendering"}
             className="btn btn-sm btn-primary"
@@ -48,11 +47,18 @@ export default function Export() {
     </div>
   );
 }
+
 export const Render = ({ id }: { id: string }) => {
-  const render = useRender(useCallback((s) => s.renders[id], [id]));
+  const render = useProject(useCallback((s) => s.renders[id], [id]));
   if (!render) return null;
   return (
-    <div className="flex flex-col bg-base-100 rounded-lg">
+    <div
+      className={`flex flex-col  rounded-lg ${
+        render.status === "error"
+          ? "bg-error text-error-content"
+          : "bg-base-100"
+      }`}
+    >
       <div className="flex items-center p-2 space-x-2 justify-between">
         <div className="flex space-x-2">
           <div className="text-xl">

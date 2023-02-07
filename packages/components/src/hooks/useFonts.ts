@@ -22,14 +22,11 @@ const loadFonts = async (fonts: string[]) => {
 
 export const useFonts = async (comps?: ComponentProps[]) => {
   const [handle] = useState(() => delayRender("Loading fonts"));
-  const [loadedFonts, setLoadedFonts] = useState([] as string[]);
   const fonts = useMemo(() => getFonts(comps), [comps]) || [];
 
   useEffect(() => {
-    const fontsToLoad = fonts.filter((f) => !loadedFonts.includes(f));
     loadFonts(fonts)
       .then(() => {
-        setLoadedFonts((f) => [...f, ...fontsToLoad]);
         continueRender(handle);
       })
       .catch((e) => console.log(e));

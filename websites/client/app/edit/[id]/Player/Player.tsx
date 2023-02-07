@@ -1,26 +1,20 @@
-import { PlayerRef } from "@remotion/player";
 import { SelectedContext } from "@motionly/components";
-import { RefObject, useRef } from "react";
+import { useRef } from "react";
 import { useShiftKey } from "../../../../hooks/useShiftKey";
 import Moveable from "react-moveable";
 import { Player as MotionlyPlayer } from "@motionly/player";
-import { useProject } from "../../../../hooks/useStore";
+import { useProject } from "../../../../hooks/useProject";
 import { useComponent } from "../../../../hooks/useComponent";
 
-export const Player = ({
-  playerRef,
-  scale,
-}: {
-  playerRef: RefObject<PlayerRef>;
-  scale: number;
-}) => {
+export const Player = () => {
   const template = useProject((t) => t.project.template);
   const comp = useComponent();
   const setSelected = useProject((t) => t.setSelected);
   const setComp = useProject((t) => t.setComp);
-
   const lockAspectRatio = useShiftKey();
   const divRef = useRef<HTMLDivElement>(null);
+  const scale = useProject((t) => t.playerScale);
+  const setPlayerRef = useProject((t) => t.playerSetPlayerRef);
   return (
     <div
       style={{ width: template.width * scale, height: template.height * scale }}
@@ -29,7 +23,7 @@ export const Player = ({
         value={{ divRef, setSelected, selected: comp?.id || "" }}
       >
         <MotionlyPlayer
-          playerRef={playerRef}
+          ref={(ref) => setPlayerRef?.(ref || undefined)}
           template={template}
           style={{ width: "100%", height: "100%" }}
           spaceKeyToPlayOrPause

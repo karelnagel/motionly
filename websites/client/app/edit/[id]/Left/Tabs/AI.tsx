@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { useAlerts } from "../../../../../components/Alert";
-import { useProject } from "../../../../../hooks/useStore";
+import { useProject } from "../../../../../hooks/useProject";
 import { postAI } from "../../../../../sdk/ai";
 
 export default function Ai() {

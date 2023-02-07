@@ -1,29 +1,21 @@
-import { CallbackListener, PlayerRef } from "@remotion/player";
-import { useCallback, useSyncExternalStore } from "react";
+import { useEffect } from "react";
+import { useProject } from "./useProject";
 
-export const useCurrentPlayerFrame = (ref: React.RefObject<PlayerRef>) => {
-  const subscribe = useCallback(
-    (onStoreChange: (newVal: number) => void) => {
-      const { current } = ref;
-      if (!current) {
-        return () => undefined;
-      }
-      const updater: CallbackListener<"frameupdate"> = ({ detail }) => {
-        onStoreChange(detail.frame);
-      };
-      current.addEventListener("frameupdate", updater);
-      return () => {
-        current.removeEventListener("frameupdate", updater);
-      };
-    },
-    [ref]
-  );
+export const useCurrentPlayerFrame = () => {
+  const setFrame = useProject((s) => s.playerSetFrame);
+  const ref = useProject((s) => s.playerRef);
+  const setIsPlaying = useProject((s) => s.playerSetIsPlaying);
 
-  const data = useSyncExternalStore<number>(
-    subscribe,
-    () => ref.current?.getCurrentFrame() ?? 0,
-    () => 0
-  );
-
-  return data;
+  useEffect(() => {
+    if (!ref) return;
+    ref.addEventListener("play", () => {
+      setIsPlaying(true);
+    });
+    ref.addEventListener("pause", () => {
+      setIsPlaying(false);
+    });
+    ref.addEventListener("frameupdate", ({ detail }) => {
+      setFrame(detail.frame);
+    });
+  }, [ref]);
 };

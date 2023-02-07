@@ -1,8 +1,9 @@
-import { useLeft } from "../hooks/useLeft";
+import { useProject } from "../hooks/useProject";
 import { MediaTabs } from "../types";
+
 export default function Media() {
-  const mediaTab = useLeft((t) => t.mediaTab);
-  const setMediaTab = useLeft((t) => t.setMediaTab);
+  const mediaTab = useProject((t) => t.leftMediaTab);
+  const setMediaTab = useProject((t) => t.leftSetMediaTab);
   return (
     <div className="tabs w-full flex-nowrap">
       {Object.entries(MediaTabs).map(([key, value]) => (

@@ -1,15 +1,13 @@
 "use client";
 
-import { useRef } from "react";
 import { Timeline } from "./Timeline/Timeline";
-import { PlayerRef } from "@remotion/player";
 import { HotKeys } from "../../../components/HotKeys";
 import { PlayerDiv } from "./Player/PlayerDiv";
-import { SidePanel } from "./Right/SidePanel";
+import { RightPanel } from "./Right/RightPanel";
 import { TimelineDiv } from "./Timeline/TimelineDiv";
 import { Project } from "../../../types";
 import Link from "next/link";
-import { ProjectProvider, useProject } from "../../../hooks/useStore";
+import { ProjectProvider, useProject } from "../../../hooks/useProject";
 import { LeftBar } from "./Left/LeftBar";
 import { LeftPanel } from "./Left/LeftPanel";
 import { RightBar } from "./Right/RightBar";
@@ -22,7 +20,6 @@ export function ClientPageWrapper({ project }: { project: Project }) {
   );
 }
 export function ClientPage() {
-  const playerRef = useRef<PlayerRef>(null);
   const id = useProject((t) => t.project.id);
   return (
     <div className="bg-base-300 w-screen h-screen overflow-hidden">
@@ -37,16 +34,16 @@ export function ClientPage() {
         <div className="flex flex-col w-full">
           <div className="flex h-full">
             <LeftPanel />
-            <PlayerDiv playerRef={playerRef} />
-            <SidePanel />
+            <PlayerDiv />
+            <RightPanel />
           </div>
           <TimelineDiv>
-            <Timeline playerRef={playerRef} />
+            <Timeline />
           </TimelineDiv>
         </div>
         <RightBar />
       </div>
-      <HotKeys playerRef={playerRef} />
+      <HotKeys />
     </div>
   );
 }

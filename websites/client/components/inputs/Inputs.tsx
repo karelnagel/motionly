@@ -1,7 +1,7 @@
 import { inputTypes } from "@motionly/base";
 import { Input } from ".";
 import { useComponent } from "../../hooks/useComponent";
-import { useProject } from "../../hooks/useStore";
+import { useProject } from "../../hooks/useProject";
 
 export type UserInput = {
   prop: string;
