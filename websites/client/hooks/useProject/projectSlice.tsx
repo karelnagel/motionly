@@ -121,6 +121,7 @@ export const projectSlice = (
         parent.childIds.push(newComp.id);
         newComp.parentId = parentId;
         state.project.template.components[newComp.id] = newComp;
+        state.selected = newComp.id;
       }),
 
     changeParent: (newParentId?: string) => {

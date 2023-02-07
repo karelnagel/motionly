@@ -35,16 +35,16 @@ export const LeftTabs = {
     Icon: IoShapesSharp,
     Component: () => import("./Elements"),
   },
-  text: {
-    name: "Text",
-    Icon: IoText,
-    Component: () => import("./Text"),
-  },
-  data: {
-    name: "Data",
-    Icon: AiOutlineDatabase,
-    Component: () => import("./Data"),
-  },
+  // text: {
+  //   name: "Text",
+  //   Icon: IoText,
+  //   Component: () => import("./Text"),
+  // },
+  // data: {
+  //   name: "Data",
+  //   Icon: AiOutlineDatabase,
+  //   Component: () => import("./Data"),
+  // },
   code: {
     name: "Code",
     Icon: IoIosCode,
