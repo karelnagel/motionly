@@ -23,7 +23,7 @@ export interface ExportSlice {
   getProgress: () => Promise<void>;
 }
 
-export const exportSlice = (set: SetType, get: GetType) => {
+export const exportSlice = (set: SetType, get: GetType): ExportSlice => {
   return {
     renders: {},
     allRenders: [],
