@@ -5,7 +5,7 @@ import { Timeline } from "./Timeline/Timeline";
 import { PlayerRef } from "@remotion/player";
 import { HotKeys } from "../../../components/HotKeys";
 import { PlayerDiv } from "./Player/PlayerDiv";
-import { SidePanel } from "./Right/SidePanel";
+import { SidePanel } from "./Right/RightPanel";
 import { TimelineDiv } from "./Timeline/TimelineDiv";
 import { Project } from "../../../types";
 import Link from "next/link";

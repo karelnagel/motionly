@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Resize } from "../../../../components/Resize";
-import { useLocalStorage } from "../../../../hooks/useLocalStorage";
+import { useRight } from "../../../../hooks/useRight";
 
 export const SidePanelDiv = ({
   show,
@@ -9,19 +9,20 @@ export const SidePanelDiv = ({
   show: boolean;
   children: ReactNode;
 }) => {
-  const [sideWidth, setSideWidth] = useLocalStorage("side", 200);
+  const width = useRight((t) => t.width);
+  const setWidth = useRight((t) => t.setWidth);
   return (
     <div className="h-full ">
       <div
         style={{
-          width: show ? sideWidth : 0,
+          width: show ? width : 0,
         }}
         className="h-full bg-base-300 relative"
       >
         <div className="absolute top-0 left-0 flex h-full p-3 w-full">
           {children}
         </div>
-        <Resize value={sideWidth} setValue={setSideWidth} />
+        <Resize value={width} setValue={setWidth} />
       </div>
     </div>
   );

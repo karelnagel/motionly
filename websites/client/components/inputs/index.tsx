@@ -2,7 +2,6 @@
 
 import { Color, inputTypes, TextStyle } from "@motionly/base";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
-import { EditTextStyle } from "../../app/edit/[id]/Right/Panels/EditCompPanel/EditTextStyle";
 import { Media } from "../Media";
 import { useProject } from "../../hooks/useStore";
 import { ColorInput } from "./color";
@@ -198,12 +197,12 @@ export function Input<T extends any>({
               onChange={(value) => onChange(value as T)}
             />
           )}
-          {type === "style" && (
+          {/* {type === "style" && (
             <EditTextStyle
               style={value as TextStyle}
               setStyle={(textStyle) => onChange(textStyle as T)}
             />
-          )}
+          )} */}
           {(type === "gif" || type === "image" || type === "video") && (
             <Media
               type={type}

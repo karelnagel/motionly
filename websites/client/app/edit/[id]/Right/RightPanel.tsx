@@ -1,4 +1,4 @@
-import { SidePanelDiv } from "./SidePanelDiv";
+import { SidePanelDiv } from "./RightDiv";
 import { useProject } from "../../../../hooks/useStore";
 
 export const SidePanel = () => {

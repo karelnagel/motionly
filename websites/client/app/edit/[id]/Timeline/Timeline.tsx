@@ -2,8 +2,8 @@ import { PlayerRef } from "@remotion/player";
 import { RefObject } from "react";
 import { useProject } from "../../../../hooks/useStore";
 import { useCurrentPlayerFrame } from "../../../../hooks/useCurrentPlayerFrame";
-import { useLocalStorage } from "../../../../hooks/useLocalStorage";
 import { TimelineComp } from "./TimelineComp";
+import { useTimeline } from "../../../../hooks/useTimeline";
 
 export const Timeline = ({
   playerRef,
@@ -11,7 +11,8 @@ export const Timeline = ({
   playerRef: RefObject<PlayerRef>;
 }) => {
   const template = useProject((t) => t.project.template);
-  const [width, setWidth] = useLocalStorage("timelineWidth", 100);
+  const width = useTimeline((t) => t.width);
+  const setWidth = useTimeline((t) => t.setWidth);
   return (
     <div className="overflow-x-auto h-full relative">
       <div
@@ -36,10 +37,9 @@ export const Timeline = ({
         </div>
       </div>
       <div className="absolute top-0 right-0 leading-none text-xl text-primary-content flex flex-col items-center bg-base-300 space-y-1 p-1 rounded-bl-lg">
-        <button onClick={() => setWidth((w) => w * 1.1)}>+</button>
+        <button onClick={() => setWidth(width * 1.1)}>+</button>
         <button
-          disabled={width / 1.1 < 100}
-          onClick={() => setWidth((w) => (w / 1.1 > 100 ? w / 1.1 : 100))}
+          onClick={() => setWidth(width / 1.1)}
         >
           -
         </button>
