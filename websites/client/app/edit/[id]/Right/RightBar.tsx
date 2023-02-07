@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { IoIosHelp } from "react-icons/io";
-import { RightTabs, useRight } from "../../../../hooks/useProject/rightSlice";
+import { useProject } from "../../../../hooks/useProject";
+import { RightTabs } from "../../../../hooks/useProject/rightSlice";
 
 export const RightBar = () => {
-  const setTab = useRight((s) => s.setTab);
-  const tab = useRight((s) => s.tab);
+  const setTab = useProject((s) => s.right.setTab);
+  const tab = useProject((s) => s.right.tab);
 
   return (
     <div className="h-full shrink-0 flex flex-col justify-between items-center bg-base-100 border-r border-base-300">

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Resize } from "../../../../components/Resize";
-import { useRight } from "../../../../hooks/useProject/rightSlice";
+import { useProject } from "../../../../hooks/useProject";
 
 export const RightDiv = ({
   show,
@@ -9,8 +9,8 @@ export const RightDiv = ({
   show: boolean;
   children: ReactNode;
 }) => {
-  const width = useRight((t) => t.width);
-  const setWidth = useRight((t) => t.setWidth);
+  const width = useProject((t) => t.right.width);
+  const setWidth = useProject((t) => t.right.setWidth);
   return (
     <div className="h-full ">
       <div

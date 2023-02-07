@@ -10,6 +10,7 @@ import { persist } from "zustand/middleware";
 import { exportSlice, ExportSlice } from "./exportSlice";
 import { ProjectSlice, projectSlice } from "./projectSlice";
 import { leftSlice, LeftSlice } from "./leftSlice";
+import { rightSlice, RightSlice } from "./rightSlice";
 
 export type SetInput =
   | ProjectStore
@@ -22,7 +23,8 @@ export type SetType = (
 ) => void;
 export type GetType = () => ProjectStore;
 
-export type ProjectStore = ProjectSlice & ExportSlice & { left: LeftSlice };
+export type ProjectStore = ProjectSlice &
+  ExportSlice & { left: LeftSlice } & { right: RightSlice };
 
 type ProjectContext = ReturnType<typeof createProjectStore>;
 export const ProjectContext = createContext<ProjectContext | null>(null);
@@ -59,7 +61,8 @@ export const createProjectStore = (project: Project) => {
     persist(
       immer<ProjectStore>((set, get) => {
         return {
-          left:leftSlice(set, get),
+          left: leftSlice(set, get),
+          right: rightSlice(set, get),
           ...projectSlice(set, get, project),
           ...exportSlice(set, get),
         };
