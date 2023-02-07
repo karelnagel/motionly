@@ -77,7 +77,7 @@ export const Help = () => {
                 className="formbox w-full h-[270px]"
                 rows={5}
               />
-              <Button submit text="Submit" className="p-3 pl-6" />
+              <Button submit text="Submit" className="p-3 pl-6 bg-opacity-60 bg-accent hover:bg-opacity-70" />
             </form>
             <div className="h-6 mt-2">
             {formState === "sent" && (

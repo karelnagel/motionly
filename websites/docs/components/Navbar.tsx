@@ -51,7 +51,7 @@ export const Navbar = () => {
           <Link href="/#contact">
             <Button
               text="CONTACT US"
-              className="text-[17px] font-normal p-1 pl-4 whitespace-nowrap"
+              className="text-[17px] font-normal p-1 pl-4 whitespace-nowrap bg-secondary"
             />
           </Link>
         </div>

@@ -11,6 +11,10 @@ module.exports = {
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"]
       },
+      colors: {
+        "list-title": "#4B5563",
+        "list-subtitle": "#8f8f8f",
+      },
       animation: {
         "slide-from-right-100": "slide-from-right 0.1s ease-in-out",
         "slide-from-right-200": "slide-from-right 0.2s ease-in-out",
