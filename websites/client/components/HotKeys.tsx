@@ -11,8 +11,8 @@ export function HotKeys() {
   const deleteComp = useProject((t) => t.deleteComp);
   const addComp = useProject((t) => t.addComp);
   const fps = useProject((t) => t.project.template.fps);
-  const playerRef = useProject((t) => t.player.playerRef);
-  const frame = useProject((t) => t.player.frame);
+  const playerRef = useProject((t) => t.playerRef);
+  const frame = useProject((t) => t.playerFrame);
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
       const isInput =

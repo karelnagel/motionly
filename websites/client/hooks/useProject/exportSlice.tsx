@@ -56,7 +56,7 @@ export const exportSlice = (set: SetType, get: GetType): ExportSlice => {
       set({ status: "rendering" });
       const res = await motionlyRenderStill({
         ...template,
-        frame: get().player.frame,
+        frame: get().playerFrame,
       });
       set((s) => {
         if (!res) {

@@ -6,7 +6,7 @@ import { PlayerControls } from "./PlayerControls";
 
 export const PlayerDiv = () => {
   const playerDivRef = useRef<HTMLDivElement>(null);
-  const setScale = useProject((t) => t.player.setScale);
+  const setScale = useProject((t) => t.playerSetScale);
   const template = useProject((t) => t.project.template);
   const setSelected = useProject((t) => t.setSelected);
   const getScale = () => {

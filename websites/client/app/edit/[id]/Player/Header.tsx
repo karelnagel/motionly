@@ -9,7 +9,7 @@ export const Header = () => {
   const redo = useProject((s) => s.redo);
   const future = useProject((s) => s.future);
   const past = useProject((s) => s.past);
-  const setTab = useProject((s) => s.left.setTab);
+  const setTab = useProject((s) => s.leftSetTab);
 
   return (
     <div className="shrink-0 flex justify-between items-center p-3">

@@ -9,8 +9,8 @@ export const RightDiv = ({
   show: boolean;
   children: ReactNode;
 }) => {
-  const width = useProject((t) => t.right.width);
-  const setWidth = useProject((t) => t.right.setWidth);
+  const width = useProject((t) => t.rightWidth);
+  const setWidth = useProject((t) => t.rightSetWidth);
   return (
     <div className="h-full ">
       <div

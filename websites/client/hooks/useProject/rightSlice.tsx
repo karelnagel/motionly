@@ -16,25 +16,25 @@ export const RightTabs = {
 export type RightTabs = keyof typeof RightTabs;
 
 export interface RightSlice {
-  tab?: RightTabs;
-  setTab: (tab?: RightTabs) => void;
-  width: number;
-  setWidth: (width: number) => void;
+  rightTab?: RightTabs;
+  rightSetTab: (tab?: RightTabs) => void;
+  rightWidth: number;
+  rightSetWidth: (width: number) => void;
 }
 
 const minWidth = 200;
 const maxWidth = 400;
 export const rightSlice = (set: SetType, get: GetType) :RightSlice=> {
   return {
-    tab: "template",
-    width: 250,
-    setTab: (tab?: RightTabs) =>
+    rightTab: "template",
+    rightWidth: 250,
+    rightSetTab: (tab?: RightTabs) =>
       set((s) =>  {
-        s.right.tab = s.right.tab === tab ? undefined : tab;
+        s.rightTab = s.rightTab === tab ? undefined : tab;
       }),
-    setWidth: (width: number) =>
+    rightSetWidth: (width: number) =>
       set((s) => {
-        s.right.width = Math.max(Math.min(width, maxWidth), minWidth);
+        s.rightWidth = Math.max(Math.min(width, maxWidth), minWidth);
       }),
   };
 };

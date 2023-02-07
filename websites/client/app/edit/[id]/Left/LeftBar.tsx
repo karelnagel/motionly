@@ -5,8 +5,8 @@ import { useProject } from "../../../../hooks/useProject";
 import { LeftTabs } from "./Tabs";
 
 export const LeftBar = () => {
-  const setTab = useProject((s) => s.left.setTab);
-  const tab = useProject((s) => s.left.tab);
+  const setTab = useProject((s) => s.leftSetTab);
+  const tab = useProject((s) => s.leftTab);
 
   return (
     <div className="h-full shrink-0 flex flex-col justify-between items-center bg-base-100 border-r border-base-300">

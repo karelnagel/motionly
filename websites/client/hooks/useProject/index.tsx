@@ -26,9 +26,11 @@ export type SetType = (
 export type GetType = () => ProjectStore;
 
 export type ProjectStore = ProjectSlice &
-  ExportSlice & { left: LeftSlice } & { right: RightSlice } & {
-    timeline: TimelineSlice;
-  } & { player: PlayerSlice };
+  ExportSlice &
+  LeftSlice &
+  RightSlice &
+  TimelineSlice &
+  PlayerSlice;
 
 type ProjectContext = ReturnType<typeof createProjectStore>;
 export const ProjectContext = createContext<ProjectContext | null>(null);
@@ -65,17 +67,28 @@ export const createProjectStore = (project: Project) => {
     persist(
       immer<ProjectStore>((set, get) => {
         return {
-          timeline: timelineSlice(set),
-          player: playerSlice(set),
-          left: leftSlice(set, get),
-          right: rightSlice(set, get),
+          ...timelineSlice(set),
+          ...playerSlice(set),
+          ...leftSlice(set, get),
+          ...rightSlice(set, get),
           ...projectSlice(set, get, project),
           ...exportSlice(set, get),
         };
       }),
       {
         name: project.id || "",
-        
+        partialize: (state) =>
+          Object.fromEntries(
+            Object.entries(state).filter(
+              ([key]) =>
+                ![
+                  "playerRef",
+                  "lastProject",
+                  "historyTimeout",
+                  "saveTimeout",
+                ].includes(key)
+            )
+          ),
       }
     )
   );

@@ -4,7 +4,7 @@ import { LeftTabs } from "./Tabs";
 import { useProject } from "../../../../hooks/useProject";
 
 export const LeftPanel = () => {
-  const tab = useProject((t) => t.left.tab);
+  const tab = useProject((t) => t.leftTab);
   if (!tab) return null;
   const Component = lazy(LeftTabs[tab].Component);
   return (
@@ -23,8 +23,8 @@ export const LeftDiv = ({
   show: boolean;
   children: ReactNode;
 }) => {
-  const width = useProject((t) => t.left.width);
-  const setWidth = useProject((t) => t.left.setWidth);
+  const width = useProject((t) => t.leftWidth);
+  const setWidth = useProject((t) => t.leftSetWidth);
   return (
     <div className="h-full">
       <div

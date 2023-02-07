@@ -2,34 +2,34 @@ import { PlayerRef } from "@remotion/player";
 import { SetType } from ".";
 
 export interface PlayerSlice {
-  scale: number;
-  setScale: (scale: number) => void;
-  frame: number;
+  playerScale: number;
+  playerSetScale: (scale: number) => void;
+  playerFrame: number;
   playerRef?: PlayerRef;
-  setPlayerRef: (ref?: PlayerRef) => void;
-  setFrame: (frame: number) => void;
-  isPlaying: boolean;
-  setIsPlaying: (isPlaying: boolean) => void;
+  playerSetPlayerRef: (ref?: PlayerRef) => void;
+  playerSetFrame: (frame: number) => void;
+  playerIsPlaying: boolean;
+  playerSetIsPlaying: (isPlaying: boolean) => void;
 }
 
 export const playerSlice = (set: SetType): PlayerSlice => ({
-  frame: 0,
-  scale: 0.2,
-  isPlaying: false,
-  setIsPlaying: (isPlaying) =>
+  playerFrame: 0,
+  playerScale: 0.2,
+  playerIsPlaying: false,
+  playerSetIsPlaying: (isPlaying) =>
     set((s) => {
-      s.player.isPlaying = isPlaying;
+      s.playerIsPlaying = isPlaying;
     }),
-  setScale: (scale) =>
+  playerSetScale: (scale) =>
     set((s) => {
-      s.player.scale = scale;
+      s.playerScale = scale;
     }),
-  setPlayerRef: (playerRef) =>
+  playerSetPlayerRef: (playerRef) =>
     set((s) => {
-      s.player.playerRef = playerRef;
+      s.playerRef = playerRef;
     }),
-  setFrame: (frame) =>
+  playerSetFrame: (frame) =>
     set((s) => {
-      s.player.frame = frame;
+      s.playerFrame = frame;
     }),
 });

@@ -13,8 +13,8 @@ export const Player = () => {
   const setComp = useProject((t) => t.setComp);
   const lockAspectRatio = useShiftKey();
   const divRef = useRef<HTMLDivElement>(null);
-  const scale = useProject((t) => t.player.scale);
-  const setPlayerRef = useProject((t) => t.player.setPlayerRef);
+  const scale = useProject((t) => t.playerScale);
+  const setPlayerRef = useProject((t) => t.playerSetPlayerRef);
   return (
     <div
       style={{ width: template.width * scale, height: template.height * scale }}

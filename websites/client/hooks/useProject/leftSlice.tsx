@@ -4,45 +4,45 @@ import { StockResult } from "../../lib/sources";
 import { GetType, SetType } from ".";
 
 export interface LeftSlice {
-  tab?: LeftTabs;
-  mediaTab: MediaTabs;
-  setMediaTab: (tab: MediaTabs) => void;
-  setTab: (tab?: LeftTabs) => void;
-  width: number;
-  setWidth: (width: number) => void;
-  query: string;
-  setQuery: (query: string) => void;
-  media?: StockResult[];
-  setMedia: (media?: StockResult[]) => void;
+  leftTab?: LeftTabs;
+  leftMediaTab: MediaTabs;
+  leftSetMediaTab: (tab: MediaTabs) => void;
+  leftSetTab: (tab?: LeftTabs) => void;
+  leftWidth: number;
+  leftSetWidth: (width: number) => void;
+  leftQuery: string;
+  leftSetQuery: (query: string) => void;
+  leftMedia?: StockResult[];
+  leftSetMedia: (media?: StockResult[]) => void;
 }
 
 const minWidth = 270;
 const maxWidth = 500;
 export const leftSlice = (set: SetType, get: GetType): LeftSlice => {
   return {
-    tab: "template",
-    width: 300,
-    mediaTab: "video",
-    query: "",
-    setMediaTab: (tab: MediaTabs) =>
+    leftTab: "template",
+    leftWidth: 300,
+    leftMediaTab: "video",
+    leftQuery: "",
+    leftSetMediaTab: (tab: MediaTabs) =>
       set((s) => {
-        s.left.mediaTab = tab;
+        s.leftMediaTab = tab;
       }),
-    setTab: (tab?: LeftTabs) =>
+    leftSetTab: (tab?: LeftTabs) =>
       set((s) => {
-        s.left.tab = s.left.tab === tab ? undefined : tab;
+        s.leftTab = s.leftTab === tab ? undefined : tab;
       }),
-    setWidth: (width: number) =>
+    leftSetWidth: (width: number) =>
       set((s) => {
-        s.left.width = Math.max(Math.min(width, maxWidth), minWidth);
+        s.leftWidth = Math.max(Math.min(width, maxWidth), minWidth);
       }),
-    setQuery: (query: string) =>
+    leftSetQuery: (query: string) =>
       set((s) => {
-        s.left.query = query;
+        s.leftQuery = query;
       }),
-    setMedia: (media?: StockResult[]) =>
+    leftSetMedia: (media?: StockResult[]) =>
       set((s) => {
-        s.left.media = media;
+        s.leftMedia = media;
       }),
   };
 };

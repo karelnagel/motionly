@@ -4,8 +4,8 @@ import { useProject } from "../../../../hooks/useProject";
 import { RightTabs } from "../../../../hooks/useProject/rightSlice";
 
 export const RightBar = () => {
-  const setTab = useProject((s) => s.right.setTab);
-  const tab = useProject((s) => s.right.tab);
+  const setTab = useProject((s) => s.rightSetTab);
+  const tab = useProject((s) => s.rightTab);
 
   return (
     <div className="h-full shrink-0 flex flex-col justify-between items-center bg-base-100 border-r border-base-300">

@@ -3,8 +3,8 @@ import { TimelineComp } from "./TimelineComp";
 
 export const Timeline = () => {
   const template = useProject((t) => t.project.template);
-  const width = useProject((t) => t.timeline.width);
-  const setWidth = useProject((t) => t.timeline.setWidth);
+  const width = useProject((t) => t.timelineWidth);
+  const setWidth = useProject((t) => t.timelineSetWidth);
   return (
     <div className="overflow-x-auto h-full relative">
       <div
@@ -39,8 +39,8 @@ export const TimelineBar = ({
   duration: number;
   fps: number;
 }) => {
-  const frame = useProject((s) => s.player.frame);
-  const playerRef = useProject((s) => s.player.playerRef);
+  const frame = useProject((s) => s.playerFrame);
+  const playerRef = useProject((s) => s.playerRef);
   return (
     <div className="h-14 w-full relative p-3 pr-7">
       <div className="relative">

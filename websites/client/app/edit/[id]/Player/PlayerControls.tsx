@@ -11,9 +11,9 @@ import { useProject } from "../../../../hooks/useProject";
 
 export const PlayerControls = () => {
   const fps = useProject((t) => t.project.template.fps);
-  const playerRef = useProject((t) => t.player.playerRef);
-  const isPlaying = useProject((t) => t.player.isPlaying);
-  const frame = useProject((t) => t.player.frame);
+  const playerRef = useProject((t) => t.playerRef);
+  const isPlaying = useProject((t) => t.playerIsPlaying);
+  const frame = useProject((t) => t.playerFrame);
   const className =
     "cursor-pointer w-[45px] aspect-square p-1 font-bold hover:text-primary hover:shadow-md hover:scale-110 duration-150 rounded-full";
   return (

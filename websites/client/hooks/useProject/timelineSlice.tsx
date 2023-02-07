@@ -1,10 +1,10 @@
 import { SetType } from ".";
 
 export interface TimelineSlice {
-  height: number;
-  setHeight: (height: number) => void;
-  width: number;
-  setWidth: (width: number) => void;
+  timelineHeight: number;
+  timelineSetHeight: (height: number) => void;
+  timelineWidth: number;
+  timelineSetWidth: (width: number) => void;
 }
 
 const minH = 200;
@@ -14,15 +14,15 @@ const minW = 100;
 
 export const timelineSlice = (set: SetType): TimelineSlice => {
   return {
-    height: 200,
-    setHeight: (height: number) =>
+    timelineHeight: 200,
+    timelineSetHeight: (height: number) =>
       set((s) => {
-        s.timeline.height = Math.max(Math.min(height, maxH), minH);
+        s.timelineHeight = Math.max(Math.min(height, maxH), minH);
       }),
-    width: 100,
-    setWidth: (width: number) =>
+    timelineWidth: 100,
+    timelineSetWidth: (width: number) =>
       set((s) => {
-        s.timeline.width = Math.max(Math.min(width, maxW), minW);
+        s.timelineWidth = Math.max(Math.min(width, maxW), minW);
       }),
   };
 };

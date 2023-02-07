@@ -6,13 +6,13 @@ import { getRandomId } from "../../../../../helpers";
 import Link from "next/link";
 
 export default function Stock() {
-  const mediaTab = useProject((t) => t.left.mediaTab);
-  const setTab = useProject((t) => t.left.setTab);
+  const mediaTab = useProject((t) => t.leftMediaTab);
+  const setTab = useProject((t) => t.leftSetTab);
   const addComp = useProject((s) => s.addComp);
-  const media = useProject((s) => s.left.media);
-  const setMedia = useProject((s) => s.left.setMedia);
-  const query = useProject((s) => s.left.query);
-  const setQuery = useProject((s) => s.left.setQuery);
+  const media = useProject((s) => s.leftMedia);
+  const setMedia = useProject((s) => s.leftSetMedia);
+  const query = useProject((s) => s.leftQuery);
+  const setQuery = useProject((s) => s.leftSetQuery);
 
   useEffect(() => {
     getStock(mediaTab, query || undefined).then((res) =>

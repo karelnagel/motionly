@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useProject } from "./useProject";
 
 export const useCurrentPlayerFrame = () => {
-  const setFrame = useProject((s) => s.player.setFrame);
-  const ref = useProject((s) => s.player.playerRef);
-  const setIsPlaying = useProject((s) => s.player.setIsPlaying);
+  const setFrame = useProject((s) => s.playerSetFrame);
+  const ref = useProject((s) => s.playerRef);
+  const setIsPlaying = useProject((s) => s.playerSetIsPlaying);
 
   useEffect(() => {
     if (!ref) return;
