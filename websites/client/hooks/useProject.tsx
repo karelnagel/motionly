@@ -10,13 +10,14 @@ import { useRef } from "react";
 import { ReactNode } from "react";
 import { useContext } from "react";
 import { persist } from "zustand/middleware";
+import { renderSlice, RenderStore } from "./useRender";
 
 type SetType =
   | ProjectStore
   | Partial<ProjectStore>
   | ((state: WritableDraft<ProjectStore>) => void);
 
-interface ProjectStore {
+type ProjectStore = {
   project: Project;
   lastProject?: Project;
   past: Project[];
@@ -39,7 +40,7 @@ interface ProjectStore {
   set: (s: SetType) => void;
   historyTimeout?: ReturnType<typeof setTimeout>;
   saveTimeout?: ReturnType<typeof setTimeout>;
-}
+} & RenderStore;
 
 type ProjectContext = ReturnType<typeof createProjectStore>;
 export const ProjectContext = createContext<ProjectContext | null>(null);
@@ -210,6 +211,7 @@ export const createProjectStore = (project: Project) => {
 
           setSelected: (id?: string) => set({ selected: id }, "none"),
           setTab: (tab: Tabs) => set({ tab }, "none"),
+          ...renderSlice(setStore, get),
         };
       }),
       { name: project.id || "" }

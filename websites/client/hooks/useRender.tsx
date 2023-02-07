@@ -1,6 +1,3 @@
-import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
-import { persist } from "zustand/middleware";
 import { ProgressStatus, TemplateType } from "@motionly/base";
 import {
   GetProgressOutput,
@@ -8,6 +5,7 @@ import {
   renderStill as motionlyRenderStill,
   getProgress as motionlyGetProgress,
 } from "@motionly/renderer/dist/sdk";
+import { WritableDraft } from "immer/dist/internal";
 
 type Render = Partial<GetProgressOutput> & {
   id: string;
@@ -15,7 +13,7 @@ type Render = Partial<GetProgressOutput> & {
   type: "media" | "still";
 };
 
-interface RenderStore {
+export interface RenderStore {
   renders: { [id: string]: Render };
   allRenders: string[];
   renderId?: string;
@@ -25,72 +23,76 @@ interface RenderStore {
   getProgress: () => Promise<void>;
 }
 
-export const useRender = create(
-  persist(
-    immer<RenderStore>((set, get) => {
-      return {
-        renders: {},
-        allRenders: [],
-        renderMedia: async (template: TemplateType) => {
-          if (get().status === "rendering") return;
-          set({ status: "rendering" });
-          const res = await motionlyRenderMedia(template);
-          set((s) => {
-            if (!res) {
-              s.status = "error";
-              return;
-            }
-            s.renderId = res.renderId;
-            s.renders[res.renderId] = {
-              id: res.renderId,
-              type: "media",
-              startTime: new Date().getTime(),
-            };
-            s.allRenders.push(res.renderId);
-          });
-          const timeout = () =>
-            setTimeout(async () => {
-              await get().getProgress();
-              if (get().status === "rendering") timeout();
-            }, 2000);
-          timeout();
-        },
-        renderStill: async (template: TemplateType, frame: number = 0) => {
-          if (get().status === "rendering") return;
-          set({ status: "rendering" });
-          const res = await motionlyRenderStill({ ...template, frame });
-          set((s) => {
-            if (!res) {
-              s.status = "error";
-              return;
-            }
-            s.renderId = res.renderId;
-            s.status = "done";
-            s.renders[res.renderId] = {
-              id: res.renderId,
-              type: "still",
-              startTime: new Date().getTime(),
-              progress: 1,
-              ...res,
-            };
-            s.allRenders.push(res.renderId);
-          });
-        },
-        getProgress: async () => {
-          const { renderId } = get();
-          if (!renderId) return;
-          const res = await motionlyGetProgress({ renderId });
-          set((s) => {
-            if (!res) {
-              s.status = "error";
-              return;
-            }
-            s.status = res.status;
-            s.renders[renderId] = { ...s.renders[renderId], ...res };
-          });
-        },
-      };
-    }),
-    { name: "render" }
-  )
-);
+export const renderSlice = (
+  set: (
+    nextStateOrUpdater:
+      | RenderStore
+      | Partial<RenderStore>
+      | ((state: WritableDraft<RenderStore>) => void),
+    shouldReplace?: boolean | undefined
+  ) => void,
+  get: () => RenderStore
+) => {
+  return {
+    renders: {},
+    allRenders: [],
+    renderMedia: async (template: TemplateType) => {
+      if (get().status === "rendering") return;
+      set({ status: "rendering" });
+      const res = await motionlyRenderMedia(template);
+      set((s) => {
+        if (!res) {
+          s.status = "error";
+          return;
+        }
+        s.renderId = res.renderId;
+        s.renders[res.renderId] = {
+          id: res.renderId,
+          type: "media",
+          startTime: new Date().getTime(),
+        };
+        s.allRenders.push(res.renderId);
+      });
+      const timeout = () =>
+        setTimeout(async () => {
+          await get().getProgress();
+          if (get().status === "rendering") timeout();
+        }, 2000);
+      timeout();
+    },
+    renderStill: async (template: TemplateType, frame: number = 0) => {
+      if (get().status === "rendering") return;
+      set({ status: "rendering" });
+      const res = await motionlyRenderStill({ ...template, frame });
+      set((s) => {
+        if (!res) {
+          s.status = "error";
+          return;
+        }
+        s.renderId = res.renderId;
+        s.status = "done";
+        s.renders[res.renderId] = {
+          id: res.renderId,
+          type: "still",
+          startTime: new Date().getTime(),
+          progress: 1,
+          ...res,
+        };
+        s.allRenders.push(res.renderId);
+      });
+    },
+    getProgress: async () => {
+      const { renderId } = get();
+      if (!renderId) return;
+      const res = await motionlyGetProgress({ renderId });
+      set((s) => {
+        if (!res) {
+          s.status = "error";
+          return;
+        }
+        s.status = res.status;
+        s.renders[renderId] = { ...s.renders[renderId], ...res };
+      });
+    },
+  };
+};
