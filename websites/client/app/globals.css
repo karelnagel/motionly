@@ -75,3 +75,14 @@ body {
 .title {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary to-primary;
 }
+
+.label-text {
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.label {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}

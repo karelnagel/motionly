@@ -11,11 +11,17 @@ import { ProjectProvider, useProject } from "../../../hooks/useProject";
 import { LeftBar } from "./Left/LeftBar";
 import { LeftPanel } from "./Left/LeftPanel";
 import { RightBar } from "./Right/RightBar";
+import { useState } from "react";
+import { useEffect } from "react";
+import { Loading } from "../../../components/Loading";
 
 export function ClientPageWrapper({ project }: { project: Project }) {
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => setIsClient(true), []);
   return (
     <ProjectProvider project={project}>
-      <ClientPage />
+      {isClient && <ClientPage />}
+      {!isClient && <Loading />}
     </ProjectProvider>
   );
 }

@@ -25,11 +25,10 @@ export default function Code() {
   return (
     <div className="h-full">
       {error && <p className="text-error">Not a valid JSON!</p>}
-      <CodeEditor
-        language="json"
+      <textarea
         value={json}
         onChange={(e) => setJson(e.target.value)}
-        className="h-full !bg-base-200 rounded-lg "
+        className="h-full !bg-base-200 rounded-lg w-full"
         style={{
           fontSize: 14,
           fontFamily:

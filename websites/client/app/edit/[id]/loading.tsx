@@ -1,5 +1,5 @@
-import { Loading } from "../../../components/Loading";
+import { Loading as Indicator } from "../../../components/Loading";
 
-export default function Loadindg() {
-  return <Loading />;
+export default function Loading() {
+  return <Indicator />;
 }

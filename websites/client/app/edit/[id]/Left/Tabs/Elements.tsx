@@ -1,3 +1,5 @@
+import Image from "next/image";
+import { useState } from "react";
 import { getRandomId } from "../../../../../helpers";
 import { useProject } from "../../../../../hooks/useProject";
 import {
@@ -6,6 +8,7 @@ import {
   Element,
   getWidthAndHeight,
 } from "../../../../../videos/elements";
+import { components } from "../../Right/Tabs/components";
 
 export default function Elements() {
   return (
@@ -18,9 +21,16 @@ export default function Elements() {
 }
 
 const Section = (s: Section) => {
+  const value = components[s.title];
   return (
     <div className="flex flex-col space-y-2">
-      <p className="font-semibold">{s.title}</p>
+      <div className="flex space-x-2 items-center" style={{ color: `hsl(${value.hue}, 50%, 70%)` }}>
+        <value.Icon
+          className="text-xl"
+          
+        />
+        <p className="font-semibold">{value.name}</p>
+      </div>
       <div className="grid grid-cols-4 gap-3">
         {s.elements.map((e, i) => {
           return (
@@ -38,8 +48,11 @@ const Element = ({ element, file }: { element: Element; file: string }) => {
   const addComp = useProject((s) => s.addComp);
   const size = Math.max(templateHeight, templateWidth) * 0.2;
   const { height, width } = getWidthAndHeight(size, element.aspectRatio);
+  const [isHovering, setIsHovering] = useState(false);
   return (
     <div
+      onMouseOver={() => setIsHovering(true)}
+      onMouseOut={() => setIsHovering(false)}
       onClick={() =>
         addComp({
           ...element.props,
@@ -52,22 +65,32 @@ const Element = ({ element, file }: { element: Element; file: string }) => {
       }
       className="flex flex-col items-center cursor-pointer space-y-2"
     >
-      <video
-        src={`/elements/${file}.mp4`}
-        className="aspect-square w-full rounded-lg bg-white"
-        onLoadedData={(event) => (event.currentTarget.currentTime = 5)}
-        onMouseOver={(event) => {
-          event.currentTarget.currentTime = 0;
-          event.currentTarget.play();
-        }}
-        onMouseOut={(event) => {
-          event.currentTarget.currentTime = 5;
-          event.currentTarget.pause();
-        }}
-        muted
-        loop
-      />
-      <p className="leading-none text-sm">{element.title}</p>
+      {!isHovering && (
+        <Image
+          className="aspect-square w-full rounded-lg bg-white"
+          src={`/elements/${file}.jpg`}
+          height={300}
+          width={300}
+          alt={element.title}
+        />
+      )}
+      {isHovering && (
+        <video
+          disablePictureInPicture
+          src={`/elements/${file}.mp4`}
+          className="aspect-square w-full rounded-lg bg-white"
+          onMouseOver={(event) => {
+            event.currentTarget.currentTime = 0;
+            event.currentTarget.play();
+          }}
+          onMouseOut={(event) => {
+            event.currentTarget.pause();
+          }}
+          muted
+          loop
+        />
+      )}
+      <p className="leading-none text-sm text-center">{element.title}</p>
     </div>
   );
 };

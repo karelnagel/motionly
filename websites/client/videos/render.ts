@@ -1,5 +1,5 @@
 import { bundle } from "@remotion/bundler";
-import { renderMedia } from "@remotion/renderer";
+import { renderMedia, renderStill } from "@remotion/renderer";
 import path from "path";
 import { getCompositions } from "@remotion/renderer";
 import { TemplateType } from "@motionly/base";
@@ -15,7 +15,7 @@ export const render = async () => {
   for (const section of sections) {
     for (let i = 0; i < section.elements.length; i++) {
       const element = section.elements[i];
-      const outputLocation = `public/elements/${section.title}_${i}.mp4`;
+      const outputLocation = `public/elements/${section.title}_${i}`;
       console.log("Attempting to render:", outputLocation);
       const id = "id";
       const size = 300;
@@ -45,13 +45,22 @@ export const render = async () => {
       const comps = await getCompositions(bundleLocation, { inputProps });
       const composition = comps.find((c) => c.id === "Main");
       if (!composition) throw new Error("Composition not found");
+      await renderStill({
+        composition,
+        serveUrl: bundleLocation,
+        imageFormat: "jpeg",
+        quality: 100,
+        output: outputLocation + ".jpg",
+        frame: inputProps.duration * inputProps.fps - 1,
+        inputProps,
+      });
       await renderMedia({
         composition,
         serveUrl: bundleLocation,
         codec: "h264",
         imageFormat: "jpeg",
         quality: 80,
-        outputLocation,
+        outputLocation: outputLocation + ".mp4",
         inputProps,
       });
       console.log("Done!");

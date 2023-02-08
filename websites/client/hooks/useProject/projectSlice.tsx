@@ -17,7 +17,8 @@ export type ProjectSlice = {
     func: (state: WritableDraft<T & BaseProps>) => void
   ) => void;
   deleteComp: () => void;
-  addComp: (comp?: ComponentProps, parentId?: string) => void;
+  addComp: (comp: ComponentProps, parentId?: string) => void;
+  copyComp: (parentId?: string) => void;
   saveTime: Date | undefined;
   setSelected: (id?: string) => void;
   undo: () => void;
@@ -96,21 +97,29 @@ export const projectSlice = (
     deleteComp: () => {
       set((s) => {
         const comp = s.project.template.components[s.selected];
+        if (!comp) return;
+
         const parent = comp.parentId
           ? s.project.template.components[comp.parentId]
           : s.project.template;
         if (!parent || !("childIds" in parent)) return;
         parent.childIds = parent.childIds.filter((id) => id !== s.selected);
-        delete s.project.template.components[s.selected];
+
+        const delete_ = (id = s.selected) => {
+          const comp = s.project.template.components[id];
+          if ("childIds" in comp) comp.childIds.forEach(delete_);
+          delete s.project.template.components[id];
+        };
+        delete_();
+
         s.selected =
           s.project.template.components[s.project.template.childIds[0]]?.id;
       });
     },
 
-    addComp: (comp?: ComponentProps, parentId?: string) =>
+    addComp: (comp: ComponentProps, parentId?: string) =>
       set((state) => {
-        const newComp =
-          comp || state.project.template.components[state.selected];
+        const newComp = comp;
         if (!newComp) return;
         newComp.id = getRandomId();
 
@@ -123,6 +132,33 @@ export const projectSlice = (
         state.project.template.components[newComp.id] = newComp;
         state.selected = newComp.id;
       }),
+
+    copyComp: (parId?: string) => {
+      set((state) => {
+        const copy = (id = state.selected, parentId = parId) => {
+          const comp = state.project.template.components[id];
+          if (!comp) return;
+          const newId = getRandomId();
+          state.project.template.components[newId] = JSON.parse(
+            JSON.stringify({ ...comp, id: newId, parentId })
+          );
+          const newComp = state.project.template.components[newId];
+          if ("childIds" in newComp) {
+            newComp.childIds = newComp.childIds
+              .map((id) => copy(id, newComp.id))
+              .filter((x) => x) as string[];
+          }
+
+          const parent = newComp.parentId
+            ? state.project.template.components[newComp.parentId]
+            : state.project.template;
+          if (!parent || !("childIds" in parent)) return;
+          parent.childIds.push(newComp.id);
+          return newComp.id;
+        };
+        copy();
+      });
+    },
 
     changeParent: (newParentId?: string) => {
       set((state) => {
@@ -142,7 +178,6 @@ export const projectSlice = (
           : state.project.template;
         if (newParent && "childIds" in newParent)
           newParent.childIds.push(state.selected);
-
         comp.parentId = newParentId;
       });
     },

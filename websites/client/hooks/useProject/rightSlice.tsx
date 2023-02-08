@@ -1,19 +1,5 @@
-import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
-import { persist } from "zustand/middleware";
-import { IoIosSettings } from "react-icons/io";
 import { GetType, SetType } from ".";
-export const RightTabs = {
-  template: {
-    name: "Template",
-    Icon: IoIosSettings,
-  },
-  idk: {
-    name: "Idk",
-    Icon: IoIosSettings,
-  },
-};
-export type RightTabs = keyof typeof RightTabs;
+import { RightTabs } from "../../app/edit/[id]/Right/Tabs";
 
 export interface RightSlice {
   rightTab?: RightTabs;
@@ -24,12 +10,12 @@ export interface RightSlice {
 
 const minWidth = 200;
 const maxWidth = 400;
-export const rightSlice = (set: SetType, get: GetType) :RightSlice=> {
+export const rightSlice = (set: SetType, get: GetType): RightSlice => {
   return {
-    rightTab: "template",
+    rightTab: undefined,
     rightWidth: 250,
     rightSetTab: (tab?: RightTabs) =>
-      set((s) =>  {
+      set((s) => {
         s.rightTab = s.rightTab === tab ? undefined : tab;
       }),
     rightSetWidth: (width: number) =>
