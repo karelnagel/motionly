@@ -68,7 +68,7 @@ const Element = ({ element, file }: { element: Element; file: string }) => {
       {!isHovering && (
         <Image
           className="aspect-square w-full rounded-lg bg-white"
-          src={`/elements/${file}.jpg`}
+          src={`/elems/${file}.jpg`}
           height={300}
           width={300}
           alt={element.title}
@@ -77,7 +77,7 @@ const Element = ({ element, file }: { element: Element; file: string }) => {
       {isHovering && (
         <video
           disablePictureInPicture
-          src={`/elements/${file}.mp4`}
+          src={`/elems/${file}.mp4`}
           className="aspect-square w-full rounded-lg bg-white"
           onMouseOver={(event) => {
             event.currentTarget.currentTime = 0;

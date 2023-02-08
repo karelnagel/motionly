@@ -15,7 +15,7 @@ export const render = async () => {
   for (const section of sections) {
     for (let i = 0; i < section.elements.length; i++) {
       const element = section.elements[i];
-      const outputLocation = `public/elements/${section.title}_${i}`;
+      const outputLocation = `public/elems/${section.title}_${i}`;
       console.log("Attempting to render:", outputLocation);
       const id = "id";
       const size = 300;
