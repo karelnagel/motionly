@@ -1,10 +1,10 @@
 import { MockupProps, MockupTypes } from "@motionly/base";
-import { IoIosSettings } from "react-icons/io";
+import { IoIosPhonePortrait } from "react-icons/io";
 import { Component } from ".";
 
 export const mockup: Component<MockupProps> = {
   name: "Mockup",
-  Icon: IoIosSettings,
+  Icon: IoIosPhonePortrait,
   hue: 300,
   inputs: [
     {

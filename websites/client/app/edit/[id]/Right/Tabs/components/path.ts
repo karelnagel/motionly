@@ -1,10 +1,10 @@
 import { PathProps } from "@motionly/base";
-import { IoIosSettings } from "react-icons/io";
+import { IoIosBrush } from "react-icons/io";
 import { Component } from ".";
 
 export const path: Component<PathProps> = {
   name: "Path",
-  Icon: IoIosSettings,
+  Icon: IoIosBrush,
   hue: 330,
   inputs: [
     {

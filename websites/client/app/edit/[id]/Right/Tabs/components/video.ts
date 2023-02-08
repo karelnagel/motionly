@@ -1,10 +1,10 @@
 import { ObjectFit, VideoProps } from "@motionly/base";
-import { IoIosSettings } from "react-icons/io";
 import { Component } from ".";
+import { MdVideoLibrary } from "react-icons/md";
 
 export const video: Component<VideoProps> = {
   name: "Video",
-  Icon: IoIosSettings,
+  Icon: MdVideoLibrary,
   hue: 134,
   inputs: [
     {

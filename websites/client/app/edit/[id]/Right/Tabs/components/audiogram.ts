@@ -1,10 +1,10 @@
 import { AudiogramPosition, AudiogramProps } from "@motionly/base";
-import { IoIosSettings } from "react-icons/io";
 import { Component } from ".";
+import { BsSoundwave } from "react-icons/bs";
 
 export const audiogram: Component<AudiogramProps> = {
   name: "Audiogram",
-  Icon: IoIosSettings,
+  Icon: BsSoundwave,
   hue: 100,
   inputs: [
     {

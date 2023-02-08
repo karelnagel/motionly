@@ -1,10 +1,10 @@
 import { ProgressbarProps, ProgressbarTypes } from "@motionly/base";
-import { IoIosSettings } from "react-icons/io";
+import { IoIosTimer } from "react-icons/io";
 import { Component } from ".";
 
 export const progressbar: Component<ProgressbarProps> = {
   name: "Progressbar",
-  Icon: IoIosSettings,
+  Icon: IoIosTimer,
   hue: 350,
   inputs: [
     {

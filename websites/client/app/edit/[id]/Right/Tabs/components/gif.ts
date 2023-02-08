@@ -1,10 +1,10 @@
 import { GifProps, ObjectFit } from "@motionly/base";
-import { IoIosSettings } from "react-icons/io";
 import { Component } from ".";
+import { MdGif } from "react-icons/md";
 
 export const gif: Component<GifProps> = {
   name: "GIF",
-  Icon: IoIosSettings,
+  Icon: MdGif,
   hue: 180,
   inputs: [
     {

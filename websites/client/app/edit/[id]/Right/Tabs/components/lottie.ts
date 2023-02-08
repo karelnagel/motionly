@@ -1,11 +1,10 @@
 import { LottieProps } from "@motionly/base";
-import { IoIosSettings } from "react-icons/io";
 import { Component } from ".";
-
+import { MdOutlineMotionPhotosOn } from "react-icons/md";
 
 export const lottie: Component<LottieProps> = {
   name: "Lottie",
-  Icon: IoIosSettings,
+  Icon: MdOutlineMotionPhotosOn,
   hue: 240,
   inputs: [
     {

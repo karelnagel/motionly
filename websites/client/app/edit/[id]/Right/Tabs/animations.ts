@@ -1,9 +1,9 @@
 import { ComponentProps } from "@motionly/base";
-import { IoIosSettings } from "react-icons/io";
 import { Tab } from ".";
+import { MdAnimation } from "react-icons/md";
 
 export const animations: Tab<ComponentProps> = {
   name: "Animations",
-  Icon: IoIosSettings,
+  Icon: MdAnimation,
   inputs: [],
 };

@@ -8,6 +8,7 @@ import {
   Element,
   getWidthAndHeight,
 } from "../../../../../videos/elements";
+import { components } from "../../Right/Tabs/components";
 
 export default function Elements() {
   return (
@@ -20,9 +21,16 @@ export default function Elements() {
 }
 
 const Section = (s: Section) => {
+  const value = components[s.title];
   return (
     <div className="flex flex-col space-y-2">
-      <p className="font-semibold">{s.title}</p>
+      <div className="flex space-x-2 items-center" style={{ color: `hsl(${value.hue}, 50%, 70%)` }}>
+        <value.Icon
+          className="text-xl"
+          
+        />
+        <p className="font-semibold">{value.name}</p>
+      </div>
       <div className="grid grid-cols-4 gap-3">
         {s.elements.map((e, i) => {
           return (
@@ -82,7 +90,7 @@ const Element = ({ element, file }: { element: Element; file: string }) => {
           loop
         />
       )}
-      <p className="leading-none text-sm">{element.title}</p>
+      <p className="leading-none text-sm text-center">{element.title}</p>
     </div>
   );
 };

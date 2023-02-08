@@ -2,12 +2,12 @@ import {
   TranscriptionAnimationTypes,
   TranscriptionProps,
 } from "@motionly/base";
-import { IoIosSettings } from "react-icons/io";
 import { Component } from ".";
+import { MdSubtitles } from "react-icons/md";
 
 export const transcription: Component<TranscriptionProps> = {
   name: "Transcription",
-  Icon: IoIosSettings,
+  Icon: MdSubtitles,
   hue: 99,
   inputs: [
     {

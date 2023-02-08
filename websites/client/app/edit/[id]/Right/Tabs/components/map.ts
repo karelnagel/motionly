@@ -1,10 +1,10 @@
 import { MapProps } from "@motionly/base";
-import { IoIosSettings } from "react-icons/io";
+import { IoIosMap } from "react-icons/io";
 import { Component } from ".";
 
 export const map: Component<MapProps> = {
   name: "Map",
-  Icon: IoIosSettings,
+  Icon: IoIosMap,
   hue: 270,
   inputs: [
     {

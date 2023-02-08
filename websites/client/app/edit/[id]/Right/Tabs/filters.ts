@@ -1,9 +1,9 @@
 import { ComponentProps } from "@motionly/base";
-import { IoIosSettings } from "react-icons/io";
 import { Tab } from ".";
+import { IoIosColorFilter } from "react-icons/io";
 
 export const filters: Tab<ComponentProps> = {
   name: "Filters",
-  Icon: IoIosSettings,
+  Icon: IoIosColorFilter,
   inputs: [],
 };

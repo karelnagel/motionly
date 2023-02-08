@@ -62,8 +62,10 @@ export const TimelineComp = ({
           </div> */}
 
           <div className="whitespace-nowrap overflow-hidden text-ellipsis w-full flex items-center">
-            <componentProps.Icon className="inline-block mr-2" />
-            <p className="">{componentProps.name}</p>
+            <componentProps.Icon className="inline-block mr-2 shrink-0" />
+            <p className="">
+              {"text" in comp ? comp.text : componentProps.name}
+            </p>
           </div>
 
           <div className="text-xl flex space-x-2 leading-none items-center h-full top-0">

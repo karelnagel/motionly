@@ -3,6 +3,7 @@ import {
   defaultPathProps,
   defaultTranscriptionProps,
 } from "@motionly/components";
+import { components } from "../app/edit/[id]/Right/Tabs/components";
 
 export type Element = {
   title: string;
@@ -10,7 +11,7 @@ export type Element = {
   aspectRatio?: number;
 };
 export type Section = {
-  title: string;
+  title: keyof typeof components;
   elements: Element[];
 };
 export const getWidthAndHeight = (max: number, aspectRatio?: number) => {
@@ -33,7 +34,7 @@ export const getWidthAndHeight = (max: number, aspectRatio?: number) => {
 
 export const sections: Section[] = [
   {
-    title: "Shapes",
+    title: "shape",
     elements: [
       {
         title: "Rectangle",
@@ -112,7 +113,7 @@ export const sections: Section[] = [
     ],
   },
   {
-    title: "Text",
+    title: "text",
     elements: [
       {
         title: "Usual",
@@ -182,7 +183,7 @@ export const sections: Section[] = [
     ],
   },
   {
-    title: "Audiogram",
+    title: "audiogram",
     elements: [
       {
         title: "Center mirrored",
@@ -247,7 +248,7 @@ export const sections: Section[] = [
     ],
   },
   {
-    title: "Graph",
+    title: "graph",
     elements: [
       {
         title: "Line",
@@ -289,7 +290,7 @@ export const sections: Section[] = [
     ],
   },
   {
-    title: "Lottie",
+    title: "lottie",
     elements: [
       {
         title: "Subscribe",
@@ -382,7 +383,7 @@ export const sections: Section[] = [
     ],
   },
   {
-    title: "Map",
+    title: "map",
     elements: [
       {
         title: "Eiffel tower",
@@ -423,7 +424,7 @@ export const sections: Section[] = [
     ],
   },
   {
-    title: "Mockup",
+    title: "mockup",
     elements: [
       {
         title: "IPhone",
@@ -500,7 +501,7 @@ export const sections: Section[] = [
     ],
   },
   {
-    title: "Path",
+    title: "path",
     elements: [
       {
         title: "Apple logo (example)",
@@ -511,7 +512,7 @@ export const sections: Section[] = [
     ],
   },
   {
-    title: "Progress bar",
+    title: "progressbar",
     elements: [
       {
         title: "Line",
@@ -576,7 +577,7 @@ export const sections: Section[] = [
     ],
   },
   {
-    title: "QR Code",
+    title: "qrcode",
     elements: [
       {
         title: "Line",
@@ -588,7 +589,7 @@ export const sections: Section[] = [
     ],
   },
   {
-    title: "Confetti",
+    title: "confetti",
     elements: [
       {
         title: "Confetti",
@@ -602,7 +603,7 @@ export const sections: Section[] = [
     ],
   },
   {
-    title: "Div",
+    title: "div",
     elements: [
       {
         title: "Div",
@@ -614,7 +615,7 @@ export const sections: Section[] = [
     ],
   },
   {
-    title: "Transcription",
+    title: "transcription",
     elements: [
       {
         title: "Transcription",

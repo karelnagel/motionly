@@ -1,10 +1,10 @@
 import { AudioProps } from "@motionly/base";
-import { IoIosSettings } from "react-icons/io";
 import { Component } from ".";
+import { MdAudiotrack } from "react-icons/md";
 
 export const audio: Component<AudioProps> = {
   name: "Audio",
-  Icon: IoIosSettings,
+  Icon: MdAudiotrack,
   hue: 50,
   inputs: [
     {

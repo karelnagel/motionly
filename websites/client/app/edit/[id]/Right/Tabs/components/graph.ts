@@ -1,10 +1,10 @@
 import { GraphProps, GraphTypes } from "@motionly/base";
-import { IoIosSettings } from "react-icons/io";
 import { Component } from ".";
+import { SlGraph } from "react-icons/sl";
 
 export const graph: Component<GraphProps> = {
   name: "Graph",
-  Icon: IoIosSettings,
+  Icon: SlGraph,
   hue: 220,
   inputs: [
     {
