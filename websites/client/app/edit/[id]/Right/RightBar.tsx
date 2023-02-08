@@ -7,9 +7,7 @@ import { components } from "./Tabs/components";
 
 export const RightBar = () => {
   const comp = useComponent();
-  const tab = useProject((s) => s.rightTab);
   const hue = comp ? components[comp?.comp].hue : 0;
-  console.log(hue);
   return (
     <div className="h-full shrink-0 flex flex-col justify-between items-center bg-base-100 border-r border-base-300">
       <div className="flex flex-col w-full space-y-4">
