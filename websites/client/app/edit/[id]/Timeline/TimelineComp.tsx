@@ -3,10 +3,10 @@ import { useRef, useState } from "react";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import Moveable from "react-moveable";
 import { isPanel } from "../../../../helpers";
-import { Animation } from "./Animation";
 import { ShowHide } from "../../../../components/ShowHide";
 import { useProject } from "../../../../hooks/useProject";
 import { useComponent } from "../../../../hooks/useComponent";
+import { components } from "../Right/Tabs/components";
 
 export const TimelineComp = ({
   id,
@@ -28,28 +28,30 @@ export const TimelineComp = ({
   const from = getFrom(parentDuration, comp.from);
   const duration = getDuration(parentDuration, comp.from, comp.duration);
   const hasChildren = "childIds" in comp;
+  const componentProps = components[comp.comp];
   return (
-    <div className="relative cursor-pointer">
+    <div className="cursor-pointer">
       <div
-        className="bg-base-content bg-opacity-20 rounded-sm"
+        className=" rounded-lg relative"
         ref={isSelected ? divRef : undefined}
         onClick={(e) => {
           e.stopPropagation();
           setSelected(comp.id);
         }}
         style={{
+          background: `hsl(${componentProps.hue}, 35%, 50%, 30%)`,
           marginLeft: `${(from / parentDuration) * 100}%`,
           width: `${(duration / parentDuration) * 100}%`,
         }}
       >
         <div
-          className={`relative flex h-[40px] items-center px-2 rounded-sm overflow-hidden justify-between ${
-            isSelected
-              ? "bg-gradient-to-r from-secondary to bg-primary text-primary-content"
-              : "bg-base-300"
-          }`}
+          style={{
+            background: `hsl(${componentProps.hue}, 35%, 40%)`,
+            color: "#FFF",
+          }}
+          className={`relative rounded-lg flex h-[30px] items-center px-2 overflow-hidden justify-between `}
         >
-          <div className="absolute top-0 left-0 h-full w-full flex flex-col space-y-[2px] py-[2px] overflow-hidden">
+          {/* <div className="absolute top-0 left-0 h-full w-full flex flex-col space-y-[2px] py-[2px] overflow-hidden">
             {comp.animations?.allIds.map((id, i) => (
               <Animation
                 key={i}
@@ -57,12 +59,11 @@ export const TimelineComp = ({
                 parentDuration={duration}
               />
             ))}
-          </div>
+          </div> */}
 
-          <div className="whitespace-nowrap overflow-hidden text-ellipsis w-full">
-            <p className="sticky left-0 right-0">
-              {comp.comp}-{comp.id}
-            </p>
+          <div className="whitespace-nowrap overflow-hidden text-ellipsis w-full flex items-center">
+            <componentProps.Icon className="inline-block mr-2" />
+            <p className="">{componentProps.name}</p>
           </div>
 
           <div className="text-xl flex space-x-2 leading-none items-center h-full top-0">
@@ -113,7 +114,13 @@ export const TimelineComp = ({
             ))}
           </div>
         )}
+        {isSelected && (
+          <div
+            className={`absolute pointer-events-none top-0 left-0 h-full w-full border-4 border-primary rounded-lg`}
+          />
+        )}
       </div>
+
       {isSelected && (
         <CompMoveable
           divRef={divRef}
@@ -148,7 +155,6 @@ export const CompMoveable = ({
       snappable={true}
       snapCenter={true}
       snapThreshold={10}
-      
       renderDirections={["w", "e"]}
       className="timeline-moveable"
       snapHorizontal={true}
