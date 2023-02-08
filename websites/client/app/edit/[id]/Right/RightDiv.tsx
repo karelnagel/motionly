@@ -19,7 +19,7 @@ export const RightDiv = ({
         }}
         className="h-full bg-base-300 relative"
       >
-        <div className="absolute top-0 left-0 flex p-3 w-full flex-col h-full">
+        <div className="absolute top-0 left-0 flex p-3 w-full flex-col h-full overflow-auto">
           {children}
         </div>
         <Resize value={width} setValue={setWidth} />

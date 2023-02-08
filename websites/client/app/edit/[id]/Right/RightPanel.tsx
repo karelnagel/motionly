@@ -11,7 +11,7 @@ export const RightPanel = () => {
   const comp = useComponent();
   return (
     <RightDiv show={true}>
-      <div className="grid grid-cols-2 gap-2  w-auto overflow-auto">
+      <div className="grid grid-cols-2 gap-2 w-auto ">
         {tabData && comp && (
           <Inputs inputs={tabData.inputs as UserInput<ComponentProps>[]} />
         )}
