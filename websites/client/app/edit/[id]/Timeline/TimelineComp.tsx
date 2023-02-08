@@ -148,6 +148,7 @@ export const CompMoveable = ({
       snappable={true}
       snapCenter={true}
       snapThreshold={10}
+      
       renderDirections={["w", "e"]}
       className="timeline-moveable"
       snapHorizontal={true}

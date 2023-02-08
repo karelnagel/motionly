@@ -61,13 +61,14 @@ const Element = ({ element, file }: { element: Element; file: string }) => {
         <Image
           className="aspect-square w-full rounded-lg bg-white"
           src={`/elements/${file}.jpg`}
-          height={100}
-          width={100}
+          height={300}
+          width={300}
           alt={element.title}
         />
       )}
       {isHovering && (
         <video
+          disablePictureInPicture
           src={`/elements/${file}.mp4`}
           className="aspect-square w-full rounded-lg bg-white"
           onMouseOver={(event) => {
