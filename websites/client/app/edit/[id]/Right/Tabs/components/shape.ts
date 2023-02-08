@@ -1,10 +1,11 @@
 import { ShapeProps, ShapeTypes, TriangleDirection } from "@motionly/base";
 import { IoIosSettings } from "react-icons/io";
-import { Tab } from "..";
+import { Component } from ".";
 
-export const shape: Tab<ShapeProps> = {
+export const shape: Component<ShapeProps> = {
   name: "Shape",
   Icon: IoIosSettings,
+  hue: 40,
   inputs: [
     {
       prop: "type",

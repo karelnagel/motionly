@@ -1,10 +1,11 @@
 import { JustifyContent, TextProps } from "@motionly/base";
 import { IoIosSettings } from "react-icons/io";
-import { Tab } from "..";
+import { Component } from ".";
 
-export const text: Tab<TextProps> = {
+export const text: Component<TextProps> = {
   name: "Text",
   Icon: IoIosSettings,
+  hue: 89,
   inputs: [
     {
       prop: "text",

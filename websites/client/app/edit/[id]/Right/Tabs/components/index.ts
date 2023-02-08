@@ -1,3 +1,4 @@
+import { Tab } from "..";
 import { audio } from "./audio";
 import { audiogram } from "./audiogram";
 import { confetti } from "./confetti";
@@ -16,6 +17,9 @@ import { text } from "./text";
 import { transcription } from "./transcription";
 import { video } from "./video";
 
+export type Component<T> = Tab<T> & {
+    hue: number;
+  };
 
 export const components = {
   audio,

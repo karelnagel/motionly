@@ -1,10 +1,11 @@
 import { DivProps } from "@motionly/base";
 import { IoIosSettings } from "react-icons/io";
-import { Tab } from "..";
+import { Component } from ".";
 
-export const div: Tab<DivProps> = {
+export const div: Component<DivProps> = {
   name: "Div",
   Icon: IoIosSettings,
+  hue: 150,
   inputs: [
     {
       prop: "bg",

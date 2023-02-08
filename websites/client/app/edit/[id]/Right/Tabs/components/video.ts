@@ -1,10 +1,11 @@
 import { ObjectFit, VideoProps } from "@motionly/base";
 import { IoIosSettings } from "react-icons/io";
-import { Tab } from "..";
+import { Component } from ".";
 
-export const video: Tab<VideoProps> = {
+export const video: Component<VideoProps> = {
   name: "Video",
   Icon: IoIosSettings,
+  hue: 134,
   inputs: [
     {
       prop: "src",

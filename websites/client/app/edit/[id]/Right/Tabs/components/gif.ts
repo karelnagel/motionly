@@ -1,10 +1,11 @@
 import { GifProps, ObjectFit } from "@motionly/base";
 import { IoIosSettings } from "react-icons/io";
-import { Tab } from "..";
+import { Component } from ".";
 
-export const gif: Tab<GifProps> = {
+export const gif: Component<GifProps> = {
   name: "GIF",
   Icon: IoIosSettings,
+  hue: 180,
   inputs: [
     {
       prop: "src",

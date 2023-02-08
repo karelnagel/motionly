@@ -1,10 +1,11 @@
 import { ConfettiProps } from "@motionly/base";
 import { IoIosSettings } from "react-icons/io";
-import { Tab } from "..";
+import { Component } from ".";
 
-export const confetti: Tab<ConfettiProps> = {
+export const confetti: Component<ConfettiProps> = {
   name: "Confetti",
   Icon: IoIosSettings,
+  hue: 120,
   inputs: [
     {
       prop: "angle",

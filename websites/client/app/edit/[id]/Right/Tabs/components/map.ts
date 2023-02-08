@@ -1,10 +1,11 @@
 import { MapProps } from "@motionly/base";
 import { IoIosSettings } from "react-icons/io";
-import { Tab } from "..";
+import { Component } from ".";
 
-export const map: Tab<MapProps> = {
+export const map: Component<MapProps> = {
   name: "Map",
   Icon: IoIosSettings,
+  hue: 270,
   inputs: [
     {
       prop: "src",

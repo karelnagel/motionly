@@ -1,10 +1,11 @@
 import { GraphProps, GraphTypes } from "@motionly/base";
 import { IoIosSettings } from "react-icons/io";
-import { Tab } from "..";
+import { Component } from ".";
 
-export const graph: Tab<GraphProps> = {
+export const graph: Component<GraphProps> = {
   name: "Graph",
   Icon: IoIosSettings,
+  hue: 220,
   inputs: [
     {
       prop: "type",

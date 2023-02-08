@@ -3,22 +3,25 @@ import { IoIosHelp } from "react-icons/io";
 import { useComponent } from "../../../../hooks/useComponent";
 import { useProject } from "../../../../hooks/useProject";
 import { RightTabs } from "./Tabs";
+import { components } from "./Tabs/components";
 
 export const RightBar = () => {
   const comp = useComponent();
-
+  const tab = useProject((s) => s.rightTab);
+  const hue = comp ? components[comp?.comp].hue : 0;
+  console.log(hue);
   return (
     <div className="h-full shrink-0 flex flex-col justify-between items-center bg-base-100 border-r border-base-300">
       <div className="flex flex-col w-full space-y-4">
         {comp && (
           <>
-            <Item id={"general"} />
-            <Item id={"transform"} />
-            <Item id={"animations"} />
-            <Item id={comp?.comp} />
+            <Item id={"general"} hue={hue} />
+            <Item id={"transform"} hue={hue} />
+            <Item id={"animations"} hue={hue} />
+            <Item id={comp?.comp} hue={hue} />
           </>
         )}
-        {!comp && <Item id={"general"} />}
+        {!comp && <Item id={"general"} hue={hue} />}
       </div>
       <Link href="/" className="pb-4 text-2xl">
         <IoIosHelp />
@@ -27,7 +30,7 @@ export const RightBar = () => {
   );
 };
 
-const Item = ({ id }: { id: RightTabs }) => {
+const Item = ({ hue, id }: { id: RightTabs; hue: number }) => {
   const setTab = useProject((s) => s.rightSetTab);
   const tab = useProject((s) => s.rightTab);
   const value = RightTabs[id];
@@ -36,8 +39,12 @@ const Item = ({ id }: { id: RightTabs }) => {
   return (
     <div
       onClick={() => setTab(id)}
+      style={{
+        background: tab === id ? `hsl(${hue}, 36%, 40%)` : "none",
+        color: "#FFF",
+      }}
       className={`flex flex-col items-center cursor-pointer text-base-content-2 duration-150 space-y-1 py-1 hover:opacity-100 ${
-        tab === id ? "bg-base-300 " : "opacity-60"
+        tab === id ? "" : "opacity-60"
       }`}
     >
       <Icon className="h-6 w-6 " />

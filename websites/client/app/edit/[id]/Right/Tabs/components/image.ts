@@ -1,10 +1,11 @@
 import { ImageProps, ObjectFit } from "@motionly/base";
 import { IoIosSettings } from "react-icons/io";
-import { Tab } from "..";
+import { Component } from ".";
 
-export const image: Tab<ImageProps> = {
+export const image: Component<ImageProps> = {
   name: "Image",
   Icon: IoIosSettings,
+  hue: 0,
   inputs: [
     {
       prop: "src",

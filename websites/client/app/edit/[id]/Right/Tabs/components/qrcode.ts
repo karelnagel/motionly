@@ -1,10 +1,11 @@
 import { QRCodeProps } from "@motionly/base";
 import { IoIosSettings } from "react-icons/io";
-import { Tab } from "..";
+import { Component } from ".";
 
-export const qrcode: Tab<QRCodeProps> = {
+export const qrcode: Component<QRCodeProps> = {
   name: "QR Code",
   Icon: IoIosSettings,
+  hue: 360,
   inputs: [
     {
       prop: "text",

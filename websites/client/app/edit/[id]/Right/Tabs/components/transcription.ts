@@ -3,11 +3,12 @@ import {
   TranscriptionProps,
 } from "@motionly/base";
 import { IoIosSettings } from "react-icons/io";
-import { Tab } from "..";
+import { Component } from ".";
 
-export const transcription: Tab<TranscriptionProps> = {
+export const transcription: Component<TranscriptionProps> = {
   name: "Transcription",
   Icon: IoIosSettings,
+  hue: 99,
   inputs: [
     {
       prop: "textStyle",

@@ -1,10 +1,11 @@
 import { AudiogramPosition, AudiogramProps } from "@motionly/base";
 import { IoIosSettings } from "react-icons/io";
-import { Tab } from "..";
+import { Component } from ".";
 
-export const audiogram: Tab<AudiogramProps> = {
+export const audiogram: Component<AudiogramProps> = {
   name: "Audiogram",
   Icon: IoIosSettings,
+  hue: 100,
   inputs: [
     {
       prop: "src",
