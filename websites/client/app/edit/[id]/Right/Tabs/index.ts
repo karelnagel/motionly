@@ -1,30 +1,23 @@
-import { ComponentProps } from "@motionly/base";
 import { IconType } from "react-icons/lib";
 import { UserInput } from "../../../../../components/inputs/Inputs";
 import { animations } from "./animations";
-import { filters } from "./filters";
+import { components } from "./components";
+// import { filters } from "./filters";
 import { general } from "./general";
-import { map } from "./map";
 import { transform } from "./transform";
 
-export type Tab = {
+export type Tab<T> = {
   name: string;
   Icon: IconType;
-  if?: (comp: ComponentProps) => boolean;
-  inputs?: UserInput[];
+  inputs: UserInput<T>[];
 };
 
-export const RightTabs: { [key: string]: Tab } = {
+export const RightTabs = {
   general,
   transform,
   animations,
-  map,
-  filters,
-};
-export const getRightTabs = (comp: ComponentProps) => {
-  return Object.fromEntries(Object.entries(RightTabs).filter(([_, tab]) =>
-    tab.if ? tab.if(comp) : true
-  ))
+  // filters,
+  ...components,
 };
 
 export type RightTabs = keyof typeof RightTabs;

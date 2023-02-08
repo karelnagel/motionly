@@ -1,8 +1,9 @@
 import { RightDiv } from "./RightDiv";
 import { useProject } from "../../../../hooks/useProject";
-import { Inputs } from "../../../../components/inputs/Inputs";
+import { Inputs, UserInput } from "../../../../components/inputs/Inputs";
 import { RightTabs } from "./Tabs";
 import { useComponent } from "../../../../hooks/useComponent";
+import { ComponentProps } from "@motionly/base";
 
 export const RightPanel = () => {
   const tab = useProject((t) => t.rightTab);
@@ -11,8 +12,8 @@ export const RightPanel = () => {
   return (
     <RightDiv show={true}>
       <div className="grid grid-cols-2 gap-2  w-auto overflow-auto">
-        {tabData && tabData.inputs && comp && (
-          <Inputs inputs={tabData.inputs} />
+        {tabData && comp && (
+          <Inputs inputs={tabData.inputs as UserInput<ComponentProps>[]} />
         )}
       </div>
     </RightDiv>

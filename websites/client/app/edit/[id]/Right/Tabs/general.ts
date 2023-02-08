@@ -1,7 +1,8 @@
+import { ComponentProps } from "@motionly/base";
 import { IoIosSettings } from "react-icons/io";
 import { Tab } from ".";
 
-export const general: Tab = {
+export const general: Tab<ComponentProps> = {
   name: "General",
   Icon: IoIosSettings,
   inputs: [
