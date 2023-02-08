@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import { useProject } from "../../../../hooks/useProject";
 import { Header } from "./Header";
 import { Player } from "./Player";
-import { PlayerControls } from "./PlayerControls";
 
 export const PlayerDiv = () => {
   const playerDivRef = useRef<HTMLDivElement>(null);
@@ -35,13 +34,12 @@ export const PlayerDiv = () => {
       <div
         ref={playerDivRef}
         onClick={() => setSelected(undefined)}
-        className="flex items-center justify-center h-full relative mx-2"
+        className="flex items-center justify-center h-full relative m-2 mt-0"
       >
         <div className="absolute top-0 left-0 h-full w-full max-w-full flex items-center justify-center">
           <Player />
         </div>
       </div>
-      <PlayerControls />
     </div>
   );
 };
