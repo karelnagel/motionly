@@ -1,3 +1,5 @@
+import Image from "next/image";
+import { useState } from "react";
 import { getRandomId } from "../../../../../helpers";
 import { useProject } from "../../../../../hooks/useProject";
 import {
@@ -38,8 +40,11 @@ const Element = ({ element, file }: { element: Element; file: string }) => {
   const addComp = useProject((s) => s.addComp);
   const size = Math.max(templateHeight, templateWidth) * 0.2;
   const { height, width } = getWidthAndHeight(size, element.aspectRatio);
+  const [isHovering, setIsHovering] = useState(false);
   return (
     <div
+      onMouseOver={() => setIsHovering(true)}
+      onMouseOut={() => setIsHovering(false)}
       onClick={() =>
         addComp({
           ...element.props,
@@ -52,21 +57,30 @@ const Element = ({ element, file }: { element: Element; file: string }) => {
       }
       className="flex flex-col items-center cursor-pointer space-y-2"
     >
-      <video
-        src={`/elements/${file}.mp4`}
-        className="aspect-square w-full rounded-lg bg-white"
-        onLoadedData={(event) => (event.currentTarget.currentTime = 5)}
-        onMouseOver={(event) => {
-          event.currentTarget.currentTime = 0;
-          event.currentTarget.play();
-        }}
-        onMouseOut={(event) => {
-          event.currentTarget.currentTime = 5;
-          event.currentTarget.pause();
-        }}
-        muted
-        loop
-      />
+      {!isHovering && (
+        <Image
+          className="aspect-square w-full rounded-lg bg-white"
+          src={`/elements/${file}.jpg`}
+          height={100}
+          width={100}
+          alt={element.title}
+        />
+      )}
+      {isHovering && (
+        <video
+          src={`/elements/${file}.mp4`}
+          className="aspect-square w-full rounded-lg bg-white"
+          onMouseOver={(event) => {
+            event.currentTarget.currentTime = 0;
+            event.currentTarget.play();
+          }}
+          onMouseOut={(event) => {
+            event.currentTarget.pause();
+          }}
+          muted
+          loop
+        />
+      )}
       <p className="leading-none text-sm">{element.title}</p>
     </div>
   );

@@ -1,19 +1,6 @@
-import { create } from "zustand";
-import { immer } from "zustand/middleware/immer";
-import { persist } from "zustand/middleware";
-import { IoIosSettings } from "react-icons/io";
 import { GetType, SetType } from ".";
-export const RightTabs = {
-  template: {
-    name: "Template",
-    Icon: IoIosSettings,
-  },
-  idk: {
-    name: "Idk",
-    Icon: IoIosSettings,
-  },
-};
-export type RightTabs = keyof typeof RightTabs;
+import { RightTabs } from "../../app/edit/[id]/Right/Tabs";
+
 
 export interface RightSlice {
   rightTab?: RightTabs;
