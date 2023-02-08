@@ -30,7 +30,7 @@ export const TimelineComp = ({
   const hasChildren = "childIds" in comp;
   const componentProps = components[comp.comp];
   return (
-    <div className="cursor-pointer">
+    <div className="cursor-pointer relative">
       <div
         className=" rounded-lg relative"
         ref={isSelected ? divRef : undefined}

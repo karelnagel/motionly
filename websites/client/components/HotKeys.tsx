@@ -9,7 +9,7 @@ export function HotKeys() {
   const redo = useProject((t) => t.redo);
   const setSelected = useProject((t) => t.setSelected);
   const deleteComp = useProject((t) => t.deleteComp);
-  const addComp = useProject((t) => t.addComp);
+  const copyComp = useProject((t) => t.copyComp);
   const fps = useProject((t) => t.project.template.fps);
   const playerRef = useProject((t) => t.playerRef);
   const frame = useProject((t) => t.playerFrame);
@@ -26,7 +26,7 @@ export function HotKeys() {
       } else if (event.key === "z" && event.metaKey && event.shiftKey) {
         redo?.();
       } else if (event.key === "c" && event.metaKey && !isInput) {
-        addComp();
+        copyComp();
       } else if (event.key === " " && !isInput) {
         playerRef?.toggle();
       } else if (
@@ -55,16 +55,7 @@ export function HotKeys() {
       } else return;
       event.preventDefault();
     },
-    [
-      undo,
-      redo,
-      setSelected,
-      playerRef,
-      fps,
-      frame,
-      deleteComp,
-      addComp,
-    ]
+    [undo, redo, setSelected, playerRef, fps, frame, deleteComp, copyComp]
   );
 
   useEffect(() => {
@@ -72,16 +63,7 @@ export function HotKeys() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [
-    addComp,
-    deleteComp,
-    undo,
-    redo,
-    setSelected,
-    playerRef,
-    fps,
-    frame,
-  ]);
+  }, [copyComp, deleteComp, undo, redo, setSelected, playerRef, fps, frame]);
 
   return null;
 }
