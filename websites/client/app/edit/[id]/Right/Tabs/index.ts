@@ -9,8 +9,14 @@ import { transform } from "./transform";
 export type Tab<T> = {
   name: string;
   Icon: IconType;
-  inputs: UserInput<T>[];
-};
+} & (
+  | {
+      inputs: UserInput<T>[];
+    }
+  | {
+      component: () => JSX.Element;
+    }
+);
 
 export const RightTabs = {
   general,

@@ -7,7 +7,8 @@
         "build": "next build ",
         "start": "next start",
         "lint": "next lint",
-        "elements": "ts-node videos/render.ts"
+        "elements": "ts-node videos/render.ts",
+        "animations": "ts-node videos/render-animations.ts"
     },
     "dependencies": {
         "@motionly/base": "*",

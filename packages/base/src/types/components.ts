@@ -350,6 +350,7 @@ export const inputTypes = {
   textarea: "textarea",
   select: "select",
   style: "style",
+  animations: "animations",
 };
 
 export type Input = {

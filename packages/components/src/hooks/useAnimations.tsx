@@ -22,7 +22,7 @@ export const useAnimation = () => {
       duration * fps
     );
     if (props.type === "spring") {
-      const { damping, mass, stiffness } = props;
+      const { damping = 14, mass = 1, stiffness = 80 } = props;
       return remotionSpring({
         fps,
         frame: frame - fromCalc,
@@ -34,7 +34,7 @@ export const useAnimation = () => {
     }
 
     if (props.type === "interpolate") {
-      const { easing } = props;
+      const { easing = undefined } = props;
       return remotionInterpolate(
         frame,
         [fromCalc, durationCalc + fromCalc],
@@ -57,7 +57,7 @@ export const useAnimation = () => {
     }
 
     if (props.type === "noise") {
-      const { speed } = props;
+      const { speed = 1 } = props;
       const x = remotionInterpolate(
         frame,
         [fromCalc, fromCalc + durationCalc],
@@ -67,7 +67,7 @@ export const useAnimation = () => {
       const nois = noise2D(
         `${start}${duration}${from}${to}${speed}` || "",
         1,
-        x * (speed || 1)
+        x * speed
       );
       return remotionInterpolate(nois, [-1, 1], [from, to]);
     }

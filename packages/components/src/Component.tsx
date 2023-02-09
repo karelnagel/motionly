@@ -159,7 +159,6 @@ const InsideSequence = ({
 }: ComponentProps & { children: ReactNode }) => {
   const { setSelected, divRef, selected } = useSelected();
   const animation = useAnimation();
-
   const transformStyle = useMemo(
     () =>
       transform
@@ -176,13 +175,13 @@ const InsideSequence = ({
       .map((anim) => {
         const prop = transformProps[anim.prop as keyof typeof transformProps];
         if (!prop) return "";
-        return `${anim.prop}(${animation(anim)}${prop.units || ""})`;
+        return `${anim.prop}(${animation(anim) || 0}${prop.units || ""})`;
       })
       .join(" ") || "";
 
   const opacityAnimations = anims.filter((a) => a.prop === "opacity");
   const opac = opacityAnimations.length
-    ? opacity + opacityAnimations.reduce((acc, a) => acc * animation(a), 1)
+    ? opacity * opacityAnimations.reduce((acc, a) => acc * animation(a), 1)
     : opacity;
 
   const borderAnimations = anims.filter((a) => a.prop === "borderRadius");
@@ -209,7 +208,11 @@ const InsideSequence = ({
           height: inputHeight || "100%",
           position: "absolute",
           userSelect: "none",
-          transform: `translate(${x}px,${y}px) rotate(${
+          transform: `translate(${x}px,${y}px) ${
+            (transformStyle + transformAnimations).includes("perspective")
+              ? ""
+              : "perspective(1000px)"
+          } rotate(${
             rotation || 0
           }deg) ${transformStyle} ${transformAnimations}`, // For some reason, this messes up x and y
         }}

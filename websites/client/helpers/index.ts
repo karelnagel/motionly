@@ -47,3 +47,4 @@ export const isPanel = (selected: string) => {
 export const getMediaUrl = (key: string) => {
   return `https://${mediaBucket}.s3.amazonaws.com/${key}`;
 };
+export const lowRep = (s: string) => s.replace(/ /g, "-").toLowerCase();

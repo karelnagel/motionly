@@ -129,12 +129,12 @@ export function Input<T extends any>({
         )}
       </div>
       {input && (
-        <button
+        <div
           onClick={() => setSelected("inputs")}
           className="input input-sm input-bordered bg-primary"
         >
           {input.label}
-        </button>
+        </div>
       )}
       {!input && (
         <>
