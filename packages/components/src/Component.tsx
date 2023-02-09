@@ -208,7 +208,7 @@ const InsideSequence = ({
           height: inputHeight || "100%",
           position: "absolute",
           userSelect: "none",
-          transform: `translate(${x}px,${y}px) ${
+          transform: `translate(${x || 0}px,${y || 0}px) ${
             (transformStyle + transformAnimations).includes("perspective")
               ? ""
               : "perspective(1000px)"
