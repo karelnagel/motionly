@@ -30,9 +30,9 @@ export const TimelineComp = ({
   const hasChildren = "childIds" in comp;
   const componentProps = components[comp.comp];
   return (
-    <div className="cursor-pointer relative">
+    <div className="cursor-pointer">
       <div
-        className=" rounded-lg relative"
+        className=" rounded-lg"
         ref={isSelected ? divRef : undefined}
         onClick={(e) => {
           e.stopPropagation();
@@ -116,11 +116,6 @@ export const TimelineComp = ({
             ))}
           </div>
         )}
-        {isSelected && (
-          <div
-            className={`absolute pointer-events-none top-0 left-0 h-full w-full border-4 border-primary rounded-lg`}
-          />
-        )}
       </div>
 
       {isSelected && (
@@ -143,54 +138,42 @@ export const CompMoveable = ({
   parentDuration: number;
   comp: ComponentProps;
 }) => {
+  const comps = useProject((t) => t.project.template.components);
   const setComp = useProject((t) => t.setComp);
   const setComps = useProject((t) => t.setComps);
+  const parentWidth = () => divRef.current?.parentElement?.offsetWidth || 1;
+  const verticalGuidelines = Object.values(comps)
+    .filter((c) => c.id !== comp.id)
+    .map((c) => [c.from, (c.from || 0) + (c.duration || parentDuration)])
+    .flat()
+    .map((x) => ((x || 0) / parentDuration) * parentWidth());
   return (
     <Moveable
       target={divRef}
       bounds={{
         left: 0,
-        right: divRef.current?.parentElement?.offsetWidth,
+        right: parentWidth(),
       }}
       resizable={true}
       draggable={true}
       snappable={true}
       snapCenter={true}
-      snapThreshold={10}
+      snapThreshold={3}
       renderDirections={["w", "e"]}
-      className="timeline-moveable"
-      snapHorizontal={true}
-      snapVertical={true}
       elementSnapDirections={{
         left: true,
         top: true,
         right: true,
         bottom: true,
-        center: true,
-        middle: true,
       }}
-      // horizontalGuidelines={[
-      //   ...comps.map((c) => [c.from, (c.from || 0) + (c.duration || 0)]).flat(),
-      //   0,
-      //   parentDuration / 2,
-      //   parentDuration,
-      // ].map(
-      //   (x) =>
-      //     ((x || 0) / parentDuration) *
-      //     (divRef.current?.parentElement?.offsetWidth || 1)
-      // )}
+      verticalGuidelines={verticalGuidelines}
       onDrag={({ delta, beforeDist }) => {
         const from =
-          (comp.from || 0) +
-          (delta[0] / (divRef.current?.parentElement?.offsetWidth || 1)) *
-            parentDuration;
-        const indexChange = Math.round(beforeDist[1] / 48);
-
-        if (!indexChange)
-          return setComp((c) => {
-            c.from = from;
-          });
-
+          (comp.from || 0) + (delta[0] / parentWidth()) * parentDuration;
+        // const indexChange = Math.round(beforeDist[1] / 48);
+        setComp((c) => {
+          if (from > 0) c.from = from;
+        });
         // const oldIndex = comps.findIndex((c) => c.id === comp.id);
         // const newIndex = oldIndex + indexChange;
         // const newComps = [...comps];
@@ -198,11 +181,14 @@ export const CompMoveable = ({
         // newComps.splice(newIndex, 0, newComp);
         // setComps(newComps, parentId);
       }}
-      onResize={({ width, delta, target }) => {
-        const duration: number =
-          (width / (divRef.current?.parentElement?.offsetWidth || 1)) *
-          parentDuration;
+      onResize={({ width, delta, target, direction }) => {
+        const duration: number = (width / parentWidth()) * parentDuration;
+        console.log(parentWidth(), parentDuration, width, duration);
+        if (duration < 0) return;
         setComp((c) => {
+          if (direction[0] === -1) {
+            c.from = (c.from || 0) + (c.duration || parentDuration) - duration;
+          }
           c.duration = duration;
         });
         delta[0] && (target.style.width = `${width}px`);
