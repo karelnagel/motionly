@@ -140,6 +140,7 @@ export const CompMoveable = ({
 }) => {
   const comps = useProject((t) => t.project.template.components);
   const setComp = useProject((t) => t.setComp);
+  const set = useProject((t) => t.set);
   const setComps = useProject((t) => t.setComps);
   const parentWidth = () => divRef.current?.parentElement?.offsetWidth || 1;
   const verticalGuidelines = Object.values(comps)
@@ -170,16 +171,21 @@ export const CompMoveable = ({
       onDrag={({ delta, beforeDist }) => {
         const from =
           (comp.from || 0) + (delta[0] / parentWidth()) * parentDuration;
-        // const indexChange = Math.round(beforeDist[1] / 48);
-        setComp((c) => {
-          if (from > 0) c.from = from;
+        set((s) => {
+          const comp = s.project.template.components[s.selected];
+          if (from > 0) comp.from = from;
+          const indexChange = Math.round(beforeDist[1] / 34);
+          if (!indexChange) return;
+          const parentId = comp.parentId;
+          const parent = parentId
+            ? s.project.template.components[parentId]
+            : s.project.template;
+          if (parent && "childIds" in parent) {
+            const oldIndex = parent.childIds.indexOf(comp.id);
+            parent.childIds.splice(oldIndex, 1);
+            parent.childIds.splice(oldIndex + indexChange, 0, comp.id);
+          }
         });
-        // const oldIndex = comps.findIndex((c) => c.id === comp.id);
-        // const newIndex = oldIndex + indexChange;
-        // const newComps = [...comps];
-        // newComps.splice(oldIndex, 1);
-        // newComps.splice(newIndex, 0, newComp);
-        // setComps(newComps, parentId);
       }}
       onResize={({ width, delta, target, direction }) => {
         const duration: number = (width / parentWidth()) * parentDuration;
