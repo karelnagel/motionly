@@ -26,7 +26,6 @@ export const RightBar = () => {
             <Item id={comp?.comp} hue={hue} />
           </>
         )}
-        {!comp && <Item id={"general"} hue={hue} />}
       </div>
     </Bar>
   );

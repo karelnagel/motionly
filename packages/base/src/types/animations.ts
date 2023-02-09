@@ -66,7 +66,7 @@ export interface NoiseAnimationProps extends BaseAnimations {
   speed?: number;
 }
 
-export type AnimationProps = { id: string } & (
+export type AnimationProps = { id: string; name?: string } & (
   | NoiseAnimationProps
   | InterpolateAnimationProps
   | SpringAnimationProps

@@ -106,7 +106,7 @@ export function Input<T extends any>({
   return (
     <div
       className={`form-control ${
-        type === "number" || type === "checkbox" ? "col-span-1" : "col-span-2"
+        type === "number" || type === "checkbox" ? "" : "col-span-2"
       } ${className}`}
     >
       <div className={`label ${tooltip ? "tooltip" : ""}`} data-tip={tooltip}>

@@ -1,5 +1,4 @@
 import { getFrom, getDuration, AnimationProps } from "@motionly/base";
-import { getAnimationColor } from "../../../../helpers/color";
 
 export const Animation = ({
   animation,
@@ -21,7 +20,7 @@ export const Animation = ({
       style={{
         marginLeft: `${(from / parentDuration) * 100}%`,
         width: `${(duration / parentDuration) * 100}%`,
-        background: getAnimationColor(animation),
+        // background: getAnimationColor(animation),
       }}
     />
   );

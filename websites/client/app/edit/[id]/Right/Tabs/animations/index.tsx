@@ -1,10 +1,11 @@
 import { ComponentProps } from "@motionly/base";
-import { Tab } from ".";
+import { Tab } from "..";
 import { MdAnimation } from "react-icons/md";
-import { useProject } from "../../../../../hooks/useProject";
-import { getRandomId, lowRep } from "../../../../../helpers";
-import { allAnimations } from "../../../../../videos/animations";
-import { useComponent } from "../../../../../hooks/useComponent";
+import { useProject } from "../../../../../../hooks/useProject";
+import { getRandomId, lowRep } from "../../../../../../helpers";
+import { allAnimations } from "../../../../../../videos/animations";
+import { useComponent } from "../../../../../../hooks/useComponent";
+import { OneAnimation } from "./OneAnimation";
 
 export const component = () => {
   const setComp = useProject((t) => t.setComp);
@@ -14,30 +15,14 @@ export const component = () => {
   const comp = useComponent();
   if (!comp) return <></>;
   return (
-    <div className="flex flex-col space-y-6 col-span-2">
-      <div>
-        Current
-        {animations?.allIds.map((id) => {
-          const animation = animations.byIds[id];
-          if (!animation) return null;
-          return (
-            <div
-              key={id}
-              onClick={() =>
-                setComp((c) => {
-                  if (!c.animations) c.animations = { allIds: [], byIds: {} };
-                  c.animations.allIds = c.animations.allIds.filter(
-                    (i) => i !== id
-                  );
-                  delete c.animations.byIds[id];
-                })
-              }
-            >
-              {animation.prop}
-            </div>
-          );
-        })}
-      </div>
+    <div className="flex flex-col space-y-3 col-span-2">
+      {!!animations?.allIds.length && (
+        <div className="space-y-2">
+          {animations?.allIds.map((id) => (
+            <OneAnimation id={id} />
+          ))}
+        </div>
+      )}
       <div className="w-full space-y-2 text-lg">
         <p className="font-bold">Add</p>
         <div className="flex flex-col space-y-2 w-full">
@@ -55,7 +40,11 @@ export const component = () => {
                           c.animations = { allIds: [], byIds: {} };
                         for (const anim of animation.animations) {
                           const id = getRandomId();
-                          c.animations.byIds[id] = { ...anim, id };
+                          c.animations.byIds[id] = {
+                            ...anim,
+                            id,
+                            name: `${section.name} - ${animation.name}`,
+                          };
                           c.animations.allIds.push(id);
                         }
                       })
