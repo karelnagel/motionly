@@ -33,7 +33,7 @@ export const Video = ({
     className,
     muted,
     volume,
-    startFrom: startFrom ? Math.round(startFrom * fps) : undefined,
+    startFrom: startFrom ? Math.ceil(startFrom * fps) : undefined,
   };
   if (!src) return null;
   if (offthread)

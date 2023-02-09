@@ -27,10 +27,10 @@ export const Children = ({
         return (
           <Series.Sequence
             key={comp.id}
-            offset={comp.from ? Math.floor(comp.from * fps) : undefined}
+            offset={comp.from ? Math.ceil(comp.from * fps) : undefined}
             layout="none"
             durationInFrames={
-              comp.duration ? Math.floor(comp.duration * fps) : 1
+              comp.duration ? Math.ceil(comp.duration * fps) : 1
             }
           >
             <Component {...comp} from={0} duration={0} />

@@ -44,13 +44,13 @@ export const Component = (comp: ComponentProps) => {
       : "";
 
   const from = useMemo(
-    () => Math.floor(getFrom(durationInFrames, (comp.from || 0) * fps)),
+    () => Math.ceil(getFrom(durationInFrames, (comp.from || 0) * fps)),
     [durationInFrames, fps, comp.from]
   );
 
   const duration = useMemo(
     () =>
-      Math.floor(
+      Math.ceil(
         getDuration(
           durationInFrames,
           (comp.from || 0) * fps,
@@ -61,7 +61,11 @@ export const Component = (comp: ComponentProps) => {
   );
   return (
     <MotionBlur motion={comp.motionBlur}>
-      <Sequence from={from} durationInFrames={duration} layout="none">
+      <Sequence
+        from={from}
+        durationInFrames={duration <= 0 ? 1 : duration}
+        layout="none"
+      >
         <Freeze
           frame={comp.freeze !== undefined ? fps * comp.freeze : undefined}
         >
