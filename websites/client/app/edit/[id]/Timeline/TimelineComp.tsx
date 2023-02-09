@@ -30,9 +30,9 @@ export const TimelineComp = ({
   const hasChildren = "childIds" in comp;
   const componentProps = components[comp.comp];
   return (
-    <div className="cursor-pointer relative">
+    <div className="cursor-pointer">
       <div
-        className=" rounded-lg relative"
+        className=" rounded-lg"
         ref={isSelected ? divRef : undefined}
         onClick={(e) => {
           e.stopPropagation();
@@ -116,11 +116,6 @@ export const TimelineComp = ({
             ))}
           </div>
         )}
-        {isSelected && (
-          <div
-            className={`absolute pointer-events-none top-0 left-0 h-full w-full border-4 border-primary rounded-lg`}
-          />
-        )}
       </div>
 
       {isSelected && (
@@ -147,8 +142,9 @@ export const CompMoveable = ({
   const setComp = useProject((t) => t.setComp);
   const setComps = useProject((t) => t.setComps);
   const parentWidth = () => divRef.current?.parentElement?.offsetWidth || 1;
-  const horizontalGuidelines = Object.values(comps)
-    .map((c) => [c.from, (c.from || 0) + (c.duration || 0)])
+  const verticalGuidelines = Object.values(comps)
+    .filter((c) => c.id !== comp.id)
+    .map((c) => [c.from, (c.from || 0) + (c.duration || parentDuration)])
     .flat()
     .map((x) => ((x || 0) / parentDuration) * parentWidth());
   return (
@@ -164,19 +160,17 @@ export const CompMoveable = ({
       snapCenter={true}
       snapThreshold={3}
       renderDirections={["w", "e"]}
-      className="timeline-moveable"
       elementSnapDirections={{
         left: true,
         top: true,
         right: true,
         bottom: true,
       }}
-      horizontalGuidelines={horizontalGuidelines}
+      verticalGuidelines={verticalGuidelines}
       onDrag={({ delta, beforeDist }) => {
         const from =
           (comp.from || 0) + (delta[0] / parentWidth()) * parentDuration;
         // const indexChange = Math.round(beforeDist[1] / 48);
-
         setComp((c) => {
           if (from > 0) c.from = from;
         });
@@ -189,7 +183,8 @@ export const CompMoveable = ({
       }}
       onResize={({ width, delta, target, direction }) => {
         const duration: number = (width / parentWidth()) * parentDuration;
-        if (duration <= 0) return;
+        console.log(parentWidth(), parentDuration, width, duration);
+        if (duration < 0) return;
         setComp((c) => {
           if (direction[0] === -1) {
             c.from = (c.from || 0) + (c.duration || parentDuration) - duration;

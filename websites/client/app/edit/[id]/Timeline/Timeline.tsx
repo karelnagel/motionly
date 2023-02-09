@@ -26,7 +26,7 @@ export const Timeline = () => {
         >
           <TimelineBar duration={template.duration} fps={template.fps} />
           <div className="overflow-y-scroll h-full overflow-x-hidden px-3 pb-2">
-            <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-2 relative">
               {template.childIds?.map((id, i) => (
                 <TimelineComp
                   key={id}
