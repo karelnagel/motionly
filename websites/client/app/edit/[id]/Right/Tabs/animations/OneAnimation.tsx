@@ -1,7 +1,10 @@
 import { AnimationProps, animationProps, animationTypes } from "@motionly/base";
 import { useState } from "react";
+import { BsGraphUp } from "react-icons/bs";
 import { IoIosTrash } from "react-icons/io";
+import { MdOutlineAutoGraph } from "react-icons/md";
 import { Input } from "../../../../../../components/inputs";
+import { ShowHide } from "../../../../../../components/ShowHide";
 import { useProject } from "../../../../../../hooks/useProject";
 
 export const OneAnimation = ({ id }: { id: string }) => {
@@ -26,19 +29,35 @@ export const OneAnimation = ({ id }: { id: string }) => {
   const units = animationProps[animation.prop]?.units;
   return (
     <div className=" space-y-2 bg-base-200 rounded-lg p-2">
-      <div className="flex justify-between">
-        <button
-          className="font-semibold text-[14px]"
-          onClick={() => setShow((s) => !s)}
-        >
-          {animation.name || animation.prop}
-        </button>
-        <button onClick={remove} className="text-error">
-          <IoIosTrash />
-        </button>
+      <div className="flex justify-between items-center">
+        <div className="flex items-center space-x-2">
+          <ShowHide show={show} setShow={setShow} />
+          <input
+            className="shrink font-semibold text-[14px] input input-sm leading-none h-6 max-w-[170px] input-ghost"
+            value={animation.name}
+            onChange={(e) =>
+              setAnimation((a) => {
+                a.name = e.target.value;
+              })
+            }
+          />
+        </div>
+        <div className="flex items-center space-x-2">
+          <p
+            onClick={() => setShow((s) => true)}
+            className={`text-sm duration-150 ${
+              show ? "opacity-0" : "opacity-80"
+            }`}
+          >
+            {animation.prop}
+          </p>
+          <button onClick={remove} className="text-error">
+            <IoIosTrash />
+          </button>
+        </div>
       </div>
       {show && (
-        <div className="grid grid-cols-7 gap-1">
+        <div className="grid grid-cols-7 gap-1 relative">
           <Input
             type="select"
             label="Prop"
@@ -121,10 +140,8 @@ export const OneAnimation = ({ id }: { id: string }) => {
             }
             value={animation.to}
           />
-        </div>
-      )}
-      {/* 
-      {animation.type === "spring" && (
+
+          {/* {animation.type === "spring" && (
         <div className="grid grid-cols-3 gap-2">
           <Input
             type="number"
@@ -192,34 +209,38 @@ export const OneAnimation = ({ id }: { id: string }) => {
             label,
           }))}
         />
-      )}
-      {(animation.prop === "text" || animation.prop === "number") && (
-        <Input
-          type="text"
-          label="Variable"
-          prop={`animations.byIds.${id}.variable`}
-          onChange={(variable) =>
-            setAnimation((a) => {
-              if (a.prop === "text" || a.prop === "number")
-                a.variable = variable;
-            })
-          }
-          value={animation.variable}
-        />
-      )}
-      {animation.prop === "text" && (
-        <Input
-          type="text"
-          label="Value"
-          prop={`animations.byIds.${id}.value`}
-          onChange={(value) =>
-            setAnimation((a) => {
-              if (a.prop === "text") a.value = value;
-            })
-          }
-          value={animation.value}
-        />
       )} */}
+          {(animation.prop === "text" || animation.prop === "number") && (
+            <Input
+              type="text"
+              label="Variable"
+              className="col-span-3"
+              prop={`animations.byIds.${id}.variable`}
+              onChange={(variable) =>
+                setAnimation((a) => {
+                  if (a.prop === "text" || a.prop === "number")
+                    a.variable = variable;
+                })
+              }
+              value={animation.variable}
+            />
+          )}
+          {animation.prop === "text" && (
+            <Input
+              type="text"
+              label="Value"
+              className="col-span-4"
+              prop={`animations.byIds.${id}.value`}
+              onChange={(value) =>
+                setAnimation((a) => {
+                  if (a.prop === "text") a.value = value;
+                })
+              }
+              value={animation.value}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 };

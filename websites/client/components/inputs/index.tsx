@@ -84,9 +84,10 @@ export function Input<T extends any>({
   placeholder,
   options,
   prop,
+  disabled,
 }: {
   type: keyof typeof inputTypes;
-  label: string;
+  label?: string;
   value?: T;
   onChange: (value?: T) => void;
   className?: string;
@@ -94,6 +95,7 @@ export function Input<T extends any>({
   placeholder?: string;
   options?: { value: string; label: string }[];
   prop?: string;
+  disabled?: boolean;
 }) {
   const setSelected = useProject((t) => t.setSelected);
   const setComp = useProject((t) => t.setComp);
@@ -109,8 +111,11 @@ export function Input<T extends any>({
         type === "number" || type === "checkbox" ? "" : "col-span-2"
       } ${className}`}
     >
-      <div className={`label ${tooltip ? "tooltip" : ""}`} data-tip={tooltip}>
-        <span className="label-text">{label}</span>
+      <div
+        className={`${label ? "label" : ""} ${tooltip ? "tooltip" : ""}`}
+        data-tip={tooltip}
+      >
+        {label && <span className="label-text">{label}</span>}
         {prop && !input && (
           <div className="dropdown dropdown-bottom dropdown-end">
             <IoIosAdd tabIndex={0} className="cursor-pointer" />
@@ -140,6 +145,7 @@ export function Input<T extends any>({
         <>
           {type === "checkbox" && (
             <input
+              disabled={disabled}
               type="checkbox"
               checked={(value as boolean) || false}
               className="checkbox checkbox-primary"
@@ -148,6 +154,7 @@ export function Input<T extends any>({
           )}
           {type === "number" && (
             <input
+              disabled={disabled}
               type="number"
               placeholder={placeholder}
               value={value === undefined ? "" : (value as unknown as number)}
@@ -161,6 +168,7 @@ export function Input<T extends any>({
           )}
           {type === "text" && (
             <input
+              disabled={disabled}
               type="text"
               placeholder={placeholder}
               value={(value as string) || ""}
@@ -170,6 +178,7 @@ export function Input<T extends any>({
           )}
           {type === "textarea" && (
             <textarea
+              disabled={disabled}
               placeholder={placeholder}
               value={(value as string) || ""}
               className="textarea bg-base-200 textarea-bordered w-full"
@@ -178,7 +187,8 @@ export function Input<T extends any>({
           )}
           {type === "select" && (
             <select
-              className="select select-bordered select-sm bg-base-200"
+              disabled={disabled}
+              className="select select-bordered select-sm bg-base-200" 
               value={value as string}
               onChange={(e) => onChange(e.target.value as T)}
             >

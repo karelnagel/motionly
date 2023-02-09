@@ -11,7 +11,7 @@ export const ShowHide = ({
 }) => {
   return (
     <button className={className} onClick={() => setShow(!show)}>
-      {show ? <IoIosArrowDown /> : <IoIosArrowUp />}
+      {!show ? <IoIosArrowDown /> : <IoIosArrowUp />}
     </button>
   );
 };
