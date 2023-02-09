@@ -15,9 +15,32 @@ export const Player = () => {
   const divRef = useRef<HTMLDivElement>(null);
   const scale = useProject((t) => t.playerScale);
   const setPlayerRef = useProject((t) => t.playerSetPlayerRef);
+  const horizontalGuidelines = [
+    ...Object.values(template.components)
+      .filter((c) => c.id !== comp?.id)
+      .map((c) => [c.y, (c.y || 0) + (c.height || template.height)])
+      .flat(),
+    0,
+    template.height / 2,
+    template.height,
+  ].map((x) => (x || 0) * scale);
+  const verticalGuidelines = [
+    ...Object.values(template.components)
+      .filter((c) => c.id !== comp?.id)
+      .map((c) => [c.x, (c.x || 0) + (c.width || template.width)])
+      .flat(),
+    0,
+    template.width / 2,
+    template.width,
+  ].map((x) => (x || 0) * scale);
+
   return (
     <div
-      style={{ width: template.width * scale, height: template.height * scale }}
+      style={{
+        width: template.width * scale,
+        height: template.height * scale,
+        position: "relative",
+      }}
     >
       <SelectedContext.Provider
         value={{ divRef, setSelected, selected: comp?.id || "" }}
@@ -39,53 +62,47 @@ export const Player = () => {
           resizable={true}
           rotatable={true}
           snappable={true}
-          snapThreshold={5}
-          snapCenter={true}
-          centerGuidelines={true}
-          snapHorizontal={true}
-          snapVertical={true}
-          elementSnapDirections={{
-            left: true,
-            top: true,
-            right: true,
-            bottom: true,
+          snapDirections={{
             center: true,
             middle: true,
+            top: true,
+            bottom: true,
+            right: true,
+            left: true,
           }}
-          // horizontalGuidelines={[
-          //   ...comps
-          //     .filter((c) => c.id !== comp.id)
-          //     .map((c) => [c.x, (c.x || 0) + (c.width || 0)])
-          //     .flat()
-          //     .filter((x) => x),
-          //   0,
-          //   width / 2,
-          //   width,
-          // ].map((x) => (x || 0) * scale)}
-          // verticalGuidelines={[
-          //   ...comps
-          //     .filter((c) => c.id !== comp.id)
-          //     .map((c) => [c.y, (c.y || 0) + (c.height || 0)])
-          //     .flat()
-          //     .filter((x) => x),
-          //   0,
-          //   height / 2,
-          //   height,
-          // ].map((x) => (x || 0) * scale)}
-          onDrag={(e) => {
+          elementSnapDirections={{
+            top: true,
+            bottom: true,
+            right: true,
+            left: true,
+          }}
+          snapThreshold={3}
+          verticalGuidelines={verticalGuidelines}
+          horizontalGuidelines={horizontalGuidelines}
+          onDrag={({ delta }) => {
             setComp((comp) => {
-              comp.x = (comp.x || 0) + e.delta[0];
-              comp.y = (comp.y || 0) + e.delta[1];
+              comp.x = (comp.x || 0) + delta[0];
+              comp.y = (comp.y || 0) + delta[1];
             });
           }}
           keepRatio={lockAspectRatio}
-          onResize={({ height, width, delta, target }) => {
+          onResize={({ height, width, delta, target, direction }) => {
             setComp((comp) => {
+              console.log(direction);
+              if (direction[0] === -1)
+                comp.x = (comp.x || 0) + (comp.width || template.width) - width;
+              if (direction[1] === -1)
+                comp.y =
+                  (comp.y || 0) + (comp.height || template.height) - height;
               comp.width = width;
               comp.height = height;
             });
-            delta[0] && (target.style.width = `${width}px`);
-            delta[1] && (target.style.height = `${height}px`);
+            if (delta[0]) {
+              target.style.width = `${width}px`;
+            }
+            if (delta[1]) {
+              target.style.height = `${height}px`;
+            }
           }}
           onRotate={(e) =>
             setComp((comp) => {

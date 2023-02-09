@@ -52,6 +52,7 @@ export const Video = ({
     return (
       <RemotionVideo
         {...props}
+        disablePictureInPicture
         style={{
           height: "100%",
           width: "100%",
