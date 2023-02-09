@@ -14,7 +14,7 @@ const minW = 100;
 
 export const timelineSlice = (set: SetType): TimelineSlice => {
   return {
-    timelineHeight: 200,
+    timelineHeight: 300,
     timelineSetHeight: (height: number) =>
       set((s) => {
         s.timelineHeight = Math.max(Math.min(height, maxH), minH);

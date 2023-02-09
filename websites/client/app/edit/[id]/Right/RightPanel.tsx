@@ -1,4 +1,4 @@
-import { RightDiv } from "./RightDiv";
+import { PanelDiv } from "../../../../components/PanelDiv";
 import { useProject } from "../../../../hooks/useProject";
 import { Inputs, UserInput } from "../../../../components/inputs/Inputs";
 import { RightTabs } from "./Tabs";
@@ -10,12 +10,15 @@ export const RightPanel = () => {
   const tabData = tab ? RightTabs[tab] : undefined;
   const comp = useComponent();
   return (
-    <RightDiv show={true}>
+    <PanelDiv
+      widthSelector={(s) => s.rightWidth}
+      setWidthSelector={(s) => s.rightSetWidth}
+    >
       <div className="grid grid-cols-2 gap-2 w-auto ">
         {tabData && comp && (
           <Inputs inputs={tabData.inputs as UserInput<ComponentProps>[]} />
         )}
       </div>
-    </RightDiv>
+    </PanelDiv>
   );
 };
