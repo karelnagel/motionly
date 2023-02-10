@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FileType, useFiles } from "../../hooks/useFiles";
 import { useAlerts } from "../Alert";
+import { FileUploadButton } from "../FileUploadButton";
 import { Popup } from "../Popup";
 
 export const Media = ({
@@ -44,21 +45,9 @@ export const MediaPopup = ({
   type: FileType;
   hide: () => void;
 }) => {
-  const [file, setFile] = useState<File>();
-  const ref = useRef<HTMLInputElement>(null);
   const alert = useAlerts((s) => s.addAlert);
-  const upload = useFiles((s) => s.upload);
   const fetch = useFiles((s) => s.fetch);
   const files = useFiles((s) => s.files.filter((f) => f.type === type));
-
-  const uploadFile = async () => {
-    if (!file) return;
-    const userFile = await upload(file, (f) => onChange(f.url));
-    if (!userFile) return alert("Error uploading file", "error");
-    setFile(undefined);
-    if (ref.current) ref.current.value = "";
-    alert("File uploaded", "info");
-  };
 
   const getFiles = async () => {
     const files = await fetch();
@@ -67,7 +56,7 @@ export const MediaPopup = ({
 
   useEffect(() => {
     getFiles();
-  }, [file]);
+  }, []);
 
   return (
     <Popup hide={hide}>
@@ -79,21 +68,7 @@ export const MediaPopup = ({
 
       <div>
         <p className="text-xl font-semibold">Upload new file</p>
-        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 items-center">
-          <input
-            ref={ref}
-            type="file"
-            className="file-input"
-            onChange={(e) => setFile(e.target.files?.[0])}
-          />
-          <button
-            disabled={!file}
-            className="btn btn-sm btn-primary"
-            onClick={uploadFile}
-          >
-            UPLOAD
-          </button>
-        </div>
+        <FileUploadButton onChange={onChange} />
         <p className="text-xl font-semibold mt-4">Select from existing</p>
         <div className="grid grid-cols-3 md:grid-cols-5 gap-2 max-h-60 overflow-auto">
           {files.length ? (

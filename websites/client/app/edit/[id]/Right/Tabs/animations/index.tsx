@@ -19,7 +19,7 @@ export const component = () => {
       {!!animations?.allIds.length && (
         <div className="space-y-2">
           {animations?.allIds.map((id) => (
-            <OneAnimation id={id} />
+            <OneAnimation id={id} key={id} />
           ))}
         </div>
       )}
