@@ -5,10 +5,9 @@ import { postAI } from "../../../../../sdk/ai";
 
 export default function Ai() {
   const template = useProject((t) => t.project.template);
-  const setProject = useProject((t) => t.setProject);
   const [prompt, setPrompt] = useState("");
   const [status, setStatus] = useState<"loading" | "done" | "error">();
-  const alert = useAlerts();
+  const alert = useAlerts(s=>s.addAlert);
 
   const submit = async (e?: FormEvent<HTMLFormElement>) => {
     e?.preventDefault();

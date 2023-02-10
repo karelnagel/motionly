@@ -32,7 +32,7 @@ export const Clone = ({
   project?: Project;
 }) => {
   const router = useRouter();
-  const alert = useAlerts();
+  const alert = useAlerts((s) => s.addAlert);
   const clone = async () => {
     const newProject = await postNewProject({
       ...project,

@@ -50,7 +50,7 @@ export const MediaPopup = ({
   const [file, setFile] = useState<File>();
   const [files, setFiles] = useState<string[]>();
   const ref = useRef<HTMLInputElement>(null);
-  const alert = useAlerts();
+  const alert = useAlerts((s) => s.addAlert);
   const uploadFile = async () => {
     if (!file) return;
     const key = await uploadMedia(file);

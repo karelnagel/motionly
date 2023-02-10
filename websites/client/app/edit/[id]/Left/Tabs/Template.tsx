@@ -10,7 +10,7 @@ export default function Template() {
   const set = useProject((t) => t.set);
   const project = useProject((t) => t.project);
   const router = useRouter();
-  const alert = useAlerts();
+  const alert = useAlerts((s) => s.addAlert);
 
   const delTemplate = async () => {
     if (!project.id) return;
