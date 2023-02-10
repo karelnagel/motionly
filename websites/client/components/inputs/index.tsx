@@ -13,10 +13,12 @@ export const VariableSelect = ({
   prop,
   type,
   value,
+  label,
 }: {
   prop: string;
   type: keyof typeof inputTypes;
   value: any;
+  label?: string;
 }) => {
   const inputs = useProject((t) => t.project.template.inputs);
   const set = useProject((t) => t.set);
@@ -57,7 +59,7 @@ export const VariableSelect = ({
             inputs.allIds.push(id);
             inputs.byIds[id] = {
               id,
-              label: prop,
+              label: label || prop,
               type,
               value,
             };
@@ -119,7 +121,12 @@ export function Input<T extends any>({
         {prop && !input && (
           <div className="dropdown dropdown-bottom dropdown-end">
             <IoIosAdd tabIndex={0} className="cursor-pointer" />
-            <VariableSelect prop={prop} type={type} value={value} />
+            <VariableSelect
+              prop={prop}
+              type={type}
+              value={value}
+              label={label}
+            />
           </div>
         )}
         {prop && input && (
@@ -188,7 +195,7 @@ export function Input<T extends any>({
           {type === "select" && (
             <select
               disabled={disabled}
-              className="select select-bordered select-sm bg-base-200" 
+              className="select select-bordered select-sm bg-base-200"
               value={value as string}
               onChange={(e) => onChange(e.target.value as T)}
             >

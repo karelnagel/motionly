@@ -3,7 +3,7 @@ import { Input } from "../../../../../components/inputs";
 import { getRandomId } from "../../../../../helpers";
 import { useProject } from "../../../../../hooks/useProject";
 
-export default function Media() {
+export default function Variables() {
   const inputs = useProject((t) => t.project.template.inputs);
   const set = useProject((t) => t.set);
   return (

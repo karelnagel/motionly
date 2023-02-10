@@ -15,10 +15,10 @@ export const LeftTabs = {
     Icon: IoIosSettings,
     Component: () => import("./Template"),
   },
-  inputs: {
-    name: "Inputs",
-    Icon: HiVariable,
-    Component: () => import("./Inputs"),
+  elements: {
+    name: "Elements",
+    Icon: IoShapesSharp,
+    Component: () => import("./Elements"),
   },
   media: {
     name: "Media",
@@ -30,10 +30,10 @@ export const LeftTabs = {
     Icon: IoIosImages,
     Component: () => import("./Stock"),
   },
-  elements: {
-    name: "Elements",
-    Icon: IoShapesSharp,
-    Component: () => import("./Elements"),
+  inputs: {
+    name: "Variables",
+    Icon: HiVariable,
+    Component: () => import("./Variables"),
   },
   // text: {
   //   name: "Text",
