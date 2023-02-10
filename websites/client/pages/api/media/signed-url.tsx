@@ -2,11 +2,13 @@ import { NextApiRequest, NextApiResponse } from "next";
 import S3 from "aws-sdk/clients/s3";
 import { getServerSession } from "../../../lib/getServerSession";
 import { awsClientConfig, mediaBucket } from "../../../env";
+import { SignedUrl } from "../../../sdk/media/upload";
+import { getMediaUrl } from "../../../helpers/file";
 
 const s3 = new S3(awsClientConfig);
-export default async function SignedUrl(
+export default async function GetSignedUrl(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse<SignedUrl>
 ) {
   const session = await getServerSession({ req, res });
   if (!session) return res.status(401).end("Not logged in");
@@ -23,7 +25,7 @@ export default async function SignedUrl(
       Expires: 60 * 60 * 24,
       ContentType: type,
     });
-    return res.status(200).json({ url, key });
+    return res.status(200).json({ signedUrl: url, fileUrl: getMediaUrl(key) });
   }
 
   return res.status(404).end();

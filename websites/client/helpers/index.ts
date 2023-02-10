@@ -44,7 +44,5 @@ export const isPanel = (selected: string) => {
   return ["template", "export", "add", "ai", "inputs"].includes(selected);
 };
 
-export const getMediaUrl = (key: string) => {
-  return `https://${mediaBucket}.s3.amazonaws.com/${key}`;
-};
+
 export const lowRep = (s: string) => s.replace(/ /g, "-").toLowerCase();
