@@ -1,33 +1,31 @@
 import MediaTab from "../../../../../components/MediaTab";
 import { useEffect } from "react";
-import { getStock } from "../../../../../sdk/stock";
 import { useProject } from "../../../../../hooks/useProject";
 import { getRandomId } from "../../../../../helpers";
 import Link from "next/link";
+import { useFiles } from "../../../../../hooks/useFiles";
 
 export default function Stock() {
-  const mediaTab = useProject((t) => t.leftMediaTab);
   const setTab = useProject((t) => t.leftSetTab);
   const addComp = useProject((s) => s.addComp);
-  const media = useProject((s) => s.leftMedia);
-  const setMedia = useProject((s) => s.leftSetMedia);
-  const query = useProject((s) => s.leftQuery);
-  const setQuery = useProject((s) => s.leftSetQuery);
+  const media = useFiles((s) => s.stockMedia);
+  const query = useFiles((s) => s.stockQuery);
+  const setQuery = useFiles((s) => s.setStockQuery);
+  const fetchStock = useFiles((s) => s.fetchStock);
+  const mediaType = useFiles((s) => s.mediaType);
 
   useEffect(() => {
-    getStock(mediaTab, query || undefined).then((res) =>
-      setMedia(res || undefined)
-    );
-  }, [mediaTab]);
+    fetchStock();
+  }, [mediaType]);
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    getStock(mediaTab, query).then((res) => setMedia(res || undefined));
+    fetchStock();
   };
   const add = (src: string) => {
     addComp({
       id: getRandomId(),
-      comp: mediaTab,
+      comp: mediaType,
       src,
       objectFit: "cover",
     });
@@ -61,7 +59,7 @@ export default function Stock() {
                     onClick={() => add(src)}
                     className="w-full aspect-square bg-base-200  rounded-lg overflow-hidden"
                   >
-                    {mediaTab !== "audio" && (
+                    {mediaType !== "audio" && (
                       <img src={icon} className=" h-full w-full object-cover" />
                     )}
                   </button>
