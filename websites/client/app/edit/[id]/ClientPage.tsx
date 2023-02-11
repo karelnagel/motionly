@@ -14,6 +14,7 @@ import { RightBar } from "./Right/RightBar";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Loading } from "../../../components/Loading";
+import { trpc } from "../../ClientProvider";
 
 export function ClientPageWrapper({ project }: { project: Project }) {
   const [isClient, setIsClient] = useState(false);
@@ -26,6 +27,8 @@ export function ClientPageWrapper({ project }: { project: Project }) {
   );
 }
 export function ClientPage() {
+  const hello = trpc.hello.useQuery({ text: "client" });
+  console.log(hello);
   const id = useProject((t) => t.project.id);
   return (
     <div className="bg-base-300 w-screen h-screen overflow-hidden">

@@ -1,6 +1,7 @@
 import { Alerts } from "../components/Alert";
 import { ClientSessionProvider } from "../contexts/ClientSessionProvider";
 import { getServerSession } from "../lib/getServerSession";
+import { ClientProvider } from "./ClientProvider";
 import "./globals.css";
 
 export default async function RootLayout({
@@ -14,7 +15,9 @@ export default async function RootLayout({
       <ClientSessionProvider session={session}>
         <head />
         <body className="dark">
-          <Alerts>{children}</Alerts>
+          <Alerts>
+            <ClientProvider>{children}</ClientProvider>
+          </Alerts>
         </body>
       </ClientSessionProvider>
     </html>

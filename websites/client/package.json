@@ -22,6 +22,11 @@
         "@remotion/lambda": "3.3.34",
         "@remotion/player": "3.3.34",
         "@tailwindcss/line-clamp": "^0.4.2",
+        "@tanstack/react-query": "^4.24.4",
+        "@trpc/client": "^10.11.0",
+        "@trpc/next": "^10.11.0",
+        "@trpc/react-query": "^10.11.0",
+        "@trpc/server": "^10.11.0",
         "@types/node": "18.11.9",
         "@types/react": "18.0.24",
         "@types/react-dom": "18.0.8",
@@ -50,6 +55,7 @@
         "remotion": "3.3.34",
         "tailwindcss": "^3.2.1",
         "typescript": "4.8.4",
+        "zod": "^3.20.6",
         "zustand": "^4.3.2"
     },
     "devDependencies": {
