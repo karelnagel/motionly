@@ -6,7 +6,7 @@ import { useProject } from "../../../../../hooks/useProject";
 
 export default function Export() {
   const allRenders = useProject((s) => s.allRenders);
-  const status = useProject((s) => s.status);
+  const isRendering = useProject((s) => s.isRendering);
   const template = useProject((s) => s.project.template);
   const renderMedia = useProject((s) => s.renderMedia);
   const renderStill = useProject((s) => s.renderStill);
@@ -19,13 +19,13 @@ export default function Export() {
           <button
             className="btn btn-sm"
             onClick={() => renderStill(template)}
-            disabled={status === "rendering"}
+            disabled={isRendering}
           >
             Current frame
           </button>
 
           <button
-            disabled={status === "rendering"}
+            disabled={isRendering}
             className="btn btn-sm btn-primary"
             onClick={() => renderMedia(template)}
           >
