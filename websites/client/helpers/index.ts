@@ -1,5 +1,5 @@
 import { ComponentProps } from "@motionly/base";
-import { mediaBucket } from "../env";
+import { mediaBucket } from "../oldEnv";
 
 export const percentToHex = (p: number) => {
   const intValue = Math.round((p / 100) * 255); // map percent to nearest integer (0 - 255)
@@ -43,6 +43,5 @@ export const getRandomId = () => {
 export const isPanel = (selected: string) => {
   return ["template", "export", "add", "ai", "inputs"].includes(selected);
 };
-
 
 export const lowRep = (s: string) => s.replace(/ /g, "-").toLowerCase();

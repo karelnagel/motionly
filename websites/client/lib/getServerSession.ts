@@ -1,5 +1,5 @@
 import { unstable_getServerSession } from "next-auth";
-import { authOptions } from "../pages/api/auth/[...nextauth]";
+import { authOptions } from "../server/auth";
 import { ReqRes, SessionWithId } from "../types";
 
 export const getServerSession = async (

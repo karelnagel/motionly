@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import S3 from "aws-sdk/clients/s3";
 import { getServerSession } from "../../../lib/getServerSession";
-import { awsClientConfig, mediaBucket } from "../../../env";
+import { awsClientConfig, mediaBucket } from "../../../oldEnv";
 import { getFileType, getMediaUrl } from "../../../helpers/file";
 import { UserFile } from "../../../hooks/useFiles";
 

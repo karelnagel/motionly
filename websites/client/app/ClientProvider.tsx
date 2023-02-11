@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCReact } from "@trpc/react-query";
 import { useState } from "react";
-import type { AppRouter } from "../server/routers/_app";
+import { AppRouter } from "../server/api/root";
 
 export const trpc = createTRPCReact<AppRouter>({
   unstable_overrides: {

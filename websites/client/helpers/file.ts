@@ -1,4 +1,4 @@
-import { mediaBucket } from "../env";
+import { mediaBucket } from "../oldEnv";
 import { FileType } from "../hooks/useFiles";
 
 export const getFileType = (key: string): FileType => {
