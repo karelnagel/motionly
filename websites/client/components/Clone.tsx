@@ -1,26 +1,28 @@
 "use client";
 
+import { TemplateType } from "@motionly/base";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
-import { postNewProject } from "../sdk/templates/new";
+import { trpc } from "../app/ClientProvider";
 import { Project } from "../types";
 import { useAlerts } from "./Alert";
+const template: TemplateType = {
+  width: 1080,
+  height: 1080,
+  fps: 30,
+  duration: 10,
+  bg: {
+    type: "basic",
+    color: "#FFFFFFFF",
+  },
+  childIds: [],
+  components: {},
+};
 
 const emptyProject: Project = {
   name: "Empty",
   description: "This is an empty template",
-  template: {
-    width: 1080,
-    height: 1080,
-    fps: 30,
-    duration: 10,
-    bg: {
-      type: "basic",
-      color: "#FFFFFFFF",
-    },
-    childIds: [],
-    components: {},
-  },
+  template,
 };
 export const Clone = ({
   children,
@@ -33,8 +35,9 @@ export const Clone = ({
 }) => {
   const router = useRouter();
   const alert = useAlerts((s) => s.addAlert);
+  const postNewProject = trpc.templates.new.useMutation({});
   const clone = async () => {
-    const newProject = await postNewProject({
+    const newProject = await postNewProject.mutateAsync({
       ...project,
       id: undefined,
       name: `${project.name}`,

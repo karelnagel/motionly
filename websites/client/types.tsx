@@ -1,6 +1,7 @@
 import { TemplateType } from "@motionly/base";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ISODateString } from "next-auth";
+import { z } from "zod";
 
 export type ReqRes = { req: NextApiRequest; res: NextApiResponse };
 
@@ -14,13 +15,16 @@ export type SessionWithId = {
   expires: ISODateString;
 };
 
-export type Project = {
-  isOwner?: boolean;
-  public?: boolean;
-  name: string;
-  description: string;
-  id?: string;
-  preview?: string;
+export const Project = z.object({
+  template: z.any(),
+  name: z.string(),
+  description: z.string(),
+  preview: z.string().optional(),
+  public: z.boolean().optional(),
+  id: z.string().optional(),
+  isOwner: z.boolean().optional(),
+});
+export type Project = Omit<z.infer<typeof Project>, "template"> & {
   template: TemplateType;
 };
 export const MediaTabs = {

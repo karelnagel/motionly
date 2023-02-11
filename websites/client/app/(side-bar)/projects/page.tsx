@@ -9,7 +9,7 @@ export default async function Page() {
   const session = await getServerSession();
   const projects = await prisma.project.findMany({
     where: {
-      userId: session.user?.id || undefined,
+      userId: session?.user?.id || undefined,
     },
     include: { user: true },
     orderBy: { updatedAt: "desc" },

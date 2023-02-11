@@ -10,12 +10,13 @@ import { Clone } from "../../../../components/Clone";
 import { Input } from "../../../../components/inputs";
 import { Project } from "../../../../types";
 import produce from "immer";
+import { TemplateType } from "@motionly/base";
 
 export const Client = ({ startProject }: { startProject: Project }) => {
   const [project, setProject] = useState(startProject);
   const { data: session } = useSession();
   const { media, fileUrl, progress, status } = useRender(project.template);
-  const template = project.template;
+  const template = project.template as TemplateType;
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
       <div className="space-y-3 flex flex-col items-stretch ">

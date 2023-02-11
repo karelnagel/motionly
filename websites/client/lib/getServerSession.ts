@@ -1,15 +1,14 @@
-import { unstable_getServerSession } from "next-auth";
+import { Session, unstable_getServerSession } from "next-auth";
 import { authOptions } from "../server/auth";
-import { ReqRes, SessionWithId } from "../types";
+import { ReqRes } from "../types";
 
 export const getServerSession = async (
   reqRes?: ReqRes
-): Promise<SessionWithId> => {
+): Promise<Session | undefined> => {
   if (reqRes)
-    return (await unstable_getServerSession(
-      reqRes.req,
-      reqRes.res,
-      authOptions
-    )) as SessionWithId;
-  return (await unstable_getServerSession(authOptions)) as SessionWithId;
+    return (
+      (await unstable_getServerSession(reqRes.req, reqRes.res, authOptions)) ||
+      undefined
+    );
+  return (await unstable_getServerSession(authOptions)) || undefined;
 };

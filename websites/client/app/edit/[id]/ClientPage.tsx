@@ -27,10 +27,6 @@ export function ClientPageWrapper({ project }: { project: Project }) {
   );
 }
 export function ClientPage() {
-  const hello = trpc.example.hello.useQuery({ text: "sdf" });
-  const secret = trpc.example.getSecretMessage.useQuery();
-  const templates = trpc.example.getAll.useQuery();
-  console.log(hello.data, secret.data, templates.data);
   const id = useProject((t) => t.project.id);
   return (
     <div className="bg-base-300 w-screen h-screen overflow-hidden">

@@ -9,7 +9,7 @@ export const ClientSessionProvider = ({
   session,
 }: {
   children: ReactNode;
-  session: Session | null;
+  session?: Session;
 }) => {
   return <SessionProvider session={session}>{children}</SessionProvider>;
 };
