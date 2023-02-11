@@ -2,9 +2,9 @@ import { AllComponents, BaseProps, ComponentProps } from "@motionly/base";
 import { Project } from "../../types";
 import { WritableDraft } from "immer/dist/internal";
 import { getRandomId } from "../../helpers";
-import { updateProject } from "../../sdk/templates/update";
 import { exportSlice } from "./exportSlice";
 import { GetType, SetInput, SetType } from ".";
+import { trpcClient } from "../../app/ClientProvider";
 
 export type ProjectSlice = {
   project: Project;
@@ -57,7 +57,7 @@ export const projectSlice = (
         if (state.saveTimeout) clearTimeout(state.saveTimeout);
         state.saveTimeout = setTimeout(async () => {
           const { project } = get();
-          const result = await updateProject({
+          const result = await trpcClient.projects.update.mutate({
             id: project.id || "",
             project: project,
           });

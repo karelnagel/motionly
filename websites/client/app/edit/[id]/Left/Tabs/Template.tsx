@@ -4,17 +4,17 @@ import { useAlerts } from "../../../../../components/Alert";
 import { Clone } from "../../../../../components/Clone";
 import { Input } from "../../../../../components/inputs";
 import { useProject } from "../../../../../hooks/useProject";
-import { deleteProject } from "../../../../../sdk/templates/delete";
+import { trpc } from "../../../../ClientProvider";
 
 export default function Template() {
   const set = useProject((t) => t.set);
   const project = useProject((t) => t.project);
   const router = useRouter();
   const alert = useAlerts((s) => s.addAlert);
-
+  const { mutateAsync } = trpc.projects.delete.useMutation();
   const delTemplate = async () => {
     if (!project.id) return;
-    const result = await deleteProject({ id: project.id });
+    const result = await mutateAsync({ id: project.id });
     if (!result) return alert("Failed to delete template", "error");
     alert("Template deleted", "success");
     router.push("/");

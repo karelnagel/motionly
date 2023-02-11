@@ -1,7 +1,6 @@
 import { Project } from "../../../components/Template";
 import { Title } from "../../../components/Title";
 import { getServerSession } from "../../../lib/getServerSession";
-import { prisma } from "../../../lib/prisma";
 
 export const dynamic = "force-dynamic";
 
