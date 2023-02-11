@@ -35,7 +35,7 @@ export const Clone = ({
 }) => {
   const router = useRouter();
   const alert = useAlerts((s) => s.addAlert);
-  const postNewProject = trpc.templates.new.useMutation({});
+  const postNewProject = trpc.projects.new.useMutation({});
   const clone = async () => {
     const newProject = await postNewProject.mutateAsync({
       ...project,

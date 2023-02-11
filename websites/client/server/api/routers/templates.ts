@@ -1,8 +1,9 @@
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { Project } from "../../../types";
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 
-export const templates = createTRPCRouter({
+export const projects = createTRPCRouter({
   new: protectedProcedure
     .input(Project)
     .output(Project)
@@ -24,9 +25,29 @@ export const templates = createTRPCRouter({
     }),
   get: publicProcedure
     .input(z.object({ id: z.string() }))
-    .query(({ input }) => {
+    .output(Project)
+    .query(async ({ input, ctx }) => {
+      const project = await ctx.prisma.project.findFirst({
+        where: {
+          id: input.id,
+          OR: [{ public: true }, { user: { email: ctx.session?.user?.email } }],
+        },
+        include: { user: true },
+      });
+      if (!project)
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "Project not found",
+        });
+      const isOwner = ctx.session?.user?.email === project.user.email;
       return {
-        greeting: `Hello ${input.id}`,
+        template: project.template,
+        name: project.name,
+        description: project.description,
+        id: project.id,
+        public: project.public,
+        isOwner,
+        preview: project.preview || undefined,
       };
     }),
   update: protectedProcedure

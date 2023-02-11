@@ -5,7 +5,6 @@ import {
   DeleteProjectInput,
   DeleteProjectOutput,
 } from "../../../sdk/templates/delete";
-import { GetProjectInput, GetProjectOutput } from "../../../sdk/templates/get";
 import {
   UpdateProjectInput,
   UpdateProjectOutput,
@@ -18,40 +17,13 @@ export default async function Project(
 ) {
   let result = null;
   const id = req.query.id as string;
-  if (req.method === "GET") result = await getProject({ id }, { req, res });
-  else if (req.method === "PUT")
+  if (req.method === "PUT")
     result = await updateProject({ id, project: req.body }, { req, res });
   else if (req.method === "DELETE") result = await deleteProject({ id });
 
   if (!result) return res.status(404).end();
   return res.status(200).json(result);
 }
-
-export const getProject = async (
-  { id }: GetProjectInput,
-  reqRes?: ReqRes
-): Promise<GetProjectOutput | null> => {
-  const session = await getServerSession(reqRes);
-  const project = await prisma.project.findFirst({
-    where: {
-      id,
-      OR: [{ public: true }, { user: { email: session?.user?.email } }],
-    },
-    include: { user: true },
-  });
-  if (!project) return null;
-  const { name, description, preview, template } = project;
-  const isOwner = session?.user?.email === project.user.email;
-  return {
-    template: template as any,
-    name,
-    description,
-    id,
-    public: project.public,
-    isOwner,
-    preview: preview || undefined,
-  };
-};
 
 const updateProject = async (
   { id, project }: UpdateProjectInput,

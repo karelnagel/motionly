@@ -1,8 +1,7 @@
 import axios from "axios";
 import { Project } from "../../types";
-import { GetProjectInput } from "./get";
 
-export type DeleteProjectInput = GetProjectInput;
+export type DeleteProjectInput = { id: string };
 export type DeleteProjectOutput = Project;
 export const deleteProject = async ({
   id,
