@@ -1,7 +1,6 @@
 "use client";
 
 import { Player } from "@motionly/player";
-import { useRender } from "@motionly/renderer/dist/sdk";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
@@ -11,12 +10,13 @@ import { Input } from "../../../../components/inputs";
 import { Project } from "../../../../types";
 import produce from "immer";
 import { TemplateType } from "@motionly/base";
+import { trpc, trpcClient } from "../../../ClientProvider";
 
 export const Client = ({ startProject }: { startProject: Project }) => {
   const [project, setProject] = useState(startProject);
   const { data: session } = useSession();
-  const { media, fileUrl, progress, status } = useRender(project.template);
   const template = project.template as TemplateType;
+  // const { mutateAsync: renderMedia } = trpc.render.media.useMutation({});
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
       <div className="space-y-3 flex flex-col items-stretch ">
@@ -69,7 +69,7 @@ export const Client = ({ startProject }: { startProject: Project }) => {
             />
           );
         })}
-        <div className="flex flex-col  space-y-2 justify-between">
+        {/* <div className="flex flex-col  space-y-2 justify-between">
           {status && <p>Status: {status}</p>}
           {status && (
             <progress
@@ -90,7 +90,7 @@ export const Client = ({ startProject }: { startProject: Project }) => {
               FILE
             </Link>
           )}
-        </div>
+        </div> */}
       </div>
       <Player
         loop
