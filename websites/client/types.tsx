@@ -1,22 +1,31 @@
 import { TemplateType } from "@motionly/base";
 import { NextApiRequest, NextApiResponse } from "next";
-import { ISODateString } from "next-auth";
 import { z } from "zod";
 
 export type ReqRes = { req: NextApiRequest; res: NextApiResponse };
-
-export type SessionWithId = {
-  user?: {
-    name?: string | null;
-    email?: string | null;
-    image?: string | null;
-    id?: string | null;
-  };
-  expires: ISODateString;
-};
-
+export const RenderProgress = z.object({
+  renderId: z.string(),
+  progress: z.number(),
+  status: z.enum(["error", "done", "rendering"]),
+  cost: z.number(),
+  fileUrl: z.string().optional(),
+});
+export type RenderProgress = z.infer<typeof RenderProgress>;
+export const Template = z.object({
+  width: z.number(),
+  height: z.number(),
+  fps: z.number(),
+  duration: z.number(),
+  inputs: z.any(),
+  components: z.any(),
+  bg: z.any(),
+  childIds: z.array(z.string()),
+  templateInputs: z.any(),
+  isSequence: z.boolean().optional(),
+  comps: z.any(),
+});
 export const Project = z.object({
-  template: z.any(),
+  template: Template,
   name: z.string(),
   description: z.string(),
   preview: z.string().optional(),

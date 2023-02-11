@@ -41,6 +41,7 @@ export const Clone = ({
       ...project,
       id: undefined,
       name: `${project.name}`,
+      template: project.template,
     });
     if (!newProject) return alert("Failed to clone template", "error");
     router.push(`/edit/${newProject.id}`);
