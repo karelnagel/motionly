@@ -1,5 +1,4 @@
 import { ComponentProps } from "@motionly/base";
-import { mediaBucket } from "../oldEnv";
 
 export const percentToHex = (p: number) => {
   const intValue = Math.round((p / 100) * 255); // map percent to nearest integer (0 - 255)

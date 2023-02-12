@@ -4,7 +4,7 @@ import Transcribe from "aws-sdk/clients/transcribeservice";
 import { getServerSession } from "../../../lib/getServerSession";
 import axios from "axios";
 import { TranscriptionWord } from "@motionly/base";
-import { awsClientConfig } from "../../../oldEnv";
+import { awsClientConfig } from "../../../helpers/awsClientConfig";
 
 const transcribe = new Transcribe(awsClientConfig);
 

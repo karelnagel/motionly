@@ -6,13 +6,7 @@ import {
   renderMediaOnLambda,
   renderStillOnLambda,
 } from "@remotion/lambda/client";
-import {
-  bucketName,
-  composition,
-  functionName,
-  region,
-  serveUrl,
-} from "../../../oldEnv";
+import { env } from "../../../env.mjs";
 
 export const render = createTRPCRouter({
   media: protectedProcedure
@@ -20,11 +14,11 @@ export const render = createTRPCRouter({
     .output(z.string())
     .mutation(async ({ input, ctx }) => {
       const { renderId } = await renderMediaOnLambda({
-        serveUrl,
+        serveUrl: env.REMOTION_AWS_SERVE_URL,
         codec: "h264",
-        composition,
-        functionName,
-        region,
+        composition: env.REMOTION_COMPOSITION,
+        functionName: env.REMOTION_AWS_FUNCTION_NAME,
+        region: env.REMOTION_AWS_REGION as any,
         inputProps: input.template,
       });
       return renderId;
@@ -34,13 +28,13 @@ export const render = createTRPCRouter({
     .output(RenderProgress)
     .mutation(async ({ input, ctx }) => {
       const { estimatedPrice, renderId, url } = await renderStillOnLambda({
-        serveUrl,
+        serveUrl: env.REMOTION_AWS_SERVE_URL,
         imageFormat: "jpeg",
         privacy: "public",
         frame: input.frame,
-        composition,
-        functionName,
-        region,
+        composition: env.REMOTION_COMPOSITION,
+        functionName: env.REMOTION_AWS_FUNCTION_NAME,
+        region: env.REMOTION_AWS_REGION as any,
         inputProps: input.template,
       });
       return {
@@ -64,9 +58,9 @@ export const render = createTRPCRouter({
         done,
         errors,
       } = await getRenderProgress({
-        bucketName,
-        functionName,
-        region,
+        bucketName: env.REMOTION_AWS_BUCKET,
+        functionName: env.REMOTION_AWS_FUNCTION_NAME,
+        region: env.REMOTION_AWS_REGION as any,
         renderId: input,
       });
       if (errors.length > 0) console.log(errors);

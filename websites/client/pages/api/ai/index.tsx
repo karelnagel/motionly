@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextApiRequest, NextApiResponse } from "next";
 import { Configuration, OpenAIApi } from "openai";
+import { env } from "../../../env.mjs";
 
 export const types = `type AllComponents={fontSize;fontFamily;fontWeight;lineHeight;textAlign?:"left"|"center"|"right";bg;color;outlineColor;outlineWidth;}|
 {comp:"transcription";textStyle:TextStyle;scrollByPage;animationType:"current-word"|"previous-text";animationStyle:TextStyle;}|
@@ -45,7 +46,7 @@ export default async function Template(
   console.log(inputPrompt);
 
   const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
+    apiKey: env.OPENAI_API_KEY,
   });
   const openai = new OpenAIApi(configuration);
   const response = await openai.createCompletion({

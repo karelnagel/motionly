@@ -1,4 +1,4 @@
-import { mediaBucket } from "../oldEnv";
+import { env } from "../env.mjs";
 import { FileType } from "../hooks/useFiles";
 
 export const getFileType = (key: string): FileType => {
@@ -12,5 +12,5 @@ export const getFileType = (key: string): FileType => {
 };
 
 export const getMediaUrl = (key: string) => {
-  return `https://${mediaBucket}.s3.amazonaws.com/${key}`;
+  return `https://${env.MEDIA_BUCKET}.s3.amazonaws.com/${key}`;
 };

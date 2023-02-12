@@ -1,9 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import S3 from "aws-sdk/clients/s3";
 import { getServerSession } from "../../../lib/getServerSession";
-import { awsClientConfig, mediaBucket } from "../../../oldEnv";
+import { awsClientConfig } from "../../../helpers/awsClientConfig";
 import { SignedUrl } from "../../../sdk/media/upload";
 import { getMediaUrl } from "../../../helpers/file";
+import { env } from "../../../env.mjs";
 
 const s3 = new S3(awsClientConfig);
 export default async function GetSignedUrl(
@@ -20,7 +21,7 @@ export default async function GetSignedUrl(
   if (req.method === "POST") {
     const key = `${session.user?.id}/${name}`;
     const url = await s3.getSignedUrlPromise("putObject", {
-      Bucket: mediaBucket,
+      Bucket: env.MEDIA_BUCKET,
       Key: key,
       Expires: 60 * 60 * 24,
       ContentType: type,

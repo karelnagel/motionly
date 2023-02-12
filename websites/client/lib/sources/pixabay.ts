@@ -1,11 +1,12 @@
 import axios from "axios";
 import { Source } from ".";
+import { env } from "../../env.mjs";
 import { MediaTabs } from "../../types";
 
 const getImage = (e: any) =>
   `https://i.vimeocdn.com/video/${e.picture_id}_200x150.jpg`;
 
-const key = process.env.PIXABAY_API;
+const key = env.PIXABY_API_KEY;
 export const Pixabay: Source = {
   name: "Pixabay",
   logo: "https://pixabay.com/static/img/logo_square.png",

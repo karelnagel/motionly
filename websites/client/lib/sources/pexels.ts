@@ -1,8 +1,9 @@
 import { createClient } from "pexels";
 import { Source } from ".";
+import { env } from "../../env.mjs";
 import { MediaTabs } from "../../types";
 
-const client = createClient(process.env.PEXELS_API || "");
+const client = createClient(env.PEXELS_API_KEY || "");
 
 export const Pexels: Source = {
   name: "Pexels",

@@ -1,10 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { z } from "zod";
 
-/**
- * Specify your server-side environment variables schema here.
- * This way you can ensure the app isn't built with invalid env vars.
- */
 const server = z.object({
   DATABASE_URL: z.string().url(),
   NODE_ENV: z.enum(["development", "test", "production"]),
@@ -13,22 +9,25 @@ const server = z.object({
       ? z.string().min(1)
       : z.string().min(1).optional(),
   NEXTAUTH_URL: z.preprocess(
-    // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
-    // Since NextAuth.js automatically uses the VERCEL_URL if present.
     (str) => process.env.VERCEL_URL ?? str,
-    // VERCEL_URL doesn't include `https` so it cant be validated as a URL
     process.env.VERCEL ? z.string().min(1) : z.string().url(),
   ),
-  // Add `.min(1) on ID and SECRET if you want to make sure they're not empty
   GOOGLE_CLIENT_ID: z.string(),
   GOOGLE_CLIENT_SECRET: z.string(),
+  REMOTION_AWS_FUNCTION_NAME: z.string(),
+  REMOTION_AWS_ACCESS_KEY_ID: z.string(),
+  REMOTION_AWS_SECRET_ACCESS_KEY: z.string(),
+  REMOTION_AWS_REGION: z.string(),
+  REMOTION_AWS_BUCKET: z.string(),
+  REMOTION_AWS_SERVE_URL: z.string(),
+  REMOTION_COMPOSITION: z.string(),
+  MEDIA_BUCKET: z.string(),
+  GIPHY_API_KEY: z.string(),
+  PEXELS_API_KEY: z.string(),
+  PIXABY_API_KEY: z.string(),
+  OPENAI_API_KEY: z.string(),
 });
 
-/**
- * Specify your client-side environment variables schema here.
- * This way you can ensure the app isn't built with invalid env vars.
- * To expose them to the client, prefix them with `NEXT_PUBLIC_`.
- */
 const client = z.object({
   // NEXT_PUBLIC_CLIENTVAR: z.string().min(1),
 });
@@ -45,6 +44,18 @@ const processEnv = {
   NEXTAUTH_URL: process.env.NEXTAUTH_URL,
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+  REMOTION_AWS_FUNCTION_NAME: process.env.REMOTION_AWS_FUNCTION_NAME,
+  REMOTION_AWS_ACCESS_KEY_ID: process.env.REMOTION_AWS_ACCESS_KEY_ID,
+  REMOTION_AWS_SECRET_ACCESS_KEY: process.env.REMOTION_AWS_SECRET_ACCESS_KEY,
+  REMOTION_AWS_REGION: process.env.REMOTION_AWS_REGION,
+  REMOTION_AWS_BUCKET: process.env.REMOTION_AWS_BUCKET,
+  REMOTION_AWS_SERVE_URL: process.env.REMOTION_AWS_SERVE_URL,
+  REMOTION_COMPOSITION: "Main",
+  MEDIA_BUCKET: 'motionly-media',
+  GIPHY_API_KEY: process.env.GIPHY_API_KEY,
+  PEXELS_API_KEY: process.env.PEXELS_API_KEY,
+  PIXABY_API_KEY: process.env.PIXABY_API_KEY,
+  OPENAI_API_KEY: process.env.OPENAI_API_KEY,
 };
 
 const merged = server.merge(client);

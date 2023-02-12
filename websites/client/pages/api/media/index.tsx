@@ -1,9 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import S3 from "aws-sdk/clients/s3";
 import { getServerSession } from "../../../lib/getServerSession";
-import { awsClientConfig, mediaBucket } from "../../../oldEnv";
+import { awsClientConfig } from "../../../helpers/awsClientConfig";
 import { getFileType, getMediaUrl } from "../../../helpers/file";
 import { UserFile } from "../../../hooks/useFiles";
+import { env } from "../../../env.mjs";
 
 const s3 = new S3(awsClientConfig);
 
@@ -17,7 +18,7 @@ export default async function GetMedia(
     try {
       const objects = await s3
         .listObjectsV2({
-          Bucket: mediaBucket,
+          Bucket: env.MEDIA_BUCKET,
           Prefix: `${session.user?.id}/`,
         })
         .promise();
@@ -42,7 +43,7 @@ export default async function GetMedia(
     try {
       await s3
         .deleteObject({
-          Bucket: mediaBucket,
+          Bucket: env.MEDIA_BUCKET,
           Key: `${session.user?.id}/${key}`,
         })
         .promise();
