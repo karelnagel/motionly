@@ -50,7 +50,7 @@ export const render = createTRPCRouter({
     }),
 
   progress: protectedProcedure
-    .meta({ openapi: { method: "POST", path: "/render/progress", tags } })
+    .meta({ openapi: { method: "POST", path: "/render/{renderId}", tags } })
     .input(z.object({ renderId: z.string() }))
     .output(RenderProgress)
     .mutation(async ({ input: { renderId }, ctx }) => {

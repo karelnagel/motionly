@@ -20,8 +20,32 @@ const isOwner = async (id: string, userId: string) => {
 
 const tags = ["Projects"];
 export const projects = createTRPCRouter({
+  new: protectedProcedure
+    .meta({
+      openapi: {
+        method: "POST",
+        path: "/projects/new",
+        protect: true,
+        tags,
+      },
+    })
+    .input(Project)
+    .output(Project)
+    .mutation(async ({ input, ctx }) => {
+      const result = await ctx.prisma.project.create({
+        data: {
+          template: input.template as any,
+          name: input.name + " (Copy)",
+          description: input.description,
+          preview: input.preview,
+          public: false,
+          user: { connect: { id: ctx.session.user.id } },
+        },
+      });
+      return prismaProjectToProject(result, ctx.session.user.id);
+    }),
   get: publicProcedure
-    .meta({ openapi: { method: "GET", path: "/projects/", tags } })
+    .meta({ openapi: { method: "GET", path: "/projects/{id}", tags } })
     .input(z.object({ id: z.string() }))
     .output(Project)
     .query(async ({ input, ctx }) => {
@@ -42,7 +66,7 @@ export const projects = createTRPCRouter({
 
   update: protectedProcedure
     .meta({
-      openapi: { method: "PUT", path: "/projects/", protect: true, tags },
+      openapi: { method: "PUT", path: "/projects/{id}", protect: true, tags },
     })
     .input(z.object({ id: z.string(), project: Project }))
     .output(Project)
@@ -66,7 +90,7 @@ export const projects = createTRPCRouter({
     .meta({
       openapi: {
         method: "DELETE",
-        path: "/projects/",
+        path: "/projects/{id}",
         protect: true,
         tags,
       },
@@ -79,30 +103,6 @@ export const projects = createTRPCRouter({
         where: { id },
       });
 
-      return prismaProjectToProject(result, ctx.session.user.id);
-    }),
-  new: protectedProcedure
-    .meta({
-      openapi: {
-        method: "POST",
-        path: "/projects/new",
-        protect: true,
-        tags,
-      },
-    })
-    .input(Project)
-    .output(Project)
-    .mutation(async ({ input, ctx }) => {
-      const result = await ctx.prisma.project.create({
-        data: {
-          template: input.template as any,
-          name: input.name + " (Copy)",
-          description: input.description,
-          preview: input.preview,
-          public: false,
-          user: { connect: { id: ctx.session.user.id } },
-        },
-      });
       return prismaProjectToProject(result, ctx.session.user.id);
     }),
 });
