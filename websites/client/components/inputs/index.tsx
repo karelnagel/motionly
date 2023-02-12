@@ -220,9 +220,12 @@ export function Input<T extends any>({
               setStyle={(textStyle) => onChange(textStyle as T)}
             />
           )} */}
-          {(type === "gif" || type === "image" || type === "video") && (
+          {(type === "gif" ||
+            type === "image" ||
+            type === "video" ||
+            type === "audio") && (
             <Media
-              type={type}
+              type={type.toLowerCase() as any}
               value={value as string}
               onChange={(value) => onChange(value as T)}
             />

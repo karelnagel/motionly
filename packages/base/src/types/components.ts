@@ -341,6 +341,7 @@ export type AllComponents =
 export type ComponentProps = BaseProps & AllComponents;
 export const inputTypes = {
   image: "image",
+  audio: "audio",
   video: "video",
   gif: "gif",
   text: "text",

@@ -7,10 +7,10 @@ export const Giphy: Source = {
   name: "Giphy",
   logo: "https://giphy.com/static/img/giphy_logo_square_social.png",
   url: "https://giphy.com",
-  types: ["gif"],
+  types: ["GIF"],
   search: async (type, limit, q) => {
     try {
-      if (type === "gif") {
+      if (type === "GIF") {
         const res = await axios.get(
           q
             ? `https://api.giphy.com/v1/gifs/search`

@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { FileUploadButton } from "../../../../../components/FileUploadButton";
-import {MediaTab} from "../../../../../components/MediaTab";
+import { MediaTab } from "../../../../../components/MediaTab";
 import { getRandomId } from "../../../../../helpers";
 import { useFiles } from "../../../../../hooks/useFiles";
 import { useProject } from "../../../../../hooks/useProject";
@@ -9,15 +10,20 @@ export default function Media() {
   const mediaType = useFiles((t) => t.mediaType);
   const files = useFiles((t) => t.files.filter((f) => f.type === t.mediaType));
   const addComp = useProject((s) => s.addComp);
+  const fetch = useFiles((s) => s.fetch);
 
   const add = (src: string) => {
     addComp({
       id: getRandomId(),
-      comp: mediaType,
+      comp: mediaType.toLowerCase() as any,
       src,
       objectFit: "cover",
     });
   };
+  
+  useEffect(() => {
+    fetch();
+  }, []);
   return (
     <div className="flex flex-col w-full justify-between h-full">
       <div>
@@ -29,10 +35,10 @@ export default function Media() {
               onClick={() => add(file.url)}
               className="w-full"
             >
-              {(file.type === "image" || file.type === "gif") && (
+              {(file.type === "IMAGE" || file.type === "GIF") && (
                 <img src={file.url} className="aspect-square object-cover" />
               )}
-              {file.type === "video" && (
+              {file.type === "VIDEO" && (
                 <video src={file.url} className="aspect-square object-cover" />
               )}
               <p className="text-[12px] whitespace-nowrap overflow-hidden">

@@ -1,20 +1,12 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-import { getFileType } from "../helpers/file";
 import { StockResult } from "../server/api/routers/stock/sources";
-import { deleteMedia } from "../sdk/media/delete";
-import { getMedia } from "../sdk/media/get";
-import { uploadMedia } from "../sdk/media/upload";
 import { MediaType } from "../types";
 import { trpcClient } from "../app/ClientProvider";
-
-export type FileType = "image" | "video" | "gif" | undefined;
-export type UserFile = {
-  name: string;
-  url: string;
-  type: FileType;
-};
+import { UserFile } from "../server/api/routers/media";
+import { uploadMedia } from "../helpers/uploadMedia";
+import { getMediaType } from "../helpers/getMediaType";
 
 type FileStore = {
   files: UserFile[];
@@ -23,7 +15,7 @@ type FileStore = {
     file: File,
     onChange?: (file: UserFile) => void
   ) => Promise<UserFile | null>;
-  delete: (url: string) => Promise<"success" | null>;
+  delete: (id: string) => Promise<"success" | null>;
   stockQuery: string;
   setStockQuery: (query: string) => void;
   stockMedia?: StockResult[];
@@ -38,7 +30,7 @@ export const useFiles = create(
     immer<FileStore>((set, get) => ({
       files: [],
       fetch: async () => {
-        const files = await getMedia();
+        const { files } = await trpcClient.media.getAll.query({});
         if (!files) return null;
         set((s) => {
           s.files = files;
@@ -47,10 +39,11 @@ export const useFiles = create(
       },
       upload: async (file, onChange) => {
         const blobUrl = URL.createObjectURL(file);
-        const blob = {
+        const blob: UserFile = {
           name: file.name,
           url: blobUrl,
-          type: getFileType(file.name),
+          type: getMediaType(file.type) || "IMAGE",
+          id: "",
         };
         onChange?.(blob);
         const userFile = await uploadMedia(file);
@@ -62,13 +55,13 @@ export const useFiles = create(
         onChange?.(userFile);
         return userFile;
       },
-      delete: async (url) => {
-        const res = await deleteMedia(url);
+      delete: async (id) => {
+        const res = await trpcClient.media.delete.mutate({ id });
         if (!res) return null;
         set((s) => {
-          s.files = s.files.filter((f) => f.url !== url);
+          s.files = s.files.filter((f) => f.id !== id);
         });
-        return res;
+        return "success";
       },
       setStockQuery: (query) =>
         set((s) => {
@@ -91,8 +84,7 @@ export const useFiles = create(
       },
 
       stockQuery: "",
-
-      mediaType: "video",
+      mediaType: "VIDEO",
       setMediaType: (tab) =>
         set((s) => {
           s.mediaType = tab;

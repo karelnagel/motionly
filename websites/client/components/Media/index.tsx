@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { FileType, useFiles } from "../../hooks/useFiles";
+import { useFiles } from "../../hooks/useFiles";
+import { MediaType } from "../../types";
 import { useAlerts } from "../Alert";
 import { FileUploadButton } from "../FileUploadButton";
 import { Popup } from "../Popup";
@@ -11,7 +12,7 @@ export const Media = ({
 }: {
   value: string;
   onChange: (val: string) => void;
-  type: "image" | "video" | "gif";
+  type: MediaType;
 }) => {
   const [show, setShow] = useState(false);
 
@@ -42,7 +43,7 @@ export const MediaPopup = ({
 }: {
   value: string;
   onChange: (val: string) => void;
-  type: FileType;
+  type: MediaType;
   hide: () => void;
 }) => {
   const alert = useAlerts((s) => s.addAlert);
@@ -60,7 +61,7 @@ export const MediaPopup = ({
 
   return (
     <Popup hide={hide}>
-      {type !== "video" ? (
+      {type !== "VIDEO" ? (
         <img src={value} alt="selected" className="w-60 h-60 object-contain" />
       ) : (
         <video src={value} className="w-60 h-60 object-contain" controls />
@@ -75,15 +76,15 @@ export const MediaPopup = ({
             files.map((file) => (
               <div
                 key={file.url}
-                onClick={() => onChange(file.url)}
+                onClick={() => onChange(file.url!)}
                 className=" w-20 bg-base-300 flex flex-col items-center m-2  whitespace-nowrap text-sm overflow-hidden cursor-pointer relative"
               >
-                {type !== "video" ? (
+                {type !== "VIDEO" ? (
                   <img src={file.url} className=" h-20 object-contain" />
                 ) : (
                   <video src={file.url} className=" h-20" />
                 )}
-                {value.includes(file.url) && (
+                {value.includes(file.url!) && (
                   <p className="absolute font-bold bg-base-200 h-full w-full flex items-center justify-center bg-opacity-50">
                     Selected
                   </p>

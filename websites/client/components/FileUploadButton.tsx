@@ -26,6 +26,7 @@ export const FileUploadButton = ({
       <input
         ref={ref}
         type="file"
+        accept="image/*, video/*, audio/*"
         className="file-input file-input-sm"
         onChange={(e) => setFile(e.target.files?.[0])}
       />

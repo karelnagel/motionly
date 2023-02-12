@@ -1,4 +1,4 @@
-import {MediaTab} from "../../../../../components/MediaTab";
+import { MediaTab } from "../../../../../components/MediaTab";
 import { useEffect } from "react";
 import { useProject } from "../../../../../hooks/useProject";
 import { getRandomId } from "../../../../../helpers";
@@ -25,7 +25,7 @@ export default function Stock() {
   const add = (src: string) => {
     addComp({
       id: getRandomId(),
-      comp: mediaType,
+      comp: mediaType.toLowerCase() as any,
       src,
       objectFit: "cover",
     });
@@ -59,7 +59,7 @@ export default function Stock() {
                     onClick={() => add(src)}
                     className="w-full aspect-square bg-base-200  rounded-lg overflow-hidden"
                   >
-                    {mediaType !== "audio" && (
+                    {mediaType !== "AUDIO" && (
                       <img src={icon} className=" h-full w-full object-cover" />
                     )}
                   </button>

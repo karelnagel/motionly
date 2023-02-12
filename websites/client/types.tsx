@@ -37,11 +37,11 @@ export const Project = z.object({
 export type Project = Omit<z.infer<typeof Project>, "template"> & {
   template: TemplateType;
 };
-export const MediaType = z.enum(["video", "image", "audio", "gif"]);
+export const MediaType = z.enum(["VIDEO", "IMAGE", "AUDIO", "GIF"]);
 export const MediaTypeLabels: { [key in MediaType]: string } = {
-  video: "Video",
-  image: "Image",
-  audio: "Audio",
-  gif: "GIF",
+  VIDEO: "Video",
+  IMAGE: "Image",
+  AUDIO: "Audio",
+  GIF: "GIF",
 };
 export type MediaType = z.infer<typeof MediaType>;

@@ -84,12 +84,12 @@ enum FileType {
   IMAGE
   VIDEO
   AUDIO
-  OTHER
+  GIF
 }
 
 model File {
   id        String    @id @default(cuid())
-  url       String
+  url       String    @default("")
   type      FileType
   name      String    @default("")
   createdAt DateTime? @default(now())

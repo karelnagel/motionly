@@ -8,10 +8,10 @@ export const Pexels: Source = {
   name: "Pexels",
   logo: "https://images.pexels.com/lib/api/pexels.png",
   url: "https://pexels.com",
-  types: ["image", "video"],
+  types: ["IMAGE", "VIDEO"],
   search: async (type, per_page, query) => {
     try {
-      if (type === "image") {
+      if (type === "IMAGE") {
         const res = query
           ? await client.photos.search({ query, per_page })
           : await client.photos.curated({ per_page });
@@ -22,7 +22,7 @@ export const Pexels: Source = {
             type,
           }));
       }
-      if (type === "video") {
+      if (type === "VIDEO") {
         const res = query
           ? await client.videos.search({ query, per_page })
           : await client.videos.popular({ per_page });

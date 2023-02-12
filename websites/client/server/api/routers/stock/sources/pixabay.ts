@@ -10,10 +10,10 @@ export const Pixabay: Source = {
   name: "Pixabay",
   logo: "https://pixabay.com/static/img/logo_square.png",
   url: "https://pixabay.com",
-  types: ["image", "video"],
+  types: ["IMAGE", "VIDEO"],
   search: async (type, per_page, q?) => {
     try {
-      if (type === "video") {
+      if (type === "VIDEO") {
         const res = await axios.get(`https://pixabay.com/api/videos/`, {
           params: { key, q, per_page },
         });
@@ -24,7 +24,7 @@ export const Pixabay: Source = {
             type,
           }));
       }
-      if (type === "image") {
+      if (type === "IMAGE") {
         const res = await axios.get(`https://pixabay.com/api/`, {
           params: { key, q, per_page },
         });
