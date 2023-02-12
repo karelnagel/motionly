@@ -2,12 +2,12 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { getFileType } from "../helpers/file";
-import { StockResult } from "../lib/sources";
+import { StockResult } from "../server/api/routers/stock/sources";
 import { deleteMedia } from "../sdk/media/delete";
 import { getMedia } from "../sdk/media/get";
 import { uploadMedia } from "../sdk/media/upload";
-import { getStock } from "../sdk/stock";
-import { MediaTabs } from "../types";
+import { MediaType } from "../types";
+import { trpcClient } from "../app/ClientProvider";
 
 export type FileType = "image" | "video" | "gif" | undefined;
 export type UserFile = {
@@ -28,8 +28,8 @@ type FileStore = {
   setStockQuery: (query: string) => void;
   stockMedia?: StockResult[];
   setStockMedia: (media?: StockResult[]) => void;
-  mediaType: MediaTabs;
-  setMediaType: (tab: MediaTabs) => void;
+  mediaType: MediaType;
+  setMediaType: (tab: MediaType) => void;
   fetchStock: () => Promise<StockResult[] | null>;
 };
 
@@ -79,15 +79,15 @@ export const useFiles = create(
           s.stockMedia = media;
         }),
       fetchStock: async () => {
-        const res = await getStock(
-          get().mediaType,
-          get().stockQuery || undefined
-        );
-        if (!res) return null;
-        set((s) => {
-          s.stockMedia = res;
+        const { results } = await trpcClient.stock.get.query({
+          type: get().mediaType,
+          query: get().stockQuery || undefined,
         });
-        return res;
+        if (!results) return null;
+        set((s) => {
+          s.stockMedia = results;
+        });
+        return results;
       },
 
       stockQuery: "",

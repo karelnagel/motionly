@@ -1,7 +1,6 @@
 import { createClient } from "pexels";
 import { Source } from ".";
-import { env } from "../../env.mjs";
-import { MediaTabs } from "../../types";
+import { env } from "../../../../../env.mjs";
 
 const client = createClient(env.PEXELS_API_KEY || "");
 
@@ -10,7 +9,7 @@ export const Pexels: Source = {
   logo: "https://images.pexels.com/lib/api/pexels.png",
   url: "https://pexels.com",
   types: ["image", "video"],
-  search: async (type: MediaTabs, per_page: number, query?: string) => {
+  search: async (type, per_page, query) => {
     try {
       if (type === "image") {
         const res = query
@@ -20,6 +19,7 @@ export const Pexels: Source = {
           return res.photos.map((p) => ({
             icon: p.src.small,
             src: p.src.original,
+            type,
           }));
       }
       if (type === "video") {
@@ -30,6 +30,7 @@ export const Pexels: Source = {
           return res.videos.map((p) => ({
             icon: p.image,
             src: p.video_files[0].link,
+            type,
           }));
       }
     } catch (e) {

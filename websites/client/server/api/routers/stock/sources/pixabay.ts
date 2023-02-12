@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Source } from ".";
-import { env } from "../../env.mjs";
-import { MediaTabs } from "../../types";
+import { env } from "../../../../../env.mjs";
 
 const getImage = (e: any) =>
   `https://i.vimeocdn.com/video/${e.picture_id}_200x150.jpg`;
@@ -12,7 +11,7 @@ export const Pixabay: Source = {
   logo: "https://pixabay.com/static/img/logo_square.png",
   url: "https://pixabay.com",
   types: ["image", "video"],
-  search: async (type: MediaTabs, per_page: number, q?: string) => {
+  search: async (type, per_page, q?) => {
     try {
       if (type === "video") {
         const res = await axios.get(`https://pixabay.com/api/videos/`, {
@@ -22,6 +21,7 @@ export const Pixabay: Source = {
           return res.data.hits.map((p: any) => ({
             icon: getImage(p),
             src: p.videos.tiny.url,
+            type,
           }));
       }
       if (type === "image") {
@@ -32,6 +32,7 @@ export const Pixabay: Source = {
           return res.data.hits.map((p: any) => ({
             icon: p.previewURL,
             src: p.largeImageURL,
+            type,
           }));
       }
     } catch (e) {

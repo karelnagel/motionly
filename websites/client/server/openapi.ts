@@ -7,5 +7,4 @@ export const openApiDocument = generateOpenApiDocument(appRouter, {
   title: "tRPC OpenAPI",
   version: "1.0.0",
   baseUrl: `${env.NEXTAUTH_URL}/api/`,
-  tags: ["Projects", "Render"],
 });

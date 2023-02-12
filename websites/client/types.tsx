@@ -33,13 +33,15 @@ export const Project = z.object({
   id: z.string().optional(),
   isOwner: z.boolean().optional(),
 });
+
 export type Project = Omit<z.infer<typeof Project>, "template"> & {
   template: TemplateType;
 };
-export const MediaTabs = {
+export const MediaType = z.enum(["video", "image", "audio", "gif"]);
+export const MediaTypeLabels: { [key in MediaType]: string } = {
   video: "Video",
   image: "Image",
   audio: "Audio",
   gif: "GIF",
 };
-export type MediaTabs = keyof typeof MediaTabs;
+export type MediaType = z.infer<typeof MediaType>;

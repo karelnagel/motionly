@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Source } from ".";
-import { env } from "../../env.mjs";
-import { MediaTabs } from "../../types";
+import { env } from "../../../../../env.mjs";
 
 const api_key = env.GIPHY_API_KEY;
 export const Giphy: Source = {
@@ -9,7 +8,7 @@ export const Giphy: Source = {
   logo: "https://giphy.com/static/img/giphy_logo_square_social.png",
   url: "https://giphy.com",
   types: ["gif"],
-  search: async (type: MediaTabs, limit: number, q?: string) => {
+  search: async (type, limit, q) => {
     try {
       if (type === "gif") {
         const res = await axios.get(
@@ -25,6 +24,7 @@ export const Giphy: Source = {
           return data.data.map((p: any) => ({
             icon: p.images.fixed_height_small.url,
             src: p.images.original.url,
+            type,
           }));
       }
     } catch (e) {

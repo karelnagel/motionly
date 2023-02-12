@@ -1,4 +1,4 @@
-import MediaTab from "../../../../../components/MediaTab";
+import {MediaTab} from "../../../../../components/MediaTab";
 import { useEffect } from "react";
 import { useProject } from "../../../../../hooks/useProject";
 import { getRandomId } from "../../../../../helpers";

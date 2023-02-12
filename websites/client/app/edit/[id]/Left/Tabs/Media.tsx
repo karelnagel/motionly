@@ -1,5 +1,5 @@
 import { FileUploadButton } from "../../../../../components/FileUploadButton";
-import MediaTab from "../../../../../components/MediaTab";
+import {MediaTab} from "../../../../../components/MediaTab";
 import { getRandomId } from "../../../../../helpers";
 import { useFiles } from "../../../../../hooks/useFiles";
 import { useProject } from "../../../../../hooks/useProject";
