@@ -7,6 +7,7 @@ import { env } from "../../../env.mjs";
 import { TRPCError } from "@trpc/server";
 import { getMediaType } from "../../../helpers/getMediaType";
 import { Transcription } from "./transcriptions";
+import ytdl from "ytdl-core";
 
 export const UserFile = z.object({
   id: z.string(),
@@ -106,6 +107,36 @@ export const media = createTRPCRouter({
         },
       });
       return updatedFile;
+    }),
+  youtube: protectedProcedure
+    .meta({
+      openapi: { method: "POST", path: "/media/youtube", tags, protect },
+    })
+    .input(z.object({ youtubeUrl: z.string().url() }))
+    .output(UserFile)
+    .mutation(async ({ input: { youtubeUrl }, ctx }) => {
+      const info = await ytdl.getInfo(youtubeUrl);
+      const name = info.videoDetails.title;
+      const formats = info.formats.filter(
+        (v) => v.container === "mp4" && v.hasVideo && v.hasAudio
+      );
+      const { url } = formats[0];
+      if (!url)
+        throw new TRPCError({ code: "BAD_REQUEST", message: "No video found" });
+
+      const file = await ctx.prisma.file.create({
+        data: {
+          name,
+          type: "VIDEO",
+          url,
+          user: {
+            connect: {
+              id: ctx.session.user.id,
+            },
+          },
+        },
+      });
+      return file;
     }),
 
   get: protectedProcedure
