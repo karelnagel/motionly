@@ -1,21 +1,21 @@
 import { FormEvent, useState } from "react";
 import { useAlerts } from "../../../../../components/Alert";
 import { useProject } from "../../../../../hooks/useProject";
-import { postAI } from "../../../../../sdk/ai";
+import { trpc } from "../../../../ClientProvider";
 
 export default function Ai() {
   const template = useProject((t) => t.project.template);
   const [prompt, setPrompt] = useState("");
   const [status, setStatus] = useState<"loading" | "done" | "error">();
-  const alert = useAlerts(s=>s.addAlert);
-
+  const alert = useAlerts((s) => s.addAlert);
+  const { mutateAsync: postAI } = trpc.ai.message.useMutation();
   const submit = async (e?: FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
     if (status === "loading")
       return alert("Please wait for the previous request to finish", "warning");
     setStatus("loading");
 
-    const result = await postAI(template.components, prompt);
+    const result = await postAI({ template: template, prompt });
     if (!result) setStatus("error");
     else {
       // setProject({ ...template, : result });
