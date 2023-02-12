@@ -1,5 +1,5 @@
 import { render } from "./routers/render";
-import { projects } from "./routers/templates";
+import { projects } from "./routers/projects";
 import { createTRPCRouter } from "./trpc";
 
 export const appRouter = createTRPCRouter({

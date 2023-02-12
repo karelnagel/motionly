@@ -1,9 +1,9 @@
 
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import { type Session } from "next-auth";
-
 import { getServerAuthSession } from "../auth";
 import { prisma } from "../db";
+import { OpenApiMeta } from 'trpc-openapi';
 
 type CreateContextOptions = {
   session: Session | null;
@@ -29,7 +29,7 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
 
 import { initTRPC, TRPCError } from "@trpc/server";
 
-const t = initTRPC.context<typeof createTRPCContext>().create({
+const t = initTRPC.meta<OpenApiMeta>().context<typeof createTRPCContext>().create({
   errorFormatter({ shape }) {
     return shape;
   },

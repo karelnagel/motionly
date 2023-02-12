@@ -26,7 +26,7 @@ export const exportSlice = (set: SetType, get: GetType): ExportSlice => {
     renderMedia: async (template: TemplateType) => {
       if (get().isRendering) return;
       set({ isRendering: true });
-      const renderId = await trpcClient.render.media.mutate({ template });
+      const {renderId} = await trpcClient.render.media.mutate({ template });
       set((s) => {
         if (!renderId) {
           return;
@@ -70,7 +70,7 @@ export const exportSlice = (set: SetType, get: GetType): ExportSlice => {
     getProgress: async () => {
       const { renderId } = get();
       if (!renderId) return;
-      const res = await trpcClient.render.progress.mutate(renderId);
+      const res = await trpcClient.render.progress.mutate({renderId});
       if (!res) return;
 
       set((s) => {

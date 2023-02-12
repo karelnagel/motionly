@@ -8,10 +8,12 @@ import {
 } from "@remotion/lambda/client";
 import { env } from "../../../env.mjs";
 
+const tags = ["Render"];
 export const render = createTRPCRouter({
   media: protectedProcedure
+    .meta({ openapi: { method: "POST", path: "/render/media", tags } })
     .input(z.object({ template: Template }))
-    .output(z.string())
+    .output(z.object({ renderId: z.string() }))
     .mutation(async ({ input, ctx }) => {
       const { renderId } = await renderMediaOnLambda({
         serveUrl: env.REMOTION_AWS_SERVE_URL,
@@ -21,9 +23,10 @@ export const render = createTRPCRouter({
         region: env.REMOTION_AWS_REGION as any,
         inputProps: input.template,
       });
-      return renderId;
+      return { renderId };
     }),
   still: protectedProcedure
+    .meta({ openapi: { method: "POST", path: "/render/still", tags } })
     .input(z.object({ frame: z.number(), template: Template }))
     .output(RenderProgress)
     .mutation(async ({ input, ctx }) => {
@@ -47,9 +50,10 @@ export const render = createTRPCRouter({
     }),
 
   progress: protectedProcedure
-    .input(z.string())
+    .meta({ openapi: { method: "POST", path: "/render/progress", tags } })
+    .input(z.object({ renderId: z.string() }))
     .output(RenderProgress)
-    .mutation(async ({ input, ctx }) => {
+    .mutation(async ({ input: { renderId }, ctx }) => {
       const {
         overallProgress,
         costs,
@@ -61,11 +65,11 @@ export const render = createTRPCRouter({
         bucketName: env.REMOTION_AWS_BUCKET,
         functionName: env.REMOTION_AWS_FUNCTION_NAME,
         region: env.REMOTION_AWS_REGION as any,
-        renderId: input,
+        renderId,
       });
       if (errors.length > 0) console.log(errors);
       return {
-        renderId: input,
+        renderId,
         progress: overallProgress,
         cost: costs.accruedSoFar,
         fileUrl: outputFile || undefined,

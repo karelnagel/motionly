@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { appRouter } from "../../../server/api/root";
-import { createTRPCContext } from "../../../server/api/trpc";
-import { env } from "../../../env.mjs";
-import { createNextApiHandler } from "@trpc/server/adapters/next";
+import { appRouter } from "../../server/api/root";
+import { createTRPCContext } from "../../server/api/trpc";
+import { env } from "../../env.mjs";
+import { createOpenApiNextHandler } from "trpc-openapi";
 
-const nextApiHandler = createNextApiHandler({
+const nextApiHandler = createOpenApiNextHandler({
   router: appRouter,
   createContext: createTRPCContext,
   onError:
@@ -21,6 +21,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Request-Method", "*");
+  res.setHeader("Access-Control-Allow-Methods", "*");
+  res.setHeader("Access-Control-Allow-Headers", "*");
+
   if (req.method === "OPTIONS") {
     res.writeHead(200);
     return res.end();
