@@ -4,6 +4,7 @@ import { createTRPCRouter } from "./trpc";
 import { stock } from "./routers/stock";
 import { ai } from "./routers/ai";
 import { media } from "./routers/media";
+import { transcriptions } from "./routers/transcriptions";
 
 export const appRouter = createTRPCRouter({
   projects,
@@ -11,6 +12,7 @@ export const appRouter = createTRPCRouter({
   stock,
   ai,
   media,
+  transcriptions,
 });
 
 export type AppRouter = typeof appRouter;

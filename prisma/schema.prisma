@@ -88,12 +88,32 @@ enum FileType {
 }
 
 model File {
-  id        String    @id @default(cuid())
-  url       String    @default("")
-  type      FileType
-  name      String    @default("")
-  createdAt DateTime? @default(now())
-  updatedAt DateTime? @updatedAt
-  userId    String
-  user      User      @relation(fields: [userId], references: [id])
+  id            String         @id @default(cuid())
+  url           String         @default("")
+  type          FileType
+  name          String         @default("")
+  createdAt     DateTime?      @default(now())
+  updatedAt     DateTime?      @updatedAt
+  userId        String
+  user          User           @relation(fields: [userId], references: [id])
+  transcription Transcription?
+}
+
+enum TranscriptionStatus {
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+model Transcription {
+  id         String              @id @default(cuid())
+  transcript Json?
+  text       String?
+  persons    Int?
+  language   String?
+  status     TranscriptionStatus
+  createdAt  DateTime?           @default(now())
+  updatedAt  DateTime?           @updatedAt
+  fileId     String              @unique
+  file       File                @relation(fields: [fileId], references: [id])
 }
