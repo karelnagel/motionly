@@ -1,0 +1,50 @@
+# &lt;Component&gt;
+
+Motionly main component that has all the other components inside it.
+
+## Usage
+
+Takes [ComponentProps](/docs/types/component-props) as props
+
+```tsx
+import { Component, VideoProps } from "@motionly/components";
+
+// Specific component props
+const video: VideoProps = {
+  type: "video",
+  objectFit: "cover",
+  startFrom: 0,
+  src: videoUrl,
+  muted: false,
+  volume: 100,
+};
+
+return (
+  <Component
+    id={"id"}
+    height={0}
+    width={0}
+    x={0}
+    y={0}
+    borderRadius={0}
+    rotation={0}
+    from={0}
+    duration={10}
+    componentAnimations={[
+      {
+        type: "opacity",
+        from: 0,
+        to: 1,
+        start: 0,
+        end: 1,
+      },
+    ]}
+    {...video}
+  />
+);
+```
+
+import { DocsPlayer } from "../../../components/docs/DocsPlayer";
+import { defaultVideoProps } from "@motionly/components";
+
+<DocsPlayer {...defaultVideoProps} />

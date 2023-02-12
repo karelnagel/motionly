@@ -10,25 +10,34 @@ module.exports = {
       colors: {
         "base-content-2": "#FFFFFF",
       },
+      fontFamily: {
+        montserrat: ["Montserrat", "sans-serif"]
+      },
+      colors: {
+        "list-title": "#4B5563",
+        "list-subtitle": "#8f8f8f",
+      },
     }
   },
   daisyui: {
     themes: [
       {
         mytheme: {
-          primary: "#3251F5",
-          secondary: "#eb489a",
-          accent: "#1FB2A6",
-          neutral: "#191D24",
-          "base-100": "#111111",
+          primary: "#5FBFF9",
+          secondary: "#A276FF",
+          accent: "#16BAC5",
+          neutral: "#FFFFFF",
+          "base-100": "#171D1C",
           "base-200": "#171717",
           "base-300": "#282929",
+          "base-content": "#EFE9F4",
           info: "#3ABFF8",
           success: "#36D399",
           warning: "#FBBD23",
           error: "#F87272",
         },
       },
+
     ],
   },
   plugins: [require("daisyui"), require("@tailwindcss/line-clamp")],

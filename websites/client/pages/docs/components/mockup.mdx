@@ -1,0 +1,41 @@
+# &lt;Map&gt;
+
+Add mockups of different devices and programs to your videos.
+
+## Usage
+
+```tsx
+import { Mockup, MockupProps } from "@motionly/components";
+
+const mockup: MockupProps = {
+  type: "mockup",
+  mockupType: "iPhone",
+  children: [],
+};
+
+return <Mockup {...mockup} />;
+```
+
+import { DocsPlayer } from "../../../components/docs/DocsPlayer";
+import { defaultMockupProps } from "@motionly/components";
+
+<DocsPlayer {...defaultMockupProps} />
+
+## API
+
+### type
+
+= `mockup`
+
+### mockupType
+
+- `iPhone`
+- `iPad`
+- `macbook`
+- `chrome`
+- `apple-watch`
+- `vs-code`
+
+### children
+
+List of `ComponentProps` to be rendered inside the mockup.
