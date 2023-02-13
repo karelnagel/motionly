@@ -84,10 +84,10 @@ export const Render = ({ render }: { render: RenderProgress }) => {
         max={1}
         className={`progress ${
           render.status === "FAILED"
-            ? "progress-primary"
+            ? "progress-error"
             : render.status === "PROCESSING"
-            ? "progress-success"
-            : "progress-primary"
+            ? "progress-info"
+            : "progress-success"
         }`}
       />
     </div>
