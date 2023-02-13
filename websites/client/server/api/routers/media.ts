@@ -25,7 +25,7 @@ const tags = ["Media"];
 const protect = true;
 export const media = createTRPCRouter({
   getAll: protectedProcedure
-    .meta({ openapi: { method: "GET", path: "/media/all", tags, protect } })
+    .meta({ openapi: { method: "GET", path: "/media", tags, protect } })
     .input(z.object({}))
     .output(z.object({ files: z.array(UserFile) }))
     .query(async ({ ctx }) => {
@@ -37,6 +37,37 @@ export const media = createTRPCRouter({
       });
       return { files };
     }),
+  youtube: protectedProcedure
+    .meta({
+      openapi: { method: "POST", path: "/media/youtube", tags, protect },
+    })
+    .input(z.object({ youtubeUrl: z.string().url() }))
+    .output(UserFile)
+    .mutation(async ({ input: { youtubeUrl }, ctx }) => {
+      const info = await ytdl.getInfo(youtubeUrl);
+      const name = info.videoDetails.title;
+      const formats = info.formats.filter(
+        (v) => v.container === "mp4" && v.hasVideo && v.hasAudio
+      );
+      const { url } = formats[0];
+      if (!url)
+        throw new TRPCError({ code: "BAD_REQUEST", message: "No video found" });
+
+      const file = await ctx.prisma.file.create({
+        data: {
+          name,
+          type: "VIDEO",
+          url,
+          user: {
+            connect: {
+              id: ctx.session.user.id,
+            },
+          },
+        },
+      });
+      return file;
+    }),
+
   new: protectedProcedure
     .meta({ openapi: { method: "POST", path: "/media/new", tags, protect } })
     .input(z.object({ type: z.string(), name: z.string() }))
@@ -107,36 +138,6 @@ export const media = createTRPCRouter({
         },
       });
       return updatedFile;
-    }),
-  youtube: protectedProcedure
-    .meta({
-      openapi: { method: "POST", path: "/media/youtube", tags, protect },
-    })
-    .input(z.object({ youtubeUrl: z.string().url() }))
-    .output(UserFile)
-    .mutation(async ({ input: { youtubeUrl }, ctx }) => {
-      const info = await ytdl.getInfo(youtubeUrl);
-      const name = info.videoDetails.title;
-      const formats = info.formats.filter(
-        (v) => v.container === "mp4" && v.hasVideo && v.hasAudio
-      );
-      const { url } = formats[0];
-      if (!url)
-        throw new TRPCError({ code: "BAD_REQUEST", message: "No video found" });
-
-      const file = await ctx.prisma.file.create({
-        data: {
-          name,
-          type: "VIDEO",
-          url,
-          user: {
-            connect: {
-              id: ctx.session.user.id,
-            },
-          },
-        },
-      });
-      return file;
     }),
 
   get: protectedProcedure

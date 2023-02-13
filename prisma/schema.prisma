@@ -59,7 +59,7 @@ model User {
 }
 
 model ApiKey {
-  key       String   @id @unique
+  hash      String   @id @unique
   name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
