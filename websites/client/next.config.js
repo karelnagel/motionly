@@ -19,4 +19,4 @@ const withNextra = require("nextra")({
   latex: true,
 });
 
-module.exports = nextConfig
+module.exports = withNextra(nextConfig);

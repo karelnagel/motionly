@@ -6,9 +6,9 @@ import logoGif from "../../public/motionly.gif";
 import { Button } from "./Button";
 
 const items: { name: string; route: string }[] = [
-  // { name: "Docs", route: "/docs" },
-  // { name: "Blog", route: "/blog" },
-  // { name: "About", route: "/about" },
+  { name: "Docs", route: "/docs" },
+  { name: "Blog", route: "/blog" },
+  { name: "About", route: "/about" },
 ];
 
 export const Navbar = () => {
