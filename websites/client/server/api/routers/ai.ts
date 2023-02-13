@@ -5,7 +5,7 @@ import { z } from "zod";
 const tags = ["AI"];
 export const ai = createTRPCRouter({
   message: protectedProcedure
-    .meta({ openapi: { method: "POST", path: "/ai", tags } })
+    .meta({ openapi: { method: "POST", path: "/ai", tags, protect: true } })
     .input(z.object({ template: Template, prompt: z.string() }))
     .output(z.object({ template: Template }))
     .mutation(async ({ input, ctx }) => {

@@ -44,7 +44,7 @@ const refreshProgress = async (id: string): Promise<RenderProgress> => {
 const tags = ["Renders"];
 export const renders = createTRPCRouter({
   getAll: protectedProcedure
-    .meta({ openapi: { method: "POST", path: "/renders", tags } })
+    .meta({ openapi: { method: "POST", path: "/renders", tags , protect: true} })
     .input(z.object({}))
     .output(
       z.object({
@@ -86,7 +86,7 @@ export const renders = createTRPCRouter({
       };
     }),
   media: protectedProcedure
-    .meta({ openapi: { method: "POST", path: "/renders/media", tags } })
+    .meta({ openapi: { method: "POST", path: "/renders/media", tags, protect: true } })
     .input(z.object({ template: Template }))
     .output(z.object({ renderId: z.string() }))
     .mutation(async ({ input, ctx }) => {
@@ -104,7 +104,7 @@ export const renders = createTRPCRouter({
       return { renderId };
     }),
   still: protectedProcedure
-    .meta({ openapi: { method: "POST", path: "/renders/still", tags } })
+    .meta({ openapi: { method: "POST", path: "/renders/still", tags, protect: true } })
     .input(z.object({ frame: z.number(), template: Template }))
     .output(RenderProgress)
     .mutation(async ({ input, ctx }) => {
