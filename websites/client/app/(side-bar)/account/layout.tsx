@@ -51,7 +51,7 @@ export default async function Layout({
           ))}
         </div>
       </div>
-      <div className="col-span-3">{children}</div>
+      <div className="col-span-3 w-full">{children}</div>
     </div>
   );
 }

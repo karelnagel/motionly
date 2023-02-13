@@ -27,9 +27,12 @@ export default function Renders() {
   ];
   return (
     <div className="space-y-3">
-      <div className="stats shadow w-full ">
+      <div className="stats gradient text-primary-content shadow w-full ">
         {stats.map((stat) => (
-          <div className="stat" key={stat.title}>
+          <div
+            className="stat border-primary-content "
+            key={stat.title}
+          >
             <div className="stat-figure shrink-0">
               <stat.icon className="text-3xl" />
             </div>
