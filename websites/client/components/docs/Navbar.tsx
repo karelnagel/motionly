@@ -1,9 +1,11 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import logo from "../../public/motionly.png";
 import logoGif from "../../public/motionly.gif";
 import { Button } from "./Button";
+import { Login } from "../Login";
 
 const items: { name: string; route: string }[] = [
   { name: "Docs", route: "/docs" },
@@ -14,21 +16,13 @@ const items: { name: string; route: string }[] = [
 export const Navbar = () => {
   const pathname = usePathname();
   return (
-    <div className="relative z-20 w-full">
+    <div className="relative z-20 w-full mt-3">
       <div className="max-w-screen-xl mx-auto px-2 grid grid-cols-3 md:grid-cols-5 items-center">
-        <Link href="/" className=" w-60 col-span-2 hidden md:block">
+        <Link href="/" className=" w-60 col-span-2 block">
           <Image src={logo} priority alt="logo" className="w-60" />
         </Link>
-        <Link href="/" className="flex justify-start md:justify-center">
-          <Image
-            priority
-            src={logoGif}
-            alt="logo"
-            className="w-16 md:w-20 object-contain "
-          />
-        </Link>
-        <div className="flex items-center space-x-10 col-span-2 w-full justify-end">
-          <div className=" space-x-5 hidden md:flex">
+        <div className="flex items-center space-x-8 w-full col-span-1 md:col-span-3 justify-end">
+          <div className=" space-x-5 hidden md:flex col-span-2">
             {items.map((item) => (
               <Link
                 href={item.route}
@@ -43,12 +37,7 @@ export const Navbar = () => {
               </Link>
             ))}
           </div>
-          <Link href="/#contact">
-            <Button
-              text="CONTACT US"
-              className="text-[17px] font-normal p-1 pl-4 whitespace-nowrap bg-secondary"
-            />
-          </Link>
+          <Login/>
         </div>
       </div>
     </div>
