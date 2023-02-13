@@ -31,7 +31,6 @@ export const stock = createTRPCRouter({
           media,
         });
       }
-      console.log(results[0].media);
       return { results };
     }),
 });

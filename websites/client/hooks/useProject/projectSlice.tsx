@@ -2,7 +2,6 @@ import { AllComponents, BaseProps, ComponentProps } from "@motionly/base";
 import { Project } from "../../types";
 import { WritableDraft } from "immer/dist/internal";
 import { getRandomId } from "../../helpers";
-import { exportSlice } from "./exportSlice";
 import { GetType, SetInput, SetType } from ".";
 import { trpcClient } from "../../app/ClientProvider";
 
@@ -198,6 +197,5 @@ export const projectSlice = (
       }, "save"),
 
     setSelected: (id?: string) => set({ selected: id }, "none"),
-    ...exportSlice(setStore, get),
   };
 };

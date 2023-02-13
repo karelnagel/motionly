@@ -56,6 +56,7 @@ model User {
   templates     Project[]
   files         File[]
   apiKeys       ApiKey[]
+  renders       Render[]
 }
 
 model ApiKey {
@@ -116,4 +117,28 @@ model Transcription {
   updatedAt  DateTime?           @updatedAt
   fileId     String              @unique
   file       File                @relation(fields: [fileId], references: [id])
+}
+
+enum RenderStatus {
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum RenderType {
+  MEDIA
+  STILL
+}
+
+model Render {
+  id        String       @id @default(cuid())
+  fileUrl   String?
+  status    RenderStatus @default(PROCESSING)
+  progress  Float        @default(0)
+  cost      Float        @default(0)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  type      RenderType
+  userId    String
+  user      User?        @relation(fields: [userId], references: [id])
 }

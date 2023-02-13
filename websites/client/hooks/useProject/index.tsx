@@ -7,7 +7,6 @@ import { useRef } from "react";
 import { ReactNode } from "react";
 import { useContext } from "react";
 import { persist } from "zustand/middleware";
-import { exportSlice, ExportSlice } from "./exportSlice";
 import { ProjectSlice, projectSlice } from "./projectSlice";
 import { leftSlice, LeftSlice } from "./leftSlice";
 import { rightSlice, RightSlice } from "./rightSlice";
@@ -26,7 +25,6 @@ export type SetType = (
 export type GetType = () => ProjectStore;
 
 export type ProjectStore = ProjectSlice &
-  ExportSlice &
   LeftSlice &
   RightSlice &
   TimelineSlice &
@@ -72,7 +70,6 @@ export const createProjectStore = (project: Project) => {
           ...leftSlice(set, get),
           ...rightSlice(set, get),
           ...projectSlice(set, get, project),
-          ...exportSlice(set, get),
         };
       }),
       {

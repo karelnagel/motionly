@@ -19,7 +19,7 @@ export const keys = createTRPCRouter({
         tags,
       },
     })
-    .input(z.object({ name: z.string() }))
+    .input(z.object({ name: z.string().min(1) }))
     .output(z.object({ secret: z.string(), key: APIKey }))
     .mutation(async ({ input, ctx }) => {
       const secret = crypto.randomUUID();
