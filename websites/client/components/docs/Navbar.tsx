@@ -1,10 +1,9 @@
 "use client"
+
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import logo from "../../public/motionly.png";
-import logoGif from "../../public/motionly.gif";
-import { Button } from "./Button";
 import { Login } from "../Login";
 
 const items: { name: string; route: string }[] = [

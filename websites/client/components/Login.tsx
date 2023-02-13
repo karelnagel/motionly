@@ -33,8 +33,10 @@ export function Login() {
             <li className="hover:text-accent">
               <a href="/dashboard">Editor</a>
             </li>
-            <li className="hover:text-error"
-                onClick={() => signOut()}>
+            <li className="hover:text-accent">
+              <a href="/account">Settings</a>
+            </li>
+            <li className="hover:text-error" onClick={() => signOut()}>
               <a>Log Out</a>
             </li>
           </ul>
@@ -45,9 +47,7 @@ export function Login() {
           className="rounded-full bg-secondary duration-200 group overflow-hidden p-2 px-2 pl-3 flex items-center font-semibold text-lg border-[1px] border-secondary hover:text-secondary hover:scale-110 hover:bg-base-100"
         >
           <div className="flex items-center text-base whitespace-nowrap space-x-1">
-            <p className="w-full text-center font-semibold flex">
-              Sign Up
-            </p>
+            <p className="w-full text-center font-semibold flex">Sign Up</p>
           </div>
         </button>
       )}
