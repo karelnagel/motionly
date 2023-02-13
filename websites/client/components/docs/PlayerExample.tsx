@@ -1,7 +1,5 @@
 import { Player } from "@motionly/player";
-import { useRender } from "@motionly/renderer";
 import { useState } from "react";
-import { components } from "./components";
 
 export function PlayerExample() {
   const [text, setText] = useState("Your text");
@@ -15,8 +13,7 @@ export function PlayerExample() {
     height: 1080,
     width: 1080,
   };
-  const { media, progress, fileUrl, cost, status, renderId } =
-    useRender(template);
+  
   return (
     <div>
       <div
@@ -43,10 +40,10 @@ export function PlayerExample() {
           value={color}
           onChange={(e) => setColor(e.target.value)}
         />
-        <button onClick={() => media()}>Render</button>
+        {/* <button onClick={() => media()}>Render</button>
         <p>{progress}</p>
         <p>{fileUrl}</p>
-        <p>{status}</p>
+        <p>{status}</p> */}
         <Player template={template} style={{ width: `100%` }} controls />
       </div>
     </div>
