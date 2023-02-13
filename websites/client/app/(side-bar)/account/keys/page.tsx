@@ -7,7 +7,7 @@ import { trpc } from "../../../ClientProvider";
 export default function Keys() {
   const { data } = trpc.keys.getAll.useQuery({});
   const { mutate: remove } = trpc.keys.delete.useMutation();
-  const { mutate: create, data: key } = trpc.keys.new.useMutation();
+  const { mutate: create, data: key, isError } = trpc.keys.new.useMutation();
   const [name, setName] = useState("");
 
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -19,33 +19,37 @@ export default function Keys() {
       {key && (
         <div className="flex flex-col space-y-2">
           <p className="text-info text-lg">
-            Your new key is <b>{key.secret}</b>. Save it to a safe place
+            Created new key: <b>{key.secret}</b>. <br />
+            Save it to a safe place!
           </p>
         </div>
       )}
       {!!data?.keys.length && (
-        <div className=" flex flex-col space-y-3">
-          <p className="text-lg font-semibold">Current keys</p>
-
-          <div className="flex flex-col space-y-2">
+        <table className="table w-full">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
             {data.keys.map((key) => (
-              <div
-                key={key.hash}
-                className="flex justify-between bg-base-200 rounded-lg p-2"
-              >
-                <p>{key.name}</p>
-                <IoIosTrash
-                  className="text-2xl cursor-pointer"
-                  onClick={() => remove({ hash: key.hash })}
-                />
-              </div>
+              <tr key={key.hash} className="">
+                <th>{key.name}</th>
+                <th>
+                  <IoIosTrash
+                    className="text-2xl cursor-pointer"
+                    onClick={() => remove({ hash: key.hash })}
+                  />
+                </th>
+              </tr>
             ))}
-          </div>
-        </div>
+          </tbody>
+        </table>
       )}
-
       <form onSubmit={submit} className="flex flex-col items-start space-y-2">
         <p className="text-lg font-semibold">Create new API key</p>
+        {isError && <p className="text-error">Write name for new API key</p>}
         <input
           type="text"
           className="input"

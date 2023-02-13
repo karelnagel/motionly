@@ -4,11 +4,12 @@ import { z } from "zod";
 
 export type ReqRes = { req: NextApiRequest; res: NextApiResponse };
 export const RenderProgress = z.object({
-  renderId: z.string(),
+  id: z.string(),
   progress: z.number(),
-  status: z.enum(["error", "done", "rendering"]),
+  status: z.enum(["FAILED", "COMPLETED", "PROCESSING"]),
+  type: z.enum(["STILL", "MEDIA"]),
   cost: z.number(),
-  fileUrl: z.string().optional(),
+  fileUrl: z.string().nullable(),
 });
 export type RenderProgress = z.infer<typeof RenderProgress>;
 export const Template = z.object({

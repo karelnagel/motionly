@@ -82,7 +82,6 @@ export const Examples = () => {
                 setCurrent(i);
               }}
               onMouseOut={() => {
-                console.log("out");
                 setMouseIn(false);
               }}
             >
