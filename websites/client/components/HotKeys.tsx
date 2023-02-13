@@ -1,19 +1,18 @@
-import { PlayerRef } from "@remotion/player";
-import { RefObject, useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useCurrentPlayerFrame } from "../hooks/useCurrentPlayerFrame";
-import { useTemplate } from "../hooks/useTemplate";
+import { useProject } from "../hooks/useProject";
 
-export function HotKeys({ playerRef }: { playerRef: RefObject<PlayerRef> }) {
-  const {
-    undo,
-    redo,
-    setSelected,
-    setTab,
-    deleteComp,
-    addComp,
-    template: { fps },
-  } = useTemplate();
-  const frame = useCurrentPlayerFrame(playerRef);
+export function HotKeys() {
+  useCurrentPlayerFrame();
+
+  const undo = useProject((t) => t.undo);
+  const redo = useProject((t) => t.redo);
+  const setSelected = useProject((t) => t.setSelected);
+  const deleteComp = useProject((t) => t.deleteComp);
+  const copyComp = useProject((t) => t.copyComp);
+  const fps = useProject((t) => t.project.template.fps);
+  const playerRef = useProject((t) => t.playerRef);
+  const frame = useProject((t) => t.playerFrame);
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
       const isInput =
@@ -27,24 +26,22 @@ export function HotKeys({ playerRef }: { playerRef: RefObject<PlayerRef> }) {
       } else if (event.key === "z" && event.metaKey && event.shiftKey) {
         redo?.();
       } else if (event.key === "c" && event.metaKey && !isInput) {
-        addComp();
+        copyComp();
       } else if (event.key === " " && !isInput) {
-        playerRef.current?.toggle();
+        playerRef?.toggle();
       } else if (
         (event.key === "l" || event.key === "ArrowRight") &&
         !isInput
       ) {
-        playerRef.current?.seekTo(frame + 5 * fps);
+        playerRef?.seekTo(frame + 5 * fps);
       } else if ((event.key === "j" || event.key === "ArrowLeft") && !isInput) {
-        playerRef.current?.seekTo(frame - 5 * fps);
+        playerRef?.seekTo(frame - 5 * fps);
       } else if (event.key === "m" && !isInput) {
-        playerRef.current?.isMuted()
-          ? playerRef.current?.unmute()
-          : playerRef.current?.mute();
+        playerRef?.isMuted() ? playerRef?.unmute() : playerRef?.mute();
       } else if (event.key === "f" && !isInput) {
-        playerRef.current?.isFullscreen()
-          ? playerRef.current?.exitFullscreen()
-          : playerRef.current?.requestFullscreen();
+        playerRef?.isFullscreen()
+          ? playerRef?.exitFullscreen()
+          : playerRef?.requestFullscreen();
       } else if (event.key === "1" && !isInput) {
         setSelected("ai");
       } else if (event.key === "2" && !isInput) {
@@ -55,24 +52,10 @@ export function HotKeys({ playerRef }: { playerRef: RefObject<PlayerRef> }) {
         setSelected("export");
       } else if (event.key === "0" && !isInput) {
         setSelected("");
-      } else if (event.key === "p" && !isInput) {
-        setTab("props");
-      } else if (event.key === "a" && !isInput) {
-        setTab("animations");
       } else return;
       event.preventDefault();
     },
-    [
-      undo,
-      redo,
-      setSelected,
-      playerRef,
-      fps,
-      frame,
-      deleteComp,
-      addComp,
-      setTab,
-    ]
+    [undo, redo, setSelected, playerRef, fps, frame, deleteComp, copyComp]
   );
 
   useEffect(() => {
@@ -80,17 +63,7 @@ export function HotKeys({ playerRef }: { playerRef: RefObject<PlayerRef> }) {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [
-    addComp,
-    deleteComp,
-    setTab,
-    undo,
-    redo,
-    setSelected,
-    playerRef,
-    fps,
-    frame,
-  ]);
+  }, [copyComp, deleteComp, undo, redo, setSelected, playerRef, fps, frame]);
 
   return null;
 }

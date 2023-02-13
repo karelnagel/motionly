@@ -2,71 +2,76 @@
 
 import { Color, inputTypes, TextStyle } from "@motionly/base";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
-import { EditTextStyle } from "../../app/edit/[id]/SidePanel/Panels/EditCompPanel/EditTextStyle";
-import { getRandomId } from "../../helpers";
-import { useTemplate } from "../../hooks/useTemplate";
 import { Media } from "../Media";
+import { useProject } from "../../hooks/useProject";
 import { ColorInput } from "./color";
+import { getRandomId } from "../../helpers";
+import { useComponent } from "../../hooks/useComponent";
 export * from "./color";
 
 export const VariableSelect = ({
   prop,
   type,
   value,
+  label,
 }: {
   prop: string;
   type: keyof typeof inputTypes;
   value: any;
+  label?: string;
 }) => {
-  const { template, setTemplate, selected } = useTemplate();
+  const inputs = useProject((t) => t.project.template.inputs);
+  const set = useProject((t) => t.set);
+  const setComp = useProject((t) => t.setComp);
 
   return (
     <div
       className="absolute dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40 cursor-pointer"
       tabIndex={0}
     >
-      {template.inputs?.map((input) => (
-        <button
-          key={input.id}
-          onClick={() =>
-            setTemplate({
-              ...template,
-              inputs: template.inputs?.map((inp) =>
-                input.id === inp.id
-                  ? {
-                      ...inp,
-                      properties: [
-                        ...(inp.properties || []),
-                        { prop, id: selected },
-                      ],
-                    }
-                  : inp
-              ),
-            })
-          }
-        >
-          {input.label}
-        </button>
-      ))}
-      <button
-        onClick={() =>
-          setTemplate({
-            ...template,
-            inputs: [
-              ...(template.inputs || []),
-              {
-                id: getRandomId(),
-                type,
-                label: prop,
-                value,
-                properties: [{ prop, id: selected }],
-              },
-            ],
-          })
-        }
+      {inputs?.allIds.map((id) => {
+        const input = inputs.byIds[id];
+        if (input.type !== type) return null;
+        return (
+          <p
+            key={id}
+            onClick={() =>
+              setComp((s) => {
+                if (!s.compInputs) s.compInputs = [];
+                s.compInputs.push({
+                  id,
+                  prop,
+                });
+              })
+            }
+          >
+            {input.label}
+          </p>
+        );
+      })}
+      <p
+        onClick={() => {
+          const id = getRandomId();
+          set((s) => {
+            if (!s.project.template.inputs)
+              s.project.template.inputs = { allIds: [], byIds: {} };
+            const inputs = s.project.template.inputs;
+            inputs.allIds.push(id);
+            inputs.byIds[id] = {
+              id,
+              label: label || prop,
+              type,
+              value,
+            };
+          });
+          setComp((s) => {
+            if (!s.compInputs) s.compInputs = [];
+            s.compInputs.push({ id, prop });
+          });
+        }}
       >
         Add new
-      </button>
+      </p>
     </div>
   );
 };
@@ -81,9 +86,10 @@ export function Input<T extends any>({
   placeholder,
   options,
   prop,
+  disabled,
 }: {
   type: keyof typeof inputTypes;
-  label: string;
+  label?: string;
   value?: T;
   onChange: (value?: T) => void;
   className?: string;
@@ -91,57 +97,62 @@ export function Input<T extends any>({
   placeholder?: string;
   options?: { value: string; label: string }[];
   prop?: string;
+  disabled?: boolean;
 }) {
-  const { template, setTemplate, setSelected, selected } = useTemplate();
-  const input = prop
-    ? template.inputs?.find((input) =>
-        input.properties?.find((p) => p.id === selected && p.prop === prop)
-      )
-    : undefined;
+  const setSelected = useProject((t) => t.setSelected);
+  const setComp = useProject((t) => t.setComp);
+  const comp = useComponent();
+  const inputId = comp?.compInputs?.find((i) => i.prop === prop)?.id;
+  const input = useProject((t) =>
+    inputId ? t.project.template.inputs?.byIds[inputId] : undefined
+  );
 
   return (
     <div
       className={`form-control ${
-        type === "number" || type === "checkbox" ? "col-span-1" : "col-span-2"
+        type === "number" || type === "checkbox" ? "" : "col-span-2"
       } ${className}`}
     >
-      <div className={`label ${tooltip ? "tooltip" : ""}`} data-tip={tooltip}>
-        <span className="label-text">{label}</span>
+      <div
+        className={`${label ? "label" : ""} ${tooltip ? "tooltip" : ""}`}
+        data-tip={tooltip}
+      >
+        {label && <span className="label-text">{label}</span>}
         {prop && !input && (
           <div className="dropdown dropdown-bottom dropdown-end">
             <IoIosAdd tabIndex={0} className="cursor-pointer" />
-            <VariableSelect prop={prop} type={type} value={value} />
+            <VariableSelect
+              prop={prop}
+              type={type}
+              value={value}
+              label={label}
+            />
           </div>
         )}
         {prop && input && (
           <IoIosRemove
             className="cursor-pointer"
             onClick={() =>
-              setTemplate({
-                ...template,
-                inputs: template.inputs?.map((i) => ({
-                  ...i,
-                  properties: i.properties?.filter(
-                    (i) => i.id !== selected && i.prop !== prop
-                  ),
-                })),
+              setComp((s) => {
+                s.compInputs = s.compInputs?.filter((i) => i.prop !== prop);
               })
             }
           />
         )}
       </div>
       {input && (
-        <button
+        <div
           onClick={() => setSelected("inputs")}
           className="input input-sm input-bordered bg-primary"
         >
           {input.label}
-        </button>
+        </div>
       )}
       {!input && (
         <>
           {type === "checkbox" && (
             <input
+              disabled={disabled}
               type="checkbox"
               checked={(value as boolean) || false}
               className="checkbox checkbox-primary"
@@ -150,6 +161,7 @@ export function Input<T extends any>({
           )}
           {type === "number" && (
             <input
+              disabled={disabled}
               type="number"
               placeholder={placeholder}
               value={value === undefined ? "" : (value as unknown as number)}
@@ -163,6 +175,7 @@ export function Input<T extends any>({
           )}
           {type === "text" && (
             <input
+              disabled={disabled}
               type="text"
               placeholder={placeholder}
               value={(value as string) || ""}
@@ -172,6 +185,7 @@ export function Input<T extends any>({
           )}
           {type === "textarea" && (
             <textarea
+              disabled={disabled}
               placeholder={placeholder}
               value={(value as string) || ""}
               className="textarea bg-base-200 textarea-bordered w-full"
@@ -180,6 +194,7 @@ export function Input<T extends any>({
           )}
           {type === "select" && (
             <select
+              disabled={disabled}
               className="select select-bordered select-sm bg-base-200"
               value={value as string}
               onChange={(e) => onChange(e.target.value as T)}
@@ -199,15 +214,18 @@ export function Input<T extends any>({
               onChange={(value) => onChange(value as T)}
             />
           )}
-          {type === "style" && (
+          {/* {type === "style" && (
             <EditTextStyle
               style={value as TextStyle}
               setStyle={(textStyle) => onChange(textStyle as T)}
             />
-          )}
-          {(type === "gif" || type === "image" || type === "video") && (
+          )} */}
+          {(type === "gif" ||
+            type === "image" ||
+            type === "video" ||
+            type === "audio") && (
             <Media
-              type={type}
+              type={type.toLowerCase() as any}
               value={value as string}
               onChange={(value) => onChange(value as T)}
             />

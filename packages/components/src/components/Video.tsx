@@ -33,7 +33,7 @@ export const Video = ({
     className,
     muted,
     volume,
-    startFrom: startFrom ? Math.round(startFrom * fps) : undefined,
+    startFrom: startFrom ? Math.ceil(startFrom * fps) : undefined,
   };
   if (!src) return null;
   if (offthread)
@@ -52,6 +52,7 @@ export const Video = ({
     return (
       <RemotionVideo
         {...props}
+        disablePictureInPicture
         style={{
           height: "100%",
           width: "100%",

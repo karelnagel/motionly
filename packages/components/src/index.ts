@@ -1,4 +1,4 @@
 export * from "./Component";
 export * from "./Composition";
 export * from "./components";
-export * from "./SelectedContext";
+export * from "./hooks/useSelected";

@@ -1,15 +1,13 @@
-import { AnimationProps, getFrom, getDuration } from "@motionly/base";
-import { getAnimationColor } from "../../../../helpers/color";
+import { getFrom, getDuration, AnimationProps } from "@motionly/base";
 
 export const Animation = ({
   animation,
-  index,
   parentDuration,
 }: {
-  animation: AnimationProps;
-  index: number;
+  animation?: AnimationProps;
   parentDuration: number;
 }) => {
+  if (!animation) return null;
   const from = getFrom(parentDuration, animation.start);
   const duration = getDuration(
     parentDuration,
@@ -18,12 +16,11 @@ export const Animation = ({
   );
   return (
     <div
-      className="absolute h-[3px] w-full left-0 rounded-full"
+      className="h-[3px] w-full left-0 rounded-full"
       style={{
-        top: index * 6 + 3,
-        left: `${(from / parentDuration) * 100}%`,
+        marginLeft: `${(from / parentDuration) * 100}%`,
         width: `${(duration / parentDuration) * 100}%`,
-        background: getAnimationColor(animation),
+        // background: getAnimationColor(animation),
       }}
     />
   );

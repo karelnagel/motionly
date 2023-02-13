@@ -1,40 +1,59 @@
-import { PlayerRef } from "@remotion/player";
 import { SelectedContext } from "@motionly/components";
-import { RefObject, useRef } from "react";
+import { useRef } from "react";
 import { useShiftKey } from "../../../../hooks/useShiftKey";
 import Moveable from "react-moveable";
-import { useTemplate } from "../../../../hooks/useTemplate";
 import { Player as MotionlyPlayer } from "@motionly/player";
+import { useProject } from "../../../../hooks/useProject";
+import { useComponent } from "../../../../hooks/useComponent";
 
-export const Player = ({
-  playerRef,
-  scale,
-}: {
-  playerRef: RefObject<PlayerRef>;
-  scale: number;
-}) => {
-  const { template, selectedComp, setSelected, setComp } = useTemplate();
+export const Player = () => {
+  const template = useProject((t) => t.project.template);
+  const comp = useComponent();
+  const setSelected = useProject((t) => t.setSelected);
+  const setComp = useProject((t) => t.setComp);
   const lockAspectRatio = useShiftKey();
   const divRef = useRef<HTMLDivElement>(null);
-  const { width, height, comps } = template;
+  const scale = useProject((t) => t.playerScale);
+  const setPlayerRef = useProject((t) => t.playerSetPlayerRef);
+  const horizontalGuidelines = [
+    ...Object.values(template.components)
+      .filter((c) => c.id !== comp?.id)
+      .map((c) => [c.y, (c.y || 0) + (c.height || template.height)])
+      .flat(),
+    0,
+    template.height / 2,
+    template.height,
+  ].map((x) => (x || 0) * scale);
+  const verticalGuidelines = [
+    ...Object.values(template.components)
+      .filter((c) => c.id !== comp?.id)
+      .map((c) => [c.x, (c.x || 0) + (c.width || template.width)])
+      .flat(),
+    0,
+    template.width / 2,
+    template.width,
+  ].map((x) => (x || 0) * scale);
+
   return (
     <div
-      style={{ width: template.width * scale, height: template.height * scale }}
-      className="absolute"
+      style={{
+        width: template.width * scale,
+        height: template.height * scale,
+        position: "relative",
+      }}
     >
       <SelectedContext.Provider
-        value={{ divRef, setSelected, selected: selectedComp?.id || "" }}
+        value={{ divRef, setSelected, selected: comp?.id || "" }}
       >
         <MotionlyPlayer
-          playerRef={playerRef}
+          ref={(ref) => setPlayerRef?.(ref || undefined)}
           template={template}
           style={{ width: "100%", height: "100%" }}
           spaceKeyToPlayOrPause
-          className="bg-base-100"
           loop
         />
       </SelectedContext.Provider>
-      {selectedComp && (
+      {comp && (
         <Moveable
           target={divRef}
           scale={scale}
@@ -43,59 +62,53 @@ export const Player = ({
           resizable={true}
           rotatable={true}
           snappable={true}
-          snapThreshold={5}
-          snapCenter={true}
-          centerGuidelines={true}
-          snapHorizontal={true}
-          snapVertical={true}
-          elementSnapDirections={{
-            left: true,
-            top: true,
-            right: true,
-            bottom: true,
+          snapDirections={{
             center: true,
             middle: true,
+            top: true,
+            bottom: true,
+            right: true,
+            left: true,
           }}
-          horizontalGuidelines={[
-            ...comps
-              .filter((c) => c.id !== selectedComp.id)
-              .map((c) => [c.x, (c.x || 0) + (c.width || 0)])
-              .flat()
-              .filter((x) => x),
-            0,
-            width / 2,
-            width,
-          ].map((x) => (x || 0) * scale)}
-          verticalGuidelines={[
-            ...comps
-              .filter((c) => c.id !== selectedComp.id)
-              .map((c) => [c.y, (c.y || 0) + (c.height || 0)])
-              .flat()
-              .filter((x) => x),
-            0,
-            height / 2,
-            height,
-          ].map((x) => (x || 0) * scale)}
-          onDrag={(e) => {
-            setComp({
-              ...selectedComp,
-              x: (selectedComp.x || 0) + e.delta[0],
-              y: (selectedComp.y || 0) + e.delta[1],
+          elementSnapDirections={{
+            top: true,
+            bottom: true,
+            right: true,
+            left: true,
+          }}
+          snapThreshold={3}
+          verticalGuidelines={verticalGuidelines}
+          horizontalGuidelines={horizontalGuidelines}
+          onDrag={({ delta }) => {
+            setComp((comp) => {
+              comp.x = (comp.x || 0) + delta[0];
+              comp.y = (comp.y || 0) + delta[1];
             });
           }}
           keepRatio={lockAspectRatio}
-          onResize={({ height, width, delta, target }) => {
-            setComp({
-              ...selectedComp,
-              width: width || 1,
-              height: height || 1,
+          onResize={({ height, width, delta, target, direction }) => {
+            setComp((comp) => {
+              console.log(direction);
+              if (direction[0] === -1)
+                comp.x = (comp.x || 0) + (comp.width || template.width) - width;
+              if (direction[1] === -1)
+                comp.y =
+                  (comp.y || 0) + (comp.height || template.height) - height;
+              comp.width = width;
+              comp.height = height;
             });
-            delta[0] && (target.style.width = `${width}px`);
-            delta[1] && (target.style.height = `${height}px`);
+            if (delta[0]) {
+              target.style.width = `${width}px`;
+            }
+            if (delta[1]) {
+              target.style.height = `${height}px`;
+            }
           }}
-          onRotate={(e) => {
-            setComp({ ...selectedComp, rotation: e.absoluteRotation });
-          }}
+          onRotate={(e) =>
+            setComp((comp) => {
+              comp.rotation = e.absoluteRotation;
+            })
+          }
         />
       )}
     </div>

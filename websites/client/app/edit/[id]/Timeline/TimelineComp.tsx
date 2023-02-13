@@ -2,62 +2,69 @@ import { getFrom, getDuration, ComponentProps } from "@motionly/base";
 import { useRef, useState } from "react";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import Moveable from "react-moveable";
-import { useTemplate } from "../../../../hooks/useTemplate";
 import { isPanel } from "../../../../helpers";
-import { Animation } from "./Animation";
 import { ShowHide } from "../../../../components/ShowHide";
+import { useProject } from "../../../../hooks/useProject";
+import { useComponent } from "../../../../hooks/useComponent";
+import { components } from "../Right/Tabs/components";
 
 export const TimelineComp = ({
-  comp,
-  comps,
+  id,
   parentDuration,
-  parentId,
 }: {
-  comp: ComponentProps;
-  comps?: ComponentProps[];
+  id: string;
   parentDuration: number;
-  parentId: string;
 }) => {
-  const { selected, setSelected, changeParent } = useTemplate();
+  const selected = useProject((t) => t.selected);
+  const comp = useComponent(id);
+  const parent = useComponent(comp?.parentId);
+  if (!comp) return null;
+  const setSelected = useProject((t) => t.setSelected);
+  const changeParent = useProject((t) => t.changeParent);
+
   const [show, setShow] = useState(true);
   const divRef = useRef<HTMLDivElement>(null);
   const isSelected = selected === comp.id;
   const from = getFrom(parentDuration, comp.from);
   const duration = getDuration(parentDuration, comp.from, comp.duration);
-  const hasChildren = "comps" in comp;
+  const hasChildren = "childIds" in comp;
+  const componentProps = components[comp.comp];
   return (
-    <div className="relative cursor-pointer">
+    <div className="cursor-pointer">
       <div
-        className="bg-base-content bg-opacity-20 rounded-sm"
+        className=" rounded-lg"
         ref={isSelected ? divRef : undefined}
         onClick={(e) => {
           e.stopPropagation();
           setSelected(comp.id);
         }}
         style={{
+          background: `hsl(${componentProps.hue}, 35%, 50%, 30%)`,
           marginLeft: `${(from / parentDuration) * 100}%`,
           width: `${(duration / parentDuration) * 100}%`,
         }}
       >
         <div
-          onClick={() => setSelected(comp.id)}
-          className={`relative flex h-[40px] items-center px-2 rounded-sm overflow-hidden justify-between ${
-            isSelected
-              ? "bg-gradient-to-r from-secondary to bg-primary text-primary-content"
-              : "bg-base-300"
-          }`}
+          style={{
+            background: `hsl(${componentProps.hue}, 35%, 40%)`,
+            color: "#FFF",
+          }}
+          className={`relative rounded-lg flex h-[30px] items-center px-2 overflow-hidden justify-between `}
         >
-          {comp.animations?.map((a, i) => (
-            <Animation
-              key={i}
-              index={i}
-              animation={a}
-              parentDuration={duration}
-            />
-          ))}
-          <div className="whitespace-nowrap overflow-hidden text-ellipsis w-full">
-            <p className="sticky left-0 right-0">
-              {comp.comp}-{comp.id}
+          {/* <div className="absolute top-0 left-0 h-full w-full flex flex-col space-y-[2px] py-[2px] overflow-hidden">
+            {comp.animations?.allIds.map((id, i) => (
+              <Animation
+                key={i}
+                animation={comp.animations?.byIds[id]}
+                parentDuration={duration}
+              />
+            ))}
+          </div> */}
+
+          <div className="whitespace-nowrap overflow-hidden text-ellipsis w-full flex items-center">
+            <componentProps.Icon className="inline-block mr-2 shrink-0" />
+            <p className="">
+              {"text" in comp ? comp.text : componentProps.name}
             </p>
           </div>
 
@@ -77,7 +84,7 @@ export const TimelineComp = ({
                 </button>
               </div>
             )}
-            {isSelected && parentId && (
+            {isSelected && comp.parentId && (
               <div
                 className="tooltip tooltip-left"
                 data-tip="Remove from group"
@@ -85,14 +92,14 @@ export const TimelineComp = ({
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    changeParent("");
+                    changeParent(parent?.parentId);
                   }}
                 >
                   <IoIosRemove />
                 </button>
               </div>
             )}
-            {hasChildren && comp.comps && comp.comps.length > 0 && (
+            {hasChildren && comp.childIds.length > 0 && (
               <div
                 className="tooltip tooltip-left text-lg"
                 data-tip={show ? "Minimize" : "Maximize"}
@@ -102,27 +109,20 @@ export const TimelineComp = ({
             )}
           </div>
         </div>
-        {hasChildren && comp.comps && comp.comps.length > 0 && show && (
+        {hasChildren && comp.childIds.length > 0 && show && (
           <div className="space-y-2 py-2">
-            {comp.comps.map((child, i) => (
-              <TimelineComp
-                key={i}
-                parentId={comp.id}
-                comp={child}
-                comps={comp.comps}
-                parentDuration={duration}
-              />
+            {comp.childIds.map((id, i) => (
+              <TimelineComp key={i} id={id} parentDuration={duration} />
             ))}
           </div>
         )}
       </div>
+
       {isSelected && (
         <CompMoveable
           divRef={divRef}
-          comps={comps}
           parentDuration={parentDuration}
           comp={comp}
-          parentId={parentId}
         />
       )}
     </div>
@@ -131,78 +131,71 @@ export const TimelineComp = ({
 
 export const CompMoveable = ({
   divRef,
-  comps = [],
   parentDuration,
   comp,
-  parentId,
 }: {
   divRef: React.RefObject<HTMLDivElement>;
-  comps?: ComponentProps[];
   parentDuration: number;
   comp: ComponentProps;
-  parentId: string;
 }) => {
-  const { setComp, setComps } = useTemplate();
+  const comps = useProject((t) => t.project.template.components);
+  const setComp = useProject((t) => t.setComp);
+  const set = useProject((t) => t.set);
+  const setComps = useProject((t) => t.setComps);
+  const parentWidth = () => divRef.current?.parentElement?.offsetWidth || 1;
+  const verticalGuidelines = Object.values(comps)
+    .filter((c) => c.id !== comp.id)
+    .map((c) => [c.from, (c.from || 0) + (c.duration || parentDuration)])
+    .flat()
+    .map((x) => ((x || 0) / parentDuration) * parentWidth());
   return (
     <Moveable
       target={divRef}
       bounds={{
         left: 0,
-        right: divRef.current?.parentElement?.offsetWidth,
+        right: parentWidth(),
       }}
       resizable={true}
       draggable={true}
       snappable={true}
       snapCenter={true}
-      snapThreshold={10}
+      snapThreshold={3}
       renderDirections={["w", "e"]}
-      className="timeline-moveable"
-      snapHorizontal={true}
-      snapVertical={true}
       elementSnapDirections={{
         left: true,
         top: true,
         right: true,
         bottom: true,
-        center: true,
-        middle: true,
       }}
-      horizontalGuidelines={[
-        ...comps.map((c) => [c.from, (c.from || 0) + (c.duration || 0)]).flat(),
-        0,
-        parentDuration / 2,
-        parentDuration,
-      ].map(
-        (x) =>
-          ((x || 0) / parentDuration) *
-          (divRef.current?.parentElement?.offsetWidth || 1)
-      )}
+      verticalGuidelines={verticalGuidelines}
       onDrag={({ delta, beforeDist }) => {
-        const newComp = {
-          ...comp,
-          from:
-            (comp.from || 0) +
-            (delta[0] / (divRef.current?.parentElement?.offsetWidth || 1)) *
-              parentDuration,
-        };
-        const indexChange = Math.round(beforeDist[1] / 48);
-
-        if (!indexChange) return setComp(newComp);
-
-        const oldIndex = comps.findIndex((c) => c.id === comp.id);
-        const newIndex = oldIndex + indexChange;
-        const newComps = [...comps];
-        newComps.splice(oldIndex, 1);
-        newComps.splice(newIndex, 0, newComp);
-        setComps(newComps, parentId);
+        const from =
+          (comp.from || 0) + (delta[0] / parentWidth()) * parentDuration;
+        set((s) => {
+          const comp = s.project.template.components[s.selected];
+          if (from > 0) comp.from = from;
+          const indexChange = Math.round(beforeDist[1] / 34);
+          if (!indexChange) return;
+          const parentId = comp.parentId;
+          const parent = parentId
+            ? s.project.template.components[parentId]
+            : s.project.template;
+          if (parent && "childIds" in parent) {
+            const oldIndex = parent.childIds.indexOf(comp.id);
+            parent.childIds.splice(oldIndex, 1);
+            parent.childIds.splice(oldIndex + indexChange, 0, comp.id);
+          }
+        });
       }}
-      onResize={({ width, delta, target }) => {
-        const duration =
-          (width / (divRef.current?.parentElement?.offsetWidth || 1)) *
-          parentDuration;
-        setComp({
-          ...comp,
-          duration,
+      onResize={({ width, delta, target, direction }) => {
+        const duration: number = (width / parentWidth()) * parentDuration;
+        console.log(parentWidth(), parentDuration, width, duration);
+        if (duration < 0) return;
+        setComp((c) => {
+          if (direction[0] === -1) {
+            c.from = (c.from || 0) + (c.duration || parentDuration) - duration;
+          }
+          c.duration = duration;
         });
         delta[0] && (target.style.width = `${width}px`);
       }}

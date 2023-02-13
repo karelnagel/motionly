@@ -1,7 +1,7 @@
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import { StyleAndClass } from "@motionly/base";
 import { ProgressbarProps } from "@motionly/base";
-import { useColor } from "../useColor";
+import { useColor } from "../hooks/useColor";
 
 export const defaultProgressbarProps: ProgressbarProps = {
   comp: "progressbar",
@@ -70,7 +70,7 @@ export const Progressbar = ({
           display: "flex",
           alignItems: "center",
           position: "relative",
-          margin: `0 ${height / 2}px`,
+          padding: `0 ${height / 2}px`,
           ...style,
         }}
       >
@@ -79,7 +79,7 @@ export const Progressbar = ({
             position: "absolute",
             width: "100%",
             height: height / 2,
-            borderRadius: height / 4,
+            borderRadius: height / 2,
             left: 0,
             background,
             overflow: "hidden",
@@ -97,15 +97,24 @@ export const Progressbar = ({
         </div>
         <div
           style={{
-            borderRadius: "100%",
-            height,
-            position: "absolute",
-            width: height,
-            background,
-            left: `${progress}%`,
-            transform: "translate(-50%, 0)",
+            height: "100%",
+            width: "100%",
+            padding: `0 ${height / 2}px`,
+            position: "relative",
           }}
-        />
+        >
+          <div
+            style={{
+              borderRadius: "100%",
+              height,
+              position: "absolute",
+              width: height,
+              background: colorC,
+              left: `${progress}%`,
+              transform: "translate(-50%, 0)",
+            }}
+          />
+        </div>
       </div>
     );
   if (props.type === "circle") {

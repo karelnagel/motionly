@@ -1,6 +1,5 @@
 import { TemplateType } from "@motionly/base";
-import { PlayerRef } from "@remotion/player";
-import { CSSProperties, ReactNode, RefObject } from "react";
+import { CSSProperties, ReactNode } from "react";
 
 export type PlayerProps = {
   allowFullscreen?: boolean;
@@ -17,5 +16,4 @@ export type PlayerProps = {
   style?: CSSProperties;
   className?: string;
   template: TemplateType;
-  playerRef?: RefObject<PlayerRef>;
 };

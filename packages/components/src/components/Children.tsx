@@ -14,8 +14,8 @@ export const Children = ({
   if (!isSequence) {
     return (
       <>
-        {comps.map((child) => (
-          <Component key={child.id} {...child} />
+        {comps.map((comp) => (
+          <Component key={comp.id} {...comp} />
         ))}
       </>
     );
@@ -23,18 +23,20 @@ export const Children = ({
 
   return (
     <Series>
-      {comps.map((child) => (
-        <Series.Sequence
-          key={child.id}
-          offset={child.from ? Math.floor(child.from * fps) : undefined}
-          layout="none"
-          durationInFrames={
-            child.duration ? Math.floor(child.duration * fps) : 1
-          }
-        >
-          <Component {...child} from={0} duration={0} />
-        </Series.Sequence>
-      ))}
+      {comps.map((comp) => {
+        return (
+          <Series.Sequence
+            key={comp.id}
+            offset={comp.from ? Math.ceil(comp.from * fps) : undefined}
+            layout="none"
+            durationInFrames={
+              comp.duration ? Math.ceil(comp.duration * fps) : 1
+            }
+          >
+            <Component {...comp} from={0} duration={0} />
+          </Series.Sequence>
+        );
+      })}
     </Series>
   );
 };

@@ -1,4 +1,10 @@
-import { ComponentProps, TemplateType } from "../types";
+import {
+  CompInput,
+  ComponentProps,
+  Components,
+  Input,
+  TemplateType,
+} from "../types";
 
 export const videoUrl =
   "https://remotionlambda-24lixyhuqn.s3.us-east-1.amazonaws.com/video.mp4";
@@ -30,33 +36,61 @@ export const getDuration = (
   return addFrom ? actualDuration + actualFrom : actualDuration;
 };
 
-export const getFonts = (comps: ComponentProps[]) => {
+export const getFonts = (comps?: ComponentProps[]) => {
   return JSON.stringify(comps)
     .match(/fontFamily":"(.*?)"/g)
     ?.map((font) => font.replace(/fontFamily":"(.*?)"/g, "$1"));
 };
 
-export function applyInputs<T extends TemplateType>(template: T) {
-  const newTemplate = { ...template };
-  if (!newTemplate.inputs) return newTemplate;
-  for (const input of newTemplate.inputs) {
-    if (!input.properties) continue;
-    for (const prop of input.properties) {
-      if (!prop.id || prop.id === "template") {
-        (newTemplate as any)[prop.prop] = input.value;
-      } else if (prop.id) {
-        const recursive = (comps: ComponentProps[]) => {
-          for (const comp of comps) {
-            if (comp.id === prop.id) {
-              (comp as any)[prop.prop] = input.value;
-            } else if ("comps" in comp && comp.comps.length > 0) {
-              recursive(comp.comps);
-            }
-          }
-        };
-        recursive(newTemplate.comps);
-      }
+export const toTree = (
+  components: Components,
+  childIds: string[],
+  inputs: { [key: string]: Input }
+): ComponentProps[] => {
+  const tree = childIds.map((id) => {
+    let comp = components[id];
+    comp = applyInputs(comp, inputs, comp?.compInputs);
+    if ("childIds" in comp) {
+      comp.comps = [
+        ...(comp.comps || []),
+        ...toTree(components, comp.childIds, inputs),
+      ];
     }
+    return comp;
+  });
+  return tree;
+};
+
+export function applyInputs<T>(
+  comp: T,
+  inputs: { [key: string]: Input },
+  compInputs?: CompInput[]
+): T {
+  const newComp = JSON.parse(JSON.stringify(comp || {}));
+  for (const input of compInputs || []) {
+    const inputVal = inputs[input.id]?.value;
+    if (inputVal === undefined) continue;
+
+    const props = input.prop.split(".");
+    let currentProp = newComp;
+    for (let i = 0; i < props.length - 1; i++) {
+      currentProp = currentProp[props[i]];
+    }
+    currentProp[props[props.length - 1]] = inputVal;
   }
-  return newTemplate;
+  return newComp;
 }
+
+export const prepareTemplate = (template: TemplateType) => {
+  const newTemplate = applyInputs(
+    template,
+    template.inputs?.byIds || {},
+    template.templateInputs
+  );
+  newTemplate.comps = toTree(
+    newTemplate.components,
+    newTemplate.childIds,
+    newTemplate.inputs?.byIds || {}
+  );
+  return newTemplate;
+};

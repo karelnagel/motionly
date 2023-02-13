@@ -7,7 +7,7 @@ import {
 } from "remotion";
 import { StyleAndClass } from "@motionly/base";
 import { TranscriptionProps } from "@motionly/base";
-import { useTextStyles } from "../../useTextStyles";
+import { useTextStyles } from "../../hooks/useTextStyles";
 export * from "./default";
 
 export const Transcription = ({

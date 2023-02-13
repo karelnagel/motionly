@@ -19,14 +19,15 @@ import { Transcription } from "./components/Transcription/index";
 import { Lottie } from "./components/Lottie";
 import { Gif } from "./components/Gif";
 import { Path } from "./components/Path";
-import { useSelected } from "./SelectedContext";
+import { useSelected } from "./hooks/useSelected";
 import { ComponentProps, transformProps } from "@motionly/base";
-import { useAnimation } from "./useAnimations";
+import { useAnimation } from "./hooks/useAnimations";
 import { getDuration, getFrom } from "@motionly/base";
 import { Shape } from "./components/Shape";
 import { ReactNode, useMemo, useRef } from "react";
 import { MotionBlur } from "./MotionBlur";
 import { Confetti } from "./components/Confetti";
+import { useTextAnimations } from "./hooks/useTextAnimations";
 
 export const Component = (comp: ComponentProps) => {
   const { fps, durationInFrames } = useVideoConfig();
@@ -34,14 +35,22 @@ export const Component = (comp: ComponentProps) => {
   const width = comp.width || ref.current?.offsetWidth || 0;
   const height = comp.height || ref.current?.offsetHeight || 0;
 
+  const text =
+    "text" in comp
+      ? useTextAnimations(
+          Object.values(comp.animations?.byIds || {}),
+          comp.text
+        )
+      : "";
+
   const from = useMemo(
-    () => Math.floor(getFrom(durationInFrames, (comp.from || 0) * fps)),
+    () => Math.ceil(getFrom(durationInFrames, (comp.from || 0) * fps)),
     [durationInFrames, fps, comp.from]
   );
-  
+
   const duration = useMemo(
     () =>
-      Math.floor(
+      Math.ceil(
         getDuration(
           durationInFrames,
           (comp.from || 0) * fps,
@@ -52,7 +61,11 @@ export const Component = (comp: ComponentProps) => {
   );
   return (
     <MotionBlur motion={comp.motionBlur}>
-      <Sequence from={from} durationInFrames={duration} layout="none">
+      <Sequence
+        from={from}
+        durationInFrames={duration <= 0 ? 1 : duration}
+        layout="none"
+      >
         <Freeze
           frame={comp.freeze !== undefined ? fps * comp.freeze : undefined}
         >
@@ -65,9 +78,7 @@ export const Component = (comp: ComponentProps) => {
               <div ref={ref} style={{ height: "100%", width: `100%` }}>
                 {comp.comp === "div" && <Div {...comp} />}
                 {comp.comp === "image" && <Image {...comp} />}
-                {comp.comp === "text" && (
-                  <Text {...comp} animations={comp.animations} />
-                )}
+                {comp.comp === "text" && <Text {...comp} text={text} />}
                 {comp.comp === "audio" && <Audio {...comp} />}
                 {comp.comp === "audiogram" && (
                   <Audiogram {...comp} width={width} height={height} />
@@ -136,10 +147,10 @@ export const Loop = ({
 const InsideSequence = ({
   id,
   borderRadius = 0,
-  animations = [],
   height: inputHeight,
   opacity = 1,
   rotation,
+  animations,
   width: inputWidth,
   x,
   y,
@@ -148,7 +159,6 @@ const InsideSequence = ({
 }: ComponentProps & { children: ReactNode }) => {
   const { setSelected, divRef, selected } = useSelected();
   const animation = useAnimation();
-
   const transformStyle = useMemo(
     () =>
       transform
@@ -159,33 +169,29 @@ const InsideSequence = ({
         .join(" ") || "",
     [transform]
   );
-
+  const anims = Object.values(animations?.byIds || {});
   const transformAnimations =
-    animations
+    anims
       .map((anim) => {
         const prop = transformProps[anim.prop as keyof typeof transformProps];
         if (!prop) return "";
-        return `${anim.prop}(${animation(anim)}${prop.units || ""})`;
+        return `${anim.prop}(${animation(anim) || 0}${prop.units || ""})`;
       })
       .join(" ") || "";
 
-  const opacityAnimations = animations.filter((a) => a.prop === "opacity");
+  const opacityAnimations = anims.filter((a) => a.prop === "opacity");
   const opac = opacityAnimations.length
-    ? opacity *
-      animations
-        .filter((a) => a.prop === "opacity")
-        .reduce((acc, a) => acc * animation(a), 1)
+    ? opacity * opacityAnimations.reduce((acc, a) => acc * animation(a), 1)
     : opacity;
 
-  const borderAnimations = animations.filter((a) => a.prop === "borderRadius");
+  const borderAnimations = anims.filter((a) => a.prop === "borderRadius");
   const border = borderAnimations.length
     ? borderRadius + borderAnimations.reduce((acc, a) => acc + animation(a), 1)
     : borderRadius;
-
   return (
     <>
       <div
-        ref={(e) =>{
+        ref={(e) => {
           if (divRef && selected === id) divRef.current = e;
         }}
         onClick={(e) => {
@@ -201,10 +207,12 @@ const InsideSequence = ({
           width: inputWidth || "100%",
           height: inputHeight || "100%",
           position: "absolute",
-          top: y,
-          left: x,
           userSelect: "none",
-          transform: `rotate(${
+          transform: `translate(${x || 0}px,${y || 0}px) ${
+            (transformStyle + transformAnimations).includes("perspective")
+              ? ""
+              : "perspective(1000px)"
+          } rotate(${
             rotation || 0
           }deg) ${transformStyle} ${transformAnimations}`, // For some reason, this messes up x and y
         }}

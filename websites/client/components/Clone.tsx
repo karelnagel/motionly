@@ -1,43 +1,50 @@
 "use client";
 
+import { TemplateType } from "@motionly/base";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
-import { postNewTemplate } from "../sdk/templates/new";
-import { Template } from "../types";
+import { trpc } from "../app/ClientProvider";
+import { Project } from "../types";
 import { useAlerts } from "./Alert";
-
-const emptyTemplate: Template = {
-  name: "Empty",
-  description: "This is an empty template",
+const template: TemplateType = {
   width: 1080,
   height: 1080,
   fps: 30,
   duration: 10,
-  background: {
+  bg: {
     type: "basic",
     color: "#FFFFFFFF",
   },
-  comps: [],
+  childIds: [],
+  components: {},
+};
+
+const emptyProject: Project = {
+  name: "Empty",
+  description: "This is an empty template",
+  template,
 };
 export const Clone = ({
   children,
   className,
-  template = emptyTemplate,
+  project = emptyProject,
 }: {
   children: ReactNode;
   className?: string;
-  template?: Template;
+  project?: Project;
 }) => {
   const router = useRouter();
-  const alert = useAlerts();
+  const alert = useAlerts((s) => s.addAlert);
+  const postNewProject = trpc.projects.new.useMutation({});
   const clone = async () => {
-    const newTemplate = await postNewTemplate({
-      ...template,
+    const newProject = await postNewProject.mutateAsync({
+      ...project,
       id: undefined,
-      name: `${template.name}`,
+      name: `${project.name}`,
+      template: project.template,
     });
-    if (!newTemplate) return alert("Failed to clone template", "error");
-    router.push(`/edit/${newTemplate.id}`);
+    if (!newProject) return alert("Failed to clone template", "error");
+    router.push(`/edit/${newProject.id}`);
     alert("Cloned template", "success");
   };
 
