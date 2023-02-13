@@ -1,5 +1,9 @@
+"use client";
+
 export const dynamic = "force-dynamic";
 
-export default async function Account() {
-  return <div></div>;
+export default function Account() {
+  return <div>
+    
+  </div>;
 }
