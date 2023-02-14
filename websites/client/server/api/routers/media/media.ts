@@ -1,12 +1,12 @@
-import { MediaType, Template } from "../../../types";
-import { createTRPCRouter, protectedProcedure } from "../trpc";
+import { MediaType, Template } from "../../../../types";
+import { createTRPCRouter, protectedProcedure } from "../../trpc";
 import { z } from "zod";
 import S3 from "aws-sdk/clients/s3";
-import { awsClientConfig } from "../../../helpers/awsClientConfig";
-import { env } from "../../../env.mjs";
+import { awsClientConfig } from "../../../../helpers/awsClientConfig";
+import { env } from "../../../../env.mjs";
 import { TRPCError } from "@trpc/server";
-import { getMediaType } from "../../../helpers/getMediaType";
-import { Transcription } from "./transcriptions";
+import { getMediaType } from "../../../../helpers/getMediaType";
+import { Transcription } from "../transcriptions/transcriptions";
 import ytdl from "ytdl-core";
 
 export const UserFile = z.object({

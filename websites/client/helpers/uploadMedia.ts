@@ -1,6 +1,6 @@
 import axios from "axios";
 import { trpcClient } from "../app/ClientProvider";
-import { UserFile } from "../server/api/routers/media";
+import { UserFile } from "../server/api/routers/media/media";
 
 export const uploadMedia = async (file: File): Promise<UserFile | null> => {
   try {

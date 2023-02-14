@@ -1,12 +1,16 @@
-import { RenderProgress, Template } from "../../../types";
-import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
+import { RenderProgress, Template } from "../../../../types";
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from "../../trpc";
 import { z } from "zod";
 import {
   getRenderProgress,
   renderMediaOnLambda,
 } from "@remotion/lambda/client";
-import { env } from "../../../env.mjs";
-import { renderStill } from "../../../lib/renderStill";
+import { env } from "../../../../env.mjs";
+import { renderStill } from "../../../../lib/renderStill";
 import { TRPCError } from "@trpc/server";
 import { Render } from "@prisma/client";
 

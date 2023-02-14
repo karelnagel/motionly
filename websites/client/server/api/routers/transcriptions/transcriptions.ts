@@ -1,7 +1,7 @@
-import { createTRPCRouter, protectedProcedure } from "../trpc";
+import { createTRPCRouter, protectedProcedure } from "../../trpc";
 import { z } from "zod";
 import Transcribe from "aws-sdk/clients/transcribeservice";
-import { awsClientConfig } from "../../../helpers/awsClientConfig";
+import { awsClientConfig } from "../../../../helpers/awsClientConfig";
 import { TRPCError } from "@trpc/server";
 import axios from "axios";
 

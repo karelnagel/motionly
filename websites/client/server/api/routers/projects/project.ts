@@ -1,9 +1,13 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { Project } from "../../../types";
-import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
-import { prismaProjectToProject } from "../../../helpers/projectToProject";
-import { renderStill } from "../../../lib/renderStill";
+import { Project } from "../../../../types";
+import {
+  createTRPCRouter,
+  publicProcedure,
+  protectedProcedure,
+} from "../../trpc";
+import { prismaProjectToProject } from "../../../../helpers/projectToProject";
+import { renderStill } from "../../../../lib/renderStill";
 
 const isOwner = async (id: string, userId: string) => {
   const prevProject = await prisma.project.findFirst({ where: { id } });

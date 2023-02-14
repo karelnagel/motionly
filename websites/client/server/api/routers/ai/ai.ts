@@ -1,5 +1,5 @@
-import { Template } from "../../../types";
-import { createTRPCRouter, protectedProcedure } from "../trpc";
+import { Template } from "../../../../types";
+import { createTRPCRouter, protectedProcedure } from "../../trpc";
 import { z } from "zod";
 
 const tags = ["AI"];
