@@ -15,7 +15,7 @@ export const getProject = async (id: string) => {
     description: template.description,
     public: template.public,
     isOwner: template.userId === session?.user?.id,
-    preview: template.preview || undefined,
+    preview: template.preview ,
     template: template.template as any,
   };
   return project;
