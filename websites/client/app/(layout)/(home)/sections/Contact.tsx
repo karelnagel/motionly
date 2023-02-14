@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "../../../../components/Button";
 import { Bubble } from "../../../../components/Bubble";
 import axios from "axios";
+import { env } from "../../../../env.mjs";
 
 export const Contact = () => {
   const [formState, setFormState] = useState<
@@ -26,7 +27,7 @@ export const Contact = () => {
         subject: "New message for Motionly",
         email,
         message,
-        access_key: process.env.NEXT_PUBLIC_EMAIL_ACCESS_KEY,
+        access_key: env.NEXT_PUBLIC_EMAIL_ACCESS_KEY,
       });
       console.log(res);
       if (res.status === 200 && res.data.success) {

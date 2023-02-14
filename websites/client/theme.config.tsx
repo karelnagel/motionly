@@ -3,6 +3,7 @@ import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
 import { useRouter } from "next/router";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import { env } from "./env.mjs";
 
 const config: DocsThemeConfig = {
   primaryHue: 203,
@@ -33,11 +34,11 @@ const config: DocsThemeConfig = {
   head: () => {
     const { asPath } = useRouter();
     const { frontMatter, title: configTitle } = useConfig();
-    const basePath = process.env.NEXT_PUBLIC_URL;
+    const basePath = env.NEXT_PUBLIC_URL;
     const title = frontMatter.title || configTitle || "Motionly";
     return (
       <>
-        <link rel="icon" type="image/x-icon" href="/logo.png"></link>
+        <link rel="icon" type="image/x-icon" href={`${basePath}/favicon.png`}></link>
         <meta property="og:url" content={`${basePath}${asPath}`} />
         <meta property="og:title" content={title} />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
