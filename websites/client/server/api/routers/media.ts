@@ -26,12 +26,13 @@ const protect = true;
 export const media = createTRPCRouter({
   getAll: protectedProcedure
     .meta({ openapi: { method: "GET", path: "/media", tags, protect } })
-    .input(z.object({}))
+    .input(z.object({ type: MediaType.optional() }))
     .output(z.object({ files: z.array(UserFile) }))
-    .query(async ({ ctx }) => {
+    .query(async ({ input: { type }, ctx }) => {
       const files = await ctx.prisma.file.findMany({
         where: {
           userId: ctx.session.user.id,
+          type,
           url: { contains: "https://" },
         },
       });

@@ -10,7 +10,6 @@ import { Input } from "../../../../components/inputs";
 import { Project } from "../../../../types";
 import produce from "immer";
 import { TemplateType } from "@motionly/base";
-import { trpc, trpcClient } from "../../../ClientProvider";
 
 export const Client = ({ startProject }: { startProject: Project }) => {
   const [project, setProject] = useState(startProject);
