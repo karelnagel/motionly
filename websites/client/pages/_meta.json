@@ -18,6 +18,13 @@
             "typesetting": "article"
         }
     },
+    "legal": {
+        "title": "Legal",
+        "type": "page",
+        "theme": {
+            "typesetting": "article"
+        }
+    },
     "about": {
         "title": "About",
         "type": "page"

@@ -134,8 +134,8 @@ export const Contact = () => {
           </div>
         </div>
       </div>
-      <Bubble width={25} top={80} left={85} />
-      <Bubble width={9} top={65} left={85} />
+      <Bubble width={25} top={75} left={85} />
+      <Bubble width={9} top={45} left={85} />
     </div>
   );
 };
