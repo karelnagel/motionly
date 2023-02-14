@@ -25,11 +25,12 @@ export const Template = z.object({
   isSequence: z.boolean().optional(),
   comps: z.any(),
 });
+export type Template = z.infer<typeof Template>;
 export const Project = z.object({
   template: Template,
   name: z.string(),
   description: z.string(),
-  preview: z.string().optional(),
+  preview: z.string().nullable(),
   public: z.boolean().optional(),
   id: z.string().optional(),
   isOwner: z.boolean().optional(),
@@ -46,3 +47,6 @@ export const MediaTypeLabels: { [key in MediaType]: string } = {
   GIF: "GIF",
 };
 export type MediaType = z.infer<typeof MediaType>;
+
+export const ImageFormat = z.enum(["jpeg", "png"]);
+export type ImageFormat = z.infer<typeof ImageFormat>;

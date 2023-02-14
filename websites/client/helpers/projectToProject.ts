@@ -5,11 +5,7 @@ export const prismaProjectToProject = (
   project: PrismaProject,
   userId?: string
 ): Project => ({
+  ...project,
   template: project.template as any,
-  name: project.name,
-  description: project.description,
-  id: project.id,
-  public: project.public,
   isOwner: project.userId === userId,
-  preview: project.preview || undefined,
 });

@@ -1,14 +1,16 @@
 import { RenderProgress, Template } from "../../../types";
-import { createTRPCRouter, protectedProcedure } from "../trpc";
+import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import { z } from "zod";
 import {
   getRenderProgress,
   renderMediaOnLambda,
-  renderStillOnLambda,
 } from "@remotion/lambda/client";
 import { env } from "../../../env.mjs";
+import { renderStill } from "../../../lib/renderStill";
+import { TRPCError } from "@trpc/server";
+import { Render } from "@prisma/client";
 
-const refreshProgress = async (id: string): Promise<RenderProgress> => {
+const refreshProgress = async (id: string): Promise<Render> => {
   const {
     overallProgress,
     costs,
@@ -44,7 +46,9 @@ const refreshProgress = async (id: string): Promise<RenderProgress> => {
 const tags = ["Renders"];
 export const renders = createTRPCRouter({
   getAll: protectedProcedure
-    .meta({ openapi: { method: "POST", path: "/renders", tags , protect: true} })
+    .meta({
+      openapi: { method: "GET", path: "/renders", tags, protect: true },
+    })
     .input(z.object({}))
     .output(
       z.object({
@@ -85,8 +89,31 @@ export const renders = createTRPCRouter({
         totalCost: totalCost._sum.cost,
       };
     }),
-  media: protectedProcedure
-    .meta({ openapi: { method: "POST", path: "/renders/media", tags, protect: true } })
+  get: publicProcedure
+    .meta({
+      openapi: { method: "GET", path: "/renders/{id}", tags },
+    })
+    .input(z.object({ id: z.string() }))
+    .output(
+      z.object({
+        render: RenderProgress,
+      })
+    )
+    .query(async ({ ctx }) => {
+      let render = await prisma.render.findFirst({
+        where: { userId: ctx.session?.user.id || null },
+        orderBy: { createdAt: "desc" },
+        take: 20,
+      });
+      if (!render) throw new TRPCError({ code: "NOT_FOUND" });
+
+      if (render.type === "MEDIA" && render.status === "PROCESSING")
+        render = await refreshProgress(render.id);
+
+      return { render };
+    }),
+  media: publicProcedure
+    .meta({ openapi: { method: "POST", path: "/renders/media", tags } })
     .input(z.object({ template: Template }))
     .output(z.object({ renderId: z.string() }))
     .mutation(async ({ input, ctx }) => {
@@ -99,29 +126,28 @@ export const renders = createTRPCRouter({
         inputProps: input.template,
       });
       const render = await prisma.render.create({
-        data: { id: renderId, userId: ctx.session.user.id, type: "MEDIA" },
+        data: { id: renderId, userId: ctx.session?.user.id, type: "MEDIA" },
       });
       return { renderId };
     }),
-  still: protectedProcedure
-    .meta({ openapi: { method: "POST", path: "/renders/still", tags, protect: true } })
-    .input(z.object({ frame: z.number(), template: Template }))
+  still: publicProcedure
+    .meta({ openapi: { method: "POST", path: "/renders/still", tags } })
+    .input(
+      z.object({
+        frame: z.number(),
+        template: Template,
+      })
+    )
     .output(RenderProgress)
     .mutation(async ({ input, ctx }) => {
-      const { estimatedPrice, renderId, url } = await renderStillOnLambda({
-        serveUrl: env.REMOTION_AWS_SERVE_URL,
-        imageFormat: "jpeg",
-        privacy: "public",
-        frame: input.frame,
-        composition: env.REMOTION_COMPOSITION,
-        functionName: env.REMOTION_AWS_FUNCTION_NAME,
-        region: env.REMOTION_AWS_REGION as any,
-        inputProps: input.template,
-      });
+      const { estimatedPrice, renderId, url } = await renderStill(
+        input.template,
+        input.frame
+      );
       const render = await prisma.render.create({
         data: {
           id: renderId,
-          userId: ctx.session.user.id,
+          userId: ctx.session?.user.id,
           cost: estimatedPrice.accruedSoFar,
           fileUrl: url,
           status: "COMPLETED",

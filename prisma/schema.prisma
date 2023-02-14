@@ -79,6 +79,10 @@ model Project {
   public      Boolean   @default(false)
   userId      String
   user        User      @relation(fields: [userId], references: [id])
+  renders     Render[]
+  cloneOfId   String?
+  cloneOf     Project?  @relation("Clone", fields: [cloneOfId], references: [id])
+  clones      Project[] @relation("Clone")
 }
 
 enum FileType {
@@ -139,6 +143,8 @@ model Render {
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
   type      RenderType
-  userId    String
+  userId    String?
   user      User?        @relation(fields: [userId], references: [id])
+  projectId String?
+  project   Project?     @relation(fields: [projectId], references: [id])
 }

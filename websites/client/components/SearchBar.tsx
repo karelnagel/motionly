@@ -16,7 +16,7 @@ const differentComps = {
   video: "Video",
 };
 
-export const SearchBar = ({ value, comp }: { value: string; comp: string }) => {
+export const SearchBar = ({ value, comp }: { value?: string; comp?: string }) => {
   const [search, setSearch] = useState(value);
   const [hasComp, setHasComp] = useState(comp);
   const pathName = usePathname();

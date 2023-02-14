@@ -11,8 +11,8 @@ export default async function Templates({
   searchParams?: { [key: string]: string };
 }) {
   const session = await getServerSession();
-  const search = searchParams?.search || "";
-  const comp = searchParams?.comp || "";
+  const search = searchParams?.search || undefined;
+  const comp = searchParams?.comp || undefined;
   const templates = await prisma.project.findMany({
     where: {
       public: true,
@@ -23,7 +23,7 @@ export default async function Templates({
             { description: { contains: search } },
           ],
         },
-        { template: { string_contains: comp } }, // Todo make more specific
+        { template: { string_contains: comp } },
       ],
     },
     orderBy: { createdAt: "desc" },
