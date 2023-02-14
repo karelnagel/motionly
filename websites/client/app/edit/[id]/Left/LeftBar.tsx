@@ -23,8 +23,8 @@ export const LeftBar = () => {
             src="/logo.png"
             alt="logo"
             className=""
-            width={50}
-            height={50}
+            width={120}
+            height={120}
           />
         </Link>
         <div className="flex flex-col w-full space-y-4">
