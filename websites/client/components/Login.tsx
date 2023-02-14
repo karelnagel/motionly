@@ -8,7 +8,7 @@ export function Login() {
   return (
     <div>
       {data?.user ? (
-        <div className="dropdown dropdown-hover flex flex-row ">
+        <div className="dropdown dropdown-hover flex flex-row">
           <label
             tabIndex={0}
             className="btn flex flex-row rounded-lg items-center space-x-2 whitespace-nowrap bg-base-100 border-2 border-base-100 hover:bg-base-100 hover:border-accent hover:border-2"
@@ -31,7 +31,7 @@ export function Login() {
             className="dropdown-content absolute z-100 right-0 top-[100%] menu shadow bg-base-200 rounded-box w-40"
           >
             <li className="hover:text-accent">
-              <a href="/dashboard">Editor</a>
+              <a href="/templates">Dashboard</a>
             </li>
             <li className="hover:text-accent">
               <a href="/account">Settings</a>

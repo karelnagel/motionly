@@ -6,20 +6,18 @@ export const Project = ({
   description,
   image,
   id,
-  isOwner,
 }: {
   name: string;
   description: string;
   image?: string;
   id: string;
-  isOwner?: boolean;
 }) => {
   return (
     <Link
-      className="card bg-base-100 shadow-xl"
-      href={`/${isOwner ? "edit" : "templates"}/${id}`}
+      className="card bg-base-200 shadow-xl"
+      href={`/templates/${id}`}
     >
-      <figure className="relative aspect-square">
+      <figure className="relative aspect-square bg-base-300">
         {image && (
           <Image
             src={image}

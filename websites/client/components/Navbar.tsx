@@ -7,9 +7,9 @@ import logo from "../public/motionly.png";
 import { Login } from "./Login";
 
 const items: { name: string; route: string }[] = [
+  { name: "Templates", route: "/templates" },
   { name: "Docs", route: "/docs" },
   { name: "Blog", route: "/blog" },
-  { name: "About", route: "/about" },
 ];
 
 export const Navbar = () => {
