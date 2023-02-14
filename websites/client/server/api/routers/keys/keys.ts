@@ -1,7 +1,8 @@
 import { z } from "zod";
-import { createTRPCRouter, protectedProcedure } from "../trpc";
+import { createTRPCRouter, protectedProcedure } from "../../trpc";
 import crypto from "crypto";
 import { TRPCError } from "@trpc/server";
+import { hashString } from "../../../../helpers/hash";
 
 const tags = ["API Keys"];
 const APIKey = z.object({
@@ -23,12 +24,12 @@ export const keys = createTRPCRouter({
     .output(z.object({ secret: z.string(), key: APIKey }))
     .mutation(async ({ input, ctx }) => {
       const secret = crypto.randomUUID();
-      const hash = crypto.createHash("md5").update(secret).digest("hex");
+      const hash = hashString(secret);
       const key = await ctx.prisma.apiKey.create({
         data: {
           name: input.name,
           hash,
-          user: { connect: { id: ctx.session.user.id } },
+          userId: ctx.session.user.id,
         },
       });
       return { secret, key };
@@ -44,7 +45,7 @@ export const keys = createTRPCRouter({
     })
     .input(z.object({}))
     .output(z.object({ keys: z.array(APIKey) }))
-    .query(async ({ input, ctx }) => {
+    .query(async ({ ctx }) => {
       const keys = await ctx.prisma.apiKey.findMany({
         where: { userId: ctx.session.user.id },
       });

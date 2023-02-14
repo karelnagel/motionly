@@ -1,13 +1,10 @@
 import { test, expect } from "@jest/globals";
-import { TRPCError } from "@trpc/server";
 import { MediaType } from "../../../../types";
-import { authorizedCaller, unauthorizedCaller } from "../../testHelpers";
+import { authorizedCaller, testUnauthorized } from "../../testHelpers";
 import { StockSources } from "./sources";
 
-test("UNAUTHORIZED", async () => {
-  const caller = unauthorizedCaller();
-  expect(() => caller.stock.get({ type: "IMAGE" })).rejects.toThrow(TRPCError);
-});
+test("UNAUTHORIZED", () =>
+  testUnauthorized((caller) => caller.stock.get({ type: "IMAGE" })));
 
 const testType = async (type: MediaType, query?: string) => {
   const caller = authorizedCaller();

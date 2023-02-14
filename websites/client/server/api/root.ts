@@ -5,7 +5,7 @@ import { stock } from "./routers/stock/stock";
 import { ai } from "./routers/ai";
 import { media } from "./routers/media";
 import { transcriptions } from "./routers/transcriptions";
-import { keys } from "./routers/keys";
+import { keys } from "./routers/keys/keys";
 
 export const appRouter = createTRPCRouter({
   projects,
