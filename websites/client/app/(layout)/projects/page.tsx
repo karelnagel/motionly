@@ -1,4 +1,4 @@
-import { Project } from "../../../components/Template";
+import { Project } from "../../../components/Project";
 import { Title } from "../../../components/Title";
 import { getServerSession } from "../../../lib/getServerSession";
 

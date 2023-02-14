@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Arrows } from "../Arrows";
+import { Arrows } from "../../../../components/Arrows";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
-import { Bubble } from "../Bubble";
+import { Bubble } from "../../../../components/Bubble";
 
 export const questions = [
   {

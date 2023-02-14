@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Button } from "../Button";
-import { Bubble } from "../Bubble";
+import { Button } from "../../../../components/Button";
+import { Bubble } from "../../../../components/Bubble";
 import axios from "axios";
 
-export const Help = () => {
+export const Contact = () => {
   const [formState, setFormState] = useState<
     "" | "loading" | "sent" | "error"
   >();

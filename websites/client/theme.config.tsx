@@ -1,11 +1,11 @@
 import React from "react";
 import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
 import { useRouter } from "next/router";
-import { Navbar } from "./components/docs/Navbar";
-import { Footer } from "./components/docs/Footer";
+import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer";
 
 const config: DocsThemeConfig = {
-  primaryHue: 321,
+  primaryHue: 203,
   footer: {
     component: () => <Footer />,
   },

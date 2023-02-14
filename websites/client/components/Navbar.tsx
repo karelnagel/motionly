@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import logo from "../../public/motionly.png";
-import { Login } from "../Login";
+import logo from "../public/motionly.png";
+import { Login } from "./Login";
 
 const items: { name: string; route: string }[] = [
   { name: "Docs", route: "/docs" },
@@ -36,7 +36,7 @@ export const Navbar = () => {
               </Link>
             ))}
           </div>
-          <Login/>
+          <Login />
         </div>
       </div>
     </div>

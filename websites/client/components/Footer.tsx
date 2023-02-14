@@ -2,7 +2,7 @@ import Image from "next/image";
 import { FaDiscord } from "react-icons/fa";
 import { AiOutlineLinkedin } from "react-icons/ai";
 import {  BsTwitter } from "react-icons/bs";
-import logo from "../../public/motionly.png";
+import logo from "../public/motionly.png";
 
 import Link from "next/link";
 

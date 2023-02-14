@@ -1,4 +1,3 @@
-import { type } from "os";
 import { IoIosArrowForward } from "react-icons/io";
 
 export const Button = ({

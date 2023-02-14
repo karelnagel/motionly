@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import { Navbar } from "../../components/docs/Navbar";
-import { Footer } from "../../components/docs/Footer";
+import { Navbar } from "../../components/Navbar";
+import { Footer } from "../../components/Footer";
 
 export default async function Layout({ children }: { children: ReactNode }) {
   return (

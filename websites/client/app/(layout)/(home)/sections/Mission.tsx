@@ -1,7 +1,7 @@
-import phone from "../../../public/phone.png";
+import phone from "../../../../public/phone.png";
 import Image from "next/image";
-import { Bubble } from "../Bubble";
-import { Arrows } from "../Arrows";
+import { Bubble } from "../../../../components/Bubble";
+import { Arrows } from "../../../../components/Arrows";
 
 export const Mission = () => {
   return (
@@ -32,12 +32,7 @@ export const Mission = () => {
           />
         </div>
 
-        <Image
-          src={phone}
-          priority
-          alt="phone"
-          className="relative"
-        />
+        <Image src={phone} priority alt="phone" className="relative" />
       </div>
       <div className="max-w-xl flex flex-col space-y-8 md:text-right md:items-end">
         <h2 className="font-semibold text-[50px] md:text-[85px] leading-none title">

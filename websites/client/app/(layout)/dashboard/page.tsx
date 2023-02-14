@@ -1,5 +1,5 @@
 import { SearchBar } from "../../../components/SearchBar";
-import { Project } from "../../../components/Template";
+import { Project } from "../../../components/Project";
 import { Title } from "../../../components/Title";
 
 export const dynamic = "force-dynamic";

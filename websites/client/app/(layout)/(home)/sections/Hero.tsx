@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import laptop from "../../../public/laptop.png";
-import { Bubble } from "../Bubble";
-import { Button } from "../Button";
+import laptop from "../../../../public/laptop.png";
+import { Bubble } from "../../../../components/Bubble";
+import { Button } from "../../../../components/Button";
 export const Hero = () => {
   return (
     <div className="relative flex items-center justify-between px-4 flex-col-reverse md:flex-row my-10 md:my-32">
@@ -50,12 +50,7 @@ export const Hero = () => {
               loop
               muted
             />
-            <Image
-              priority
-              src={laptop}
-              alt="laptop"
-              className="relative "
-            />
+            <Image priority src={laptop} alt="laptop" className="relative " />
           </div>
         </div>
       </div>

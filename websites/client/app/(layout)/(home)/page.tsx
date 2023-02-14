@@ -1,20 +1,16 @@
 "use client";
-import { Divider } from "../../components/docs/Divider";
-import { Help } from "../../components/docs/home/Help";
-import { Hero } from "../../components/docs/home/Hero";
-import { Examples } from "../../components/docs/home/Examples";
-import { Footer } from "../../components/docs/Footer";
-import { Navbar } from "../../components/docs/Navbar";
+import { Divider } from "../../../components/Divider";
+import { Contact } from "./sections/Contact";
+import { Hero } from "./sections/Hero";
+import { Examples } from "./sections/Examples";
 import Head from "next/head";
-import { Mission } from "../../components/docs/home/Mission";
-import { Interactive } from "../../components/docs/home/Interactive";
-import { FAQ } from "../../components/docs/home/FAQ";
+import { Mission } from "./sections/Mission";
+import { Interactive } from "./sections/Interactive";
+import { FAQ } from "./sections/FAQ";
 
 export default function Home() {
   return (
-    <div
-      className={` `}
-    >
+    <div>
       <Head>
         <link rel="icon" type="image/x-icon" href="/logo.png"></link>
         <meta property="og:url" content={`https://motionly.video/`} />
@@ -36,7 +32,7 @@ export default function Home() {
         <Divider />
         <FAQ />
         <Divider />
-        <Help />
+        <Contact />
         <div className="-mb-14">
           <Divider />
         </div>
