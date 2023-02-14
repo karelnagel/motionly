@@ -13,6 +13,7 @@ import { env } from "../../../../env.mjs";
 import { renderStill } from "../../../../lib/renderStill";
 import { TRPCError } from "@trpc/server";
 import { Render } from "@prisma/client";
+import prisma from "../../../db";
 
 const refreshProgress = async (id: string): Promise<Render> => {
   const {
@@ -106,8 +107,6 @@ export const renders = createTRPCRouter({
     .query(async ({ ctx }) => {
       let render = await prisma.render.findFirst({
         where: { userId: ctx.session?.user.id || null },
-        orderBy: { createdAt: "desc" },
-        take: 20,
       });
       if (!render) throw new TRPCError({ code: "NOT_FOUND" });
 
@@ -116,7 +115,7 @@ export const renders = createTRPCRouter({
 
       return { render };
     }),
-  media: publicProcedure
+  media: protectedProcedure
     .meta({ openapi: { method: "POST", path: "/renders/media", tags } })
     .input(z.object({ template: Template }))
     .output(z.object({ renderId: z.string() }))
@@ -134,8 +133,53 @@ export const renders = createTRPCRouter({
       });
       return { renderId };
     }),
-  still: publicProcedure
+  projectMedia: publicProcedure
+    .meta({ openapi: { method: "POST", path: "/projects/{id}/media", tags } })
+    .input(z.object({ template: Template }))
+    .output(z.object({ renderId: z.string() }))
+    .mutation(async ({ input, ctx }) => {
+      const { renderId } = await renderMediaOnLambda({
+        serveUrl: env.REMOTION_AWS_SERVE_URL,
+        codec: "h264",
+        composition: env.REMOTION_COMPOSITION,
+        functionName: env.REMOTION_AWS_FUNCTION_NAME,
+        region: env.REMOTION_AWS_REGION as any,
+        inputProps: input.template,
+      });
+      const render = await prisma.render.create({
+        data: { id: renderId, userId: ctx.session?.user.id, type: "MEDIA" },
+      });
+      return { renderId };
+    }),
+  still: protectedProcedure
     .meta({ openapi: { method: "POST", path: "/renders/still", tags } })
+    .input(
+      z.object({
+        frame: z.number(),
+        template: Template,
+      })
+    )
+    .output(RenderProgress)
+    .mutation(async ({ input, ctx }) => {
+      const { estimatedPrice, renderId, url } = await renderStill(
+        input.template,
+        input.frame
+      );
+      const render = await prisma.render.create({
+        data: {
+          id: renderId,
+          userId: ctx.session?.user.id,
+          cost: estimatedPrice.accruedSoFar,
+          fileUrl: url,
+          status: "COMPLETED",
+          progress: 1,
+          type: "STILL",
+        },
+      });
+      return render;
+    }),
+  projectStill: publicProcedure
+    .meta({ openapi: { method: "POST", path: "/projects/{id}/still", tags } })
     .input(
       z.object({
         frame: z.number(),

@@ -1,5 +1,5 @@
 import { renders } from "./routers/renders/renders";
-import { projects } from "./routers/projects/project";
+import { projects } from "./routers/projects/projects";
 import { createTRPCRouter } from "./trpc";
 import { stock } from "./routers/stock/stock";
 import { ai } from "./routers/ai/ai";

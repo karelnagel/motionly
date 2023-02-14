@@ -21,6 +21,7 @@ const isOwner = async (id: string, userId: string) => {
       code: "FORBIDDEN",
       message: "You are not the owner of this project!",
     });
+  return prevProject;
 };
 
 const tags = ["Projects"];

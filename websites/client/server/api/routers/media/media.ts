@@ -1,26 +1,12 @@
-import { MediaType, Template } from "../../../../types";
+import { FileWithTranscription, MediaType, UserFile } from "../../../../types";
 import { createTRPCRouter, protectedProcedure } from "../../trpc";
 import { z } from "zod";
-import S3 from "aws-sdk/clients/s3";
-import { awsClientConfig } from "../../../../helpers/awsClientConfig";
 import { env } from "../../../../env.mjs";
 import { TRPCError } from "@trpc/server";
 import { getMediaType } from "../../../../helpers/getMediaType";
-import { Transcription } from "../transcriptions/transcriptions";
 import ytdl from "ytdl-core";
+import { s3 } from "../../../../lib/aws";
 
-export const UserFile = z.object({
-  id: z.string(),
-  name: z.string(),
-  type: MediaType,
-  url: z.string().url(),
-});
-export type UserFile = z.infer<typeof UserFile>;
-export const FileWithTranscription = UserFile.extend({
-  transcription: Transcription.optional(),
-});
-
-const s3 = new S3(awsClientConfig);
 const tags = ["Media"];
 const protect = true;
 export const media = createTRPCRouter({
@@ -84,11 +70,7 @@ export const media = createTRPCRouter({
         data: {
           name,
           type: mediaType,
-          user: {
-            connect: {
-              id: ctx.session.user.id,
-            },
-          },
+          userId: ctx.session.user.id,
         },
       });
       const Key = `${ctx.session.user.id}/${file.id}`;
@@ -160,19 +142,11 @@ export const media = createTRPCRouter({
           message: "File not found",
         });
       const value: z.infer<typeof FileWithTranscription> = {
-        id: file.id,
-        name: file.name,
-        type: file.type,
-        url: file.url,
+        ...file,
         transcription: file.transcription
           ? {
-              mediaId: file.transcription.fileId,
-              language: file.transcription.language || undefined,
-              transcript: (file.transcription.transcript as any) || undefined,
-              id: file.transcription.id,
-              text: file.transcription.text || undefined,
-              status: file.transcription.status,
-              persons: file.transcription.persons || undefined,
+              ...file.transcription,
+              transcript: file.transcription.transcript as any,
             }
           : undefined,
       };

@@ -1,31 +1,14 @@
 import { createTRPCRouter, protectedProcedure } from "../../trpc";
 import { z } from "zod";
-import Transcribe from "aws-sdk/clients/transcribeservice";
-import { awsClientConfig } from "../../../../helpers/awsClientConfig";
 import { TRPCError } from "@trpc/server";
 import axios from "axios";
+import { transcribe } from "../../../../lib/aws";
+import {
+  Transcript,
+  Transcription,
+  TranscriptionStatus,
+} from "../../../../types";
 
-const Transcript = z.object({
-  text: z.string(),
-  start: z.number(),
-  end: z.number(),
-  speaker: z.number().optional(),
-});
-type Transcript = z.infer<typeof Transcript>;
-const TranscriptionStatus = z.enum(["COMPLETED", "FAILED", "PROCESSING"]);
-type TranscriptionStatus = z.infer<typeof TranscriptionStatus>;
-export const Transcription = z.object({
-  id: z.string(),
-  status: TranscriptionStatus,
-  text: z.string().optional(),
-  transcript: z.array(Transcript).optional(),
-  language: z.string().optional(),
-  persons: z.number().optional(),
-  mediaId: z.string(),
-});
-type Transcription = z.infer<typeof Transcription>;
-
-const transcribe = new Transcribe(awsClientConfig);
 const tags = ["Transcriptions"];
 const protect = true;
 export const transcriptions = createTRPCRouter({
@@ -33,18 +16,18 @@ export const transcriptions = createTRPCRouter({
     .meta({
       openapi: {
         method: "POST",
-        path: "/media/{mediaId}/transcriptions/",
+        path: "/media/{fileId}/transcriptions/",
         tags,
         protect,
       },
     })
-    .input(z.object({ mediaId: z.string() }))
+    .input(z.object({ fileId: z.string() }))
     .output(z.object({}))
     .mutation(async ({ input, ctx }) => {
-      const { mediaId } = input;
+      const { fileId } = input;
       const media = await ctx.prisma.file.findFirst({
         where: {
-          id: mediaId,
+          id: fileId,
           type: { in: ["AUDIO", "VIDEO"] },
           userId: ctx.session.user.id,
         },
@@ -81,17 +64,17 @@ export const transcriptions = createTRPCRouter({
     .meta({
       openapi: {
         method: "POST",
-        path: "/media/{mediaId}/transcriptions/progress",
+        path: "/media/{fileId}/transcriptions/progress",
         tags,
         protect,
       },
     })
-    .input(z.object({ mediaId: z.string() }))
+    .input(z.object({ fileId: z.string() }))
     .output(Transcription)
-    .mutation(async ({ input: { mediaId }, ctx }) => {
+    .mutation(async ({ input: { fileId }, ctx }) => {
       const transcription = await ctx.prisma.transcription.findFirst({
         where: {
-          fileId: mediaId,
+          fileId,
           file: { userId: ctx.session.user.id },
         },
       });
@@ -102,7 +85,7 @@ export const transcriptions = createTRPCRouter({
           message: "Transcription not found",
         });
       }
-      const res = await getTranscription(mediaId);
+      const res = await getTranscription(fileId);
       const newTrans = await ctx.prisma.transcription.update({
         where: { id: transcription.id },
         data: {
@@ -114,30 +97,25 @@ export const transcriptions = createTRPCRouter({
         },
       });
       return {
-        mediaId,
-        transcript: (newTrans.transcript as any) || undefined,
-        text: newTrans.text || undefined,
-        persons: newTrans.persons || undefined,
-        language: newTrans.language || undefined,
-        id: newTrans.id,
-        status: newTrans.status,
+        ...newTrans,
+        transcript: (newTrans.transcript as any) ,
       };
     }),
   delete: protectedProcedure
     .meta({
       openapi: {
         method: "DELETE",
-        path: "/media/{mediaId}/transcriptions/",
+        path: "/media/{fileId}/transcriptions/",
         tags,
         protect,
       },
     })
-    .input(z.object({ mediaId: z.string() }))
+    .input(z.object({ fileId: z.string() }))
     .output(Transcription)
-    .mutation(async ({ input: { mediaId }, ctx }) => {
+    .mutation(async ({ input: { fileId }, ctx }) => {
       const transcription = await ctx.prisma.transcription.findFirst({
         where: {
-          fileId: mediaId,
+          fileId,
           file: { userId: ctx.session.user.id },
         },
       });
@@ -150,26 +128,21 @@ export const transcriptions = createTRPCRouter({
       }
       await transcribe
         .deleteTranscriptionJob({
-          TranscriptionJobName: mediaId,
+          TranscriptionJobName: fileId,
         })
         .promise();
       const deletedTrans = await ctx.prisma.transcription.delete({
         where: { id: transcription.id },
       });
       return {
-        mediaId,
-        transcript: (deletedTrans.transcript as any) || undefined,
-        text: deletedTrans.text || undefined,
-        persons: deletedTrans.persons || undefined,
-        language: deletedTrans.language || undefined,
-        id: deletedTrans.id,
-        status: deletedTrans.status,
+        ...deletedTrans,
+        transcript: deletedTrans.transcript as any,
       };
     }),
 });
 
 const getTranscription = async (
-  mediaId: string
+  fileId: string
 ): Promise<{
   status: TranscriptionStatus;
   text?: string;
@@ -180,7 +153,7 @@ const getTranscription = async (
   try {
     const result = await transcribe
       .getTranscriptionJob({
-        TranscriptionJobName: mediaId,
+        TranscriptionJobName: fileId,
       })
       .promise();
     const transStatus = result.TranscriptionJob?.TranscriptionJobStatus;
