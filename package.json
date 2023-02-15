@@ -13,6 +13,7 @@
     "scripts": {
         "postinstall": "patch-package",
         "build": "turbo build",
+        "analyze": "ANALYZE=true turbo build",
         "start": "turbo start",
         "test": "turbo test",
         "dev": "turbo dev",

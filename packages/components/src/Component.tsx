@@ -157,7 +157,7 @@ const InsideSequence = ({
   transform,
   children,
 }: ComponentProps & { children: ReactNode }) => {
-  const { setSelected, divRef, selected } = useSelected();
+  const { setSelected, selectedRef: divRef, selected } = useSelected();
   const animation = useAnimation();
   const transformStyle = useMemo(
     () =>

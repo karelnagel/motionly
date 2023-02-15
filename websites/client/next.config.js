@@ -58,4 +58,7 @@ const withNextra = require("nextra")({
   latex: true,
 });
 
-module.exports = withNextra(nextConfig);
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true'
+})
+module.exports = withBundleAnalyzer(withNextra(nextConfig))
