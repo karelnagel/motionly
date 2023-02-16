@@ -23,7 +23,6 @@ const emptyProject: Project = {
   name: "Empty",
   description: "This is an empty template",
   template,
-  preview: null,
 };
 export const Clone = ({
   children,

@@ -17,7 +17,7 @@ export const Project = z.object({
   template: TemplateType,
   name: z.string(),
   description: z.string(),
-  preview: z.string().nullable(),
+  preview: z.string().optional(),
   public: z.boolean().optional(),
   id: z.string().optional(),
   isOwner: z.boolean().optional(),

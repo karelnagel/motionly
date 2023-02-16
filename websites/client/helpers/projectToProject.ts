@@ -6,6 +6,7 @@ export const prismaProjectToProject = (
   userId?: string
 ): Project => ({
   ...project,
+  preview: project.preview || undefined,
   template: project.template as any,
   isOwner: project.userId === userId,
 });
