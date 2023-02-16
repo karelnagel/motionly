@@ -1,4 +1,4 @@
-import { RenderProgress, Template } from "../../../../types";
+import { RenderProgress } from "../../../../types";
 import {
   createTRPCRouter,
   protectedProcedure,
@@ -14,6 +14,7 @@ import { renderStill } from "../../../../lib/renderStill";
 import { TRPCError } from "@trpc/server";
 import { Render } from "@prisma/client";
 import prisma from "../../../db";
+import { TemplateType } from "@motionly/base";
 
 const refreshProgress = async (id: string): Promise<Render> => {
   const {
@@ -117,7 +118,7 @@ export const renders = createTRPCRouter({
     }),
   media: protectedProcedure
     .meta({ openapi: { method: "POST", path: "/renders/media", tags } })
-    .input(z.object({ template: Template }))
+    .input(z.object({ template: TemplateType }))
     .output(z.object({ renderId: z.string() }))
     .mutation(async ({ input, ctx }) => {
       const { renderId } = await renderMediaOnLambda({
@@ -135,7 +136,7 @@ export const renders = createTRPCRouter({
     }),
   projectMedia: publicProcedure
     .meta({ openapi: { method: "POST", path: "/projects/{id}/media", tags } })
-    .input(z.object({ template: Template }))
+    .input(z.object({ template: TemplateType }))
     .output(z.object({ renderId: z.string() }))
     .mutation(async ({ input, ctx }) => {
       const { renderId } = await renderMediaOnLambda({
@@ -156,7 +157,7 @@ export const renders = createTRPCRouter({
     .input(
       z.object({
         frame: z.number(),
-        template: Template,
+        template: TemplateType,
       })
     )
     .output(RenderProgress)
@@ -183,7 +184,7 @@ export const renders = createTRPCRouter({
     .input(
       z.object({
         frame: z.number(),
-        template: Template,
+        template: TemplateType,
       })
     )
     .output(RenderProgress)

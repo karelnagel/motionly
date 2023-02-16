@@ -12,22 +12,9 @@ export const RenderProgress = z.object({
   fileUrl: z.string().nullable(),
 });
 export type RenderProgress = z.infer<typeof RenderProgress>;
-export const Template = z.object({
-  width: z.number(),
-  height: z.number(),
-  fps: z.number(),
-  duration: z.number(),
-  inputs: z.any(),
-  components: z.any(),
-  bg: z.any(),
-  childIds: z.array(z.string()),
-  templateInputs: z.any(),
-  isSequence: z.boolean().optional(),
-  comps: z.any(),
-});
-export type Template = z.infer<typeof Template>;
+
 export const Project = z.object({
-  template: Template,
+  template: TemplateType,
   name: z.string(),
   description: z.string(),
   preview: z.string().nullable(),
@@ -36,9 +23,8 @@ export const Project = z.object({
   isOwner: z.boolean().optional(),
 });
 
-export type Project = Omit<z.infer<typeof Project>, "template"> & {
-  template: TemplateType;
-};
+export type Project = z.infer<typeof Project>;
+
 export const MediaType = z.enum(["VIDEO", "IMAGE", "AUDIO", "GIF"]);
 export const MediaTypeLabels: { [key in MediaType]: string } = {
   VIDEO: "Video",

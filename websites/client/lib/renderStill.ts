@@ -1,9 +1,10 @@
-import { ImageFormat, Template } from "../types";
+import { ImageFormat } from "../types";
 import { renderStillOnLambda } from "@remotion/lambda/client.js";
 import { env } from "../env.mjs";
+import { TemplateType } from "@motionly/base";
 
 export const renderStill = async (
-  template: Template,
+  template: TemplateType,
   frame: number,
   imageFormat: ImageFormat = "jpeg"
 ) => {

@@ -1,13 +1,13 @@
-import { Template } from "../../../../types";
 import { createTRPCRouter, protectedProcedure } from "../../trpc";
 import { z } from "zod";
+import { TemplateType } from "@motionly/base";
 
 const tags = ["AI"];
 export const ai = createTRPCRouter({
   message: protectedProcedure
     .meta({ openapi: { method: "POST", path: "/ai", tags, protect: true } })
-    .input(z.object({ template: Template, prompt: z.string() }))
-    .output(z.object({ template: Template }))
+    .input(z.object({ template: TemplateType, prompt: z.string() }))
+    .output(z.object({ template: TemplateType }))
     .mutation(async ({ input, ctx }) => {
       // const { comps, prompt } = req.body;
       // const inputComps = comps.map((comp: any) => ({
