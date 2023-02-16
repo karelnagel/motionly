@@ -118,13 +118,13 @@ export const Footer = () => {
             </div>
             <div className="flex flex-col space-y-2 ">
               {nav.items.map((item, i) => (
-                <Link
+                <a
                   key={i}
                   className="text-list-subtitle text-[16px] font-normal hover:scale-105 duration-200"
                   href={item.href}
                 >
                   {item.name}
-                </Link>
+                </a>
               ))}
             </div>
           </div>
