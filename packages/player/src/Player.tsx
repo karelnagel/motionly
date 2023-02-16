@@ -33,7 +33,6 @@ export const Player = forwardRef<PlayerRef, PlayerProps>(
           inputProps={{
             bg: template.bg,
             comps: template.comps,
-            isSequence: template.isSequence,
           }}
           compositionHeight={template.height}
           compositionWidth={template.width}

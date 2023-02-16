@@ -1,3 +1,5 @@
+"use client";
+
 import { TemplateType } from "@motionly/base";
 import { Player, PlayerProps } from "@motionly/player";
 import { useRouter } from "next/router";

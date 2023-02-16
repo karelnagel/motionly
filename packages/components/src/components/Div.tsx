@@ -16,7 +16,6 @@ export const Div = ({
   bg,
   style,
   className,
-  isSequence,
   comps,
 }: DivProps & StyleAndClass) => {
   const background = useColor(bg);
@@ -31,7 +30,7 @@ export const Div = ({
         ...style,
       }}
     >
-      <Children comps={comps} isSequence={isSequence} />
+      <Children comps={comps} isSequence={false} />
     </div>
   );
 };

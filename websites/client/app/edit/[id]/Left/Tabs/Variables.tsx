@@ -1,4 +1,4 @@
-import { inputTypes } from "@motionly/base";
+import { InputTypes } from "@motionly/base";
 import { Input } from "../../../../../components/inputs";
 import { getRandomId } from "../../../../../helpers";
 import { useProject } from "../../../../../hooks/useProject";
@@ -55,7 +55,7 @@ export const OneInput = ({ id }: { id: string }) => {
         type="select"
         label="Type"
         value={input.type}
-        options={Object.entries(inputTypes).map(([value, label]) => ({
+        options={Object.entries(InputTypes).map(([value, label]) => ({
           value,
           label,
         }))}

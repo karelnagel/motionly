@@ -39,9 +39,7 @@ export const Root: React.FC = () => {
         height={template.height}
         defaultProps={{
           comps: template.comps || [],
-          childIds: template.childIds,
           bg: template.bg,
-          isSequence: template.isSequence,
         }}
       />
       <Folder name="compositions">
@@ -51,6 +49,7 @@ export const Root: React.FC = () => {
             id: id,
             height: 1080,
             width: 1080,
+            animations: { byIds: {}, allIds: [] },
           };
           const compProps: ComponentProps = { ...comp, ...baseComp };
           return (
@@ -68,7 +67,6 @@ export const Root: React.FC = () => {
                   type: "basic",
                   color: "#FFFFFFFF",
                 },
-                isSequence: template.isSequence,
               }}
             />
           );
@@ -84,7 +82,6 @@ export const Root: React.FC = () => {
         defaultProps={{
           comps: Object.values(test.components),
           bg: test.bg,
-          isSequence: test.isSequence,
         }}
       />
     </>

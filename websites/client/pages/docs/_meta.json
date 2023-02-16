@@ -1,6 +1,5 @@
 {
     "index": "What is Motionly?",
-    "components": "@motionly/components",
     "player": "@motionly/player",
     "sdk": "@motionly/sdk",
     "types": "Types"

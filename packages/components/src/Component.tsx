@@ -154,20 +154,20 @@ const InsideSequence = ({
   width: inputWidth,
   x,
   y,
-  transform,
+  transforms,
   children,
 }: ComponentProps & { children: ReactNode }) => {
   const { setSelected, selectedRef: divRef, selected } = useSelected();
   const animation = useAnimation();
   const transformStyle = useMemo(
     () =>
-      transform
+      transforms
         ?.map((t) => {
           const { units } = transformProps[t.prop];
           return `${t.prop}(${t.value}${units || ""})`;
         })
         .join(" ") || "",
-    [transform]
+    [transforms]
   );
   const anims = Object.values(animations?.byIds || {});
   const transformAnimations =

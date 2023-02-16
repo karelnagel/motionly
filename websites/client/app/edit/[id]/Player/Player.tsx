@@ -3,11 +3,8 @@ import { useShiftKey } from "../../../../hooks/useShiftKey";
 import Moveable from "react-moveable";
 import { useProject } from "../../../../hooks/useProject";
 import { useComponent } from "../../../../hooks/useComponent";
-import dynamic from "next/dynamic";
 import React from "react";
-const MotionlyPlayer = dynamic(() =>
-  import("@motionly/player").then((x) => ({ default: x.Player }))
-);
+import { Player as MotionlyPlayer } from "@motionly/player";
 export const Player = () => {
   const template = useProject((t) => t.project.template);
   const comp = useComponent();

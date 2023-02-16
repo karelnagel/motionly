@@ -49,6 +49,8 @@ const box: ComponentProps = {
   width: 100,
   duration,
   childIds: [],
+  comps: {},
+  animations: { byIds: {}, allIds: [] },
 };
 
 export const test: TemplateType = {
@@ -60,7 +62,6 @@ export const test: TemplateType = {
     type: "basic",
     color: "#FFFFFFFF",
   },
-  isSequence: true,
   components: {},
   childIds: [],
 };

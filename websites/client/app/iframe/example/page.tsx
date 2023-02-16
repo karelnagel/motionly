@@ -1,4 +1,6 @@
-import { Input, TemplateType } from "@motionly/base";
+"use client";
+
+import { Input as InputType, TemplateType } from "@motionly/base";
 import { useEffect, useRef, useState } from "react";
 
 const baseTemplate: TemplateType = {
@@ -71,7 +73,7 @@ const Input = ({
   input,
   setValue,
 }: {
-  input: Input;
+  input: InputType;
   setValue: (id: string, value: any) => void;
 }) => {
   return (

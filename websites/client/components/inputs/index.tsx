@@ -1,6 +1,6 @@
 "use client";
 
-import { Color, inputTypes, TextStyle } from "@motionly/base";
+import { Color, InputTypes } from "@motionly/base";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { Media } from "../Media";
 import { useProject } from "../../hooks/useProject";
@@ -16,7 +16,7 @@ export const VariableSelect = ({
   label,
 }: {
   prop: string;
-  type: keyof typeof inputTypes;
+  type: InputTypes;
   value: any;
   label?: string;
 }) => {
@@ -88,7 +88,7 @@ export function Input<T extends any>({
   prop,
   disabled,
 }: {
-  type: keyof typeof inputTypes;
+  type: InputTypes;
   label?: string;
   value?: T;
   onChange: (value?: T) => void;

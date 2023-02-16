@@ -1,11 +1,10 @@
-import { AnimationProps, animationProps, animationTypes } from "@motionly/base";
+import { AnimationProps, animationProps, AnimationTypes } from "@motionly/base";
 import { useState } from "react";
-import { BsGraphUp } from "react-icons/bs";
 import { IoIosTrash } from "react-icons/io";
-import { MdOutlineAutoGraph } from "react-icons/md";
 import { Input } from "../../../../../../components/inputs";
 import { ShowHide } from "../../../../../../components/ShowHide";
 import { useProject } from "../../../../../../hooks/useProject";
+import { allAnimations } from "../../../../../../videos/animations";
 
 export const OneAnimation = ({ id }: { id: string }) => {
   const [show, setShow] = useState(false);
@@ -68,7 +67,7 @@ export const OneAnimation = ({ id }: { id: string }) => {
                 a.prop = prop as keyof typeof animationProps;
               })
             }
-            options={Object.entries(animationProps).map(
+            options={Object.entries(allAnimations).map(
               ([value, { label }]) => ({
                 value,
                 label,
@@ -107,10 +106,10 @@ export const OneAnimation = ({ id }: { id: string }) => {
             value={animation.type}
             onChange={(type_) =>
               setAnimation((c) => {
-                c.type = type_ as keyof typeof animationTypes;
+                c.type = type_ as AnimationTypes;
               })
             }
-            options={Object.entries(animationTypes).map(([value, label]) => ({
+            options={Object.entries(allAnimations).map(([value, label]) => ({
               value,
               label,
             }))}
