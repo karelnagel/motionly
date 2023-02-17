@@ -6,9 +6,9 @@ import github from "../../../public/icons/github.png";
 import Image, { StaticImageData } from "next/image";
 
 export default function Login({
-  searchParams: { redirect },
+  searchParams,
 }: {
-  searchParams: { redirect: string };
+  searchParams?: { redirect?: string };
 }) {
   const Button = ({
     service,
@@ -21,7 +21,7 @@ export default function Login({
       <button
         onClick={() =>
           signIn(service.toLowerCase(), {
-            callbackUrl: redirect || "/templates",
+            callbackUrl: searchParams?.redirect || "/templates",
           })
         }
         className="btn flex space-x-2"
