@@ -1,55 +1,13 @@
 import React, { useState } from "react";
 import { Bubble } from "../../../../components/Bubble";
-import axios from "axios";
-import { env } from "../../../../env.mjs";
+import { trpc } from "../../../ClientProvider";
 
 export const Contact = () => {
-  const [formState, setFormState] = useState<
-    "" | "loading" | "sent" | "error"
-  >();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
-
-  const onSubmit = async (event: any) => {
-    event.preventDefault();
-    setFormState("loading");
-
-    if (!email || !name || !message) {
-      setFormState("error");
-      return;
-    }
-
-    try {
-      const res = await axios.post("https://api.web3forms.com/submit", {
-        name,
-        subject: "New message for Motionly",
-        email,
-        message,
-        access_key: env.NEXT_PUBLIC_EMAIL_ACCESS_KEY,
-      });
-      console.log(res);
-      if (res.status === 200 && res.data.success) {
-        setFormState("sent");
-        console.log("Success", res);
-        setTimeout(() => {
-          setFormState("");
-        }, 3000);
-      } else {
-        setFormState("error");
-        console.log("Error", res);
-        setTimeout(() => {
-          setFormState("");
-        }, 10000);
-      }
-    } catch (error) {
-      setFormState("error");
-      console.log("Error", error);
-      setTimeout(() => {
-        setFormState("");
-      }, 10000);
-    }
-  };
+  const { mutate, isSuccess, isError, isLoading } =
+    trpc.email.contact.useMutation();
   return (
     <div className="relative ">
       <div
@@ -60,7 +18,10 @@ export const Contact = () => {
           <div className=" p-6">
             <form
               className="flex flex-col items-center space-y-6 "
-              onSubmit={onSubmit}
+              onSubmit={(e) => {
+                e.preventDefault();
+                mutate({ email, name, message });
+              }}
             >
               <input
                 type="text"
@@ -86,26 +47,18 @@ export const Contact = () => {
                 className="formbox textarea textarea-primary"
                 rows={5}
               />
-              <button type="submit" className="btn btn-primary">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={isLoading}
+              >
                 Submit
               </button>
             </form>
             <div className="h-6 mt-2">
-              {formState === "sent" && (
-                <p className="title text-base font-semibold text-center ">
-                  Message sent!
-                </p>
-              )}
-              {formState === "loading" && (
-                <p className="text-info text-base font-normal  text-center ">
-                  Sending...
-                </p>
-              )}
-              {formState === "error" && (
-                <p className="text-error text-base font-normal text-center ">
-                  Message sending failed!
-                </p>
-              )}
+              {isSuccess && <p>Message sent!</p>}
+              {isLoading && <p className="text-info">Sending...</p>}
+              {isError && <p className="text-error">Message sending failed!</p>}
             </div>
           </div>
         </div>

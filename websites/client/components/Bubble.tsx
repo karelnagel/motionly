@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { CSSProperties } from "react";
 
 export const Bubble = ({
@@ -13,13 +14,14 @@ export const Bubble = ({
   top?: number;
   left?: number;
 }) => {
+  const ran = useMemo(() => Math.random(), []);
   return (
     <div
       className={`absolute bg-accent shadow-lg rounded-full aspect-square bubble ${
         className || ""
       }`}
       style={{
-        animationDelay: `-${Math.random() * 122}s`,
+        animationDelay: `-${ran * 122}s`,
         width: `${width}%`,
         top: `${top}%`,
         left: `${left}%`,

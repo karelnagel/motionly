@@ -32,7 +32,7 @@ const server = z.object({
 
 const client = z.object({
   NEXT_PUBLIC_URL: z.string().min(1),
-  NEXT_PUBLIC_EMAIL_ACCESS_KEY: z.string().min(1),
+  EMAIL_ACCESS_KEY: z.string().min(1),
 });
 
 /**
@@ -62,7 +62,7 @@ const processEnv = {
   PIXABY_API_KEY: process.env.PIXABY_API_KEY,
   OPENAI_API_KEY: process.env.OPENAI_API_KEY,
   NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
-  NEXT_PUBLIC_EMAIL_ACCESS_KEY: process.env.NEXT_PUBLIC_EMAIL_ACCESS_KEY,
+  EMAIL_ACCESS_KEY: process.env.EMAIL_ACCESS_KEY,
 };
 
 const merged = server.merge(client);

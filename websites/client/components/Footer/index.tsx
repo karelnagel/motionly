@@ -1,9 +1,9 @@
 import { FaDiscord } from "react-icons/fa";
 import { AiOutlineLinkedin } from "react-icons/ai";
 import { BsTwitter } from "react-icons/bs";
-
 import Link from "next/link";
-import { Logo } from "./Logo";
+import { Logo } from "../Logo";
+import { Subscribe } from "./Subscribe";
 
 const socials = [
   {
@@ -34,14 +34,14 @@ const navLinks = [
         name: "Terms & conditions",
         href: "/legal/terms",
       },
-      // {
-      //   name: "Cookie policy",
-      //   href: "/legal/cookies",
-      // },
-      // {
-      //   name: "Refund policy",
-      //   href: "/legal/refund",
-      // },
+      {
+        name: "Cookie policy",
+        href: "/legal/cookies",
+      },
+      {
+        name: "Refund policy",
+        href: "/legal/refund",
+      },
     ],
   },
   {
@@ -121,17 +121,7 @@ export const Footer = () => {
             </div>
           </div>
         ))}
-        <div className="col-span-2 space-y-2 flex flex-col">
-          <h1 className="text-list-title text-[18px] font-semibold">
-            Subscribe to updates
-          </h1>
-          <input
-            className="formbox input input-primary"
-            type="email"
-            placeholder="Enter your email"
-          />
-          <button className="btn btn-primary">Subscribe</button>
-        </div>
+        <Subscribe />
       </div>
       <div className="w-full h-[1px] bg-base-300" />
       <div className="font-normal text-sm text-list-subtitle flex flex-col-reverse md:flex-row justify-between">
