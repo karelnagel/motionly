@@ -69,7 +69,7 @@ export const Contact = () => {
                 onChange={(e) => setName(e.target.value)}
                 required
                 placeholder="Name"
-                className="formbox w-full"
+                className="formbox input input-primary"
               />
               <input
                 type="email"
@@ -77,14 +77,14 @@ export const Contact = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder="Email"
-                className="formbox w-full"
+                className="formbox input input-primary"
               />
               <textarea
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 required
                 placeholder="Message"
-                className="formbox w-full h-[270px]"
+                className="formbox textarea textarea-primary"
                 rows={5}
               />
               <Button

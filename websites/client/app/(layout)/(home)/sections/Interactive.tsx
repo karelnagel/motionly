@@ -32,14 +32,14 @@ export const Interactive = () => {
       <div className="flex gap-0 md:gap-40 flex-col md:flex-row">
         <div className="flex flex-col py-4 md:py-7 min-w-[350px] space-y-3">
           <input
-            className="input  w-full formbox"
+            className="input input-primary formbox"
             placeholder="Enter your name"
             value={name}
             onChange={(e) => setName(e.currentTarget.value)}
           />
           <input
             type="date"
-            className="input w-full formbox"
+            className="input input-primary formbox"
             placeholder="Enter your birthday"
             value={birthday}
             onChange={(e) => setBirthday(e.currentTarget.value)}

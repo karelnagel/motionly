@@ -25,13 +25,13 @@ export const Client = ({ startProject }: { startProject: Project }) => {
             {project.isOwner && (
               <Link
                 href={`/edit/${project.id}`}
-                className="btn btn-square btn-sm"
+                className="btn btn-square"
               >
                 <IoIosBrush className="" />
               </Link>
             )}
             {session?.user && (
-              <Clone project={project} className="btn btn-square btn-sm">
+              <Clone project={project} className="btn btn-square">
                 <IoIosCopy />
               </Clone>
             )}

@@ -16,17 +16,17 @@ export const Navbar = () => {
   const pathname = usePathname();
   return (
     <div className="relative z-20 w-full mt-3">
-      <div className="max-w-screen-xl mx-auto px-2 grid grid-cols-3 md:grid-cols-5 items-center">
-        <Link href="/" className=" w-60 col-span-2 block">
-          <Image src={logo} priority alt="logo" className="w-60" />
+      <div className="max-w-screen-xl mx-auto px-2 flex justify-between items-center">
+        <Link href="/" >
+          <Image src={logo} priority alt="Motionly logo" className="w-60" />
         </Link>
-        <div className="flex items-center space-x-8 w-full col-span-1 md:col-span-3 justify-end">
-          <div className=" space-x-5 hidden md:flex col-span-2">
+        <div className="flex items-center space-x-4 w-full justify-end">
+          <div className="space-x-3 hidden md:flex ">
             {items.map((item) => (
               <Link
                 href={item.route}
                 key={item.route}
-                className={` font-light text-[20px] md:text-xl hover:scale-105 duration-200 ${
+                className={`font-medium text-[20px] duration-200 ${
                   pathname?.includes(item.route)
                     ? "text-primary"
                     : "hover:text-primary"

@@ -136,7 +136,7 @@ export const Footer = () => {
             </h1>
             <div className="flex flex-col space-y-2 w-full">
               <input
-                className="formbox rounded-md p-1"
+                className="formbox input input-primary"
                 type="email"
                 placeholder="Enter your email"
               />

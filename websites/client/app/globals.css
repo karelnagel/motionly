@@ -96,25 +96,25 @@
 .gradient {
   @apply bg-gradient-to-r from-secondary to-primary;
 }
-.demo {
-  @apply hover:bg-gradient-to-tr hover:text-white bg-gray-500 bg-opacity-10 rounded-3xl flex items-center p-3  hover:to-primary hover:from-secondary hover:scale-105 duration-300 cursor-pointer;
-}
 
 html[class~="dark"] body {
   @apply !bg-base-100 !text-base-content;
-  /* background-color: #111021 !important; */
 }
 
 .btn {
-  @apply rounded-full normal-case;
+  @apply flex min-h-0 h-auto py-3 px-4 normal-case text-[16px];
 }
 
 .btn-gradient {
-  @apply bg-gradient-to-r from-primary to-secondary text-base-content border-none;
+  @apply bg-gradient-to-r from-primary to-secondary text-primary-content border-none ;
+}
+.btn .btn-square{
+  @apply aspect-square p-0;
+}
+.formbox {
+  @apply bg-primary bg-opacity-20 w-full;
 }
 
-.formbox {
-  @apply bg-accent  text-base-content rounded-lg p-4 bg-opacity-40 
-  transform transition duration-300 focus:bg-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
-  hover:bg-opacity-70 hover:outline-none hover:ring-2 hover:ring-primary;
+.divider {
+  @apply my-3;
 }

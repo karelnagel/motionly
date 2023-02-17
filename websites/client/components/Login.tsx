@@ -1,6 +1,7 @@
 "use client";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 
 export function Login() {
   const { data } = useSession();
@@ -9,47 +10,37 @@ export function Login() {
     <div>
       {data?.user ? (
         <div className="dropdown dropdown-hover flex flex-row">
-          <label
-            tabIndex={0}
-            className="btn flex flex-row rounded-lg items-center space-x-2 whitespace-nowrap bg-base-100 border-2 border-base-100 hover:bg-base-100 hover:border-accent hover:border-2"
-          >
+          <label tabIndex={0} className="btn btn-primary space-x-4 ">
             {data.user.image && (
               <Image
                 src={data.user.image}
                 alt="user"
-                width={30}
-                height={30}
-                className="rounded-lg object-cover "
+                width={25}
+                height={25}
+                className="rounded-md object-cover -m-2"
               />
             )}
-            <div className="text-base-content flex-row whitespace-nowrap items-center relative text-base font-semibold hidden sm:flex">
-              <p className="group-hover:opacity-0 text-md">{firstName}</p>
-            </div>
+            <p className="">{firstName}</p>
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content absolute z-100 right-0 top-[100%] menu shadow bg-base-200 rounded-box w-40"
+            className="dropdown-content z-100 right-0 top-[100%] menu shadow bg-base-200 w-40 rounded-lg"
           >
-            <li className="hover:text-accent">
-              <a href="/templates">Dashboard</a>
+            <li className="hover:text-primary">
+              <Link href="/templates">Dashboard</Link>
             </li>
-            <li className="hover:text-accent">
-              <a href="/account">Settings</a>
+            <li className="hover:text-primary">
+              <Link href="/account">Settings</Link>
             </li>
-            <li className="hover:text-error" onClick={() => signOut()}>
-              <a>Log Out</a>
+            <li className="hover:text-error">
+              <button  onClick={() => signOut()}>Log Out</button>
             </li>
           </ul>
         </div>
       ) : (
-        <button
-          onClick={() => signIn("google")}
-          className="rounded-full bg-secondary duration-200 group overflow-hidden p-2 px-2 pl-3 flex items-center font-semibold text-lg border-[1px] border-secondary hover:text-secondary hover:scale-110 hover:bg-base-100"
-        >
-          <div className="flex items-center text-base whitespace-nowrap space-x-1">
-            <p className="w-full text-center font-semibold flex">Sign Up</p>
-          </div>
-        </button>
+        <Link href="/login" className="btn btn-gradient">
+          Start for free
+        </Link>
       )}
     </div>
   );
