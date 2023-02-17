@@ -125,7 +125,7 @@ export const sections: Section[] = [
           textStyle: {
             color: {
               type: "basic",
-              color: "#000",
+              color: "#000000",
             },
             fontFamily: "Inter",
             fontSize: 100,
@@ -145,7 +145,7 @@ export const sections: Section[] = [
           textStyle: {
             color: {
               type: "basic",
-              color: "#000",
+              color: "#000000",
             },
             fontFamily: "Inter",
             fontSize: 100,
@@ -165,11 +165,11 @@ export const sections: Section[] = [
           textStyle: {
             color: {
               type: "basic",
-              color: "#fff",
+              color: "#ffffff",
             },
             outlineColor: {
               type: "basic",
-              color: "#f00",
+              color: "#ff000",
             },
             outlineWidth: 10,
             fontFamily: "Inter",
@@ -394,7 +394,7 @@ export const sections: Section[] = [
           zoom: 400,
           markerColor: {
             type: "basic",
-            color: "#F00",
+            color: "#Ff0000",
           },
           markerSize: 40,
         },
@@ -408,15 +408,15 @@ export const sections: Section[] = [
           zoom: 200,
           fill: {
             type: "basic",
-            color: "#fff",
+            color: "#ffffff",
           },
           stroke: {
             type: "basic",
-            color: "#000",
+            color: "#000000",
           },
           markerColor: {
             type: "basic",
-            color: "#F00",
+            color: "#Ff0000",
           },
           markerSize: 40,
         },
@@ -538,7 +538,7 @@ export const sections: Section[] = [
           width: 100,
           color: {
             type: "basic",
-            color: "#000",
+            color: "#000000",
           },
           bg: {
             type: "basic",
@@ -556,7 +556,7 @@ export const sections: Section[] = [
           width: 100,
           color: {
             type: "basic",
-            color: "#0f0",
+            color: "#00ff00",
           },
         },
       },
@@ -570,7 +570,7 @@ export const sections: Section[] = [
           barWidth: 20,
           color: {
             type: "basic",
-            color: "#00F",
+            color: "#0000ff",
           },
         },
       },

@@ -55,9 +55,9 @@ export const OneInput = ({ id }: { id: string }) => {
         type="select"
         label="Type"
         value={input.type}
-        options={Object.entries(InputTypes).map(([value, label]) => ({
+        options={InputTypes.options.map((value) => ({
           value,
-          label,
+          label:value,
         }))}
         onChange={(type) =>
           set((s) => {

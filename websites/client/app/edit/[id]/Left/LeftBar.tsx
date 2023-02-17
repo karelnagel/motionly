@@ -25,6 +25,7 @@ export const LeftBar = () => {
             className=""
             width={120}
             height={120}
+            priority
           />
         </Link>
         <div className="flex flex-col w-full space-y-4">

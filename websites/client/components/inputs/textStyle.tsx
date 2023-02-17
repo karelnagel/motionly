@@ -1,7 +1,64 @@
 import { TextAlign, TextStyle } from "@motionly/base";
 import { getAvailableFonts } from "@remotion/google-fonts";
-import { useState } from "react";
 import { Input } from ".";
+import { UserInput } from "./Inputs";
+
+export const inputs: UserInput<TextStyle>[] = [
+  {
+    prop: "fontFamily",
+    type: "select",
+    label: "Font",
+    options: getAvailableFonts().map((f) => ({
+      label: f.fontFamily,
+      value: f.fontFamily,
+    })),
+  },
+  {
+    prop: "fontSize",
+    type: "number",
+    label: "Font size (px)",
+  },
+  {
+    prop: "lineHeight",
+    type: "number",
+    label: "Line height (px)",
+  },
+  {
+    prop: "fontWeight",
+    type: "number",
+    label: "Font weight",
+  },
+  {
+    prop: "color",
+    type: "color",
+    label: "Color",
+  },
+  {
+    prop: "bg",
+    type: "color",
+    label: "BG",
+  },
+  {
+    prop: "textAlign",
+    type: "select",
+    label: "Align",
+    options: Object.keys(TextAlign).map((a) => ({
+      label: a,
+      value: a,
+    })),
+  },
+  {
+    prop: "outlineColor",
+    type: "color",
+    label: "Outline color",
+  },
+  {
+    prop: "outlineWidth",
+    type: "number",
+    label: "Outline width",
+    if: (c) => !!c.outlineColor,
+  },
+];
 
 export const TextStyleInput = ({
   style,
@@ -12,101 +69,24 @@ export const TextStyleInput = ({
   setStyle: (s: TextStyle) => void;
   prop?: string;
 }) => {
-  const [show, setShow] = useState(true);
   return (
     <div className="w-full col-span-2">
-      {show && (
-        <div className="grid grid-cols-2 gap-2 pl-2">
-          <Input
-            type="select"
-            prop={`${prop}.fontFamily`}
-            label="Font"
-            value={style.fontFamily}
-            onChange={(fontFamily) => setStyle({ ...style, fontFamily })}
-            options={getAvailableFonts().map((f) => ({
-              label: f.fontFamily,
-              value: f.fontFamily,
-            }))}
-          />
-          <Input
-            type="number"
-            prop={`${prop}.fontSize`}
-            label="Font size (px)"
-            value={style.fontSize}
-            onChange={(fontSize) => setStyle({ ...style, fontSize })}
-          />
-          <Input
-            type="number"
-            prop={`${prop}.lineHeight`}
-            label="Line height (px)"
-            value={style.lineHeight}
-            onChange={(lineHeight) => setStyle({ ...style, lineHeight })}
-          />
-          <Input
-            type="number"
-            prop={`${prop}.fontWeight`}
-            label="Font weight"
-            value={style.fontWeight}
-            onChange={(fontWeight) => setStyle({ ...style, fontWeight })}
-          />
-          <Input
-            type="color"
-            prop={`${prop}.color`}
-            label="Color"
-            value={style.color}
-            onChange={(color) => setStyle({ ...style, color })}
-          />
-          <Input
-            type="color"
-            prop={`${prop}.bg`}
-            label="BG"
-            value={style.bg}
-            onChange={(bg) => setStyle({ ...style, bg })}
-          />
-          <Input
-            type="select"
-            prop={`${prop}.textAlign`}
-            label="Align"
-            value={style.textAlign}
-            onChange={(textAlign) =>
-              setStyle({
-                ...style,
-                textAlign: textAlign as TextAlign,
-              })
-            }
-            options={Object.keys(TextAlign).map((a) => ({
-              label: a,
-              value: a,
-            }))}
-          />
-          <Input
-            prop={`${prop}.outlineColor`}
-            type="color"
-            label="Outline Color"
-            value={style.outlineColor}
-            onChange={(outlineColor) =>
-              setStyle({
-                ...style,
-                outlineColor,
-              })
-            }
-          />
-          {style.outlineColor && (
-            <Input
-              prop={`${prop}.outlineWidth`}
-              type="number"
-              label="Outline Width (px)"
-              value={style.outlineWidth}
-              onChange={(outlineWidth) =>
-                setStyle({
-                  ...style,
-                  outlineWidth,
-                })
-              }
-            />
-          )}
-        </div>
-      )}
+      {inputs.map((input) => (
+        <Input
+          key={input.prop}
+          type={input.type}
+          prop={`${prop}.${input.prop}`}
+          label={input.label}
+          value={style[input.prop]}
+          onChange={(value) => {
+            setStyle({
+              ...style,
+              [input.prop]: value,
+            });
+          }}
+          options={input.options}
+        />
+      ))}
     </div>
   );
 };
