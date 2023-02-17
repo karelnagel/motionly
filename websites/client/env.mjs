@@ -28,11 +28,11 @@ const server = z.object({
   PEXELS_API_KEY: z.string(),
   PIXABY_API_KEY: z.string(),
   OPENAI_API_KEY: z.string(),
+  EMAIL_ACCESS_KEY: z.string().min(1),
 });
 
 const client = z.object({
   NEXT_PUBLIC_URL: z.string().min(1),
-  EMAIL_ACCESS_KEY: z.string().min(1),
 });
 
 /**

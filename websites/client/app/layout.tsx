@@ -14,12 +14,12 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <ClientSessionProvider session={session}>
-        <head />
-        <body className="dark" style={nunito.style}>
-          <Alerts>
-            <ClientProvider>{children}</ClientProvider>
-          </Alerts>
-        </body>
+        <ClientProvider>
+          <head />
+          <body className="dark" style={nunito.style}>
+            <Alerts>{children}</Alerts>
+          </body>
+        </ClientProvider>
       </ClientSessionProvider>
     </html>
   );

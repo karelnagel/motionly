@@ -1,3 +1,5 @@
+"use client"
+
 import { Player } from "@motionly/player";
 import { useState } from "react";
 import { interactive } from "../../../../videos/examples/interactive";

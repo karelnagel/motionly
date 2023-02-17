@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { Arrows } from "../../../../components/Arrows";
-import { IoIosAdd, IoIosRemove } from "react-icons/io";
-import { Bubble } from "../../../../components/Bubble";
+import { Arrows } from "../../../../../components/Arrows";
+import { Bubble } from "../../../../../components/Bubble";
+import { Question } from "./Question";
 
-export const questions = [
+const questions = [
   {
     question: "What is Motionly?",
     answer:
@@ -40,24 +39,6 @@ export const questions = [
       "You can change your password by clicking the change password button in the settings page.",
   },
 ];
-
-const Question = ({ question, answer }: (typeof questions)[0]) => {
-  const [show, setShow] = useState(false);
-  return (
-    <div className="w-full py-4 border-t border-opacity-50 border-base-content space-y-3">
-      <div
-        onClick={() => setShow(!show)}
-        className="flex justify-between cursor-pointer w-full "
-      >
-        <p className="font-medium text-[18px] md:text-[22px]">{question}</p>
-        <button className="text-3xl leading-none">
-          {show ? <IoIosRemove /> : <IoIosAdd />}
-        </button>
-      </div>
-      {show && <div className="text-[16px] md:text-[18px]">{answer}</div>}
-    </div>
-  );
-};
 
 export const FAQ = () => {
   return (
