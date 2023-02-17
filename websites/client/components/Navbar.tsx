@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Login } from "./Login";
+import { Login } from "./LoginButton";
 import { Logo } from "./Logo";
 
 const items: { name: string; route: string }[] = [
