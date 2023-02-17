@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import laptop from "../../../../public/laptop.png";
 import { Bubble } from "../../../../components/Bubble";
-import { Button } from "../../../../components/Button";
+
 export const Hero = () => {
   return (
     <div className="relative flex items-center justify-between px-4 flex-col-reverse md:flex-row my-10 md:my-32">
@@ -14,12 +14,14 @@ export const Hero = () => {
           Automate your video editing and integrate
           <br /> videos with dynamic data on your site.
         </p>
-        <Link href="/#contact">
-          <Button
-            text="Get started"
-            className="text-[24px] font-normal p-3 pl-6 bg-secondary"
-          />
-        </Link>
+        <div className="flex space-x-3">
+          <Link href="/login" className="btn btn-primary !text-lg">
+            Get started for free
+          </Link>
+          <Link href="/#contact" className="btn btn-outline !text-lg">
+            Contact us 
+          </Link>
+        </div>
       </div>
       <div>
         <div className="relative w-[95%] mb-10 md:mb-0">

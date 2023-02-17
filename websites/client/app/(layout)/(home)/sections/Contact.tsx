@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "../../../../components/Button";
 import { Bubble } from "../../../../components/Bubble";
 import axios from "axios";
 import { env } from "../../../../env.mjs";
@@ -87,11 +86,9 @@ export const Contact = () => {
                 className="formbox textarea textarea-primary"
                 rows={5}
               />
-              <Button
-                submit
-                text="Submit"
-                className="p-3 pl-6 bg-opacity-60 bg-accent hover:bg-opacity-70"
-              />
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
             </form>
             <div className="h-6 mt-2">
               {formState === "sent" && (

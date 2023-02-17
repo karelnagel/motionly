@@ -27,7 +27,7 @@ export function Login() {
             className="dropdown-content z-100 right-0 top-[100%] menu shadow bg-base-200 w-40 rounded-lg"
           >
             <li className="hover:text-primary">
-              <Link href="/templates">Dashboard</Link>
+              <Link href="/templates">Templates</Link>
             </li>
             <li className="hover:text-primary">
               <Link href="/account">Settings</Link>

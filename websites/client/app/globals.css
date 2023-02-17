@@ -106,9 +106,9 @@ html[class~="dark"] body {
 }
 
 .btn-gradient {
-  @apply bg-gradient-to-r from-primary to-secondary text-primary-content border-none ;
+  @apply bg-gradient-to-r from-primary to-secondary text-primary-content border-none;
 }
-.btn .btn-square{
+.btn .btn-square {
   @apply aspect-square p-0;
 }
 .formbox {
@@ -117,4 +117,41 @@ html[class~="dark"] body {
 
 .divider {
   @apply my-3;
+}
+.bubble {
+  animation: scale 40s ease-in-out infinite, moveY 48s ease-in-out infinite,
+    moveX 60s ease-in-out infinite;
+}
+@keyframes scale {
+  0% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}
+@keyframes moveX {
+  0% {
+    margin-left: -5%;
+  }
+  50% {
+    margin-left: 5%;
+  }
+  100% {
+    margin-left: -5%;
+  }
+}
+@keyframes moveY {
+  0% {
+    margin-top: -5%;
+  }
+  50% {
+    margin-top: 5%;
+  }
+  100% {
+    margin-top: -5%;
+  }
 }

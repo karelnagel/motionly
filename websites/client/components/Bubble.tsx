@@ -15,8 +15,11 @@ export const Bubble = ({
 }) => {
   return (
     <div
-      className={`absolute bg-accent rounded-full aspect-square -z-0 ${className}`}
+      className={`absolute bg-accent shadow-lg rounded-full aspect-square bubble ${
+        className || ""
+      }`}
       style={{
+        animationDelay: `-${Math.random() * 122}s`,
         width: `${width}%`,
         top: `${top}%`,
         left: `${left}%`,
