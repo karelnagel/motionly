@@ -85,7 +85,7 @@ const navLinks = [
 ];
 export const Footer = () => {
   return (
-    <div className="flex flex-col relative w-full space-y-7 py-7 px-2 text-center md:text-left">
+    <div className="flex flex-col relative w-full space-y-7 py-7 px-2 md:px-6 text-center md:text-left">
       <div className="relative flex flex-col md:flex-row items-center justify-between">
         <Logo />
         <div className="space-x-2 flex">

@@ -30,7 +30,7 @@ export default async function Layout({
     <div className="grid grid-cols-4 gap-4">
       <div className="flex flex-col space-y-4">
         <div className="flex items-center space-x-3 bg-base-100 rounded-lg overflow-hidden">
-          <Image
+          <img
             width={40}
             height={40}
             alt="Profile picture"

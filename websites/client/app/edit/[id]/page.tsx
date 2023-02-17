@@ -14,7 +14,6 @@ export default async function Page({
   const session = await getServerSession();
   if (!session?.user) {
     redirect("/login?redirect=/edit/" + id);
-    return;
   }
 
   const project = await getProject(id);

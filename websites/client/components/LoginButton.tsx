@@ -1,6 +1,5 @@
 "use client";
 import { signOut, useSession } from "next-auth/react";
-import Image from "next/image";
 import Link from "next/link";
 
 export function Login() {
@@ -12,7 +11,7 @@ export function Login() {
         <div className="dropdown dropdown-hover flex flex-row">
           <label tabIndex={0} className="btn btn-primary space-x-4 ">
             {data.user.image && (
-              <Image
+              <img
                 src={data.user.image}
                 alt="user"
                 width={25}
@@ -20,7 +19,7 @@ export function Login() {
                 className="rounded-md object-cover -m-2"
               />
             )}
-            <p className="">{firstName}</p>
+            <p>{firstName || data.user.email || "Logged In"}</p>
           </label>
           <ul
             tabIndex={0}
@@ -33,7 +32,7 @@ export function Login() {
               <Link href="/account">Settings</Link>
             </li>
             <li className="hover:text-error">
-              <button  onClick={() => signOut()}>Log Out</button>
+              <button onClick={() => signOut()}>Log Out</button>
             </li>
           </ul>
         </div>

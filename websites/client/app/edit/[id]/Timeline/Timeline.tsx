@@ -57,7 +57,7 @@ const Button = ({
       <button
         disabled={disabled}
         onClick={() => onClick()}
-        className="btn btn-ghost btn-sm btn-square text-xl"
+        className="text-xl rounded-lg aspect-square hover:bg-base-200 p-1"
       >
         <Icon />
       </button>
@@ -76,8 +76,8 @@ export const TopBar = () => {
   const frame = useProject((t) => t.playerFrame);
 
   return (
-    <div className="flex justify-between py-1 px-2 border-b border-base-300">
-      <div className="flex space-x-2">
+    <div className="flex justify-between py-2 px-2 border-b border-base-300 items-center">
+      <div className="flex space-x-2 items-center">
         <Button
           Icon={IoIosTrash}
           disabled={!selected}
