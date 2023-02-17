@@ -18,7 +18,7 @@ export const LeftBar = () => {
       }
     >
       <div className="flex flex-col">
-        <Link href="/" className="p-2">
+        <Link href="/templates" className="p-2">
           <Image
             src="/logo.png"
             alt="logo"

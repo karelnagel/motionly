@@ -14,10 +14,7 @@ export const leftSlice = (set: SetType, get: GetType): LeftSlice => {
   return {
     leftTab: "template",
     leftWidth: 300,
-    leftSetTab: (tab?: LeftTabs) =>
-      set((s) => {
-        s.leftTab = s.leftTab === tab ? undefined : tab;
-      }),
+    leftSetTab: (tab?: LeftTabs) => set({ leftTab: tab }),
     leftSetWidth: (width: number) =>
       set((s) => {
         s.leftWidth = Math.max(Math.min(width, maxWidth), minWidth);
