@@ -11,10 +11,6 @@ export const transcription: Component<TranscriptionProps> = {
   hue: 99,
   inputs: [
     {
-      prop: "textStyle",
-      type: "style",
-    },
-    {
       prop: "startFrom",
       type: "number",
     },
@@ -31,6 +27,10 @@ export const transcription: Component<TranscriptionProps> = {
           label,
         })
       ),
+    },
+    {
+      prop: "textStyle",
+      type: "style",
     },
     {
       prop: "animationStyle",
