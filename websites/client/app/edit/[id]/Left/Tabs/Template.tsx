@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAlerts } from "../../../../../components/Alert";
 import { Clone } from "../../../../../components/Clone";
-import { Input } from "../../../../../components/inputs";
+import { VariableInput } from "../../../../../components/inputs";
 import { useProject } from "../../../../../hooks/useProject";
 import { trpc } from "../../../../ClientProvider";
 
@@ -23,7 +23,7 @@ export default function Template() {
     <div className="flex flex-col justify-between h-full w-full overflow-auto">
       <div className="flex flex-col space-y-2 items-center">
         <div className="w-full grid grid-cols-2 gap-x-1">
-          <Input
+          <VariableInput
             type="textarea"
             label="Description"
             value={project.description}
@@ -33,7 +33,7 @@ export default function Template() {
               })
             }
           />
-          <Input
+          <VariableInput
             type="number"
             label="Width"
             placeholder="1080"
@@ -45,7 +45,7 @@ export default function Template() {
               })
             }
           />
-          <Input
+          <VariableInput
             type="number"
             label="Height"
             placeholder="1080"
@@ -57,7 +57,7 @@ export default function Template() {
               })
             }
           />
-          <Input
+          <VariableInput
             type="number"
             label="FPS"
             placeholder="30"
@@ -69,7 +69,7 @@ export default function Template() {
               })
             }
           />
-          <Input
+          <VariableInput
             type="number"
             label="Duration"
             value={project.template.duration}
@@ -81,7 +81,7 @@ export default function Template() {
               })
             }
           />
-          <Input
+          <VariableInput
             type="color"
             label="Background"
             prop="background"
@@ -92,7 +92,7 @@ export default function Template() {
               })
             }
           />
-          <Input
+          <VariableInput
             type="checkbox"
             label="Public"
             value={project.public}

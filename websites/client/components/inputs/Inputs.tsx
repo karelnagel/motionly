@@ -1,5 +1,5 @@
 import { ComponentProps, InputTypes } from "@motionly/base";
-import { Input } from ".";
+import { VariableInput } from ".";
 import { useComponent } from "../../hooks/useComponent";
 import { useProject } from "../../hooks/useProject";
 
@@ -19,7 +19,7 @@ export const Inputs = ({ inputs }: { inputs: UserInput<ComponentProps>[] }) => {
       {inputs
         .filter((c) => (c.if ? c.if(comp) : true))
         .map(({ prop, type, label }) => (
-          <Input
+          <VariableInput
             key={prop}
             prop={prop}
             type={type}

@@ -1,7 +1,7 @@
 import { AnimationProps, animationProps, AnimationTypes } from "@motionly/base";
 import { useState } from "react";
 import { IoIosTrash } from "react-icons/io";
-import { Input } from "../../../../../../components/inputs";
+import { VariableInput } from "../../../../../../components/inputs";
 import { ShowHide } from "../../../../../../components/ShowHide";
 import { useProject } from "../../../../../../hooks/useProject";
 import { allAnimations } from "../../../../../../videos/animations";
@@ -57,7 +57,7 @@ export const OneAnimation = ({ id }: { id: string }) => {
       </div>
       {show && (
         <div className="grid grid-cols-7 gap-1 relative">
-          <Input
+          <VariableInput
             type="select"
             label="Prop"
             className="col-span-3"
@@ -74,7 +74,7 @@ export const OneAnimation = ({ id }: { id: string }) => {
               })
             )}
           />
-          <Input
+          <VariableInput
             type="number"
             className="col-span-2"
             label="Start (s)"
@@ -86,7 +86,7 @@ export const OneAnimation = ({ id }: { id: string }) => {
             }
             value={animation.start}
           />
-          <Input
+          <VariableInput
             type="number"
             className="col-span-2"
             label="Duration (s)"
@@ -99,7 +99,7 @@ export const OneAnimation = ({ id }: { id: string }) => {
             }
             value={animation.duration}
           />
-          <Input
+          <VariableInput
             type="select"
             label="Type"
             className="col-span-3"
@@ -115,7 +115,7 @@ export const OneAnimation = ({ id }: { id: string }) => {
             }))}
           />
 
-          <Input
+          <VariableInput
             type="number"
             className="col-span-2"
             prop={`animations.byIds.${id}.from`}
@@ -127,7 +127,7 @@ export const OneAnimation = ({ id }: { id: string }) => {
             }
             value={animation.from}
           />
-          <Input
+          <VariableInput
             type="number"
             className="col-span-2"
             label={`To ${units ? `(${units})` : ""}`}
@@ -210,7 +210,7 @@ export const OneAnimation = ({ id }: { id: string }) => {
         />
       )} */}
           {(animation.prop === "text" || animation.prop === "number") && (
-            <Input
+            <VariableInput
               type="text"
               label="Variable"
               className="col-span-3"
@@ -225,7 +225,7 @@ export const OneAnimation = ({ id }: { id: string }) => {
             />
           )}
           {animation.prop === "text" && (
-            <Input
+            <VariableInput
               type="text"
               label="Value"
               className="col-span-4"

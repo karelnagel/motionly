@@ -56,7 +56,7 @@ export function useProject<T>(
   equalityFn?: (left: T, right: T) => boolean
 ): T {
   const store = useContext(ProjectContext);
-  if (!store) throw new Error("Missing BearContext.Provider in the tree");
+  if (!store) throw new Error("Missing ProjectContext.Provider in the tree");
   return useStore(store, selector, equalityFn);
 }
 

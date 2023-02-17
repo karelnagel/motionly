@@ -12,7 +12,6 @@ module.exports = {
         "base-content-2": "#FFFFFF",
       },
       fontFamily: {
-        montserrat: ["Montserrat", "sans-serif"]
       },
       colors: {
         "list-title": "#4B5563",
@@ -28,9 +27,9 @@ module.exports = {
           secondary: "#A276FF",
           accent: "#16BAC5",
           neutral: "#FFFFFF",
-          "base-100": "#171717",
-          "base-200": "#202020",
-          "base-300": "#282929",
+          "base-100": "#111111",
+          "base-200": "#1e1e1e",
+          "base-300": "#252525",
           "base-content": "#EFE9F4",
           info: "#3ABFF8",
           success: "#36D399",

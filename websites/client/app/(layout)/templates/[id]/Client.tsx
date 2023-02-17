@@ -53,7 +53,7 @@ export const Client = ({ startProject }: { startProject: Project }) => {
           return (
             <Input
               key={inputId}
-              label={input.label || ""}
+              // label={input.label || ""} //Todo add label back
               onChange={(i) => {
                 setProject(
                   produce((draft) => {

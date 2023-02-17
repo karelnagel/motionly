@@ -1,6 +1,6 @@
 import { TextAlign, TextStyle } from "@motionly/base";
 import { getAvailableFonts } from "@remotion/google-fonts";
-import { Input } from ".";
+import { VariableInput } from ".";
 import { UserInput } from "./Inputs";
 
 export const inputs: UserInput<TextStyle>[] = [
@@ -72,7 +72,7 @@ export const TextStyleInput = ({
   return (
     <div className="w-full col-span-2">
       {inputs.map((input) => (
-        <Input
+        <VariableInput
           key={input.prop}
           type={input.type}
           prop={`${prop}.${input.prop}`}

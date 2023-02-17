@@ -18,7 +18,7 @@
         "@motionly/player": "*",
         "@next-auth/prisma-adapter": "^1.0.5",
         "@next/bundle-analyzer": "^13.1.6",
-        "@next/font": "^13.1.5",
+        "@next/font": "^13.1.6",
         "@prisma/client": "^4.6.1",
         "@remotion/cli": "3.3.34",
         "@remotion/google-fonts": "3.3.34",
