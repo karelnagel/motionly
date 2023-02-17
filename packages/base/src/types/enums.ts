@@ -52,11 +52,7 @@ export const InterpolateColor = z.object({
 });
 export type InterpolateColor = z.infer<typeof InterpolateColor>;
 
-
-export const BaseColor = z.union( [
-  BasicColor,
-  InterpolateColor,
-]);
+export const BaseColor = z.union([BasicColor, InterpolateColor]);
 export type BaseColor = z.infer<typeof BaseColor>;
 
 export const GradientColor = z.object({
@@ -65,7 +61,7 @@ export const GradientColor = z.object({
     .array(
       z.object({
         color: BaseColor.optional(),
-        stop: z.number().optional(),
+        stop: z.number().min(0).max(1).optional(),
       })
     )
     .optional(),
@@ -73,11 +69,7 @@ export const GradientColor = z.object({
 });
 export type GradientColor = z.infer<typeof GradientColor>;
 
-export const Color = z.union( [
-  BasicColor,
-  InterpolateColor,
-  GradientColor,
-]);
+export const Color = z.union([BasicColor, InterpolateColor, GradientColor]);
 export type Color = z.infer<typeof Color>;
 
 export const HasChildren = z.object({

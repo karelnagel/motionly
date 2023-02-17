@@ -22,15 +22,15 @@ export const TranscriptionWord = z.object({
 export type TranscriptionWord = z.infer<typeof TranscriptionWord>;
 
 export const TextStyle = z.object({
-  fontSize: z.number().optional(),
+  fontSize: z.number().min(0).optional(),
   fontFamily: z.string().optional(),
-  fontWeight: z.number().optional(),
-  lineHeight: z.number().optional(),
+  fontWeight: z.number().min(0).optional(),
+  lineHeight: z.number().min(0).max(10).optional(),
   textAlign: TextAlign.optional(),
   bg: Color.optional(),
   color: BaseColor.optional(),
   outlineColor: BaseColor.optional(),
-  outlineWidth: z.number().optional(),
+  outlineWidth: z.number().min(0).optional(),
 });
 export type TextStyle = z.infer<typeof TextStyle>;
 export const TranscriptionProps = z.object({
@@ -41,7 +41,7 @@ export const TranscriptionProps = z.object({
   scrollByPage: z.boolean().optional(),
   animationType: TranscriptionAnimationTypes,
   animationStyle: TextStyle,
-  height: z.number().optional(),
+  height: z.number().min(0).optional(),
 });
 export type TranscriptionProps = z.infer<typeof TranscriptionProps>;
 
@@ -49,7 +49,7 @@ export const AudioProps = z.object({
   comp: z.literal("audio"),
   src: z.string().url(),
   volume: z.number().min(0).max(1).optional(),
-  startFrom: z.number().optional(),
+  startFrom: z.number().min(0).optional(),
 });
 export type AudioProps = z.infer<typeof AudioProps>;
 
@@ -58,15 +58,15 @@ export const AudiogramProps = z.object({
   src: z.string().url(),
   position: JustifyContent.optional(),
   gap: z.number().optional(),
-  barWidth: z.number(),
+  barWidth: z.number().min(0),
   color: Color.optional(),
-  roundness: z.number().optional(),
-  startFrom: z.number().optional(),
+  roundness: z.number().min(0).optional(),
+  startFrom: z.number().min(0).optional(),
   smoothing: z.boolean().optional(),
   mirror: z.boolean().optional(),
-  multiplier: z.number().optional(),
-  height: z.number(),
-  width: z.number(),
+  multiplier: z.number().min(0).optional(),
+  height: z.number().min(0),
+  width: z.number().min(0),
 });
 export type AudiogramProps = z.infer<typeof AudiogramProps>;
 
@@ -95,9 +95,9 @@ export const GraphProps = z.object({
   animationDuration: z.number().optional(),
   strokeWidth: z.number().optional(),
   gap: z.number().optional(),
-  roundness: z.number().optional(),
-  width: z.number(),
-  height: z.number(),
+  roundness: z.number().min(0).optional(),
+  width: z.number().min(0),
+  height: z.number().min(0),
 });
 export type GraphProps = z.infer<typeof GraphProps>;
 export const ImageProps = z.object({
@@ -111,7 +111,7 @@ export const LottieProps = z.object({
   src: z.string(),
   backwards: z.boolean().optional(),
   loop: z.boolean().optional(),
-  playbackRate: z.number().optional(),
+  playbackRate: z.number().min(0).optional(),
   bg: Color.optional(),
 });
 export type LottieProps = z.infer<typeof LottieProps>;
@@ -120,12 +120,12 @@ export const MapProps = z.object({
   comp: z.literal("map"),
   lat: z.number(),
   lng: z.number(),
-  zoom: z.number(),
+  zoom: z.number().min(0),
   fill: Color.optional(),
   stroke: BaseColor.optional(),
-  strokeWidth: z.number().optional(),
+  strokeWidth: z.number().min(0).optional(),
   markerColor: Color.optional(),
-  markerSize: z.number().optional(),
+  markerSize: z.number().min(0).optional(),
   src: z.string().url().optional(),
   bg: Color.optional(),
 });
@@ -142,13 +142,12 @@ export const PathProps = z.object({
   comp: z.literal("path"),
   path: z.string(),
   stroke: BaseColor.optional(),
-  strokeWidth: z.number().optional(),
+  strokeWidth: z.number().min(0).optional(),
   viewBoxX: z.number().optional(),
   viewBoxY: z.number().optional(),
-  viewBoxHeight: z.number().optional(),
-  viewBoxWidth: z.number().optional(),
+  viewBoxHeight: z.number().min(0).optional(),
+  viewBoxWidth: z.number().min(0).optional(),
   fill: Color.optional(),
-
   isRound: z.boolean().optional(),
 });
 
@@ -183,11 +182,11 @@ export const TextProps = z.object({
 export type TextProps = z.infer<typeof TextProps>;
 export const VideoProps = z.object({
   comp: z.literal("video"),
-  src: z.string(),
+  src: z.string().url(),
   objectFit: ObjectFit.optional(),
-  startFrom: z.number().optional(),
+  startFrom: z.number().min(0).optional(),
   muted: z.boolean().optional(),
-  volume: z.number().optional(),
+  volume: z.number().min(0).max(1).optional(),
   offthread: z.boolean().optional(),
 });
 export type VideoProps = z.infer<typeof VideoProps>;
@@ -196,10 +195,10 @@ export const ProgressbarProps = z.object({
   type: ProgressbarTypes,
   color: Color.optional(),
   bg: Color.optional(),
-  barWidth: z.number().optional(),
+  barWidth: z.number().min(0).optional(),
   topRight: z.boolean().optional(),
-  width: z.number(),
-  height: z.number(),
+  width: z.number().min(0),
+  height: z.number().min(0),
 });
 export type ProgressbarProps = z.infer<typeof ProgressbarProps>;
 
@@ -207,9 +206,9 @@ export const ShapeProps = z.object({
   comp: z.literal("shape"),
   fill: Color.optional(),
   stroke: BaseColor.optional(),
-  strokeWidth: z.number().optional(),
-  width: z.number(),
-  height: z.number(),
+  strokeWidth: z.number().min(0).optional(),
+  width: z.number().min(0),
+  height: z.number().min(0),
   type: ShapeTypes,
   cornerRadius: z.number().optional(),
   edgeRoundness: z.number().optional(),
