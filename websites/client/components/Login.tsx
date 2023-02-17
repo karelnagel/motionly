@@ -39,7 +39,7 @@ export function Login() {
         </div>
       ) : (
         <Link href="/login" className="btn btn-gradient">
-          Start for free
+          Start For Free
         </Link>
       )}
     </div>

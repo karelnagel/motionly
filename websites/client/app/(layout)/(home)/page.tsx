@@ -10,7 +10,7 @@ import { FAQ } from "./sections/FAQ";
 export default function Home() {
   return (
     <div>
-      <div className=" flex flex-col px-2 text-center md:text-left ">
+      <div className="flex flex-col text-center md:text-left px-2 md:px-0 ">
         <Hero />
         <Divider />
         <Mission />

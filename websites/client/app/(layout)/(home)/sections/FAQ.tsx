@@ -63,14 +63,14 @@ export const FAQ = () => {
   return (
     <div id="faq" className="relative space-y-6 ">
       <p className="text-[50px] md:text-[75px] font-semibold leading-none title">
-        We’ve got you
-        <br /> covered!
+        Let’s get your
+        <br /> questions sorted
       </p>
       <div className="flex gap-7 md:gap-20 flex-col md:flex-row">
         <div className="space-y-6">
           <p className="max-w-lg text-[18px] md:text-[22px] leading-[30px]">
-            Start with a flexible template, then customize to fit your style and
-            professional needs with our website builder.
+            Most of the questions we get are answered here. If you have any
+            questions that aren’t answered here, feel free to contact us.
           </p>
           <Arrows />
         </div>

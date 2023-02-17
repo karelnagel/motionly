@@ -114,26 +114,16 @@ export const Contact = () => {
             <p className="title text-[50px] md:text-[85px] mb-8 font-semibold leading-[1.1]  ">
               Contact us
             </p>
-            <p className="text-[32px] font-bold pb-3">
-              Let's explore how Motionly can work for YOU!
-            </p>
             <p className="text-[25px] font-medium pb-3">
-              Feel free to contact us with any questions or feedback
+              Want to create stunning videos without spending hours on editing?
+              Contact us today and let us show you how Motionly can automate
+              your video production and make your business stand out.
             </p>
-            <p className="text-[25px] font-medium pb-2 ">
-              We will get back to you ASAP
-            </p>
-            <a
-              className="text-accent text-[25px] font-bold"
-              href="mailto:info@motionly.video"
-            >
-              info@motionly.video
-            </a>
           </div>
         </div>
       </div>
-      <Bubble width={25} top={75} left={85} />
       <Bubble width={9} top={45} left={85} />
+      <Bubble width={3} top={35} left={95} />
     </div>
   );
 };

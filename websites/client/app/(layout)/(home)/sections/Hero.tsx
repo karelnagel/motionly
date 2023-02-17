@@ -12,14 +12,14 @@ export const Hero = () => {
         </h1>
         <p className="text-[22px] leading-[30px] font-light">
           Automate your video editing and integrate
-          <br /> videos with dynamic data on your site.
+          videos with dynamic data on your site.
         </p>
         <div className="flex space-x-3">
           <Link href="/login" className="btn btn-primary !text-lg">
-            Get started for free
+            Get Started For Free
           </Link>
           <Link href="/#contact" className="btn btn-outline !text-lg">
-            Contact us 
+            Contact Us 
           </Link>
         </div>
       </div>
