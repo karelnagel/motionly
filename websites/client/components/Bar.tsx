@@ -33,7 +33,6 @@ export const BarItem = ({
   return (
     <div
       onClick={onClick}
-      onMouseEnter={() => onClick()}
       style={style}
       className={`flex flex-col items-center cursor-pointer text-base-content-2 duration-150 space-y-1 py-1 hover:opacity-100 ${className}`}
     >

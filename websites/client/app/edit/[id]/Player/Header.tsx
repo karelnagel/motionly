@@ -1,4 +1,5 @@
 import { IoIosCloudDone, IoMdRedo, IoMdUndo } from "react-icons/io";
+import { LoadingSpinner } from "../../../../components/LoadingSpinner";
 import { useProject } from "../../../../hooks/useProject";
 
 export const Header = () => {
@@ -24,13 +25,13 @@ export const Header = () => {
         className="text-[18px] font-bold bg-transparent input input-xs w-40"
       />
       <div className="flex items-center space-x-4 font-bold ">
-        <button
-          className={`${
-            saveTimeout ? "loading" : ""
-          } btn btn-disabled btn-sm text-xl`}
-        >
-          {!saveTimeout && <IoIosCloudDone />}
-        </button>
+        <div className="h-6 w-6">
+          {!saveTimeout ? (
+            <IoIosCloudDone className="h-full w-full" />
+          ) : (
+            <LoadingSpinner />
+          )}
+        </div>
         <div className="flex text-2xl space-x-2">
           <div className="tooltip tooltip-bottom" data-tip="⌘ + Z">
             <IoMdUndo
@@ -49,11 +50,8 @@ export const Header = () => {
             />
           </div>
         </div>
-        <button
-          className="btn btn-primary btn-sm"
-          onClick={() => setTab("export")}
-        >
-          export{" "}
+        <button className="btn btn-primary" onClick={() => setTab("export")}>
+          Export
         </button>
       </div>
     </div>

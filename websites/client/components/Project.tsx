@@ -14,14 +14,19 @@ export const Project = ({
 }) => {
   return (
     <div className="bg-base-200 shadow-xl aspect-square flex flex-col overflow-hidden rounded-lg">
-      <div className="relative bg-base-300 h-full group">
+      <div className="relative bg-base-300 h-full group w-full flex">
         {project.preview && (
-          <Image
-            src={project.preview}
-            fill={true}
-            alt="template"
-            className="object-cover"
-          />
+          <Link
+            href={`/templates/${project.id}`}
+            className="relative h-full w-full cursor-pointer"
+          >
+            <Image
+              src={project.preview}
+              fill={true}
+              alt="template"
+              className="object-cover"
+            />
+          </Link>
         )}
         <div className="absolute top-1 right-1 opacity-0 group-hover:opacity-100 duration-150 flex space-x-1">
           {isOwner && (
@@ -40,9 +45,9 @@ export const Project = ({
         </div>
       </div>
 
-      <Link href={`edit/${project.id}`} className="grid grid-rows-3 gap-1 p-1">
+      <Link href={`/templates/${project.id}`} className="grid grid-rows-3 gap-1 p-1">
         <h2 className="card-title line-clamp-1">{project.name}</h2>
-        <p className="line-clamp-3">{project.description}</p>
+        <p className="line-clamp-1">{project.description}</p>
         <div className="card-actions justify-end flex-nowrap">
           {project.tags
             .filter((t) => !!t)
