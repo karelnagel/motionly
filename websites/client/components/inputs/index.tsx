@@ -8,6 +8,7 @@ import { ColorInput } from "./color";
 import { useComponent } from "../../hooks/useComponent";
 import { VariableSelect } from "./VariableSelect";
 import { TextStyleInput } from "./textStyle";
+import { StringArray } from "./StringArray";
 export * from "./color";
 
 export function VariableInput<T extends any>({
@@ -130,6 +131,12 @@ export function Input<T extends any>({
           value={(value as string) || ""}
           className="input input-sm bg-base-200 input-bordered w-full"
           onChange={(e) => onChange(e.target.value as T)}
+        />
+      )}
+      {type === "stringArray" && (
+        <StringArray
+          value={(value as string[]) || []}
+          onChange={(e) => onChange(e as T)}
         />
       )}
       {type === "textarea" && (

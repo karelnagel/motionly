@@ -73,6 +73,7 @@ model Project {
   id          String    @id @default(cuid())
   name        String    @default("")
   description String    @default("")
+  tags        String[]  @default([])
   preview     String?
   template    Json
   createdAt   DateTime? @default(now())

@@ -44,6 +44,7 @@ export const projects = createTRPCRouter({
           name: input.name,
           description: input.description,
           preview: input.preview,
+          tags: input.tags,
           public: false,
           user: { connect: { id: ctx.session.user.id } },
         },
@@ -119,6 +120,7 @@ export const projects = createTRPCRouter({
           description: project.description,
           template: project.template as any,
           preview: url || project.preview,
+          tags: project.tags,
         },
         include: { user: true },
       });

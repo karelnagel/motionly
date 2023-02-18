@@ -17,6 +17,7 @@ export const getProject = async (id: string) => {
     isOwner: template.userId === session?.user?.id,
     preview: template.preview || undefined,
     template: template.template as any,
+    tags: template.tags,
   };
   return project;
 };

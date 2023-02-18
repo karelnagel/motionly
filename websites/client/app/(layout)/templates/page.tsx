@@ -2,6 +2,8 @@ import { SearchBar } from "../../../components/SearchBar";
 import { Project } from "../../../components/Project";
 import { getServerSession } from "../../../lib/getServerSession";
 import { Clone } from "../../../components/Clone";
+import { prismaProjectToProject } from "../../../helpers/projectToProject";
+import { IoIosAdd } from "react-icons/io";
 
 export const dynamic = "force-dynamic";
 
@@ -43,16 +45,17 @@ export default async function Templates({
         <div>
           <div className="flex flex-col text-center md:flex-row space-y-4 md:space-y-0 justify-between items-center">
             <p className="text-5xl font-bold title">Your projects</p>
-            <Clone className="btn">create new</Clone>
+            <Clone className="btn space-x-1">
+              <IoIosAdd className="text-2xl -m-1" />
+              <p>Create New</p>
+            </Clone>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-10">
-            {yourProjects.map((template) => (
+            {yourProjects.map((project) => (
               <Project
-                key={template.id}
-                id={template.id}
-                name={template.name}
-                image={template.preview || undefined}
-                description={template.description}
+                key={project.id}
+                project={prismaProjectToProject(project)}
+                isOwner={true}
               />
             ))}
           </div>
@@ -62,13 +65,11 @@ export default async function Templates({
         <p className="text-5xl font-bold title">Find template to use</p>
         <SearchBar value={search} comp={comp} />
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-10">
-          {templates.map((template) => (
+          {templates.map((project) => (
             <Project
-              key={template.id}
-              id={template.id}
-              name={template.name}
-              description={template.description}
-              image={template.preview || undefined}
+              key={project.id}
+              project={prismaProjectToProject(project)}
+              isOwner={project.userId === session?.user.id}
             />
           ))}
         </div>

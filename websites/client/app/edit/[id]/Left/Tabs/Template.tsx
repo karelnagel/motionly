@@ -34,6 +34,16 @@ export default function Template() {
             }
           />
           <VariableInput
+            type="stringArray"
+            label="Tags"
+            value={project.tags}
+            onChange={(tags) =>
+              set((state) => {
+                state.project.tags = tags || [];
+              })
+            }
+          />
+          <VariableInput
             type="number"
             label="Width"
             placeholder="1080"
