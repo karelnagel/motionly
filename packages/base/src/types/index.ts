@@ -39,11 +39,11 @@ export const Transforms = z.object({
 });
 export type Transforms = z.infer<typeof Transforms>;
 
-export const CompInput = z.object({
+export const CompVariable = z.object({
   id: z.string(),
   prop: z.string(),
 });
-export type CompInput = z.infer<typeof CompInput>;
+export type CompVariable = z.infer<typeof CompVariable>;
 
 export const Animations = z.object({
   byIds: z.record(AnimationProps),
@@ -66,7 +66,7 @@ export const BaseProps = z.object({
   freeze: z.number().optional(),
   loopDuration: z.number().optional(),
   parentId: z.string().optional(),
-  compInputs: z.array(CompInput).optional(),
+  compVariables: z.array(CompVariable).optional(),
 });
 export type BaseProps = z.infer<typeof BaseProps>;
 
@@ -93,7 +93,7 @@ export type AllComponents = z.infer<typeof AllComponents>;
 export const ComponentProps = BaseProps.and(AllComponents);
 export type ComponentProps = z.infer<typeof ComponentProps>;
 
-export const InputTypes = z.enum([
+export const VariableTypes = z.enum([
   "image",
   "audio",
   "video",
@@ -107,22 +107,22 @@ export const InputTypes = z.enum([
   "style",
   "stringArray",
 ]);
-export type InputTypes = z.infer<typeof InputTypes>;
-export const Input = z.object({
+export type VariableTypes = z.infer<typeof VariableTypes>;
+export const Variable = z.object({
   id: z.string(),
   label: z.string().optional(),
-  type: InputTypes.optional(),
+  type: VariableTypes.optional(),
   value: z.any().optional(),
 });
-export type Input = z.infer<typeof Input>;
+export type Variable = z.infer<typeof Variable>;
 
 export const Components = z.record(ComponentProps);
 export type Components = z.infer<typeof Components>;
-export const Inputs = z.object({
-  byIds: z.record(Input),
+export const Variables = z.object({
+  byIds: z.record(Variable),
   allIds: z.array(z.string()),
 });
-export type Inputs = z.infer<typeof Inputs>;
+export type Variables = z.infer<typeof Variables>;
 
 export const TemplateType = HasChildren.merge(
   z.object({
@@ -130,10 +130,10 @@ export const TemplateType = HasChildren.merge(
     height: z.number(),
     duration: z.number(),
     fps: z.number(),
-    inputs: Inputs.optional(),
+    variables: Variables.optional(),
     components: Components,
     bg: Color.optional(),
-    templateInputs: z.array(CompInput).optional(),
+    templateVariables: z.array(CompVariable).optional(),
   })
 );
 export type TemplateType = z.infer<typeof TemplateType>;

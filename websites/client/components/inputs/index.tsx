@@ -1,8 +1,8 @@
 "use client";
 
-import { Color, InputTypes, TextStyle } from "@motionly/base";
+import { Color, TextStyle, VariableTypes } from "@motionly/base";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
-import { Media } from "../Media";
+import { MediaInput } from "./types/media";
 import { useProject } from "../../hooks/useProject";
 import { ColorInput } from "./types/color";
 import { useComponent } from "../../hooks/useComponent";
@@ -25,19 +25,21 @@ export function VariableInput({
   const setSelected = useProject((t) => t.setSelected);
   const setComp = useProject((t) => t.setComp);
   const comp = useComponent();
-  const inputId = comp?.compInputs?.find((i) => i.prop === props.prop)?.id;
-  const input = useProject((t) =>
-    inputId ? t.project.template.inputs?.byIds[inputId] : undefined
+  const variableId = comp?.compVariables?.find(
+    (i) => i.prop === props.prop
+  )?.id;
+  const variable = useProject((t) =>
+    variableId ? t.project.template.variables?.byIds[variableId] : undefined
   );
   const [show, setShow] = useState(false);
   return (
-    <div className={`form-control ${className}`}>
+    <div className={`${className}`}>
       <div
         className={`${props.label ? "label" : ""} ${tooltip ? "tooltip" : ""}`}
         data-tip={tooltip}
       >
         {props.label && <span className="label-text">{props.label}</span>}
-        {props.prop && !input && (
+        {props.prop && !variable ? (
           <div className="dropdown dropdown-bottom dropdown-end">
             <IoIosAdd
               tabIndex={0}
@@ -53,13 +55,12 @@ export function VariableInput({
               />
             )}
           </div>
-        )}
-        {props.prop && input && (
+        ) : (
           <IoIosRemove
             className="cursor-pointer"
             onClick={() =>
               setComp((s) => {
-                s.compInputs = s.compInputs?.filter(
+                s.compVariables = s.compVariables?.filter(
                   (i) => i.prop !== props.prop
                 );
               })
@@ -67,20 +68,22 @@ export function VariableInput({
           />
         )}
       </div>
-      {input && (
-        <div
-          onClick={() => setSelected("inputs")}
-          className="input input-sm input-bordered bg-primary"
-        >
-          {input.label}
-        </div>
-      )}
-      {!input && <Input {...props} />}
+      <div>
+        {variable && (
+          <div
+            onClick={() => setSelected("inputs")}
+            className="input input-sm input-bordered bg-primary"
+          >
+            {variable.label}
+          </div>
+        )}
+        {!variable && <Input {...props} />}
+      </div>
     </div>
   );
 }
 export type InputProps<T> = {
-  type: InputTypes;
+  type: VariableTypes;
   value?: T;
   onChange: (value?: T) => void;
   placeholder?: string;
@@ -115,7 +118,7 @@ export function Input(props: Input) {
       {(props.type === "gif" ||
         props.type === "image" ||
         props.type === "video" ||
-        props.type === "audio") && <Media {...props} />}
+        props.type === "audio") && <MediaInput {...props} />}
     </>
   );
 }

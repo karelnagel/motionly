@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { trpc } from "../../app/ClientProvider";
-import { MediaType } from "../../types";
-import { FileUploadButton } from "../FileUploadButton";
-import { InputProps } from "../inputs";
-import { Popup } from "../Popup";
+import { trpc } from "../../../app/ClientProvider";
+import { MediaType } from "../../../types";
+import { FileUploadButton } from "../../FileUploadButton";
+import { InputProps } from "..";
+import { Popup } from "../../Popup";
 
-export const Media = ({ value, onChange, type }: InputProps<string>) => {
+export const MediaInput = ({ value, onChange, type }: InputProps<string>) => {
   const [show, setShow] = useState(false);
 
   return (

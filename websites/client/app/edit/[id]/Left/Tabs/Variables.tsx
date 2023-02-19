@@ -1,23 +1,23 @@
-import { InputTypes } from "@motionly/base";
+import { VariableTypes } from "@motionly/base";
 import { VariableInput } from "../../../../../components/inputs";
 import { getRandomId } from "../../../../../helpers";
 import { useProject } from "../../../../../hooks/useProject";
 
 export default function Variables() {
-  const inputs = useProject((t) => t.project.template.inputs);
+  const variables = useProject((t) => t.project.template.variables);
   const set = useProject((t) => t.set);
   return (
     <div className="w-full overflow-auto">
-      {inputs?.allIds.map((id) => (
+      {variables?.allIds.map((id) => (
         <OneInput key={id} id={id} />
       ))}
       <button
         onClick={() =>
           set((s) => {
             const id = getRandomId();
-            if (!s.project.template.inputs)
-              s.project.template.inputs = { allIds: [], byIds: {} };
-            const inputs = s.project.template.inputs;
+            if (!s.project.template.variables)
+              s.project.template.variables = { allIds: [], byIds: {} };
+            const inputs = s.project.template.variables;
             inputs.allIds.push(id);
             inputs.byIds[id] = {
               id,
@@ -35,7 +35,7 @@ export default function Variables() {
 }
 
 export const OneInput = ({ id }: { id: string }) => {
-  const input = useProject((t) => t.project.template.inputs?.byIds[id]);
+  const input = useProject((t) => t.project.template.variables?.byIds[id]);
   const set = useProject((t) => t.set);
   if (!input) return null;
 
@@ -47,7 +47,7 @@ export const OneInput = ({ id }: { id: string }) => {
         value={input.label}
         onChange={(label) =>
           set((s) => {
-            s.project.template.inputs!.byIds[id].label = label;
+            s.project.template.variables!.byIds[id].label = label;
           })
         }
       />
@@ -55,13 +55,13 @@ export const OneInput = ({ id }: { id: string }) => {
         type="select"
         label="Type"
         value={input.type}
-        options={InputTypes.options.map((value) => ({
+        options={VariableTypes.options.map((value) => ({
           value,
           label: value,
         }))}
         onChange={(type) =>
           set((s) => {
-            if (type) s.project.template.inputs!.byIds[id].type = type as any;
+            if (type) s.project.template.variables!.byIds[id].type = type as any;
           })
         }
       />
@@ -71,7 +71,7 @@ export const OneInput = ({ id }: { id: string }) => {
         value={input.value}
         onChange={(value: any) =>
           set((s) => {
-            s.project.template.inputs!.byIds[id].value = value;
+            s.project.template.variables!.byIds[id].value = value;
           })
         }
       />
@@ -79,7 +79,7 @@ export const OneInput = ({ id }: { id: string }) => {
         className="btn btn-error btn-xs"
         onClick={() =>
           set((s) => {
-            const inputs = s.project.template.inputs!;
+            const inputs = s.project.template.variables!;
             inputs.allIds = inputs.allIds.filter((i) => i !== id);
             delete inputs.byIds[id];
           })

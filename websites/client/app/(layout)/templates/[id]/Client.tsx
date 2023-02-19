@@ -43,17 +43,17 @@ export const Client = ({ startProject }: { startProject: Project }) => {
         <p>
           <b>Dimensions:</b> {template.width} x {template.height}
         </p>
-        {template.inputs?.allIds.map((inputId) => {
-          const input = template.inputs?.byIds[inputId];
+        {template.variables?.allIds.map((variableId) => {
+          const input = template.variables?.byIds[variableId];
           if (!input) return null;
           return (
             <Input
-              key={inputId}
+              key={variableId}
               label={input.label}
               onChange={(i: any) => {
                 setProject(
                   produce((draft) => {
-                    const input = draft.template.inputs?.byIds[inputId];
+                    const input = draft.template.variables?.byIds[variableId];
                     if (!input) return;
                     input.value = i;
                   })

@@ -1,4 +1,4 @@
-import { InputTypes } from "@motionly/base";
+import { VariableTypes } from "@motionly/base";
 import { getRandomId } from "../../helpers";
 import { useProject } from "../../hooks/useProject";
 
@@ -9,11 +9,11 @@ export const VariableSelect = ({
   label,
 }: {
   prop: string;
-  type: InputTypes;
+  type: VariableTypes;
   value: any;
   label?: string;
 }) => {
-  const inputs = useProject((t) => t.project.template.inputs);
+  const variables = useProject((t) => t.project.template.variables);
   const set = useProject((t) => t.set);
   const setComp = useProject((t) => t.setComp);
 
@@ -22,16 +22,16 @@ export const VariableSelect = ({
       className="absolute dropdown-content menu p-2 shadow bg-base-100 rounded-box w-40 cursor-pointer"
       tabIndex={0}
     >
-      {inputs?.allIds.map((id) => {
-        const input = inputs.byIds[id];
+      {variables?.allIds.map((id) => {
+        const input = variables.byIds[id];
         if (input.type !== type) return null;
         return (
           <p
             key={id}
             onClick={() =>
               setComp((s) => {
-                if (!s.compInputs) s.compInputs = [];
-                s.compInputs.push({
+                if (!s.compVariables) s.compVariables = [];
+                s.compVariables.push({
                   id,
                   prop,
                 });
@@ -46,9 +46,9 @@ export const VariableSelect = ({
         onClick={() => {
           const id = getRandomId();
           set((s) => {
-            if (!s.project.template.inputs)
-              s.project.template.inputs = { allIds: [], byIds: {} };
-            const inputs = s.project.template.inputs;
+            if (!s.project.template.variables)
+              s.project.template.variables = { allIds: [], byIds: {} };
+            const inputs = s.project.template.variables;
             inputs.allIds.push(id);
             inputs.byIds[id] = {
               id,
@@ -58,8 +58,8 @@ export const VariableSelect = ({
             };
           });
           setComp((s) => {
-            if (!s.compInputs) s.compInputs = [];
-            s.compInputs.push({ id, prop });
+            if (!s.compVariables) s.compVariables = [];
+            s.compVariables.push({ id, prop });
           });
         }}
       >

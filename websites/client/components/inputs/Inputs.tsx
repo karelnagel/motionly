@@ -1,11 +1,11 @@
-import { ComponentProps, InputTypes } from "@motionly/base";
+import { ComponentProps, VariableTypes } from "@motionly/base";
 import { VariableInput } from ".";
 import { useComponent } from "../../hooks/useComponent";
 import { useProject } from "../../hooks/useProject";
 
 export type UserInput<T> = {
   prop: keyof T;
-  type: InputTypes;
+  type: VariableTypes;
   label?: string;
   if?: (comp: T) => boolean;
   options?: { value: string; label: string }[];
