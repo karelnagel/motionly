@@ -53,7 +53,7 @@ const component = () => {
             label,
           }))}
           value={nextProp}
-          onChange={(e) => setNextProp(e)}
+          onChange={(e) => setNextProp(e as any)}
         />
         <button
           className="btn btn-primary"

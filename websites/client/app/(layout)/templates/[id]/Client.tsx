@@ -15,7 +15,6 @@ export const Client = ({ startProject }: { startProject: Project }) => {
   const [project, setProject] = useState(startProject);
   const { data: session } = useSession();
   const template = project.template as TemplateType;
-  // const { mutateAsync: renderMedia } = trpc.render.media.useMutation({});
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
       <div className="space-y-3 flex flex-col items-stretch ">
@@ -23,10 +22,7 @@ export const Client = ({ startProject }: { startProject: Project }) => {
           <p className="text-3xl font-bold col-span-4">{project.name}</p>
           <div className="space-x-1 hidden md:flex">
             {project.isOwner && (
-              <Link
-                href={`/edit/${project.id}`}
-                className="btn btn-square"
-              >
+              <Link href={`/edit/${project.id}`} className="btn btn-square">
                 <IoIosBrush className="" />
               </Link>
             )}
@@ -53,8 +49,8 @@ export const Client = ({ startProject }: { startProject: Project }) => {
           return (
             <Input
               key={inputId}
-              // label={input.label || ""} //Todo add label back
-              onChange={(i) => {
+              label={input.label}
+              onChange={(i: any) => {
                 setProject(
                   produce((draft) => {
                     const input = draft.template.inputs?.byIds[inputId];

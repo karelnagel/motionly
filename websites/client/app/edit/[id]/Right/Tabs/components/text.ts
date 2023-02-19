@@ -10,10 +10,12 @@ export const text: Component<TextProps> = {
     {
       prop: "text",
       type: "textarea",
+      label: "Text",
     },
     {
       prop: "justifyContent",
       type: "select",
+      label: "Justify Content",
       options: Object.entries(JustifyContent).map(([value, label]) => ({
         value,
         label,
@@ -21,6 +23,7 @@ export const text: Component<TextProps> = {
     },
     {
       prop: "textStyle",
+      label: "Text style",
       type: "style",
     },
   ],

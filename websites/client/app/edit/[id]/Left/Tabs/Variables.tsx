@@ -61,7 +61,7 @@ export const OneInput = ({ id }: { id: string }) => {
         }))}
         onChange={(type) =>
           set((s) => {
-            s.project.template.inputs!.byIds[id].type = type;
+            if (type) s.project.template.inputs!.byIds[id].type = type as any;
           })
         }
       />
@@ -69,7 +69,7 @@ export const OneInput = ({ id }: { id: string }) => {
         type={input.type || "text"}
         label="Default Value"
         value={input.value}
-        onChange={(value) =>
+        onChange={(value: any) =>
           set((s) => {
             s.project.template.inputs!.byIds[id].value = value;
           })

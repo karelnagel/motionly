@@ -15,7 +15,7 @@ export const RightPanel = () => {
       setWidthSelector={(s) => s.rightSetWidth}
     >
       {comp && tabData && (
-        <div className="grid grid-cols-2 gap-2 w-auto ">
+        <div className="grid gap-2 w-auto ">
           {"inputs" in tabData && (
             <Inputs inputs={tabData.inputs as UserInput<ComponentProps>[]} />
           )}

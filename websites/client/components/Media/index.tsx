@@ -1,19 +1,11 @@
 import { useState } from "react";
 import { trpc } from "../../app/ClientProvider";
 import { MediaType } from "../../types";
-import { useAlerts } from "../Alert";
 import { FileUploadButton } from "../FileUploadButton";
+import { InputProps } from "../inputs";
 import { Popup } from "../Popup";
 
-export const Media = ({
-  value,
-  onChange,
-  type,
-}: {
-  value: string;
-  onChange: (val: string) => void;
-  type: MediaType;
-}) => {
+export const Media = ({ value, onChange, type }: InputProps<string>) => {
   const [show, setShow] = useState(false);
 
   return (
@@ -28,7 +20,7 @@ export const Media = ({
         <MediaPopup
           value={value}
           onChange={onChange}
-          type={type}
+          type={type as MediaType}
           hide={() => setShow(false)}
         />
       )}
@@ -41,12 +33,11 @@ export const MediaPopup = ({
   type,
   hide,
 }: {
-  value: string;
-  onChange: (val: string) => void;
+  value?: string;
+  onChange: (val?: string) => void;
   type: MediaType;
   hide: () => void;
 }) => {
-  const alert = useAlerts((s) => s.addAlert);
   const { data: media } = trpc.media.getAll.useQuery({});
 
   return (
@@ -74,7 +65,7 @@ export const MediaPopup = ({
                 ) : (
                   <video src={file.url} className=" h-20" />
                 )}
-                {value.includes(file.url!) && (
+                {value?.includes(file.url!) && (
                   <p className="absolute font-bold bg-base-200 h-full w-full flex items-center justify-center bg-opacity-50">
                     Selected
                   </p>

@@ -10,6 +10,7 @@ export type UserInput<T> = {
   if?: (comp: T) => boolean;
   options?: { value: string; label: string }[];
 };
+
 export const Inputs = ({ inputs }: { inputs: UserInput<ComponentProps>[] }) => {
   const comp = useComponent();
   if (!comp) return null;
@@ -25,7 +26,7 @@ export const Inputs = ({ inputs }: { inputs: UserInput<ComponentProps>[] }) => {
             type={type}
             label={label || prop}
             value={(comp as any)[prop]}
-            onChange={(value) =>
+            onChange={(value: any) =>
               setComp((c: any) => {
                 c[prop] = value;
               })

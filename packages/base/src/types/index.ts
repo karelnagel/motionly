@@ -105,7 +105,6 @@ export const InputTypes = z.enum([
   "textarea",
   "select",
   "style",
-  "animations",
   "stringArray",
 ]);
 export type InputTypes = z.infer<typeof InputTypes>;

@@ -1,7 +1,7 @@
 import { TextAlign, TextStyle } from "@motionly/base";
 import { getAvailableFonts } from "@remotion/google-fonts";
-import { VariableInput } from ".";
-import { UserInput } from "./Inputs";
+import { InputProps, VariableInput } from "..";
+import { UserInput } from "../Inputs";
 
 export const inputs: UserInput<TextStyle>[] = [
   {
@@ -61,14 +61,10 @@ export const inputs: UserInput<TextStyle>[] = [
 ];
 
 export const TextStyleInput = ({
-  style,
-  setStyle,
+  value,
+  onChange,
   prop,
-}: {
-  style: TextStyle;
-  setStyle: (s: TextStyle) => void;
-  prop?: string;
-}) => {
+}: InputProps<TextStyle>) => {
   return (
     <div className="w-full col-span-2">
       {inputs.map((input) => (
@@ -77,11 +73,11 @@ export const TextStyleInput = ({
           type={input.type}
           prop={`${prop}.${input.prop}`}
           label={input.label}
-          value={style[input.prop]}
-          onChange={(value) => {
-            setStyle({
-              ...style,
-              [input.prop]: value,
+          value={value?.[input.prop] as any}
+          onChange={(style: any) => {
+            onChange({
+              ...value,
+              [input.prop]: style,
             });
           }}
           options={input.options}
