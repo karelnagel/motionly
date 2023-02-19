@@ -6,5 +6,5 @@ import { appRouter } from "./api/root";
 export const openApiDocument = generateOpenApiDocument(appRouter, {
   title: "tRPC OpenAPI",
   version: "1.0.0",
-  baseUrl: `${env.NEXTAUTH_URL}/api/`,
+  baseUrl: `${env.NEXT_PUBLIC_URL}/api/`,
 });

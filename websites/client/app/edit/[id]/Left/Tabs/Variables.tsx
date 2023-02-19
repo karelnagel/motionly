@@ -1,5 +1,5 @@
-import { inputTypes } from "@motionly/base";
-import { Input } from "../../../../../components/inputs";
+import { InputTypes } from "@motionly/base";
+import { VariableInput } from "../../../../../components/inputs";
 import { getRandomId } from "../../../../../helpers";
 import { useProject } from "../../../../../hooks/useProject";
 
@@ -41,7 +41,7 @@ export const OneInput = ({ id }: { id: string }) => {
 
   return (
     <div className="w-full">
-      <Input
+      <VariableInput
         type="text"
         label="Label"
         value={input.label}
@@ -51,13 +51,13 @@ export const OneInput = ({ id }: { id: string }) => {
           })
         }
       />
-      <Input
+      <VariableInput
         type="select"
         label="Type"
         value={input.type}
-        options={Object.entries(inputTypes).map(([value, label]) => ({
+        options={InputTypes.options.map((value) => ({
           value,
-          label,
+          label: value,
         }))}
         onChange={(type) =>
           set((s) => {
@@ -65,7 +65,7 @@ export const OneInput = ({ id }: { id: string }) => {
           })
         }
       />
-      <Input
+      <VariableInput
         type={input.type || "text"}
         label="Default Value"
         value={input.value}

@@ -1,4 +1,4 @@
-import { Login } from "../../../components/Login";
+import { redirect } from "next/navigation";
 import { getProject } from "../../../lib/getProject";
 import { getServerSession } from "../../../lib/getServerSession";
 import { ClientPageWrapper } from "./ClientPage";
@@ -12,13 +12,9 @@ export default async function Page({
 }) {
   if (!id) return <div>Wrong id!</div>;
   const session = await getServerSession();
-  if (!session?.user)
-    return (
-      <div className="h-full w-full flex flex-col items-center justify-center">
-        <p className="text-3xl font-bold">Not logged in</p>
-        <Login />
-      </div>
-    );
+  if (!session?.user) {
+    redirect("/login?redirect=/edit/" + id);
+  }
 
   const project = await getProject(id);
   if (!project) return <div>Template not found!</div>;

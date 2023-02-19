@@ -29,7 +29,7 @@ export function ClientPageWrapper({ project }: { project: Project }) {
 export function ClientPage() {
   const id = useProject((t) => t.project.id);
   return (
-    <div className="bg-base-300 w-screen h-screen overflow-hidden">
+    <div className="bg-base-200 w-screen h-screen overflow-hidden">
       <div className="flex md:hidden flex-col items-center justify-center h-full space-y-3">
         <p>The editor is not meant to be used on a phone!</p>
         <Link href={`/templates/${id}`} className="btn btn-primary">

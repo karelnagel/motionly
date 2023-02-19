@@ -1,11 +1,10 @@
-import { SelectedContext } from "@motionly/components";
 import { useRef } from "react";
 import { useShiftKey } from "../../../../hooks/useShiftKey";
 import Moveable from "react-moveable";
-import { Player as MotionlyPlayer } from "@motionly/player";
 import { useProject } from "../../../../hooks/useProject";
 import { useComponent } from "../../../../hooks/useComponent";
-
+import React from "react";
+import { Player as MotionlyPlayer } from "@motionly/player";
 export const Player = () => {
   const template = useProject((t) => t.project.template);
   const comp = useComponent();
@@ -42,17 +41,16 @@ export const Player = () => {
         position: "relative",
       }}
     >
-      <SelectedContext.Provider
-        value={{ divRef, setSelected, selected: comp?.id || "" }}
-      >
-        <MotionlyPlayer
-          ref={(ref) => setPlayerRef?.(ref || undefined)}
-          template={template}
-          style={{ width: "100%", height: "100%" }}
-          spaceKeyToPlayOrPause
-          loop
-        />
-      </SelectedContext.Provider>
+      <MotionlyPlayer
+        ref={(ref) => setPlayerRef?.(ref || undefined)}
+        template={template}
+        style={{ width: "100%", height: "100%" }}
+        spaceKeyToPlayOrPause
+        loop
+        selectedRef={divRef}
+        selected={comp?.id || ""}
+        setSelected={setSelected}
+      />
       {comp && (
         <Moveable
           target={divRef}

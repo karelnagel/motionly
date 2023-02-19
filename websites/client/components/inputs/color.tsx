@@ -1,7 +1,7 @@
 import {
   BaseColor,
   Color,
-  ColorInterpolate,
+  InterpolateColor,
   GradientColor,
 } from "@motionly/base";
 import { useState } from "react";
@@ -84,8 +84,8 @@ export const InterpolateColorInput = ({
   value,
   onChange,
 }: {
-  value: ColorInterpolate;
-  onChange: (value?: ColorInterpolate) => void;
+  value: InterpolateColor;
+  onChange: (value?: InterpolateColor) => void;
 }) => {
   return (
     <div className="flex flex-col space-y-2">

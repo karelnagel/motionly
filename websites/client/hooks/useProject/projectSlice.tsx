@@ -67,8 +67,13 @@ export const projectSlice = (
         }, 3000);
       });
     }
-
+    const prevProject = get().project;
     setStore(s);
+    try {
+      Project.parse(get().project);
+    } catch {
+      setStore({ project: prevProject });
+    }
   };
   return {
     project,

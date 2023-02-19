@@ -1,26 +1,25 @@
 import { MediaTab } from "../../../../../components/MediaTab";
-import { useEffect } from "react";
 import { useProject } from "../../../../../hooks/useProject";
 import { getRandomId } from "../../../../../helpers";
 import Link from "next/link";
+import { trpc } from "../../../../ClientProvider";
 import { useFiles } from "../../../../../hooks/useFiles";
 
 export default function Stock() {
   const setTab = useProject((t) => t.leftSetTab);
   const addComp = useProject((s) => s.addComp);
-  const media = useFiles((s) => s.stockMedia);
   const query = useFiles((s) => s.stockQuery);
-  const setQuery = useFiles((s) => s.setStockQuery);
-  const fetchStock = useFiles((s) => s.fetchStock);
   const mediaType = useFiles((s) => s.mediaType);
+  const setQuery = useFiles((s) => s.setStockQuery);
 
-  useEffect(() => {
-    fetchStock();
-  }, [mediaType]);
+  const { data: stock, refetch } = trpc.stock.get.useQuery({
+    type: mediaType,
+    query,
+  });
 
   const onSubmit = (e: any) => {
     e.preventDefault();
-    fetchStock();
+    refetch();
   };
   const add = (src: string) => {
     addComp({
@@ -47,7 +46,7 @@ export default function Stock() {
         </form>
 
         <div className="flex flex-col space-y-4 h-full">
-          {media?.map(({ logo, media, url }, i) => (
+          {stock?.results?.map(({ logo, media, url }, i) => (
             <div key={i} className="space-y-2">
               <Link href={url} target="_blank">
                 <img src={logo} className="h-8" />

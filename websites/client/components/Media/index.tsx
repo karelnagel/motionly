@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useFiles } from "../../hooks/useFiles";
+import { useState } from "react";
+import { trpc } from "../../app/ClientProvider";
 import { MediaType } from "../../types";
 import { useAlerts } from "../Alert";
 import { FileUploadButton } from "../FileUploadButton";
@@ -47,17 +47,7 @@ export const MediaPopup = ({
   hide: () => void;
 }) => {
   const alert = useAlerts((s) => s.addAlert);
-  const fetch = useFiles((s) => s.fetch);
-  const files = useFiles((s) => s.files.filter((f) => f.type === type));
-
-  const getFiles = async () => {
-    const files = await fetch();
-    if (!files) return alert("Error getting files", "error");
-  };
-
-  useEffect(() => {
-    getFiles();
-  }, []);
+  const { data: media } = trpc.media.getAll.useQuery({});
 
   return (
     <Popup hide={hide}>
@@ -72,8 +62,8 @@ export const MediaPopup = ({
         <FileUploadButton onChange={onChange} />
         <p className="text-xl font-semibold mt-4">Select from existing</p>
         <div className="grid grid-cols-3 md:grid-cols-5 gap-2 max-h-60 overflow-auto">
-          {files.length ? (
-            files.map((file) => (
+          {media?.files.length ? (
+            media.files.map((file) => (
               <div
                 key={file.url}
                 onClick={() => onChange(file.url!)}

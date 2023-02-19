@@ -1,5 +1,6 @@
 import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
+import { env } from "../../env.mjs";
 
 export const config = {
   runtime: "edge",
@@ -35,33 +36,18 @@ export default function handler(req: NextRequest) {
           >
             <img
               alt="Motionly"
-              height={140}
-              src={`${process.env.NEXT_PUBLIC_URL}/logo.png`}
-              width={140}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              justifyItems: "center",
-            }}
-          >
-            <img
-              alt="Motionly"
-              height={120}
-              src={`${process.env.NEXT_PUBLIC_URL}/motionly.png`}
-              width={700}
+              height={100}
+              src={`${env.NEXT_PUBLIC_URL}/motionly.png`}
+              width={400}
+              style={{ objectFit: "contain" }}
             />
           </div>
           <div
             style={{
               fontSize: 80,
               fontStyle: "normal",
-              letterSpacing: "-0.025em",
               color: "white",
-              marginTop: 30,
+              marginTop: 0,
               padding: "0 120px",
               lineHeight: 1.4,
               whiteSpace: "pre-wrap",

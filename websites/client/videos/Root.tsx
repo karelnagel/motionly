@@ -32,9 +32,7 @@ export const Root: React.FC = () => {
         height={template.height}
         defaultProps={{
           comps: template.comps || [],
-          childIds: template.childIds,
           bg: template.bg,
-          isSequence: template.isSequence,
         }}
       />
     </>

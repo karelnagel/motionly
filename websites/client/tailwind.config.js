@@ -5,13 +5,13 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./app/**/*.{js,ts,jsx,tsx}",
   ],
+  mode: "jit",
   theme: {
     extend: {
       colors: {
         "base-content-2": "#FFFFFF",
       },
       fontFamily: {
-        montserrat: ["Montserrat", "sans-serif"]
       },
       colors: {
         "list-title": "#4B5563",
@@ -23,13 +23,14 @@ module.exports = {
     themes: [
       {
         mytheme: {
-          primary: "#5FBFF9",
+          primary: "#375fff",
+          "primary-content": "#ffffff",
           secondary: "#A276FF",
           accent: "#16BAC5",
           neutral: "#FFFFFF",
-          "base-100": "#171717",
-          "base-200": "#202020",
-          "base-300": "#282929",
+          "base-100": "#111111",
+          "base-200": "#1e1e1e",
+          "base-300": "#252525",
           "base-content": "#EFE9F4",
           info: "#3ABFF8",
           success: "#36D399",

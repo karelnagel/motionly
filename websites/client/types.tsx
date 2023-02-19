@@ -12,32 +12,20 @@ export const RenderProgress = z.object({
   fileUrl: z.string().nullable(),
 });
 export type RenderProgress = z.infer<typeof RenderProgress>;
-export const Template = z.object({
-  width: z.number(),
-  height: z.number(),
-  fps: z.number(),
-  duration: z.number(),
-  inputs: z.any(),
-  components: z.any(),
-  bg: z.any(),
-  childIds: z.array(z.string()),
-  templateInputs: z.any(),
-  isSequence: z.boolean().optional(),
-  comps: z.any(),
-});
+
 export const Project = z.object({
-  template: Template,
+  template: TemplateType,
   name: z.string(),
   description: z.string(),
+  tags: z.array(z.string()),
   preview: z.string().optional(),
   public: z.boolean().optional(),
   id: z.string().optional(),
   isOwner: z.boolean().optional(),
 });
 
-export type Project = Omit<z.infer<typeof Project>, "template"> & {
-  template: TemplateType;
-};
+export type Project = z.infer<typeof Project>;
+
 export const MediaType = z.enum(["VIDEO", "IMAGE", "AUDIO", "GIF"]);
 export const MediaTypeLabels: { [key in MediaType]: string } = {
   VIDEO: "Video",
@@ -46,3 +34,41 @@ export const MediaTypeLabels: { [key in MediaType]: string } = {
   GIF: "GIF",
 };
 export type MediaType = z.infer<typeof MediaType>;
+
+export const ImageFormat = z.enum(["jpeg", "png"]);
+export type ImageFormat = z.infer<typeof ImageFormat>;
+
+export const Transcript = z.object({
+  text: z.string(),
+  start: z.number(),
+  end: z.number(),
+  speaker: z.number().optional(),
+});
+export type Transcript = z.infer<typeof Transcript>;
+export const TranscriptionStatus = z.enum([
+  "COMPLETED",
+  "FAILED",
+  "PROCESSING",
+]);
+export type TranscriptionStatus = z.infer<typeof TranscriptionStatus>;
+export const Transcription = z.object({
+  id: z.string(),
+  status: TranscriptionStatus,
+  text: z.string().nullable(),
+  transcript: z.array(Transcript).nullable(),
+  language: z.string().nullable(),
+  persons: z.number().nullable(),
+  fileId: z.string(),
+});
+export type Transcription = z.infer<typeof Transcription>;
+
+export const UserFile = z.object({
+  id: z.string(),
+  name: z.string(),
+  type: MediaType,
+  url: z.string().url(),
+});
+export type UserFile = z.infer<typeof UserFile>;
+export const FileWithTranscription = UserFile.extend({
+  transcription: Transcription.optional(),
+});

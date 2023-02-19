@@ -20,7 +20,6 @@ export const svgStyle: CSSProperties = {
 export const defaultMockupProps: MockupProps = {
   comp: "mockup",
   type: "iphone",
-  isSequence: true,
   childIds: [],
 };
 
@@ -68,7 +67,6 @@ const mockups: {
 export const Mockup = ({
   type,
   bg,
-  isSequence,
   comps,
 }: MockupProps & StyleAndClass) => {
   const background = useColor(bg);
@@ -87,7 +85,7 @@ export const Mockup = ({
           background,
         }}
       >
-        <Children comps={comps} isSequence={isSequence} />
+        <Children comps={comps} isSequence={false} />
       </div>
       {type === "iphone" && <Iphone />}
       {type === "ipad" && <IPad />}

@@ -1,9 +1,8 @@
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import { type Session } from "next-auth";
 import { getServerAuthSession } from "../auth";
-import { prisma } from "../db";
+import prisma from "../db";
 import { OpenApiMeta } from "trpc-openapi";
-import crypto from "crypto";
 
 type CreateContextOptions = {
   session: Session | null;
@@ -20,7 +19,7 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
   const { req, res } = opts;
   const key = req.headers["x-api-key"] as string;
   if (key) {
-    const hash = crypto.createHash("md5").update(key).digest("hex");
+    const hash = hashString(key);
     const apiKey = await prisma.apiKey.findUnique({
       where: { hash },
       include: { user: true },
@@ -37,6 +36,7 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
 };
 
 import { initTRPC, TRPCError } from "@trpc/server";
+import { hashString } from "../../helpers/hash";
 
 const t = initTRPC
   .meta<OpenApiMeta>()

@@ -16,7 +16,7 @@ const differentComps = {
   video: "Video",
 };
 
-export const SearchBar = ({ value, comp }: { value: string; comp: string }) => {
+export const SearchBar = ({ value, comp }: { value?: string; comp?: string }) => {
   const [search, setSearch] = useState(value);
   const [hasComp, setHasComp] = useState(comp);
   const pathName = usePathname();
@@ -34,19 +34,19 @@ export const SearchBar = ({ value, comp }: { value: string; comp: string }) => {
   return (
     <form
       onSubmit={submit}
-      className="my-3 flex  justify-between flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2 md:items-center"
+      className="my-3 flex justify-between flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-2 md:items-center"
     >
       <input
         type="text"
         placeholder="Search"
-        className="rounded-lg w-full px-4 py-3 bg-base-100 shadow-lg leading-none"
+        className="input input-bordered w-full"
         value={search}
         onChange={(e) => setSearch(e.currentTarget.value)}
       />
       <select
         value={hasComp}
         onChange={(e) => setHasComp(e.target.value)}
-        className="rounded-lg px-4 py-3 bg-base-100 shadow-lg leading-none"
+        className="select select-bordered "
       >
         <option value="">Has component</option>
         {Object.entries(differentComps).map(([key, value]) => (

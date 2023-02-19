@@ -23,7 +23,7 @@ export const PanelDiv = ({
         style={{
           width: !hide ? width : 0,
         }}
-        className="h-full bg-base-300 relative"
+        className="h-full bg-base-100 relative"
       >
         <div className="absolute top-0 left-0 flex p-3 w-full flex-col h-full overflow-auto">
           {children}

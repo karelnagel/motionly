@@ -23,6 +23,7 @@ const emptyProject: Project = {
   name: "Empty",
   description: "This is an empty template",
   template,
+  tags: [],
 };
 export const Clone = ({
   children,
@@ -37,19 +38,20 @@ export const Clone = ({
   const alert = useAlerts((s) => s.addAlert);
   const postNewProject = trpc.projects.new.useMutation({});
   const clone = async () => {
-    const newProject = await postNewProject.mutateAsync({
-      ...project,
-      id: undefined,
-      name: `${project.name}`,
-      template: project.template,
-    });
+    const newProject = await postNewProject.mutateAsync(project);
     if (!newProject) return alert("Failed to clone template", "error");
     router.push(`/edit/${newProject.id}`);
     alert("Cloned template", "success");
   };
 
   return (
-    <div className={className} onClick={clone}>
+    <div
+      className={className}
+      onClick={(e) => {
+        e.stopPropagation();
+        clone();
+      }}
+    >
       {children}
     </div>
   );

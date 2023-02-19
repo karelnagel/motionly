@@ -1,16 +1,15 @@
-import { useEffect } from "react";
 import { FileUploadButton } from "../../../../../components/FileUploadButton";
 import { MediaTab } from "../../../../../components/MediaTab";
 import { getRandomId } from "../../../../../helpers";
 import { useFiles } from "../../../../../hooks/useFiles";
 import { useProject } from "../../../../../hooks/useProject";
+import { trpc } from "../../../../ClientProvider";
 
 export default function Media() {
   const setTab = useProject((t) => t.leftSetTab);
   const mediaType = useFiles((t) => t.mediaType);
-  const files = useFiles((t) => t.files.filter((f) => f.type === t.mediaType));
   const addComp = useProject((s) => s.addComp);
-  const fetch = useFiles((s) => s.fetch);
+  const { data: media } = trpc.media.getAll.useQuery({ type: mediaType });
 
   const add = (src: string) => {
     addComp({
@@ -20,21 +19,14 @@ export default function Media() {
       objectFit: "cover",
     });
   };
-  
-  useEffect(() => {
-    fetch();
-  }, []);
+
   return (
     <div className="flex flex-col w-full justify-between h-full">
       <div>
         <MediaTab />
         <div className="grid grid-cols-3 gap-2">
-          {files.map((file) => (
-            <div
-              key={file.name}
-              onClick={() => add(file.url)}
-              className="w-full"
-            >
+          {media?.files.map((file, i) => (
+            <div key={i} onClick={() => add(file.url)} className="w-full">
               {(file.type === "IMAGE" || file.type === "GIF") && (
                 <img src={file.url} className="aspect-square object-cover" />
               )}

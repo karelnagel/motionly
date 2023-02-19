@@ -18,13 +18,14 @@ export const LeftBar = () => {
       }
     >
       <div className="flex flex-col">
-        <Link href="/" className="p-2">
+        <Link href="/templates" className="p-2">
           <Image
             src="/logo.png"
             alt="logo"
             className=""
-            width={50}
-            height={50}
+            width={120}
+            height={120}
+            priority
           />
         </Link>
         <div className="flex flex-col w-full space-y-4">

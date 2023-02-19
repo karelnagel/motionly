@@ -11,18 +11,19 @@ datasource db {
 }
 
 model Account {
-  id                String  @id @default(cuid())
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String? @db.Text
-  session_state     String?
+  id                       String  @id @default(cuid())
+  userId                   String
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
+  refresh_token_expires_in Int?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -72,6 +73,7 @@ model Project {
   id          String    @id @default(cuid())
   name        String    @default("")
   description String    @default("")
+  tags        String[]  @default([])
   preview     String?
   template    Json
   createdAt   DateTime? @default(now())
@@ -79,6 +81,10 @@ model Project {
   public      Boolean   @default(false)
   userId      String
   user        User      @relation(fields: [userId], references: [id])
+  renders     Render[]
+  cloneOfId   String?
+  cloneOf     Project?  @relation("Clone", fields: [cloneOfId], references: [id])
+  clones      Project[] @relation("Clone")
 }
 
 enum FileType {
@@ -139,6 +145,8 @@ model Render {
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
   type      RenderType
-  userId    String
+  userId    String?
   user      User?        @relation(fields: [userId], references: [id])
+  projectId String?
+  project   Project?     @relation(fields: [projectId], references: [id])
 }

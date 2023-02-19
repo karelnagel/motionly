@@ -21,54 +21,63 @@ export const defaultShapeProps: ShapeProps = {
   direction: "down",
 };
 
-export const Shape = (props: ShapeProps) => {
+export const Shape = ({
+  strokeWidth = 0,
+  edgeRoundness,
+  cornerRadius,
+  width,
+  height,
+  direction,
+  ...props
+}: ShapeProps) => {
   const fill = useColor(props.fill);
   const stroke = useColor(props.stroke);
+
   if (props.type === "triangle")
     return (
       <Triangle
-        length={Math.min(props.width, props.height) - props.strokeWidth * 2}
-        direction={props.direction || "up"}
+        length={Math.min(width, height) - strokeWidth * 2}
+        direction={direction || "up"}
         fill={fill}
         stroke={stroke}
-        strokeWidth={props.strokeWidth}
-        edgeRoundness={props.edgeRoundness}
+        strokeWidth={strokeWidth}
+        edgeRoundness={edgeRoundness}
         cornerRadius={
-          props.edgeRoundness === undefined ? props.cornerRadius : undefined
+          edgeRoundness === undefined ? cornerRadius : undefined
         }
       />
     );
   if (props.type === "rect")
     return (
       <Rect
-        height={props.height - props.strokeWidth * 2}
-        width={props.width - props.strokeWidth * 2}
+        height={height - strokeWidth * 2}
+        width={width - strokeWidth * 2}
         fill={fill}
         stroke={stroke}
-        strokeWidth={props.strokeWidth}
-        edgeRoundness={props.edgeRoundness}
+        strokeWidth={strokeWidth}
+        edgeRoundness={edgeRoundness}
         cornerRadius={
-          props.edgeRoundness === undefined ? props.cornerRadius : undefined
+          edgeRoundness === undefined ? cornerRadius : undefined
         }
       />
     );
   else if (props.type === "circle")
     return (
       <Circle
-        radius={Math.min(props.width, props.height) / 2 - props.strokeWidth}
+        radius={Math.min(width, height) / 2 - strokeWidth}
         fill={fill}
         stroke={stroke}
-        strokeWidth={props.strokeWidth}
+        strokeWidth={strokeWidth}
       />
     );
   else if (props.type === "ellipse")
     return (
       <Ellipse
-        rx={props.width / 2 - props.strokeWidth}
-        ry={props.height / 2 - props.strokeWidth}
+        rx={width / 2 - strokeWidth}
+        ry={height / 2 - strokeWidth}
         fill={fill}
         stroke={stroke}
-        strokeWidth={props.strokeWidth}
+        strokeWidth={strokeWidth}
       />
     );
   return null;

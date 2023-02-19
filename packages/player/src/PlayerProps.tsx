@@ -16,4 +16,7 @@ export type PlayerProps = {
   style?: CSSProperties;
   className?: string;
   template: TemplateType;
+  setSelected?: (id: string) => void;
+  selected?: string;
+  selectedRef?: React.RefObject<HTMLDivElement>;
 };

@@ -1,11 +1,10 @@
-import { AnimationProps, animationProps, animationTypes } from "@motionly/base";
+import { AnimationProps, animationProps, AnimationTypes } from "@motionly/base";
 import { useState } from "react";
-import { BsGraphUp } from "react-icons/bs";
 import { IoIosTrash } from "react-icons/io";
-import { MdOutlineAutoGraph } from "react-icons/md";
-import { Input } from "../../../../../../components/inputs";
+import { VariableInput } from "../../../../../../components/inputs";
 import { ShowHide } from "../../../../../../components/ShowHide";
 import { useProject } from "../../../../../../hooks/useProject";
+import { allAnimations } from "../../../../../../videos/animations";
 
 export const OneAnimation = ({ id }: { id: string }) => {
   const [show, setShow] = useState(false);
@@ -58,7 +57,7 @@ export const OneAnimation = ({ id }: { id: string }) => {
       </div>
       {show && (
         <div className="grid grid-cols-7 gap-1 relative">
-          <Input
+          <VariableInput
             type="select"
             label="Prop"
             className="col-span-3"
@@ -68,14 +67,14 @@ export const OneAnimation = ({ id }: { id: string }) => {
                 a.prop = prop as keyof typeof animationProps;
               })
             }
-            options={Object.entries(animationProps).map(
+            options={Object.entries(allAnimations).map(
               ([value, { label }]) => ({
                 value,
                 label,
               })
             )}
           />
-          <Input
+          <VariableInput
             type="number"
             className="col-span-2"
             label="Start (s)"
@@ -87,7 +86,7 @@ export const OneAnimation = ({ id }: { id: string }) => {
             }
             value={animation.start}
           />
-          <Input
+          <VariableInput
             type="number"
             className="col-span-2"
             label="Duration (s)"
@@ -100,23 +99,23 @@ export const OneAnimation = ({ id }: { id: string }) => {
             }
             value={animation.duration}
           />
-          <Input
+          <VariableInput
             type="select"
             label="Type"
             className="col-span-3"
             value={animation.type}
             onChange={(type_) =>
               setAnimation((c) => {
-                c.type = type_ as keyof typeof animationTypes;
+                c.type = type_ as AnimationTypes;
               })
             }
-            options={Object.entries(animationTypes).map(([value, label]) => ({
+            options={Object.entries(allAnimations).map(([value, label]) => ({
               value,
               label,
             }))}
           />
 
-          <Input
+          <VariableInput
             type="number"
             className="col-span-2"
             prop={`animations.byIds.${id}.from`}
@@ -128,7 +127,7 @@ export const OneAnimation = ({ id }: { id: string }) => {
             }
             value={animation.from}
           />
-          <Input
+          <VariableInput
             type="number"
             className="col-span-2"
             label={`To ${units ? `(${units})` : ""}`}
@@ -211,7 +210,7 @@ export const OneAnimation = ({ id }: { id: string }) => {
         />
       )} */}
           {(animation.prop === "text" || animation.prop === "number") && (
-            <Input
+            <VariableInput
               type="text"
               label="Variable"
               className="col-span-3"
@@ -226,7 +225,7 @@ export const OneAnimation = ({ id }: { id: string }) => {
             />
           )}
           {animation.prop === "text" && (
-            <Input
+            <VariableInput
               type="text"
               label="Value"
               className="col-span-4"

@@ -1,4 +1,4 @@
-import { AudiogramPosition, AudiogramProps } from "@motionly/base";
+import { JustifyContent, AudiogramProps } from "@motionly/base";
 import { Component } from ".";
 import { BsSoundwave } from "react-icons/bs";
 
@@ -14,7 +14,7 @@ export const audiogram: Component<AudiogramProps> = {
     {
       prop: "position",
       type: "select",
-      options: Object.entries(AudiogramPosition).map(([value, label]) => ({
+      options: Object.entries(JustifyContent).map(([value, label]) => ({
         value,
         label,
       })),

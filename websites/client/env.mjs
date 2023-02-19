@@ -14,6 +14,8 @@ const server = z.object({
   ),
   GOOGLE_CLIENT_ID: z.string(),
   GOOGLE_CLIENT_SECRET: z.string(),
+  GITHUB_CLIENT_ID: z.string(),
+  GITHUB_CLIENT_SECRET: z.string(),
   REMOTION_AWS_FUNCTION_NAME: z.string(),
   REMOTION_AWS_ACCESS_KEY_ID: z.string(),
   REMOTION_AWS_SECRET_ACCESS_KEY: z.string(),
@@ -26,10 +28,11 @@ const server = z.object({
   PEXELS_API_KEY: z.string(),
   PIXABY_API_KEY: z.string(),
   OPENAI_API_KEY: z.string(),
+  EMAIL_ACCESS_KEY: z.string().min(1),
 });
 
 const client = z.object({
-  // NEXT_PUBLIC_CLIENTVAR: z.string().min(1),
+  NEXT_PUBLIC_URL: z.string().min(1),
 });
 
 /**
@@ -44,6 +47,8 @@ const processEnv = {
   NEXTAUTH_URL: process.env.NEXTAUTH_URL,
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+  GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+  GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
   REMOTION_AWS_FUNCTION_NAME: process.env.REMOTION_AWS_FUNCTION_NAME,
   REMOTION_AWS_ACCESS_KEY_ID: process.env.REMOTION_AWS_ACCESS_KEY_ID,
   REMOTION_AWS_SECRET_ACCESS_KEY: process.env.REMOTION_AWS_SECRET_ACCESS_KEY,
@@ -56,6 +61,8 @@ const processEnv = {
   PEXELS_API_KEY: process.env.PEXELS_API_KEY,
   PIXABY_API_KEY: process.env.PIXABY_API_KEY,
   OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+  NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
+  EMAIL_ACCESS_KEY: process.env.EMAIL_ACCESS_KEY,
 };
 
 const merged = server.merge(client);
