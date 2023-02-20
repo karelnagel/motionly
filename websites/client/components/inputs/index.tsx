@@ -31,7 +31,7 @@ export function VariableInput({
   const isDivider = props.label?.includes("divider");
   return (
     <div className={`grid grid-cols-4 w-full ${className}`}>
-      {!isDivider && (
+      {!isDivider && props.label && (
         <div
           className={`shrink-0 flex items-center ${tooltip ? "tooltip" : ""}`}
           data-tip={tooltip}
@@ -48,7 +48,7 @@ export function VariableInput({
           {props.label && <span className="label-text">{props.label}</span>}
         </div>
       )}
-      <div className={`w-full ${isDivider ? "col-span-4" : "col-span-3"}`}>
+      <div className={`w-full ${!props.label || isDivider  ? "col-span-4" : "col-span-3"}`}>
         {isDivider && (
           <div>
             <div className="divider" />
