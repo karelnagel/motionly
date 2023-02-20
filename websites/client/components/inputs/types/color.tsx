@@ -21,7 +21,7 @@ function Select({
 }) {
   return (
     <select
-      className="select select-bordered select-sm bg-base-200"
+      className="select select-bordered select-sm bg-base-200 w-full"
       value={type}
       onChange={(e) => onChange(e.target.value as Colors)}
     >

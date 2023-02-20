@@ -22,7 +22,7 @@ export default function Template() {
   return (
     <div className="flex flex-col justify-between h-full w-full overflow-auto">
       <div className="flex flex-col space-y-2 items-center">
-        <div className="w-full grid grid-cols-2 gap-x-1">
+        <div className="w-full space-y-2">
           <VariableInput
             type="textarea"
             label="Description"

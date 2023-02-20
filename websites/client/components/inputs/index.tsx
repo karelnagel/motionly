@@ -1,7 +1,6 @@
 "use client";
 
 import { Color, TextStyle, VariableTypes } from "@motionly/base";
-import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { MediaInput } from "./types/media";
 import { useProject } from "../../hooks/useProject";
 import { ColorInput } from "./types/color";
@@ -9,7 +8,6 @@ import { useComponent } from "../../hooks/useComponent";
 import { VariableSelect } from "./VariableSelect";
 import { TextStyleInput } from "./types/textStyle";
 import { StringArray } from "./types/StringArray";
-import { useState } from "react";
 import { CheckBoxInput } from "./types/checkbox";
 import { NumberInput } from "./types/number";
 import { TextAreaInput } from "./types/textarea";
@@ -22,8 +20,7 @@ export function VariableInput({
   ...props
 }: Input & { className?: string; tooltip?: string }) {
   const { type, value } = props;
-  const setSelected = useProject((t) => t.setSelected);
-  const setComp = useProject((t) => t.setComp);
+  const setSelected = useProject((t) => t.leftSetTab);
   const comp = useComponent();
   const variableId = comp?.compVariables?.find(
     (i) => i.prop === props.prop
@@ -31,48 +28,48 @@ export function VariableInput({
   const variable = useProject((t) =>
     variableId ? t.project.template.variables?.byIds[variableId] : undefined
   );
-  const [show, setShow] = useState(false);
+  const isDivider = props.label?.includes("divider");
   return (
-    <div className={`${className}`}>
-      <div
-        className={`${props.label ? "label" : ""} ${tooltip ? "tooltip" : ""}`}
-        data-tip={tooltip}
-      >
-        {props.label && <span className="label-text">{props.label}</span>}
-        {props.prop && !variable ? (
-          <div className="dropdown dropdown-bottom dropdown-end">
-            <IoIosAdd
-              tabIndex={0}
-              className="cursor-pointer"
-              onClick={() => setShow(!show)}
+    <div className={`grid grid-cols-4 w-full ${className}`}>
+      {!isDivider && (
+        <div
+          className={`shrink-0 flex items-center ${tooltip ? "tooltip" : ""}`}
+          data-tip={tooltip}
+        >
+          {props.prop && (
+            <VariableSelect
+              prop={props.prop}
+              type={type}
+              value={value}
+              label={props.label}
+              variable={!!variable}
             />
-            {show && (
-              <VariableSelect
-                prop={props.prop}
-                type={type}
-                value={value}
-                label={props.label}
-              />
-            )}
+          )}
+          {props.label && <span className="label-text">{props.label}</span>}
+        </div>
+      )}
+      <div className={`w-full ${isDivider ? "col-span-4" : "col-span-3"}`}>
+        {isDivider && (
+          <div>
+            <div className="divider" />
+            <div className="flex items-center space-x-2">
+              {props.prop && (
+                <VariableSelect
+                  prop={props.prop}
+                  type={type}
+                  value={value}
+                  label={props.label}
+                  variable={!!variable}
+                />
+              )}
+              <p>{props.label?.replace("divider", "")}</p>
+            </div>
           </div>
-        ) : (
-          <IoIosRemove
-            className="cursor-pointer"
-            onClick={() =>
-              setComp((s) => {
-                s.compVariables = s.compVariables?.filter(
-                  (i) => i.prop !== props.prop
-                );
-              })
-            }
-          />
         )}
-      </div>
-      <div>
         {variable && (
           <div
             onClick={() => setSelected("inputs")}
-            className="input input-sm input-bordered bg-primary"
+            className="input input-sm input-bordered bg-primary overflow-hidden"
           >
             {variable.label}
           </div>

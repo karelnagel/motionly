@@ -8,7 +8,7 @@ export const SelectInput = ({
   return (
     <select
       disabled={disabled}
-      className="select select-bordered select-sm bg-base-200"
+      className="select select-bordered select-sm bg-base-200 w-full"
       value={value}
       onChange={(e) => onChange(e.target.value)}
     >

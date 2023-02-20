@@ -23,7 +23,7 @@ export const text: Component<TextProps> = {
     },
     {
       prop: "textStyle",
-      label: "Text style",
+      label: "Text Styledivider",
       type: "style",
     },
   ],

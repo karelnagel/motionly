@@ -66,7 +66,7 @@ export const TextStyleInput = ({
   prop,
 }: InputProps<TextStyle>) => {
   return (
-    <div className="w-full col-span-2">
+    <div className="space-y-2">
       {inputs.map((input) => (
         <VariableInput
           key={input.prop}
