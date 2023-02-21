@@ -17,7 +17,7 @@ export const defaultTextProps: TextProps = {
     },
     fontSize: 120,
     fontFamily: "Inter",
-    fontWeight: 700,
+    fontWeight: "700",
     textAlign: "center",
   },
   text: "Hello World",

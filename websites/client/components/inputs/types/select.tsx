@@ -49,15 +49,15 @@ export const SelectOptions: { [key in SelectTypes]: { [k: string]: string } } =
       TranscriptionAnimationTypes.options.map((o) => [o, o])
     ),
     "font-weight": {
-      100: "Thin",
-      200: "Extra Light",
-      300: "Light",
-      400: "Regular",
-      500: "Medium",
-      600: "Semi Bold",
-      700: "Bold",
-      800: "Extra Bold",
-      900: "Black",
+      "100": "Thin",
+      "200": "Extra Light",
+      "300": "Light",
+      "400": "Regular",
+      "500": "Medium",
+      "600": "Semi Bold",
+      "700": "Bold",
+      "800": "Extra Bold",
+      "900": "Black",
     },
     "transform-props": Object.fromEntries(
       TransformProps.options.map((o) => [o, o])

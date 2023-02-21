@@ -24,7 +24,7 @@ export type TranscriptionWord = z.infer<typeof TranscriptionWord>;
 export const TextStyle = z.object({
   fontSize: z.number().min(0).optional(),
   fontFamily: z.string().optional(),
-  fontWeight: z.number().min(0).optional(),
+  fontWeight: z.string().min(0).optional(),
   lineHeight: z.number().min(0).max(10).optional(),
   textAlign: TextAlign.optional(),
   bg: Color.optional(),
