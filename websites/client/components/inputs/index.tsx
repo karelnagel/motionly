@@ -39,7 +39,7 @@ export function VariableInput({
         } else {
           const id = p.project.template.components[
             p.selected
-          ].compVariables?.find((i) => i.prop === props.prop)?.id;
+          ]?.compVariables?.find((i) => i.prop === props.prop)?.id;
           return id ? p.project.template.variables?.byIds[id] : undefined;
         }
       },

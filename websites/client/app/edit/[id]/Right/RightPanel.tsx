@@ -7,8 +7,9 @@ import { ComponentProps } from "@motionly/base";
 
 export const RightPanel = () => {
   const tab = useProject((t) => t.rightTab);
-  const tabData = tab ? RightTabs[tab] : undefined;
   const comp = useComponent();
+  const tabId = tab !== "component" ? tab : comp?.comp;
+  const tabData = tabId ? RightTabs[tabId] : undefined;
   return (
     <PanelDiv
       widthSelector={(s) => s.rightWidth}

@@ -26,4 +26,4 @@ export const RightTabs = {
   ...components,
 };
 
-export type RightTabs = keyof typeof RightTabs;
+export type RightTabs = "general" | "transform" | "animations" | "component";

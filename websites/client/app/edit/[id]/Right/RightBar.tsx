@@ -23,7 +23,7 @@ export const RightBar = () => {
             <Item id={"general"} hue={hue} />
             <Item id={"transform"} hue={hue} />
             <Item id={"animations"} hue={hue} />
-            <Item id={comp?.comp} hue={hue} />
+            <Item id={"component"} hue={hue} />
           </>
         )}
       </div>
@@ -34,7 +34,9 @@ export const RightBar = () => {
 const Item = ({ hue, id }: { id: RightTabs; hue: number }) => {
   const setTab = useProject((s) => s.rightSetTab);
   const tab = useProject((s) => s.rightTab);
-  const value = RightTabs[id];
+  const comp = useComponent();
+  const tabId = id !== "component" ? id : comp!.comp;
+  const value = tabId ? RightTabs[tabId] : undefined;
   if (!value) return null;
   return (
     <BarItem
