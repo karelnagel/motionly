@@ -143,7 +143,7 @@ export const media = createTRPCRouter({
           code: "BAD_REQUEST",
           message: "File not found",
         });
-        
+
       let transcription: Transcription | undefined = undefined;
       if (file.transcription) {
         if (file.transcription.status === "PROCESSING")
