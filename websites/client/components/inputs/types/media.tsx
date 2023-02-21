@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { trpc } from "../../../app/ClientProvider";
 import { MediaType } from "../../../types";
-import { FileUploadButton } from "../../FileUploadButton";
 import { InputProps } from "..";
 import { Popup } from "../../Popup";
+import { useFileUpload } from "../../../hooks/useFileUpload";
 
 export const MediaInput = ({ value, onChange, type }: InputProps<string>) => {
   const [show, setShow] = useState(false);
@@ -39,7 +39,7 @@ export const MediaPopup = ({
   hide: () => void;
 }) => {
   const { data: media } = trpc.media.getAll.useQuery({});
-
+  const { uploadFile, file, setFile, ref } = useFileUpload();
   return (
     <Popup hide={hide}>
       {type !== "VIDEO" ? (
@@ -50,7 +50,22 @@ export const MediaPopup = ({
 
       <div>
         <p className="text-xl font-semibold">Upload new file</p>
-        <FileUploadButton onChange={onChange} />
+        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 items-center">
+          <input
+            ref={ref}
+            type="file"
+            accept="image/*, video/*, audio/*"
+            className="file-input file-input-sm"
+            onChange={(e) => setFile(e.target.files?.[0])}
+          />
+          <button
+            disabled={!file}
+            className="btn btn-sm btn-primary"
+            onClick={uploadFile}
+          >
+            UPLOAD
+          </button>
+        </div>
         <p className="text-xl font-semibold mt-4">Select from existing</p>
         <div className="grid grid-cols-3 md:grid-cols-5 gap-2 max-h-60 overflow-auto">
           {media?.files.length ? (

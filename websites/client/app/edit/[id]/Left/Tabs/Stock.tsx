@@ -69,9 +69,6 @@ export default function Stock() {
         </div>
       </div>
 
-      <button className="btn btn-sm" onClick={() => setTab("media")}>
-        Upload your own
-      </button>
     </div>
   );
 }

@@ -1,16 +1,19 @@
-import { FileUploadButton } from "../../../../../components/FileUploadButton";
 import { MediaTab } from "../../../../../components/MediaTab";
 import { getRandomId } from "../../../../../helpers";
+import { getMediaUrl } from "../../../../../helpers/getMediaUrl";
 import { useFiles } from "../../../../../hooks/useFiles";
 import { useProject } from "../../../../../hooks/useProject";
+import { useFileUpload } from "../../../../../hooks/useFileUpload";
 import { trpc } from "../../../../ClientProvider";
+import { useState } from "react";
 
 export default function Media() {
-  const setTab = useProject((t) => t.leftSetTab);
+  const [youtubeUrl, setYoutubeUrl] = useState("");
   const mediaType = useFiles((t) => t.mediaType);
   const addComp = useProject((s) => s.addComp);
   const { data: media } = trpc.media.getAll.useQuery({ type: mediaType });
-
+  const { uploadFile, file, setFile, ref } = useFileUpload();
+  const { mutate: youtube, isLoading } = trpc.media.youtube.useMutation();
   const add = (src: string) => {
     addComp({
       id: getRandomId(),
@@ -25,25 +28,59 @@ export default function Media() {
       <div>
         <MediaTab />
         <div className="grid grid-cols-3 gap-2">
-          {media?.files.map((file, i) => (
-            <div key={i} onClick={() => add(file.url)} className="w-full">
-              {(file.type === "IMAGE" || file.type === "GIF") && (
-                <img src={file.url} className="aspect-square object-cover" />
-              )}
-              {file.type === "VIDEO" && (
-                <video src={file.url} className="aspect-square object-cover" />
-              )}
-              <p className="text-[12px] whitespace-nowrap overflow-hidden">
-                {file.name}
-              </p>
-            </div>
-          ))}
+          {media?.files.map((file) => {
+            const fileUrl = getMediaUrl(file.id);
+            return (
+              <div
+                key={file.id}
+                onClick={() => add(fileUrl)}
+                className="w-full"
+              >
+                {(file.type === "IMAGE" || file.type === "GIF") && (
+                  <img src={fileUrl} className="aspect-square object-cover" />
+                )}
+                {file.type === "VIDEO" && (
+                  <video src={fileUrl} className="aspect-square object-cover" />
+                )}
+                <p className="text-[12px] whitespace-nowrap overflow-hidden">
+                  {file.name}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
-      <div>
-        <FileUploadButton onChange={() => {}} />
-        <button onClick={() => setTab("stock")} className="btn btn-sm">
-          Use stock media
+      <div className="grid grid-cols-4 gap-2">
+        <input
+          type="text"
+          className="input input-bordered input-sm w-full col-span-3"
+          value={youtubeUrl}
+          placeholder="Youtube URL"
+          onChange={(e) => setYoutubeUrl(e.target.value)}
+        />
+        <button
+          className="btn btn-primary"
+          disabled={!youtubeUrl || isLoading}
+          onClick={() => {
+            setYoutubeUrl("");
+            youtube({ youtubeUrl });
+          }}
+        >
+          Use
+        </button>
+        <input
+          ref={ref}
+          type="file"
+          accept="image/*, video/*, audio/*"
+          className="file-input file-input-sm col-span-3"
+          onChange={(e) => setFile(e.target.files?.[0])}
+        />
+        <button
+          disabled={!file}
+          className="btn btn-sm btn-primary"
+          onClick={uploadFile}
+        >
+          Upload
         </button>
       </div>
     </div>
