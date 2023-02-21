@@ -10,17 +10,52 @@ export const VariableSelect = ({
   value,
   label,
   variable,
+  isTemplate,
 }: {
   prop: string;
   type: VariableTypes;
   value: any;
   label?: string;
   variable?: boolean;
+  isTemplate?: boolean;
 }) => {
   const variables = useProject((t) => t.project.template.variables);
   const set = useProject((t) => t.set);
   const setComp = useProject((t) => t.setComp);
   const [show, setShow] = useState(false);
+  const setVariable = (id: string) => {
+    if (isTemplate) {
+      set((s) => {
+        if (!s.project.template.templateVariables)
+          s.project.template.templateVariables = [];
+        s.project.template.templateVariables.push({
+          id,
+          prop,
+        });
+      });
+    } else {
+      setComp((s) => {
+        if (!s.compVariables) s.compVariables = [];
+        s.compVariables.push({
+          id,
+          prop,
+        });
+      });
+    }
+  };
+  const removeVariable = () => {
+    if (isTemplate) {
+      set((s) => {
+        s.project.template.templateVariables =
+          s.project.template.templateVariables?.filter((i) => i.prop !== prop);
+      });
+    } else {
+      setComp((s) => {
+        s.compVariables = s.compVariables?.filter((i) => i.prop !== prop);
+      });
+    }
+  };
+
   if (!variable)
     return (
       <div className="dropdown">
@@ -38,18 +73,7 @@ export const VariableSelect = ({
               const input = variables.byIds[id];
               if (input.type !== type) return null;
               return (
-                <p
-                  key={id}
-                  onClick={() =>
-                    setComp((s) => {
-                      if (!s.compVariables) s.compVariables = [];
-                      s.compVariables.push({
-                        id,
-                        prop,
-                      });
-                    })
-                  }
-                >
+                <p key={id} onClick={() => setVariable(id)}>
                   {input.label}
                 </p>
               );
@@ -69,10 +93,7 @@ export const VariableSelect = ({
                     value,
                   };
                 });
-                setComp((s) => {
-                  if (!s.compVariables) s.compVariables = [];
-                  s.compVariables.push({ id, prop });
-                });
+                setVariable(id);
               }}
             >
               Add new
@@ -82,13 +103,6 @@ export const VariableSelect = ({
       </div>
     );
   return (
-    <IoIosRemove
-      className="cursor-pointer"
-      onClick={() =>
-        setComp((s) => {
-          s.compVariables = s.compVariables?.filter((i) => i.prop !== prop);
-        })
-      }
-    />
+    <IoIosRemove className="cursor-pointer" onClick={() => removeVariable()} />
   );
 };

@@ -63,7 +63,7 @@ export const MediaPopup = ({
                 <div
                   key={file.id}
                   onClick={() => onChange(fileUrl)}
-                  className=" w-20 bg-base-300 flex flex-col items-center m-2  whitespace-nowrap text-sm overflow-hidden cursor-pointer relative"
+                  className="w-20 bg-base-300 flex flex-col items-center m-2  whitespace-nowrap text-sm overflow-hidden cursor-pointer relative"
                 >
                   {type !== "VIDEO" ? (
                     <img src={fileUrl} className=" h-20 object-contain" />

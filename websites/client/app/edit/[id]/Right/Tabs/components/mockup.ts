@@ -9,10 +9,12 @@ export const mockup: Component<MockupProps> = {
   inputs: [
     {
       prop: "type",
+      label:"Mockup type",
       type: "mockup-types",
     },
     {
       prop: "bg",
+      label:"Background",
       type: "color",
     },
   ],

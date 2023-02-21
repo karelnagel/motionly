@@ -9,42 +9,52 @@ export const audiogram: Component<AudiogramProps> = {
   inputs: [
     {
       prop: "src",
+      label: "Source",
       type: "video",
     },
     {
       prop: "position",
+      label: "Position",
       type: "justify",
     },
     {
+      label: "Bar width",
       prop: "barWidth",
       type: "number",
     },
     {
       prop: "gap",
+      label: "Gap",
       type: "number",
     },
     {
       prop: "roundness",
+      label: "Roundness",
       type: "number",
     },
     {
+      label: "Bar color",
       prop: "color",
       type: "color",
     },
     {
       prop: "startFrom",
+      label: "Start from",
       type: "number",
     },
     {
       prop: "multiplier",
+      label: "Multiplier",
       type: "number",
     },
     {
       prop: "smoothing",
+      label: "Smoothing",
       type: "checkbox",
     },
     {
       prop: "mirror",
+      label: "Mirror",
       type: "checkbox",
     },
   ],

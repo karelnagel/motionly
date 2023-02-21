@@ -9,10 +9,12 @@ export const image: Component<ImageProps> = {
   inputs: [
     {
       prop: "src",
+      label: "Source",
       type: "image",
     },
     {
       prop: "objectFit",
+      label: "Object fit",
       type: "object-fit",
     },
   ],

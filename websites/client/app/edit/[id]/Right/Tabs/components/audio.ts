@@ -9,14 +9,17 @@ export const audio: Component<AudioProps> = {
   inputs: [
     {
       prop: "src",
+      label: "Source",
       type: "video",
     },
     {
       prop: "volume",
+      label: "Volume",
       type: "number",
     },
     {
       prop: "startFrom",
+      label: "Start from",
       type: "number",
     },
   ],

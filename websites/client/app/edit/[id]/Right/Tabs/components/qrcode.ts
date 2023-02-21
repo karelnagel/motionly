@@ -9,14 +9,17 @@ export const qrcode: Component<QRCodeProps> = {
   inputs: [
     {
       prop: "text",
+      label: "Text",
       type: "text",
     },
     {
       prop: "color",
+      label: "Color",
       type: "color",
     },
     {
       prop: "bg",
+      label: "Background",
       type: "color",
     },
   ],

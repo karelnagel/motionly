@@ -9,10 +9,12 @@ export const gif: Component<GifProps> = {
   inputs: [
     {
       prop: "src",
+      label: "Source",
       type: "gif",
     },
     {
       prop: "objectFit",
+      label: "Object fit",
       type: "object-fit",
     },
   ],

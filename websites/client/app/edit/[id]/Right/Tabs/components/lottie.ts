@@ -9,18 +9,22 @@ export const lottie: Component<LottieProps> = {
   inputs: [
     {
       prop: "src",
+      label: "Source",
       type: "text",
     },
     {
       prop: "backwards",
+      label: "Backwards",
       type: "checkbox",
     },
     {
       prop: "loop",
+      label: "Loop",
       type: "checkbox",
     },
     {
       prop: "playbackRate",
+      label: "Playback rate",
       type: "number",
     },
   ],

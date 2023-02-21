@@ -9,22 +9,27 @@ export const transcription: Component<TranscriptionProps> = {
   inputs: [
     {
       prop: "startFrom",
+      label: "Start from",
       type: "number",
     },
     {
       prop: "scrollByPage",
+      label: "Scroll by page",
       type: "checkbox",
     },
     {
       prop: "animationType",
+      label: "Animation type",
       type: "transcription-types",
     },
     {
       prop: "textStyle",
+      label: "Text styledivider",
       type: "style",
     },
     {
       prop: "animationStyle",
+      label: "Animation styledivider",
       type: "style",
     },
   ],
