@@ -1,8 +1,8 @@
 import {
-  CompInput,
+  CompVariable,
   ComponentProps,
   Components,
-  Input,
+  Variable,
   TemplateType,
 } from "../types";
 
@@ -45,15 +45,15 @@ export const getFonts = (comps?: ComponentProps[]) => {
 export const toTree = (
   components: Components,
   childIds: string[],
-  inputs: { [key: string]: Input }
+  variables: { [key: string]: Variable }
 ): ComponentProps[] => {
   const tree = childIds.map((id) => {
     let comp = components[id];
-    comp = applyInputs(comp, inputs, comp?.compInputs);
+    comp = applyVariables(comp, variables, comp?.compVariables);
     if ("childIds" in comp) {
       comp.comps = [
         ...(comp.comps || []),
-        ...toTree(components, comp.childIds, inputs),
+        ...toTree(components, comp.childIds, variables),
       ];
     }
     return comp;
@@ -61,36 +61,36 @@ export const toTree = (
   return tree;
 };
 
-export function applyInputs<T>(
+export function applyVariables<T>(
   comp: T,
-  inputs: { [key: string]: Input },
-  compInputs?: CompInput[]
+  inputs: { [key: string]: Variable },
+  compVariables?: CompVariable[]
 ): T {
   const newComp = JSON.parse(JSON.stringify(comp || {}));
-  for (const input of compInputs || []) {
-    const inputVal = inputs[input.id]?.value;
-    if (inputVal === undefined) continue;
+  for (const variable of compVariables || []) {
+    const variableVal = inputs[variable.id]?.value;
+    if (variableVal === undefined) continue;
 
-    const props = input.prop.split(".");
+    const props = variable.prop.split(".");
     let currentProp = newComp;
     for (let i = 0; i < props.length - 1; i++) {
       currentProp = currentProp[props[i]];
     }
-    currentProp[props[props.length - 1]] = inputVal;
+    currentProp[props[props.length - 1]] = variableVal;
   }
   return newComp;
 }
 
 export const prepareTemplate = (template: TemplateType) => {
-  const newTemplate = applyInputs(
+  const newTemplate = applyVariables(
     template,
-    template.inputs?.byIds || {},
-    template.templateInputs
+    template.variables?.byIds || {},
+    template.templateVariables
   );
   newTemplate.comps = toTree(
     newTemplate.components,
     newTemplate.childIds,
-    newTemplate.inputs?.byIds || {}
+    newTemplate.variables?.byIds || {}
   );
   return newTemplate;
 };

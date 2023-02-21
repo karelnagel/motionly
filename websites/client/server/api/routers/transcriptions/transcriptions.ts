@@ -8,7 +8,7 @@ import {
   Transcription,
   TranscriptionStatus,
 } from "../../../../types";
-
+import prisma from "../../../db";
 const tags = ["Transcriptions"];
 const protect = true;
 export const transcriptions = createTRPCRouter({
@@ -85,21 +85,7 @@ export const transcriptions = createTRPCRouter({
           message: "Transcription not found",
         });
       }
-      const res = await getTranscription(fileId);
-      const newTrans = await ctx.prisma.transcription.update({
-        where: { id: transcription.id },
-        data: {
-          status: res.status,
-          text: res.text,
-          transcript: res.transcript,
-          language: res.language,
-          persons: res.persons,
-        },
-      });
-      return {
-        ...newTrans,
-        transcript: (newTrans.transcript as any) ,
-      };
+      return updateTranscriptionProgress(fileId, transcription.id);
     }),
   delete: protectedProcedure
     .meta({
@@ -140,6 +126,26 @@ export const transcriptions = createTRPCRouter({
       };
     }),
 });
+export const updateTranscriptionProgress = async (
+  fileId: string,
+  transcriptionId: string
+): Promise<Transcription> => {
+  const res = await getTranscription(fileId);
+  const newTrans = await prisma.transcription.update({
+    where: { id: transcriptionId },
+    data: {
+      status: res.status,
+      text: res.text,
+      transcript: res.transcript,
+      language: res.language,
+      persons: res.persons,
+    },
+  });
+  return {
+    ...newTrans,
+    transcript: newTrans.transcript as any,
+  };
+};
 
 const getTranscription = async (
   fileId: string

@@ -13,7 +13,7 @@ export const Popup = ({
   return (
     <div
       onClick={() => hide()}
-      className="fixed top-0 left-0 h-full w-full flex items-center justify-center bg-black bg-opacity-40 z-[3000]"
+      className="fixed top-0 left-0 h-full w-full flex items-center justify-center bg-black bg-opacity-40 z-[30000]"
     >
       <div
         onClick={(e) => {

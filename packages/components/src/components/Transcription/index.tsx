@@ -5,14 +5,14 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { StyleAndClass } from "@motionly/base";
+import { StyleAndClass, TranscriptionWord } from "@motionly/base";
 import { TranscriptionProps } from "@motionly/base";
 import { useTextStyles } from "../../hooks/useTextStyles";
 export * from "./default";
 
 export const Transcription = ({
   textStyle,
-  src: words,
+  src,
   style,
   className,
   animationStyle,
@@ -34,6 +34,17 @@ export const Transcription = ({
   const linesPerPage = Math.floor(height / lineHeight) || 1;
   const txtStyle = useTextStyles(textStyle);
   const animStyle = useTextStyles(animationStyle);
+  const [words, setWords] = useState<TranscriptionWord[]>(
+    typeof src === "string" ? [] : src
+  );
+  useEffect(() => {
+    if (typeof src !== "string") return;
+    fetch(src)
+      .then((res) => res.json())
+      .then((data) => setWords(data))
+      .catch((e) => console.error(e));
+  }, [src]);
+
   useEffect(() => {
     if (words) {
       const linesRendered = Math.round(

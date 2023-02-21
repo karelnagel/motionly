@@ -1,11 +1,17 @@
-import { FileWithTranscription, MediaType, UserFile } from "../../../../types";
+import {
+  FileWithTranscription,
+  MediaType,
+  Transcription,
+  UserFile,
+} from "../../../../types";
 import { createTRPCRouter, protectedProcedure } from "../../trpc";
 import { z } from "zod";
 import { env } from "../../../../env.mjs";
 import { TRPCError } from "@trpc/server";
 import { getMediaType } from "../../../../helpers/getMediaType";
-import ytdl from "ytdl-core";
 import { s3 } from "../../../../lib/aws";
+import { getYoutubeUrl } from "../../../../lib/getYoutubeUrl";
+import { updateTranscriptionProgress } from "../transcriptions/transcriptions";
 
 const tags = ["Media"];
 const protect = true;
@@ -31,12 +37,7 @@ export const media = createTRPCRouter({
     .input(z.object({ youtubeUrl: z.string().url() }))
     .output(UserFile)
     .mutation(async ({ input: { youtubeUrl }, ctx }) => {
-      const info = await ytdl.getInfo(youtubeUrl);
-      const name = info.videoDetails.title;
-      const formats = info.formats.filter(
-        (v) => v.container === "mp4" && v.hasVideo && v.hasAudio
-      );
-      const { url } = formats[0];
+      const { url, name } = await getYoutubeUrl(youtubeUrl);
       if (!url)
         throw new TRPCError({ code: "BAD_REQUEST", message: "No video found" });
 
@@ -45,6 +46,7 @@ export const media = createTRPCRouter({
           name,
           type: "VIDEO",
           url,
+          youtubeUrl,
           user: {
             connect: {
               id: ctx.session.user.id,
@@ -141,14 +143,23 @@ export const media = createTRPCRouter({
           code: "BAD_REQUEST",
           message: "File not found",
         });
+        
+      let transcription: Transcription | undefined = undefined;
+      if (file.transcription) {
+        if (file.transcription.status === "PROCESSING")
+          transcription = await updateTranscriptionProgress(
+            file.id,
+            file.transcription.id
+          );
+        else
+          transcription = {
+            ...file.transcription,
+            transcript: file.transcription.transcript as any,
+          };
+      }
       const value: z.infer<typeof FileWithTranscription> = {
         ...file,
-        transcription: file.transcription
-          ? {
-              ...file.transcription,
-              transcript: file.transcription.transcript as any,
-            }
-          : undefined,
+        transcription,
       };
       return value;
     }),

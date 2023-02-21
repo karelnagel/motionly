@@ -1,4 +1,4 @@
-import { MockupProps, MockupTypes } from "@motionly/base";
+import { MockupProps } from "@motionly/base";
 import { IoIosPhonePortrait } from "react-icons/io";
 import { Component } from ".";
 
@@ -9,14 +9,12 @@ export const mockup: Component<MockupProps> = {
   inputs: [
     {
       prop: "type",
-      type: "select",
-      options: Object.entries(MockupTypes).map(([value, label]) => ({
-        value,
-        label,
-      })),
+      label:"Mockup type",
+      type: "mockup-types",
     },
     {
       prop: "bg",
+      label:"Background",
       type: "color",
     },
   ],

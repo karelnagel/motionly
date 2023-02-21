@@ -1,191 +1,146 @@
 "use client";
 
-import { Color, InputTypes, TextStyle } from "@motionly/base";
-import { IoIosAdd, IoIosRemove } from "react-icons/io";
-import { Media } from "../Media";
+import {
+  Color,
+  MediaTypes,
+  SelectTypes,
+  TextStyle,
+  VariableTypes,
+} from "@motionly/base";
+import { MediaInput } from "./types/media";
 import { useProject } from "../../hooks/useProject";
-import { ColorInput } from "./color";
-import { useComponent } from "../../hooks/useComponent";
+import { ColorInput } from "./types/color";
 import { VariableSelect } from "./VariableSelect";
-import { TextStyleInput } from "./textStyle";
-import { StringArray } from "./StringArray";
-export * from "./color";
+import { TextStyleInput } from "./types/textStyle";
+import { StringArray } from "./types/StringArray";
+import { CheckBoxInput } from "./types/checkbox";
+import { NumberInput } from "./types/number";
+import { TextAreaInput } from "./types/textarea";
+import { TextInput } from "./types/text";
+import { SelectInput, SelectOptions } from "./types/select";
+import { useCallback } from "react";
 
-export function VariableInput<T extends any>({
+export function VariableInput({
   className,
   tooltip,
-  prop,
-  label,
+  isTemplate,
   ...props
-}: {
-  type: InputTypes;
-  label?: string;
-  value?: T;
-  onChange: (value?: T) => void;
-  className?: string;
-  tooltip?: string;
-  placeholder?: string;
-  options?: { value: string; label: string }[];
-  prop?: string;
-  disabled?: boolean;
-}) {
+}: Input & { className?: string; tooltip?: string; isTemplate?: boolean }) {
   const { type, value } = props;
-  const setSelected = useProject((t) => t.setSelected);
-  const setComp = useProject((t) => t.setComp);
-  const comp = useComponent();
-  const inputId = comp?.compInputs?.find((i) => i.prop === prop)?.id;
-  const input = useProject((t) =>
-    inputId ? t.project.template.inputs?.byIds[inputId] : undefined
+  const setSelected = useProject((t) => t.leftSetTab);
+  const variable = useProject(
+    useCallback(
+      (p) => {
+        if (isTemplate) {
+          const id = p.project.template.templateVariables?.find(
+            (i) => i.prop === props.prop
+          )?.id;
+          return id ? p.project.template.variables?.byIds[id] : undefined;
+        } else {
+          const id = p.project.template.components[
+            p.selected
+          ]?.compVariables?.find((i) => i.prop === props.prop)?.id;
+          return id ? p.project.template.variables?.byIds[id] : undefined;
+        }
+      },
+      [isTemplate]
+    )
   );
-
+  const isDivider = props.label?.includes("divider");
   return (
-    <div
-      className={`form-control ${
-        type === "number" || type === "checkbox" ? "" : "col-span-2"
-      } ${className}`}
-    >
-      <div
-        className={`${label ? "label" : ""} ${tooltip ? "tooltip" : ""}`}
-        data-tip={tooltip}
-      >
-        {label && <span className="label-text">{label}</span>}
-        {prop && !input && (
-          <div className="dropdown dropdown-bottom dropdown-end">
-            <IoIosAdd tabIndex={0} className="cursor-pointer" />
+    <div className={`grid grid-cols-5 gap-2 w-full ${className}`}>
+      {!isDivider && props.label && (
+        <div
+          className={`shrink-0 col-span-2 flex items-center ${
+            tooltip ? "tooltip" : ""
+          }`}
+          data-tip={tooltip}
+        >
+          {props.prop && (
             <VariableSelect
-              prop={prop}
+              isTemplate={isTemplate}
+              prop={props.prop}
               type={type}
               value={value}
-              label={label}
+              label={props.label}
+              variable={!!variable}
             />
-          </div>
-        )}
-        {prop && input && (
-          <IoIosRemove
-            className="cursor-pointer"
-            onClick={() =>
-              setComp((s) => {
-                s.compInputs = s.compInputs?.filter((i) => i.prop !== prop);
-              })
-            }
-          />
-        )}
-      </div>
-      {input && (
-        <div
-          onClick={() => setSelected("inputs")}
-          className="input input-sm input-bordered bg-primary"
-        >
-          {input.label}
+          )}
+          {props.label && <span className="label-text">{props.label}</span>}
         </div>
       )}
-      {!input && <Input {...props} />}
+      <div
+        className={`w-full ${
+          !props.label || isDivider ? "col-span-5" : "col-span-3"
+        }`}
+      >
+        {isDivider && (
+          <div>
+            <div className="divider" />
+            <div className="flex items-center space-x-2">
+              {props.prop && (
+                <VariableSelect
+                  prop={props.prop}
+                  type={type}
+                  value={value}
+                  label={props.label}
+                  variable={!!variable}
+                />
+              )}
+              <p>{props.label?.replace("divider", "")}</p>
+            </div>
+          </div>
+        )}
+        {variable && (
+          <div
+            onClick={() => setSelected("inputs")}
+            className="input input-sm input-bordered bg-primary overflow-hidden"
+          >
+            {variable.label}
+          </div>
+        )}
+        {!variable && <Input {...props} />}
+      </div>
     </div>
   );
 }
-export function Input<T extends any>({
-  type,
-  value,
-  onChange,
-  placeholder,
-  options,
-  prop,
-  disabled,
-}: {
-  type: InputTypes;
+export type InputProps<T> = {
+  type: VariableTypes;
   value?: T;
   onChange: (value?: T) => void;
   placeholder?: string;
-  options?: { value: string; label: string }[];
-  prop?: string;
   disabled?: boolean;
-}) {
+  prop?: string;
+  label?: string;
+  options?: SelectOptions;
+};
+
+type Input =
+  | ({ type: "text" | "textarea" } & InputProps<string>)
+  | ({ type: MediaTypes } & InputProps<string>)
+  | ({ type: "number" } & InputProps<number>)
+  | ({ type: "checkbox" } & InputProps<boolean>)
+  | ({ type: "stringArray" } & InputProps<string[]>)
+  | ({ type: SelectTypes } & InputProps<string | number>)
+  | ({ type: "color" } & InputProps<Color>)
+  | ({ type: "style" } & InputProps<TextStyle>)
+  | ({ type: "color" } & InputProps<Color>);
+
+export function Input(props: Input) {
   return (
     <>
-      {type === "checkbox" && (
-        <input
-          disabled={disabled}
-          type="checkbox"
-          checked={(value as boolean) || false}
-          className="checkbox checkbox-primary"
-          onChange={(e) => onChange(e.target.checked as T)}
-        />
+      {props.type === "checkbox" && <CheckBoxInput {...props} />}
+      {props.type === "number" && <NumberInput {...props} />}
+      {props.type === "text" && <TextInput {...props} />}
+      {props.type === "stringArray" && <StringArray {...props} />}
+      {props.type === "textarea" && <TextAreaInput {...props} />}
+      {SelectTypes.options.includes(props.type as any) && (
+        <SelectInput {...(props as InputProps<string | number>)} />
       )}
-      {type === "number" && (
-        <input
-          disabled={disabled}
-          type="number"
-          placeholder={placeholder}
-          value={value === undefined ? "" : (value as unknown as number)}
-          className="input input-sm bg-base-200 input-bordered w-full"
-          onChange={(e) =>
-            onChange(e.target.value ? (Number(e.target.value) as T) : undefined)
-          }
-        />
-      )}
-      {type === "text" && (
-        <input
-          disabled={disabled}
-          type="text"
-          placeholder={placeholder}
-          value={(value as string) || ""}
-          className="input input-sm bg-base-200 input-bordered w-full"
-          onChange={(e) => onChange(e.target.value as T)}
-        />
-      )}
-      {type === "stringArray" && (
-        <StringArray
-          value={(value as string[]) || []}
-          onChange={(e) => onChange(e as T)}
-        />
-      )}
-      {type === "textarea" && (
-        <textarea
-          disabled={disabled}
-          placeholder={placeholder}
-          value={(value as string) || ""}
-          className="textarea bg-base-200 textarea-bordered w-full"
-          onChange={(e) => onChange(e.target.value as T)}
-        />
-      )}
-      {type === "select" && (
-        <select
-          disabled={disabled}
-          className="select select-bordered select-sm bg-base-200"
-          value={value as string}
-          onChange={(e) => onChange(e.target.value as T)}
-        >
-          <option value={undefined}>Not selected</option>
-          {options?.map(({ value, label }, i) => (
-            <option key={i} value={value}>
-              {label}
-            </option>
-          ))}
-        </select>
-      )}
-      {type === "color" && (
-        <ColorInput
-          gradients
-          value={value as Color}
-          onChange={(value) => onChange(value as T)}
-        />
-      )}
-      {type === "style" && (
-        <TextStyleInput
-          prop={prop}
-          style={value as TextStyle}
-          setStyle={(textStyle) => onChange(textStyle as T)}
-        />
-      )}
-      {(type === "gif" ||
-        type === "image" ||
-        type === "video" ||
-        type === "audio") && (
-        <Media
-          type={type.toLowerCase() as any}
-          value={value as string}
-          onChange={(value) => onChange(value as T)}
-        />
+      {props.type === "color" && <ColorInput {...props} />}
+      {props.type === "style" && <TextStyleInput {...props} />}
+      {MediaTypes.options.includes(props.type as any) && (
+        <MediaInput {...(props as InputProps<string>)} />
       )}
     </>
   );

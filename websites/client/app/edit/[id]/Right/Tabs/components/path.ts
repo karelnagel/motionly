@@ -9,39 +9,48 @@ export const path: Component<PathProps> = {
   inputs: [
     {
       prop: "path",
+      label: "Path",
       type: "text",
     },
     {
       prop: "stroke",
+      label: "Stroke",
       type: "color",
     },
     {
       prop: "strokeWidth",
+      label: "Stroke width (px)",
       type: "number",
       if: (comp) => !!comp.stroke,
     },
     {
       prop: "fill",
+      label: "Fill",
       type: "color",
     },
     {
       prop: "viewBoxX",
+      label: "Viewbox X",
       type: "number",
     },
     {
       prop: "viewBoxY",
+      label: "Viewbox Y",
       type: "number",
     },
     {
       prop: "viewBoxWidth",
+      label: "Viewbox width",
       type: "number",
     },
     {
       prop: "viewBoxHeight",
+      label: "Viewbox height",
       type: "number",
     },
     {
       prop: "isRound",
+      label: "Round",
       type: "checkbox",
     },
   ],

@@ -97,6 +97,7 @@ enum FileType {
 model File {
   id            String         @id @default(cuid())
   url           String         @default("")
+  youtubeUrl    String?
   type          FileType
   name          String         @default("")
   createdAt     DateTime?      @default(now())

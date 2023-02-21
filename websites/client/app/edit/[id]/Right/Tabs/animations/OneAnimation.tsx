@@ -4,7 +4,6 @@ import { IoIosTrash } from "react-icons/io";
 import { VariableInput } from "../../../../../../components/inputs";
 import { ShowHide } from "../../../../../../components/ShowHide";
 import { useProject } from "../../../../../../hooks/useProject";
-import { allAnimations } from "../../../../../../videos/animations";
 
 export const OneAnimation = ({ id }: { id: string }) => {
   const [show, setShow] = useState(false);
@@ -58,7 +57,7 @@ export const OneAnimation = ({ id }: { id: string }) => {
       {show && (
         <div className="grid grid-cols-7 gap-1 relative">
           <VariableInput
-            type="select"
+            type="animation-props"
             label="Prop"
             className="col-span-3"
             value={animation.prop}
@@ -67,12 +66,6 @@ export const OneAnimation = ({ id }: { id: string }) => {
                 a.prop = prop as keyof typeof animationProps;
               })
             }
-            options={Object.entries(allAnimations).map(
-              ([value, { label }]) => ({
-                value,
-                label,
-              })
-            )}
           />
           <VariableInput
             type="number"
@@ -100,7 +93,7 @@ export const OneAnimation = ({ id }: { id: string }) => {
             value={animation.duration}
           />
           <VariableInput
-            type="select"
+            type="animation-types"
             label="Type"
             className="col-span-3"
             value={animation.type}
@@ -109,10 +102,6 @@ export const OneAnimation = ({ id }: { id: string }) => {
                 c.type = type_ as AnimationTypes;
               })
             }
-            options={Object.entries(allAnimations).map(([value, label]) => ({
-              value,
-              label,
-            }))}
           />
 
           <VariableInput

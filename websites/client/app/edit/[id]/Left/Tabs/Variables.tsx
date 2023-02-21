@@ -1,77 +1,39 @@
-import { InputTypes } from "@motionly/base";
 import { VariableInput } from "../../../../../components/inputs";
-import { getRandomId } from "../../../../../helpers";
 import { useProject } from "../../../../../hooks/useProject";
 
 export default function Variables() {
-  const inputs = useProject((t) => t.project.template.inputs);
-  const set = useProject((t) => t.set);
+  const variables = useProject((t) => t.project.template.variables);
   return (
-    <div className="w-full overflow-auto">
-      {inputs?.allIds.map((id) => (
+    <div className="w-full overflow-auto space-y-4">
+      {variables?.allIds.map((id) => (
         <OneInput key={id} id={id} />
       ))}
-      <button
-        onClick={() =>
-          set((s) => {
-            const id = getRandomId();
-            if (!s.project.template.inputs)
-              s.project.template.inputs = { allIds: [], byIds: {} };
-            const inputs = s.project.template.inputs;
-            inputs.allIds.push(id);
-            inputs.byIds[id] = {
-              id,
-              label: "Label",
-              type: "text",
-              value: "",
-            };
-          })
-        }
-      >
-        Add
-      </button>
     </div>
   );
 }
 
 export const OneInput = ({ id }: { id: string }) => {
-  const input = useProject((t) => t.project.template.inputs?.byIds[id]);
+  const input = useProject((t) => t.project.template.variables?.byIds[id]);
   const set = useProject((t) => t.set);
   if (!input) return null;
 
   return (
-    <div className="w-full">
+    <div className="w-full space-y-2">
       <VariableInput
         type="text"
-        label="Label"
         value={input.label}
         onChange={(label) =>
           set((s) => {
-            s.project.template.inputs!.byIds[id].label = label;
+            s.project.template.variables!.byIds[id].label = label;
           })
         }
       />
       <VariableInput
-        type="select"
-        label="Type"
-        value={input.type}
-        options={InputTypes.options.map((value) => ({
-          value,
-          label: value,
-        }))}
-        onChange={(type) =>
-          set((s) => {
-            s.project.template.inputs!.byIds[id].type = type;
-          })
-        }
-      />
-      <VariableInput
-        type={input.type || "text"}
-        label="Default Value"
+        type={input.type as any}
         value={input.value}
-        onChange={(value) =>
+        onChange={(value: any) =>
           set((s) => {
-            s.project.template.inputs!.byIds[id].value = value;
+            s.project.template.variables!.byIds[id].value = value;
           })
         }
       />
@@ -79,7 +41,7 @@ export const OneInput = ({ id }: { id: string }) => {
         className="btn btn-error btn-xs"
         onClick={() =>
           set((s) => {
-            const inputs = s.project.template.inputs!;
+            const inputs = s.project.template.variables!;
             inputs.allIds = inputs.allIds.filter((i) => i !== id);
             delete inputs.byIds[id];
           })

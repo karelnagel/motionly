@@ -111,7 +111,12 @@ export const projects = createTRPCRouter({
     .output(Project)
     .mutation(async ({ input: { id, project }, ctx }) => {
       await isOwner(id, ctx.session.user.id);
-      const { url } = await renderStill(project.template, 10);
+      let preview = project.preview;
+      try {
+        preview = (await renderStill(project.template, 10)).url;
+      } catch (e) {
+        console.log(e);
+      }
       const result = await ctx.prisma.project.update({
         where: { id },
         data: {
@@ -119,7 +124,7 @@ export const projects = createTRPCRouter({
           public: project.public,
           description: project.description,
           template: project.template as any,
-          preview: url || project.preview,
+          preview,
           tags: project.tags,
         },
         include: { user: true },

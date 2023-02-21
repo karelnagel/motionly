@@ -1,6 +1,6 @@
 "use client";
 
-import { Input as InputType, TemplateType } from "@motionly/base";
+import { Variable as VariableType, TemplateType } from "@motionly/base";
 import { useEffect, useRef, useState } from "react";
 
 const baseTemplate: TemplateType = {
@@ -40,7 +40,7 @@ export default function TestIFrame() {
   const setValue = (id: string, value: any) => {
     setTemplate((prev) => {
       const newTemplate = { ...prev };
-      const input = newTemplate.inputs?.byIds[id];
+      const input = newTemplate.variables?.byIds[id];
       if (input) {
         input.value = value;
       }
@@ -57,9 +57,9 @@ export default function TestIFrame() {
         style={{ aspectRatio: `${template.width}/${template.height}` }}
       />
       <div className="flex flex-col space-y-2">
-        {template.inputs?.allIds.map((inputId) => (
+        {template.variables?.allIds.map((inputId) => (
           <Input
-            input={template.inputs?.byIds[inputId]!}
+            input={template.variables?.byIds[inputId]!}
             key={inputId}
             setValue={setValue}
           />
@@ -73,7 +73,7 @@ const Input = ({
   input,
   setValue,
 }: {
-  input: InputType;
+  input: VariableType;
   setValue: (id: string, value: any) => void;
 }) => {
   return (
@@ -98,11 +98,11 @@ const Input = ({
         />
       )}
 
-      {(input.type === "image" ||
-        input.type === "video" ||
-        input.type === "gif") && (
+      {(input.type === "IMAGE" ||
+        input.type === "VIDEO" ||
+        input.type === "GIF") && (
         <div className="flex items-center">
-          {input.type === "video" ? (
+          {input.type === "VIDEO" ? (
             <video src={input.value} className="h-10 w-10" />
           ) : (
             <img src={input.value} className="h-10 w-10" />

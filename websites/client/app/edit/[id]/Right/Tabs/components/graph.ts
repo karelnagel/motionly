@@ -1,4 +1,4 @@
-import { GraphProps, GraphTypes } from "@motionly/base";
+import { GraphProps } from "@motionly/base";
 import { Component } from ".";
 import { SlGraph } from "react-icons/sl";
 
@@ -9,36 +9,39 @@ export const graph: Component<GraphProps> = {
   inputs: [
     {
       prop: "type",
-      type: "select",
-      options: Object.entries(GraphTypes).map(([value, label]) => ({
-        value,
-        label,
-      })),
+      label: "Graph type",
+      type: "graph-types",
     },
     {
       prop: "color",
+      label: "Color",
       type: "color",
     },
     {
       prop: "max",
+      label: "Max",
       type: "number",
     },
     {
       prop: "min",
+      label: "Min",
       type: "number",
     },
     {
       prop: "gap",
+      label: "Gap (px)",
       type: "number",
       if: (comp) => comp.type === "bar",
     },
     {
       prop: "roundness",
+      label: "Roundness (px)",
       type: "number",
       if: (comp) => comp.type === "bar",
     },
     {
       prop: "strokeWidth",
+      label: "Stroke width (px)",
       type: "number",
       if: (comp) => comp.type === "line",
     },

@@ -1250,7 +1250,7 @@ export const defaultTranscriptionProps: TranscriptionProps = {
       color: "#000FFFFF",
     },
     outlineWidth: 20,
-    fontWeight: 800,
+    fontWeight: "800",
     lineHeight: 1.3,
     textAlign: "center",
   },

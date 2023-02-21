@@ -6,8 +6,9 @@ import {
 } from "@motionly/base";
 import { useState } from "react";
 import { IoIosAdd, IoIosTrash } from "react-icons/io";
-import { hexToPercent, percentToHex } from "../../helpers";
-import { ShowHide } from "../ShowHide";
+import { InputProps } from "..";
+import { hexToPercent, percentToHex } from "../../../helpers";
+import { ShowHide } from "../../ShowHide";
 
 function Select({
   type,
@@ -20,7 +21,7 @@ function Select({
 }) {
   return (
     <select
-      className="select select-bordered select-sm bg-base-200"
+      className="select select-bordered select-sm bg-base-200 w-full"
       value={type}
       onChange={(e) => onChange(e.target.value as Colors)}
     >
@@ -63,7 +64,7 @@ export function OneColorInput({
         />
         <div className="flex items-center">
           <input
-            type="number"
+            type="NUMBER"
             value={alpha ? hexToPercent(alpha) : ""}
             onChange={(e) =>
               onChange(
@@ -282,12 +283,7 @@ export const GradientInput = ({
 export function ColorInput<T extends BaseColor | Color>({
   value,
   onChange,
-  gradients,
-}: {
-  value?: T;
-  onChange: (value?: T) => void;
-  gradients?: boolean;
-}) {
+}: InputProps<Color>) {
   const [show, setShow] = useState(true);
   return (
     <div className="col-span-2 mt-2">
@@ -296,7 +292,7 @@ export function ColorInput<T extends BaseColor | Color>({
         onChange={(type) =>
           onChange(type ? ({ ...value, type } as T) : undefined)
         }
-        hasGradients={gradients}
+        hasGradients={true}
       />
       {value && value.type !== "basic" && (
         <ShowHide show={show} setShow={setShow} />

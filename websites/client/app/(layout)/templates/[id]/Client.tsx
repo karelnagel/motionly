@@ -15,7 +15,7 @@ export const Client = ({ startProject }: { startProject: Project }) => {
   const [project, setProject] = useState(startProject);
   const { data: session } = useSession();
   const template = project.template as TemplateType;
-  // const { mutateAsync: renderMedia } = trpc.render.media.useMutation({});
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
       <div className="space-y-3 flex flex-col items-stretch ">
@@ -23,10 +23,7 @@ export const Client = ({ startProject }: { startProject: Project }) => {
           <p className="text-3xl font-bold col-span-4">{project.name}</p>
           <div className="space-x-1 hidden md:flex">
             {project.isOwner && (
-              <Link
-                href={`/edit/${project.id}`}
-                className="btn btn-square"
-              >
+              <Link href={`/edit/${project.id}`} className="btn btn-square">
                 <IoIosBrush className="" />
               </Link>
             )}
@@ -47,49 +44,33 @@ export const Client = ({ startProject }: { startProject: Project }) => {
         <p>
           <b>Dimensions:</b> {template.width} x {template.height}
         </p>
-        {template.inputs?.allIds.map((inputId) => {
-          const input = template.inputs?.byIds[inputId];
-          if (!input) return null;
-          return (
-            <Input
-              key={inputId}
-              // label={input.label || ""} //Todo add label back
-              onChange={(i) => {
-                setProject(
-                  produce((draft) => {
-                    const input = draft.template.inputs?.byIds[inputId];
-                    if (!input) return;
-                    input.value = i;
-                  })
-                );
-              }}
-              value={input.value}
-              type={input.type || "text"}
-            />
-          );
-        })}
-        {/* <div className="flex flex-col  space-y-2 justify-between">
-          {status && <p>Status: {status}</p>}
-          {status && (
-            <progress
-              value={progress}
-              max={1}
-              className="progress w-full progress-primary"
-            />
-          )}
-          <button
-            className="btn btn-primary"
-            disabled={status === "rendering"}
-            onClick={media}
-          >
-            Render
-          </button>
-          {fileUrl && (
-            <Link target="_blank" className="btn btn-outline" href={fileUrl}>
-              FILE
-            </Link>
-          )}
-        </div> */}
+        <div className="space-y-2">
+          {template.variables?.allIds.map((variableId) => {
+            const input = template.variables?.byIds[variableId];
+            if (!input) return null;
+            return (
+              <div>
+                <p>{input.label}</p>
+                <Input
+                  key={variableId}
+                  label={input.label}
+                  onChange={(i: any) => {
+                    setProject(
+                      produce((draft) => {
+                        const input =
+                          draft.template.variables?.byIds[variableId];
+                        if (!input) return;
+                        input.value = i;
+                      })
+                    );
+                  }}
+                  value={input.value}
+                  type={input.type as any}
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
       <Player
         loop

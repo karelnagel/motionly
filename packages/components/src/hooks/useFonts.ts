@@ -6,7 +6,9 @@ import { continueRender, delayRender } from "remotion";
 const loadFonts = async (fonts: string[]) => {
   if (fonts.length > 0) {
     try {
-      const url = `https://fonts.googleapis.com/css?family=${fonts.join("|")}`;
+      const url = `https://fonts.googleapis.com/css?family=${fonts.join(
+        ":100,200,300,400,500,600,700,800|"
+      )}:100,200,300,400,500,600,700,800`;
       await axios.get(url);
 
       const link = document.createElement("link");

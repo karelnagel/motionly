@@ -22,7 +22,7 @@ export default function Template() {
   return (
     <div className="flex flex-col justify-between h-full w-full overflow-auto">
       <div className="flex flex-col space-y-2 items-center">
-        <div className="w-full grid grid-cols-2 gap-x-1">
+        <div className="w-full space-y-2">
           <VariableInput
             type="textarea"
             label="Description"
@@ -47,6 +47,7 @@ export default function Template() {
             type="number"
             label="Width"
             placeholder="1080"
+            isTemplate={true}
             prop="width"
             value={project.template.width}
             onChange={(width) =>
@@ -60,6 +61,7 @@ export default function Template() {
             label="Height"
             placeholder="1080"
             prop="height"
+            isTemplate={true}
             value={project.template.height}
             onChange={(height) =>
               set((state) => {
@@ -71,6 +73,7 @@ export default function Template() {
             type="number"
             label="FPS"
             placeholder="30"
+            isTemplate={true}
             prop="fps"
             value={project.template.fps}
             onChange={(fps) =>
@@ -84,6 +87,7 @@ export default function Template() {
             label="Duration"
             value={project.template.duration}
             prop="duration"
+            isTemplate={true}
             placeholder="10"
             onChange={(duration) =>
               set((state) => {
@@ -94,6 +98,7 @@ export default function Template() {
           <VariableInput
             type="color"
             label="Background"
+            isTemplate={true}
             prop="background"
             value={project.template.bg}
             onChange={(bg) =>

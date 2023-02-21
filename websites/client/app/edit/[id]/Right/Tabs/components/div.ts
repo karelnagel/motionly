@@ -9,6 +9,7 @@ export const div: Component<DivProps> = {
   inputs: [
     {
       prop: "bg",
+      label: "Background",
       type: "color",
     },
   ],

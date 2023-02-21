@@ -1,7 +1,4 @@
-import {
-  TranscriptionAnimationTypes,
-  TranscriptionProps,
-} from "@motionly/base";
+import { TranscriptionProps } from "@motionly/base";
 import { Component } from ".";
 import { MdSubtitles } from "react-icons/md";
 
@@ -11,29 +8,33 @@ export const transcription: Component<TranscriptionProps> = {
   hue: 99,
   inputs: [
     {
+      prop: "src",
+      label: "Source",
+      type: "TRANSCRIPTION",
+    },
+    {
       prop: "startFrom",
+      label: "Start from",
       type: "number",
     },
     {
       prop: "scrollByPage",
+      label: "Scroll by page",
       type: "checkbox",
     },
     {
       prop: "animationType",
-      type: "select",
-      options: Object.entries(TranscriptionAnimationTypes).map(
-        ([value, label]) => ({
-          value,
-          label,
-        })
-      ),
+      label: "Animation type",
+      type: "transcription-types",
     },
     {
       prop: "textStyle",
+      label: "Text styledivider",
       type: "style",
     },
     {
       prop: "animationStyle",
+      label: "Animation styledivider",
       type: "style",
     },
   ],
