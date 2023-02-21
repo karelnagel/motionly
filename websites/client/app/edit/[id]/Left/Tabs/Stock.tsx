@@ -58,8 +58,16 @@ export default function Stock() {
                     onClick={() => add(src)}
                     className="w-full aspect-square bg-base-200  rounded-lg overflow-hidden"
                   >
-                    {mediaType !== "AUDIO" && (
+                    {mediaType !== "VIDEO" ? (
                       <img src={icon} className=" h-full w-full object-cover" />
+                    ) : (
+                      <video
+                        src={src}
+                        className="h-full w-full object-cover"
+                        onMouseEnter={(e) => e.currentTarget.play()}
+                        onMouseLeave={(e) => e.currentTarget.pause()}
+                        muted
+                      />
                     )}
                   </button>
                 ))}
@@ -68,7 +76,6 @@ export default function Stock() {
           ))}
         </div>
       </div>
-
     </div>
   );
 }

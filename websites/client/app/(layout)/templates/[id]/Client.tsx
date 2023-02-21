@@ -15,6 +15,7 @@ export const Client = ({ startProject }: { startProject: Project }) => {
   const [project, setProject] = useState(startProject);
   const { data: session } = useSession();
   const template = project.template as TemplateType;
+  
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
       <div className="space-y-3 flex flex-col items-stretch ">
@@ -43,49 +44,33 @@ export const Client = ({ startProject }: { startProject: Project }) => {
         <p>
           <b>Dimensions:</b> {template.width} x {template.height}
         </p>
-        {template.variables?.allIds.map((variableId) => {
-          const input = template.variables?.byIds[variableId];
-          if (!input) return null;
-          return (
-            <Input
-              key={variableId}
-              label={input.label}
-              onChange={(i: any) => {
-                setProject(
-                  produce((draft) => {
-                    const input = draft.template.variables?.byIds[variableId];
-                    if (!input) return;
-                    input.value = i;
-                  })
-                );
-              }}
-              value={input.value}
-              type={input.type || "text"}
-            />
-          );
-        })}
-        {/* <div className="flex flex-col  space-y-2 justify-between">
-          {status && <p>Status: {status}</p>}
-          {status && (
-            <progress
-              value={progress}
-              max={1}
-              className="progress w-full progress-primary"
-            />
-          )}
-          <button
-            className="btn btn-primary"
-            disabled={status === "rendering"}
-            onClick={media}
-          >
-            Render
-          </button>
-          {fileUrl && (
-            <Link target="_blank" className="btn btn-outline" href={fileUrl}>
-              FILE
-            </Link>
-          )}
-        </div> */}
+        <div className="space-y-2">
+          {template.variables?.allIds.map((variableId) => {
+            const input = template.variables?.byIds[variableId];
+            if (!input) return null;
+            return (
+              <div>
+                <p>{input.label}</p>
+                <Input
+                  key={variableId}
+                  label={input.label}
+                  onChange={(i: any) => {
+                    setProject(
+                      produce((draft) => {
+                        const input =
+                          draft.template.variables?.byIds[variableId];
+                        if (!input) return;
+                        input.value = i;
+                      })
+                    );
+                  }}
+                  value={input.value}
+                  type={input.type || "text"}
+                />
+              </div>
+            );
+          })}
+        </div>
       </div>
       <Player
         loop

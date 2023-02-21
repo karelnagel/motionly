@@ -40,7 +40,13 @@ export default function Media() {
                   <img src={fileUrl} className="aspect-square object-cover" />
                 )}
                 {file.type === "VIDEO" && (
-                  <video src={fileUrl} className="aspect-square object-cover" />
+                  <video
+                    src={fileUrl}
+                    className="aspect-square object-cover"
+                    onMouseEnter={(e) => e.currentTarget.play()}
+                    onMouseLeave={(e) => e.currentTarget.pause()}
+                    muted
+                  />
                 )}
                 <p className="text-[12px] whitespace-nowrap overflow-hidden">
                   {file.name}
