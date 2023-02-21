@@ -15,7 +15,7 @@ export const Client = ({ startProject }: { startProject: Project }) => {
   const [project, setProject] = useState(startProject);
   const { data: session } = useSession();
   const template = project.template as TemplateType;
-  
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
       <div className="space-y-3 flex flex-col items-stretch ">
@@ -65,7 +65,7 @@ export const Client = ({ startProject }: { startProject: Project }) => {
                     );
                   }}
                   value={input.value}
-                  type={input.type || "text"}
+                  type={input.type as any}
                 />
               </div>
             );

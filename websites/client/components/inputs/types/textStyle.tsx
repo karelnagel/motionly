@@ -61,7 +61,7 @@ export const TextStyleInput = ({
       {inputs.map((input) => (
         <VariableInput
           key={input.prop}
-          type={input.type}
+          type={input.type as any}
           prop={`${prop}.${input.prop}`}
           label={input.label}
           value={value?.[input.prop] as any}

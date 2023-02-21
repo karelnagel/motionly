@@ -10,7 +10,7 @@ export const audiogram: Component<AudiogramProps> = {
     {
       prop: "src",
       label: "Source",
-      type: "video",
+      type: "VIDEO",
     },
     {
       prop: "position",

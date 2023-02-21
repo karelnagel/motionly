@@ -10,7 +10,7 @@ export const image: Component<ImageProps> = {
     {
       prop: "src",
       label: "Source",
-      type: "image",
+      type: "IMAGE",
     },
     {
       prop: "objectFit",

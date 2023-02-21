@@ -8,6 +8,11 @@ export const transcription: Component<TranscriptionProps> = {
   hue: 99,
   inputs: [
     {
+      prop: "src",
+      label: "Source",
+      type: "TRANSCRIPTION",
+    },
+    {
       prop: "startFrom",
       label: "Start from",
       type: "number",

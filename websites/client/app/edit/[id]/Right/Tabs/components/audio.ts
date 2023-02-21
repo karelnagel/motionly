@@ -10,7 +10,7 @@ export const audio: Component<AudioProps> = {
     {
       prop: "src",
       label: "Source",
-      type: "video",
+      type: "VIDEO",
     },
     {
       prop: "volume",

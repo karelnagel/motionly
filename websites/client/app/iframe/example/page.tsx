@@ -98,11 +98,11 @@ const Input = ({
         />
       )}
 
-      {(input.type === "image" ||
-        input.type === "video" ||
-        input.type === "gif") && (
+      {(input.type === "IMAGE" ||
+        input.type === "VIDEO" ||
+        input.type === "GIF") && (
         <div className="flex items-center">
-          {input.type === "video" ? (
+          {input.type === "VIDEO" ? (
             <video src={input.value} className="h-10 w-10" />
           ) : (
             <img src={input.value} className="h-10 w-10" />

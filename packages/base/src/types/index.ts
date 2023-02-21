@@ -110,7 +110,13 @@ export const SelectTypes = z.enum([
   "transform-props",
 ]);
 export type SelectTypes = z.infer<typeof SelectTypes>;
-export const MediaTypes = z.enum(["image", "audio", "video", "gif"]);
+export const MediaTypes = z.enum([
+  "IMAGE",
+  "AUDIO",
+  "VIDEO",
+  "GIF",
+  "TRANSCRIPTION",
+]);
 export type MediaTypes = z.infer<typeof MediaTypes>;
 export const VariableTypes = z.enum([
   "text",
@@ -128,7 +134,7 @@ export type VariableTypes = z.infer<typeof VariableTypes>;
 export const Variable = z.object({
   id: z.string(),
   label: z.string().optional(),
-  type: VariableTypes.optional(),
+  type: VariableTypes,
   value: z.any().optional(),
 });
 export type Variable = z.infer<typeof Variable>;

@@ -10,7 +10,7 @@ export const video: Component<VideoProps> = {
     {
       prop: "src",
       label: "Source",
-      type: "video",
+      type: "VIDEO",
     },
     {
       prop: "objectFit",

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
-import { getYoutubeUrl } from "../../../lib/getYoutubeUrl";
-import prisma from "../../../server/db";
+import { getYoutubeUrl } from "../../../../lib/getYoutubeUrl";
+import prisma from "../../../../server/db";
 
 const handler = async function (req: NextApiRequest, res: NextApiResponse) {
   const id = req.query.id as string;

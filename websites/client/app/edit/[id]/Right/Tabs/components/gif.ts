@@ -10,7 +10,7 @@ export const gif: Component<GifProps> = {
     {
       prop: "src",
       label: "Source",
-      type: "gif",
+      type: "GIF",
     },
     {
       prop: "objectFit",

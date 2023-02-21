@@ -22,7 +22,7 @@ export const Inputs = ({ inputs }: { inputs: UserInput<ComponentProps>[] }) => {
           <VariableInput
             key={prop}
             prop={prop}
-            type={type}
+            type={type as any}
             label={label || prop}
             value={(comp as any)[prop]}
             onChange={(value: any) =>

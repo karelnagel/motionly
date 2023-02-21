@@ -29,7 +29,7 @@ export const OneInput = ({ id }: { id: string }) => {
         }
       />
       <VariableInput
-        type={input.type || "text"}
+        type={input.type as any}
         value={input.value}
         onChange={(value: any) =>
           set((s) => {

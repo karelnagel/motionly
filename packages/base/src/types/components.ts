@@ -35,7 +35,7 @@ export const TextStyle = z.object({
 export type TextStyle = z.infer<typeof TextStyle>;
 export const TranscriptionProps = z.object({
   comp: z.literal("transcription"),
-  src: z.array(TranscriptionWord),
+  src: z.array(TranscriptionWord).or(z.string().url()),
   startFrom: z.number().min(0).optional(),
   textStyle: TextStyle,
   scrollByPage: z.boolean().optional(),
