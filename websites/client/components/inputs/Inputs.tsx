@@ -8,7 +8,6 @@ export type UserInput<T> = {
   type: VariableTypes;
   label?: string;
   if?: (comp: T) => boolean;
-  options?: { value: string; label: string }[];
 };
 
 export const Inputs = ({ inputs }: { inputs: UserInput<ComponentProps>[] }) => {

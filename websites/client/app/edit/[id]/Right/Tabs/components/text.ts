@@ -1,4 +1,4 @@
-import { JustifyContent, TextProps } from "@motionly/base";
+import { TextProps } from "@motionly/base";
 import { Component } from ".";
 import { IoText } from "react-icons/io5";
 
@@ -14,12 +14,8 @@ export const text: Component<TextProps> = {
     },
     {
       prop: "justifyContent",
-      type: "select",
       label: "Justify Content",
-      options: Object.entries(JustifyContent).map(([value, label]) => ({
-        value,
-        label,
-      })),
+      type: "justify",
     },
     {
       prop: "textStyle",

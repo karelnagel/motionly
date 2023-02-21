@@ -47,11 +47,7 @@ const component = () => {
       <div className="flex items-center space-x-2">
         <VariableInput
           className="w-full"
-          type="select"
-          options={Object.entries(transformProps).map(([value, { label }]) => ({
-            value,
-            label,
-          }))}
+          type="transform-props"
           value={nextProp}
           onChange={(e) => setNextProp(e as any)}
         />

@@ -1,17 +1,12 @@
-import { TextAlign, TextStyle } from "@motionly/base";
-import { getAvailableFonts } from "@remotion/google-fonts";
+import { TextStyle } from "@motionly/base";
 import { InputProps, VariableInput } from "..";
 import { UserInput } from "../Inputs";
 
 export const inputs: UserInput<TextStyle>[] = [
   {
     prop: "fontFamily",
-    type: "select",
     label: "Font",
-    options: getAvailableFonts().map((f) => ({
-      label: f.fontFamily,
-      value: f.fontFamily,
-    })),
+    type: "font-family",
   },
   {
     prop: "fontSize",
@@ -25,7 +20,7 @@ export const inputs: UserInput<TextStyle>[] = [
   },
   {
     prop: "fontWeight",
-    type: "number",
+    type: "font-weight",
     label: "Font weight",
   },
   {
@@ -40,12 +35,8 @@ export const inputs: UserInput<TextStyle>[] = [
   },
   {
     prop: "textAlign",
-    type: "select",
     label: "Align",
-    options: Object.keys(TextAlign).map((a) => ({
-      label: a,
-      value: a,
-    })),
+    type: "align",
   },
   {
     prop: "outlineColor",
@@ -80,7 +71,6 @@ export const TextStyleInput = ({
               [input.prop]: style,
             });
           }}
-          options={input.options}
         />
       ))}
     </div>

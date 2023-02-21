@@ -1,6 +1,12 @@
 "use client";
 
-import { Color, TextStyle, VariableTypes } from "@motionly/base";
+import {
+  Color,
+  MediaTypes,
+  SelectTypes,
+  TextStyle,
+  VariableTypes,
+} from "@motionly/base";
 import { MediaInput } from "./types/media";
 import { useProject } from "../../hooks/useProject";
 import { ColorInput } from "./types/color";
@@ -12,7 +18,7 @@ import { CheckBoxInput } from "./types/checkbox";
 import { NumberInput } from "./types/number";
 import { TextAreaInput } from "./types/textarea";
 import { TextInput } from "./types/text";
-import { SelectInput } from "./types/select";
+import { SelectInput, SelectOptions } from "./types/select";
 
 export function VariableInput({
   className,
@@ -48,7 +54,11 @@ export function VariableInput({
           {props.label && <span className="label-text">{props.label}</span>}
         </div>
       )}
-      <div className={`w-full ${!props.label || isDivider  ? "col-span-4" : "col-span-3"}`}>
+      <div
+        className={`w-full ${
+          !props.label || isDivider ? "col-span-4" : "col-span-3"
+        }`}
+      >
         {isDivider && (
           <div>
             <div className="divider" />
@@ -87,16 +97,16 @@ export type InputProps<T> = {
   disabled?: boolean;
   prop?: string;
   label?: string;
-  options?: { value: string; label: string }[];
+  options?: SelectOptions;
 };
 
 type Input =
   | ({ type: "text" | "textarea" } & InputProps<string>)
-  | ({ type: "gif" | "image" | "video" | "audio" } & InputProps<string>)
+  | ({ type: MediaTypes } & InputProps<string>)
   | ({ type: "number" } & InputProps<number>)
   | ({ type: "checkbox" } & InputProps<boolean>)
   | ({ type: "stringArray" } & InputProps<string[]>)
-  | ({ type: "select" } & InputProps<string>)
+  | ({ type: SelectTypes } & InputProps<string | number>)
   | ({ type: "color" } & InputProps<Color>)
   | ({ type: "style" } & InputProps<TextStyle>)
   | ({ type: "color" } & InputProps<Color>);
@@ -109,13 +119,14 @@ export function Input(props: Input) {
       {props.type === "text" && <TextInput {...props} />}
       {props.type === "stringArray" && <StringArray {...props} />}
       {props.type === "textarea" && <TextAreaInput {...props} />}
-      {props.type === "select" && <SelectInput {...props} />}
+      {SelectTypes.options.includes(props.type as any) && (
+        <SelectInput {...(props as InputProps<string | number>)} />
+      )}
       {props.type === "color" && <ColorInput {...props} />}
       {props.type === "style" && <TextStyleInput {...props} />}
-      {(props.type === "gif" ||
-        props.type === "image" ||
-        props.type === "video" ||
-        props.type === "audio") && <MediaInput {...props} />}
+      {MediaTypes.options.includes(props.type as any) && (
+        <MediaInput {...(props as InputProps<string>)} />
+      )}
     </>
   );
 }

@@ -93,20 +93,37 @@ export type AllComponents = z.infer<typeof AllComponents>;
 export const ComponentProps = BaseProps.and(AllComponents);
 export type ComponentProps = z.infer<typeof ComponentProps>;
 
+export const SelectTypes = z.enum([
+  "object-fit",
+  "font-family",
+  "font-weight",
+  "justify",
+  "align",
+  "animation-props",
+  "animation-types",
+  "graph-types",
+  "mockup-types",
+  "progressbar-types",
+  "shape-types",
+  "transcription-types",
+  "triangle-direction",
+  "transform-props",
+]);
+export type SelectTypes = z.infer<typeof SelectTypes>;
+export const MediaTypes = z.enum(["image", "audio", "video", "gif"]);
+export type MediaTypes = z.infer<typeof MediaTypes>;
 export const VariableTypes = z.enum([
-  "image",
-  "audio",
-  "video",
-  "gif",
   "text",
   "number",
   "color",
   "checkbox",
   "textarea",
-  "select",
   "style",
   "stringArray",
+  ...MediaTypes.options,
+  ...SelectTypes.options,
 ]);
+
 export type VariableTypes = z.infer<typeof VariableTypes>;
 export const Variable = z.object({
   id: z.string(),

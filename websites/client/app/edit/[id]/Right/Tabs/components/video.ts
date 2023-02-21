@@ -1,4 +1,4 @@
-import { ObjectFit, VideoProps } from "@motionly/base";
+import { VideoProps } from "@motionly/base";
 import { Component } from ".";
 import { MdVideoLibrary } from "react-icons/md";
 
@@ -13,11 +13,7 @@ export const video: Component<VideoProps> = {
     },
     {
       prop: "objectFit",
-      type: "select",
-      options: Object.entries(ObjectFit).map(([value, label]) => ({
-        value,
-        label,
-      })),
+      type: "object-fit",
     },
     {
       prop: "startFrom",

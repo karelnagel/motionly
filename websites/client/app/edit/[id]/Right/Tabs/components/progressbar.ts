@@ -1,4 +1,4 @@
-import { ProgressbarProps, ProgressbarTypes } from "@motionly/base";
+import { ProgressbarProps } from "@motionly/base";
 import { IoIosTimer } from "react-icons/io";
 import { Component } from ".";
 
@@ -17,11 +17,7 @@ export const progressbar: Component<ProgressbarProps> = {
     },
     {
       prop: "type",
-      type: "select",
-      options: Object.entries(ProgressbarTypes).map(([value, label]) => ({
-        value,
-        label,
-      })),
+      type: "progressbar-types",
     },
     {
       prop: "barWidth",

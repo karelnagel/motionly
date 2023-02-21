@@ -1,4 +1,4 @@
-import { ShapeProps, ShapeTypes, TriangleDirection } from "@motionly/base";
+import { ShapeProps } from "@motionly/base";
 import { Component } from ".";
 import { IoShapesOutline } from "react-icons/io5";
 
@@ -9,11 +9,7 @@ export const shape: Component<ShapeProps> = {
   inputs: [
     {
       prop: "type",
-      type: "select",
-      options: Object.entries(ShapeTypes).map(([value, label]) => ({
-        value,
-        label,
-      })),
+      type: "shape-types",
     },
     {
       prop: "fill",
@@ -30,11 +26,7 @@ export const shape: Component<ShapeProps> = {
     },
     {
       prop: "direction" as any,
-      type: "select",
-      options: Object.entries(TriangleDirection).map(([value, label]) => ({
-        value,
-        label,
-      })),
+      type: "triangle-direction",
       if: (comp) => comp.type === "triangle",
     },
     {
