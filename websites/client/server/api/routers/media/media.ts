@@ -4,8 +4,8 @@ import { z } from "zod";
 import { env } from "../../../../env.mjs";
 import { TRPCError } from "@trpc/server";
 import { getMediaType } from "../../../../helpers/getMediaType";
-import ytdl from "ytdl-core";
 import { s3 } from "../../../../lib/aws";
+import { getYoutubeUrl } from "../../../../lib/getYoutubeUrl";
 
 const tags = ["Media"];
 const protect = true;
@@ -31,12 +31,7 @@ export const media = createTRPCRouter({
     .input(z.object({ youtubeUrl: z.string().url() }))
     .output(UserFile)
     .mutation(async ({ input: { youtubeUrl }, ctx }) => {
-      const info = await ytdl.getInfo(youtubeUrl);
-      const name = info.videoDetails.title;
-      const formats = info.formats.filter(
-        (v) => v.container === "mp4" && v.hasVideo && v.hasAudio
-      );
-      const { url } = formats[0];
+      const { url, name } = await getYoutubeUrl(youtubeUrl);
       if (!url)
         throw new TRPCError({ code: "BAD_REQUEST", message: "No video found" });
 
@@ -45,6 +40,7 @@ export const media = createTRPCRouter({
           name,
           type: "VIDEO",
           url,
+          youtubeUrl,
           user: {
             connect: {
               id: ctx.session.user.id,
