@@ -118,7 +118,7 @@ export const renders = createTRPCRouter({
     }),
   media: protectedProcedure
     .meta({ openapi: { method: "POST", path: "/renders/media", tags } })
-    .input(z.object({ template: TemplateType }))
+    .input(z.object({ template: TemplateType, id: z.string().optional() }))
     .output(z.object({ renderId: z.string() }))
     .mutation(async ({ input, ctx }) => {
       const { renderId } = await renderMediaOnLambda({
@@ -129,26 +129,13 @@ export const renders = createTRPCRouter({
         region: env.REMOTION_AWS_REGION as any,
         inputProps: input.template,
       });
-      const render = await prisma.render.create({
-        data: { id: renderId, userId: ctx.session?.user.id, type: "MEDIA" },
-      });
-      return { renderId };
-    }),
-  projectMedia: publicProcedure
-    .meta({ openapi: { method: "POST", path: "/projects/{id}/media", tags } })
-    .input(z.object({ template: TemplateType }))
-    .output(z.object({ renderId: z.string() }))
-    .mutation(async ({ input, ctx }) => {
-      const { renderId } = await renderMediaOnLambda({
-        serveUrl: env.REMOTION_AWS_SERVE_URL,
-        codec: "h264",
-        composition: env.REMOTION_COMPOSITION,
-        functionName: env.REMOTION_AWS_FUNCTION_NAME,
-        region: env.REMOTION_AWS_REGION as any,
-        inputProps: input.template,
-      });
-      const render = await prisma.render.create({
-        data: { id: renderId, userId: ctx.session?.user.id, type: "MEDIA" },
+      await prisma.render.create({
+        data: {
+          id: renderId,
+          userId: ctx.session?.user.id,
+          type: "MEDIA",
+          projectId: input.id,
+        },
       });
       return { renderId };
     }),
@@ -158,6 +145,7 @@ export const renders = createTRPCRouter({
       z.object({
         frame: z.number(),
         template: TemplateType,
+        id: z.string().optional(),
       })
     )
     .output(RenderProgress)
@@ -174,33 +162,7 @@ export const renders = createTRPCRouter({
           fileUrl: url,
           status: "COMPLETED",
           progress: 1,
-          type: "STILL",
-        },
-      });
-      return render;
-    }),
-  projectStill: publicProcedure
-    .meta({ openapi: { method: "POST", path: "/projects/{id}/still", tags } })
-    .input(
-      z.object({
-        frame: z.number(),
-        template: TemplateType,
-      })
-    )
-    .output(RenderProgress)
-    .mutation(async ({ input, ctx }) => {
-      const { estimatedPrice, renderId, url } = await renderStill(
-        input.template,
-        input.frame
-      );
-      const render = await prisma.render.create({
-        data: {
-          id: renderId,
-          userId: ctx.session?.user.id,
-          cost: estimatedPrice.accruedSoFar,
-          fileUrl: url,
-          status: "COMPLETED",
-          progress: 1,
+          projectId: input.id,
           type: "STILL",
         },
       });

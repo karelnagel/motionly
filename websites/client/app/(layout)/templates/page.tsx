@@ -28,7 +28,7 @@ export default async function Templates({
         { template: { string_contains: comp } },
       ],
     },
-    orderBy: { createdAt: "desc" },
+    orderBy: { renders: { _count: "desc" } },
   });
   const yourProjects = session
     ? await prisma.project.findMany({

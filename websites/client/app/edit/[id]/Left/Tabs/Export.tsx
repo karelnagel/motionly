@@ -7,6 +7,7 @@ import { trpc } from "../../../../ClientProvider";
 
 export default function Export() {
   const frame = useProject((s) => s.playerFrame);
+  const id = useProject((s) => s.project.id);
   const template = useProject((s) => s.project.template);
   const { data: renders } = trpc.renders.getAll.useQuery(
     {},
@@ -25,7 +26,7 @@ export default function Export() {
           <button
             className="btn btn-sm"
             disabled={stillLoading}
-            onClick={() => renderStill({ template, frame })}
+            onClick={() => renderStill({ template, frame, id })}
           >
             Current frame
           </button>
@@ -33,7 +34,7 @@ export default function Export() {
           <button
             disabled={mediaLoading}
             className="btn btn-sm btn-primary"
-            onClick={() => renderMedia({ template })}
+            onClick={() => renderMedia({ template, id })}
           >
             video
           </button>

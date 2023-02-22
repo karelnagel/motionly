@@ -4,14 +4,22 @@ import { Player } from "@motionly/player";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
-import { IoIosBrush, IoIosCopy } from "react-icons/io";
+import { IoIosBrush, IoIosCopy, IoIosImage, IoIosImages } from "react-icons/io";
 import { Clone } from "../../../../components/Clone";
 import { Input } from "../../../../components/inputs";
 import { Project } from "../../../../types";
 import produce from "immer";
 import { TemplateType } from "@motionly/base";
 
-export const Client = ({ startProject }: { startProject: Project }) => {
+export const Client = ({
+  startProject,
+  renderCount = 0,
+  cloneCount = 0,
+}: {
+  startProject: Project;
+  renderCount?: number;
+  cloneCount?: number;
+}) => {
   const [project, setProject] = useState(startProject);
   const { data: session } = useSession();
   const template = project.template as TemplateType;
@@ -72,14 +80,32 @@ export const Client = ({ startProject }: { startProject: Project }) => {
           })}
         </div>
       </div>
-      <Player
-        loop
-        template={template}
-        allowFullscreen
-        clickToPlay
-        controls
-        style={{ width: "100%" }}
-      />
+      <div>
+        <Player
+          loop
+          template={template}
+          allowFullscreen
+          clickToPlay
+          controls
+          style={{ width: "100%" }}
+        />
+        <div className="stats gradient text-primary-content shadow w-full rounded-t-none">
+          <div className="stat border-primary-content ">
+            <div className="stat-figure shrink-0">
+              <IoIosImages className="text-3xl" />
+            </div>
+            <div className="stat-title">Renders</div>
+            <div className="stat-value">{renderCount}</div>
+          </div>
+          <div className="stat border-primary-content ">
+            <div className="stat-figure shrink-0">
+              <IoIosCopy className="text-3xl" />
+            </div>
+            <div className="stat-title">Clones</div>
+            <div className="stat-value">{cloneCount}</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
