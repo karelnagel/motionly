@@ -4,12 +4,12 @@ import { Player } from "@motionly/player";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
-import { IoIosBrush, IoIosCopy, IoIosImage, IoIosImages } from "react-icons/io";
+import { IoIosBrush, IoIosCopy, IoIosImages } from "react-icons/io";
 import { Clone } from "../../../../components/Clone";
 import { Input } from "../../../../components/inputs";
 import { Project } from "../../../../types";
 import produce from "immer";
-import { TemplateType } from "@motionly/base";
+import { trpc } from "../../../ClientProvider";
 
 export const Client = ({
   startProject,
@@ -22,8 +22,13 @@ export const Client = ({
 }) => {
   const [project, setProject] = useState(startProject);
   const { data: session } = useSession();
-  const template = project.template as TemplateType;
-
+  const template = project.template;
+  const {
+    mutate: render,
+    data,
+    isLoading,
+    isError,
+  } = trpc.renders.media.useMutation();
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
       <div className="space-y-3 flex flex-col items-stretch ">
@@ -57,7 +62,7 @@ export const Client = ({
             const input = template.variables?.byIds[variableId];
             if (!input) return null;
             return (
-              <div>
+              <div key={variableId}>
                 <p>{input.label}</p>
                 <Input
                   key={variableId}
@@ -79,6 +84,20 @@ export const Client = ({
             );
           })}
         </div>
+        {!data && (
+          <div>
+            <button
+              disabled={isLoading}
+              className="btn btn-primary w-full mt-4"
+              onClick={() => render({ template, id: project.id })}
+            >
+              Render
+            </button>
+            {isLoading && <p>Loading...</p>}
+            {isError && <p>Error</p>}
+          </div>
+        )}
+        {data && <RenderingProgress id={data.renderId} />}
       </div>
       <div>
         <Player
@@ -106,6 +125,26 @@ export const Client = ({
           </div>
         </div>
       </div>
+    </div>
+  );
+};
+
+const RenderingProgress = ({ id }: { id: string }) => {
+  const { data } = trpc.renders.get.useQuery({ id }, { refetchInterval: 3000 });
+  return (
+    <div>
+      <p>Rendering...</p>
+      <p>{data?.render.status}</p>
+      <progress
+        value={data?.render.progress}
+        max={1}
+        className="progress progress-primary"
+      />
+      {data?.render.fileUrl && (
+        <a className="font-bold text-primary" href={data.render.fileUrl}>
+          LINK
+        </a>
+      )}
     </div>
   );
 };

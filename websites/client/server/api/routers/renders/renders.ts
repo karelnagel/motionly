@@ -110,13 +110,12 @@ export const renders = createTRPCRouter({
         where: { userId: ctx.session?.user.id || null },
       });
       if (!render) throw new TRPCError({ code: "NOT_FOUND" });
-
       if (render.type === "MEDIA" && render.status === "PROCESSING")
         render = await refreshProgress(render.id);
 
       return { render };
     }),
-  media: protectedProcedure
+  media: publicProcedure
     .meta({ openapi: { method: "POST", path: "/renders/media", tags } })
     .input(z.object({ template: TemplateType, id: z.string().optional() }))
     .output(z.object({ renderId: z.string() }))
@@ -139,7 +138,7 @@ export const renders = createTRPCRouter({
       });
       return { renderId };
     }),
-  still: protectedProcedure
+  still: publicProcedure
     .meta({ openapi: { method: "POST", path: "/renders/still", tags } })
     .input(
       z.object({
