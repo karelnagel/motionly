@@ -144,16 +144,15 @@ const Trans = ({ id }: { id?: string }) => {
     isLoading,
   } = trpc.transcriptions.transcribe.useMutation();
   return (
-    <div>
+    <>
       {isError && <p className="text-error">Error starting transcribing</p>}
       {data?.transcription && (
         <div className="w-full">
           <p>Status: {data.transcription.status}</p>
           <p>Language: {data.transcription.language}</p>
           <p>Persons: {data.transcription.persons}</p>
-          <input
-            type="textarea"
-            className="textarea texatarea-bordered input-sm w-full "
+          <textarea
+            className="textarea texatarea-bordered input-sm w-full min-h-[200px] leading-none"
             value={JSON.stringify(data.transcription.transcript, null, 2)}
             onChange={() => {}}
           />
@@ -171,6 +170,6 @@ const Trans = ({ id }: { id?: string }) => {
           </button>
         </div>
       )}
-    </div>
+    </>
   );
 };
