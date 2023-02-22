@@ -13,7 +13,7 @@ export default async function Login({
   const session = await getServerSession();
 
   if (session?.user) {
-    redirect("/templates");
+    redirect(callback);
   }
   return (
     <div className="h-full flex justify-center items-center flex-grow">
