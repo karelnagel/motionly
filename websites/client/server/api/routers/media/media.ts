@@ -37,7 +37,7 @@ export const media = createTRPCRouter({
     .input(z.object({ youtubeUrl: z.string().url() }))
     .output(UserFile)
     .mutation(async ({ input: { youtubeUrl }, ctx }) => {
-      const { url, name } = await getYoutubeUrl(youtubeUrl);
+      const { url, name, subtitles } = await getYoutubeUrl(youtubeUrl);
       if (!url)
         throw new TRPCError({ code: "BAD_REQUEST", message: "No video found" });
 
@@ -50,6 +50,13 @@ export const media = createTRPCRouter({
           user: {
             connect: {
               id: ctx.session.user.id,
+            },
+          },
+          transcription: {
+            create: {
+              status: subtitles ? "COMPLETED" : "FAILED",
+              language: "en",
+              transcript: subtitles,
             },
           },
         },
@@ -145,6 +152,7 @@ export const media = createTRPCRouter({
         });
 
       let transcription: Transcription | undefined = undefined;
+      console.log(file.transcription);
       if (file.transcription) {
         if (file.transcription.status === "PROCESSING")
           transcription = await updateTranscriptionProgress(
