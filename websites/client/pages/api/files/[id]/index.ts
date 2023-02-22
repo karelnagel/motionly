@@ -9,7 +9,7 @@ const handler = async function (req: NextApiRequest, res: NextApiResponse) {
   const file = await prisma.file.findUnique({ where: { id } });
   if (!file) return res.status(404).send("File not found");
   console.warn("new load", id);
-  res.setHeader("Cache-Control", "s-maxage=120");
+  res.setHeader("Cache-Control", "public, s-maxage=120");
   if (!file.youtubeUrl) return res.redirect(308, file.url);
 
   try {
