@@ -17,7 +17,7 @@ const handler = async function (req: NextApiRequest, res: NextApiResponse) {
     }
   } catch {}
 
-  const { url } = await getYoutubeUrl(file.youtubeUrl);
+  const { url } = await getYoutubeUrl(file.youtubeUrl, false);
   if (!url) return res.status(500).send("Failed to get youtube url");
 
   await prisma.file.update({
