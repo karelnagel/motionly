@@ -2,14 +2,17 @@ import { TranscriptionWord } from "@motionly/base";
 import axios from "axios";
 import ytdl from "ytdl-core";
 
-export const getYoutubeUrl = async (youtubeUrl: string, getSubs?: boolean) => {
+export const getYoutubeUrl = async (
+  youtubeUrl: string,
+  dontGetSubs?: boolean
+) => {
   const info = await ytdl.getInfo(youtubeUrl);
   const name = info.videoDetails.title;
   const formats = info.formats.filter(
     (v) => v.container === "mp4" && v.hasVideo && v.hasAudio
   );
   const { url } = formats[0];
-  const subtitles = getSubs ? await getSubtitles(info) : undefined;
+  const subtitles = dontGetSubs ? undefined : await getSubtitles(info);
   return { url, name, subtitles };
 };
 const lang = "en";
