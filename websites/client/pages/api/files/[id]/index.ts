@@ -8,6 +8,7 @@ const handler = async function (req: NextApiRequest, res: NextApiResponse) {
   if (!id) return res.status(400).send("Missing id parameter");
   const file = await prisma.file.findUnique({ where: { id } });
   if (!file) return res.status(404).send("File not found");
+  console.warn("new load", id);
   res.setHeader("Cache-Control", "s-maxage=3600");
   if (!file.youtubeUrl) return res.redirect(307, file.url);
 
