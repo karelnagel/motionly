@@ -27,6 +27,7 @@ export const media = createTRPCRouter({
           type,
           url: { contains: "https://" },
         },
+        orderBy: { updatedAt: "desc" },
       });
       return { files };
     }),
@@ -189,7 +190,8 @@ export const media = createTRPCRouter({
           message: "File not found",
         });
       const Key = `${ctx.session.user.id}/${file.id}`;
-      await s3.deleteObject({ Bucket: env.MEDIA_BUCKET, Key }).promise();
+      if (!file.youtubeUrl)
+        await s3.deleteObject({ Bucket: env.MEDIA_BUCKET, Key }).promise();
       await ctx.prisma.file.delete({
         where: {
           id: file.id,
