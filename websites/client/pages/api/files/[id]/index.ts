@@ -9,13 +9,13 @@ const handler = async function (req: NextApiRequest, res: NextApiResponse) {
   const file = await prisma.file.findUnique({ where: { id } });
   if (!file) return res.status(404).send("File not found");
   console.warn("new load", id);
-  res.setHeader("Cache-Control", "s-maxage=3600");
-  if (!file.youtubeUrl) return res.redirect(307, file.url);
+  res.setHeader("Cache-Control", "s-maxage=120");
+  if (!file.youtubeUrl) return res.redirect(308, file.url);
 
   try {
     const result = await axios.head(file.url);
     if (result.status === 200) {
-      return res.redirect(307, file.url);
+      return res.redirect(308, file.url);
     }
   } catch {}
 
@@ -26,7 +26,7 @@ const handler = async function (req: NextApiRequest, res: NextApiResponse) {
     where: { id },
     data: { url },
   });
-  return res.redirect(307, url);
+  return res.redirect(308, url);
 };
 
 export default handler;

@@ -13,7 +13,7 @@ const handler = async function (req: NextApiRequest, res: NextApiResponse) {
   if (!file.transcription)
     return res.status(404).send("Transcription not found");
 
-  res.setHeader("Cache-Control", "s-maxage=3600");
+  res.setHeader("Cache-Control", "s-maxage=120");
   return res.json(file.transcription?.transcript);
 };
 

@@ -9,6 +9,7 @@ import { StyleAndClass, TranscriptionWord } from "@motionly/base";
 import { TranscriptionProps } from "@motionly/base";
 import { useTextStyles } from "../../hooks/useTextStyles";
 export * from "./default";
+import z from "zod";
 
 export const Transcription = ({
   textStyle,
@@ -41,8 +42,11 @@ export const Transcription = ({
     if (typeof src !== "string") return;
     fetch(src)
       .then((res) => res.json())
-      .then((data) => setWords(data))
-      .catch((e) => console.error(e));
+      .then((data) => {
+        z.array(TranscriptionWord).parse(data);
+        setWords(data);
+      })
+      .catch((e) => setWords([]));
   }, [src]);
 
   useEffect(() => {
