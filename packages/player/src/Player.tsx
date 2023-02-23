@@ -22,14 +22,12 @@ export const Player = forwardRef<PlayerRef, PlayerProps>(
     useEffect(() => setIsClient(true), []);
     const template = useMemo(() => prepareTemplate(temp), [temp]);
     return (
-      <SelectedContext.Provider
-        value={{ setSelected, selected, selectedRef }}
-      >
+      <SelectedContext.Provider value={{ setSelected, selected, selectedRef }}>
         <RemotionPlayer
           ref={ref}
           component={isClient ? Composition : () => <>{loading}</>}
           fps={template.fps}
-          durationInFrames={Math.ceil(template.duration * template.fps)}
+          durationInFrames={Math.ceil((template.duration || 1) * template.fps)}
           inputProps={{
             bg: template.bg,
             comps: template.comps,

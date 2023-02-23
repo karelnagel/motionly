@@ -140,7 +140,7 @@ export const media = createTRPCRouter({
     .query(async ({ input: { id }, ctx }) => {
       const file = await ctx.prisma.file.findFirst({
         where: {
-          id,
+          id: { in: id },
           userId: ctx.session.user.id,
           url: { contains: "https://" },
         },

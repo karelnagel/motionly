@@ -7,21 +7,22 @@ import { trpc } from "../../../ClientProvider";
 
 export default function Renders() {
   const { data: renders } = trpc.renders.getAll.useQuery({});
+  const { data } = trpc.renders.stats.useQuery({});
   const stats = [
     {
       title: "Cost",
-      value: renders?.totalCost?.toFixed(2),
+      value: data?.totalCost?.toFixed(2),
       icon: AiOutlineDollarCircle,
       units: "$",
     },
     {
       title: "Total videos",
-      value: renders?.mediaCount,
+      value: data?.mediaCount,
       icon: MdOutlineMovieCreation,
     },
     {
       title: "Total images",
-      value: renders?.stillCount,
+      value: data?.stillCount,
       icon: IoImage,
     },
   ];

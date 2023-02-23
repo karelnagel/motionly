@@ -1232,24 +1232,18 @@ export const defaultTranscriptionProps: TranscriptionProps = {
   src: defaultTranscriptionWords,
   animationType: "current-word",
   animationStyle: {
-    outlineColor: {
+    color: {
       type: "basic",
-      color: "#00FFFFFF",
+      color: "#FF0000FF",
     },
-    outlineWidth: 20,
   },
   textStyle: {
-    fontSize: 100,
+    fontSize: 80,
     fontFamily: "Inter",
     color: {
       type: "basic",
       color: "#FFFFFFFF",
     },
-    outlineColor: {
-      type: "basic",
-      color: "#000FFFFF",
-    },
-    outlineWidth: 20,
     fontWeight: "800",
     lineHeight: 1.3,
     textAlign: "center",

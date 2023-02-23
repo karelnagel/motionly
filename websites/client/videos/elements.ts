@@ -619,6 +619,7 @@ export const sections: Section[] = [
     elements: [
       {
         title: "Transcription",
+        aspectRatio: 2,
         props: {
           ...defaultTranscriptionProps,
         },

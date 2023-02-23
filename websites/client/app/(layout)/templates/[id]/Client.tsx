@@ -10,6 +10,8 @@ import { Input } from "../../../../components/inputs";
 import { Project } from "../../../../types";
 import produce from "immer";
 import { trpc } from "../../../ClientProvider";
+import { OneRender } from "../../../../components/OneRender";
+import { ShowHide } from "../../../../components/ShowHide";
 
 export const Client = ({
   startProject,
@@ -24,8 +26,7 @@ export const Client = ({
   const { data: session } = useSession();
   const template = project.template;
   const {
-    mutate: render,
-    data,
+    mutateAsync: render,
     isLoading,
     isError,
   } = trpc.renders.media.useMutation();
@@ -84,7 +85,15 @@ export const Client = ({
             );
           })}
         </div>
-        {!data && (
+        {!session && (
+          <Link
+            href={`/login?redirect=/templates/${project.id}`}
+            className="btn btn-warning w-full"
+          >
+            Login to render
+          </Link>
+        )}
+        {session && (
           <div>
             <button
               disabled={isLoading}
@@ -94,10 +103,10 @@ export const Client = ({
               Render
             </button>
             {isLoading && <p>Loading...</p>}
-            {isError && <p>Error</p>}
+            {isError && <p>Error with rendering</p>}
           </div>
         )}
-        {data && <RenderingProgress id={data.renderId} />}
+        {session && <Renders projectId={project.id} />}
       </div>
       <div>
         <Player
@@ -129,21 +138,24 @@ export const Client = ({
   );
 };
 
-const RenderingProgress = ({ id }: { id: string }) => {
-  const { data } = trpc.renders.get.useQuery({ id }, { refetchInterval: 3000 });
+const Renders = ({ projectId }: { projectId?: string }) => {
+  const { data } = trpc.renders.getAll.useQuery(
+    { projectId },
+    { refetchInterval: 3000 }
+  );
+  const [show, setShow] = useState(true);
   return (
-    <div>
-      <p>Rendering...</p>
-      <p>{data?.render.status}</p>
-      <progress
-        value={data?.render.progress}
-        max={1}
-        className="progress progress-primary"
-      />
-      {data?.render.fileUrl && (
-        <a className="font-bold text-primary" href={data.render.fileUrl}>
-          LINK
-        </a>
+    <div className="space-y-2 bg-base-200 rounded-lg p-2">
+      <div className="flex items-center justify-between">
+        <p>Your latest renders</p>
+        <ShowHide show={show} setShow={setShow} />
+      </div>
+      {show && (
+        <div className="space-y-2">
+          {data?.renders.map((render) => (
+            <OneRender key={render.id} render={render} />
+          ))}
+        </div>
       )}
     </div>
   );

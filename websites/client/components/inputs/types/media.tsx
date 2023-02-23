@@ -5,13 +5,15 @@ import { Popup } from "../../Popup";
 import { useFileUpload } from "../../../hooks/useFileUpload";
 import { getMediaUrl, getTransUrl } from "../../../helpers/getMediaUrl";
 import { MediaTypes } from "@motionly/base";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 export const MediaInput = ({ value, onChange, type }: InputProps<string>) => {
   const [show, setShow] = useState(false);
 
   return (
-    <div className="col-span-2 text-sm grid grid-cols-3 gap-3 items-center">
-      <button onClick={() => setShow((s) => !s)} className="btn btn-sm w-full">
+    <div className="">
+      <button onClick={() => setShow((s) => !s)} className="btn w-full">
         Change
       </button>
       {show && (
@@ -36,108 +38,85 @@ export const MediaPopup = ({
   type: MediaTypes;
   hide: () => void;
 }) => {
-  const { data: media } = trpc.media.getAll.useQuery({
-    type: type === "TRANSCRIPTION" ? "VIDEO" : type,
-  });
-
+  const { data: session } = useSession();
   const { uploadFile, file, setFile, ref } = useFileUpload();
   const { mutate: youtube, isLoading } = trpc.media.youtube.useMutation();
   const [youtubeUrl, setYoutubeUrl] = useState("");
-  const selected = media?.files.find((f) => value?.includes(f.id));
   const isTrans = type === "TRANSCRIPTION";
   return (
     <Popup hide={hide}>
-      <p>{selected?.name}</p>
-      {type === "IMAGE" || type === "GIF" ? (
-        <img src={value} alt="selected" className="w-60 h-60 object-contain" />
-      ) : !isTrans ? (
-        <video src={value} className="w-60 h-60 object-contain" controls />
-      ) : (
-        <Trans id={selected?.id} />
+      {!session && (
+        <Link href="/login" className="btn btn-warning">
+          Please login to upload media
+        </Link>
       )}
-
-      <div>
-        <p className="text-xl font-semibold mt-4">Select from existing</p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 max-h-60 overflow-auto">
-          {media?.files.length ? (
-            media.files.map((file) => {
-              const fileUrl = getMediaUrl(file.id);
-              const transUrl = getTransUrl(file.id);
-              return (
-                <div
-                  key={file.id}
-                  onClick={() => onChange(isTrans ? transUrl : fileUrl)}
-                  className="w-20 bg-base-300 flex flex-col items-center m-2  whitespace-nowrap text-sm overflow-hidden cursor-pointer relative"
-                >
-                  {type === "IMAGE" || type === "GIF" ? (
-                    <img src={fileUrl} className=" h-20 object-contain" />
-                  ) : (
-                    <video
-                      src={fileUrl}
-                      className=" h-20"
-                      onMouseEnter={(e) => e.currentTarget.play()}
-                      onMouseLeave={(e) => e.currentTarget.pause()}
-                      muted
-                    />
-                  )}
-                  {selected?.id === file.id && (
-                    <p className="absolute font-bold bg-base-200 h-full w-full flex items-center justify-center bg-opacity-50">
-                      Selected
-                    </p>
-                  )}
-                  <p>{file.name}</p>
-                </div>
-              );
-            })
+      {session && (
+        <div>
+          <p>Selected</p>
+          {type === "IMAGE" || type === "GIF" ? (
+            <img
+              src={value}
+              alt="selected"
+              className="w-60 h-60 object-contain"
+            />
+          ) : !isTrans ? (
+            <video src={value} className="w-60 h-60 object-contain" controls />
           ) : (
-            <p>Loading...</p>
+            <Trans value={value} />
           )}
-        </div>
-        <p className="text-xl font-semibold">Add file</p>
-        <div className="grid grid-cols-4">
-          {(type === "VIDEO" || type === "TRANSCRIPTION") && (
-            <>
+
+          <div>
+            <MediaList onChange={onChange} type={type} value={value} />
+            <p className="text-xl font-semibold">Add file</p>
+            <div className="grid grid-cols-4 gap-2">
+              {(type === "VIDEO" || type === "TRANSCRIPTION") && (
+                <>
+                  <input
+                    type="text"
+                    className="input input-bordered input-sm w-full col-span-3"
+                    value={youtubeUrl}
+                    placeholder="Youtube URL"
+                    onChange={(e) => setYoutubeUrl(e.target.value)}
+                  />
+                  <button
+                    className="btn btn-primary"
+                    disabled={!youtubeUrl || isLoading}
+                    onClick={() => {
+                      setYoutubeUrl("");
+                      youtube({ youtubeUrl });
+                    }}
+                  >
+                    Use
+                  </button>
+                </>
+              )}
               <input
-                type="text"
-                className="input input-bordered input-sm w-full col-span-3"
-                value={youtubeUrl}
-                placeholder="Youtube URL"
-                onChange={(e) => setYoutubeUrl(e.target.value)}
+                ref={ref}
+                type="file"
+                accept="image/*, video/*, audio/*"
+                className="file-input file-input-sm col-span-3"
+                onChange={(e) => setFile(e.target.files?.[0])}
               />
               <button
-                className="btn btn-primary"
-                disabled={!youtubeUrl || isLoading}
-                onClick={() => {
-                  setYoutubeUrl("");
-                  youtube({ youtubeUrl });
-                }}
+                disabled={!file}
+                className="btn btn-sm btn-primary"
+                onClick={uploadFile}
               >
-                Use
+                UPLOAD
               </button>
-            </>
-          )}
-          <input
-            ref={ref}
-            type="file"
-            accept="image/*, video/*, audio/*"
-            className="file-input file-input-sm col-span-3"
-            onChange={(e) => setFile(e.target.files?.[0])}
-          />
-          <button
-            disabled={!file}
-            className="btn btn-sm btn-primary"
-            onClick={uploadFile}
-          >
-            UPLOAD
-          </button>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </Popup>
   );
 };
-const Trans = ({ id }: { id?: string }) => {
-  if (!id) return null;
-  const { data } = trpc.media.get.useQuery({ id }, { refetchInterval: 4000 });
+const Trans = ({ value }: { value?: string }) => {
+  if (!value) return null;
+  const { data } = trpc.media.get.useQuery(
+    { id: value },
+    { refetchInterval: 4000 }
+  );
   const {
     mutate: transcribe,
     isError,
@@ -163,7 +142,9 @@ const Trans = ({ id }: { id?: string }) => {
           <p>Not transcribed yet!</p>
           <button
             className="btn btn-primary"
-            onClick={() => transcribe({ fileId: id })}
+            onClick={() => {
+              if (data?.id) transcribe({ fileId: data?.id });
+            }}
             disabled={isLoading}
           >
             Transcribe
@@ -171,5 +152,59 @@ const Trans = ({ id }: { id?: string }) => {
         </div>
       )}
     </>
+  );
+};
+
+const MediaList = ({
+  type,
+  onChange,
+  value,
+}: {
+  type: MediaTypes;
+  onChange: (s: string) => void;
+  value?: string;
+}) => {
+  const isTrans = type === "TRANSCRIPTION";
+  const { data: media } = trpc.media.getAll.useQuery({
+    type: isTrans ? "VIDEO" : type,
+  });
+  const selected = media?.files.find((f) => value?.includes(f.id));
+
+  if (!media) return <p>Loading...</p>;
+  return (
+    <div>
+      <p>Select from existing:</p>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 max-h-60 overflow-auto">
+        {media.files.map((file) => {
+          const fileUrl = getMediaUrl(file.id);
+          const transUrl = getTransUrl(file.id);
+          return (
+            <div
+              key={file.id}
+              onClick={() => onChange(isTrans ? transUrl : fileUrl)}
+              className="w-20 bg-base-300 flex flex-col items-center m-2  whitespace-nowrap text-sm overflow-hidden cursor-pointer relative"
+            >
+              {type === "IMAGE" || type === "GIF" ? (
+                <img src={fileUrl} className=" h-20 object-contain" />
+              ) : (
+                <video
+                  src={fileUrl}
+                  className=" h-20"
+                  onMouseEnter={(e) => e.currentTarget.play()}
+                  onMouseLeave={(e) => e.currentTarget.pause()}
+                  muted
+                />
+              )}
+              {selected?.id === file.id && (
+                <p className="absolute font-bold bg-base-200 h-full w-full flex items-center justify-center bg-opacity-50">
+                  Selected
+                </p>
+              )}
+              <p>{file.name}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 };
