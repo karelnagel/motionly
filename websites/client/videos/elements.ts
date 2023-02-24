@@ -3,7 +3,7 @@ import {
   defaultPathProps,
   defaultTranscriptionProps,
 } from "@motionly/components";
-import { components } from "../app/edit/[id]/Right/Tabs/components";
+import { components } from "../app/(no-layout)/edit/[id]/Right/Tabs/components";
 
 export type Element = {
   title: string;

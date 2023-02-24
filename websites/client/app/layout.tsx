@@ -7,7 +7,7 @@ import { Nunito } from "@next/font/google";
 import {
   description,
   title,
-  name,
+  siteName,
   url,
   favicon,
   motionly,
@@ -45,7 +45,7 @@ export const metadata = {
     title,
     description,
     url,
-    siteName: name,
+    siteName: siteName,
     images: [
       {
         url: motionly,

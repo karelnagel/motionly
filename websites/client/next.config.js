@@ -5,8 +5,10 @@ const SECONDS_PER_DAY = 86400;
 const nextConfig = {
   experimental: {
     appDir: true,
+    // mdxRs: true,
     serverComponentsExternalPackages: ["@prisma/client"],
   },
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   images: {
     domains: [
       "lh3.googleusercontent.com",
@@ -45,20 +47,13 @@ const nextConfig = {
   },
   reactStrictMode: true,
   onDemandEntries: {
-    // period (in ms) where the server will keep pages in the buffer
     maxInactiveAge: SECONDS_PER_DAY * MS_PER_SECOND,
-    // number of pages that should be kept simultaneously without being disposed
     pagesBufferLength: 100,
   },
 };
 
-const withNextra = require("nextra")({
-  theme: "nextra-theme-docs",
-  themeConfig: "./theme.config.tsx",
-  latex: true,
-});
-
+const withMDX = require('@next/mdx')()
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
-module.exports = withBundleAnalyzer(withNextra(nextConfig))
+module.exports = withBundleAnalyzer(withMDX(nextConfig))
