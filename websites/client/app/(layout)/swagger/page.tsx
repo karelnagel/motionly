@@ -1,12 +1,9 @@
-"use client";
+import { subTitle } from "../../../consts";
+import { Swagger } from "./Swagger";
 
-import dynamic from "next/dynamic";
-import "swagger-ui-react/swagger-ui.css";
-
-const SwaggerUI = dynamic(() => import("swagger-ui-react"), { ssr: false });
-
-const Home = () => {
-  return <SwaggerUI url="/api/openapi.json" />;
-};
-
+const Home = () => <Swagger />;
 export default Home;
+
+export const metadata = {
+  title: subTitle("API"),
+};

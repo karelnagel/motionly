@@ -72,3 +72,7 @@ export type UserFile = z.infer<typeof UserFile>;
 export const FileWithTranscription = UserFile.extend({
   transcription: Transcription.optional(),
 });
+export type PageProps = {
+  params: { [key: string]: string };
+  searchParams: { [key: string]: string | undefined };
+};

@@ -3,7 +3,7 @@ import github from "../../../public/icons/github.png";
 import { Button } from "./Button";
 import { getServerSession } from "../../../lib/getServerSession";
 import { redirect } from "next/navigation";
-
+import { name } from "../../../consts";
 export default async function Login({
   searchParams,
 }: {
@@ -28,3 +28,7 @@ export default async function Login({
     </div>
   );
 }
+
+export const metadata = {
+  title: `Login | ${name}`,
+};

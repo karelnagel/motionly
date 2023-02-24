@@ -4,6 +4,7 @@ import { getServerSession } from "../../../lib/getServerSession";
 import { Clone } from "../../../components/Clone";
 import { prismaProjectToProject } from "../../../helpers/projectToProject";
 import { IoIosAdd } from "react-icons/io";
+import { subTitle } from "../../../consts";
 
 export const dynamic = "force-dynamic";
 
@@ -77,3 +78,6 @@ export default async function Templates({
     </div>
   );
 }
+export const metadata = {
+  title: subTitle("Templates"),
+};
