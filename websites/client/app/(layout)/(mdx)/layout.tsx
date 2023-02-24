@@ -31,13 +31,13 @@ export default function MDXLayout({ children }: { children: ReactNode }) {
           <MenuItem key={page.id} {...page} parents={`/${collection.id}`} />
         ))}
       </div>
-      <div className="col-span-4">
+      <div className="col-span-4 space-y-3">
         <div className="text-sm breadcrumbs">
           <ul>
             <BreadCrumb page={collection} paths={paths} />
           </ul>
         </div>
-        {children}
+        <div className="prose md:prose-lg mb-10">{children}</div>
       </div>
     </div>
   );

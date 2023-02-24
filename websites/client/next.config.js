@@ -5,7 +5,7 @@ const SECONDS_PER_DAY = 86400;
 const nextConfig = {
   experimental: {
     appDir: true,
-    // mdxRs: true,
+    mdxRs: true,
     serverComponentsExternalPackages: ["@prisma/client"],
   },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
