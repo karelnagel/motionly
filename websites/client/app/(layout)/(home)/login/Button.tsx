@@ -1,7 +1,6 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { StaticImageData } from "next/image";
 import Image from "next/image";
 
 export const Button = ({
@@ -10,19 +9,19 @@ export const Button = ({
   callbackUrl,
 }: {
   service: string;
-  src: StaticImageData;
+  src: string;
   callbackUrl?: string;
 }) => {
   return (
     <button
       onClick={() =>
-        signIn("github", {
+        signIn(service.toLowerCase(), {
           callbackUrl,
         })
       }
       className="btn flex space-x-2"
     >
-      <Image src={src} alt={service} className="w-6" />
+      <Image src={src} alt={service} className="w-6" height={100} width={100} />
       <p>Continue with {service}</p>
     </button>
   );

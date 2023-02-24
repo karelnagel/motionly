@@ -3,7 +3,7 @@ import { ClientSessionProvider } from "../contexts/ClientSessionProvider";
 import { getServerSession } from "../lib/getServerSession";
 import { ClientProvider } from "./ClientProvider";
 import "./globals.css";
-import { Nunito } from "@next/font/google";
+import { Nunito } from "next/font/google";
 import {
   description,
   title,

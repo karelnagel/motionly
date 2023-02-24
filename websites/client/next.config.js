@@ -5,7 +5,6 @@ const SECONDS_PER_DAY = 86400;
 const nextConfig = {
   experimental: {
     appDir: true,
-    mdxRs: true,
     serverComponentsExternalPackages: ["@prisma/client"],
   },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
@@ -51,9 +50,6 @@ const nextConfig = {
     pagesBufferLength: 100,
   },
 };
-
 const withMDX = require('@next/mdx')()
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true'
-})
-module.exports = withBundleAnalyzer(withMDX(nextConfig))
+
+module.exports = withMDX(nextConfig)

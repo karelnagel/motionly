@@ -1,5 +1,3 @@
-import google from "../../../../public/icons/google.png";
-import github from "../../../../public/icons/github.png";
 import { Button } from "./Button";
 import { getServerSession } from "../../../../lib/getServerSession";
 import { redirect } from "next/navigation";
@@ -21,8 +19,16 @@ export default async function Login({
         <p className="font-semibold text-3xl">Login to Motionly</p>
         <div className="divider"></div>
         <div className="space-y-2">
-          <Button service="Google" src={google} callbackUrl={callback} />
-          <Button service="Github" src={github} callbackUrl={callback} />
+          <Button
+            service="Google"
+            src="/icons/google.png"
+            callbackUrl={callback}
+          />
+          <Button
+            service="Github"
+            src="/icons/github.png"
+            callbackUrl={callback}
+          />
         </div>
       </div>
     </div>

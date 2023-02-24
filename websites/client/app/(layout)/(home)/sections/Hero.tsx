@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import laptop from "../../../../public/laptop.png";
 import { Bubble } from "../../../../components/Bubble";
 
 export const Hero = () => {
@@ -11,15 +10,15 @@ export const Hero = () => {
           Automate your content
         </h1>
         <p className="text-[22px] leading-[30px] font-light">
-          Automate your video editing and integrate
-          videos with dynamic data on your site.
+          Automate your video editing and integrate videos with dynamic data on
+          your site.
         </p>
         <div className="flex space-x-3">
           <Link href="/login" className="btn btn-primary !text-lg">
             Get Started For Free
           </Link>
           <Link href="/#contact" className="btn btn-outline !text-lg">
-            Contact Us 
+            Contact Us
           </Link>
         </div>
       </div>
@@ -45,7 +44,14 @@ export const Hero = () => {
               loop
               muted
             />
-            <Image priority src={laptop} alt="laptop" className="relative " />
+            <Image
+              priority
+              src="/laptop.png"
+              alt="laptop"
+              height={1000}
+              width={1000}
+              className="relative "
+            />
           </div>
         </div>
       </div>
