@@ -17,10 +17,10 @@ export default function Youtube({
       <div className="max-w-screen-sm w-full space-y-14">
         <form
           action="submit"
-          className="flex flex-col items-center space-y-4  w-full"
+          className="flex flex-col items-center space-y-4 w-full"
           onSubmit={(e) => {
             e.preventDefault();
-            router.push(`/youtube?url=${newUrl}`);
+            router.push(`/youtube?url=${encodeURIComponent(newUrl)}`);
           }}
         >
           <h1 className="title text-5xl font-bold">Download Youtube video</h1>
@@ -103,9 +103,14 @@ const Video = ({ url }: { url: string }) => {
 
 const Download = ({ url, fileName }: { url: string; fileName: string }) => {
   return (
-    <Link download={fileName} href={url} className="btn btn-outline">
+    <a
+      download={fileName}
+      target={"_blank"}
+        href={`/api/proxy?url=${encodeURIComponent(url)}`}
+      className="btn btn-outline"
+    >
       Download
-    </Link>
+    </a>
   );
 };
 
