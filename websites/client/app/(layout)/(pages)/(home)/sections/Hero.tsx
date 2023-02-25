@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Bubble } from "../../../../components/Bubble";
+import { Bubble } from "../../../../../components/Bubble";
 
 export const Hero = () => {
   return (

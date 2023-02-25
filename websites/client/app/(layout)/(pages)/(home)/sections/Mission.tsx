@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { Bubble } from "../../../../components/Bubble";
-import { Arrows } from "../../../../components/Arrows";
+import { Bubble } from "../../../../../components/Bubble";
+import { Arrows } from "../../../../../components/Arrows";
 
 export const Mission = () => {
   return (

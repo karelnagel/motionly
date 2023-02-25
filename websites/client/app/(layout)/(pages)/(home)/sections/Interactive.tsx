@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
 import { Player } from "@motionly/player";
 import { useState } from "react";
-import { interactive } from "../../../../videos/examples/interactive";
+import { interactive } from "../../../../../videos/examples/interactive";
 
 export const Interactive = () => {
   const [name, setName] = useState("");

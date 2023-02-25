@@ -1,5 +1,5 @@
-import { Arrows } from "../../../../../components/Arrows";
-import { Bubble } from "../../../../../components/Bubble";
+import { Arrows } from "../../../../../../components/Arrows";
+import { Bubble } from "../../../../../../components/Bubble";
 import { Question } from "./Question";
 
 const questions = [

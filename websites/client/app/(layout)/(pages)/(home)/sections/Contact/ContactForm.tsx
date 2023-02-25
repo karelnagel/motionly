@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { trpc } from "../../../../ClientProvider";
+import { trpc } from "../../../../../ClientProvider";
 
 export const ContactForm = () => {
   const [email, setEmail] = useState("");

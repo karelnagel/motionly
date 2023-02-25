@@ -1,5 +1,5 @@
 import React from "react";
-import { Bubble } from "../../../../../components/Bubble";
+import { Bubble } from "../../../../../../components/Bubble";
 import { ContactForm } from "./ContactForm";
 
 export const Contact = () => {

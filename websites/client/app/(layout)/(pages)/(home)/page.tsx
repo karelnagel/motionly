@@ -1,4 +1,4 @@
-import { Divider } from "../../../components/Divider";
+import { Divider } from "../../../../components/Divider";
 import { Contact } from "./sections/Contact";
 import { Hero } from "./sections/Hero";
 import { Examples } from "./sections/Examples";
