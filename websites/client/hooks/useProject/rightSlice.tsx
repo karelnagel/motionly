@@ -1,5 +1,5 @@
 import { GetType, SetType } from ".";
-import { RightTabs } from "../../app/edit/[id]/Right/Tabs";
+import { RightTabs } from "../../app/(no-layout)/edit/[id]/Right/Tabs";
 
 export interface RightSlice {
   rightTab?: RightTabs;

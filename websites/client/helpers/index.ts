@@ -44,3 +44,6 @@ export const isPanel = (selected: string) => {
 };
 
 export const lowRep = (s: string) => s.replace(/ /g, "-").toLowerCase();
+
+export const capitalize = (s?: string) =>
+  `${s?.[0].toUpperCase()}${s?.slice(1).toLowerCase()}`;

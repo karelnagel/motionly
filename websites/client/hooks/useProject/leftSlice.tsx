@@ -1,4 +1,4 @@
-import { LeftTabs } from "../../app/edit/[id]/Left/Tabs";
+import { LeftTabs } from "../../app/(no-layout)/edit/[id]/Left/Tabs";
 import { GetType, SetType } from ".";
 
 export interface LeftSlice {

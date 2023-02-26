@@ -16,6 +16,7 @@
         "analyze": "ANALYZE=true turbo build",
         "start": "turbo start",
         "test": "turbo test",
+        "turbo": "turbo turbo",
         "dev": "turbo dev",
         "fast-publish": "changeset add; changeset version; changeset publish",
         "preview": "cd packages/components; yarn preview",

@@ -9,6 +9,7 @@ const input = {
     fps: 10,
     childIds: [],
   },
+  id: "",
 };
 
 test("Should fail if not authorized", () =>

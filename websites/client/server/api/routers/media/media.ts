@@ -27,6 +27,7 @@ export const media = createTRPCRouter({
           type,
           url: { contains: "https://" },
         },
+        orderBy: { updatedAt: "desc" },
       });
       return { files };
     }),
@@ -37,7 +38,7 @@ export const media = createTRPCRouter({
     .input(z.object({ youtubeUrl: z.string().url() }))
     .output(UserFile)
     .mutation(async ({ input: { youtubeUrl }, ctx }) => {
-      const { url, name } = await getYoutubeUrl(youtubeUrl);
+      const { url, name, subtitles } = await getYoutubeUrl(youtubeUrl);
       if (!url)
         throw new TRPCError({ code: "BAD_REQUEST", message: "No video found" });
 
@@ -50,6 +51,13 @@ export const media = createTRPCRouter({
           user: {
             connect: {
               id: ctx.session.user.id,
+            },
+          },
+          transcription: {
+            create: {
+              status: subtitles ? "COMPLETED" : "FAILED",
+              language: "en",
+              transcript: subtitles,
             },
           },
         },
@@ -132,7 +140,7 @@ export const media = createTRPCRouter({
     .query(async ({ input: { id }, ctx }) => {
       const file = await ctx.prisma.file.findFirst({
         where: {
-          id,
+          id: { in: id },
           userId: ctx.session.user.id,
           url: { contains: "https://" },
         },
@@ -143,8 +151,9 @@ export const media = createTRPCRouter({
           code: "BAD_REQUEST",
           message: "File not found",
         });
-        
+
       let transcription: Transcription | undefined = undefined;
+      console.log(file.transcription);
       if (file.transcription) {
         if (file.transcription.status === "PROCESSING")
           transcription = await updateTranscriptionProgress(
@@ -181,7 +190,8 @@ export const media = createTRPCRouter({
           message: "File not found",
         });
       const Key = `${ctx.session.user.id}/${file.id}`;
-      await s3.deleteObject({ Bucket: env.MEDIA_BUCKET, Key }).promise();
+      if (!file.youtubeUrl)
+        await s3.deleteObject({ Bucket: env.MEDIA_BUCKET, Key }).promise();
       await ctx.prisma.file.delete({
         where: {
           id: file.id,

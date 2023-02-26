@@ -10,6 +10,7 @@ const input = {
     childIds: [],
   },
   frame: 10,
+  id: "",
 };
 
 test("Should fail if not authorized", () =>
