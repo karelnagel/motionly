@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { LoadingSpinner } from "../../../../components/LoadingSpinner";
 import { trpc } from "../../../ClientProvider";
 
 export default function Youtube({
@@ -102,15 +103,25 @@ const Video = ({ url }: { url: string }) => {
 };
 
 const Download = ({ url, fileName }: { url: string; fileName: string }) => {
+  const [loading, setLoading] = useState(false);
+  const download = async () => {
+    setLoading(true);
+    const result = await fetch(`/api/proxy?url=${encodeURIComponent(url)}`);
+    const data = await result.blob();
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(data);
+    a.download = fileName;
+    a.click();
+    setLoading(false);
+  };
   return (
-    <a
-      download={fileName}
-      target={"_blank"}
-        href={`/api/proxy?url=${encodeURIComponent(url)}`}
-      className="btn btn-outline"
+    <button
+      onClick={download}
+      disabled={loading}
+      className="btn btn-outline w-full"
     >
-      Download
-    </a>
+      {loading ? <div className="loading-spinner !h-5 !w-5" /> : "Download"}
+    </button>
   );
 };
 
