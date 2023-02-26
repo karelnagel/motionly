@@ -18,22 +18,19 @@ export default async function handler(req: NextRequest) {
   const response = await fetch(url);
   const reader = response.body?.getReader();
   const stream = new ReadableStream({
-    async start(controller) {
-      const idk = await reader?.read();
-      if (idk?.done) {
-        controller.close();
-        return;
-      }
-      controller.enqueue(idk?.value);
+    start(controller) {
+      const pump = async () => {
+        const idk = await reader?.read();
+        if (idk?.done) {
+          controller.close();
+          return;
+        }
+        controller.enqueue(idk?.value);
+        pump();
+      };
+      return pump();
     },
-    async pull(controller) {
-      const idk = await reader?.read();
-      if (idk?.done) {
-        controller.close();
-        return;
-      }
-      controller.enqueue(idk?.value);
-    },
+
     cancel(reason) {
       console.error(reason);
     },
