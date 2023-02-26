@@ -6,7 +6,7 @@ import { z } from "zod";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 const GPTResponse = z.object({
-  role: z.enum(["assistant", "user"]),
+  role: z.enum(["assistant", "user", "init"]),
   id: z.string(),
   parentMessageId: z.string(),
   conversationId: z.string(),
@@ -38,8 +38,8 @@ const useMessages = create(
 );
 const parseResult = (result: string) => {
   try {
-    const res = result.split("}{").pop();
-    const safe = GPTResponse.safeParse(JSON.parse(`{${res}`));
+    const res = result.split("\n\n\n").pop();
+    const safe = GPTResponse.safeParse(JSON.parse(`${res}`));
     if (safe.success) return safe.data;
   } catch (e) {
     console.log(e);
@@ -51,6 +51,22 @@ export default function Chat({ searchParams: {} }: { searchParams: {} }) {
   const [loading, setLoading] = useState(false);
   const { data: session } = useSession();
 
+  const init = async () => {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      body: JSON.stringify({
+        start: true,
+      }),
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+    if (!response.ok) return;
+    const data = await response.json();
+    if (!data) return;
+    addMessage(data);
+  };
+
   const submit = async (e: any) => {
     e.preventDefault();
     if (!input || loading) return;
@@ -58,6 +74,7 @@ export default function Chat({ searchParams: {} }: { searchParams: {} }) {
     const prompt = input;
     setInput("");
     const lastMessage = messages[messages.length - 1];
+    if (!lastMessage) return;
     addMessage({ text: input, role: "user" });
     const response = await fetch("/api/chat", {
       method: "POST",
@@ -70,6 +87,7 @@ export default function Chat({ searchParams: {} }: { searchParams: {} }) {
         "content-type": "application/json",
       },
     });
+
     addMessage({ text: "", role: "assistant" });
     if (!response.ok) return;
 
@@ -94,36 +112,44 @@ export default function Chat({ searchParams: {} }: { searchParams: {} }) {
     }
     setLoading(false);
   };
+  if (!messages.length)
+    return (
+      <button className="btn" onClick={() => init()}>
+        Init
+      </button>
+    );
   return (
     <div className="max-w-screen-sm m-auto w-full h-full flex flex-col justify-between space-y-2">
       <div>
-        {messages.map((message, i) => {
-          const isUser = message.role === "user";
-          const image = isUser ? session?.user.image : "/logo.png";
-          const name = isUser ? session?.user.name || "You" : "Motionly bot";
-          return (
-            <div
-              key={i}
-              className={`chat ${!isUser ? "chat-start" : "chat-end"}`}
-            >
-              {image && (
-                <div className="chat-image avatar">
-                  <div className="w-10 rounded-full">
-                    <img src={image} />
-                  </div>
-                </div>
-              )}
-              <div className="chat-header opacity-80 text-xs">{name}</div>
+        {messages
+          .filter((x) => x.role !== "init")
+          .map((message, i) => {
+            const isUser = message.role === "user";
+            const image = isUser ? session?.user.image : "/logo.png";
+            const name = isUser ? session?.user.name || "You" : "Motionly bot";
+            return (
               <div
-                className={`chat-bubble ${
-                  !isUser ? "" : "chat-bubble-primary"
-                }`}
+                key={i}
+                className={`chat ${!isUser ? "chat-start" : "chat-end"}`}
               >
-                {message.text}
+                {image && (
+                  <div className="chat-image avatar">
+                    <div className="w-10 rounded-full">
+                      <img src={image} />
+                    </div>
+                  </div>
+                )}
+                <div className="chat-header opacity-80 text-xs">{name}</div>
+                <div
+                  className={`chat-bubble ${
+                    !isUser ? "" : "chat-bubble-primary"
+                  }`}
+                >
+                  {message.text}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
 
       <form onSubmit={submit} className="flex space-x-2">
