@@ -107,9 +107,29 @@ const Download = ({ url, fileName }: { url: string; fileName: string }) => {
   const download = async () => {
     setLoading(true);
     const result = await fetch(`/api/proxy?url=${encodeURIComponent(url)}`);
-    const data = await result.blob();
+    if (!result.ok) throw new Error("Failed to download");
+    const data = result.body;
+    if (!data) throw new Error("Failed to download");
+    const reader = data.getReader();
+    const stream = new ReadableStream({
+      start(controller) {
+        return pump();
+        function pump(): any {
+          return reader.read().then(({ done, value }) => {
+            if (done) {
+              controller.close();
+              return;
+            }
+            controller.enqueue(value);
+            return pump();
+          });
+        }
+      },
+    });
+    const response = new Response(stream);
+    const blob = await response.blob();
     const a = document.createElement("a");
-    a.href = URL.createObjectURL(data);
+    a.href = URL.createObjectURL(blob);
     a.download = fileName;
     a.click();
     setLoading(false);
