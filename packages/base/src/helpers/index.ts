@@ -1,13 +1,6 @@
-import {
-  CompVariable,
-  ComponentProps,
-  Components,
-  Variable,
-  TemplateType,
-} from "../types";
+import { CompVariable, ComponentProps, Components, Variable, TemplateType } from "../types";
 
-export const videoUrl =
-  "https://remotionlambda-24lixyhuqn.s3.us-east-1.amazonaws.com/video.mp4";
+export const videoUrl = "https://remotionlambda-24lixyhuqn.s3.us-east-1.amazonaws.com/video.mp4";
 
 // if from is negative, it's relative to the end of the video
 export const getFrom = (maxDuration: number, from?: number) => {
@@ -16,23 +9,13 @@ export const getFrom = (maxDuration: number, from?: number) => {
   return from > 0 ? from : maxDuration + from;
 };
 
-export const getDuration = (
-  maxDuration: number,
-  from?: number,
-  duration?: number,
-  addFrom?: boolean
-) => {
+export const getDuration = (maxDuration: number, from?: number, duration?: number, addFrom?: boolean) => {
   const actualFrom = getFrom(maxDuration, from);
   let actualDuration = 0;
   if (!duration) actualDuration = maxDuration - actualFrom;
   else if (duration > 0) actualDuration = duration;
   else if (duration < 0) actualDuration = maxDuration - actualFrom + duration;
-  if (
-    !actualDuration ||
-    actualDuration <= 0 ||
-    actualDuration > maxDuration - actualFrom
-  )
-    actualDuration = maxDuration - actualFrom || 1;
+  if (!actualDuration || actualDuration <= 0 || actualDuration > maxDuration - actualFrom) actualDuration = maxDuration - actualFrom || 1;
   return addFrom ? actualDuration + actualFrom : actualDuration;
 };
 
@@ -42,30 +25,19 @@ export const getFonts = (comps?: ComponentProps[]) => {
     ?.map((font) => font.replace(/fontFamily":"(.*?)"/g, "$1"));
 };
 
-export const toTree = (
-  components: Components,
-  childIds: string[],
-  variables: { [key: string]: Variable }
-): ComponentProps[] => {
+export const toTree = (components: Components, childIds: string[], variables: { [key: string]: Variable }): ComponentProps[] => {
   const tree = childIds.map((id) => {
     let comp = components[id];
     comp = applyVariables(comp, variables, comp?.compVariables);
     if ("childIds" in comp) {
-      comp.comps = [
-        ...(comp.comps || []),
-        ...toTree(components, comp.childIds, variables),
-      ];
+      comp.comps = [...(comp.comps || []), ...toTree(components, comp.childIds, variables)];
     }
     return comp;
   });
   return tree;
 };
 
-export function applyVariables<T>(
-  comp: T,
-  inputs: { [key: string]: Variable },
-  compVariables?: CompVariable[]
-): T {
+export function applyVariables<T>(comp: T, inputs: { [key: string]: Variable }, compVariables?: CompVariable[]): T {
   const newComp = JSON.parse(JSON.stringify(comp || {}));
   for (const variable of compVariables || []) {
     const variableVal = inputs[variable.id]?.value;
@@ -82,15 +54,7 @@ export function applyVariables<T>(
 }
 
 export const prepareTemplate = (template: TemplateType) => {
-  const newTemplate = applyVariables(
-    template,
-    template.variables?.byIds || {},
-    template.templateVariables
-  );
-  newTemplate.comps = toTree(
-    newTemplate.components,
-    newTemplate.childIds,
-    newTemplate.variables?.byIds || {}
-  );
+  const newTemplate = applyVariables(template, template.variables?.byIds || {}, template.templateVariables);
+  newTemplate.comps = toTree(newTemplate.components, newTemplate.childIds, newTemplate.variables?.byIds || {});
   return newTemplate;
 };
