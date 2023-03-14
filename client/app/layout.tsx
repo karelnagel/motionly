@@ -1,35 +1,23 @@
 import { Alerts } from "../components/Alert";
-import { ClientSessionProvider } from "../contexts/ClientSessionProvider";
+import { AuthProvider } from "../providers/AuthProvider";
 import { getServerSession } from "../lib/getServerSession";
-import { ClientProvider } from "./ClientProvider";
+import { TRPCProvider } from "../providers/TRPCProvider";
 import "./globals.css";
 import { Nunito } from "next/font/google";
-import {
-  description,
-  title,
-  siteName,
-  url,
-  favicon,
-  motionly,
-  email,
-} from "../consts";
+import { description, title, siteName, url, favicon, motionly, email } from "../consts";
 
 const nunito = Nunito({ subsets: ["latin"] });
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession();
   return (
     <html lang="en">
-      <ClientSessionProvider session={session}>
-        <ClientProvider>
+      <AuthProvider session={session}>
+        <TRPCProvider>
           <body className="dark" style={nunito.style}>
             <Alerts>{children}</Alerts>
           </body>
-        </ClientProvider>
-      </ClientSessionProvider>
+        </TRPCProvider>
+      </AuthProvider>
     </html>
   );
 }

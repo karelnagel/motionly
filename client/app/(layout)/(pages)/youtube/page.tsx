@@ -4,13 +4,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { LoadingSpinner } from "../../../../components/LoadingSpinner";
-import { trpc } from "../../../ClientProvider";
+import { trpc } from "../../../../providers/TRPCProvider";
 
-export default function Youtube({
-  searchParams: { url },
-}: {
-  searchParams: { url?: string };
-}) {
+export default function Youtube({ searchParams: { url } }: { searchParams: { url?: string } }) {
   const [newUrl, setNewUrl] = useState(url || "");
   const router = useRouter();
   return (
@@ -25,12 +21,7 @@ export default function Youtube({
           }}
         >
           <h1 className="title text-5xl font-bold">Download Youtube video</h1>
-          <input
-            type="text"
-            className="input input-primary w-full"
-            value={newUrl}
-            onChange={(e) => setNewUrl(e.currentTarget.value)}
-          />
+          <input type="text" className="input input-primary w-full" value={newUrl} onChange={(e) => setNewUrl(e.currentTarget.value)} />
           <button type="submit" className="btn btn-primary">
             Convert
           </button>
@@ -46,17 +37,11 @@ const Video = ({ url }: { url: string }) => {
   return (
     <div className="space-y-5 w-full">
       <p className="text-3xl">Converted Video</p>
-      {isLoading && (
-        <progress className="progress w-full h-2 progress-primary" />
-      )}
+      {isLoading && <progress className="progress w-full h-2 progress-primary" />}
       {isError && <p>Error</p>}
       {data && (
         <>
-          <Link
-            href={url}
-            target="_blank"
-            className="flex bg-base-300 rounded-lg space-x-3 items-center p-2"
-          >
+          <Link href={url} target="_blank" className="flex bg-base-300 rounded-lg space-x-3 items-center p-2">
             <img src={data.thumbnail} className="w-32 object-contain" />
             <div>
               <p>{data.name}</p>
@@ -87,10 +72,7 @@ const Video = ({ url }: { url: string }) => {
                   <td>{format.hasVideo ? "X" : ""}</td>
                   <td>{format.hasAudio ? "X" : ""}</td>
                   <td>
-                    <Download
-                      url={format.url}
-                      fileName={`${data.name}.${format.container}`}
-                    />
+                    <Download url={format.url} fileName={`${data.name}.${format.container}`} />
                   </td>
                 </tr>
               ))}
@@ -135,11 +117,7 @@ const Download = ({ url, fileName }: { url: string; fileName: string }) => {
     setLoading(false);
   };
   return (
-    <button
-      onClick={download}
-      disabled={loading}
-      className="btn btn-outline w-full"
-    >
+    <button onClick={download} disabled={loading} className="btn btn-outline w-full">
       {loading ? <div className="loading-spinner !h-5 !w-5" /> : "Download"}
     </button>
   );

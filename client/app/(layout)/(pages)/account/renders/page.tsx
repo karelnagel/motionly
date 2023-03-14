@@ -3,7 +3,7 @@
 import { AiOutlineDollarCircle } from "react-icons/ai";
 import { IoImage } from "react-icons/io5";
 import { MdOutlineMovieCreation } from "react-icons/md";
-import { trpc } from "../../../../ClientProvider";
+import { trpc } from "../../../../../providers/TRPCProvider";
 
 export default function Renders() {
   const { data: renders } = trpc.renders.getAll.useQuery({});
@@ -57,23 +57,9 @@ export default function Renders() {
         <tbody>
           {renders?.renders?.map((render) => (
             <tr key={render.id} className="">
-              <th className="text-2xl">
-                {render.type === "STILL" ? (
-                  <IoImage />
-                ) : (
-                  <MdOutlineMovieCreation />
-                )}
-              </th>
+              <th className="text-2xl">{render.type === "STILL" ? <IoImage /> : <MdOutlineMovieCreation />}</th>
               <th>{render.id}</th>
-              <th
-                className={
-                  render.status === "COMPLETED"
-                    ? "text-success"
-                    : render.status === "FAILED"
-                    ? "text-error"
-                    : "text-info"
-                }
-              >
+              <th className={render.status === "COMPLETED" ? "text-success" : render.status === "FAILED" ? "text-error" : "text-info"}>
                 {render.status}
               </th>
               <th>{render.progress}</th>

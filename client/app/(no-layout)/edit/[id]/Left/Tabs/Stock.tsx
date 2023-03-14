@@ -2,7 +2,7 @@ import { MediaTab } from "../../../../../../components/MediaTab";
 import { useProject } from "../../../../../../hooks/useProject";
 import { getRandomId } from "../../../../../../helpers";
 import Link from "next/link";
-import { trpc } from "../../../../../ClientProvider";
+import { trpc } from "../../../../../../providers/TRPCProvider";
 import { useFiles } from "../../../../../../hooks/useFiles";
 
 export default function Stock() {
@@ -34,12 +34,7 @@ export default function Stock() {
       <div className="space-y-4 flex flex-col overflow-y-auto overflow-x-hidden ">
         <MediaTab />
         <form action="none" onSubmit={onSubmit} className="flex ">
-          <input
-            type="text"
-            className="input input-bordered w-full input-sm"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
+          <input type="text" className="input input-bordered w-full input-sm" value={query} onChange={(e) => setQuery(e.target.value)} />
           <button className="btn btn-sm" type="submit">
             search
           </button>
@@ -53,11 +48,7 @@ export default function Stock() {
               </Link>
               <div className="grid grid-cols-3 gap-2">
                 {media.map(({ icon, src }) => (
-                  <button
-                    key={src}
-                    onClick={() => add(src)}
-                    className="w-full aspect-square bg-base-200  rounded-lg overflow-hidden"
-                  >
+                  <button key={src} onClick={() => add(src)} className="w-full aspect-square bg-base-200  rounded-lg overflow-hidden">
                     {mediaType !== "VIDEO" ? (
                       <img src={icon} className=" h-full w-full object-cover" />
                     ) : (

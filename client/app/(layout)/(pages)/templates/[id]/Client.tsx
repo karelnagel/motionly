@@ -9,27 +9,15 @@ import { Clone } from "../../../../../components/Clone";
 import { Input } from "../../../../../components/inputs";
 import { Project } from "../../../../../types";
 import produce from "immer";
-import { trpc } from "../../../../ClientProvider";
+import { trpc } from "../../../../../providers/TRPCProvider";
 import { OneRender } from "../../../../../components/OneRender";
 import { ShowHide } from "../../../../../components/ShowHide";
 
-export const Client = ({
-  startProject,
-  renderCount = 0,
-  cloneCount = 0,
-}: {
-  startProject: Project;
-  renderCount?: number;
-  cloneCount?: number;
-}) => {
+export const Client = ({ startProject, renderCount = 0, cloneCount = 0 }: { startProject: Project; renderCount?: number; cloneCount?: number }) => {
   const [project, setProject] = useState(startProject);
   const { data: session } = useSession();
   const template = project.template;
-  const {
-    mutateAsync: render,
-    isLoading,
-    isError,
-  } = trpc.renders.media.useMutation();
+  const { mutateAsync: render, isLoading, isError } = trpc.renders.media.useMutation();
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10">
       <div className="space-y-3 flex flex-col items-stretch ">
@@ -48,9 +36,7 @@ export const Client = ({
             )}
           </div>
         </div>
-        {project.public && (
-          <span className="badge badge-primary font-bold">PUBLIC</span>
-        )}
+        {project.public && <span className="badge badge-primary font-bold">PUBLIC</span>}
         <p className="text-lg">{project.description}</p>
         <p>
           <b>Duration:</b> {template.duration} seconds
@@ -71,8 +57,7 @@ export const Client = ({
                   onChange={(i: any) => {
                     setProject(
                       produce((draft) => {
-                        const input =
-                          draft.template.variables?.byIds[variableId];
+                        const input = draft.template.variables?.byIds[variableId];
                         if (!input) return;
                         input.value = i;
                       })
@@ -86,20 +71,13 @@ export const Client = ({
           })}
         </div>
         {!session && (
-          <Link
-            href={`/login?redirect=/templates/${project.id}`}
-            className="btn btn-warning w-full"
-          >
+          <Link href={`/login?redirect=/templates/${project.id}`} className="btn btn-warning w-full">
             Login to render
           </Link>
         )}
         {session && (
           <div>
-            <button
-              disabled={isLoading}
-              className="btn btn-primary w-full mt-4"
-              onClick={() => render({ template, id: project.id })}
-            >
+            <button disabled={isLoading} className="btn btn-primary w-full mt-4" onClick={() => render({ template, id: project.id })}>
               Render
             </button>
             {isLoading && <p>Loading...</p>}
@@ -109,14 +87,7 @@ export const Client = ({
         {session && <Renders projectId={project.id} />}
       </div>
       <div>
-        <Player
-          loop
-          template={template}
-          allowFullscreen
-          clickToPlay
-          controls
-          style={{ width: "100%" }}
-        />
+        <Player loop template={template} allowFullscreen clickToPlay controls style={{ width: "100%" }} />
         <div className="stats gradient text-primary-content shadow w-full rounded-t-none">
           <div className="stat border-primary-content ">
             <div className="stat-figure shrink-0">
@@ -139,10 +110,7 @@ export const Client = ({
 };
 
 const Renders = ({ projectId }: { projectId?: string }) => {
-  const { data } = trpc.renders.getAll.useQuery(
-    { projectId },
-    { refetchInterval: 3000 }
-  );
+  const { data } = trpc.renders.getAll.useQuery({ projectId }, { refetchInterval: 3000 });
   const [show, setShow] = useState(true);
   return (
     <div className="space-y-2 bg-base-200 rounded-lg p-2">

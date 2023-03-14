@@ -4,7 +4,7 @@ import { useAlerts } from "../../../../../../components/Alert";
 import { Clone } from "../../../../../../components/Clone";
 import { VariableInput } from "../../../../../../components/inputs";
 import { useProject } from "../../../../../../hooks/useProject";
-import { trpc } from "../../../../../ClientProvider";
+import { trpc } from "../../../../../../providers/TRPCProvider";
 
 export default function Template() {
   const set = useProject((t) => t.set);

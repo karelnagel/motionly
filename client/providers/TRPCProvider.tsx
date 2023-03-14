@@ -28,8 +28,7 @@ export const trpcClient = createTRPCProxyClient<AppRouter>({
   ],
 });
 
-
-export function ClientProvider(props: { children: React.ReactNode }) {
+export function TRPCProvider(props: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient());
   const [client] = useState(() =>
     trpc.createClient({
@@ -45,9 +44,7 @@ export function ClientProvider(props: { children: React.ReactNode }) {
   );
   return (
     <trpc.Provider client={client} queryClient={queryClient}>
-      <QueryClientProvider client={queryClient}>
-        {props.children}
-      </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>{props.children}</QueryClientProvider>
     </trpc.Provider>
   );
 }

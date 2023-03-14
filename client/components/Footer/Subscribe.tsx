@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { trpc } from "../../app/ClientProvider";
+import { trpc } from "../../providers/TRPCProvider";
 
 export const Subscribe = () => {
   const [email, setEmail] = useState("");
@@ -14,9 +14,7 @@ export const Subscribe = () => {
         mutate({ email });
       }}
     >
-      <h1 className="text-list-title text-[18px] font-semibold">
-        Subscribe to updates
-      </h1>
+      <h1 className="text-list-title text-[18px] font-semibold">Subscribe to updates</h1>
       <input
         value={email}
         onChange={(e) => setEmail(e.target.value)}

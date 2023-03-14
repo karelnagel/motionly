@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { trpc } from "../../../app/ClientProvider";
+import { trpc } from "../../../providers/TRPCProvider";
 import { InputProps } from "..";
 import { Popup } from "../../Popup";
 import { useFileUpload } from "../../../hooks/useFileUpload";
@@ -16,14 +16,7 @@ export const MediaInput = ({ value, onChange, type }: InputProps<string>) => {
       <button onClick={() => setShow((s) => !s)} className="btn w-full">
         Change
       </button>
-      {show && (
-        <MediaPopup
-          value={value}
-          onChange={onChange}
-          type={type.toUpperCase() as MediaTypes}
-          hide={() => setShow(false)}
-        />
-      )}
+      {show && <MediaPopup value={value} onChange={onChange} type={type.toUpperCase() as MediaTypes} hide={() => setShow(false)} />}
     </div>
   );
 };
@@ -54,11 +47,7 @@ export const MediaPopup = ({
         <div>
           <p>Selected</p>
           {type === "IMAGE" || type === "GIF" ? (
-            <img
-              src={value}
-              alt="selected"
-              className="w-60 h-60 object-contain"
-            />
+            <img src={value} alt="selected" className="w-60 h-60 object-contain" />
           ) : !isTrans ? (
             <video src={value} className="w-60 h-60 object-contain" controls />
           ) : (
@@ -97,11 +86,7 @@ export const MediaPopup = ({
                 className="file-input file-input-sm col-span-3"
                 onChange={(e) => setFile(e.target.files?.[0])}
               />
-              <button
-                disabled={!file}
-                className="btn btn-sm btn-primary"
-                onClick={uploadFile}
-              >
+              <button disabled={!file} className="btn btn-sm btn-primary" onClick={uploadFile}>
                 UPLOAD
               </button>
             </div>
@@ -113,15 +98,8 @@ export const MediaPopup = ({
 };
 const Trans = ({ value }: { value?: string }) => {
   if (!value) return null;
-  const { data } = trpc.media.get.useQuery(
-    { id: value },
-    { refetchInterval: 4000 }
-  );
-  const {
-    mutate: transcribe,
-    isError,
-    isLoading,
-  } = trpc.transcriptions.transcribe.useMutation();
+  const { data } = trpc.media.get.useQuery({ id: value }, { refetchInterval: 4000 });
+  const { mutate: transcribe, isError, isLoading } = trpc.transcriptions.transcribe.useMutation();
   return (
     <>
       {isError && <p className="text-error">Error starting transcribing</p>}
@@ -155,15 +133,7 @@ const Trans = ({ value }: { value?: string }) => {
   );
 };
 
-const MediaList = ({
-  type,
-  onChange,
-  value,
-}: {
-  type: MediaTypes;
-  onChange: (s: string) => void;
-  value?: string;
-}) => {
+const MediaList = ({ type, onChange, value }: { type: MediaTypes; onChange: (s: string) => void; value?: string }) => {
   const isTrans = type === "TRANSCRIPTION";
   const { data: media } = trpc.media.getAll.useQuery({
     type: isTrans ? "VIDEO" : type,
@@ -196,9 +166,7 @@ const MediaList = ({
                 />
               )}
               {selected?.id === file.id && (
-                <p className="absolute font-bold bg-base-200 h-full w-full flex items-center justify-center bg-opacity-50">
-                  Selected
-                </p>
+                <p className="absolute font-bold bg-base-200 h-full w-full flex items-center justify-center bg-opacity-50">Selected</p>
               )}
               <p>{file.name}</p>
             </div>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRef, useState } from "react";
-import { trpc } from "../app/ClientProvider";
+import { trpc } from "../providers/TRPCProvider";
 import { useAlerts } from "../components/Alert";
 
 export const useFileUpload = (onChange?: (url: string) => void) => {

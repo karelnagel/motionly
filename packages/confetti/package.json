@@ -10,11 +10,14 @@
   },
   "peerDependencies": {
     "react": "^18.2.0",
-    "remotion": "^3.0.19"
+    "react-dom":"^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.6",
     "@types/web": "^0.0.61",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "remotion": "3.3.76",
+    "react": "^18.2.0",
+    "react-dom":"^18.2.0"
   }
 }

@@ -3,7 +3,7 @@
 import { TemplateType } from "@motionly/base";
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
-import { trpc } from "../app/ClientProvider";
+import { trpc } from "../providers/TRPCProvider";
 import { Project } from "../types";
 import { useAlerts } from "./Alert";
 const template: TemplateType = {
@@ -25,15 +25,7 @@ const emptyProject: Project = {
   template,
   tags: [],
 };
-export const Clone = ({
-  children,
-  className,
-  project = emptyProject,
-}: {
-  children: ReactNode;
-  className?: string;
-  project?: Project;
-}) => {
+export const Clone = ({ children, className, project = emptyProject }: { children: ReactNode; className?: string; project?: Project }) => {
   const router = useRouter();
   const alert = useAlerts((s) => s.addAlert);
   const postNewProject = trpc.projects.new.useMutation({});

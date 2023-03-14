@@ -2,18 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
-import { trpc } from "../app/ClientProvider";
+import { trpc } from "../providers/TRPCProvider";
 import { useAlerts } from "./Alert";
 
-export const DeleteProject = ({
-  children,
-  className,
-  id,
-}: {
-  children: ReactNode;
-  className?: string;
-  id?: string;
-}) => {
+export const DeleteProject = ({ children, className, id }: { children: ReactNode; className?: string; id?: string }) => {
   const router = useRouter();
   const alert = useAlerts((s) => s.addAlert);
   const { mutateAsync } = trpc.projects.delete.useMutation({});

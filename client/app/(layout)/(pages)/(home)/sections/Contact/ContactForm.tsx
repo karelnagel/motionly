@@ -1,14 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { trpc } from "../../../../../ClientProvider";
+import { trpc } from "../../../../../../providers/TRPCProvider";
 
 export const ContactForm = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
-  const { mutate, isSuccess, isError, isLoading } =
-    trpc.email.contact.useMutation();
+  const { mutate, isSuccess, isError, isLoading } = trpc.email.contact.useMutation();
   return (
     <form
       className="flex flex-col items-center space-y-6 "
@@ -17,14 +16,7 @@ export const ContactForm = () => {
         mutate({ email, name, message });
       }}
     >
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-        placeholder="Name"
-        className="formbox input input-primary"
-      />
+      <input type="text" value={name} onChange={(e) => setName(e.target.value)} required placeholder="Name" className="formbox input input-primary" />
       <input
         type="email"
         value={email}

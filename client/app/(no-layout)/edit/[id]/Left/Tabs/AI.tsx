@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useAlerts } from "../../../../../../components/Alert";
 import { useProject } from "../../../../../../hooks/useProject";
-import { trpc } from "../../../../../ClientProvider";
+import { trpc } from "../../../../../../providers/TRPCProvider";
 
 export default function Ai() {
   const template = useProject((t) => t.project.template);
@@ -11,8 +11,7 @@ export default function Ai() {
   const { mutateAsync: postAI } = trpc.ai.message.useMutation();
   const submit = async (e?: FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
-    if (status === "loading")
-      return alert("Please wait for the previous request to finish", "warning");
+    if (status === "loading") return alert("Please wait for the previous request to finish", "warning");
     setStatus("loading");
 
     const result = await postAI({ template: template, prompt });
@@ -31,10 +30,7 @@ export default function Ai() {
 
   return (
     <div className="flex flex-col items-center space-y-4 w-full py-4">
-      <p>
-        Still in development, but ideally should generate/change video based on
-        input prompt
-      </p>
+      <p>Still in development, but ideally should generate/change video based on input prompt</p>
       <form action="none" className="flex flex-col w-full" onSubmit={submit}>
         <textarea
           className="bg-base-200 rounded-t-lg min-h-[100px] p-2 textarea"
@@ -43,11 +39,7 @@ export default function Ai() {
           placeholder="Enter your prompt here"
           onChange={(e) => setPrompt(e.target.value)}
         />
-        <button
-          type="submit"
-          disabled={status === "loading"}
-          className="btn btn-primary"
-        >
+        <button type="submit" disabled={status === "loading"} className="btn btn-primary">
           Submit
         </button>
       </form>

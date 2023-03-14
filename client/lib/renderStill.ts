@@ -1,5 +1,5 @@
 import { ImageFormat } from "../types";
-import { renderStillOnLambda } from "@remotion/lambda/client.js";
+import { renderStillOnLambda } from "@remotion/lambda/client";
 import { env } from "../env.mjs";
 import { TemplateType } from "@motionly/base";
 

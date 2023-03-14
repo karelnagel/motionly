@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { IoIosTrash } from "react-icons/io";
-import { trpc } from "../../../../ClientProvider";
+import { trpc } from "../../../../../providers/TRPCProvider";
 
 export default function Keys() {
   const { data } = trpc.keys.getAll.useQuery({});
@@ -37,10 +37,7 @@ export default function Keys() {
               <tr key={key.hash} className="">
                 <th>{key.name}</th>
                 <th>
-                  <IoIosTrash
-                    className="text-2xl cursor-pointer"
-                    onClick={() => remove({ hash: key.hash })}
-                  />
+                  <IoIosTrash className="text-2xl cursor-pointer" onClick={() => remove({ hash: key.hash })} />
                 </th>
               </tr>
             ))}
@@ -50,13 +47,7 @@ export default function Keys() {
       <form onSubmit={submit} className="flex flex-col items-start space-y-2">
         <p className="text-lg font-semibold">Create new API key</p>
         {isError && <p className="text-error">Write name for new API key</p>}
-        <input
-          type="text"
-          className="input"
-          placeholder="New API key Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+        <input type="text" className="input" placeholder="New API key Name" value={name} onChange={(e) => setName(e.target.value)} />
         <button type="submit" className="btn">
           Create
         </button>

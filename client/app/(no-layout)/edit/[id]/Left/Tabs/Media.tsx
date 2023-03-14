@@ -4,7 +4,7 @@ import { getMediaUrl } from "../../../../../../helpers/getMediaUrl";
 import { useFiles } from "../../../../../../hooks/useFiles";
 import { useProject } from "../../../../../../hooks/useProject";
 import { useFileUpload } from "../../../../../../hooks/useFileUpload";
-import { trpc } from "../../../../../ClientProvider";
+import { trpc } from "../../../../../../providers/TRPCProvider";
 import { useState } from "react";
 
 export default function Media() {
@@ -31,14 +31,8 @@ export default function Media() {
           {media?.files.map((file) => {
             const fileUrl = getMediaUrl(file.id);
             return (
-              <div
-                key={file.id}
-                onClick={() => add(fileUrl)}
-                className="w-full"
-              >
-                {(file.type === "IMAGE" || file.type === "GIF") && (
-                  <img src={fileUrl} className="aspect-square object-cover" />
-                )}
+              <div key={file.id} onClick={() => add(fileUrl)} className="w-full">
+                {(file.type === "IMAGE" || file.type === "GIF") && <img src={fileUrl} className="aspect-square object-cover" />}
                 {file.type === "VIDEO" && (
                   <video
                     src={fileUrl}
@@ -48,9 +42,7 @@ export default function Media() {
                     muted
                   />
                 )}
-                <p className="text-[12px] whitespace-nowrap overflow-hidden">
-                  {file.name}
-                </p>
+                <p className="text-[12px] whitespace-nowrap overflow-hidden">{file.name}</p>
               </div>
             );
           })}
@@ -81,11 +73,7 @@ export default function Media() {
           className="file-input file-input-sm col-span-3"
           onChange={(e) => setFile(e.target.files?.[0])}
         />
-        <button
-          disabled={!file}
-          className="btn btn-sm btn-primary"
-          onClick={uploadFile}
-        >
+        <button disabled={!file} className="btn btn-sm btn-primary" onClick={uploadFile}>
           Upload
         </button>
       </div>

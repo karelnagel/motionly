@@ -10,8 +10,7 @@
         "lint": "next lint",
         "elements": "ts-node videos/render.ts",
         "animations": "ts-node videos/render-animations.ts",
-        "examples": "ts-node videos/examples/render.ts",
-        "test": "jest -i"
+        "examples": "ts-node videos/examples/render.ts"
     },
     "dependencies": {
         "@mdx-js/loader": "^2.3.0",
@@ -25,6 +24,8 @@
         "@remotion/cli": "3.3.76",
         "@remotion/google-fonts": "3.3.76",
         "@remotion/lambda": "3.3.76",
+        "@remotion/bundler": "3.3.76",
+        "@remotion/renderer": "3.3.76",
         "@remotion/player": "3.3.76",
         "@tailwindcss/line-clamp": "^0.4.2",
         "@tailwindcss/typography": "^0.5.9",
@@ -33,7 +34,6 @@
         "@trpc/next": "^10.11.0",
         "@trpc/react-query": "^10.11.0",
         "@trpc/server": "^10.11.0",
-        "@types/jest": "^29.4.0",
         "@types/node": "18.11.9",
         "@types/react": "18.0.24",
         "@types/react-dom": "18.0.8",
@@ -55,8 +55,6 @@
         "eslint-plugin-react": "^7.31.11",
         "immer": "^9.0.19",
         "isarray": "^2.0.5",
-        "jest": "^29.4.2",
-        "jest-mock-extended": "2.0.4",
         "js-file-download": "^0.4.12",
         "next": "^13.2.1",
         "next-auth": "^4.16.4",
@@ -75,7 +73,6 @@
         "tailwindcss": "^3.2.1",
         "tailwindcss-animation-delay": "^1.0.7",
         "trpc-openapi": "^1.1.2",
-        "ts-jest": "^29.0.5",
         "ts-node": "^10.9.1",
         "turbo": "^1.6.3",
         "typescript": "4.8.4",
