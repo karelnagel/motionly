@@ -28,7 +28,6 @@ const server = z.object({
   PEXELS_API_KEY: z.string(),
   PIXABY_API_KEY: z.string(),
   OPENAI_API_KEY: z.string(),
-  OPENAI_ACCESS_TOKEN: z.string(),
   EMAIL_ACCESS_KEY: z.string().min(1),
 });
 
@@ -62,7 +61,6 @@ const processEnv = {
   PEXELS_API_KEY: process.env.PEXELS_API_KEY,
   PIXABY_API_KEY: process.env.PIXABY_API_KEY,
   OPENAI_API_KEY: process.env.OPENAI_API_KEY,
-  OPENAI_ACCESS_TOKEN: process.env.OPENAI_ACCESS_TOKEN,
   NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
   EMAIL_ACCESS_KEY: process.env.EMAIL_ACCESS_KEY,
 };

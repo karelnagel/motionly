@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { appRouter } from "../../../server/api/root";
-import { createTRPCContext } from "../../../server/api/trpc";
-import { env } from "../../../env.mjs";
+import { appRouter } from "../../server/api/root";
+import { createTRPCContext } from "../../server/api/trpc";
+import { env } from "../../env.mjs";
 import { createOpenApiNextHandler } from "trpc-openapi";
 
 const nextApiHandler = createOpenApiNextHandler({

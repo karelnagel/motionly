@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { LoadingSpinner } from "../../../../components/LoadingSpinner";
 import { trpc } from "../../../ClientProvider";
 
 export default function Youtube({
@@ -102,16 +103,45 @@ const Video = ({ url }: { url: string }) => {
 };
 
 const Download = ({ url, fileName }: { url: string; fileName: string }) => {
+  const [loading, setLoading] = useState(false);
+  const download = async () => {
+    setLoading(true);
+    const result = await fetch(`/api/proxy?url=${encodeURIComponent(url)}`);
+    if (!result.ok) throw new Error("Failed to download");
+    const data = result.body;
+    if (!data) throw new Error("Failed to download");
+    const reader = data.getReader();
+    const stream = new ReadableStream({
+      start(controller) {
+        return pump();
+        function pump(): any {
+          return reader.read().then(({ done, value }) => {
+            if (done) {
+              controller.close();
+              return;
+            }
+            controller.enqueue(value);
+            return pump();
+          });
+        }
+      },
+    });
+    const response = new Response(stream);
+    const blob = await response.blob();
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = fileName;
+    a.click();
+    setLoading(false);
+  };
   return (
-    <a
-      href={`/api/proxy?url=${encodeURIComponent(url)}`}
-      download={fileName}
-      target="_blank"
-      rel="noopener noreferrer"
+    <button
+      onClick={download}
+      disabled={loading}
       className="btn btn-outline w-full"
     >
-      Download
-    </a>
+      {loading ? <div className="loading-spinner !h-5 !w-5" /> : "Download"}
+    </button>
   );
 };
 
