@@ -6,18 +6,19 @@
     "private": false,
     "dependencies": {
         "@motionly/base": "*",
+        "@remotion/lambda": "3.3.76",
         "axios": "^1.2.1",
-        "typescript": "^4.9.4",
-        "@remotion/lambda": "3.3.44",
-        "remotion": "3.3.44"
+        "react-dom": "^18.2.0",
+        "remotion": "3.3.76",
+        "typescript": "^4.9.4"
     },
     "scripts": {
         "build": "tsc",
         "dev": "tsc --watch"
     },
     "peerDependencies": {
-        "react": ">=16.8.0",
-        "next": ">=10.0.0"
+        "next": ">=10.0.0",
+        "react": ">=16.8.0"
     },
     "devDependencies": {
         "react": "^18.0.0"
