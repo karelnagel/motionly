@@ -33,8 +33,6 @@ export const MediaPopup = ({
 }) => {
   const { data: session } = useSession();
   const { uploadFile, file, setFile, ref } = useFileUpload();
-  const { mutate: youtube, isLoading } = trpc.media.youtube.useMutation();
-  const [youtubeUrl, setYoutubeUrl] = useState("");
   const isTrans = type === "TRANSCRIPTION";
   return (
     <Popup hide={hide}>
@@ -58,27 +56,6 @@ export const MediaPopup = ({
             <MediaList onChange={onChange} type={type} value={value} />
             <p className="text-xl font-semibold">Add file</p>
             <div className="grid grid-cols-4 gap-2">
-              {(type === "VIDEO" || type === "TRANSCRIPTION") && (
-                <>
-                  <input
-                    type="text"
-                    className="input input-bordered input-sm w-full col-span-3"
-                    value={youtubeUrl}
-                    placeholder="Youtube URL"
-                    onChange={(e) => setYoutubeUrl(e.target.value)}
-                  />
-                  <button
-                    className="btn btn-primary"
-                    disabled={!youtubeUrl || isLoading}
-                    onClick={() => {
-                      setYoutubeUrl("");
-                      youtube({ youtubeUrl });
-                    }}
-                  >
-                    Use
-                  </button>
-                </>
-              )}
               <input
                 ref={ref}
                 type="file"

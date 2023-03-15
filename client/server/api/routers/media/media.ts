@@ -1,16 +1,10 @@
-import {
-  FileWithTranscription,
-  MediaType,
-  Transcription,
-  UserFile,
-} from "../../../../types";
+import { FileWithTranscription, MediaType, Transcription, UserFile } from "../../../../types";
 import { createTRPCRouter, protectedProcedure } from "../../trpc";
 import { z } from "zod";
 import { env } from "../../../../env.mjs";
 import { TRPCError } from "@trpc/server";
 import { getMediaType } from "../../../../helpers/getMediaType";
 import { s3 } from "../../../../lib/aws";
-import { getYoutubeUrl } from "../../../../lib/getYoutubeUrl";
 import { updateTranscriptionProgress } from "../transcriptions/transcriptions";
 
 const tags = ["Media"];
@@ -31,40 +25,6 @@ export const media = createTRPCRouter({
       });
       return { files };
     }),
-  youtube: protectedProcedure
-    .meta({
-      openapi: { method: "POST", path: "/media/youtube", tags, protect },
-    })
-    .input(z.object({ youtubeUrl: z.string().url() }))
-    .output(UserFile)
-    .mutation(async ({ input: { youtubeUrl }, ctx }) => {
-      const { url, name, subtitles } = await getYoutubeUrl(youtubeUrl);
-      if (!url)
-        throw new TRPCError({ code: "BAD_REQUEST", message: "No video found" });
-
-      const file = await ctx.prisma.file.create({
-        data: {
-          name,
-          type: "VIDEO",
-          url,
-          youtubeUrl,
-          user: {
-            connect: {
-              id: ctx.session.user.id,
-            },
-          },
-          transcription: {
-            create: {
-              status: subtitles ? "COMPLETED" : "FAILED",
-              language: "en",
-              transcript: subtitles,
-            },
-          },
-        },
-      });
-      return file;
-    }),
-
   new: protectedProcedure
     .meta({ openapi: { method: "POST", path: "/media/new", tags, protect } })
     .input(z.object({ type: z.string(), name: z.string() }))
@@ -114,9 +74,7 @@ export const media = createTRPCRouter({
           message: "File not found",
         });
       const Key = `${ctx.session.user.id}/${file.id}`;
-      const signedUrl = await s3
-        .headObject({ Bucket: env.MEDIA_BUCKET, Key })
-        .promise();
+      const signedUrl = await s3.headObject({ Bucket: env.MEDIA_BUCKET, Key }).promise();
       if (!signedUrl.ContentLength)
         throw new TRPCError({
           code: "BAD_REQUEST",
@@ -155,11 +113,7 @@ export const media = createTRPCRouter({
       let transcription: Transcription | undefined = undefined;
       console.log(file.transcription);
       if (file.transcription) {
-        if (file.transcription.status === "PROCESSING")
-          transcription = await updateTranscriptionProgress(
-            file.id,
-            file.transcription.id
-          );
+        if (file.transcription.status === "PROCESSING") transcription = await updateTranscriptionProgress(file.id, file.transcription.id);
         else
           transcription = {
             ...file.transcription,
@@ -190,8 +144,7 @@ export const media = createTRPCRouter({
           message: "File not found",
         });
       const Key = `${ctx.session.user.id}/${file.id}`;
-      if (!file.youtubeUrl)
-        await s3.deleteObject({ Bucket: env.MEDIA_BUCKET, Key }).promise();
+      await s3.deleteObject({ Bucket: env.MEDIA_BUCKET, Key }).promise();
       await ctx.prisma.file.delete({
         where: {
           id: file.id,

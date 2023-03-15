@@ -5,15 +5,12 @@ import { useFiles } from "../../../../../../hooks/useFiles";
 import { useProject } from "../../../../../../hooks/useProject";
 import { useFileUpload } from "../../../../../../hooks/useFileUpload";
 import { trpc } from "../../../../../../providers/TRPCProvider";
-import { useState } from "react";
 
 export default function Media() {
-  const [youtubeUrl, setYoutubeUrl] = useState("");
   const mediaType = useFiles((t) => t.mediaType);
   const addComp = useProject((s) => s.addComp);
   const { data: media } = trpc.media.getAll.useQuery({ type: mediaType });
   const { uploadFile, file, setFile, ref } = useFileUpload();
-  const { mutate: youtube, isLoading } = trpc.media.youtube.useMutation();
   const add = (src: string) => {
     addComp({
       id: getRandomId(),
@@ -49,23 +46,6 @@ export default function Media() {
         </div>
       </div>
       <div className="grid grid-cols-4 gap-2">
-        <input
-          type="text"
-          className="input input-bordered input-sm w-full col-span-3"
-          value={youtubeUrl}
-          placeholder="Youtube URL"
-          onChange={(e) => setYoutubeUrl(e.target.value)}
-        />
-        <button
-          className="btn btn-primary"
-          disabled={!youtubeUrl || isLoading}
-          onClick={() => {
-            setYoutubeUrl("");
-            youtube({ youtubeUrl });
-          }}
-        >
-          Use
-        </button>
         <input
           ref={ref}
           type="file"
