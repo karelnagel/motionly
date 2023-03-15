@@ -1,12 +1,12 @@
 import { MediaTab } from "../../../../../../components/MediaTab";
 import { getRandomId } from "../../../../../../helpers";
 import { getMediaUrl } from "../../../../../../helpers/getMediaUrl";
-import { useFiles } from "../../../../../../hooks/useFiles";
 import { useProject } from "../../../../../../hooks/useProject";
 import { useFileUpload } from "../../../../../../hooks/useFileUpload";
 import { trpc } from "../../../../../../providers/TRPCProvider";
+import { useFiles } from "../../../../../../hooks/useFiles";
 
-export default function Media() {
+export default function Media({}) {
   const mediaType = useFiles((t) => t.mediaType);
   const addComp = useProject((s) => s.addComp);
   const { data: media } = trpc.media.getAll.useQuery({ type: mediaType });
