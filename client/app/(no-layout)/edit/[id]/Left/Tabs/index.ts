@@ -1,8 +1,8 @@
-import { IoIosAlbums, IoIosSettings, IoIosImages, IoIosCode, IoIosSunny } from "react-icons/io";
-import { IoShapesSharp, IoText } from "react-icons/io5";
-import { AiOutlineDatabase } from "react-icons/ai";
+import { IoIosAlbums, IoIosSettings, IoIosCode } from "react-icons/io";
+import { IoShapesSharp } from "react-icons/io5";
 import { HiVariable } from "react-icons/hi";
 import { CiExport } from "react-icons/ci";
+
 export const LeftTabs = {
   template: {
     name: "Template",
@@ -24,25 +24,10 @@ export const LeftTabs = {
     Icon: HiVariable,
     Component: () => import("./Variables"),
   },
-  // text: {
-  //   name: "Text",
-  //   Icon: IoText,
-  //   Component: () => import("./Text"),
-  // },
-  // data: {
-  //   name: "Data",
-  //   Icon: AiOutlineDatabase,
-  //   Component: () => import("./Data"),
-  // },
   code: {
     name: "Code",
     Icon: IoIosCode,
     Component: () => import("./Code"),
-  },
-  ai: {
-    name: "AI",
-    Icon: IoIosSunny,
-    Component: () => import("./AI"),
   },
   export: {
     name: "Export",

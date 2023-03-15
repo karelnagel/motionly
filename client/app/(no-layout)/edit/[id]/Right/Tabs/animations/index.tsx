@@ -9,9 +9,7 @@ import { OneAnimation } from "./OneAnimation";
 
 export const component = () => {
   const setComp = useProject((t) => t.setComp);
-  const animations = useProject(
-    (t) => t.project.template.components[t.selected].animations
-  );
+  const animations = useProject((t) => t.project.template.components[t.selected].animations);
   const comp = useComponent();
   if (!comp) return <></>;
   return (
@@ -32,12 +30,11 @@ export const component = () => {
               <div className="grid grid-cols-4 gap-1">
                 {section.animations.map((animation, i) => (
                   <div
-                    className="flex flex-col space-y-1 items-center cursor-pointer hover:scale-105 duration-150"
+                    className="flex flex-col space-y-1 items-center cursor-pointer hover:scale-105 duration-150 justify-center aspect-square bg-base-300 rounded-lg"
                     key={i}
                     onClick={() =>
                       setComp((c) => {
-                        if (!c.animations)
-                          c.animations = { allIds: [], byIds: {} };
+                        if (!c.animations) c.animations = { allIds: [], byIds: {} };
                         for (const anim of animation.animations) {
                           const id = getRandomId();
                           c.animations.byIds[id] = {
@@ -50,19 +47,7 @@ export const component = () => {
                       })
                     }
                   >
-                    <video
-                      className="rounded-lg aspect-square bg-white"
-                      disablePictureInPicture
-                      src={lowRep(
-                        `/animations/${section.name}_${animation.name}.mp4`
-                      )}
-                      autoPlay
-                      muted
-                      loop
-                    />
-                    <p className="text-[13px] text-center whitespace-nowrap overflow-hidden">
-                      {animation.name}
-                    </p>
+                    <p className="text-[13px] text-center whitespace-nowrap overflow-hidden ">{animation.name}</p>
                   </div>
                 ))}
               </div>
