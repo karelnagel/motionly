@@ -39,6 +39,8 @@ importers:
 
   client:
     specifiers:
+      '@anatine/zod-mock': ^3.9.0
+      '@faker-js/faker': ^7.6.0
       '@mdx-js/loader': ^2.3.0
       '@motionly/base': '*'
       '@motionly/components': '*'
@@ -109,6 +111,8 @@ importers:
       zod: ^3.20.6
       zustand: ^4.3.2
     dependencies:
+      '@anatine/zod-mock': 3.9.0_@faker-js+faker@7.6.0
+      '@faker-js/faker': 7.6.0
       '@mdx-js/loader': 2.3.0_webpack@5.76.1
       '@motionly/base': link:../packages/base
       '@motionly/components': link:../packages/components
@@ -284,6 +288,15 @@ importers:
       react-dom: 18.2.0_react@18.2.0
 
 packages:
+
+  /@anatine/zod-mock/3.9.0_@faker-js+faker@7.6.0:
+    resolution: {integrity: sha512-MShwAONfTy5S63vp1/5xjU4OlYBcCH1E5Vt1i85bZ5rzbadnyoL6KsZGZkTtel56PGj36fftUf0cx9o07DZmKw==}
+    peerDependencies:
+      '@faker-js/faker': ^7.0.0
+    dependencies:
+      '@faker-js/faker': 7.6.0
+      randexp: 0.5.3
+    dev: false
 
   /@aws-crypto/crc32/3.0.0:
     resolution: {integrity: sha512-IzSgsrxUcsrejQbPVilIKy16kAT52EwB6zSaI+M3xxIhKh5+aldEyvI+z6erM7TCLB2BJsFrtHjp6/4/sr+3dA==}
@@ -2038,6 +2051,11 @@ packages:
   /@eslint/js/8.36.0:
     resolution: {integrity: sha512-lxJ9R5ygVm8ZWgYdUweoq5ownDlJ4upvoWmO4eLxBYHdMo+vZ/Rx0EN6MbKWDJOSUGrqJy2Gt+Dyv/VKml0fjg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: false
+
+  /@faker-js/faker/7.6.0:
+    resolution: {integrity: sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==}
+    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
     dev: false
 
   /@httptoolkit/websocket-stream/6.0.1:

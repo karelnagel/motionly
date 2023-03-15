@@ -13,6 +13,8 @@
         "examples": "ts-node videos/examples/render.ts"
     },
     "dependencies": {
+        "@anatine/zod-mock": "^3.9.0",
+        "@faker-js/faker": "^7.6.0",
         "@mdx-js/loader": "^2.3.0",
         "@motionly/base": "*",
         "@motionly/components": "*",
@@ -21,12 +23,12 @@
         "@next/bundle-analyzer": "^13.1.6",
         "@next/mdx": "^13.2.1",
         "@prisma/client": "^4.6.1",
+        "@remotion/bundler": "3.3.76",
         "@remotion/cli": "3.3.76",
         "@remotion/google-fonts": "3.3.76",
         "@remotion/lambda": "3.3.76",
-        "@remotion/bundler": "3.3.76",
-        "@remotion/renderer": "3.3.76",
         "@remotion/player": "3.3.76",
+        "@remotion/renderer": "3.3.76",
         "@tailwindcss/line-clamp": "^0.4.2",
         "@tailwindcss/typography": "^0.5.9",
         "@tanstack/react-query": "^4.24.4",
