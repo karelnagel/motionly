@@ -1,6 +1,6 @@
 import { ShapeProps } from "@motionly/base";
 import { Rect, Triangle, Circle, Ellipse } from "@remotion/shapes";
-import { useColor } from "../hooks/useColor";
+import { useColor } from "../helpers/useColor";
 
 export const defaultShapeProps: ShapeProps = {
   comp: "shape",
@@ -21,15 +21,7 @@ export const defaultShapeProps: ShapeProps = {
   direction: "down",
 };
 
-export const Shape = ({
-  strokeWidth = 0,
-  edgeRoundness,
-  cornerRadius,
-  width,
-  height,
-  direction,
-  ...props
-}: ShapeProps) => {
+export const Shape = ({ strokeWidth = 0, edgeRoundness, cornerRadius, width, height, direction, ...props }: ShapeProps) => {
   const fill = useColor(props.fill);
   const stroke = useColor(props.stroke);
 
@@ -42,9 +34,7 @@ export const Shape = ({
         stroke={stroke}
         strokeWidth={strokeWidth}
         edgeRoundness={edgeRoundness}
-        cornerRadius={
-          edgeRoundness === undefined ? cornerRadius : undefined
-        }
+        cornerRadius={edgeRoundness === undefined ? cornerRadius : undefined}
       />
     );
   if (props.type === "rect")
@@ -56,29 +46,12 @@ export const Shape = ({
         stroke={stroke}
         strokeWidth={strokeWidth}
         edgeRoundness={edgeRoundness}
-        cornerRadius={
-          edgeRoundness === undefined ? cornerRadius : undefined
-        }
+        cornerRadius={edgeRoundness === undefined ? cornerRadius : undefined}
       />
     );
   else if (props.type === "circle")
-    return (
-      <Circle
-        radius={Math.min(width, height) / 2 - strokeWidth}
-        fill={fill}
-        stroke={stroke}
-        strokeWidth={strokeWidth}
-      />
-    );
+    return <Circle radius={Math.min(width, height) / 2 - strokeWidth} fill={fill} stroke={stroke} strokeWidth={strokeWidth} />;
   else if (props.type === "ellipse")
-    return (
-      <Ellipse
-        rx={width / 2 - strokeWidth}
-        ry={height / 2 - strokeWidth}
-        fill={fill}
-        stroke={stroke}
-        strokeWidth={strokeWidth}
-      />
-    );
+    return <Ellipse rx={width / 2 - strokeWidth} ry={height / 2 - strokeWidth} fill={fill} stroke={stroke} strokeWidth={strokeWidth} />;
   return null;
 };

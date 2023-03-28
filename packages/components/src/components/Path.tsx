@@ -1,7 +1,7 @@
 import { evolvePath } from "@remotion/paths";
 import { StyleAndClass } from "@motionly/base";
 import { PathProps } from "@motionly/base";
-import { useColor } from "../hooks/useColor";
+import { useColor } from "../helpers/useColor";
 
 export const defaultPathProps: PathProps = {
   comp: "path",

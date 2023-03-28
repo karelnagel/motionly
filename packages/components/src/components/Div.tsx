@@ -1,6 +1,6 @@
 import { StyleAndClass } from "@motionly/base";
 import { DivProps } from "@motionly/base";
-import { useColor } from "../hooks/useColor";
+import { useColor } from "../helpers/useColor";
 import { Children } from "./Children";
 
 export const defaultDivProps: DivProps = {
@@ -12,12 +12,7 @@ export const defaultDivProps: DivProps = {
   childIds: [],
 };
 
-export const Div = ({
-  bg,
-  style,
-  className,
-  comps,
-}: DivProps & StyleAndClass) => {
+export const Div = ({ bg, style, className, comps }: DivProps & StyleAndClass) => {
   const background = useColor(bg);
   return (
     <div

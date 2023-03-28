@@ -1,7 +1,7 @@
 import { Gif as RemotionGif, GifFillMode } from "@remotion/gif";
 import { StyleAndClass } from "@motionly/base";
 import { GifProps } from "@motionly/base";
-import { getSrc } from "../helpers";
+import { getSrc } from "../helpers/getSrc";
 
 export const defaultGifProps: GifProps = {
   comp: "gif",

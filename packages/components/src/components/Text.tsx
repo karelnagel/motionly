@@ -1,8 +1,7 @@
 import { StyleAndClass } from "@motionly/base";
 import { TextProps } from "@motionly/base";
 import { useMemo } from "react";
-import { useAnimation } from "../hooks/useAnimations";
-import { useTextStyles } from "../hooks/useTextStyles";
+import { useTextStyles } from "../helpers/useTextStyles";
 
 export const defaultTextProps: TextProps = {
   comp: "text",
@@ -24,13 +23,7 @@ export const defaultTextProps: TextProps = {
   justifyContent: "center",
 };
 
-export const Text = ({
-  textStyle,
-  text,
-  style,
-  className,
-  justifyContent,
-}: TextProps & StyleAndClass) => {
+export const Text = ({ textStyle, text, style, className, justifyContent }: TextProps & StyleAndClass) => {
   const styles = useTextStyles(textStyle);
   return (
     <div

@@ -1,16 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  Marker,
-} from "react-simple-maps";
+import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
 import { continueRender, delayRender } from "remotion";
 import { StyleAndClass } from "@motionly/base";
 import { MapProps } from "@motionly/base";
-import { useColor } from "../hooks/useColor";
-import { getSrc } from "../helpers";
+import { useColor } from "../helpers/useColor";
+import { getSrc } from "../helpers/getSrc";
 
 export const defaultMapProps: MapProps = {
   comp: "map",
@@ -83,22 +78,10 @@ export const Map = ({
     >
       <Geographies geography={geography}>
         {({ geographies }) =>
-          geographies.map((geo) => (
-            <Geography
-              key={geo.rsmKey}
-              geography={geo}
-              fill={fillC}
-              stroke={strokeC}
-              strokeWidth={strokeWidth}
-            />
-          ))
+          geographies.map((geo) => <Geography key={geo.rsmKey} geography={geo} fill={fillC} stroke={strokeC} strokeWidth={strokeWidth} />)
         }
       </Geographies>
-      {markerSize && markerColor && (
-        <Marker coordinates={coordinates}>
-          {markerSize && <circle r={markerSize / 2} fill={marker} />}
-        </Marker>
-      )}
+      {markerSize && markerColor && <Marker coordinates={coordinates}>{markerSize && <circle r={markerSize / 2} fill={marker} />}</Marker>}
     </ComposableMap>
   );
 };

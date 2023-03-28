@@ -1,12 +1,8 @@
-import {
-  OffthreadVideo,
-  useVideoConfig,
-  Video as RemotionVideo,
-} from "remotion";
+import { OffthreadVideo, useVideoConfig, Video as RemotionVideo } from "remotion";
 import { videoUrl } from "@motionly/base";
 import { StyleAndClass } from "@motionly/base";
 import { VideoProps } from "@motionly/base";
-import { getSrc } from "../helpers";
+import { getSrc } from "../helpers/getSrc";
 
 export const defaultVideoProps: VideoProps = {
   comp: "video",
@@ -17,16 +13,7 @@ export const defaultVideoProps: VideoProps = {
   volume: 100,
 };
 
-export const Video = ({
-  objectFit,
-  offthread,
-  style,
-  src,
-  className,
-  muted,
-  volume,
-  startFrom,
-}: VideoProps & StyleAndClass) => {
+export const Video = ({ objectFit, offthread, style, src, className, muted, volume, startFrom }: VideoProps & StyleAndClass) => {
   const { fps } = useVideoConfig();
   const props = {
     src: getSrc(src),

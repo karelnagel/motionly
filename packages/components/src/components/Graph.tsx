@@ -1,15 +1,12 @@
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { StyleAndClass } from "@motionly/base";
 import { GraphProps } from "@motionly/base";
-import { useColor } from "../hooks/useColor";
+import { useColor } from "../helpers/useColor";
 
 export const defaultGraphProps: GraphProps = {
   comp: "graph",
   type: "bar",
-  src: [
-    2, 5, 2, 9, 5, 3, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
-    19, 20,
-  ],
+  src: [2, 5, 2, 9, 5, 3, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
   color: {
     type: "basic",
     color: "#FFFFFFFF",
@@ -57,10 +54,7 @@ export const Graph = ({
           const anim =
             animationDuration && animationStart !== undefined
               ? spring({
-                  frame:
-                    frame -
-                    animationStart * fps -
-                    ((animationDuration * fps) / values.length) * i,
+                  frame: frame - animationStart * fps - ((animationDuration * fps) / values.length) * i,
                   fps,
                 })
               : 1;

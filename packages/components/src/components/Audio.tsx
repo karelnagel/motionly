@@ -2,7 +2,7 @@ import { Audio as RemotionAudio, useVideoConfig } from "remotion";
 import { videoUrl } from "@motionly/base";
 import { StyleAndClass } from "@motionly/base";
 import { AudioProps } from "@motionly/base";
-import { getSrc } from "../helpers";
+import { getSrc } from "../helpers/getSrc";
 
 export const defaultAudioProps: AudioProps = {
   comp: "audio",
@@ -11,18 +11,8 @@ export const defaultAudioProps: AudioProps = {
   volume: 1,
 };
 
-export const Audio = ({
-  startFrom,
-  src,
-  volume,
-}: AudioProps & StyleAndClass) => {
+export const Audio = ({ startFrom, src, volume }: AudioProps & StyleAndClass) => {
   const { fps } = useVideoConfig();
   if (!src) return null;
-  return (
-    <RemotionAudio
-      startFrom={startFrom ? Math.floor(startFrom * fps) : undefined}
-      src={getSrc(src)}
-      volume={volume}
-    />
-  );
+  return <RemotionAudio startFrom={startFrom ? Math.floor(startFrom * fps) : undefined} src={getSrc(src)} volume={volume} />;
 };

@@ -1,13 +1,10 @@
-import {
-  Lottie as RemotionLottie,
-  LottieAnimationData,
-} from "@remotion/lottie";
+import { Lottie as RemotionLottie, LottieAnimationData } from "@remotion/lottie";
 import { useEffect, useState } from "react";
 import { continueRender, delayRender } from "remotion";
 import { StyleAndClass } from "@motionly/base";
 import { LottieProps } from "@motionly/base";
-import { useColor } from "../hooks/useColor";
-import { getSrc } from "../helpers";
+import { useColor } from "../helpers/useColor";
+import { getSrc } from "../helpers/getSrc";
 
 export const defaultLottieProps: LottieProps = {
   comp: "lottie",
@@ -15,19 +12,10 @@ export const defaultLottieProps: LottieProps = {
   loop: true,
 };
 
-export const Lottie = ({
-  src,
-  loop,
-  playbackRate,
-  style,
-  className,
-  bg,
-  backwards,
-}: LottieProps & StyleAndClass) => {
+export const Lottie = ({ src, loop, playbackRate, style, className, bg, backwards }: LottieProps & StyleAndClass) => {
   const [handle] = useState(() => delayRender("Loading Lottie animation"));
   const background = useColor(bg);
-  const [animationData, setAnimationData] =
-    useState<LottieAnimationData | null>(null);
+  const [animationData, setAnimationData] = useState<LottieAnimationData | null>(null);
   useEffect(() => {
     if (!src) return;
 

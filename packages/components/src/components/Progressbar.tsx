@@ -1,7 +1,7 @@
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import { StyleAndClass } from "@motionly/base";
 import { ProgressbarProps } from "@motionly/base";
-import { useColor } from "../hooks/useColor";
+import { useColor } from "../helpers/useColor";
 
 export const defaultProgressbarProps: ProgressbarProps = {
   comp: "progressbar",
@@ -20,15 +20,7 @@ export const defaultProgressbarProps: ProgressbarProps = {
   width: 100,
 };
 
-export const Progressbar = ({
-  color,
-  bg,
-  style,
-  className,
-  height = 0,
-  width = 0,
-  ...props
-}: ProgressbarProps & StyleAndClass) => {
+export const Progressbar = ({ color, bg, style, className, height = 0, width = 0, ...props }: ProgressbarProps & StyleAndClass) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const progress = (frame / durationInFrames) * 100;
@@ -124,14 +116,7 @@ export const Progressbar = ({
     const dash = circumference * (progress / 100);
     return (
       <svg viewBox={`0 0 ${size} ${size}`} style={style} className={className}>
-        <circle
-          cx={size / 2}
-          cy={size / 2}
-          r={radius}
-          stroke={background}
-          strokeWidth={props.barWidth}
-          fill="none"
-        />
+        <circle cx={size / 2} cy={size / 2} r={radius} stroke={background} strokeWidth={props.barWidth} fill="none" />
         <circle
           cx={size / 2}
           cy={size / 2}

@@ -3,8 +3,8 @@ import { useCurrentFrame, useVideoConfig } from "remotion";
 import { videoUrl } from "@motionly/base";
 import { StyleAndClass } from "@motionly/base";
 import { AudiogramProps } from "@motionly/base";
-import { useColor } from "../hooks/useColor";
-import { getSrc } from "../helpers";
+import { useColor } from "../helpers/useColor";
+import { getSrc } from "../helpers/getSrc";
 
 export const defaultAudiogramProps: AudiogramProps = {
   comp: "audiogram",
@@ -53,10 +53,7 @@ export const Audiogram = ({
     return null;
   }
   const maxVisibleBars = Math.floor(width / ((gap || 0) + barWidth));
-  const numberOfSamples = Math.pow(
-    2,
-    Math.ceil(Math.log(maxVisibleBars / (mirror ? 2 : 1)) / Math.log(2))
-  );
+  const numberOfSamples = Math.pow(2, Math.ceil(Math.log(maxVisibleBars / (mirror ? 2 : 1)) / Math.log(2)));
   const visualization = numberOfSamples
     ? visualizeAudio({
         fps,
@@ -66,9 +63,7 @@ export const Audiogram = ({
         smoothing,
       })
     : [];
-  const bars = mirror
-    ? [...[...visualization].reverse(), ...visualization]
-    : visualization;
+  const bars = mirror ? [...[...visualization].reverse(), ...visualization] : visualization;
   return (
     <div
       className={className}

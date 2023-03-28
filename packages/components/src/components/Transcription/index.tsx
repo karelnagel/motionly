@@ -1,13 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  continueRender,
-  delayRender,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { continueRender, delayRender, useCurrentFrame, useVideoConfig } from "remotion";
 import { StyleAndClass, TranscriptionWord } from "@motionly/base";
 import { TranscriptionProps } from "@motionly/base";
-import { useTextStyles } from "../../hooks/useTextStyles";
+import { useTextStyles } from "../../helpers/useTextStyles";
 export * from "./default";
 import z from "zod";
 
@@ -35,9 +30,7 @@ export const Transcription = ({
   const linesPerPage = Math.floor(height / lineHeight) || 1;
   const txtStyle = useTextStyles(textStyle);
   const animStyle = useTextStyles(animationStyle);
-  const [words, setWords] = useState<TranscriptionWord[]>(
-    typeof src === "string" ? [] : src
-  );
+  const [words, setWords] = useState<TranscriptionWord[]>(typeof src === "string" ? [] : src);
   useEffect(() => {
     if (typeof src !== "string") return;
     fetch(src)
@@ -52,20 +45,14 @@ export const Transcription = ({
   useEffect(() => {
     if (words) {
       const linesRendered = Math.round(
-        (windowRef.current?.getBoundingClientRect().height as number) /
-          (zoomRef.current?.getBoundingClientRect().height as number)
+        (windowRef.current?.getBoundingClientRect().height as number) / (zoomRef.current?.getBoundingClientRect().height as number)
       );
       setLinesRendered(linesRendered);
       continueRender(handle);
     }
   }, [handle, words, frame, linesPerPage, lineHeight]);
 
-  const linesOffset = Math.max(
-    0,
-    !scrollByPage
-      ? linesRendered - linesPerPage
-      : Math.floor((linesRendered - 1) / linesPerPage) * linesPerPage
-  );
+  const linesOffset = Math.max(0, !scrollByPage ? linesRendered - linesPerPage : Math.floor((linesRendered - 1) / linesPerPage) * linesPerPage);
   const playedSubs = words.filter((s) => s.start * fps <= frame);
   const unPlayedSubs = words.filter((s) => s.start * fps > frame);
   return (
@@ -89,16 +76,10 @@ export const Transcription = ({
           {playedSubs.map((item, i) => {
             let isHighlighted = false;
             if (animationType === "previous-text") isHighlighted = true;
-            else if (
-              animationType === "current-word" &&
-              i === playedSubs.length - 1
-            )
-              isHighlighted = true;
+            else if (animationType === "current-word" && i === playedSubs.length - 1) isHighlighted = true;
             return (
               <span key={item.text + item.start + item.end}>
-                <span style={isHighlighted ? animStyle : undefined}>
-                  {item.text}{" "}
-                </span>
+                <span style={isHighlighted ? animStyle : undefined}>{item.text} </span>
               </span>
             );
           })}
