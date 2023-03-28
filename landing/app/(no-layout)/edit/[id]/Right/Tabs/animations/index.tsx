@@ -2,7 +2,7 @@ import { ComponentProps } from "@motionly/base";
 import { Tab } from "..";
 import { MdAnimation } from "react-icons/md";
 import { useProject } from "../../../../../../../hooks/useProject";
-import { getRandomId, lowRep } from "../../../../../../../helpers";
+import { getRandomId } from "../../../../../../../helpers";
 import { allAnimations } from "../../../../../../../videos/animations";
 import { useComponent } from "../../../../../../../hooks/useComponent";
 import { OneAnimation } from "./OneAnimation";
