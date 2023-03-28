@@ -1,7 +1,5 @@
 import { CompVariable, ComponentProps, Components, Variable, TemplateType } from "../types";
 
-export const videoUrl = "https://remotionlambda-24lixyhuqn.s3.us-east-1.amazonaws.com/video.mp4";
-
 // if from is negative, it's relative to the end of the video
 export const getFrom = (maxDuration: number, from?: number) => {
   if (!from) return 0;

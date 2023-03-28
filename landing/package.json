@@ -19,10 +19,8 @@
         "@motionly/base": "*",
         "@motionly/components": "*",
         "@motionly/player": "*",
-        "@next-auth/prisma-adapter": "^1.0.5",
         "@next/bundle-analyzer": "^13.1.6",
         "@next/mdx": "^13.2.1",
-        "@prisma/client": "^4.6.1",
         "@remotion/bundler": "3.3.76",
         "@remotion/cli": "3.3.76",
         "@remotion/google-fonts": "3.3.76",
@@ -46,8 +44,6 @@
         "@vercel/og": "^0.0.20",
         "add": "^2.0.6",
         "autoprefixer": "^10.4.13",
-        "aws-crt": "^1.15.7",
-        "aws-sdk": "^2.1295.0",
         "axios": "^1.2.2",
         "daisyui": "^2.38.1",
         "dotenv": "^16.0.3",
@@ -59,7 +55,6 @@
         "isarray": "^2.0.5",
         "js-file-download": "^0.4.12",
         "next": "^13.2.1",
-        "next-auth": "^4.16.4",
         "openai": "^3.1.0",
         "pexels": "^1.4.0",
         "postcss": "^8.4.18",
@@ -83,8 +78,5 @@
         "ytdl-core": "^4.11.2",
         "zod": "^3.20.6",
         "zustand": "^4.3.2"
-    },
-    "devDependencies": {
-        "prisma": "^4.6.1"
     }
 }

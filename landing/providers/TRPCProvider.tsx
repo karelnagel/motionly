@@ -4,8 +4,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createTRPCProxyClient, httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCReact } from "@trpc/react-query";
 import { useState } from "react";
-import { getBaseUrl } from "../helpers/getBaseUrl";
 import { AppRouter } from "../server/api/root";
+
 export const trpc = createTRPCReact<AppRouter>({
   unstable_overrides: {
     useMutation: {
@@ -23,7 +23,7 @@ export const trpcClient = createTRPCProxyClient<AppRouter>({
       enabled: () => true,
     }),
     httpBatchLink({
-      url: `${getBaseUrl()}/api/trpc`,
+      url: `/api/trpc`,
     }),
   ],
 });
@@ -37,7 +37,7 @@ export function TRPCProvider(props: { children: React.ReactNode }) {
           enabled: () => true,
         }),
         httpBatchLink({
-          url: `${getBaseUrl()}/api/trpc`,
+          url: `/api/trpc`,
         }),
       ],
     })

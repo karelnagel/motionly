@@ -5,14 +5,12 @@ const SECONDS_PER_DAY = 86400;
 const nextConfig = {
   experimental: {
     appDir: true,
-    serverComponentsExternalPackages: ["@prisma/client"],
   },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   images: {
     domains: [
       "lh3.googleusercontent.com",
       "picsum.photos",
-      "s3.us-east-1.amazonaws.com",
     ],
   },
   redirects: async () => {
