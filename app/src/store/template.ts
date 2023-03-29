@@ -16,9 +16,16 @@ export const defaultTemplate: Template = {
 };
 
 export type ProjectSlice = {
-  template: Template;
+  template: string;
+  templates: { [key: string]: Template };
+  allTemplates: string[];
+  selectTemplate: (id: string) => void;
+  newTemplate: () => string;
+  cloneTemplate: (id: string) => string;
+  deleteTemplate: (id: string) => void;
+
   lastTemplate?: Template;
-  setTemplate: (template: Partial<Template>) => void;
+  editTemplate: (template: Partial<Template>) => void;
 
   past: Template[];
   future: Template[];
@@ -26,11 +33,11 @@ export type ProjectSlice = {
   redo: () => void;
   historyTimeout?: ReturnType<typeof setTimeout>;
 
-  selected: string;
-  setSelected: (id?: string) => void;
+  component: string;
+  setComponent: (id?: string) => void;
 
-  setComponent: (comp: Partial<Comp>) => void;
-  addComponent: (comp: Comp) => void;
+  editComponent: (comp: Partial<Comp>) => void;
+  newComponent: (comp: Comp) => void;
   copyComponent: () => void;
   deleteComp: () => void;
 
@@ -54,64 +61,96 @@ export const template = (setStore: SetType, get: GetType): ProjectSlice => {
     });
   };
   return {
-    template: defaultTemplate,
+    template: "",
+    templates: {},
+    allTemplates: [],
+    newTemplate: () => {
+      const id = getRandomId();
+      setStore((s) => {
+        s.templates[id] = defaultTemplate;
+        s.allTemplates.push(id);
+        s.template = id;
+        s.page = "edit";
+      });
+      return id;
+    },
+    deleteTemplate: (id) =>
+      setStore((s) => {
+        delete s.templates[id];
+        s.allTemplates = s.allTemplates.filter((id) => id !== s.template);
+        s.template = s.allTemplates[0];
+      }),
+    selectTemplate: (template) => setStore({ template, page: "edit" }),
+    cloneTemplate: (id) => {
+      const newId = getRandomId();
+      setStore((s) => {
+        s.templates[newId] = JSON.parse(JSON.stringify(s.templates[id]));
+        s.allTemplates.push(newId);
+        s.template = newId;
+      });
+      return newId;
+    },
+
     past: [],
     future: [],
-    setTemplate: (template) => set((state) => ({ template: { ...state.template, ...template } })),
+    editTemplate: (template) =>
+      set((s) => {
+        s.templates[s.template] = { ...s.templates[s.template], ...template };
+      }),
 
     page: "home",
     setPage: (page) => setStore({ page }),
-    selected: "",
-    setSelected: (selected?: string) => setStore({ selected }),
+    component: "",
+    setComponent: (selected?: string) => setStore({ component: selected }),
 
-    setComponent: (comp) => {
+    editComponent: (comp) => {
       set((s) => {
-        const old = s.template.components[s.selected];
+        const old = s.templates[s.template].components[s.component];
         if (!old) return toast.error("No component selected");
-        s.template.components[s.selected] = { ...old, ...comp };
+        s.templates[s.template].components[s.component] = { ...old, ...comp };
       });
     },
 
     deleteComp: () =>
       set((s) => {
-        delete s.template.components[s.selected];
-        s.template.allComponents = s.template.allComponents.filter((id) => id !== s.selected);
-        s.selected = s.template.allComponents[0];
+        delete s.templates[s.template].components[s.component];
+        s.templates[s.template].allComponents = s.templates[s.template].allComponents.filter((id) => id !== s.component);
+        s.component = s.templates[s.template].allComponents[0];
       }),
 
-    addComponent: (comp) =>
+    newComponent: (comp) =>
       set((s) => {
         const id = getRandomId();
-        s.template.components[id] = comp;
-        s.template.allComponents.push(id);
-        s.selected = id;
+        s.templates[s.template].components[id] = comp;
+        s.templates[s.template].allComponents.push(id);
+        s.component = id;
       }),
 
     copyComponent: () => {
-      set((state) => {
-        const comp = state.template.components[state.selected];
+      set((s) => {
+        const comp = s.templates[s.template].components[s.component];
         if (!comp) return toast.error("No component selected");
         const id = getRandomId();
-        state.template.components[id] = comp;
-        state.template.allComponents.push(id);
-        state.selected = id;
+        s.templates[s.template].components[id] = comp;
+        s.templates[s.template].allComponents.push(id);
+        s.component = id;
       });
     },
 
     undo: () =>
-      setStore((state) => {
-        const project = state.past.pop();
+      setStore((s) => {
+        const project = s.past.pop();
         if (!project) return toast.error("Nothing to undo");
-        state.future.push(state.template);
-        state.template = project;
+        s.future.push(s.templates[s.template]);
+        s.templates[s.template] = project;
       }),
 
     redo: () =>
-      setStore((state) => {
-        const project = state.future.pop();
+      setStore((s) => {
+        const project = s.future.pop();
         if (!project) return toast.error("Nothing to redo");
-        state.past.push(state.template);
-        state.template = project;
+        s.past.push(s.templates[s.template]);
+        s.templates[s.template] = project;
       }),
   };
 };
