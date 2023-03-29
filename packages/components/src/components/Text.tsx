@@ -1,55 +1,44 @@
-import { StyleAndClass } from "@motionly/base";
-import { TextProps } from "@motionly/base";
-import { useMemo } from "react";
+import { JustifyContent, TextStyle } from "@motionly/inputs";
+import { z } from "zod";
+import { Component } from "..";
 import { useTextStyles } from "../helpers/useTextStyles";
 
-export const defaultTextProps: TextProps = {
-  comp: "text",
-  textStyle: {
-    bg: {
-      type: "basic",
-      color: "#000000FF",
-    },
-    color: {
-      type: "basic",
-      color: "#00FFFFFF",
-    },
-    fontSize: 120,
-    fontFamily: "Inter",
-    fontWeight: "700",
-    textAlign: "center",
-  },
-  text: "Hello World",
-  justifyContent: "center",
-};
+export const TextProps = z.object({
+  textStyle: TextStyle,
+  text: z.string(),
+  justifyContent: JustifyContent.optional(),
+});
+export type TextProps = z.infer<typeof TextProps>;
 
-export const Text = ({ textStyle, text, style, className, justifyContent }: TextProps & StyleAndClass) => {
-  const styles = useTextStyles(textStyle);
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent,
-        height: "100%",
-        width: "100%",
-      }}
-    >
-      <p
-        className={className}
+export const text: Component<TextProps> = {
+  zod: TextProps,
+  inputs: {
+    text: { text: { label: "Text" } },
+    textStyle: { text_style: { label: "Text Style" } },
+    justifyContent: { select: { label: "Justify Content", options: "justify" } },
+  },
+  component: ({ text, textStyle, justifyContent }) => {
+    const styles = useTextStyles(textStyle);
+    return (
+      <div
         style={{
-          ...styles,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent,
+          height: "100%",
           width: "100%",
-          whiteSpace: "pre-wrap",
-          ...style,
         }}
       >
-        {text}
-      </p>
-    </div>
-  );
-};
-export const text = {
-  type: "text",
-  name 
+        <p
+          style={{
+            ...styles,
+            width: "100%",
+            whiteSpace: "pre-wrap",
+          }}
+        >
+          {text}
+        </p>
+      </div>
+    );
+  },
 };

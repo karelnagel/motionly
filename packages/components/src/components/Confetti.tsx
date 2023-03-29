@@ -1,23 +1,34 @@
-import { ConfettiProps } from "@motionly/base";
 import RemotionConfetti from "@motionly/confetti";
-import { useColor } from "../helpers/useColor";
+import { Color } from "@motionly/inputs";
+import { z } from "zod";
+import { Component } from "..";
 
-export const defaultConfettiProps: ConfettiProps = {
-  comp: "confetti",
-  posX: 0,
-  posY: 0,
-  angle: -45,
-};
+export const ConfettiProps = z.object({
+  colors: z.array(Color).optional(),
+  count: z.number().optional(),
+  angle: z.number().optional(),
+  spread: z.number().optional(),
+  startVelocity: z.number().optional(),
+  scalar: z.number().optional(),
+  ticks: z.number().optional(),
+  posX: z.number(),
+  posY: z.number(),
+});
+export type ConfettiProps = z.infer<typeof ConfettiProps>;
 
-export const Confetti = ({ posX, posY, colors, ...props }: ConfettiProps) => {
-  return (
-    <RemotionConfetti
-      {...{
-        ...props,
-        x: posX,
-        y: posY,
-        colors: colors?.map((c) => useColor(c)).filter((c) => c) as string[],
-      }}
-    />
-  );
+export const confetti: Component<ConfettiProps> = {
+  zod: ConfettiProps,
+  inputs: {},
+  component: ({ posX, posY, colors, ...props }) => {
+    return (
+      <RemotionConfetti
+        {...{
+          ...props,
+          x: posX,
+          y: posY,
+          colors,
+        }}
+      />
+    );
+  },
 };

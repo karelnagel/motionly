@@ -1,111 +1,112 @@
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { StyleAndClass } from "@motionly/base";
-import { GraphProps } from "@motionly/base";
-import { useColor } from "../helpers/useColor";
+import { z } from "zod";
+import { Color, GraphTypes } from "@motionly/inputs";
+import { Component } from "..";
 
-export const defaultGraphProps: GraphProps = {
-  comp: "graph",
-  type: "bar",
-  src: [2, 5, 2, 9, 5, 3, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-  color: {
-    type: "basic",
-    color: "#FFFFFFFF",
+export const GraphProps = z.object({
+  comp: z.literal("graph"),
+  src: z.array(z.number()),
+  color: Color.optional(),
+  type: GraphTypes,
+  max: z.number().optional(),
+  min: z.number().optional(),
+  animationStart: z.number().optional(),
+  animationDuration: z.number().optional(),
+  strokeWidth: z.number().optional(),
+  gap: z.number().optional(),
+  roundness: z.number().min(0).optional(),
+  width: z.number().min(0),
+  height: z.number().min(0),
+});
+export type GraphProps = z.infer<typeof GraphProps>;
+
+export const graph: Component<GraphProps> = {
+  zod: GraphProps,
+  inputs: {
+    src: { text: { label: "Source" } },
+    color: { color: { label: "Color" } },
+    type: { select: { label: "Type", options: "graph-types" } },
+    max: { number: { label: "Max" } },
+    min: { number: { label: "Min" } },
+    animationStart: { number: { label: "Animation Start" } },
+    animationDuration: { number: { label: "Animation Duration" } },
+    strokeWidth: { number: { label: "Stroke Width" } },
+    gap: { number: { label: "Gap" } },
+    roundness: { number: { label: "Roundness" } },
   },
-  gap: 3,
-  roundness: 10,
-  animationDuration: 2,
-  animationStart: 0,
-  width: 100,
-  height: 100,
-};
+  component: ({ src, comp, height, type, width, animationDuration, animationStart, children, color, gap, max, min, roundness, strokeWidth }) => {
+    const frame = useCurrentFrame();
+    const { fps } = useVideoConfig();
+    const background = color;
+    const maxValue = max || Math.max(...src);
 
-export const Graph = ({
-  color,
-  src: values,
-  max,
-  style,
-  className,
-  animationDuration,
-  animationStart,
-  width = 0,
-  height = 0,
-  ...props
-}: GraphProps & StyleAndClass) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const background = useColor(color);
-  const maxValue = max || Math.max(...values);
-
-  if (props.type === "bar")
-    return (
-      <div
-        className={className}
-        style={{
-          display: "flex",
-          height: "100%",
-          width: "100%",
-          justifyContent: "center",
-          alignItems: "end",
-          gap: props.gap,
-          ...style,
-        }}
-      >
-        {values.map((v, i) => {
-          const anim =
-            animationDuration && animationStart !== undefined
-              ? spring({
-                  frame: frame - animationStart * fps - ((animationDuration * fps) / values.length) * i,
-                  fps,
-                })
-              : 1;
-          return (
-            <div
-              key={i}
-              style={{
-                width: width / values.length,
-                height: height * (v / maxValue) * anim,
-                background,
-                borderRadius: props.roundness,
-              }}
-            />
-          );
-        })}
-      </div>
-    );
-  else if (props.type === "line") {
-    const anim =
-      animationDuration && animationStart !== undefined
-        ? spring({
-            frame: frame - animationStart * fps,
-            fps,
-            durationInFrames: animationDuration * fps,
-            config: {
-              damping: 100,
-            },
-          })
-        : 1;
-    return (
-      <svg
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        viewBox={`0 0 ${width} ${height}`}
-        style={style}
-        className={className}
-      >
-        <path
-          d={values
-            .slice(0, Math.floor(values.length * anim))
-            .map((v, i) => {
-              const x = (width / values.length) * i;
-              const y = height - height * (v / maxValue);
-              return `${i === 0 ? "M" : "L"} ${x} ${y}`;
+    if (type === "bar")
+      return (
+        <div
+          style={{
+            display: "flex",
+            height: "100%",
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "end",
+            gap,
+          }}
+        >
+          {src.map((v, i) => {
+            const anim =
+              animationDuration && animationStart !== undefined
+                ? spring({
+                    frame: frame - animationStart * fps - ((animationDuration * fps) / src.length) * i,
+                    fps,
+                  })
+                : 1;
+            return (
+              <div
+                key={i}
+                style={{
+                  width: width / src.length,
+                  height: height * (v / maxValue) * anim,
+                  background,
+                  borderRadius: roundness,
+                }}
+              />
+            );
+          })}
+        </div>
+      );
+    else if (type === "line") {
+      const anim =
+        animationDuration && animationStart !== undefined
+          ? spring({
+              frame: frame - animationStart * fps,
+              fps,
+              durationInFrames: animationDuration * fps,
+              config: {
+                damping: 100,
+              },
             })
-            .join(" ")}
-          stroke={background}
-          strokeWidth={props.strokeWidth}
-          fill="none"
-        />
-      </svg>
-    );
-  }
-  return null;
+          : 1;
+      return (
+        <svg
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          viewBox={`0 0 ${width} ${height}`}
+        >
+          <path
+            d={src
+              .slice(0, Math.floor(src.length * anim))
+              .map((v, i) => {
+                const x = (width / src.length) * i;
+                const y = height - height * (v / maxValue);
+                return `${i === 0 ? "M" : "L"} ${x} ${y}`;
+              })
+              .join(" ")}
+            stroke={background}
+            strokeWidth={strokeWidth}
+            fill="none"
+          />
+        </svg>
+      );
+    }
+    return null;
+  },
 };

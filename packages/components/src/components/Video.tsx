@@ -1,51 +1,51 @@
+import { ObjectFit } from "@motionly/inputs";
 import { OffthreadVideo, useVideoConfig, Video as RemotionVideo } from "remotion";
-import { videoUrl } from "@motionly/base";
-import { StyleAndClass } from "@motionly/base";
-import { VideoProps } from "@motionly/base";
+import { z } from "zod";
+import { Component } from "..";
 import { getSrc } from "../helpers/getSrc";
 
-export const defaultVideoProps: VideoProps = {
-  comp: "video",
-  objectFit: "cover",
-  startFrom: 0,
-  src: videoUrl,
-  muted: false,
-  volume: 100,
-};
+export const VideoProps = z.object({
+  src: z.string().url(),
+  objectFit: ObjectFit.optional(),
+  startFrom: z.number().min(0).optional(),
+  muted: z.boolean().optional(),
+  volume: z.number().min(0).max(1).optional(),
+  offthread: z.boolean().optional(),
+});
+export type VideoProps = z.infer<typeof VideoProps>;
 
-export const Video = ({ objectFit, offthread, style, src, className, muted, volume, startFrom }: VideoProps & StyleAndClass) => {
-  const { fps } = useVideoConfig();
-  const props = {
-    src: getSrc(src),
-    className,
-    muted,
-    volume,
-    startFrom: startFrom ? Math.ceil(startFrom * fps) : undefined,
-  };
-  if (!src) return null;
-  if (offthread)
-    return (
-      <OffthreadVideo
-        {...props}
-        style={{
-          height: "100%",
-          width: "100%",
-          objectFit,
-          ...style,
-        }}
-      />
-    );
-  else
-    return (
-      <RemotionVideo
-        {...props}
-        disablePictureInPicture
-        style={{
-          height: "100%",
-          width: "100%",
-          objectFit,
-          ...style,
-        }}
-      />
-    );
+export const video: Component<VideoProps> = {
+  zod: VideoProps,
+  inputs: {
+    src: { text: { label: "Source" } },
+    objectFit: { select: { label: "Object Fit", options: "object-fit" } },
+  },
+  component: ({ src, objectFit, muted, offthread, startFrom, volume }) => {
+    const { fps } = useVideoConfig();
+    const props = { src: getSrc(src), muted, volume, startFrom: startFrom ? Math.ceil(startFrom * fps) : undefined };
+    if (!src) return null;
+    if (offthread)
+      return (
+        <OffthreadVideo
+          {...props}
+          style={{
+            height: "100%",
+            width: "100%",
+            objectFit,
+          }}
+        />
+      );
+    else
+      return (
+        <RemotionVideo
+          {...props}
+          disablePictureInPicture
+          style={{
+            height: "100%",
+            width: "100%",
+            objectFit,
+          }}
+        />
+      );
+  },
 };

@@ -1,36 +1,26 @@
-import { TextStyle } from "@motionly/base";
+import { TextStyle } from "@motionly/inputs";
 import { CSSProperties } from "react";
-import { useColor } from "./useColor";
 import { useMemo } from "react";
 
-export const useTextStyles = ({
-  bg,
-  outlineColor,
-  outlineWidth,
-  color,
-  ...styles
-}: TextStyle) => {
-  const colorC = useColor(color);
-  const outlineC = useColor(outlineColor);
-  const background = useColor(bg);
+export const useTextStyles = ({ bg, outlineColor, outlineWidth, color, ...styles }: TextStyle) => {
 
   const shadowCount = 100;
   const width = outlineWidth || 0;
 
   const textShadow = useMemo(
     () =>
-      width && outlineC
+      width && outlineColor
         ? new Array(shadowCount)
             .fill(0)
             .map(
               (_, i) =>
                 `${Math.cos(((i + 1) / shadowCount) * Math.PI * 2) * width}px ${
                   Math.sin(((i + 1) / shadowCount) * Math.PI * 2) * width
-                }px ${outlineC}`
+                }px ${outlineColor}`
             )
             .join(", ")
         : undefined,
-    [outlineC, width, outlineWidth]
+    [outlineColor, width, outlineWidth]
   );
 
   const style: CSSProperties = useMemo(
@@ -38,11 +28,11 @@ export const useTextStyles = ({
       padding: 0,
       margin: 0,
       ...styles,
-      color: colorC,
-      background,
+      color: color,
+      background: bg,
       textShadow,
     }),
-    [colorC, textShadow, background, styles]
+    [color, textShadow, bg, styles]
   );
   return style;
 };

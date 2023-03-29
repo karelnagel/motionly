@@ -1,7 +1,4 @@
-import { StyleAndClass } from "@motionly/base";
-import { MockupProps } from "@motionly/base";
 import { Iphone } from "./IPhone";
-import { Children } from "../Children";
 import { IPad } from "./ipad";
 import { Iphone14 } from "./iphone14";
 import { Macbook } from "./macbook";
@@ -10,17 +7,19 @@ import { Monitor } from "./monitor";
 import { Samsung } from "./samsung";
 import { Watch } from "./watch";
 import { CSSProperties } from "react";
-import { useColor } from "../../helpers/useColor";
+import { z } from "zod";
+import { Color, MockupTypes } from "@motionly/inputs";
+import { Component } from "../..";
+
+export const MockupProps = z.object({
+  bg: Color.optional(),
+  type: MockupTypes,
+});
+export type MockupProps = z.infer<typeof MockupProps>;
 
 export const svgStyle: CSSProperties = {
   position: "relative",
   height: "100%",
-};
-
-export const defaultMockupProps: MockupProps = {
-  comp: "mockup",
-  type: "iphone",
-  childIds: [],
 };
 
 const mockups: {
@@ -63,34 +62,33 @@ const mockups: {
     bottom: 24,
   },
 };
-
-export const Mockup = ({ type, bg, comps }: MockupProps & StyleAndClass) => {
-  const background = useColor(bg);
-
-  return (
-    <div style={{ position: "relative" }}>
-      <div
-        style={{
-          position: "absolute",
-          top: `${mockups[type]?.top || 2.1}%`,
-          bottom: `${mockups[type]?.bottom || 1.8}%`,
-          left: `${mockups[type]?.left || 5.2}%`,
-          right: `${mockups[type]?.right || 4}%`,
-          borderRadius: `${mockups[type]?.borderRadius || 7}%`,
-          overflow: "hidden",
-          background,
-        }}
-      >
-        <Children comps={comps} isSequence={false} />
+export const mockup: Component<MockupProps> = {
+  zod: MockupProps,
+  inputs: {},
+  component: ({ type, bg }) => {
+    return (
+      <div style={{ position: "relative" }}>
+        <div
+          style={{
+            position: "absolute",
+            top: `${mockups[type]?.top || 2.1}%`,
+            bottom: `${mockups[type]?.bottom || 1.8}%`,
+            left: `${mockups[type]?.left || 5.2}%`,
+            right: `${mockups[type]?.right || 4}%`,
+            borderRadius: `${mockups[type]?.borderRadius || 7}%`,
+            overflow: "hidden",
+            background: bg,
+          }}
+        ></div>
+        {type === "iphone" && <Iphone />}
+        {type === "ipad" && <IPad />}
+        {type === "iphone14" && <Iphone14 />}
+        {type === "macbook" && <Macbook />}
+        {type === "macbook2" && <Macbook2 />}
+        {type === "monitor" && <Monitor />}
+        {type === "samsung" && <Samsung />}
+        {type === "watch" && <Watch />}
       </div>
-      {type === "iphone" && <Iphone />}
-      {type === "ipad" && <IPad />}
-      {type === "iphone14" && <Iphone14 />}
-      {type === "macbook" && <Macbook />}
-      {type === "macbook2" && <Macbook2 />}
-      {type === "monitor" && <Monitor />}
-      {type === "samsung" && <Samsung />}
-      {type === "watch" && <Watch />}
-    </div>
-  );
+    );
+  },
 };

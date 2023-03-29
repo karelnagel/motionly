@@ -1,9 +1,8 @@
 import { Img } from "remotion";
-import { StyleAndClass } from "@motionly/base";
 import { getSrc } from "../helpers/getSrc";
 import { Component } from "..";
 import { z } from "zod";
-import { ObjectFit } from "../helpers/zod";
+import { ObjectFit } from "@motionly/inputs";
 
 const ImageProps = z.object({
   src: z.string().url(),
@@ -12,11 +11,10 @@ const ImageProps = z.object({
 type ImageProps = z.infer<typeof ImageProps>;
 
 export const image: Component<ImageProps> = {
-  type: "image",
   zod: ImageProps,
   inputs: {
     src: { text: { label: "Source" } },
-    objectFit: { text: { label: "Object Fit" } },
+    objectFit: { select: { label: "Object Fit", options: "object-fit" } },
   },
   component: ({ src, objectFit }) => {
     return (

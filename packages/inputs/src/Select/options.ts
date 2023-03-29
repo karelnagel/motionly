@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { Input } from ".";
 
 export const TextAlign = z.enum(["left", "center", "right"]);
 export type TextAlign = z.infer<typeof TextAlign>;
@@ -22,7 +21,7 @@ export type TriangleDirection = z.infer<typeof TriangleDirection>;
 export const FontWeight = z.enum(["100", "200", "300", "400", "500", "600", "700", "800", "900"]);
 export type FontWeight = z.infer<typeof FontWeight>;
 
-export const SelectOptions: { [key: string]: z.ZodType } = {
+export const SelectOptions = {
   justify: TextAlign,
   align: TextAlign,
   // "font-family": Object.fromEntries(getAvailableFonts().map((f) => [f.fontFamily, f.fontFamily])),
@@ -37,23 +36,4 @@ export const SelectOptions: { [key: string]: z.ZodType } = {
   "transcription-types": TranscriptionAnimationTypes,
   "font-weight": FontWeight,
   // "transform-props": Object.fromEntries(TransformProps.options.map((o) => [o, o])),
-};
-
-export const select: Input<boolean, { options: keyof typeof SelectOptions }> = {
-  zod: ({ options }) => SelectOptions[options],
-  component: ({ disabled, value, onChange, props: { placeholder, label, tooltip } }) => {
-    return (
-      <div>
-        <label>{label}</label>
-        <input
-          disabled={disabled}
-          placeholder={placeholder}
-          type="checkbox"
-          checked={value || false}
-          className="checkbox checkbox-primary"
-          onChange={(e) => onChange(e.target.checked)}
-        />
-      </div>
-    );
-  },
 };

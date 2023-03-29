@@ -10,6 +10,11 @@ import { json } from "./Json";
 import { select } from "./Select";
 import { textarea } from "./Textarea";
 import { video } from "./Video";
+import { text_style } from "./TextStyle";
+
+export * from "./Select/options";
+export { Color } from "./Color";
+export { TextStyle } from "./TextStyle";
 
 export type InputProps<T> = {
   value: T | undefined;
@@ -39,6 +44,7 @@ export const inputs = {
   select,
   textarea,
   video,
+  text_style,
 };
 type keys = keyof typeof inputs;
 type Params<T extends keys> = Parameters<(typeof inputs)[T]["component"]>[0]["props"];
