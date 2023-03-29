@@ -2,6 +2,7 @@ import { getRandomId } from "../helpers";
 import { GetType, SetInput, SetType } from ".";
 import { Comp, Template } from "@motionly/composition";
 import { toast } from "sonner";
+import { Page } from "../pages";
 
 export const defaultTemplate: Template = {
   allComponents: [],
@@ -32,6 +33,9 @@ export type ProjectSlice = {
   addComponent: (comp: Comp) => void;
   copyComponent: () => void;
   deleteComp: () => void;
+
+  page: Page;
+  setPage: (page: Page) => void;
 };
 
 export const template = (setStore: SetType, get: GetType): ProjectSlice => {
@@ -46,6 +50,7 @@ export const template = (setStore: SetType, get: GetType): ProjectSlice => {
           s.historyTimeout = undefined;
         });
       }, 600);
+      return s;
     });
   };
   return {
@@ -54,6 +59,8 @@ export const template = (setStore: SetType, get: GetType): ProjectSlice => {
     future: [],
     setTemplate: (template) => set((state) => ({ template: { ...state.template, ...template } })),
 
+    page: "home",
+    setPage: (page) => setStore({ page }),
     selected: "",
     setSelected: (selected?: string) => setStore({ selected }),
 

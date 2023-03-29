@@ -1,9 +1,9 @@
 import { GetType, SetType } from ".";
+import { LeftTab } from "../left";
 
-export type RightTabs = "timeline" | "layers" | "assets" | "settings";
 export interface RightSlice {
-  rightTab?: RightTabs;
-  rightSetTab: (tab?: RightTabs) => void;
+  rightTab?: LeftTab;
+  rightSetTab: (tab?: LeftTab) => void;
   rightWidth: number;
   rightSetWidth: (width: number) => void;
 }
@@ -14,7 +14,7 @@ export const right = (set: SetType, get: GetType): RightSlice => {
   return {
     rightTab: undefined,
     rightWidth: 250,
-    rightSetTab: (tab?: RightTabs) =>
+    rightSetTab: (tab?: LeftTab) =>
       set((s) => {
         s.rightTab = s.rightTab === tab ? undefined : tab;
       }),
