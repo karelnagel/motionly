@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "@motionly/base": "*",
+        "@motionly/inputs": "*",
         "@motionly/confetti": "*",
         "@remotion/cli": "3.3.76",
         "@remotion/gif": "3.3.76",

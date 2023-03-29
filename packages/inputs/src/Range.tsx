@@ -1,15 +1,16 @@
 import { z } from "zod";
-import { Input, InputProps } from ".";
+import { Input } from ".";
 
-type RangeProps = InputProps<number | undefined> & {
-  min: number;
-  max: number;
-  step: number;
-};
-export const range: Input<number, RangeProps> = {
-  type: "range",
+export const range: Input<
+  number,
+  {
+    min: number;
+    max: number;
+    step: number;
+  }
+> = {
   zod: z.number(),
-  component: ({ label, value, onChange, min, max, step }) => {
+  component: ({ value, onChange, props: { label, min, max, step } }) => {
     return (
       <div>
         <label>{label}</label>

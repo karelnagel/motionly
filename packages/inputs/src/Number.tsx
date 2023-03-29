@@ -2,13 +2,19 @@ import { z } from "zod";
 import { Input } from ".";
 
 export const number: Input<number> = {
-  type: "number",
   zod: z.number(),
-  component: ({ label, value, onChange }) => {
+  component: ({ props: { label, placeholder }, value, onChange, disabled }) => {
     return (
       <div>
         <label>{label}</label>
-        <input type="number" value={value} onChange={(e) => onChange(Number(e.target.value))} />
+        <input
+          disabled={disabled}
+          type="number"
+          placeholder={placeholder}
+          value={value === undefined ? "" : value}
+          className="input input-sm bg-base-200 input-bordered w-full"
+          onChange={(e) => onChange(e.target.value ? Number(e.target.value) : undefined)}
+        />
       </div>
     );
   },

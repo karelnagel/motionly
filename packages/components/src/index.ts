@@ -1,19 +1,16 @@
+import { Inputs } from "@motionly/inputs";
 import { z } from "zod";
 
-export type Input = {
-  id: string;
-  type: "string" | "number" | "boolean" | "array" | "function" | "symbol" | "undefined" | "bigint" | "any";
-};
 export const StringInput = z.object({
   type: z.literal("string"),
   value: z.string(),
 });
 
 export type Component<T> = {
-  id: string;
   type: string;
-  component: (p: T) => JSX.Element;
-  inputs: { [key in keyof T]: Input };
+  zod: z.ZodType<T>;
+  component: React.FC<T>;
+  inputs: { [key in keyof T]: Inputs };
 };
-
-export const components: Component<any>[] = [];
+export const Component = z.enum(["image"]);
+export const components: Record<string, Component<any>> = {};

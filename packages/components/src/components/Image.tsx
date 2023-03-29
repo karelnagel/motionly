@@ -1,27 +1,34 @@
 import { Img } from "remotion";
 import { StyleAndClass } from "@motionly/base";
-import { ImageProps } from "@motionly/base";
 import { getSrc } from "../helpers/getSrc";
+import { Component } from "..";
+import { z } from "zod";
+import { ObjectFit } from "../helpers/zod";
 
-export const defaultImageProps: ImageProps = {
-  comp: "image",
-  objectFit: "cover",
-  src: "https://picsum.photos/seed/motionly/1080/1080",
-};
+const ImageProps = z.object({
+  src: z.string().url(),
+  objectFit: ObjectFit.optional(),
+});
+type ImageProps = z.infer<typeof ImageProps>;
 
-export const Image = ({ src, objectFit, style, className }: ImageProps & StyleAndClass) => {
-  if (!src) return null;
-  return (
-    <Img
-      src={getSrc(src)}
-      draggable={false}
-      className={className}
-      style={{
-        height: "100%",
-        width: "100%",
-        objectFit,
-        ...style,
-      }}
-    />
-  );
+export const image: Component<ImageProps> = {
+  type: "image",
+  zod: ImageProps,
+  inputs: {
+    src: { text: { label: "Source" } },
+    objectFit: { text: { label: "Object Fit" } },
+  },
+  component: ({ src, objectFit }) => {
+    return (
+      <Img
+        src={getSrc(src)}
+        draggable={false}
+        style={{
+          height: "100%",
+          width: "100%",
+          objectFit,
+        }}
+      />
+    );
+  },
 };

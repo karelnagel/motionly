@@ -49,3 +49,7 @@ export const Text = ({ textStyle, text, style, className, justifyContent }: Text
     </div>
   );
 };
+export const text = {
+  type: "text",
+  name 
+};

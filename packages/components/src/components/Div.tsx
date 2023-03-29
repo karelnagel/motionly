@@ -1,7 +1,6 @@
 import { StyleAndClass } from "@motionly/base";
 import { DivProps } from "@motionly/base";
 import { useColor } from "../helpers/useColor";
-import { Children } from "./Children";
 
 export const defaultDivProps: DivProps = {
   comp: "div",
@@ -25,7 +24,7 @@ export const Div = ({ bg, style, className, comps }: DivProps & StyleAndClass) =
         ...style,
       }}
     >
-      <Children comps={comps} isSequence={false} />
+      {comps}
     </div>
   );
 };

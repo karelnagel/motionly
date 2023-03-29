@@ -1,5 +1,5 @@
 {
-    "name": "@motionly/components",
+    "name": "@motionly/composition",
     "version": "1.4.2",
     "main": "dist/index.js",
     "private": false,
