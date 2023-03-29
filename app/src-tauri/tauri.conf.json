@@ -44,6 +44,23 @@
         "width": 800,
         "height": 600
       }
-    ]
+    ],
+    "cli": {
+      "description": "Motionly cli",
+      "longDescription": "Use Motionly cli to render videos",
+      "subcommands": {
+        "video": {
+          "description": "Render a video",
+          "args": [
+            {
+              "index": 1,
+              "name": "video",
+              "required": true,
+              "takesValue": true
+            }
+          ]
+        }
+      }
+    }
   }
 }
