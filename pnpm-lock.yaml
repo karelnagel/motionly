@@ -279,7 +279,7 @@ importers:
 
   packages/player:
     specifiers:
-      '@motionly/components': '*'
+      '@motionly/composition': '*'
       '@remotion/cli': 3.3.76
       '@remotion/player': 3.3.76
       '@types/react': 17.0.11
@@ -288,7 +288,7 @@ importers:
       react-dom: ^18.0.0
       remotion: 3.3.76
     dependencies:
-      '@motionly/components': link:../components
+      '@motionly/composition': link:../composition
       '@remotion/cli': 3.3.76_biqbaboplfbrettd7655fr4n2y
       '@remotion/player': 3.3.76_biqbaboplfbrettd7655fr4n2y
       remotion: 3.3.76_biqbaboplfbrettd7655fr4n2y
