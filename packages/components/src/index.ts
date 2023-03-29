@@ -22,6 +22,27 @@ export type Component<T> = {
   component: React.FC<T>;
   inputs: { [key in keyof T]?: Inputs };
 };
+
+export const ComponentName = z.enum([
+  "mockup",
+  "transcription",
+  "audio",
+  "audiogram",
+  "confetti",
+  "gif",
+  "graph",
+  "image",
+  "lottie",
+  "map",
+  "path",
+  "progressbar",
+  "qrcode",
+  "shape",
+  "text",
+  "video",
+]);
+export type ComponentName = z.infer<typeof ComponentName>;
+
 export const components = {
   mockup,
   transcription,

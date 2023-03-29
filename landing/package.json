@@ -3,9 +3,9 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev",
+        "deva": "next dev",
         "turbo": "next dev --turbo",
-        "build": "next build",
+        "builda": "next build",
         "start": "next start",
         "lint": "next lint",
         "elements": "ts-node videos/render.ts",
