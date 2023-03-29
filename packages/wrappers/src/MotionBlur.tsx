@@ -1,24 +1,23 @@
-import { MotionBlurProps } from "@motionly/base";
 import { Trail } from "@remotion/motion-blur";
-import { ReactNode } from "react";
 import { useVideoConfig } from "remotion";
+import { z } from "zod";
+import { WrapperType } from ".";
 
-export const MotionBlur = ({
-  motion,
-  children,
-}: {
-  children: ReactNode;
-  motion?: MotionBlurProps;
-}) => {
-  const { fps } = useVideoConfig();
-  if (!motion) return <>{children}</>;
-  return (
-    <Trail 
-      lagInFrames={motion.lag ? motion.lag : 0.1 * fps}
-      layers={motion.layers || 50}
-      trailOpacity={motion.opacity || 1}
-    >
-      <>{children}</>
-    </Trail>
-  );
+const MotionBlur = z.object({
+  layers: z.number().optional(),
+  lag: z.number().optional(),
+  opacity: z.number().optional(),
+});
+type MotionBlur = z.infer<typeof MotionBlur>;
+
+export const motion_blur: WrapperType<MotionBlur> = {
+  zod: MotionBlur,
+  wrapper: ({ layers, lag, opacity, children }) => {
+    const { fps } = useVideoConfig();
+    return (
+      <Trail lagInFrames={lag ? lag : 0.1 * fps} layers={layers || 50} trailOpacity={opacity || 1}>
+        <>{children}</>
+      </Trail>
+    );
+  },
 };

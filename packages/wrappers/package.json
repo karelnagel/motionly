@@ -15,33 +15,15 @@
         "lambda:render": "npx remotion lambda render motionly-local"
     },
     "dependencies": {
-        "@motionly/base": "*",
-        "@motionly/confetti": "*",
-        "@remotion/cli": "3.3.76",
-        "@remotion/gif": "3.3.76",
-        "@remotion/lottie": "3.3.76",
         "@remotion/media-utils": "3.3.76",
         "@remotion/motion-blur": "3.3.76",
         "@remotion/noise": "3.3.76",
-        "@remotion/paths": "3.3.76",
-        "@remotion/shapes": "3.3.76",
-        "@types/react-simple-maps": "^3.0.0",
-        "axios": "^1.2.3",
-        "lottie-web": "^5.10.0",
-        "prop-types": "^15.8.1",
-        "react-qr-code": "^2.0.10",
-        "react-simple-maps": "^3.0.0",
         "typescript": "^4.9.4",
         "zod": "^3.20.6"
     },
     "peerDependencies": {
         "@remotion/cli": "^3.3.34",
-        "@remotion/gif": "^3.3.34",
-        "@remotion/lottie": "^3.3.34",
-        "@remotion/media-utils": "^3.3.34",
         "@remotion/noise": "^3.3.34",
-        "@remotion/paths": "^3.3.34",
-        "@remotion/shapes": "^3.3.34",
         "react": ">=16.8.0",
         "react-dom": ">=16.8.0",
         "remotion": "3.3.76"

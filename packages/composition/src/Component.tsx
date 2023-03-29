@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ComponentName, components } from "@motionly/components";
 import { z } from "zod";
 import { useSelected } from "./useSelected";
+import { Wrapper, Wrappers } from "@motionly/wrappers";
 
 export const Comp = z.object({
   id: z.string(),
@@ -16,6 +17,7 @@ export const Comp = z.object({
   rotation: z.number().optional(),
   componentName: ComponentName,
   props: z.any(),
+  wrappers: Wrappers,
 });
 export type Comp = z.infer<typeof Comp>;
 
@@ -37,13 +39,15 @@ export const Component = (comp: Comp) => {
   const duration = Math.max(1, Math.round((comp.duration || 0) * fps));
   return (
     <Sequence ref={selected === comp.id ? selectedRef : null} from={from} durationInFrames={duration} layout="none">
-      <div
-        ref={ref}
-        onClick={() => setSelected(comp.id)}
-        style={{ width, height, top: comp.top, left: comp.left, transform: `rotate(${comp.rotation}deg)`, opacity: comp.opacity }}
-      >
-        {props.success ? <component.component {...(props.data as any)} /> : <InvalidProps error={props.error.toString()} />}
-      </div>
+      <Wrapper {...comp.wrappers}>
+        <div
+          ref={ref}
+          onClick={() => setSelected(comp.id)}
+          style={{ width, height, top: comp.top, left: comp.left, transform: `rotate(${comp.rotation}deg)`, opacity: comp.opacity }}
+        >
+          {props.success ? <component.component {...(props.data as any)} /> : <InvalidProps error={props.error.toString()} />}
+        </div>
+      </Wrapper>
     </Sequence>
   );
 };
