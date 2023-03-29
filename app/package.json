@@ -12,9 +12,18 @@
     "tauri": "tauri"
   },
   "dependencies": {
+    "@motionly/components": "*",
+    "@motionly/composition": "*",
+    "@motionly/inputs": "*",
+    "@motionly/player": "*",
+    "@remotion/player": "3.3.76",
     "@tauri-apps/api": "^1.2.0",
+    "immer": "^9.0.19",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "remotion": "3.3.76",
+    "sonner": "^0.3.0",
+    "zustand": "^4.3.2"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1.2.2",

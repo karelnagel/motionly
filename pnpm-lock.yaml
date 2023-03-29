@@ -35,20 +35,38 @@ importers:
 
   app:
     specifiers:
+      '@motionly/components': '*'
+      '@motionly/composition': '*'
+      '@motionly/inputs': '*'
+      '@motionly/player': '*'
+      '@remotion/player': 3.3.76
       '@tauri-apps/api': ^1.2.0
       '@tauri-apps/cli': ^1.2.2
       '@types/node': ^18.7.10
       '@types/react': ^18.0.15
       '@types/react-dom': ^18.0.6
       '@vitejs/plugin-react': ^3.0.0
+      immer: ^9.0.19
       react: ^18.2.0
       react-dom: ^18.2.0
+      remotion: 3.3.76
+      sonner: ^0.3.0
       typescript: ^4.6.4
       vite: ^4.0.0
+      zustand: ^4.3.2
     dependencies:
+      '@motionly/components': link:../packages/components
+      '@motionly/composition': link:../packages/composition
+      '@motionly/inputs': link:../packages/inputs
+      '@motionly/player': link:../packages/player
+      '@remotion/player': 3.3.76_biqbaboplfbrettd7655fr4n2y
       '@tauri-apps/api': 1.2.0
+      immer: 9.0.19
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      remotion: 3.3.76_biqbaboplfbrettd7655fr4n2y
+      sonner: 0.3.0_biqbaboplfbrettd7655fr4n2y
+      zustand: 4.3.6_immer@9.0.19+react@18.2.0
     devDependencies:
       '@tauri-apps/cli': 1.2.3
       '@types/node': 18.11.9
@@ -9534,6 +9552,16 @@ packages:
       strip-ansi: 6.0.1
       wcwidth: 1.0.1
       yargs: 15.4.1
+    dev: false
+
+  /sonner/0.3.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-PJ/3k97N+/Kt/uu5tnPp3HFpFGF/iQs+hq+lAEtEQcEMc7o9S4axOV8pd7RKpFJoKt199aMUqHIgzs2re4MPbw==}
+    peerDependencies:
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /source-map-js/1.0.2:

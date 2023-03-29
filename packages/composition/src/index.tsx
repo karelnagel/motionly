@@ -3,6 +3,7 @@ import { useSelected } from "./useSelected";
 import { z } from "zod";
 import { Comp, Component } from "./Component";
 export * from "./useSelected";
+export * from "./Component";
 
 export const Template = z.object({
   id: z.string(),
