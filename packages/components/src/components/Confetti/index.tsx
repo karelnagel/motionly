@@ -1,7 +1,7 @@
-import RemotionConfetti from "@motionly/confetti";
 import { Color } from "@motionly/inputs";
 import { z } from "zod";
-import { Component } from "..";
+import { Component } from "../..";
+import Confetti from "./src";
 
 export const ConfettiProps = z.object({
   colors: z.array(Color).optional(),
@@ -21,7 +21,7 @@ export const confetti: Component<ConfettiProps> = {
   inputs: {},
   component: ({ posX, posY, colors, ...props }) => {
     return (
-      <RemotionConfetti
+      <Confetti
         {...{
           ...props,
           x: posX,
