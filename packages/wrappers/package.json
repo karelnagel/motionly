@@ -6,33 +6,20 @@
     "license": "MIT",
     "scripts": {
         "build": "tsc",
-        "dev": "tsc --watch",
-        "preview": "remotion preview src/dev/register.tsx",
-        "render": "remotion render src/dev/register.tsx",
-        "lambda:motionly": "npx remotion lambda sites create src/dev/register.tsx --site-name=motionly",
-        "lambda:motionly-local": "npx remotion lambda sites create src/dev/register.tsx --site-name=motionly-local",
-        "lambda:function": "npx remotion lambda functions deploy",
-        "lambda:render": "npx remotion lambda render motionly-local"
+        "dev": "tsc --watch"
     },
     "dependencies": {
         "@remotion/media-utils": "3.3.76",
         "@remotion/motion-blur": "3.3.76",
         "@remotion/noise": "3.3.76",
         "typescript": "^4.9.4",
-        "zod": "^3.20.6"
-    },
-    "peerDependencies": {
-        "@remotion/cli": "^3.3.34",
-        "@remotion/noise": "^3.3.34",
-        "react": ">=16.8.0",
-        "react-dom": ">=16.8.0",
+        "zod": "^3.20.6",
         "remotion": "3.3.76"
     },
     "devDependencies": {
         "@types/react": "17.0.11",
         "@types/react-dom": "17.0.8",
         "react": "^18.0.0",
-        "react-dom": "^18.0.0",
-        "remotion": "3.3.76"
+        "react-dom": "^18.0.0"
     }
 }

@@ -10,7 +10,6 @@
     },
     "dependencies": {
         "@motionly/components": "*",
-        "@motionly/base": "*",
         "@remotion/player": "3.3.76",
         "@remotion/cli": "3.3.76",
         "remotion": "3.3.76"

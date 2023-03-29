@@ -1,4 +1,3 @@
-import { TemplateType } from "@motionly/base";
 import { CSSProperties, ReactNode } from "react";
 
 export type PlayerProps = {

@@ -194,21 +194,16 @@ importers:
 
   packages/components:
     specifiers:
-      '@motionly/base': '*'
-      '@motionly/confetti': '*'
       '@motionly/inputs': '*'
-      '@remotion/cli': 3.3.76
       '@remotion/gif': 3.3.76
       '@remotion/lottie': 3.3.76
       '@remotion/media-utils': 3.3.76
-      '@remotion/motion-blur': 3.3.76
       '@remotion/noise': 3.3.76
       '@remotion/paths': 3.3.76
       '@remotion/shapes': 3.3.76
       '@types/react': 17.0.11
       '@types/react-dom': 17.0.8
       '@types/react-simple-maps': ^3.0.0
-      axios: ^1.2.3
       lottie-web: ^5.10.0
       prop-types: ^15.8.1
       react: ^18.0.0
@@ -219,23 +214,19 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.6
     dependencies:
-      '@motionly/base': 1.4.2
-      '@motionly/confetti': 1.4.2_oznobxx7akrnj4tnejcfid4xra
       '@motionly/inputs': link:../inputs
-      '@remotion/cli': 3.3.76_biqbaboplfbrettd7655fr4n2y
       '@remotion/gif': 3.3.76_biqbaboplfbrettd7655fr4n2y
       '@remotion/lottie': 3.3.76_gn5hpwitoxbsx6uavhmqddmj5q
       '@remotion/media-utils': 3.3.76_biqbaboplfbrettd7655fr4n2y
-      '@remotion/motion-blur': 3.3.76_biqbaboplfbrettd7655fr4n2y
       '@remotion/noise': 3.3.76_biqbaboplfbrettd7655fr4n2y
       '@remotion/paths': 3.3.76
       '@remotion/shapes': 3.3.76_biqbaboplfbrettd7655fr4n2y
       '@types/react-simple-maps': 3.0.0
-      axios: 1.3.4
       lottie-web: 5.10.2
       prop-types: 15.8.1
       react-qr-code: 2.0.11_react@18.2.0
       react-simple-maps: 3.0.0_v2m5e27vhdewzwhryxwfaorcca
+      remotion: 3.3.76_biqbaboplfbrettd7655fr4n2y
       typescript: 4.9.5
       zod: 3.21.4
     devDependencies:
@@ -243,50 +234,22 @@ importers:
       '@types/react-dom': 17.0.8
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      remotion: 3.3.76_biqbaboplfbrettd7655fr4n2y
 
   packages/composition:
     specifiers:
       '@motionly/components': '*'
       '@motionly/wrappers': '*'
-      '@remotion/cli': 3.3.76
-      '@remotion/gif': 3.3.76
-      '@remotion/lottie': 3.3.76
-      '@remotion/media-utils': 3.3.76
-      '@remotion/motion-blur': 3.3.76
-      '@remotion/noise': 3.3.76
-      '@remotion/paths': 3.3.76
-      '@remotion/shapes': 3.3.76
       '@types/react': 17.0.11
       '@types/react-dom': 17.0.8
-      '@types/react-simple-maps': ^3.0.0
-      axios: ^1.2.3
-      lottie-web: ^5.10.0
-      prop-types: ^15.8.1
       react: ^18.0.0
       react-dom: ^18.0.0
-      react-qr-code: ^2.0.10
-      react-simple-maps: ^3.0.0
       remotion: 3.3.76
       typescript: ^4.9.4
       zod: ^3.21.4
     dependencies:
       '@motionly/components': link:../components
       '@motionly/wrappers': link:../wrappers
-      '@remotion/cli': 3.3.76_biqbaboplfbrettd7655fr4n2y
-      '@remotion/gif': 3.3.76_biqbaboplfbrettd7655fr4n2y
-      '@remotion/lottie': 3.3.76_gn5hpwitoxbsx6uavhmqddmj5q
-      '@remotion/media-utils': 3.3.76_biqbaboplfbrettd7655fr4n2y
-      '@remotion/motion-blur': 3.3.76_biqbaboplfbrettd7655fr4n2y
-      '@remotion/noise': 3.3.76_biqbaboplfbrettd7655fr4n2y
-      '@remotion/paths': 3.3.76
-      '@remotion/shapes': 3.3.76_biqbaboplfbrettd7655fr4n2y
-      '@types/react-simple-maps': 3.0.0
-      axios: 1.3.4
-      lottie-web: 5.10.2
-      prop-types: 15.8.1
-      react-qr-code: 2.0.11_react@18.2.0
-      react-simple-maps: 3.0.0_v2m5e27vhdewzwhryxwfaorcca
+      remotion: 3.3.76_biqbaboplfbrettd7655fr4n2y
       typescript: 4.9.5
       zod: 3.21.4
     devDependencies:
@@ -294,7 +257,6 @@ importers:
       '@types/react-dom': 17.0.8
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      remotion: 3.3.76_biqbaboplfbrettd7655fr4n2y
 
   packages/inputs:
     specifiers:
@@ -306,6 +268,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.6
     dependencies:
+      remotion: 3.3.76_biqbaboplfbrettd7655fr4n2y
       typescript: 4.9.5
       zod: 3.21.4
     devDependencies:
@@ -313,11 +276,9 @@ importers:
       '@types/react-dom': 17.0.8
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      remotion: 3.3.76_biqbaboplfbrettd7655fr4n2y
 
   packages/player:
     specifiers:
-      '@motionly/base': '*'
       '@motionly/components': '*'
       '@remotion/cli': 3.3.76
       '@remotion/player': 3.3.76
@@ -327,7 +288,6 @@ importers:
       react-dom: ^18.0.0
       remotion: 3.3.76
     dependencies:
-      '@motionly/base': 1.4.2
       '@motionly/components': link:../components
       '@remotion/cli': 3.3.76_biqbaboplfbrettd7655fr4n2y
       '@remotion/player': 3.3.76_biqbaboplfbrettd7655fr4n2y
@@ -354,6 +314,7 @@ importers:
       '@remotion/media-utils': 3.3.76_biqbaboplfbrettd7655fr4n2y
       '@remotion/motion-blur': 3.3.76_biqbaboplfbrettd7655fr4n2y
       '@remotion/noise': 3.3.76_biqbaboplfbrettd7655fr4n2y
+      remotion: 3.3.76_biqbaboplfbrettd7655fr4n2y
       typescript: 4.9.5
       zod: 3.21.4
     devDependencies:
@@ -361,7 +322,6 @@ importers:
       '@types/react-dom': 17.0.8
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      remotion: 3.3.76_biqbaboplfbrettd7655fr4n2y
 
 packages:
 
@@ -2660,16 +2620,6 @@ packages:
 
   /@motionly/base/1.4.2:
     resolution: {integrity: sha512-QBGN1vIJrUFNunqHnBycoMyM/khU3KvFTGQ8nNOHwpgEd+WE4xdYi8Oq4xfggnT5+zBuixD0eprKWwpC+oiRWg==}
-    dev: false
-
-  /@motionly/confetti/1.4.2_oznobxx7akrnj4tnejcfid4xra:
-    resolution: {integrity: sha512-VF78g9mn7EIyeYqWw8pNGfwQAnxLsE4a3oj4IbyNEj5wlahmJpqmqUwo+cFUQ6A576An2wFX4/03RAvfJa4e5A==}
-    peerDependencies:
-      react: ^18.2.0
-      remotion: ^3.0.19
-    dependencies:
-      react: 18.2.0
-      remotion: 3.3.76_biqbaboplfbrettd7655fr4n2y
     dev: false
 
   /@next/bundle-analyzer/13.2.4:
@@ -9256,6 +9206,7 @@ packages:
     dependencies:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /repeat-string/1.6.1:
     resolution: {integrity: sha512-PV0dzCYDNfRi1jCDbJzpW7jNNDRuCOG/jI5ctQcGKt/clZD+YcPS3yIlWuTJMmESC8aevCFmWJy5wjAFgNqN6w==}

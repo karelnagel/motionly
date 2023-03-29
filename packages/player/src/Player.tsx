@@ -4,7 +4,6 @@ import { Player as RemotionPlayer, PlayerRef } from "@remotion/player";
 import { Composition, SelectedContext } from "@motionly/components";
 import { PlayerProps } from "./PlayerProps";
 import { forwardRef, useEffect, useMemo, useState } from "react";
-import { prepareTemplate } from "@motionly/base";
 
 export const Player = forwardRef<PlayerRef, PlayerProps>(
   (

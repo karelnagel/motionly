@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
 import { continueRender, delayRender } from "remotion";
@@ -42,17 +41,16 @@ export const map: Component<MapProps> = {
     const [geography, setGeography] = useState(null);
 
     useEffect(() => {
-      const effect = async () => {
-        try {
-          const res = await axios.get(getSrc(src), { timeout: 2000 });
-          setGeography(res.data);
+      fetch(getSrc(src))
+        .then((res) => res.json())
+        .then((data) => {
+          setGeography(data);
           continueRender(handle);
-        } catch (err) {
+        })
+        .catch((err) => {
           console.log("Map failed to load", err);
           continueRender(handle);
-        }
-      };
-      effect();
+        });
     }, [src]);
 
     if (!geography) return null;
