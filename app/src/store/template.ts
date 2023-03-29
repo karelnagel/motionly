@@ -19,7 +19,7 @@ export type ProjectSlice = {
   template: string;
   templates: { [key: string]: Template };
   allTemplates: string[];
-  selectTemplate: (id: string) => void;
+  setTemplate: (id: string) => void;
   newTemplate: () => string;
   cloneTemplate: (id: string) => string;
   deleteTemplate: (id: string) => void;
@@ -80,7 +80,7 @@ export const template = (setStore: SetType, get: GetType): ProjectSlice => {
         s.allTemplates = s.allTemplates.filter((id) => id !== s.template);
         s.template = s.allTemplates[0];
       }),
-    selectTemplate: (template) => setStore({ template, page: "edit" }),
+    setTemplate: (template) => setStore({ template, page: "edit" }),
     cloneTemplate: (id) => {
       const newId = getRandomId();
       setStore((s) => {

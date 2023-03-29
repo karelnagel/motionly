@@ -33,5 +33,5 @@ export const useStore = create(
     }
   )
 );
-export const useTemplate = useStore((s) => s.templates[s.template]);
-export const useComponent = useStore((s) => s.templates[s.template].components[s.component]);
+export const useTemplate = (id?: string) => useStore((s) => s.templates[id || s.template]);
+export const useComponent = (id?: string) => useStore((s) => s.templates[s.template].components[id || s.component]);
