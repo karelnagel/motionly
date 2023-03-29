@@ -18,7 +18,16 @@ export type ConfettiProps = z.infer<typeof ConfettiProps>;
 
 export const confetti: Component<ConfettiProps> = {
   zod: ConfettiProps,
-  inputs: {},
+  inputs: {
+    count: { range: { label: "Count", min: 0, max: 100, step: 1 } },
+    angle: { range: { label: "Angle", min: 0, max: 360, step: 1 } },
+    spread: { range: { label: "Spread", min: 0, max: 360, step: 1 } },
+    startVelocity: { range: { label: "Start Velocity", min: 0, max: 100, step: 1 } },
+    scalar: { range: { label: "Scalar", min: 0, max: 100, step: 1 } },
+    ticks: { range: { label: "Ticks", min: 0, max: 100, step: 1 } },
+    posX: { range: { label: "X", min: 0, max: 100, step: 1 } },
+    posY: { range: { label: "Y", min: 0, max: 100, step: 1 } },
+  },
   component: ({ posX, posY, colors, ...props }) => {
     return (
       <Confetti
