@@ -22,9 +22,8 @@ export const TopBar = () => {
   const deleteComp = useStore((t) => t.deleteComp);
   const fps = useStore((t) => t.templates[t.template].fps);
   const playerRef = useStore((t) => t.playerRef);
-  const isPlaying = useStore((t) => t.playerIsPlaying);
-  const frame = useStore((t) => t.playerFrame);
-
+  const isPlaying = useStore((t) => t.isPlaying);
+  const frame = useStore((t) => t.frame);
   return (
     <div className="flex justify-between py-2 px-2 border-b border-base-300 items-center">
       <div className="flex space-x-2 items-center">
@@ -38,7 +37,7 @@ export const TopBar = () => {
           tooltip="M"
         />
         <Button Icon={IoIosSkipBackward} onClick={() => playerRef?.seekTo(frame - 5 * fps)} tooltip="← / J" />
-        <Button Icon={isPlaying ? IoIosPause : IoIosPlay} onClick={() => (isPlaying ? playerRef?.pause() : playerRef?.play())} tooltip="⎵" />
+        <Button Icon={isPlaying ? IoIosPause : IoIosPlay} onClick={() => playerRef?.toggle()} tooltip="⎵" />
         <Button Icon={IoIosSkipForward} onClick={() => playerRef?.seekTo(frame + 5 * fps)} tooltip="→ / L" />
         <Button Icon={IoMdExpand} onClick={() => playerRef?.requestFullscreen()} tooltip="F" />
       </div>
@@ -52,7 +51,7 @@ export const TopBar = () => {
 const Button = ({ Icon, onClick, disabled, tooltip }: { Icon: IconType; onClick: () => void; disabled?: boolean; tooltip?: string }) => {
   return (
     <div className={tooltip ? "tooltip tooltip-bottom" : ""} data-tip={tooltip}>
-      <button disabled={disabled} onClick={() => onClick()} className="text-xl rounded-lg aspect-square hover:bg-base-200 p-1">
+      <button disabled={disabled} onClick={() => onClick()} className="text-xl rounded-lg aspect-square hover:bg-base-200 p-1 cursor-pointer">
         <Icon />
       </button>
     </div>

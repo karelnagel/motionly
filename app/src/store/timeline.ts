@@ -8,7 +8,7 @@ export interface TimelineSlice {
 }
 
 const minH = 200;
-const maxH = 600;
+const maxH = 400;
 const maxW = 400;
 const minW = 100;
 

@@ -1,5 +1,6 @@
 // import { LeftBar } from "./Left/LeftBar";
 // import { LeftPanel } from "./Left/LeftPanel";
+import { HotKeys } from "../../components/HotKeys";
 import { PlayerDiv } from "./Player/PlayerDiv";
 // import { RightBar } from "./Right/RightBar";
 // import { RightPanel } from "./Right/RightPanel";
@@ -21,6 +22,7 @@ export const edit = () => {
         </TimelineDiv>
       </div>
       {/* <RightBar /> */}
+      <HotKeys />
     </div>
   );
 };

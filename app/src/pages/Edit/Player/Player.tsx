@@ -12,7 +12,7 @@ export const Player = () => {
   const lockAspectRatio = useShiftKey();
   const divRef = useRef<HTMLDivElement>(null);
   const scale = useStore((t) => t.playerScale);
-  const setPlayerRef = useStore((t) => t.playerSetPlayerRef);
+  const setPlayerRef = useStore((t) => t.setPlayerRef);
   const horizontalGuidelines: number[] = [];
   const verticalGuidelines: number[] = [];
   return (

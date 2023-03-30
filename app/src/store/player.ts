@@ -4,32 +4,20 @@ import { SetType } from ".";
 export interface PlayerSlice {
   playerScale: number;
   playerSetScale: (scale: number) => void;
-  playerFrame: number;
+  frame: number;
   playerRef?: PlayerRef;
-  playerSetPlayerRef: (ref?: PlayerRef) => void;
-  playerSetFrame: (frame: number) => void;
-  playerIsPlaying: boolean;
-  playerSetIsPlaying: (isPlaying: boolean) => void;
+  setPlayerRef: (ref?: PlayerRef) => void;
+  setFrame: (frame: number) => void;
+  isPlaying: boolean;
+  setIsPlaying: (isPlaying: boolean) => void;
 }
 
 export const player = (set: SetType): PlayerSlice => ({
-  playerFrame: 0,
+  frame: 0,
   playerScale: 0.2,
-  playerIsPlaying: false,
-  playerSetIsPlaying: (isPlaying) =>
-    set((s) => {
-      s.playerIsPlaying = isPlaying;
-    }),
-  playerSetScale: (scale) =>
-    set((s) => {
-      s.playerScale = scale;
-    }),
-  playerSetPlayerRef: (playerRef) =>
-    set((s) => {
-      s.playerRef = playerRef;
-    }),
-  playerSetFrame: (frame) =>
-    set((s) => {
-      s.playerFrame = frame;
-    }),
+  isPlaying: false,
+  setIsPlaying: (isPlaying) => set({ isPlaying }),
+  playerSetScale: (playerScale) => set({ playerScale }),
+  setPlayerRef: (playerRef) => set({ playerRef }),
+  setFrame: (frame) => set({ frame }),
 });

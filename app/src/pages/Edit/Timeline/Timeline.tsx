@@ -3,7 +3,7 @@ import { TimelineComponent } from "./TimelineComp";
 import { TopBar } from "./TopBar";
 
 export const Timeline = () => {
-  const template = useTemplate();
+  const allComponents = useStore((s) => s.templates[s.template].allComponents);
   const width = useStore((t) => t.timelineWidth);
 
   return (
@@ -11,10 +11,10 @@ export const Timeline = () => {
       <TopBar />
       <div className=" w-full h-full overflow-x-auto">
         <div className="h-full w-full flex flex-col" style={{ width: `${width}%` }}>
-          <TimelineBar duration={template.duration} fps={template.fps} />
+          <TimelineBar />
           <div className="overflow-y-scroll h-full overflow-x-hidden px-3 pb-2">
             <div className="flex flex-col space-y-2 relative">
-              {template.allComponents?.map((id) => (
+              {allComponents?.map((id) => (
                 <TimelineComponent key={id} id={id} />
               ))}
             </div>
@@ -25,8 +25,9 @@ export const Timeline = () => {
   );
 };
 
-export const TimelineBar = ({ duration, fps }: { duration: number; fps: number }) => {
-  const frame = useStore((s) => s.playerFrame);
+export const TimelineBar = () => {
+  const { duration, fps } = useTemplate();
+  const frame = useStore((s) => s.frame);
   const playerRef = useStore((s) => s.playerRef);
   return (
     <div className="h-14 w-full relative p-3 pr-7">
@@ -50,6 +51,7 @@ export const TimelineBar = ({ duration, fps }: { duration: number; fps: number }
           type="range"
           value={frame}
           onChange={(e) => {
+            console.log(e.currentTarget.value);
             playerRef?.seekTo(Number(e.currentTarget.value));
           }}
           step={1}
