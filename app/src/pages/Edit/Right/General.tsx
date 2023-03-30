@@ -16,6 +16,7 @@ const inputs: { [key in keyof Comp]?: Inputs } = {
 export const general: Right = {
   icon: IoIosSettings,
   title: "General",
+  show: (c) => !!c,
   component: () => {
     const component = useComponent();
     const editComponentProps = useStore((state) => state.editComponent);

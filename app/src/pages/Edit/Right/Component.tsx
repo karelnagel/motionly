@@ -1,11 +1,12 @@
 import { Right } from ".";
 import { IoIosCompass } from "react-icons/io";
-import { useComponent, useComponentProps, useStore } from "../../../store";
+import { useComponent, useStore } from "../../../store";
 import { components } from "@motionly/components";
 import { Input } from "@motionly/inputs";
 
 export const component: Right = {
   icon: IoIosCompass,
+  show: (c) => !!c,
   title: "Component",
   component: () => {
     const component = useComponent();

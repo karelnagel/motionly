@@ -1,16 +1,12 @@
 import { IoIosArrowBack } from "react-icons/io";
 import { Panel } from "../../../components/Panel";
-import { Tabs } from "../../../components/Tabs";
+import { Tab, Tabs } from "../../../components/Tabs";
 import { useStore } from "../../../store";
 import { add } from "./Add";
 import { code } from "./Code";
 import { template } from "./Template";
 
-export type Left = {
-  icon: () => JSX.Element;
-  title: string;
-  component: () => JSX.Element;
-};
+export type Left = Tab;
 
 export const left = {
   add,

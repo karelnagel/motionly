@@ -1,5 +1,5 @@
-import { Right } from "../pages/Edit/Right";
 import { Resize } from "./Resize";
+import { Tab } from "./Tabs";
 
 export function Panel({
   width,
@@ -8,7 +8,7 @@ export function Panel({
   tab,
   reverse,
 }: {
-  items: { [key: string]: Right };
+  items: { [key: string]: Tab };
   tab?: string;
   width: number;
   reverse?: boolean;

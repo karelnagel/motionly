@@ -1,5 +1,11 @@
-import { Right } from "../pages/Edit/Right";
+import { IconType } from "react-icons";
+import { Left } from "../pages/Edit/Left";
 
+export type Tab = {
+  icon: IconType;
+  title: string;
+  component: () => JSX.Element;
+};
 export function Tabs<T extends string>({
   order,
   items,
@@ -10,11 +16,11 @@ export function Tabs<T extends string>({
   selected?: T;
   Button: () => JSX.Element;
   order: T[];
-  items: { [key: string]: Right };
+  items: { [key: string]: Left };
   onClick: (i: T) => void;
 }) {
   return (
-    <div className="h-full flex flex-col w-14 border-r border-l border-base-200 bg-base-100">
+    <div className="h-full flex flex-col w-14 border-r border-l border-base-200 bg-base-100 shrink-0">
       <div className="h-full">
         {order.map((i) => {
           const item = items[i];

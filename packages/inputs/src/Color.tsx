@@ -14,14 +14,13 @@ const hexToPercent = (alpha: string) => {
   return Math.round(normalize(parseInt(alpha, 16), 255, 0) * 100);
 };
 
-export const Color = z.string().startsWith("#");
+export const Color = z.string().startsWith("#").max(9);
 
 export const color: Input<string> = {
   zod: Color,
   component: ({ disabled, value, onChange, props: { placeholder, label, tooltip } }) => {
     const color = value?.slice(0, 7);
-    const alpha = value?.slice(7);
-
+    const alpha = value?.slice(7) || "FF";
     return (
       <div
         className="pr-3 flex bg-base-200 w-full items-center justify-end rounded-lg border leading-none overflow-hidden"
@@ -49,7 +48,7 @@ export const color: Input<string> = {
               disabled={disabled}
               min={0}
               max={100}
-              value={alpha ? hexToPercent(alpha) : ""}
+              value={alpha ? hexToPercent(alpha) : "100"}
               onChange={(e) => onChange(color + (e.target.value ? percentToHex(Number(e.target.value)) : ""))}
               className="w-10 bg-transparent"
             />
