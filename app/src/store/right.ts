@@ -8,8 +8,8 @@ export interface RightSlice {
   setRightWidth: (width: number) => void;
 }
 
-const minWidth = 270;
-const maxWidth = 500;
+const minWidth = 200;
+const maxWidth = 400;
 export const right = (set: SetType, get: GetType): RightSlice => {
   return {
     rightTab: undefined,

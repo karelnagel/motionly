@@ -10,7 +10,7 @@ export const edit = () => {
     <div className="h-screen w-screen flex bg-base-300 overflow-hidden">
       <LeftTabs />
       <div className="h-screen flex flex-col w-full">
-        <div className="h-full flex ">
+        <div className="h-full flex max-w-full ">
           <LeftPanel />
           <PlayerDiv />
           <RightPanel />

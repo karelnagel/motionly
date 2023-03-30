@@ -8,8 +8,8 @@ export interface LeftSlice {
   setLeftWidth: (width: number) => void;
 }
 
-const minWidth = 270;
-const maxWidth = 500;
+const minWidth = 200;
+const maxWidth = 400;
 export const left = (set: SetType, get: GetType): LeftSlice => {
   return {
     leftTab: "add",

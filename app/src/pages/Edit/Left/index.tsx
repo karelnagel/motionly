@@ -1,3 +1,4 @@
+import { IoIosArrowBack } from "react-icons/io";
 import { Panel } from "../../../components/Panel";
 import { Tabs } from "../../../components/Tabs";
 import { useStore } from "../../../store";
@@ -29,5 +30,18 @@ export const LeftPanel = () => {
 export const LeftTabs = () => {
   const setLeftTab = useStore((t) => t.setLeftTab);
   const leftTab = useStore((t) => t.leftTab);
-  return <Tabs order={Object.keys(left) as LeftTab[]} items={left} onClick={(v) => setLeftTab(v)} selected={leftTab} />;
+  const setPage = useStore((t) => t.setPage);
+  return (
+    <Tabs
+      Button={() => (
+        <button onClick={() => setPage("home")} className="text-xl">
+          <IoIosArrowBack />
+        </button>
+      )}
+      order={Object.keys(left) as LeftTab[]}
+      items={left}
+      onClick={(v) => setLeftTab(v)}
+      selected={leftTab}
+    />
+  );
 };

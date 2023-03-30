@@ -16,9 +16,9 @@ export function Panel({
 }) {
   const Component = items[tab || ""]?.component;
   return (
-    <div style={{ width }} className="w-full relative">
+    <div style={{ width }} className="w-full relative shrink-0">
       {Component && (
-        <div className="bg-base-200 h-full">
+        <div className="bg-base-200 h-full p-2 overflow-y-auto overflow-x-hidden">
           <Component />
           <Resize value={width} setValue={setWidth} reverse={reverse} />
         </div>
