@@ -12,7 +12,7 @@ export const defaultTemplate: Template = {
   height: 1080,
   id: getRandomId(),
   name: "New Template",
-  width: 1920,
+  width: 1080,
 };
 
 export type ProjectSlice = {
@@ -57,8 +57,8 @@ export const template = (setStore: SetType, get: GetType): ProjectSlice => {
           s.historyTimeout = undefined;
         });
       }, 600);
-      return s;
     });
+    setStore(s);
   };
   return {
     template: "",
@@ -80,7 +80,7 @@ export const template = (setStore: SetType, get: GetType): ProjectSlice => {
         s.allTemplates = s.allTemplates.filter((id) => id !== s.template);
         s.template = s.allTemplates[0];
       }),
-    setTemplate: (template) => setStore({ template, page: "edit" }),
+    setTemplate: (template) => setStore({ template, page: "edit", future: [], past: [], historyTimeout: undefined, lastTemplate: undefined }),
     cloneTemplate: (id) => {
       const newId = getRandomId();
       setStore((s) => {
@@ -93,10 +93,11 @@ export const template = (setStore: SetType, get: GetType): ProjectSlice => {
 
     past: [],
     future: [],
-    editTemplate: (template) =>
+    editTemplate: (template) => {
       set((s) => {
         s.templates[s.template] = { ...s.templates[s.template], ...template };
-      }),
+      });
+    },
 
     page: "home",
     setPage: (page) => setStore({ page }),

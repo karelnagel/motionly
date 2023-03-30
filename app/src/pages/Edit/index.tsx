@@ -1,6 +1,6 @@
 // import { LeftBar } from "./Left/LeftBar";
 // import { LeftPanel } from "./Left/LeftPanel";
-import { Player } from "./Player";
+import { PlayerDiv } from "./Player/PlayerDiv";
 // import { RightBar } from "./Right/RightBar";
 // import { RightPanel } from "./Right/RightPanel";
 import { Timeline } from "./Timeline/Timeline";
@@ -8,12 +8,12 @@ import { TimelineDiv } from "./Timeline/TimelineDiv";
 
 export const edit = () => {
   return (
-    <div>
+    <div className="h-screen">
       {/* <LeftBar /> */}
-      <div>
-        <div>
+      <div className="h-screen flex flex-col">
+        <div className="h-full">
           {/* <LeftPanel /> */}
-          <Player />
+          <PlayerDiv />
           {/* <RightPanel /> */}
         </div>
         <TimelineDiv>

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useStore, useTemplate } from "../../../store";
 import { Header } from "./Header";
-import { Player } from ".";
+import { Player } from "./Player";
 
 export const PlayerDiv = () => {
   const playerDivRef = useRef<HTMLDivElement>(null);

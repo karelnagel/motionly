@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import Moveable from "react-moveable";
-import {Player as MotionlyPlayer} from "@motionly/player";
+import { Player as MotionlyPlayer } from "@motionly/player";
 import { useComponent, useStore, useTemplate } from "../../../store";
 import { useShiftKey } from "../../../hooks/useShiftKey";
 
@@ -24,6 +24,7 @@ export const Player = () => {
       }}
     >
       <MotionlyPlayer
+        className="bg-white"
         ref={(ref) => setPlayerRef?.(ref || undefined)}
         template={template}
         style={{ width: "100%", height: "100%" }}

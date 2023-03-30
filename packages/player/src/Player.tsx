@@ -28,6 +28,7 @@ export type PlayerProps = PlayerControls & {
 
 export const Player = forwardRef<PlayerRef, PlayerProps>(
   ({ template, loading, setSelected = () => undefined, selected, selectedRef, ...props }, ref) => {
+    console.log(Math.ceil((template.duration || 1) * template.fps))
     return (
       <SelectedContext.Provider value={{ setSelected, selected, selectedRef }}>
         <RemotionPlayer
