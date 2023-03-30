@@ -14,7 +14,7 @@ export function Tabs<T extends string>({
   onClick: (i: T) => void;
 }) {
   return (
-    <div className="h-full flex flex-col w-14 border-r border-l border-base-300 bg-base-100">
+    <div className="h-full flex flex-col w-14 border-r border-l border-base-200 bg-base-100">
       <div className="h-full">
         {order.map((i) => {
           const item = items[i];
@@ -22,20 +22,20 @@ export function Tabs<T extends string>({
             <div
               key={i.toString()}
               onClick={() => onClick(i)}
-              className={`flex flex-col w-full justify-center h-14  space-y-1 items-center hover:scale-105 duration-150 p-2 cursor-pointer ${
+              className={`flex flex-col w-full justify-center h-14 space-y-1 items-center hover:scale-105 duration-150 p-2 cursor-pointer ${
                 selected === i ? "bg-primary text-primary-content" : "hover:bg-base-300"
               }`}
             >
               <div className="text-2xl">
                 <item.icon />
               </div>
-              <p className="text-[10px] ">{item.title}</p>
+              <p className="text-[10px] overflow-hidden">{item.title}</p>
             </div>
           );
         })}
       </div>
 
-      <div className="h-14 cursor-pointer border-t border-base-300 flex items-center justify-center">
+      <div className="h-14 cursor-pointer border-t border-base-200 flex items-center justify-center">
         <Button />
       </div>
     </div>

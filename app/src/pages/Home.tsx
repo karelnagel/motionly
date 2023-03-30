@@ -7,7 +7,7 @@ export const home = () => {
     <div className="p-4 space-y-4">
       <div className="flex justify-between items-center">
         <p className="text-2xl font-bold">What are you up to today?</p>
-        <button onClick={newTemplate} className="btn btn-sm">
+        <button onClick={newTemplate} className="btn btn-sm btn-primary">
           Start New
         </button>
       </div>
