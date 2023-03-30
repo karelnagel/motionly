@@ -49,7 +49,7 @@ export const template = (setStore: SetType, get: GetType): ProjectSlice => {
   const set = (s: SetInput) => {
     setStore((state) => {
       if (state.historyTimeout) clearTimeout(state.historyTimeout);
-      else state.lastTemplate = JSON.parse(JSON.stringify(get().template));
+      else state.lastTemplate = JSON.parse(JSON.stringify(get().templates[get().template]));
       state.historyTimeout = setTimeout(() => {
         setStore((s) => {
           s.past.push(JSON.parse(JSON.stringify(s.lastTemplate)));
@@ -142,6 +142,7 @@ export const template = (setStore: SetType, get: GetType): ProjectSlice => {
       setStore((s) => {
         const project = s.past.pop();
         if (!project) return toast.error("Nothing to undo");
+        console.log(project);
         s.future.push(s.templates[s.template]);
         s.templates[s.template] = project;
       }),

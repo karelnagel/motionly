@@ -16,18 +16,18 @@ export const Header = () => {
         value={name}
         placeholder="Untitled"
         onChange={(e) => editTemplate({ name: e.target.value })}
-        className="text-[18px] font-bold bg-transparent input input-xs w-40"
+        className="text-[16px] font-bold bg-transparent input input-xs w-40"
       />
       <div className="flex items-center space-x-4 font-bold ">
         <div className="flex text-2xl space-x-2">
           <div className="tooltip tooltip-bottom" data-tip="⌘ + Z">
-            <IoMdUndo onClick={undo} className={`${past.length ? "cursor-pointer" : "opacity-30 cursor-default"}`} />
+            <IoMdUndo onClick={past.length ? undo : undefined} className={`${past.length ? "cursor-pointer" : "opacity-30 cursor-default"}`} />
           </div>
           <div className="tooltip tooltip-bottom" data-tip="⌘ + ⇧ + Z">
-            <IoMdRedo onClick={redo} className={`${future.length ? "cursor-pointer" : "opacity-30 cursor-default"}`} />
+            <IoMdRedo onClick={future.length ? redo : undefined} className={`${future.length ? "cursor-pointer" : "opacity-30 cursor-default"}`} />
           </div>
         </div>
-        <button className="btn btn-primary" onClick={() => setTab("add")}>
+        <button className="btn btn-primary btn-sm" onClick={() => setTab("add")}>
           Export
         </button>
       </div>
