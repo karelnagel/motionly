@@ -14,7 +14,7 @@ const hexToPercent = (alpha: string) => {
   return Math.round(normalize(parseInt(alpha, 16), 255, 0) * 100);
 };
 
-export const Color = z.string().regex(/^#[0-9a-f]{3,6}$/i);
+export const Color = z.string().startsWith("#");
 
 export const color: Input<string> = {
   zod: Color,

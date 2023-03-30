@@ -7,9 +7,9 @@ export const ShapeProps = z.object({
   fill: Color.optional(),
   stroke: Color.optional(),
   strokeWidth: z.number().min(0).optional(),
-  width: z.number().min(0),
-  height: z.number().min(0),
-  type: ShapeTypes,
+  width: z.number().min(0).optional(),
+  height: z.number().min(0).optional(),
+  type: ShapeTypes.optional(),
   cornerRadius: z.number().optional(),
   edgeRoundness: z.number().optional(),
   direction: TriangleDirection.optional(),
@@ -84,7 +84,7 @@ export const shape: Component<ShapeProps> = {
       },
     },
   ],
-  component: ({ type, height, width, cornerRadius, direction, edgeRoundness, fill, stroke, strokeWidth = 0 }) => {
+  component: ({ type, height = 1, width = 1, cornerRadius, direction, edgeRoundness, fill, stroke, strokeWidth = 0 }) => {
     if (type === "triangle")
       return (
         <Triangle

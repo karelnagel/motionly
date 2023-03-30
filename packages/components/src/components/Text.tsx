@@ -4,8 +4,8 @@ import { Component } from "..";
 import { useTextStyles } from "../helpers/useTextStyles";
 
 export const TextProps = z.object({
-  textStyle: TextStyle,
-  text: z.string(),
+  textStyle: TextStyle.optional(),
+  text: z.string().optional(),
   justifyContent: JustifyContent.optional(),
 });
 export type TextProps = z.infer<typeof TextProps>;
@@ -21,7 +21,7 @@ export const text: Component<TextProps> = {
             fontFamily: "Roboto",
             fontSize: 20,
             textAlign: "center",
-            color: "black",
+            color: "#000000ff",
           },
         },
       },
@@ -36,7 +36,7 @@ export const text: Component<TextProps> = {
             fontSize: 40,
             fontWeight: "bold",
             textAlign: "center",
-            color: "black",
+            color: "#000000ff",
           },
         },
       },

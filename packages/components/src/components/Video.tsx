@@ -5,7 +5,7 @@ import { Component } from "..";
 import { getSrc } from "../helpers/getSrc";
 
 export const VideoProps = z.object({
-  src: z.string().url(),
+  src: z.string().url().optional(),
   objectFit: ObjectFit.optional(),
   startFrom: z.number().min(0).optional(),
   muted: z.boolean().optional(),

@@ -4,7 +4,7 @@ import { Tabs } from "../../../components/Tabs";
 import { useStore } from "../../../store";
 import { add } from "./Add";
 import { code } from "./Code";
-import { general } from "./General";
+import { template } from "./Template";
 
 export type Left = {
   icon: () => JSX.Element;
@@ -15,7 +15,7 @@ export type Left = {
 export const left = {
   add,
   code,
-  general,
+  general: template,
 };
 
 export type LeftTab = keyof typeof left;

@@ -17,6 +17,7 @@ export const Player = () => {
   const verticalGuidelines: number[] = [];
   return (
     <div
+    className="bg-base-100"
       style={{
         width: template.width * scale,
         height: template.height * scale,
@@ -24,7 +25,6 @@ export const Player = () => {
       }}
     >
       <MotionlyPlayer
-        className="bg-white"
         ref={(ref) => setPlayerRef?.(ref || undefined)}
         template={template}
         style={{ width: "100%", height: "100%" }}

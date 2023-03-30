@@ -38,7 +38,7 @@ export const Component = (comp: Comp) => {
   const from = Math.max(0, Math.round((comp.from || 0) * fps));
   const duration = Math.max(1, Math.round((comp.duration || 0) * fps));
   return (
-    <Sequence ref={selected === comp.id ? selectedRef : null} from={from} durationInFrames={duration} layout="none">
+    <Sequence ref={selected === comp.id ? selectedRef : null} from={from} durationInFrames={duration}>
       <Wrapper {...comp.wrappers}>
         <div
           ref={ref}

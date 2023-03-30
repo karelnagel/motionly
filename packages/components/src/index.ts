@@ -19,8 +19,8 @@ import { video } from "./components/Video";
 import { Comp } from "@motionly/composition";
 
 export type Component<T> = {
-  zod: z.ZodType<T>;
-  component: React.FC<T>;
+  zod: z.ZodType<T | undefined>;
+  component: React.FC<T | undefined>;
   examples?: { props: Partial<Omit<Comp, "props">> & { props: T }; title: string }[];
   inputs: { [key in keyof T]?: Inputs };
 };

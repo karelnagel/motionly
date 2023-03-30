@@ -28,8 +28,8 @@ export type DefaultProps = {
 };
 
 export type Input<Value, Props = {}> = {
-  component: React.FC<InputProps<Value> & { props: Props & DefaultProps }>;
-  zod: z.ZodType<Value> | ((props: Props) => z.ZodType<Value>);
+  component: React.FC<InputProps<Value | undefined> & { props: Props & DefaultProps }>;
+  zod: z.ZodType<Value | undefined> | ((props: Props) => z.ZodType<Value | undefined>);
 };
 
 export const inputs = {
@@ -54,3 +54,12 @@ export type InputsEasy = { [key in keys]?: Params<key> };
 export type Inputs = {
   [P in keys]: Record<P, Params<P>> & Partial<Record<Exclude<keys, P>, never>> extends infer O ? { [Q in keyof O]: O[Q] } : never;
 }[keys];
+
+export function Input<T>({ props, value, onChange }: { props: Inputs; value: T; onChange: (s: T) => void }) {
+  const entries = Object.entries(props);
+  console.log(entries);
+  if (entries.length !== 1) return null;
+  const entry = entries[0];
+  const Component = inputs[entry[0] as keys].component;
+  return <Component onChange={onChange as any} value={value as any} props={entry[1] as any} />;
+}
