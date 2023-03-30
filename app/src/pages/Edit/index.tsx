@@ -1,27 +1,25 @@
-// import { LeftBar } from "./Left/LeftBar";
-// import { LeftPanel } from "./Left/LeftPanel";
 import { HotKeys } from "../../components/HotKeys";
+import { LeftPanel, LeftTabs } from "./Left";
 import { PlayerDiv } from "./Player/PlayerDiv";
-// import { RightBar } from "./Right/RightBar";
-// import { RightPanel } from "./Right/RightPanel";
+import { RightPanel, RightTabs } from "./Right";
 import { Timeline } from "./Timeline/Timeline";
 import { TimelineDiv } from "./Timeline/TimelineDiv";
 
 export const edit = () => {
   return (
-    <div className="h-screen">
-      {/* <LeftBar /> */}
-      <div className="h-screen flex flex-col">
-        <div className="h-full">
-          {/* <LeftPanel /> */}
+    <div className="h-screen w-screen flex bg-base-300 overflow-hidden">
+      <LeftTabs />
+      <div className="h-screen flex flex-col w-full">
+        <div className="h-full flex ">
+          <LeftPanel />
           <PlayerDiv />
-          {/* <RightPanel /> */}
+          <RightPanel />
         </div>
         <TimelineDiv>
           <Timeline />
         </TimelineDiv>
       </div>
-      {/* <RightBar /> */}
+      <RightTabs />
       <HotKeys />
     </div>
   );
