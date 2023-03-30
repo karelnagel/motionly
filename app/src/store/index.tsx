@@ -35,3 +35,4 @@ export const useStore = create(
 );
 export const useTemplate = (id?: string) => useStore((s) => s.templates[id || s.template]);
 export const useComponent = (id?: string) => useStore((s) => s.templates[s.template].components[id || s.component]);
+export const useComponentProps = () => useComponent().props;

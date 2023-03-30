@@ -8,6 +8,7 @@ export const number: Input<number> = {
       <div>
         <label>{label}</label>
         <input
+          onWheel={(e) => e.currentTarget.blur()}
           disabled={disabled}
           type="number"
           placeholder={placeholder}

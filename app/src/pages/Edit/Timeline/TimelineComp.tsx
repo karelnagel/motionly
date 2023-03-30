@@ -15,7 +15,7 @@ export const TimelineComponent = ({ id }: { id: string }) => {
   if (!comp) return null;
   const hue = 100;
   const Icon = IoIosAdd;
-  const name = comp.componentName;
+  const name = comp.type;
   return (
     <div className="cursor-pointer">
       <div

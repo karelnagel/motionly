@@ -30,7 +30,7 @@ export const add: Left = {
               </h3>
               <div className="grid grid-cols-3 gap-3 w-full">
                 {component.examples?.map(({ props, title }) => {
-                  const final = { ...def, ...props, componentName: name };
+                  const final = { ...def, ...props, type: name };
                   return (
                     <div onClick={() => addComponent(final as any)} className="flex flex-col items-center cursor-pointer" key={title}>
                       <div className="aspect-square w-full rounded-lg bg-white">

@@ -15,7 +15,7 @@ export const Comp = z.object({
   duration: z.number().optional(),
   opacity: z.number().optional(),
   rotation: z.number().optional(),
-  componentName: ComponentName,
+  type: ComponentName,
   props: z.any(),
   wrappers: Wrappers,
 });
@@ -26,7 +26,7 @@ export const Component = (comp: Comp) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [width, setWidth] = useState(comp.width);
   const [height, setHeight] = useState(comp.height);
-  const component = components[comp.componentName];
+  const component = components[comp.type];
   const props = useMemo(() => component.zod.safeParse(comp.props), [comp.props]);
   const { setSelected, selectedRef, selected } = useSelected();
   useEffect(() => {

@@ -37,6 +37,7 @@ export type ProjectSlice = {
   setComponent: (id?: string) => void;
 
   editComponent: (comp: Partial<Comp>) => void;
+  editComponentProps: (props: any) => void;
   newComponent: (comp: Comp) => void;
   copyComponent: () => void;
   deleteComp: () => void;
@@ -109,6 +110,13 @@ export const template = (setStore: SetType, get: GetType): ProjectSlice => {
         const old = s.templates[s.template].components[s.component];
         if (!old) return toast.error("No component selected");
         s.templates[s.template].components[s.component] = { ...old, ...comp };
+      });
+    },
+    editComponentProps: (props) => {
+      set((s) => {
+        const comp = s.templates[s.template].components[s.component];
+        if (!comp) return toast.error("No component selected");
+        s.templates[s.template].components[s.component].props = { ...comp.props, ...props };
       });
     },
 
