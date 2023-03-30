@@ -1,5 +1,5 @@
 import { GetType, SetType } from ".";
-import { LeftTab } from "../left";
+import { LeftTab } from "../pages/Edit/Left";
 
 export interface LeftSlice {
   leftTab?: LeftTab;

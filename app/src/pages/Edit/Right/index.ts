@@ -1,4 +1,4 @@
-import { code } from "../left/Code";
+import { code } from "../Left/Code";
 import { general } from "./General";
 
 export type Right = {
