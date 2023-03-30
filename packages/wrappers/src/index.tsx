@@ -3,9 +3,10 @@ import { loop } from "./Loop";
 import { animation } from "./Animation";
 import { freeze } from "./Freeze";
 import { motion_blur } from "./MotionBlur";
+import { ReactNode } from "react";
 
 export type WrapperType<T> = {
-  wrapper: React.FC<T>;
+  wrapper: React.FC<T & { children: ReactNode }>;
   zod: z.ZodType<T>;
 };
 export const WrapperNames = z.enum(["loop", "animation", "freeze", "motion_blur"]);
@@ -24,7 +25,7 @@ export const Wrappers = z.object({
 });
 export type Wrappers = z.infer<typeof Wrappers>;
 
-export const Wrapper: React.FC<Wrappers> = ({ children, wrappers, allWrappers }) => {
+export const Wrapper: React.FC<Wrappers & { children: ReactNode }> = ({ children, wrappers, allWrappers }) => {
   const Wrap = ({ allWrappers }: { allWrappers: string[] }) => {
     if (allWrappers.length === 0) return <>{children}</>;
 

@@ -34,7 +34,7 @@ export const graph: Component<GraphProps> = {
     gap: { number: { label: "Gap" } },
     roundness: { number: { label: "Roundness" } },
   },
-  component: ({ src, comp, height, type, width, animationDuration, animationStart, children, color, gap, max, min, roundness, strokeWidth }) => {
+  component: ({ src, comp, height, type, width, animationDuration, animationStart, color, gap, max, min, roundness, strokeWidth }) => {
     const frame = useCurrentFrame();
     const { fps } = useVideoConfig();
     const background = color;

@@ -1,7 +1,7 @@
 {
     "name": "@motionly/composition",
     "version": "1.4.2",
-    "main": "dist/index.js",
+    "main": "src/index.tsx",
     "private": false,
     "license": "MIT",
     "scripts": {

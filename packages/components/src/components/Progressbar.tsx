@@ -23,7 +23,7 @@ export const progressbar: Component<ProgressbarProps> = {
     topRight: { checkbox: { label: "Top Right" } },
     type: { select: { label: "Type", options: "progressbar-types" } },
   },
-  component: ({ height, type, width, barWidth, bg, children, color, topRight }) => {
+  component: ({ height, type, width, barWidth, bg, color, topRight }) => {
     const frame = useCurrentFrame();
     const { durationInFrames } = useVideoConfig();
     const progress = (frame / durationInFrames) * 100;

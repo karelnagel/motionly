@@ -1,5 +1,3 @@
-"use client";
-
 import { Player as RemotionPlayer, PlayerRef } from "@remotion/player";
 import { forwardRef } from "react";
 import { CSSProperties, ReactNode } from "react";
