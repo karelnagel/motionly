@@ -22,8 +22,8 @@ export function Tabs<T extends string>({
             <div
               key={i.toString()}
               onClick={() => onClick(i)}
-              className={`flex flex-col w-full justify-center h-14 space-y-1 items-center hover:scale-105 duration-150 p-2 cursor-pointer ${
-                selected === i ? "bg-primary" : "hover:bg-base-300"
+              className={`flex flex-col w-full justify-center h-14  space-y-1 items-center hover:scale-105 duration-150 p-2 cursor-pointer ${
+                selected === i ? "bg-primary text-primary-content" : "hover:bg-base-300"
               }`}
             >
               <div className="text-2xl">

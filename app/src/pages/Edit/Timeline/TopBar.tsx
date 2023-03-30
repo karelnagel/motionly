@@ -1,7 +1,6 @@
 import { useStore } from "../../../store";
 import {
-  IoIosTrash,
-  IoIosCopy,
+  IoMdCopy,
   IoIosVolumeOff,
   IoIosVolumeHigh,
   IoIosSkipBackward,
@@ -11,6 +10,7 @@ import {
   IoMdExpand,
   IoIosRemove,
   IoIosAdd,
+  IoMdTrash
 } from "react-icons/io";
 import { IconType } from "react-icons";
 
@@ -25,10 +25,10 @@ export const TopBar = () => {
   const isPlaying = useStore((t) => t.isPlaying);
   const frame = useStore((t) => t.frame);
   return (
-    <div className="flex justify-between py-2 px-2 border-b border-base-300 items-center">
+    <div className="flex justify-between py-1 px-2 shadow-md items-center">
       <div className="flex space-x-2 items-center">
-        <Button Icon={IoIosTrash} disabled={!selected} onClick={() => deleteComp()} tooltip="Delete" />
-        <Button Icon={IoIosCopy} disabled={!selected} onClick={() => copy()} tooltip="Ctrl + C" />
+        <Button Icon={IoMdTrash} disabled={!selected} onClick={() => deleteComp()} tooltip="Delete" />
+        <Button Icon={IoMdCopy} disabled={!selected} onClick={() => copy()} tooltip="Ctrl + C" />
       </div>
       <div className="flex items-center justify-center space-x-5">
         <Button
