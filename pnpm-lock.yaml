@@ -224,6 +224,7 @@ importers:
 
   packages/components:
     specifiers:
+      '@motionly/composition': '*'
       '@motionly/inputs': '*'
       '@remotion/gif': 3.3.76
       '@remotion/lottie': 3.3.76
@@ -244,6 +245,7 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.6
     dependencies:
+      '@motionly/composition': link:../composition
       '@motionly/inputs': link:../inputs
       '@remotion/gif': 3.3.76_biqbaboplfbrettd7655fr4n2y
       '@remotion/lottie': 3.3.76_gn5hpwitoxbsx6uavhmqddmj5q

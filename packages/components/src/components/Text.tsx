@@ -12,13 +12,44 @@ export type TextProps = z.infer<typeof TextProps>;
 
 export const text: Component<TextProps> = {
   zod: TextProps,
+  examples: [
+    {
+      props: {
+        props: {
+          text: "Regular",
+          textStyle: {
+            fontFamily: "Roboto",
+            fontSize: 20,
+            textAlign: "center",
+            color: "black",
+          },
+        },
+      },
+      title: "Regular",
+    },
+    {
+      props: {
+        props: {
+          text: "Title",
+          textStyle: {
+            fontFamily: "Roboto",
+            fontSize: 40,
+            fontWeight: "bold",
+            textAlign: "center",
+            color: "black",
+          },
+        },
+      },
+      title: "Title",
+    },
+  ],
   inputs: {
     text: { text: { label: "Text" } },
     textStyle: { text_style: { label: "Text Style" } },
     justifyContent: { select: { label: "Justify Content", options: "justify" } },
   },
   component: ({ text, textStyle, justifyContent }) => {
-    const styles = useTextStyles(textStyle);
+    const styles = useTextStyles(textStyle || {});
     return (
       <div
         style={{

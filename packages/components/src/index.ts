@@ -16,10 +16,12 @@ import { qrcode } from "./components/QRCode";
 import { shape } from "./components/Shape";
 import { text } from "./components/Text";
 import { video } from "./components/Video";
+import { Comp } from "@motionly/composition";
 
 export type Component<T> = {
   zod: z.ZodType<T>;
   component: React.FC<T>;
+  examples?: { props: Partial<Omit<Comp, "props">> & { props: T }; title: string }[];
   inputs: { [key in keyof T]?: Inputs };
 };
 

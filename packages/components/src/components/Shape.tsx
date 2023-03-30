@@ -30,6 +30,60 @@ export const shape: Component<ShapeProps> = {
     width: { number: { label: "Width" } },
     direction: { select: { label: "Direction", options: "triangle-direction" } },
   },
+  examples: [
+    {
+      title: "Triangle",
+      props: {
+        props: {
+          type: "triangle",
+          height: 80,
+          width: 80,
+          fill: "#F00F00FF",
+          cornerRadius: 20,
+          direction: "up",
+        },
+      },
+    },
+    {
+      title: "Square",
+      props: {
+        props: {
+          type: "rect",
+          height: 80,
+          width: 80,
+          fill: "#0000FFFF",
+          cornerRadius: 20,
+          direction: "up",
+        },
+      },
+    },
+    {
+      title: "Circle",
+      props: {
+        props: {
+          type: "circle",
+          height: 80,
+          width: 80,
+          fill: "#ff0000FF",
+          cornerRadius: 20,
+          direction: "up",
+        },
+      },
+    },
+    {
+      title: "Ellipse",
+      props: {
+        props: {
+          type: "ellipse",
+          height: 40,
+          width: 80,
+          fill: "#00FF00FF",
+          cornerRadius: 20,
+          direction: "up",
+        },
+      },
+    },
+  ],
   component: ({ type, height, width, cornerRadius, direction, edgeRoundness, fill, stroke, strokeWidth = 0 }) => {
     if (type === "triangle")
       return (

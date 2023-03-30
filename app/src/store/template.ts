@@ -122,7 +122,7 @@ export const template = (setStore: SetType, get: GetType): ProjectSlice => {
     newComponent: (comp) =>
       set((s) => {
         const id = getRandomId();
-        s.templates[s.template].components[id] = comp;
+        s.templates[s.template].components[id] = { ...comp, id };
         s.templates[s.template].allComponents.push(id);
         s.component = id;
       }),

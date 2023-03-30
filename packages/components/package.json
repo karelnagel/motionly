@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "@motionly/inputs": "*",
+        "@motionly/composition": "*",
         "@remotion/gif": "3.3.76",
         "@remotion/lottie": "3.3.76",
         "@remotion/media-utils": "3.3.76",
