@@ -4,6 +4,7 @@ import { getSrc } from "../helpers/getSrc";
 import { z } from "zod";
 import { Color, JustifyContent } from "@motionly/inputs";
 import { Component } from "..";
+import { BsSoundwave } from "react-icons/bs";
 
 export const AudiogramProps = z.object({
   src: z.string().url(),
@@ -23,6 +24,8 @@ export type AudiogramProps = z.infer<typeof AudiogramProps>;
 
 export const audiogram: Component<AudiogramProps> = {
   zod: AudiogramProps,
+  Icon: BsSoundwave,
+  hue: 100,
   inputs: {
     src: { text: { label: "Source" } },
     barWidth: { number: { label: "Bar Width" } },

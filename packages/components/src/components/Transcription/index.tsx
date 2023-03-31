@@ -4,6 +4,7 @@ import { useTextStyles } from "../../helpers/useTextStyles";
 import z from "zod";
 import { TextStyle, TranscriptionAnimationTypes } from "@motionly/inputs";
 import { Component } from "../..";
+import { MdSubtitles } from "react-icons/md";
 
 export const TranscriptionWord = z.object({
   text: z.string(),
@@ -25,6 +26,8 @@ export type TranscriptionProps = z.infer<typeof TranscriptionProps>;
 
 export const transcription: Component<TranscriptionProps> = {
   zod: TranscriptionProps,
+  Icon: MdSubtitles,
+  hue: 99,
   inputs: {
     src: { text: { label: "Source" } },
     textStyle: { text_style: { label: "Text Style" } },

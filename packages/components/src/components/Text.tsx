@@ -2,6 +2,7 @@ import { JustifyContent, TextStyle } from "@motionly/inputs";
 import { z } from "zod";
 import { Component } from "..";
 import { useTextStyles } from "../helpers/useTextStyles";
+import { IoText } from "react-icons/io5";
 
 export const TextProps = z.object({
   textStyle: TextStyle.optional(),
@@ -12,6 +13,8 @@ export type TextProps = z.infer<typeof TextProps>;
 
 export const text: Component<TextProps> = {
   zod: TextProps,
+  Icon: IoText,
+  hue: 89,
   examples: [
     {
       props: {

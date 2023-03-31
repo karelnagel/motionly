@@ -10,6 +10,7 @@ import { CSSProperties } from "react";
 import { z } from "zod";
 import { Color, MockupTypes } from "@motionly/inputs";
 import { Component } from "../..";
+import { IoIosPhonePortrait } from "react-icons/io";
 
 export const MockupProps = z.object({
   bg: Color.optional(),
@@ -64,6 +65,8 @@ const mockups: {
 };
 export const mockup: Component<MockupProps> = {
   zod: MockupProps,
+  Icon: IoIosPhonePortrait,
+  hue: 300,
   inputs: {
     bg: { color: { label: "Background" } },
     type: { select: { label: "Type", options: "mockup-types" } },

@@ -5,6 +5,7 @@ import { getSrc } from "../helpers/getSrc";
 import { z } from "zod";
 import { Color } from "@motionly/inputs";
 import { Component } from "..";
+import { MdOutlineMotionPhotosOn } from "react-icons/md";
 
 export const LottieProps = z.object({
   src: z.string(),
@@ -16,7 +17,8 @@ export const LottieProps = z.object({
 export type LottieProps = z.infer<typeof LottieProps>;
 
 export const lottie: Component<LottieProps> = {
-  zod: LottieProps,
+  zod: LottieProps,Icon: MdOutlineMotionPhotosOn,
+  hue: 240,
   inputs: {
     src: { text: { label: "Source" } },
     backwards: { checkbox: { label: "Backwards" } },

@@ -2,6 +2,7 @@ import { useCurrentFrame, useVideoConfig } from "remotion";
 import { z } from "zod";
 import { Color, ProgressbarTypes } from "@motionly/inputs";
 import { Component } from "..";
+import { IoIosTimer } from "react-icons/io";
 
 export const ProgressbarProps = z.object({
   type: ProgressbarTypes,
@@ -16,6 +17,8 @@ export type ProgressbarProps = z.infer<typeof ProgressbarProps>;
 
 export const progressbar: Component<ProgressbarProps> = {
   zod: ProgressbarProps,
+  Icon: IoIosTimer,
+  hue: 350,
   inputs: {
     barWidth: { number: { label: "Bar Width" } },
     color: { color: { label: "Color" } },

@@ -241,6 +241,7 @@ importers:
       prop-types: ^15.8.1
       react: ^18.0.0
       react-dom: ^18.0.0
+      react-icons: ^4.6.0
       react-qr-code: ^2.0.10
       react-simple-maps: ^3.0.0
       remotion: 3.3.76
@@ -258,6 +259,7 @@ importers:
       '@types/react-simple-maps': 3.0.0
       lottie-web: 5.10.2
       prop-types: 15.8.1
+      react-icons: 4.8.0_react@18.2.0
       react-qr-code: 2.0.11_react@18.2.0
       react-simple-maps: 3.0.0_v2m5e27vhdewzwhryxwfaorcca
       remotion: 3.3.76_biqbaboplfbrettd7655fr4n2y

@@ -5,6 +5,7 @@ import { getSrc } from "../helpers/getSrc";
 import { z } from "zod";
 import { Component } from "..";
 import { Color } from "@motionly/inputs";
+import { IoIosMap } from "react-icons/io";
 
 export const MapProps = z.object({
   lat: z.number(),
@@ -22,6 +23,8 @@ export type MapProps = z.infer<typeof MapProps>;
 const def = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
 export const map: Component<MapProps> = {
   zod: MapProps,
+  Icon: IoIosMap,
+  hue: 270,
   inputs: {
     src: { text: { label: "Source" } },
     lat: { number: { label: "Latitude" } },

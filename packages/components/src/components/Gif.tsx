@@ -4,6 +4,7 @@ import { z } from "zod";
 import { ObjectFit } from "@motionly/inputs";
 import { Component } from "..";
 import { useState } from "react";
+import { MdGif } from "react-icons/md";
 
 const Props = z.object({
   src: z.string().url(),
@@ -13,6 +14,8 @@ type Props = z.infer<typeof Props>;
 
 export const gif: Component<Props> = {
   zod: Props,
+  Icon: MdGif,
+  hue: 180,
   inputs: {
     src: { text: { label: "Source" } },
     objectFit: { select: { label: "Object Fit", options: "object-fit" } },

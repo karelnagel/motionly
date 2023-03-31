@@ -17,10 +17,13 @@ import { shape } from "./components/Shape";
 import { text } from "./components/Text";
 import { video } from "./components/Video";
 import { Wrappers } from "@motionly/wrappers";
+import { IconType } from "react-icons";
 
 export type Component<T> = {
   zod: z.ZodType<T>;
   component: React.FC<T>;
+  hue: number;
+  Icon: IconType;
   examples?: { props: Partial<Omit<Comp, "props">> & { props: T }; title: string; image?: string }[];
   inputs: { [key in keyof T]?: Inputs };
 };

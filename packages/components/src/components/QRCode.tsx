@@ -2,6 +2,7 @@ import ReactQRCode from "react-qr-code";
 import { z } from "zod";
 import { Color } from "@motionly/inputs";
 import { Component } from "..";
+import { IoQrCodeOutline } from "react-icons/io5";
 
 export const QRCodeProps = z.object({
   text: z.string().optional(),
@@ -12,6 +13,8 @@ export type QRCodeProps = z.infer<typeof QRCodeProps>;
 
 export const qrcode: Component<QRCodeProps> = {
   zod: QRCodeProps,
+  Icon: IoQrCodeOutline,
+  hue: 360,
   inputs: {
     bg: { color: { label: "Background" } },
     color: { color: { label: "Color" } },

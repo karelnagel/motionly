@@ -2,6 +2,7 @@ import { Color, ShapeTypes, TriangleDirection } from "@motionly/inputs";
 import { Rect, Triangle, Circle, Ellipse } from "@remotion/shapes";
 import { z } from "zod";
 import { Component } from "..";
+import { IoShapesOutline } from "react-icons/io5";
 
 export const ShapeProps = z.object({
   fill: Color.optional(),
@@ -19,6 +20,8 @@ export type ShapeProps = z.infer<typeof ShapeProps>;
 
 export const shape: Component<ShapeProps> = {
   zod: ShapeProps,
+  Icon: IoShapesOutline,
+  hue: 40,
   inputs: {
     cornerRadius: { number: { label: "Corner Radius" } },
     edgeRoundness: { number: { label: "Edge Roundness" } },

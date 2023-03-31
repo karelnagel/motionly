@@ -2,6 +2,7 @@ import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { z } from "zod";
 import { Color, GraphTypes } from "@motionly/inputs";
 import { Component } from "..";
+import { SlGraph } from "react-icons/sl";
 
 export const GraphProps = z.object({
   comp: z.literal("graph"),
@@ -22,6 +23,8 @@ export type GraphProps = z.infer<typeof GraphProps>;
 
 export const graph: Component<GraphProps> = {
   zod: GraphProps,
+  Icon: SlGraph,
+  hue: 220,
   inputs: {
     src: { text: { label: "Source" } },
     color: { color: { label: "Color" } },

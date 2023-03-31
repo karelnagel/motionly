@@ -2,6 +2,7 @@ import { evolvePath } from "@remotion/paths";
 import { z } from "zod";
 import { Color } from "@motionly/inputs";
 import { Component } from "..";
+import { IoIosBrush } from "react-icons/io";
 
 export const PathProps = z.object({
   path: z.string(),
@@ -18,6 +19,8 @@ export const PathProps = z.object({
 export type PathProps = z.infer<typeof PathProps>;
 export const path: Component<PathProps> = {
   zod: PathProps,
+  Icon: IoIosBrush,
+  hue: 330,
   inputs: {
     path: { text: { label: "Path" } },
     stroke: { color: { label: "Stroke" } },

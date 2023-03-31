@@ -2,6 +2,7 @@ import { Color } from "@motionly/inputs";
 import { z } from "zod";
 import { Component } from "../..";
 import Confetti from "./src";
+import { TbConfetti } from "react-icons/tb";
 
 export const ConfettiProps = z.object({
   colors: z.array(Color).optional(),
@@ -18,6 +19,8 @@ export type ConfettiProps = z.infer<typeof ConfettiProps>;
 
 export const confetti: Component<ConfettiProps> = {
   zod: ConfettiProps,
+  Icon: TbConfetti,
+  hue: 120,
   inputs: {
     count: { range: { label: "Count", min: 0, max: 100, step: 1 } },
     angle: { range: { label: "Angle", min: 0, max: 360, step: 1 } },
