@@ -18,7 +18,7 @@ export function Panel({
   return (
     <div style={{ width }} className="w-full relative shrink-0">
       {Component && (
-        <div className="bg-base-200 h-full p-2 overflow-y-auto overflow-x-hidden">
+        <div className="bg-base-200 h-full p-2 overflow-y-auto overflow-x-hidden absolute w-full">
           <Component />
           <Resize value={width} setValue={setWidth} reverse={reverse} />
         </div>

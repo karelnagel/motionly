@@ -26,7 +26,15 @@ export const Component = (comp: Comp) => {
         <div
           ref={ref}
           onClick={() => setSelected(comp.id)}
-          style={{ width, height, top: comp.top, left: comp.left, transform: `rotate(${comp.rotation}deg)`, opacity: comp.opacity }}
+          style={{
+            width,
+            height,
+            top: comp.top,
+            left: comp.left,
+            transform: `rotate(${comp.rotation}deg)`,
+            opacity: comp.opacity,
+            position: "absolute",
+          }}
         >
           {props.success ? <component.component {...(props.data as any)} /> : <InvalidProps error={props.error.toString()} />}
         </div>
