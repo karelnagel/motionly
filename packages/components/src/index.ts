@@ -64,7 +64,7 @@ export const components = {
   video,
 };
 
-export const Comp = z.object({
+const BaseComp = z.object({
   id: z.string(),
   top: z.number().optional(),
   left: z.number().optional(),
@@ -77,5 +77,19 @@ export const Comp = z.object({
   type: ComponentName,
   props: z.any(),
   wrappers: Wrappers,
+});
+
+export const Comp = BaseComp.superRefine((s, ctx) => {
+  if (!s.type) return;
+  const res = components[s.type].zod.safeParse(s.props);
+  if (res.success) return;
+  res.error.errors.map((e) => ctx.addIssue(e));
+});
+
+export const CompPartial = BaseComp.partial().superRefine((s, ctx) => {
+  if (!s.type) return;
+  const res = components[s.type].zod.safeParse(s.props);
+  if (res.success) return;
+  res.error.errors.map((e) => ctx.addIssue(e));
 });
 export type Comp = z.infer<typeof Comp>;

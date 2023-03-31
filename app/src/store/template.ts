@@ -1,6 +1,6 @@
 import { getRandomId } from "../helpers";
 import { storeBase } from ".";
-import { Comp } from "@motionly/components";
+import { Comp, CompPartial } from "@motionly/components";
 import { Template } from "@motionly/composition";
 import { toast } from "sonner";
 import { Page } from "../enums";
@@ -38,7 +38,7 @@ const TemplateStore = z.object({
   component: z.string().optional(),
   setComponent: z.function().args(z.string().optional()).returns(z.void()),
 
-  editComponent: z.function().args(Comp.partial()).returns(z.void()),
+  editComponent: z.function().args(CompPartial).returns(z.void()),
   editComponentProps: z.function().args(z.any()).returns(z.void()),
   newComponent: z.function().args(Comp).returns(z.void()),
   copyComponent: z.function().returns(z.void()),

@@ -22,7 +22,7 @@ export function storeBase<T extends {}>(
       zustandZod(
         immer<T>((set, get) => state(set, get)),
         zod,
-        (error) => error.errors.map((e) => toast.error(`${e.path.join(">")}: ${e.message}`))
+        (error) => error.errors.map((e) => toast.error(`${e.path.pop()}: ${e.message}`))
       ),
       { name }
     )
