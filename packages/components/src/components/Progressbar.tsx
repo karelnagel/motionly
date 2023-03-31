@@ -9,8 +9,8 @@ export const ProgressbarProps = z.object({
   bg: Color.optional(),
   barWidth: z.number().min(0).optional(),
   topRight: z.boolean().optional(),
-  width: z.number().min(0),
-  height: z.number().min(0),
+  width: z.number().min(0).optional(),
+  height: z.number().min(0).optional(),
 });
 export type ProgressbarProps = z.infer<typeof ProgressbarProps>;
 
@@ -23,7 +23,29 @@ export const progressbar: Component<ProgressbarProps> = {
     topRight: { checkbox: { label: "Top Right" } },
     type: { select: { label: "Type", options: "progressbar-types" } },
   },
-  component: ({ height, type, width, barWidth, bg, color, topRight }) => {
+  examples: [
+    {
+      title: "Line",
+      image: "/logo.png",
+      props: { props: { type: "line" } },
+    },
+    {
+      title: "Spotify",
+      image: "/logo.png",
+      props: { props: { type: "spotify" } },
+    },
+    {
+      title: "Circle",
+      image: "/logo.png",
+      props: { props: { type: "circle" } },
+    },
+    {
+      title: "Square",
+      image: "/logo.png",
+      props: { props: { type: "square" } },
+    },
+  ],
+  component: ({ height = 1, type, width = 1, barWidth, bg, color, topRight }) => {
     const frame = useCurrentFrame();
     const { durationInFrames } = useVideoConfig();
     const progress = (frame / durationInFrames) * 100;

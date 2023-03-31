@@ -7,7 +7,6 @@ import { Component } from "..";
 import { Color } from "@motionly/inputs";
 
 export const MapProps = z.object({
-  comp: z.literal("map"),
   lat: z.number(),
   lng: z.number(),
   zoom: z.number().min(0),
@@ -20,14 +19,14 @@ export const MapProps = z.object({
   bg: Color.optional(),
 });
 export type MapProps = z.infer<typeof MapProps>;
-
+const def = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
 export const map: Component<MapProps> = {
   zod: MapProps,
   inputs: {
     src: { text: { label: "Source" } },
     lat: { number: { label: "Latitude" } },
     lng: { number: { label: "Longitude" } },
-    zoom: { number: { label: "Zoom" } },
+    zoom: { range: { label: "Zoom", min: 0.1, max: 100, step: 0.1 } },
     fill: { color: { label: "Fill" } },
     stroke: { color: { label: "Stroke" } },
     strokeWidth: { number: { label: "Stroke Width" } },
@@ -35,7 +34,21 @@ export const map: Component<MapProps> = {
     markerSize: { number: { label: "Marker Size" } },
     bg: { color: { label: "Background" } },
   },
-  component: ({ src, lat, lng, zoom, bg, fill, markerColor, markerSize, stroke, strokeWidth }) => {
+  examples: [
+    {
+      title: "World",
+      props: { props: { lat: 0, lng: 0, zoom: 3 } },
+    },
+    {
+      title: "Paris",
+      props: { props: { lat: 48.8566, lng: 2.3522, zoom: 10 } },
+    },
+    {
+      title: "New York",
+      props: { props: { lat: 40.7128, lng: -74.006, zoom: 300 } },
+    },
+  ],
+  component: ({ src = def, lat, lng, zoom, bg, fill, markerColor, markerSize, stroke, strokeWidth }) => {
     const coordinates: [number, number] = [lng, lat];
     const [handle] = useState(() => delayRender("Loading Map"));
     const [geography, setGeography] = useState(null);

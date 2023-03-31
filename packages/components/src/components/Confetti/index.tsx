@@ -11,8 +11,8 @@ export const ConfettiProps = z.object({
   startVelocity: z.number().optional(),
   scalar: z.number().optional(),
   ticks: z.number().optional(),
-  posX: z.number(),
-  posY: z.number(),
+  x: z.number().optional(),
+  y: z.number().optional(),
 });
 export type ConfettiProps = z.infer<typeof ConfettiProps>;
 
@@ -25,19 +25,19 @@ export const confetti: Component<ConfettiProps> = {
     startVelocity: { range: { label: "Start Velocity", min: 0, max: 100, step: 1 } },
     scalar: { range: { label: "Scalar", min: 0, max: 100, step: 1 } },
     ticks: { range: { label: "Ticks", min: 0, max: 100, step: 1 } },
-    posX: { range: { label: "X", min: 0, max: 100, step: 1 } },
-    posY: { range: { label: "Y", min: 0, max: 100, step: 1 } },
+    x: { range: { label: "X", min: 0, max: 100, step: 1 } },
+    y: { range: { label: "Y", min: 0, max: 100, step: 1 } },
   },
-  component: ({ posX, posY, colors, ...props }) => {
-    return (
-      <Confetti
-        {...{
-          ...props,
-          x: posX,
-          y: posY,
-          colors,
-        }}
-      />
-    );
+  examples: [
+    {
+      title: "Default",
+      image: "/logo.png",
+      props: {
+        props: {},
+      },
+    },
+  ],
+  component: ({ x = 0, y = 0, colors, ...props }) => {
+    return <Confetti {...{ ...props, x, y, colors }} />;
   },
 };

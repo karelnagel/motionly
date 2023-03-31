@@ -9,15 +9,15 @@ export const AudiogramProps = z.object({
   src: z.string().url(),
   position: JustifyContent.optional(),
   gap: z.number().optional(),
-  barWidth: z.number().min(0),
+  barWidth: z.number().min(0).optional(),
   color: Color.optional(),
   roundness: z.number().min(0).optional(),
   startFrom: z.number().min(0).optional(),
   smoothing: z.boolean().optional(),
   mirror: z.boolean().optional(),
   multiplier: z.number().min(0).optional(),
-  height: z.number().min(0),
-  width: z.number().min(0),
+  height: z.number().min(0).optional(),
+  width: z.number().min(0).optional(),
 });
 export type AudiogramProps = z.infer<typeof AudiogramProps>;
 
@@ -34,7 +34,25 @@ export const audiogram: Component<AudiogramProps> = {
     mirror: { checkbox: { label: "Mirror" } },
     multiplier: { number: { label: "Multiplier" } },
   },
-  component: ({ src, barWidth, height, width, color, gap, mirror, multiplier = 1, position, roundness, smoothing, startFrom }) => {
+  examples: [
+    {
+      title: "Middle",
+      image: "/logo.png",
+      props: {
+        props: {
+          src: "",
+          mirror: true,
+          multiplier: 2,
+          barWidth: 10,
+          gap: 1,
+          position: "center",
+          smoothing: true,
+          color: "#00FF00FF",
+        },
+      },
+    },
+  ],
+  component: ({ src, barWidth = 10, height = 1, width = 1, color, gap, mirror, multiplier = 1, position, roundness, smoothing, startFrom }) => {
     const background = color;
     const { fps } = useVideoConfig();
     const currentFrame = useCurrentFrame();

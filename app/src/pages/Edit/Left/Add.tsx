@@ -31,14 +31,18 @@ export const add: Left = {
                 {name.slice(1)}
               </h3>
               <div className="grid grid-cols-3 gap-3 w-full">
-                {component.examples?.map(({ props, title }) => {
+                {component.examples?.map(({ props, title, image }) => {
                   const final = { ...def, ...props, type: name };
                   return (
                     <div onClick={() => addComponent(final as any)} className="flex flex-col items-center cursor-pointer" key={title}>
                       <div className="aspect-square w-full rounded-lg bg-white">
-                        <div className="aspect-square w-full rounded-lg scale-50">
-                          <component.component {...(props.props as any)} />
-                        </div>
+                        {image ? (
+                          <img src={image}  className="w-full object-cover"/>
+                        ) : (
+                          <div className="aspect-square w-full rounded-lg scale-50">
+                            <component.component {...(props.props as any)} />
+                          </div>
+                        )}
                       </div>
 
                       <h4 className="text-xs">{title}</h4>

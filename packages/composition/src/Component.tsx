@@ -36,7 +36,11 @@ export const Component = (comp: Comp) => {
             position: "absolute",
           }}
         >
-          {props.success ? <component.component {...(props.data as any)} /> : <InvalidProps error={props.error.toString()} />}
+          {props.success ? (
+            <component.component {...(props.data as any)} width={comp.width} height={comp.height} />
+          ) : (
+            <InvalidProps error={props.error.toString()} />
+          )}
         </div>
       </Wrapper>
     </Sequence>

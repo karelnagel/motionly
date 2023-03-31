@@ -64,7 +64,44 @@ const mockups: {
 };
 export const mockup: Component<MockupProps> = {
   zod: MockupProps,
-  inputs: {},
+  inputs: {
+    bg: { color: { label: "Background" } },
+    type: { select: { label: "Type", options: "mockup-types" } },
+  },
+  examples: [
+    {
+      title: "Iphone 12",
+      props: { props: { type: "iphone" } },
+    },
+    {
+      title: "Macbook",
+      props: { props: { type: "macbook" } },
+    },
+    {
+      title: "Iphone 14",
+      props: { props: { type: "iphone14" } },
+    },
+    {
+      title: "Ipad",
+      props: { props: { type: "ipad" } },
+    },
+    {
+      title: "Macbook 2",
+      props: { props: { type: "macbook2" } },
+    },
+    {
+      title: "Monitor",
+      props: { props: { type: "monitor" } },
+    },
+    {
+      title: "Samsung",
+      props: { props: { type: "samsung" } },
+    },
+    {
+      title: "Watch",
+      props: { props: { type: "watch" } },
+    },
+  ],
   component: ({ type, bg }) => {
     return (
       <div style={{ position: "relative" }}>

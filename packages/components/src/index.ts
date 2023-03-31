@@ -21,7 +21,7 @@ import { Wrappers } from "@motionly/wrappers";
 export type Component<T> = {
   zod: z.ZodType<T>;
   component: React.FC<T>;
-  examples?: { props: Partial<Omit<Comp, "props">> & { props: T }; title: string }[];
+  examples?: { props: Partial<Omit<Comp, "props">> & { props: T }; title: string; image?: string }[];
   inputs: { [key in keyof T]?: Inputs };
 };
 

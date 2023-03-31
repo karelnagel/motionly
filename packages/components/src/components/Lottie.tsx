@@ -24,6 +24,38 @@ export const lottie: Component<LottieProps> = {
     playbackRate: { number: { label: "Playback Rate" } },
     bg: { color: { label: "Background" } },
   },
+  examples: [
+    {
+      title: "Line",
+      image: "/logo.png",
+      props: { props: { src: "https://assets5.lottiefiles.com/packages/lf20_81Rgekq0ps.json" } },
+    },
+    {
+      title: "Check",
+      image: "/logo.png",
+      props: { props: { src: "https://assets10.lottiefiles.com/datafiles/uoZvuyyqr04CpMr/data.json" } },
+    },
+    {
+      title: "Confetti",
+      image: "/logo.png",
+      props: { props: { src: "https://assets10.lottiefiles.com/datafiles/U1I3rWEyksM9cCH/data.json" } },
+    },
+    {
+      title: "Star",
+      image: "/logo.png",
+      props: { props: { src: "https://assets10.lottiefiles.com/datafiles/0BklE7L1HhdHa4v/data.json" } },
+    },
+    {
+      title: "Tiktok",
+      image: "/logo.png",
+      props: { props: { src: "https://assets1.lottiefiles.com/private_files/lf30_keymopaz.json" } },
+    },
+    {
+      title: "youtube",
+      image: "/logo.png",
+      props: { props: { src: "https://assets9.lottiefiles.com/private_files/lf30_cwyafad8.json" } },
+    },
+  ],
   component: ({ src, backwards, bg, loop, playbackRate }) => {
     const [handle] = useState(() => delayRender("Loading Lottie animation"));
     const background = bg;

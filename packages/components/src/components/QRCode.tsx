@@ -4,7 +4,7 @@ import { Color } from "@motionly/inputs";
 import { Component } from "..";
 
 export const QRCodeProps = z.object({
-  text: z.string(),
+  text: z.string().optional(),
   color: Color.optional(),
   bg: Color.optional(),
 });
@@ -17,7 +17,13 @@ export const qrcode: Component<QRCodeProps> = {
     color: { color: { label: "Color" } },
     text: { text: { label: "Text" } },
   },
-  component: ({ text, color, bg }) => {
+  examples: [
+    {
+      title: "QR Code",
+      props: { props: { text: "https://motionly.video" } },
+    },
+  ],
+  component: ({ text = "", color, bg }) => {
     return <ReactQRCode style={{ width: "100%", height: "100%" }} value={text} fgColor={color} bgColor={bg} />;
   },
 };
