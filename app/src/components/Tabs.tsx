@@ -2,7 +2,7 @@ import { IconType } from "react-icons";
 import { Left } from "../pages/Edit/Left";
 
 export type Tab = {
-  icon: IconType;
+  icon: IconType | (() => JSX.Element);
   title: string;
   component: () => JSX.Element;
 };

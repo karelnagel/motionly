@@ -1,13 +1,15 @@
 import { Comp } from "@motionly/components";
+import { IconType } from "react-icons";
 import { IoIosInformation } from "react-icons/io";
 import { z } from "zod";
 import { Panel } from "../../../components/Panel";
 import { Tab, Tabs } from "../../../components/Tabs";
-import { useComponent, useRightStore, useTemplateStore } from "../../../store";
+import { useComponent, useRightStore } from "../../../store";
 import { component } from "./Component";
 import { general } from "./General";
 
 export type Right = Tab & {
+  icon: IconType;
   show: (c?: Comp) => boolean;
 };
 

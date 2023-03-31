@@ -1,6 +1,5 @@
-import { Comp } from "@motionly/components";
+import { Comp, components } from "@motionly/components";
 import { useRef } from "react";
-import { IoIosAdd } from "react-icons/io";
 import Moveable from "react-moveable";
 import { useComponent, useTemplateStore, useTemplate } from "../../../store";
 
@@ -13,9 +12,9 @@ export const TimelineComponent = ({ id }: { id: string }) => {
   const divRef = useRef<HTMLDivElement>(null);
   const isSelected = selected === comp.id;
   if (!comp) return null;
-  const hue = 100;
-  const Icon = IoIosAdd;
-  const name = comp.type;
+  const hue = components[comp.type].hue;
+  const Icon = components[comp.type].Icon;
+  const name = comp.type[0].toUpperCase() + comp.type.slice(1);
   return (
     <div className="cursor-pointer">
       <div
