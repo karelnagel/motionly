@@ -7,6 +7,9 @@ import { left, LeftSlice } from "./left";
 import { right, RightSlice } from "./right";
 import { timeline, TimelineSlice } from "./timeline";
 import { player, PlayerSlice } from "./player";
+import z from "zod";
+import { toast } from "sonner";
+import { zustandZod } from "./zustand-zod";
 
 export type SetInput = ProjectStore | Partial<ProjectStore> | ((state: WritableDraft<ProjectStore>) => void);
 
@@ -33,6 +36,25 @@ export const useStore = create(
     }
   )
 );
+
 export const useTemplate = (id?: string) => useStore((s) => s.templates[id || s.template]);
 export const useComponent = (id?: string) => useStore((s) => s.templates[s.template].components[id || s.component]);
 export const useComponentProps = () => useComponent().props;
+
+export const TestStore = z.object({
+  test: z.number(),
+  setTest: z.function().args(z.number()).returns(z.void()),
+});
+export type TestStore = z.infer<typeof TestStore>;
+export const useTest = create(
+  zustandZod(
+    (set, get) => {
+      return {
+        test: 1,
+        setTest: (test) => set({ test }),
+      };
+    },
+    TestStore,
+    (error) => error.errors.map((e) => toast.error(`Invalid input for "${e.path.join(">")}": ${e.message}`))
+  )
+);
