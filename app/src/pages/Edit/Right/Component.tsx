@@ -1,6 +1,6 @@
 import { Right } from ".";
 import { IoIosCompass } from "react-icons/io";
-import { useComponent, useStore } from "../../../store";
+import { useComponent, useTemplateStore } from "../../../store";
 import { components } from "@motionly/components";
 import { Input } from "@motionly/inputs";
 
@@ -10,7 +10,7 @@ export const component: Right = {
   title: "Component",
   component: () => {
     const component = useComponent();
-    const editComponentProps = useStore((state) => state.editComponentProps);
+    const editComponentProps = useTemplateStore((state) => state.editComponentProps);
     const inputs = Object.entries(components[component.type].inputs);
     return (
       <div>

@@ -1,7 +1,8 @@
 import { AbsoluteFill } from "remotion";
 import { useSelected } from "./useSelected";
 import { z } from "zod";
-import { Comp, Component } from "./Component";
+import { Component } from "./Component";
+import { Comp } from "@motionly/components";
 export * from "./useSelected";
 export * from "./Component";
 

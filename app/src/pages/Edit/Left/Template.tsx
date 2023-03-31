@@ -1,6 +1,6 @@
 import { Left } from ".";
 import { IoIosAdd } from "react-icons/io";
-import { useStore, useTemplate } from "../../../store";
+import { useTemplateStore, useTemplate } from "../../../store";
 import { Input, Inputs } from "@motionly/inputs";
 import { Template } from "@motionly/composition";
 
@@ -16,7 +16,7 @@ export const template: Left = {
   title: "Template",
   component: () => {
     const template = useTemplate();
-    const editTemplate = useStore((state) => state.editTemplate);
+    const editTemplate = useTemplateStore((state) => state.editTemplate);
     return (
       <div>
         {Object.entries(templateInputs).map(([key, input]) => {

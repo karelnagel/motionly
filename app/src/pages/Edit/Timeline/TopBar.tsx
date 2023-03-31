@@ -1,4 +1,4 @@
-import { useStore } from "../../../store";
+import { usePlayerRef, usePlayerStore, useTemplateStore, useTimelineStore } from "../../../store";
 import {
   IoMdCopy,
   IoIosVolumeOff,
@@ -10,20 +10,20 @@ import {
   IoMdExpand,
   IoIosRemove,
   IoIosAdd,
-  IoMdTrash
+  IoMdTrash,
 } from "react-icons/io";
 import { IconType } from "react-icons";
 
 export const TopBar = () => {
-  const setWidth = useStore((t) => t.timelineSetWidth);
-  const selected = useStore((t) => t.component);
-  const copy = useStore((t) => t.copyComponent);
-  const width = useStore((t) => t.timelineWidth);
-  const deleteComp = useStore((t) => t.deleteComp);
-  const fps = useStore((t) => t.templates[t.template].fps);
-  const playerRef = useStore((t) => t.playerRef);
-  const isPlaying = useStore((t) => t.isPlaying);
-  const frame = useStore((t) => t.frame);
+  const setWidth = useTimelineStore((t) => t.setWidth);
+  const selected = useTemplateStore((t) => t.component);
+  const copy = useTemplateStore((t) => t.copyComponent);
+  const width = useTimelineStore((t) => t.width);
+  const deleteComp = useTemplateStore((t) => t.deleteComp);
+  const fps = useTemplateStore((t) => t.templates[t.template || ""].fps);
+  const playerRef = usePlayerRef();
+  const isPlaying = usePlayerStore((t) => t.isPlaying);
+  const frame = usePlayerStore((t) => t.frame);
   return (
     <div className="flex justify-between py-1 px-2 shadow-md items-center">
       <div className="flex space-x-2 items-center">

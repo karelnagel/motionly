@@ -1,10 +1,10 @@
-import { useStore, useTemplate } from "../../../store/index";
+import { useTemplateStore, useTemplate, useTimelineStore, usePlayerStore, usePlayerRef } from "../../../store/index";
 import { TimelineComponent } from "./TimelineComp";
 import { TopBar } from "./TopBar";
 
 export const Timeline = () => {
-  const allComponents = useStore((s) => s.templates[s.template].allComponents);
-  const width = useStore((t) => t.timelineWidth);
+  const allComponents = useTemplateStore((s) => s.templates[s.template || ""].allComponents);
+  const width = useTimelineStore((t) => t.width);
 
   return (
     <div className=" h-full relative flex flex-col">
@@ -27,8 +27,8 @@ export const Timeline = () => {
 
 export const TimelineBar = () => {
   const { duration, fps } = useTemplate();
-  const frame = useStore((s) => s.frame);
-  const playerRef = useStore((s) => s.playerRef);
+  const frame = usePlayerStore((s) => s.frame);
+  const playerRef = usePlayerRef();
   return (
     <div className="h-14 w-full relative p-3 pr-7">
       <div className="relative">
@@ -51,7 +51,6 @@ export const TimelineBar = () => {
           type="range"
           value={frame}
           onChange={(e) => {
-            console.log(e.currentTarget.value);
             playerRef?.seekTo(Number(e.currentTarget.value));
           }}
           step={1}

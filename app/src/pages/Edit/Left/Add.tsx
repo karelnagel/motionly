@@ -1,8 +1,9 @@
 import { Left } from ".";
 import { IoIosAdd } from "react-icons/io";
 import { components } from "@motionly/components";
-import { useStore } from "../../../store";
-import { Comp } from "@motionly/composition";
+import { useTemplateStore } from "../../../store";
+import { Comp } from "@motionly/components";
+
 const def: Partial<Comp> = {
   top: 0,
   left: 0,
@@ -11,6 +12,7 @@ const def: Partial<Comp> = {
   rotation: 0,
   opacity: 1,
   duration: 10,
+  id: "",
   wrappers: { allWrappers: [], wrappers: {} },
 };
 export const add: Left = {
@@ -18,7 +20,7 @@ export const add: Left = {
   title: "Add",
   component: () => {
     const entries = Object.entries(components).filter(([_, comp]) => comp.examples);
-    const addComponent = useStore((state) => state.newComponent);
+    const addComponent = useTemplateStore((state) => state.newComponent);
     return (
       <div className="space-y-3">
         {entries.map(([name, component]) => {

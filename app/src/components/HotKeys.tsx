@@ -1,18 +1,18 @@
 import { useCallback, useEffect } from "react";
 import { useCurrentPlayerFrame } from "../hooks/useCurrentPlayerFrame";
-import { useStore } from "../store";
+import { usePlayerRef, usePlayerStore, useTemplateStore } from "../store";
 
 export function HotKeys() {
   useCurrentPlayerFrame();
 
-  const undo = useStore((t) => t.undo);
-  const redo = useStore((t) => t.redo);
-  const setSelected = useStore((t) => t.setComponent);
-  const deleteComp = useStore((t) => t.deleteComp);
-  const copyComp = useStore((t) => t.copyComponent);
-  const fps = useStore((t) => t.templates[t.template].fps);
-  const playerRef = useStore((t) => t.playerRef);
-  const frame = useStore((t) => t.frame);
+  const undo = useTemplateStore((t) => t.undo);
+  const redo = useTemplateStore((t) => t.redo);
+  const setSelected = useTemplateStore((t) => t.setComponent);
+  const deleteComp = useTemplateStore((t) => t.deleteComp);
+  const copyComp = useTemplateStore((t) => t.copyComponent);
+  const fps = useTemplateStore((t) => t.templates[t.template || ""].fps);
+  const playerRef = usePlayerRef();
+  const frame = usePlayerStore((t) => t.frame);
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
       const isInput =

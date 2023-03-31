@@ -1,8 +1,9 @@
-import { Comp } from "@motionly/composition";
+import { Comp } from "@motionly/components";
 import { IoIosInformation } from "react-icons/io";
+import { z } from "zod";
 import { Panel } from "../../../components/Panel";
 import { Tab, Tabs } from "../../../components/Tabs";
-import { useComponent, useStore } from "../../../store";
+import { useComponent, useRightStore, useTemplateStore } from "../../../store";
 import { component } from "./Component";
 import { general } from "./General";
 
@@ -15,7 +16,8 @@ export const right = {
   component,
 };
 
-export type RightTab = keyof typeof right;
+export const RightTab = z.enum(["general", "component"]);
+export type RightTab = z.infer<typeof RightTab>;
 
 const useRight = () => {
   const comp = useComponent();
@@ -23,16 +25,16 @@ const useRight = () => {
 };
 
 export const RightPanel = () => {
-  const rightTab = useStore((t) => t.rightTab);
-  const rightWidth = useStore((t) => t.rightWidth);
-  const setRightWidth = useStore((t) => t.setRightWidth);
+  const rightTab = useRightStore((t) => t.rightTab);
+  const rightWidth = useRightStore((t) => t.rightWidth);
+  const setRightWidth = useRightStore((t) => t.setRightWidth);
   const right = useRight();
   return <Panel width={rightWidth} setWidth={setRightWidth} items={right} tab={rightTab} />;
 };
 
 export const RightTabs = () => {
-  const setRightTab = useStore((t) => t.setRightTab);
-  const rightTab = useStore((t) => t.rightTab);
+  const setRightTab = useRightStore((t) => t.setRightTab);
+  const rightTab = useRightStore((t) => t.rightTab);
   const right = useRight();
   return (
     <Tabs

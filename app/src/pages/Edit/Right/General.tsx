@@ -1,8 +1,8 @@
 import { Right } from ".";
 import { IoIosSettings } from "react-icons/io";
 import { Input, Inputs } from "@motionly/inputs";
-import { Comp } from "@motionly/composition";
-import { useComponent, useStore } from "../../../store";
+import { Comp } from "@motionly/components";
+import { useComponent, useTemplateStore } from "../../../store";
 const inputs: { [key in keyof Comp]?: Inputs } = {
   top: { number: { label: "Top" } },
   left: { number: { label: "Left" } },
@@ -19,7 +19,7 @@ export const general: Right = {
   show: (c) => !!c,
   component: () => {
     const component = useComponent();
-    const editComponentProps = useStore((state) => state.editComponent);
+    const editComponentProps = useTemplateStore((state) => state.editComponent);
     const entries = Object.entries(inputs);
     return (
       <div>

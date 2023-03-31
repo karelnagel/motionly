@@ -1,8 +1,8 @@
-import { useStore, useTemplate } from "../store";
+import { useTemplate, useTemplateStore } from "../store";
 
 export const home = () => {
-  const newTemplate = useStore((s) => s.newTemplate);
-  const allTemplates = useStore((s) => s.allTemplates);
+  const newTemplate = useTemplateStore((s) => s.newTemplate);
+  const allTemplates = useTemplateStore((s) => s.allTemplates);
   return (
     <div className="p-4 space-y-4">
       <div className="flex justify-between items-center">
@@ -23,7 +23,7 @@ export const home = () => {
 
 const Template = ({ id }: { id: string }) => {
   const template = useTemplate(id);
-  const setTemplate = useStore((s) => s.setTemplate);
+  const setTemplate = useTemplateStore((s) => s.setTemplate);
   return (
     <div onClick={() => setTemplate(id)} className="bg-primary rounded-lg p-2 cursor-pointer flex flex-col items-center shadow-lg">
       <p>{template.name}</p>

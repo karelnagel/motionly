@@ -1,26 +1,29 @@
-import { GetType, SetType } from ".";
+import { z } from "zod";
+import { storeBase } from ".";
 import { RightTab } from "../pages/Edit/Right";
 
-export interface RightSlice {
-  rightTab?: RightTab;
-  setRightTab: (tab?: RightTab) => void;
-  rightWidth: number;
-  setRightWidth: (width: number) => void;
-}
+const RightStore = z.object({
+  rightTab: RightTab.optional(),
+  setRightTab: z.function().args(RightTab.optional()).returns(z.void()),
+  rightWidth: z.number().min(200).max(400),
+  setRightWidth: z.function().args(z.number()).returns(z.void()),
+});
 
-const minWidth = 200;
-const maxWidth = 400;
-export const right = (set: SetType, get: GetType): RightSlice => {
-  return {
-    rightTab: undefined,
-    rightWidth: 300,
-    setRightTab: (tab?: RightTab) =>
-      set((s) => {
-        s.rightTab = s.rightTab === tab ? undefined : tab;
-      }),
-    setRightWidth: (width: number) =>
-      set((s) => {
-        s.rightWidth = Math.max(Math.min(width, maxWidth), minWidth);
-      }),
-  };
-};
+export const useRightStore = storeBase(
+  (set) => {
+    return {
+      rightTab: undefined,
+      rightWidth: 300,
+      setRightTab: (tab?: RightTab) =>
+        set((s) => {
+          s.rightTab = s.rightTab === tab ? undefined : tab;
+        }),
+      setRightWidth: (width: number) =>
+        set((s) => {
+          s.rightWidth = width;
+        }),
+    };
+  },
+  RightStore,
+  "right"
+);

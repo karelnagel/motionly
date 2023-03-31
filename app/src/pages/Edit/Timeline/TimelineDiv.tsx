@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 import { Resize } from "../../../components/Resize";
-import { useStore } from "../../../store";
+import { useTimelineStore } from "../../../store";
 
 export const TimelineDiv = ({ children }: { children: ReactNode }) => {
-  const height = useStore((t) => t.timelineHeight);
-  const setHeight = useStore((t) => t.timelineSetHeight);
+  const height = useTimelineStore((t) => t.heigth);
+  const setHeight = useTimelineStore((t) => t.setHeight);
   return (
     <div style={{ height: height }} className=" shrink-0 bg-base-100 shadow-md flex flex-col relative">
       {children}

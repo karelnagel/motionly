@@ -1,16 +1,20 @@
 import z from "zod";
+import { StoreApi } from "zustand";
 
-type fn<T> = (set: (p: Partial<T>) => void, get: () => T) => T;
+type set<T extends {}> = (partial: T | Partial<T> | ((state: T) => T | Partial<T>), replace?: boolean | undefined) => void;
+type get<T extends {}> = () => T;
+type store<T extends {}> = StoreApi<T>;
+type fn<T extends {}> = (set: set<T>, get: get<T>, store: store<T>) => T;
 
 export function zustandZod<T extends {}>(fn: fn<T>, zod: z.ZodType<T>, callback: (e: z.ZodError) => void = () => {}): fn<T> {
-  return (set, get) => {
+  return (set, get, store) => {
     const newSet: typeof set = (p) => {
-      console.log(p);
-      if (!("partial" in zod) || typeof zod.partial !== "function") throw new Error("zod must be a partial schema");
-      const res = zod.partial().safeParse(p);
+      if (!("partial" in zod) || !(zod.partial instanceof Function)) throw new Error("zod must be a partial schema");
+      const parse = p instanceof Function ? p(store.getState()) : p;
+      const res = zod.partial().safeParse(parse);
       if (!res.success) return callback(res.error);
-      return set(p);
+      return set(res.data);
     };
-    return fn(newSet, get);
+    return fn(newSet, get, store);
   };
 }

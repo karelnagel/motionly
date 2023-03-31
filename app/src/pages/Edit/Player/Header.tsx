@@ -1,14 +1,14 @@
 import { IoMdRedo, IoMdUndo } from "react-icons/io";
-import { useStore } from "../../../store";
+import { useLeftStore, useTemplateStore } from "../../../store";
 
 export const Header = () => {
-  const name = useStore((s) => s.templates[s.template].name);
-  const editTemplate = useStore((s) => s.editTemplate);
-  const undo = useStore((s) => s.undo);
-  const redo = useStore((s) => s.redo);
-  const future = useStore((s) => s.future);
-  const past = useStore((s) => s.past);
-  const setTab = useStore((s) => s.setLeftTab);
+  const name = useTemplateStore((s) => s.templates[s.template || ""].name);
+  const editTemplate = useTemplateStore((s) => s.editTemplate);
+  const undo = useTemplateStore((s) => s.undo);
+  const redo = useTemplateStore((s) => s.redo);
+  const future = useTemplateStore((s) => s.future);
+  const past = useTemplateStore((s) => s.past);
+  const setTab = useLeftStore((s) => s.setLeftTab);
 
   return (
     <div className="shrink-0 flex justify-between items-center p-3">

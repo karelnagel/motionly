@@ -16,11 +16,11 @@ import { qrcode } from "./components/QRCode";
 import { shape } from "./components/Shape";
 import { text } from "./components/Text";
 import { video } from "./components/Video";
-import { Comp } from "@motionly/composition";
+import { Wrappers } from "@motionly/wrappers";
 
 export type Component<T> = {
-  zod: z.ZodType<T | undefined>;
-  component: React.FC<T | undefined>;
+  zod: z.ZodType<T>;
+  component: React.FC<T>;
   examples?: { props: Partial<Omit<Comp, "props">> & { props: T }; title: string }[];
   inputs: { [key in keyof T]?: Inputs };
 };
@@ -63,3 +63,19 @@ export const components = {
   text,
   video,
 };
+
+export const Comp = z.object({
+  id: z.string(),
+  top: z.number().optional(),
+  left: z.number().optional(),
+  width: z.number().optional(),
+  height: z.number().optional(),
+  from: z.number().optional(),
+  duration: z.number().optional(),
+  opacity: z.number().optional(),
+  rotation: z.number().optional(),
+  type: ComponentName,
+  props: z.any(),
+  wrappers: Wrappers,
+});
+export type Comp = z.infer<typeof Comp>;

@@ -1,7 +1,8 @@
 import { IoIosArrowBack } from "react-icons/io";
+import { z } from "zod";
 import { Panel } from "../../../components/Panel";
 import { Tab, Tabs } from "../../../components/Tabs";
-import { useStore } from "../../../store";
+import { useLeftStore, useTemplateStore } from "../../../store";
 import { add } from "./Add";
 import { code } from "./Code";
 import { template } from "./Template";
@@ -11,22 +12,22 @@ export type Left = Tab;
 export const left = {
   add,
   code,
-  general: template,
+  template,
 };
-
-export type LeftTab = keyof typeof left;
+export const LeftTab = z.enum(["add", "code", "template"]);
+export type LeftTab = z.infer<typeof LeftTab>;
 
 export const LeftPanel = () => {
-  const leftTab = useStore((t) => t.leftTab);
-  const leftWidth = useStore((t) => t.leftWidth);
-  const setLeftWidth = useStore((t) => t.setLeftWidth);
+  const leftTab = useLeftStore((t) => t.leftTab);
+  const leftWidth = useLeftStore((t) => t.leftWidth);
+  const setLeftWidth = useLeftStore((t) => t.setLeftWidth);
   return <Panel width={leftWidth} setWidth={setLeftWidth} items={left} tab={leftTab} reverse />;
 };
 
 export const LeftTabs = () => {
-  const setLeftTab = useStore((t) => t.setLeftTab);
-  const leftTab = useStore((t) => t.leftTab);
-  const setPage = useStore((t) => t.setPage);
+  const setLeftTab = useLeftStore((t) => t.setLeftTab);
+  const leftTab = useLeftStore((t) => t.leftTab);
+  const setPage = useTemplateStore((t) => t.setPage);
   return (
     <Tabs
       Button={() => (

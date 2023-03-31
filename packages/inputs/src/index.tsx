@@ -57,7 +57,6 @@ export type Inputs = {
 
 export function Input<T>({ props, value, onChange }: { props: Inputs; value: T; onChange: (s: T) => void }) {
   const entries = Object.entries(props);
-  console.log(entries);
   if (entries.length !== 1) return null;
   const entry = entries[0];
   const Component = inputs[entry[0] as keys].component;

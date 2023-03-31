@@ -1,15 +1,15 @@
-import { Comp } from "@motionly/composition";
+import { Comp } from "@motionly/components";
 import { useRef } from "react";
 import { IoIosAdd } from "react-icons/io";
 import Moveable from "react-moveable";
-import { useComponent, useStore, useTemplate } from "../../../store";
+import { useComponent, useTemplateStore, useTemplate } from "../../../store";
 
 export const TimelineComponent = ({ id }: { id: string }) => {
-  const selected = useStore((t) => t.component);
+  const selected = useTemplateStore((t) => t.component);
   const comp = useComponent(id);
   const template = useTemplate();
   const parentDuration = template.duration || 1;
-  const setSelected = useStore((t) => t.setComponent);
+  const setSelected = useTemplateStore((t) => t.setComponent);
   const divRef = useRef<HTMLDivElement>(null);
   const isSelected = selected === comp.id;
   if (!comp) return null;
@@ -50,8 +50,8 @@ export const TimelineComponent = ({ id }: { id: string }) => {
 };
 
 export const CompMoveable = ({ divRef, parentDuration, comp }: { divRef: React.RefObject<HTMLDivElement>; parentDuration: number; comp: Comp }) => {
-  const comps = useStore((t) => t.templates[t.template].components);
-  const setComp = useStore((t) => t.editComponent);
+  const comps = useTemplateStore((t) => t.templates[t.template || ""].components);
+  const setComp = useTemplateStore((t) => t.editComponent);
   const verticalGuidelines: number[] = []; //Todo
   return (
     <Moveable

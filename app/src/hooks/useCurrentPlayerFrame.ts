@@ -1,20 +1,20 @@
 import { useEffect } from "react";
-import { useStore } from "../store";
+import { usePlayerRef, usePlayerStore } from "../store";
 
 export const useCurrentPlayerFrame = () => {
-  const setFrame = useStore((s) => s.setFrame);
-  const ref = useStore((s) => s.playerRef);
-  const setIsPlaying = useStore((s) => s.setIsPlaying);
+  const setFrame = usePlayerStore((s) => s.setFrame);
+  const ref = usePlayerRef();
+  const setIsPlaying = usePlayerStore((s) => s.setIsPlaying);
 
   useEffect(() => {
     if (!ref) return;
-    ref.addEventListener("play", () => {
+    ref.addEventListener?.("play", () => {
       setIsPlaying(true);
     });
-    ref.addEventListener("pause", () => {
+    ref.addEventListener?.("pause", () => {
       setIsPlaying(false);
     });
-    ref.addEventListener("frameupdate", ({ detail }) => {
+    ref.addEventListener?.("frameupdate", ({ detail }) => {
       setFrame(detail.frame);
     });
   }, [ref]);

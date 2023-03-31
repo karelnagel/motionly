@@ -1,10 +1,10 @@
 import { Toaster } from "sonner";
 import { pages } from "./pages";
-import { useStore } from "./store";
+import { useTemplateStore } from "./store";
 import "./styles.css";
 
 export const App = () => {
-  const page = useStore((s) => s.page);
+  const page = useTemplateStore((s) => s.page);
   const Page = pages[page];
   return (
     <>

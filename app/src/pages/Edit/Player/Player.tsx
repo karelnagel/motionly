@@ -1,23 +1,23 @@
 import { useRef } from "react";
 import Moveable from "react-moveable";
 import { Player as MotionlyPlayer } from "@motionly/player";
-import { useComponent, useStore, useTemplate } from "../../../store";
+import { useComponent, useTemplateStore, useTemplate, usePlayerStore, usePlayerRef } from "../../../store";
 import { useShiftKey } from "../../../hooks/useShiftKey";
 
 export const Player = () => {
   const template = useTemplate();
   const comp = useComponent();
-  const setComponent = useStore((t) => t.setComponent);
-  const editComponent = useStore((t) => t.editComponent);
+  const setComponent = useTemplateStore((t) => t.setComponent);
+  const editComponent = useTemplateStore((t) => t.editComponent);
   const lockAspectRatio = useShiftKey();
   const divRef = useRef<HTMLDivElement>(null);
-  const scale = useStore((t) => t.playerScale);
-  const setPlayerRef = useStore((t) => t.setPlayerRef);
+  const scale = usePlayerStore((t) => t.playerScale);
+  const setPlayerRef = usePlayerStore((t) => t.setPlayerRef);
   const horizontalGuidelines: number[] = [];
   const verticalGuidelines: number[] = [];
   return (
     <div
-    className="bg-base-100"
+      className="bg-base-100"
       style={{
         width: template.width * scale,
         height: template.height * scale,

@@ -1,25 +1,8 @@
 import { Sequence, useVideoConfig } from "remotion";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ComponentName, components } from "@motionly/components";
-import { z } from "zod";
+import { Comp, components } from "@motionly/components";
 import { useSelected } from "./useSelected";
-import { Wrapper, Wrappers } from "@motionly/wrappers";
-
-export const Comp = z.object({
-  id: z.string(),
-  top: z.number().optional(),
-  left: z.number().optional(),
-  width: z.number().optional(),
-  height: z.number().optional(),
-  from: z.number().optional(),
-  duration: z.number().optional(),
-  opacity: z.number().optional(),
-  rotation: z.number().optional(),
-  type: ComponentName,
-  props: z.any(),
-  wrappers: Wrappers,
-});
-export type Comp = z.infer<typeof Comp>;
+import { Wrapper } from "@motionly/wrappers";
 
 export const Component = (comp: Comp) => {
   const { fps } = useVideoConfig();

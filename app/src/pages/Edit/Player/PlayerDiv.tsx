@@ -1,13 +1,13 @@
 import { useEffect, useRef } from "react";
-import { useStore, useTemplate } from "../../../store";
+import { useTemplateStore, useTemplate, usePlayerStore } from "../../../store";
 import { Header } from "./Header";
 import { Player } from "./Player";
 
 export const PlayerDiv = () => {
   const playerDivRef = useRef<HTMLDivElement>(null);
-  const setScale = useStore((t) => t.playerSetScale);
+  const setScale = usePlayerStore((t) => t.playerSetScale);
   const template = useTemplate();
-  const setComponent = useStore((t) => t.setComponent);
+  const setComponent = useTemplateStore((t) => t.setComponent);
   const getScale = () => {
     if (playerDivRef.current?.clientHeight && playerDivRef.current?.clientWidth) {
       const scaleX = playerDivRef.current.clientWidth / template.width;
