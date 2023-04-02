@@ -27,16 +27,16 @@ const useRight = () => {
 };
 
 export const RightPanel = () => {
-  const rightTab = useRightStore((t) => t.rightTab);
-  const rightWidth = useRightStore((t) => t.rightWidth);
-  const setRightWidth = useRightStore((t) => t.setRightWidth);
+  const rightTab = useRightStore((t) => t.tab);
+  const rightWidth = useRightStore((t) => t.width);
+  const setRightWidth = useRightStore((t) => t.setWidth);
   const right = useRight();
   return <Panel width={rightWidth} setWidth={setRightWidth} items={right} tab={rightTab} />;
 };
 
 export const RightTabs = () => {
-  const setRightTab = useRightStore((t) => t.setRightTab);
-  const rightTab = useRightStore((t) => t.rightTab);
+  const setRightTab = useRightStore((t) => t.setTab);
+  const rightTab = useRightStore((t) => t.tab);
   const right = useRight();
   return (
     <Tabs

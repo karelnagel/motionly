@@ -149,7 +149,7 @@ export const useTemplateStore = storeBase<TemplateStore>(
           const comp = s.templates[s.template].components[s.component || ""];
           if (!comp) return toast.error("No component selected");
           const id = getRandomId();
-          s.templates[s.template].components[id] = comp;
+          s.templates[s.template].components[id] = { ...comp, id };
           s.templates[s.template].allComponents.push(id);
           s.component = id;
         });

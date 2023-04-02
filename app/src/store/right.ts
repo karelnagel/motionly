@@ -2,25 +2,28 @@ import { z } from "zod";
 import { storeBase } from ".";
 import { RightTab } from "../pages/Edit/Right";
 
+const maxWith = 400;
+const minWith = 200;
+
 const RightStore = z.object({
-  rightTab: RightTab.optional(),
-  setRightTab: z.function().args(RightTab.optional()).returns(z.void()),
-  rightWidth: z.number().min(200).max(400),
-  setRightWidth: z.function().args(z.number()).returns(z.void()),
+  tab: RightTab.optional(),
+  setTab: z.function().args(RightTab.optional()).returns(z.void()),
+  width: z.number().min(minWith).max(maxWith),
+  setWidth: z.function().args(z.number()).returns(z.void()),
 });
 
 export const useRightStore = storeBase(
   (set) => {
     return {
-      rightTab: undefined,
-      rightWidth: 300,
-      setRightTab: (tab?: RightTab) =>
+      tab: undefined,
+      width: 300,
+      setTab: (tab?: RightTab) =>
         set((s) => {
-          s.rightTab = s.rightTab === tab ? undefined : tab;
+          s.tab = s.tab === tab ? undefined : tab;
         }),
-      setRightWidth: (width: number) =>
+      setWidth: (width: number) =>
         set((s) => {
-          s.rightWidth = width;
+          s.width = Math.max(minWith, Math.min(maxWith, width));
         }),
     };
   },

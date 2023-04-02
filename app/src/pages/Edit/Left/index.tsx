@@ -18,15 +18,15 @@ export const LeftTab = z.enum(["add", "code", "template"]);
 export type LeftTab = z.infer<typeof LeftTab>;
 
 export const LeftPanel = () => {
-  const leftTab = useLeftStore((t) => t.leftTab);
-  const leftWidth = useLeftStore((t) => t.leftWidth);
-  const setLeftWidth = useLeftStore((t) => t.setLeftWidth);
+  const leftTab = useLeftStore((t) => t.tab);
+  const leftWidth = useLeftStore((t) => t.width);
+  const setLeftWidth = useLeftStore((t) => t.setWidth);
   return <Panel width={leftWidth} setWidth={setLeftWidth} items={left} tab={leftTab} reverse />;
 };
 
 export const LeftTabs = () => {
-  const setLeftTab = useLeftStore((t) => t.setLeftTab);
-  const leftTab = useLeftStore((t) => t.leftTab);
+  const setLeftTab = useLeftStore((t) => t.setTab);
+  const leftTab = useLeftStore((t) => t.tab);
   const setPage = useTemplateStore((t) => t.setPage);
   return (
     <Tabs

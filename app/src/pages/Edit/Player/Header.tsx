@@ -8,7 +8,7 @@ export const Header = () => {
   const redo = useTemplateStore((s) => s.redo);
   const future = useTemplateStore((s) => s.future);
   const past = useTemplateStore((s) => s.past);
-  const setTab = useLeftStore((s) => s.setLeftTab);
+  const setTab = useLeftStore((s) => s.setTab);
 
   return (
     <div className="shrink-0 flex justify-between items-center p-3">
