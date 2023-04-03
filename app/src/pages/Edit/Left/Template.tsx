@@ -1,5 +1,5 @@
 import { Left } from ".";
-import { IoIosAdd } from "react-icons/io";
+import { IoIosAdd, IoIosSettings } from "react-icons/io";
 import { useTemplateStore, useTemplate } from "../../../store";
 import { Input, Inputs } from "@motionly/inputs";
 import { Template } from "@motionly/composition";
@@ -12,7 +12,7 @@ const templateInputs: { [key in keyof Template]?: Inputs } = {
   background: { color: { label: "Background" } },
 };
 export const template: Left = {
-  icon: () => <IoIosAdd />,
+  icon: IoIosSettings,
   title: "Template",
   component: () => {
     const template = useTemplate();

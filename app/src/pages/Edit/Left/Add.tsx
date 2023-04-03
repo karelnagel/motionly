@@ -3,6 +3,7 @@ import { IoIosAdd } from "react-icons/io";
 import { components } from "@motionly/components";
 import { useTemplateStore } from "../../../store";
 import { Comp } from "@motionly/components";
+import { IoShapesSharp } from "react-icons/io5";
 
 const def: Partial<Comp> = {
   top: 0,
@@ -16,8 +17,8 @@ const def: Partial<Comp> = {
   wrappers: { allWrappers: [], wrappers: {} },
 };
 export const add: Left = {
-  icon: () => <IoIosAdd />,
-  title: "Add",
+  icon: IoShapesSharp,
+  title: "Elements",
   component: () => {
     const entries = Object.entries(components).filter(([_, comp]) => comp.examples);
     const addComponent = useTemplateStore((state) => state.newComponent);
@@ -37,7 +38,7 @@ export const add: Left = {
                     <div onClick={() => addComponent(final as any)} className="flex flex-col items-center cursor-pointer" key={title}>
                       <div className="aspect-square w-full rounded-lg bg-white">
                         {image ? (
-                          <img src={image}  className="w-full object-cover"/>
+                          <img src={image} className="w-full object-cover" />
                         ) : (
                           <div className="aspect-square w-full rounded-lg scale-50">
                             <component.component {...(props.props as any)} />

@@ -10,9 +10,9 @@ import { template } from "./Template";
 export type Left = Tab;
 
 export const left = {
+  template,
   add,
   code,
-  template,
 };
 export const LeftTab = z.enum(["add", "code", "template"]);
 export type LeftTab = z.infer<typeof LeftTab>;
