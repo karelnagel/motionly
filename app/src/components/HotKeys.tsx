@@ -35,16 +35,6 @@ export function HotKeys() {
         playerRef?.isMuted() ? playerRef?.unmute() : playerRef?.mute();
       } else if (event.key === "f" && !isInput) {
         playerRef?.isFullscreen() ? playerRef?.exitFullscreen() : playerRef?.requestFullscreen();
-      } else if (event.key === "1" && !isInput) {
-        setSelected("ai");
-      } else if (event.key === "2" && !isInput) {
-        setSelected("add");
-      } else if (event.key === "3" && !isInput) {
-        setSelected("template");
-      } else if (event.key === "4" && !isInput) {
-        setSelected("export");
-      } else if (event.key === "0" && !isInput) {
-        setSelected("");
       } else return;
       event.preventDefault();
     },

@@ -8,13 +8,9 @@ export const Player = () => {
   const template = useTemplate();
   const comp = useComponent();
   const setComponent = useTemplateStore((t) => t.setComponent);
-  const editComponent = useTemplateStore((t) => t.editComponent);
-  const lockAspectRatio = useShiftKey();
   const divRef = useRef<HTMLDivElement>(null);
   const scale = usePlayerStore((t) => t.playerScale);
   const setPlayerRef = usePlayerStore((t) => t.setPlayerRef);
-  const horizontalGuidelines: number[] = [];
-  const verticalGuidelines: number[] = [];
   return (
     <div
       className="bg-base-100"
@@ -34,56 +30,68 @@ export const Player = () => {
         selected={comp?.id || ""}
         setSelected={setComponent}
       />
-      {comp && (
-        <Moveable
-          target={divRef}
-          scale={scale}
-          edgeDraggable
-          draggable={true}
-          resizable={true}
-          rotatable={true}
-          snappable={true}
-          snapDirections={{
-            center: true,
-            middle: true,
-            top: true,
-            bottom: true,
-            right: true,
-            left: true,
-          }}
-          elementSnapDirections={{
-            top: true,
-            bottom: true,
-            right: true,
-            left: true,
-          }}
-          snapThreshold={3}
-          verticalGuidelines={verticalGuidelines}
-          horizontalGuidelines={horizontalGuidelines}
-          onDrag={({ delta }) => {
-            editComponent({
-              left: (comp.left || 0) + delta[0],
-              top: (comp.top || 0) + delta[1],
-            });
-          }}
-          keepRatio={lockAspectRatio}
-          onResize={({ height, width, delta, target, direction }) => {
-            editComponent({
-              left: direction[0] === -1 ? (comp.left || 0) + (comp.width || template.width) - width : comp.left,
-              top: direction[1] === -1 ? (comp.top || 0) + (comp.height || template.height) - height : comp.top,
-              width: width,
-              height: height,
-            });
-            if (delta[0]) {
-              target.style.width = `${width}px`;
-            }
-            if (delta[1]) {
-              target.style.height = `${height}px`;
-            }
-          }}
-          onRotate={({ absoluteRotation }) => editComponent({ rotation: absoluteRotation })}
-        />
-      )}
+      {comp && <Move divRef={divRef} />}
     </div>
+  );
+};
+
+const Move = ({ divRef }: { divRef: any }) => {
+  const template = useTemplate();
+  const comp = useComponent();
+  const editComponent = useTemplateStore((t) => t.editComponent);
+  const lockAspectRatio = useShiftKey();
+  const scale = usePlayerStore((t) => t.playerScale);
+  const horizontalGuidelines: number[] = [];
+  const verticalGuidelines: number[] = [];
+  return (
+    <Moveable
+      target={divRef}
+      scale={scale}
+      edgeDraggable
+      draggable={true}
+      resizable={true}
+      rotatable={true}
+      snappable={true}
+      snapDirections={{
+        center: true,
+        middle: true,
+        top: true,
+        bottom: true,
+        right: true,
+        left: true,
+      }}
+      
+      elementSnapDirections={{
+        top: true,
+        bottom: true,
+        right: true,
+        left: true,
+      }}
+      snapThreshold={3}
+      verticalGuidelines={verticalGuidelines}
+      horizontalGuidelines={horizontalGuidelines}
+      onDrag={({ delta }) => {
+        editComponent({
+          left: (comp.left || 0) + delta[0],
+          top: (comp.top || 0) + delta[1],
+        });
+      }}
+      keepRatio={lockAspectRatio}
+      onResize={({ height, width, delta, target, direction }) => {
+        editComponent({
+          left: direction[0] === -1 ? (comp.left || 0) + (comp.width || template.width) - width : comp.left,
+          top: direction[1] === -1 ? (comp.top || 0) + (comp.height || template.height) - height : comp.top,
+          width: width,
+          height: height,
+        });
+        if (delta[0]) {
+          target.style.width = `${width}px`;
+        }
+        if (delta[1]) {
+          target.style.height = `${height}px`;
+        }
+      }}
+      onRotate={({ absoluteRotation }) => editComponent({ rotation: absoluteRotation })}
+    />
   );
 };
