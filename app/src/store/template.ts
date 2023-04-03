@@ -38,7 +38,7 @@ const TemplateStore = z.object({
   component: z.string().optional(),
   setComponent: z.function().args(z.string().optional()).returns(z.void()),
 
-  editComponent: z.function().args(CompPartial).returns(z.void()),
+  editComponent: z.function().args(CompPartial, z.boolean().optional()).returns(z.void()),
   editComponentProps: z.function().args(z.any()).returns(z.void()),
   newComponent: z.function().args(Comp).returns(z.void()),
   copyComponent: z.function().returns(z.void()),
@@ -109,13 +109,17 @@ export const useTemplateStore = storeBase<TemplateStore>(
       setPage: (page) => setStore({ page }),
       setComponent: (component?: string) => setStore({ component }),
 
-      editComponent: (comp) => {
-        set((s) => {
-          if (!s.template) return;
-          const old = s.templates[s.template].components[s.component || ""];
-          if (!old) return toast.error("No component selected");
-          s.templates[s.template].components[s.component || ""] = { ...old, ...comp };
-        });
+      editComponent: (comp, noCheck = false) => {
+        set(
+          (s) => {
+            if (!s.template) return;
+            const old = s.templates[s.template].components[s.component || ""];
+            if (!old) return toast.error("No component selected");
+            s.templates[s.template].components[s.component || ""] = { ...old, ...comp };
+          },
+          undefined,
+          noCheck
+        );
       },
       editComponentProps: (props) => {
         set((s) => {

@@ -19,13 +19,13 @@ export const general: Right = {
   show: (c) => !!c,
   component: () => {
     const component = useComponent();
-    const editComponentProps = useTemplateStore((state) => state.editComponent);
+    const editComponent = useTemplateStore((state) => state.editComponent);
     const entries = Object.entries(inputs);
     return (
       <div className="space-y-2">
         {entries.map(([key, input]) => {
           const value = component[key as keyof Comp];
-          return <Input key={key} value={value} onChange={(value) => editComponentProps({ [key]: value })} props={input} />;
+          return <Input key={key} value={value} onChange={(value) => editComponent({ [key]: value }, false)} props={input} />;
         })}
       </div>
     );
