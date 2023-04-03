@@ -256,20 +256,19 @@ importers:
       '@remotion/noise': 3.3.80_biqbaboplfbrettd7655fr4n2y
       '@remotion/paths': 3.3.80
       '@remotion/shapes': 3.3.80_biqbaboplfbrettd7655fr4n2y
+      '@types/react': 17.0.11
+      '@types/react-dom': 17.0.8
       '@types/react-simple-maps': 3.0.0
       lottie-web: 5.10.2
       prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
       react-icons: 4.8.0_react@18.2.0
       react-qr-code: 2.0.11_react@18.2.0
       react-simple-maps: 3.0.0_v2m5e27vhdewzwhryxwfaorcca
       remotion: 3.3.80_biqbaboplfbrettd7655fr4n2y
       typescript: 4.9.5
       zod: 3.21.4
-    devDependencies:
-      '@types/react': 17.0.11
-      '@types/react-dom': 17.0.8
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
 
   packages/composition:
     specifiers:
@@ -277,22 +276,21 @@ importers:
       '@motionly/wrappers': '*'
       '@types/react': 17.0.11
       '@types/react-dom': 17.0.8
-      react: ^18.0.0
-      react-dom: ^18.0.0
+      react: ^18.2.0
+      react-dom: ^18.2.0
       remotion: 3.3.80
       typescript: ^4.9.4
       zod: ^3.21.4
     dependencies:
       '@motionly/components': link:../components
       '@motionly/wrappers': link:../wrappers
-      remotion: 3.3.80_biqbaboplfbrettd7655fr4n2y
-      typescript: 4.9.5
-      zod: 3.21.4
-    devDependencies:
       '@types/react': 17.0.11
       '@types/react-dom': 17.0.8
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      remotion: 3.3.80_biqbaboplfbrettd7655fr4n2y
+      typescript: 4.9.5
+      zod: 3.21.4
 
   packages/inputs:
     specifiers:
@@ -304,14 +302,13 @@ importers:
       typescript: ^4.9.4
       zod: ^3.20.6
     dependencies:
-      remotion: 3.3.80_biqbaboplfbrettd7655fr4n2y
-      typescript: 4.9.5
-      zod: 3.21.4
-    devDependencies:
       '@types/react': 17.0.11
       '@types/react-dom': 17.0.8
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      remotion: 3.3.80_biqbaboplfbrettd7655fr4n2y
+      typescript: 4.9.5
+      zod: 3.21.4
 
   packages/player:
     specifiers:
@@ -327,12 +324,11 @@ importers:
       '@motionly/composition': link:../composition
       '@remotion/cli': 3.3.80_biqbaboplfbrettd7655fr4n2y
       '@remotion/player': 3.3.80_biqbaboplfbrettd7655fr4n2y
-      remotion: 3.3.80_biqbaboplfbrettd7655fr4n2y
-    devDependencies:
       '@types/react': 17.0.11
       '@types/react-dom': 17.0.8
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      remotion: 3.3.80_biqbaboplfbrettd7655fr4n2y
 
   packages/wrappers:
     specifiers:
@@ -3801,7 +3797,6 @@ packages:
     resolution: {integrity: sha512-0ohAiJAx1DAUEcY9UopnfwCE9sSMDGnY/oXjWMax6g3RpzmTt2GMyMVAXcbn0mo8XAff0SbQJl2/SBU+hjSZ1A==}
     dependencies:
       '@types/react': 18.0.24
-    dev: true
 
   /@types/react-dom/18.0.8:
     resolution: {integrity: sha512-C3GYO0HLaOkk9dDAz3Dl4sbe4AKUGTCfFIZsz3n/82dPNN8Du533HzKatDxeUYWu24wJgMP1xICqkWk1YOLOIw==}
@@ -3823,7 +3818,6 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
       csstype: 3.1.1
-    dev: true
 
   /@types/react/18.0.24:
     resolution: {integrity: sha512-wRJWT6ouziGUy+9uX0aW4YOJxAY0bG6/AOk5AW5QSvZqI7dk6VBIbXvcVgIw/W5Jrl24f77df98GEKTJGOLx7Q==}

@@ -20,9 +20,7 @@ export const Resize = ({
       if (!isResizing) {
         return;
       }
-      setValue(
-        value - (isHorizontal ? e.movementY : e.movementX) * (reverse ? -1 : 1)
-      );
+      setValue(value - (isHorizontal ? e.movementY : e.movementX) * (reverse ? -1 : 1));
     },
     [isResizing, value]
   );

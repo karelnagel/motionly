@@ -20,7 +20,7 @@ export const Template = z.object({
 export type Template = z.infer<typeof Template>;
 
 export const Composition = ({ allComponents, components, background }: Template) => {
-  //fonts
+  // Todo fonts
   const { setSelected } = useSelected();
   return (
     <AbsoluteFill style={{ background }} onClick={() => setSelected("")}>

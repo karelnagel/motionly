@@ -1,7 +1,7 @@
 import { Player as RemotionPlayer, PlayerRef } from "@remotion/player";
 import { forwardRef } from "react";
 import { CSSProperties, ReactNode } from "react";
-import { Template, Composition } from "@motionly/composition";
+import { Template, Composition, SelectedContext } from "@motionly/composition";
 
 export type PlayerControls = {
   allowFullscreen?: boolean;
@@ -29,18 +29,18 @@ export type PlayerProps = PlayerControls & {
 export const Player = forwardRef<PlayerRef, PlayerProps>(
   ({ template, loading, setSelected = () => undefined, selected, selectedRef, ...props }, ref) => {
     return (
-      // <SelectedContext.Provider value={{ setSelected, selected, selectedRef }}>
-      <RemotionPlayer
-        ref={ref}
-        component={Composition}
-        fps={template.fps}
-        durationInFrames={Math.ceil((template.duration || 1) * template.fps)}
-        inputProps={template}
-        compositionHeight={template.height}
-        compositionWidth={template.width}
-        {...props}
-      />
-      // </SelectedContext.Provider>
+      <SelectedContext.Provider value={{ setSelected, selected, selectedRef }}>
+        <RemotionPlayer
+          ref={ref}
+          component={Composition}
+          fps={template.fps}
+          durationInFrames={Math.ceil((template.duration || 1) * template.fps)}
+          inputProps={template}
+          compositionHeight={template.height}
+          compositionWidth={template.width}
+          {...props}
+        />
+      </SelectedContext.Provider>
     );
   }
 );

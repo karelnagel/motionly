@@ -12,9 +12,7 @@
         "@motionly/composition": "*",
         "@remotion/player": "3.3.80",
         "@remotion/cli": "3.3.80",
-        "remotion": "3.3.80"
-    },
-    "devDependencies": {
+        "remotion": "3.3.80",
         "@types/react": "17.0.11",
         "@types/react-dom": "17.0.8",
         "react": "^18.0.0",

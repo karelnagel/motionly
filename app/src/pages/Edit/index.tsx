@@ -1,5 +1,6 @@
 import { HotKeys } from "../../components/HotKeys";
 import { LeftPanel, LeftTabs } from "./Left";
+import { Player } from "./Player/Player";
 import { PlayerDiv } from "./Player/PlayerDiv";
 import { RightPanel, RightTabs } from "./Right";
 import { Timeline } from "./Timeline/Timeline";
@@ -12,7 +13,9 @@ export const edit = () => {
       <div className="h-screen flex flex-col w-full">
         <div className="h-full flex max-w-full ">
           <LeftPanel />
-          <PlayerDiv />
+          <PlayerDiv>
+            <Player />
+          </PlayerDiv>
           <RightPanel />
         </div>
         <TimelineDiv>
