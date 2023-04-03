@@ -18,39 +18,24 @@ export const Color = z.string().startsWith("#").max(9);
 
 export const color: Input<string> = {
   zod: Color,
-  component: ({ disabled, value, onChange, props: { placeholder, label, tooltip } }) => {
+  component: ({ disabled, value, onChange, props: { label } }) => {
     const color = value?.slice(0, 7);
     const alpha = value?.slice(7) || "FF";
     return (
-      <div
-        className="pr-3 flex bg-base-200 w-full items-center justify-end rounded-lg border leading-none overflow-hidden"
-        style={{ borderColor: value }}
-      >
+      <div className="form" style={{ borderColor: value }}>
         <label>{label}</label>
-        <div className="flex w-full justify-between">
-          <input
-            type="color"
-            value={color || ""}
-            disabled={disabled}
-            onChange={(e) => onChange(e.target.value + alpha)}
-            className="bg-transparent w-14 h-11 -my-2 -ml-2 p-0 mr-0"
-          />
-          <input
-            type="text"
-            value={color || ""}
-            onChange={(e) => onChange(e.target.value + alpha)}
-            disabled={disabled}
-            className=" bg-transparent w-20"
-          />
-          <div className="flex items-center">
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%" }}>
+          <input type="color" value={color || ""} disabled={disabled} onChange={(e) => onChange(e.target.value + alpha)} />
+          <input type="text" value={color || ""} onChange={(e) => onChange(e.target.value + alpha)} disabled={disabled} style={{margin:"0 10px"}} />
+          <div style={{ display: "flex", flexDirection: "row" }}>
             <input
+              style={{ width: "40px" }}
               type="NUMBER"
               disabled={disabled}
               min={0}
               max={100}
               value={alpha ? hexToPercent(alpha) : "100"}
               onChange={(e) => onChange(color + (e.target.value ? percentToHex(Number(e.target.value)) : ""))}
-              className="w-10 bg-transparent"
             />
             %
           </div>

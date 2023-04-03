@@ -51,7 +51,7 @@ const TemplateStore = z.object({
 type TemplateStore = z.infer<typeof TemplateStore>;
 export const useTemplateStore = storeBase<TemplateStore>(
   (setStore, get) => {
-    const set: typeof setStore = (s) => {
+    const set: typeof setStore = (s, replace) => {
       setStore((state) => {
         if (state.historyTimeout) clearTimeout(state.historyTimeout);
         else state.lastTemplate = JSON.parse(JSON.stringify(get().templates[get().template || ""]));

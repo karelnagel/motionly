@@ -16,7 +16,7 @@ export const component: Right = {
     const editComponentProps = useTemplateStore((state) => state.editComponentProps);
     const inputs = Object.entries(components[component.type].inputs);
     return (
-      <div>
+      <div className="flex flex-col space-y-2">
         {inputs.map(([key, input]) => {
           const value = component.props[key as keyof typeof component];
           return <Input key={key} value={value} onChange={(e) => editComponentProps({ [key]: e })} props={input} />;

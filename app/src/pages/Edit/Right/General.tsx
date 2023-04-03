@@ -22,7 +22,7 @@ export const general: Right = {
     const editComponentProps = useTemplateStore((state) => state.editComponent);
     const entries = Object.entries(inputs);
     return (
-      <div>
+      <div className="space-y-2">
         {entries.map(([key, input]) => {
           const value = component[key as keyof Comp];
           return <Input key={key} value={value} onChange={(value) => editComponentProps({ [key]: value })} props={input} />;

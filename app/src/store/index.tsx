@@ -13,7 +13,10 @@ export * from "./timeline";
 export * from "./template";
 
 export function storeBase<T extends {}>(
-  state: (set: (state: T | Partial<T> | ((state: Draft<T>) => void)) => void, get: () => T) => T,
+  state: (
+    set: (nextStateOrUpdater: T | Partial<T> | ((state: Draft<T>) => void), shouldReplace?: boolean, noCheck?: boolean) => void,
+    get: () => T
+  ) => T,
   zod: z.ZodType<T>,
   name: string
 ) {

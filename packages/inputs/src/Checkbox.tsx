@@ -5,7 +5,7 @@ export const checkbox: Input<boolean> = {
   zod: z.boolean(),
   component: ({ disabled, value, onChange, props: { placeholder, label, tooltip } }) => {
     return (
-      <div>
+      <div className="form">
         <label>{label}</label>
         <input
           disabled={disabled}

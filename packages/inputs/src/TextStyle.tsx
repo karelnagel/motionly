@@ -19,7 +19,7 @@ export const text_style: Input<TextStyle> = {
   zod: TextStyle,
   component: ({ props: { label }, value, onChange }) => {
     return (
-      <div>
+      <div className="form">
         <label>{label}</label>
         <div></div>
       </div>

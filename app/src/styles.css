@@ -68,3 +68,19 @@
 .btn-ghost:disabled {
   @apply opacity-20 cursor-default;
 }
+
+.form {
+  @apply flex flex-col items-start space-y-1;
+}
+.form label {
+  @apply text-sm;
+}
+.form input {
+  @apply !bg-base-100 rounded-md p-1 focus:outline-primary focus:outline w-full;
+}
+.form input[type="color"] {
+  @apply p-0 h-8 w-8 shrink-0;
+}
+.form input[type="checkbox"] {
+  @apply p-0 h-5 w-5 bg-primary-50 rounded-md accent-primary-500;
+}

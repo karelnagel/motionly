@@ -5,7 +5,7 @@ export const select: Input<boolean, { options: keyof typeof SelectOptions }> = {
   zod: ({ options }) => SelectOptions[options] as any,
   component: ({ disabled, value, onChange, props: { placeholder, label, tooltip } }) => {
     return (
-      <div>
+      <div className="form">
         <label>{label}</label>
         <input
           disabled={disabled}
