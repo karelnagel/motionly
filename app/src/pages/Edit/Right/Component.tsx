@@ -2,6 +2,7 @@ import { Right } from ".";
 import { useComponent, useTemplateStore } from "../../../store";
 import { components } from "@motionly/components";
 import { Input } from "@motionly/inputs";
+import { capitalize } from "../../../helpers";
 
 export const component: Right = {
   icon: () => {
@@ -10,7 +11,10 @@ export const component: Right = {
     return <Icon />;
   },
   show: (c) => !!c,
-  title: "Component",
+  title: () => {
+    const comp = useComponent();
+    return <>{capitalize(comp.type)}</>;
+  },
   component: () => {
     const component = useComponent();
     const editComponentProps = useTemplateStore((state) => state.editComponentProps);

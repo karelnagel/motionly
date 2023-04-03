@@ -1,6 +1,7 @@
-import { Comp, components } from "@motionly/components";
+import { components } from "@motionly/components";
 import { useRef } from "react";
 import Moveable from "react-moveable";
+import { capitalize } from "../../../helpers";
 import { useComponent, useTemplateStore, useTemplate } from "../../../store";
 
 export const TimelineComponent = ({ id }: { id: string }) => {
@@ -14,7 +15,6 @@ export const TimelineComponent = ({ id }: { id: string }) => {
   if (!comp) return null;
   const hue = components[comp.type].hue;
   const Icon = components[comp.type].Icon;
-  const name = comp.type[0].toUpperCase() + comp.type.slice(1);
   return (
     <div className="cursor-pointer">
       <div
@@ -39,18 +39,16 @@ export const TimelineComponent = ({ id }: { id: string }) => {
         >
           <div className="whitespace-nowrap overflow-hidden text-ellipsis w-full flex items-center">
             <Icon className="inline-block mr-2 shrink-0" />
-            <p className="">{"text" in comp.props ? comp.props.text : name}</p>
+            <p className="">{"text" in comp.props ? comp.props.text : capitalize(comp.type)}</p>
           </div>
         </div>
       </div>
-      {isSelected && <CompMoveable divRef={divRef} parentDuration={parentDuration} comp={comp} />}
+      {isSelected && <CompMoveable divRef={divRef} />}
     </div>
   );
 };
 
-export const CompMoveable = ({ divRef, parentDuration, comp }: { divRef: React.RefObject<HTMLDivElement>; parentDuration: number; comp: Comp }) => {
-  const comps = useTemplateStore((t) => t.templates[t.template || ""].components);
-  const setComp = useTemplateStore((t) => t.editComponent);
+export const CompMoveable = ({ divRef }: { divRef: React.RefObject<HTMLDivElement> }) => {
   const verticalGuidelines: number[] = []; //Todo
   return (
     <Moveable

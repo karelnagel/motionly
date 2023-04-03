@@ -3,7 +3,7 @@ import { Left } from "../pages/Edit/Left";
 
 export type Tab = {
   icon: IconType | (() => JSX.Element);
-  title: string;
+  title: string | (() => JSX.Element);
   component: () => JSX.Element;
 };
 export function Tabs<T extends string>({
@@ -35,7 +35,7 @@ export function Tabs<T extends string>({
               <div className="text-2xl">
                 <item.icon />
               </div>
-              <p className="text-[10px] overflow-hidden">{item.title}</p>
+              <p className="text-[10px] overflow-hidden">{typeof item.title === "string" ? item.title : item.title()}</p>
             </div>
           );
         })}
