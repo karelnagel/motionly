@@ -23,7 +23,7 @@ export const Composition = ({ allComponents, components, background }: Template)
   //fonts
   const { setSelected } = useSelected();
   return (
-    <AbsoluteFill style={{ background }} onClick={() => setSelected("template")}>
+    <AbsoluteFill style={{ background }} onClick={() => setSelected("")}>
       {allComponents.map((c) => (
         <Component key={c} {...components[c]} />
       ))}

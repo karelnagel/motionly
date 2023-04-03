@@ -25,7 +25,10 @@ export const Component = (comp: Comp) => {
       <Wrapper {...comp.wrappers}>
         <div
           ref={ref}
-          onClick={() => setSelected(comp.id)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setSelected(comp.id);
+          }}
           style={{
             width,
             height,

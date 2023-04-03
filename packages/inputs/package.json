@@ -11,7 +11,7 @@
     "dependencies": {
         "typescript": "^4.9.4",
         "zod": "^3.20.6",
-        "remotion": "3.3.76"
+        "remotion": "3.3.80"
     },
     "devDependencies": {
         "@types/react": "17.0.11",

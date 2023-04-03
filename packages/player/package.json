@@ -1,7 +1,7 @@
 {
     "name": "@motionly/player",
     "version": "1.4.2",
-    "main": "src/index.ts",
+    "main": "src/index.tsx",
     "license": "MIT",
     "private": false,
     "scripts": {
@@ -10,9 +10,9 @@
     },
     "dependencies": {
         "@motionly/composition": "*",
-        "@remotion/player": "3.3.76",
-        "@remotion/cli": "3.3.76",
-        "remotion": "3.3.76"
+        "@remotion/player": "3.3.80",
+        "@remotion/cli": "3.3.80",
+        "remotion": "3.3.80"
     },
     "devDependencies": {
         "@types/react": "17.0.11",

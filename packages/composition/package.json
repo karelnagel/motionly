@@ -15,7 +15,7 @@
         "@motionly/wrappers": "*",
         "typescript": "^4.9.4",
         "zod": "^3.21.4",
-        "remotion": "3.3.76"
+        "remotion": "3.3.80"
     },
     "devDependencies": {
         "@types/react": "17.0.11",

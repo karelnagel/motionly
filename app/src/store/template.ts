@@ -107,7 +107,7 @@ export const useTemplateStore = storeBase<TemplateStore>(
 
       page: "home",
       setPage: (page) => setStore({ page }),
-      setComponent: (selected?: string) => setStore({ component: selected }),
+      setComponent: (component?: string) => setStore({ component }),
 
       editComponent: (comp) => {
         set((s) => {

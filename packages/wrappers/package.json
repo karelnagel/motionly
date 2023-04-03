@@ -9,12 +9,12 @@
         "dev": "tsc --watch"
     },
     "dependencies": {
-        "@remotion/media-utils": "3.3.76",
-        "@remotion/motion-blur": "3.3.76",
-        "@remotion/noise": "3.3.76",
+        "@remotion/media-utils": "3.3.80",
+        "@remotion/motion-blur": "3.3.80",
+        "@remotion/noise": "3.3.80",
         "typescript": "^4.9.4",
         "zod": "^3.20.6",
-        "remotion": "3.3.76"
+        "remotion": "3.3.80"
     },
     "devDependencies": {
         "@types/react": "17.0.11",
