@@ -3,16 +3,18 @@ import { IoIosSettings } from "react-icons/io";
 import { Input, Inputs } from "@motionly/inputs";
 import { Comp } from "@motionly/components";
 import { useComponent, useTemplateStore } from "../../../store";
+
 const inputs: { [key in keyof Comp]?: Inputs } = {
-  top: { number: { label: "Top" } },
-  left: { number: { label: "Left" } },
+  x: { number: { label: "X" } },
+  y: { number: { label: "Y" } },
   width: { number: { label: "Width" } },
   height: { number: { label: "Height" } },
-  rotation: { number: { label: "Rotation" } },
-  opacity: { number: { label: "Opacity" } },
+  rotation: { range: { label: "Rotation", min: 0, max: 360, step: 1 } },
+  opacity: { range: { label: "Opacity", min: 0, max: 1, step: 0.01 } },
   duration: { number: { label: "Duration" } },
   from: { number: { label: "From" } },
 };
+
 export const general: Right = {
   icon: IoIosSettings,
   title: "General",

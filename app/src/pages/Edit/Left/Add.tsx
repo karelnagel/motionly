@@ -1,19 +1,21 @@
 import { Left } from ".";
-import { IoIosAdd } from "react-icons/io";
 import { components } from "@motionly/components";
 import { useTemplateStore } from "../../../store";
 import { Comp } from "@motionly/components";
 import { IoShapesSharp } from "react-icons/io5";
 
-const def: Partial<Comp> = {
-  top: 0,
-  left: 0,
+const def: Comp = {
+  y: 0,
+  x: 0,
   width: 100,
   height: 100,
   rotation: 0,
   opacity: 1,
   duration: 10,
   id: "",
+  from: 0,
+  type: "text",
+  props: {},
   wrappers: { allWrappers: [], wrappers: {} },
 };
 export const add: Left = {

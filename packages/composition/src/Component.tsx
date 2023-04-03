@@ -23,7 +23,7 @@ export const Component = (comp: Comp) => {
           overflow: "hidden",
           width: comp.width,
           height: comp.height,
-          transform: `rotate(${comp.rotation}deg) translate(${comp.left || 0}px, ${comp.top || 0}px)`,
+          transform: `rotate(${comp.rotation}deg) translate(${comp.x}px, ${comp.y}px)`,
           opacity: comp.opacity,
           position: "absolute",
         }}

@@ -6,7 +6,7 @@ export const range: Input<
   {
     min: number;
     max: number;
-    step: number;
+    step?: number;
   }
 > = {
   zod: z.number(),

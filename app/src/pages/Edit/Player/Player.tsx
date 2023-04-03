@@ -30,7 +30,7 @@ export const Player = () => {
         selected={comp?.id || ""}
         setSelected={setComponent}
       />
-      {comp && <Move divRef={divRef} />}
+      <Move divRef={divRef} />
     </div>
   );
 };
@@ -38,20 +38,16 @@ const useGuidelines = (scale: number) => {
   const template = useTemplate();
   const component = useTemplateStore((t) => t.component);
   const comps = Object.values(template.components).filter((c) => c.id !== component);
-  const vertical = [...comps.map((c) => c.left || 0), ...comps.map((c) => (c.left || 0) + (c.width || 0)), 0, template.width / 2, template.width].map(
+  const vertical = [...comps.map((c) => c.x || 0), ...comps.map((c) => (c.x || 0) + (c.width || 0)), 0, template.width / 2, template.width].map(
     (c) => c * scale
   );
-  const horizontal = [
-    ...comps.map((c) => c.top || 0),
-    ...comps.map((c) => (c.top || 0) + (c.height || 0)),
-    0,
-    template.height / 2,
-    template.height,
-  ].map((c) => c * scale);
+  const horizontal = [...comps.map((c) => c.y || 0), ...comps.map((c) => (c.y || 0) + (c.height || 0)), 0, template.height / 2, template.height].map(
+    (c) => c * scale
+  );
   return { vertical, horizontal };
 };
+
 const Move = ({ divRef }: { divRef: any }) => {
-  const template = useTemplate();
   const comp = useComponent();
   const editComponent = useTemplateStore((t) => t.editComponent);
   const lockAspectRatio = useShiftKey();
@@ -61,6 +57,9 @@ const Move = ({ divRef }: { divRef: any }) => {
     <Moveable
       target={divRef}
       scale={scale}
+      stopPropagation={true}
+      preventClickDefault={true}
+      preventClickEventOnDrag={true}
       edgeDraggable
       draggable={true}
       resizable={true}
@@ -80,14 +79,14 @@ const Move = ({ divRef }: { divRef: any }) => {
         right: true,
         left: true,
       }}
-      snapThreshold={10}
+      snapThreshold={3}
       verticalGuidelines={vertical}
       horizontalGuidelines={horizontal}
       onDrag={({ delta }) => {
         editComponent(
           {
-            left: (comp.left || 0) + delta[0],
-            top: (comp.top || 0) + delta[1],
+            x: (comp.x || 0) + delta[0],
+            y: (comp.y || 0) + delta[1],
           },
           true
         );
@@ -96,8 +95,8 @@ const Move = ({ divRef }: { divRef: any }) => {
       onResize={({ height, width, delta, target, direction }) => {
         editComponent(
           {
-            left: direction[0] === -1 ? (comp.left || 0) + (comp.width || template.width) - width : comp.left,
-            top: direction[1] === -1 ? (comp.top || 0) + (comp.height || template.height) - height : comp.top,
+            x: direction[0] === -1 ? (comp.x || 0) + comp.width - width : comp.x,
+            y: direction[1] === -1 ? (comp.y || 0) + comp.height - height : comp.y,
             width: width,
             height: height,
           },

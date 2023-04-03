@@ -8,8 +8,8 @@ type fn<T extends {}> = (set: set<T>, get: get<T>, store: store<T>) => T;
 
 export function zustandZod<T extends {}>(fn: fn<T>, zod: z.ZodType<T>, callback: (e: z.ZodError) => void = () => {}): fn<T> {
   return (set, get, store) => {
-    const newSet: typeof set = (p, replace, nocheck = true) => {
-      if (nocheck) return set(p, replace, nocheck);
+    const newSet: typeof set = (p, replace, noCheck) => {
+      if (noCheck) return set(p, replace);
 
       if (!("partial" in zod) || !(zod.partial instanceof Function)) throw new Error("zod must be a partial schema");
       const parse = p instanceof Function ? p(store.getState()) : p;
