@@ -20,14 +20,14 @@ export const Header = () => {
       />
       <div className="flex items-center space-x-4 font-bold ">
         <div className="flex text-2xl space-x-2">
-          <div className="tooltip tooltip-bottom" data-tip="⌘ + Z">
-            <IoMdUndo onClick={past.length ? undo : undefined} className={`${past.length ? "cursor-pointer" : "opacity-30 cursor-default"}`} />
-          </div>
-          <div className="tooltip tooltip-bottom" data-tip="⌘ + ⇧ + Z">
-            <IoMdRedo onClick={future.length ? redo : undefined} className={`${future.length ? "cursor-pointer" : "opacity-30 cursor-default"}`} />
-          </div>
+          <button className="btn-ghost" data-tip="⌘ + Z" disabled={!past.length}>
+            <IoMdUndo onClick={past.length ? undo : undefined} />
+          </button>
+          <button className="btn-ghost" data-tip="⌘ + ⇧ + Z" disabled={!future.length}>
+            <IoMdRedo onClick={future.length ? redo : undefined} />
+          </button>
         </div>
-        <button className="btn btn-primary btn-sm" onClick={() => setTab("add")}>
+        <button className="btn-primary" onClick={() => setTab("add")}>
           Export
         </button>
       </div>

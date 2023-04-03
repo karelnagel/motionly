@@ -50,8 +50,8 @@ export const TopBar = () => {
 };
 const Button = ({ Icon, onClick, disabled, tooltip }: { Icon: IconType; onClick: () => void; disabled?: boolean; tooltip?: string }) => {
   return (
-    <div className={tooltip ? "tooltip tooltip-bottom" : ""} data-tip={tooltip}>
-      <button disabled={disabled} onClick={() => onClick()} className="text-xl rounded-lg aspect-square hover:bg-base-200 p-1 cursor-pointer">
+    <div className={`${tooltip ? "tooltip tooltip-bottom" : ""}`} data-tip={tooltip}>
+      <button disabled={disabled} onClick={() => onClick()} className="btn-ghost">
         <Icon />
       </button>
     </div>
