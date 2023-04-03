@@ -1,20 +1,42 @@
 import { Sequence, useVideoConfig } from "remotion";
-import { useMemo } from "react";
-import { Comp, components } from "@motionly/components";
-import { useSelected } from "./useSelected";
-import { Wrapper } from "@motionly/wrappers";
+import { ReactNode, useMemo } from "react";
+import { components } from "./components";
+import { Wrappers } from "./wrappers";
+import { useCompositionStore } from ".";
 
-export const Component = (comp: Comp) => {
+export const Component = ({ id }: { id: string }) => {
+  return (
+    <Stuff id={id}>
+      <Wrappers id={id}>
+        <Component2 id={id} />
+      </Wrappers>
+    </Stuff>
+  );
+};
+
+const Component2 = ({ id }: { id: string }) => {
+  const type = useCompositionStore((s) => s.template?.components[id].type);
+  const props = useCompositionStore((s) => s.template?.components[id].props);
+  if (!type) return null;
+  const component = components[type];
+  const parsedProps = useMemo(() => component.zod.safeParse(props), [props]);
+  if (!parsedProps.success) return <InvalidProps error={props.error.toString()} />;
+  return <component.component {...(props.data as any)} />;
+};
+
+const Stuff = ({ children, id }: { children: ReactNode; id: string }) => {
   const { fps } = useVideoConfig();
-  const component = components[comp.type];
-  const props = useMemo(() => component.zod.safeParse(comp.props), [comp.props]);
-  const { setSelected, selectedRef, selected } = useSelected();
+  const isSelected = useCompositionStore((s) => s.selected === id);
+  const setSelected = useCompositionStore((s) => s.setSelected);
+  const selectedRef = useCompositionStore((s) => (isSelected ? s.selectedRef : null));
+  const comp = useCompositionStore((s) => s.template?.components[id]);
+  if (!comp) return null;
   const from = Math.max(0, Math.round((comp.from || 0) * fps));
   const duration = Math.max(1, Math.round((comp.duration || 0) * fps));
   return (
     <Sequence from={from} durationInFrames={duration} layout="none">
       <div
-        ref={selected === comp.id ? selectedRef : null}
+        ref={isSelected ? selectedRef : null}
         onClick={(e) => {
           e.stopPropagation();
           setSelected(comp.id);
@@ -28,13 +50,7 @@ export const Component = (comp: Comp) => {
           position: "absolute",
         }}
       >
-        <Wrapper {...comp.wrappers}>
-          {props.success ? (
-            <component.component {...(props.data as any)} width={comp.width} height={comp.height} />
-          ) : (
-            <InvalidProps error={props.error.toString()} />
-          )}
-        </Wrapper>
+        <>{children}</>
       </div>
     </Sequence>
   );
