@@ -1,3 +1,5 @@
+const { createThemes } = require('tw-colors');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -5,34 +7,40 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
-  },
-  daisyui: {
-    themes: [
-      {
-        "light": {
-          "primary": "#2196f3",
-          "primary-content": "#ffffff",
-          "secondary": "#f6d860",
-          "base-100": "#ffffff",
-          "base-200": "#f2f2f2",
-          "base-content": "#333333",
-          "base-300": "#bfbfbf"
-        }
-      },
-      {
-        "dark": {
-          "primary": "#2196f3",
-          "primary-content": "#ffffff",
-          "secondary": "#f6d860",
-          "base-100": "#232323",
-          "base-200": "#1d1d1d",
-          "base-content": "#ffffff",
-          "base-300": "#3d3d3d"
-        }
+    extend: {
+      colors: {
+        'primary': {
+          "DEFAULT": "#316fff",
+          "content": "#e8f5ff",
+          '50': '#e8f5ff',
+          '100': '#d5edff',
+          '200': '#b4dbff',
+          '300': '#86c2ff',
+          '400': '#5799ff',
+          '500': '#316fff',
+          '600': '#0e42ff',
+          '700': '#0538fd',
+          '800': '#0835d7',
+          '900': '#11339e',
+          '950': '#0a1c5c',
+        },
       }
-
-    ],
+    },
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    createThemes({
+      light: {
+        "base-100": "#f7f7f7",
+        "base-200": "#e3e3e3",
+        "base-300": "#c8c8c8",
+        "base-content": "#1a1a1a"
+      },
+      dark: {
+        "base-100": "#1a1a1a",
+        "base-200": "#313131",
+        "base-300": "#383838",
+        "base-content": "#f7f7f7"
+      }
+    })
+  ],
 }

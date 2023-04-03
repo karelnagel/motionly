@@ -66,10 +66,6 @@
   display: none;
 }
 
-.title {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary to-primary;
-}
-
 .label-text {
   font-size: 12px;
   white-space: nowrap;
