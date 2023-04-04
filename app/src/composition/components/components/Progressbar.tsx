@@ -3,6 +3,7 @@ import { z } from "zod";
 import { Color, ProgressbarTypes } from "../../../inputs";
 import { Component } from "..";
 import { IoIosTimer } from "react-icons/io";
+import { useComponent, useCompositionStore } from "../../types";
 
 export const ProgressbarProps = z.object({
   type: ProgressbarTypes,
@@ -10,8 +11,6 @@ export const ProgressbarProps = z.object({
   bg: Color.optional(),
   barWidth: z.number().min(0).optional(),
   topRight: z.boolean().optional(),
-  width: z.number().min(0).optional(),
-  height: z.number().min(0).optional(),
 });
 export type ProgressbarProps = z.infer<typeof ProgressbarProps>;
 
@@ -48,7 +47,8 @@ export const progressbar: Component<ProgressbarProps> = {
       props: { props: { type: "square" } },
     },
   ],
-  component: ({ height = 1, type, width = 1, barWidth, bg, color, topRight }) => {
+  component: ({ type, barWidth, bg, color, topRight, id }) => {
+    const { height, width } = useComponent((s) => ({ height: s.height, width: s.width }), id)!;
     const frame = useCurrentFrame();
     const { durationInFrames } = useVideoConfig();
     const progress = (frame / durationInFrames) * 100;

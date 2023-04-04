@@ -3,9 +3,9 @@ import { z } from "zod";
 import { Color, GraphTypes } from "../../../inputs";
 import { Component } from "..";
 import { SlGraph } from "react-icons/sl";
+import { useComponent } from "../../types";
 
 export const GraphProps = z.object({
-  comp: z.literal("graph"),
   src: z.array(z.number()),
   color: Color.optional(),
   type: GraphTypes,
@@ -16,8 +16,6 @@ export const GraphProps = z.object({
   strokeWidth: z.number().optional(),
   gap: z.number().optional(),
   roundness: z.number().min(0).optional(),
-  width: z.number().min(0),
-  height: z.number().min(0),
 });
 export type GraphProps = z.infer<typeof GraphProps>;
 
@@ -37,7 +35,8 @@ export const graph: Component<GraphProps> = {
     gap: { number: { label: "Gap" } },
     roundness: { number: { label: "Roundness" } },
   },
-  component: ({ src, comp, height, type, width, animationDuration, animationStart, color, gap, max, min, roundness, strokeWidth }) => {
+  component: ({ src, id, type, animationDuration, animationStart, color, gap, max, min, roundness, strokeWidth }) => {
+    const { width, height } = useComponent((s) => ({ width: s.width, height: s.height }), id)!;
     const frame = useCurrentFrame();
     const { fps } = useVideoConfig();
     const background = color;

@@ -5,6 +5,7 @@ import { z } from "zod";
 import { Color, JustifyContent } from "../../../inputs";
 import { Component } from "..";
 import { BsSoundwave } from "react-icons/bs";
+import { useComponent } from "../../types";
 
 export const AudiogramProps = z.object({
   src: z.string().url(),
@@ -17,8 +18,6 @@ export const AudiogramProps = z.object({
   smoothing: z.boolean().optional(),
   mirror: z.boolean().optional(),
   multiplier: z.number().min(0).optional(),
-  height: z.number().min(0).optional(),
-  width: z.number().min(0).optional(),
 });
 export type AudiogramProps = z.infer<typeof AudiogramProps>;
 
@@ -55,7 +54,8 @@ export const audiogram: Component<AudiogramProps> = {
       },
     },
   ],
-  component: ({ src, barWidth = 10, height = 1, width = 1, color, gap, mirror, multiplier = 1, position, roundness, smoothing, startFrom }) => {
+  component: ({ src, barWidth = 10, color, gap, mirror, multiplier = 1, position, roundness, smoothing, startFrom, id }) => {
+    const { width, height } = useComponent((s) => ({ width: s.width, height: s.height }), id)!;
     const background = color;
     const { fps } = useVideoConfig();
     const currentFrame = useCurrentFrame();

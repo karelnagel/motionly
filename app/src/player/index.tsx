@@ -1,7 +1,7 @@
 import { Player as RemotionPlayer, PlayerRef } from "@remotion/player";
-import { forwardRef, useEffect } from "react";
+import { forwardRef } from "react";
 import { CSSProperties, ReactNode } from "react";
-import { Template, Composition, useCompositionStore } from "../composition";
+import { Template, Composition } from "../composition";
 
 export type PlayerControls = {
   allowFullscreen?: boolean;
@@ -21,24 +21,20 @@ export type PlayerControls = {
 
 export type PlayerProps = PlayerControls & {
   template: Template;
-  setSelected?: (id: string) => void;
-  selected?: string;
+  setComponent?: (id?: string) => void;
+  component?: string;
   selectedRef?: React.RefObject<HTMLDivElement>;
 };
 
 export const Player = forwardRef<PlayerRef, PlayerProps>(
-  ({ template, loading, setSelected = () => undefined, selected, selectedRef, ...props }, ref) => {
-    const init = useCompositionStore((s) => s.init);
-    useEffect(() => {
-      init(template, selected);
-    }, [template, selected]);
+  ({ template, loading, setComponent = () => undefined, component, selectedRef, ...props }, ref) => {
     return (
       <RemotionPlayer
         ref={ref}
         component={Composition}
         fps={template.fps}
         durationInFrames={Math.ceil((template.duration || 1) * template.fps)}
-        inputProps={template}
+        inputProps={{ component, setComponent, template }}
         compositionHeight={template.height}
         compositionWidth={template.width}
         {...props}

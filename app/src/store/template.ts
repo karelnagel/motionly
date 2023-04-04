@@ -37,6 +37,8 @@ const TemplateStore = z.object({
   historyTimeout: z.any().optional(),
 
   component: z.string().optional(),
+  componentRef: z.any().optional(),
+  setComponentRef: z.function().args(z.any().optional()).returns(z.void()),
   setComponent: z.function().args(z.string().optional()).returns(z.void()),
 
   editComponent: z.function().args(CompPartial, z.boolean().optional()).returns(z.void()),
@@ -109,7 +111,7 @@ export const useTemplateStore = storeBase<TemplateStore>(
       page: "home",
       setPage: (page) => setStore({ page }),
       setComponent: (component?: string) => setStore({ component }),
-
+      setComponentRef: (componentRef) => setStore({ componentRef }),
       editComponent: (comp, noCheck = false) => {
         set(
           (s) => {

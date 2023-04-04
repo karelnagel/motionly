@@ -1,14 +1,13 @@
-import { useRef } from "react";
 import Moveable from "react-moveable";
 import { Player as MotionlyPlayer } from "../../../player";
 import { useComponent, useTemplateStore, useTemplate, usePlayerStore } from "../../../store";
 import { useShiftKey } from "../../../hooks/useShiftKey";
+import { useCompositionStore } from "../../../composition";
 
 export const Player = () => {
   const template = useTemplate();
   const selected = useTemplateStore((s) => s.template);
   const setComponent = useTemplateStore((t) => t.setComponent);
-  const divRef = useRef<HTMLDivElement>(null);
   const scale = usePlayerStore((t) => t.playerScale);
   const setPlayerRef = usePlayerStore((t) => t.setPlayerRef);
   return (
@@ -26,11 +25,10 @@ export const Player = () => {
         style={{ width: "100%", height: "100%" }}
         spaceKeyToPlayOrPause
         loop
-        selectedRef={divRef}
-        selected={selected}
-        setSelected={setComponent}
+        component={selected}
+        setComponent={setComponent}
       />
-      {selected && <Move divRef={divRef} />}
+      <Move />
     </div>
   );
 };
@@ -43,12 +41,13 @@ const useGuidelines = (scale: number) => {
   return { vertical, horizontal };
 };
 
-const Move = ({ divRef }: { divRef: any }) => {
+const Move = () => {
   const comp = useComponent((c) => ({ x: c.x, y: c.y, width: c.width, height: c.height, rotation: c.rotation }))!;
   const editComponent = useTemplateStore((t) => t.editComponent);
   const lockAspectRatio = useShiftKey();
   const scale = usePlayerStore((t) => t.playerScale);
   const { vertical, horizontal } = useGuidelines(scale);
+  const divRef = useCompositionStore((s) => s.componentRef);
   return (
     <Moveable
       target={divRef}

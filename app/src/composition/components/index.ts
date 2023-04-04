@@ -1,5 +1,3 @@
-import { Inputs } from "../../inputs";
-import { z } from "zod";
 import { mockup } from "./components/Mockup";
 import { transcription } from "./components/Transcription";
 import { audio } from "./components/Audio";
@@ -17,36 +15,18 @@ import { shape } from "./components/Shape";
 import { text } from "./components/Text";
 import { video } from "./components/Video";
 import { IconType } from "react-icons";
-import { WrappersType } from "../wrappers";
+import { z } from "zod";
+import { Inputs } from "../../inputs";
+import { Comp } from "../types";
 
 export type Component<T> = {
   zod: z.ZodType<T>;
-  component: React.FC<T>;
+  component: React.FC<T & { id: string }>;
   hue: number;
   Icon: IconType;
   examples?: { props: Partial<Omit<Comp, "props">> & { props: T }; title: string; image?: string }[];
   inputs: { [key in keyof T]?: Inputs };
 };
-
-export const ComponentName = z.enum([
-  "mockup",
-  "transcription",
-  "audio",
-  "audiogram",
-  "confetti",
-  "gif",
-  "graph",
-  "image",
-  "lottie",
-  "map",
-  "path",
-  "progressbar",
-  "qrcode",
-  "shape",
-  "text",
-  "video",
-]);
-export type ComponentName = z.infer<typeof ComponentName>;
 
 export const components = {
   mockup,
@@ -66,33 +46,3 @@ export const components = {
   text,
   video,
 };
-
-const BaseComp = z.object({
-  id: z.string(),
-  y: z.number(),
-  x: z.number(),
-  width: z.number(),
-  height: z.number(),
-  from: z.number(),
-  duration: z.number(),
-  opacity: z.number(),
-  rotation: z.number(),
-  type: ComponentName,
-  props: z.any(),
-  wrappers: WrappersType,
-});
-
-export const Comp = BaseComp.superRefine((s, ctx) => {
-  if (!s.type) return;
-  const res = components[s.type].zod.safeParse(s.props);
-  if (res.success) return;
-  res.error.errors.map((e) => ctx.addIssue(e));
-});
-
-export const CompPartial = BaseComp.partial().superRefine((s, ctx) => {
-  if (!s.type) return;
-  const res = components[s.type].zod.safeParse(s.props);
-  if (res.success) return;
-  res.error.errors.map((e) => ctx.addIssue(e));
-});
-export type Comp = z.infer<typeof Comp>;

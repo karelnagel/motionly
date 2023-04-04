@@ -5,6 +5,7 @@ import z from "zod";
 import { TextStyle, TranscriptionAnimationTypes } from "../../../../inputs";
 import { Component } from "../..";
 import { MdSubtitles } from "react-icons/md";
+import { useComponent } from "../../../types";
 
 export const TranscriptionWord = z.object({
   text: z.string(),
@@ -20,7 +21,6 @@ export const TranscriptionProps = z.object({
   scrollByPage: z.boolean().optional(),
   animationType: TranscriptionAnimationTypes,
   animationStyle: TextStyle,
-  height: z.number().min(0).optional(),
 });
 export type TranscriptionProps = z.infer<typeof TranscriptionProps>;
 
@@ -36,7 +36,8 @@ export const transcription: Component<TranscriptionProps> = {
     scrollByPage: { checkbox: { label: "Scroll By Page" } },
     startFrom: { number: { label: "Start From" } },
   },
-  component: ({ src, startFrom, scrollByPage, animationStyle, animationType, textStyle, height = 0 }) => {
+  component: ({ src, startFrom, scrollByPage, animationStyle, animationType, textStyle, id }) => {
+    const { width, height } = useComponent((s) => ({ width: s.width, height: s.height }), id)!;
     const { fps } = useVideoConfig();
     const currentFrame = useCurrentFrame();
     let frame = startFrom ? currentFrame + startFrom * fps : currentFrame;

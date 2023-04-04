@@ -19,14 +19,14 @@ const Component2 = ({ id }: { id: string }) => {
   const props = useComponent((c) => components[c.type].zod.safeParse(c.props), id);
   if (!props || !Component) return null;
   if (!props.success) return <InvalidProps error={props.error.toString()} />;
-  return <Component {...(props.data as any)} />;
+  return <Component {...(props.data as any)} id={id} />;
 };
 
 const Stuff = ({ children, id }: { children: ReactNode; id: string }) => {
   const { fps } = useVideoConfig();
-  const isSelected = useCompositionStore((s) => s.selected === id);
-  const setSelected = useCompositionStore((s) => s.setSelected);
-  const selectedRef = useCompositionStore((s) => (isSelected ? s.selectedRef : null));
+  const isSelected = useCompositionStore((s) => s.component === id);
+  const setSelected = useCompositionStore((s) => s.setComponent);
+  const setRef = useCompositionStore((s) => s.setComponentRef);
   const comp = useComponent((c) => c, id);
   if (!comp) return null;
   const from = Math.max(0, Math.round((comp.from || 0) * fps));
@@ -34,7 +34,9 @@ const Stuff = ({ children, id }: { children: ReactNode; id: string }) => {
   return (
     <Sequence from={from} durationInFrames={duration} layout="none">
       <div
-        ref={isSelected ? selectedRef : null}
+        ref={(ref) => {
+          if (isSelected) setRef(ref as any);
+        }}
         onClick={(e) => {
           e.stopPropagation();
           setSelected(id);
