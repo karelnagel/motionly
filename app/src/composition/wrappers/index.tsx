@@ -4,7 +4,7 @@ import { animation } from "./Animation";
 import { freeze } from "./Freeze";
 import { motion_blur } from "./MotionBlur";
 import { ReactNode } from "react";
-import { useCompositionStore } from "..";
+import { useComponent, useCompositionStore } from "..";
 
 export type WrapperType<T> = {
   wrapper: React.FC<T & { children: ReactNode }>;
@@ -27,7 +27,7 @@ export const WrappersType = z.object({
 export type WrappersType = z.infer<typeof WrappersType>;
 
 const Wrap = ({ allWrappers, id, children }: { allWrappers: string[]; id: string; children: ReactNode }) => {
-  const wrapper = useCompositionStore((s) => s.template?.components[id]?.wrappers.wrappers[allWrappers[0]]);
+  const wrapper = useComponent((c) => c.wrappers.wrappers[allWrappers[0]], id);
   if (allWrappers.length === 0 || !wrapper) return <>{children}</>;
 
   const Wrapper = wrappersCollection[wrapper.name].wrapper;

@@ -1,8 +1,8 @@
 import { Sequence, useVideoConfig } from "remotion";
-import { ReactNode, useMemo } from "react";
+import { ReactNode } from "react";
 import { components } from "./components";
 import { Wrappers } from "./wrappers";
-import { useCompositionStore } from ".";
+import { useComponent, useCompositionStore } from ".";
 
 export const Component = ({ id }: { id: string }) => {
   return (
@@ -15,13 +15,11 @@ export const Component = ({ id }: { id: string }) => {
 };
 
 const Component2 = ({ id }: { id: string }) => {
-  const type = useCompositionStore((s) => s.template?.components[id].type);
-  const props = useCompositionStore((s) => s.template?.components[id].props);
-  if (!type) return null;
-  const component = components[type];
-  const parsedProps = useMemo(() => component.zod.safeParse(props), [props]);
-  if (!parsedProps.success) return <InvalidProps error={props.error.toString()} />;
-  return <component.component {...(props.data as any)} />;
+  const Component = useComponent((c) => components[c.type].component, id);
+  const props = useComponent((c) => components[c.type].zod.safeParse(c.props), id);
+  if (!props || !Component) return null;
+  if (!props.success) return <InvalidProps error={props.error.toString()} />;
+  return <Component {...(props.data as any)} />;
 };
 
 const Stuff = ({ children, id }: { children: ReactNode; id: string }) => {
@@ -29,7 +27,7 @@ const Stuff = ({ children, id }: { children: ReactNode; id: string }) => {
   const isSelected = useCompositionStore((s) => s.selected === id);
   const setSelected = useCompositionStore((s) => s.setSelected);
   const selectedRef = useCompositionStore((s) => (isSelected ? s.selectedRef : null));
-  const comp = useCompositionStore((s) => s.template?.components[id]);
+  const comp = useComponent((c) => c, id);
   if (!comp) return null;
   const from = Math.max(0, Math.round((comp.from || 0) * fps));
   const duration = Math.max(1, Math.round((comp.duration || 0) * fps));
@@ -39,7 +37,7 @@ const Stuff = ({ children, id }: { children: ReactNode; id: string }) => {
         ref={isSelected ? selectedRef : null}
         onClick={(e) => {
           e.stopPropagation();
-          setSelected(comp.id);
+          setSelected(id);
         }}
         style={{
           overflow: "hidden",

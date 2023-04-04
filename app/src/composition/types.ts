@@ -19,7 +19,13 @@ export const useCompositionStore = create<CompositionStore>((set) => ({
   selected: undefined,
   template: undefined,
 }));
-
+export const useComponent = <T = Comp>(fn: (t: Comp) => T = (t) => t as T, id: string): T | undefined => {
+  const { template, selected } = useCompositionStore();
+  if (!template) return undefined;
+  const comp = template.components[id || selected || ""];
+  if (!comp) return undefined;
+  return fn(comp);
+};
 export const Template = z.object({
   id: z.string(),
   name: z.string(),
