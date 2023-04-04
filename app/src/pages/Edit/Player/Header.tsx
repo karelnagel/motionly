@@ -1,8 +1,8 @@
 import { IoMdRedo, IoMdUndo } from "react-icons/io";
-import { useLeftStore, useTemplateStore } from "../../../store";
+import { useLeftStore, useTemplate, useTemplateStore } from "../../../store";
 
 export const Header = () => {
-  const name = useTemplateStore((s) => s.templates[s.template || ""].name);
+  const name = useTemplate((t) => t.name);
   const editTemplate = useTemplateStore((s) => s.editTemplate);
   const undo = useTemplateStore((s) => s.undo);
   const redo = useTemplateStore((s) => s.redo);

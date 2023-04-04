@@ -84,3 +84,6 @@
 .form input[type="checkbox"] {
   @apply p-0 h-5 w-5 bg-primary-50 rounded-md accent-primary-500;
 }
+.form input[type="range"]{
+  @apply w-full accent-primary;
+}

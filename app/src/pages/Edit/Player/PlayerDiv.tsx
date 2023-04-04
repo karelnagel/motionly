@@ -5,12 +5,12 @@ import { Header } from "./Header";
 export const PlayerDiv = ({ children }: { children: ReactNode }) => {
   const playerDivRef = useRef<HTMLDivElement>(null);
   const setScale = usePlayerStore((t) => t.playerSetScale);
-  const template = useTemplate();
+  const { width, height } = useTemplate((t) => ({ width: t.width, height: t.height }));
   const setComponent = useTemplateStore((t) => t.setComponent);
   const getScale = () => {
     if (playerDivRef.current?.clientHeight && playerDivRef.current?.clientWidth) {
-      const scaleX = playerDivRef.current.clientWidth / template.width;
-      const scaleY = playerDivRef.current.clientHeight / template.height;
+      const scaleX = playerDivRef.current.clientWidth / width;
+      const scaleY = playerDivRef.current.clientHeight / height;
       setScale(Math.min(scaleX, scaleY));
     }
   };

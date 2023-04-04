@@ -22,7 +22,7 @@ export const home = () => {
 };
 
 const Template = ({ id }: { id: string }) => {
-  const template = useTemplate(id);
+  const template = useTemplate(undefined, id);
   const setTemplate = useTemplateStore((s) => s.setTemplate);
   return (
     <div onClick={() => setTemplate(id)} className="bg-primary rounded-lg p-2 cursor-pointer flex flex-col items-center shadow-lg">

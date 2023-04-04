@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { useCurrentPlayerFrame } from "../hooks/useCurrentPlayerFrame";
-import { usePlayerRef, usePlayerStore, useTemplateStore } from "../store";
+import { usePlayerRef, usePlayerStore, useTemplate, useTemplateStore } from "../store";
 
 export function HotKeys() {
   useCurrentPlayerFrame();
@@ -10,7 +10,7 @@ export function HotKeys() {
   const setSelected = useTemplateStore((t) => t.setComponent);
   const deleteComp = useTemplateStore((t) => t.deleteComp);
   const copyComp = useTemplateStore((t) => t.copyComponent);
-  const fps = useTemplateStore((t) => t.templates[t.template || ""].fps);
+  const fps = useTemplate((t) => t.fps);
   const playerRef = usePlayerRef();
   const frame = usePlayerStore((t) => t.frame);
   const handleKeyDown = useCallback(

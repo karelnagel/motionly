@@ -18,15 +18,14 @@ const inputs: { [key in keyof Comp]?: Inputs } = {
 export const general: Right = {
   icon: IoIosSettings,
   title: "General",
-  show: (c) => !!c,
   component: () => {
-    const component = useComponent();
+    const comp = useComponent()!;
     const editComponent = useTemplateStore((state) => state.editComponent);
     const entries = Object.entries(inputs);
     return (
       <div className="space-y-2">
         {entries.map(([key, input]) => {
-          const value = component[key as keyof Comp];
+          const value = comp[key as keyof Comp];
           return <Input key={key} value={value} onChange={(value) => editComponent({ [key]: value }, false)} props={input} />;
         })}
       </div>

@@ -20,7 +20,7 @@ export const template: Left = {
     return (
       <div>
         {Object.entries(templateInputs).map(([key, input]) => {
-          const value = template[key as keyof Template];
+          const value = template[key as keyof typeof templateInputs];
           return <Input key={key} value={value} onChange={(value) => editTemplate({ [key]: value })} props={input} />;
         })}
       </div>

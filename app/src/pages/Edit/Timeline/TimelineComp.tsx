@@ -1,20 +1,23 @@
-import { components } from "../../../composition";
+import { Comp, components } from "../../../composition";
 import { useRef } from "react";
 import Moveable from "react-moveable";
 import { capitalize } from "../../../helpers";
 import { useComponent, useTemplateStore, useTemplate } from "../../../store";
 
+const selector = (c: Comp) => ({
+  title: "text" in c.props ? c.props.text : capitalize(c.type),
+  hue: components[c.type].hue,
+  Icon: components[c.type].Icon,
+  from: c.from,
+  duration: c.duration,
+});
+
 export const TimelineComponent = ({ id }: { id: string }) => {
-  const selected = useTemplateStore((t) => t.component);
-  const comp = useComponent(id);
-  const template = useTemplate();
-  const parentDuration = template.duration || 1;
+  const isSelected = useTemplateStore((t) => t.component === id);
+  const { title, Icon, duration, from, hue } = useComponent(selector, id)!;
+  const templatedDuration = useTemplate((t) => t.duration || 1);
   const setSelected = useTemplateStore((t) => t.setComponent);
   const divRef = useRef<HTMLDivElement>(null);
-  const isSelected = selected === comp.id;
-  if (!comp) return null;
-  const hue = components[comp.type].hue;
-  const Icon = components[comp.type].Icon;
   return (
     <div className="cursor-pointer">
       <div
@@ -22,12 +25,12 @@ export const TimelineComponent = ({ id }: { id: string }) => {
         ref={isSelected ? divRef : undefined}
         onClick={(e) => {
           e.stopPropagation();
-          setSelected(comp.id);
+          setSelected(id);
         }}
         style={{
           background: `hsl(${hue}, 35%, 50%, 30%)`,
-          marginLeft: `${((comp.from || 0) / parentDuration) * 100}%`,
-          width: `${((comp.duration || 1) / parentDuration) * 100}%`,
+          marginLeft: `${((from || 0) / templatedDuration) * 100}%`,
+          width: `${((duration || 1) / templatedDuration) * 100}%`,
         }}
       >
         <div
@@ -39,7 +42,7 @@ export const TimelineComponent = ({ id }: { id: string }) => {
         >
           <div className="whitespace-nowrap overflow-hidden text-ellipsis w-full flex items-center">
             <Icon className="inline-block mr-2 shrink-0" />
-            <p className="">{"text" in comp.props ? comp.props.text : capitalize(comp.type)}</p>
+            <p className="">{title}</p>
           </div>
         </div>
       </div>

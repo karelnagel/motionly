@@ -1,9 +1,9 @@
-import { useTemplateStore, useTemplate, useTimelineStore, usePlayerStore, usePlayerRef } from "../../../store/index";
+import { useTemplate, useTimelineStore, usePlayerStore, usePlayerRef } from "../../../store/index";
 import { TimelineComponent } from "./TimelineComp";
 import { TopBar } from "./TopBar";
 
 export const Timeline = () => {
-  const allComponents = useTemplateStore((s) => s.templates[s.template || ""].allComponents);
+  const allComponents = useTemplate((t) => t.allComponents);
   const width = useTimelineStore((t) => t.width);
 
   return (
@@ -26,7 +26,7 @@ export const Timeline = () => {
 };
 
 export const TimelineBar = () => {
-  const { duration, fps } = useTemplate();
+  const { duration, fps } = useTemplate((t) => ({ duration: t.duration, fps: t.fps }));
   const frame = usePlayerStore((s) => s.frame);
   const playerRef = usePlayerRef();
   return (

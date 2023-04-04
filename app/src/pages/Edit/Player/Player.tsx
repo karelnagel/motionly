@@ -6,7 +6,7 @@ import { useShiftKey } from "../../../hooks/useShiftKey";
 
 export const Player = () => {
   const template = useTemplate();
-  const comp = useComponent();
+  const selected = useTemplateStore((s) => s.template);
   const setComponent = useTemplateStore((t) => t.setComponent);
   const divRef = useRef<HTMLDivElement>(null);
   const scale = usePlayerStore((t) => t.playerScale);
@@ -27,28 +27,24 @@ export const Player = () => {
         spaceKeyToPlayOrPause
         loop
         selectedRef={divRef}
-        selected={comp?.id || ""}
+        selected={selected}
         setSelected={setComponent}
       />
-      <Move divRef={divRef} />
+      {selected && <Move divRef={divRef} />}
     </div>
   );
 };
 const useGuidelines = (scale: number) => {
-  const template = useTemplate();
-  const component = useTemplateStore((t) => t.component);
-  const comps = Object.values(template.components).filter((c) => c.id !== component);
-  const vertical = [...comps.map((c) => c.x || 0), ...comps.map((c) => (c.x || 0) + (c.width || 0)), 0, template.width / 2, template.width].map(
-    (c) => c * scale
-  );
-  const horizontal = [...comps.map((c) => c.y || 0), ...comps.map((c) => (c.y || 0) + (c.height || 0)), 0, template.height / 2, template.height].map(
-    (c) => c * scale
-  );
+  const comps = useTemplate((t, s) => Object.values(t.components).filter((c) => c.id !== s.component));
+  const width = useTemplate((t) => t.width);
+  const height = useTemplate((t) => t.height);
+  const vertical = [...comps.map((c) => c.x || 0), ...comps.map((c) => (c.x || 0) + (c.width || 0)), 0, width / 2, width].map((c) => c * scale);
+  const horizontal = [...comps.map((c) => c.y || 0), ...comps.map((c) => (c.y || 0) + (c.height || 0)), 0, height / 2, height].map((c) => c * scale);
   return { vertical, horizontal };
 };
 
 const Move = ({ divRef }: { divRef: any }) => {
-  const comp = useComponent();
+  const comp = useComponent((c) => ({ x: c.x, y: c.y, width: c.width, height: c.height, rotation: c.rotation }))!;
   const editComponent = useTemplateStore((t) => t.editComponent);
   const lockAspectRatio = useShiftKey();
   const scale = usePlayerStore((t) => t.playerScale);

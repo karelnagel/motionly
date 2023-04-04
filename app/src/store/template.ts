@@ -5,6 +5,7 @@ import { Template } from "../composition";
 import { toast } from "sonner";
 import { Page } from "../enums";
 import { z } from "zod";
+import { useCallback } from "react";
 
 export const defaultTemplate: Template = {
   allComponents: [],
@@ -182,6 +183,29 @@ export const useTemplateStore = storeBase<TemplateStore>(
   "project"
 );
 
-export const useTemplate = (id?: string) => useTemplateStore((s) => s.templates[id || s.template || ""]);
-export const useComponent = (id?: string) => useTemplateStore((s) => s.templates[s.template || ""].components[id || s.component || ""]);
-export const useComponentProps = () => useComponent().props;
+export function useTemplate<T = Template>(fn: (t: Template, s: TemplateStore) => T = (t, s) => t as T, id?: string): T {
+  return useTemplateStore(
+    useCallback(
+      (s) => {
+        const temp = s.templates[id || s.template || ""];
+        if (!temp) throw new Error("No template selected");
+        return fn(temp, s);
+      },
+      [id, fn]
+    )
+  );
+}
+export function useComponent<T = Comp>(fn: (t: Comp, s: TemplateStore) => T = (t) => t as T, id?: string): T | undefined {
+  return useTemplateStore(
+    useCallback(
+      (s) => {
+        const temp = s.templates[s.template || ""];
+        if (!temp) throw new Error("No template selected");
+        const comp = temp.components[id || s.component || ""];
+        if (!comp) return undefined;
+        return fn(comp, s);
+      },
+      [id, fn]
+    )
+  );
+}

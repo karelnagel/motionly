@@ -75,7 +75,7 @@ export const lottie: Component<LottieProps> = {
         .catch((err) => {
           console.log("Animation failed to load", err);
         });
-    }, [handle, src]);
+    }, [src]);
     if (!animationData) {
       return null;
     }

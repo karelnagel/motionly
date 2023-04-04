@@ -6,23 +6,22 @@ import { capitalize } from "../../../helpers";
 
 export const component: Right = {
   icon: () => {
-    const comp = useComponent();
-    const Icon = components[comp.type].Icon;
+    const type = useComponent((c) => c.type)!;
+    const Icon = components[type].Icon;
     return <Icon />;
   },
-  show: (c) => !!c,
   title: () => {
-    const comp = useComponent();
-    return <>{capitalize(comp.type)}</>;
+    const type = useComponent((c) => c.type)!;
+    return <>{capitalize(type)}</>;
   },
   component: () => {
-    const component = useComponent();
+    const props = useComponent((c) => c.props)!;
+    const inputs = useComponent((c) => Object.entries(components[c.type].inputs))!;
     const editComponentProps = useTemplateStore((state) => state.editComponentProps);
-    const inputs = Object.entries(components[component.type].inputs);
     return (
       <div className="flex flex-col space-y-2">
         {inputs.map(([key, input]) => {
-          const value = component.props[key as keyof typeof component];
+          const value = props[key];
           return <Input key={key} value={value} onChange={(e) => editComponentProps({ [key]: e })} props={input} />;
         })}
       </div>
