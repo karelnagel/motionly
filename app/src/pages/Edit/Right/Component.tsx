@@ -6,12 +6,14 @@ import { capitalize } from "../../../helpers";
 
 export const component: Right = {
   icon: () => {
-    const type = useComponent((c) => c.type)!;
+    const type = useComponent((c) => c.type);
+    if (!type) return null;
     const Icon = components[type].Icon;
     return <Icon />;
   },
   title: () => {
-    const type = useComponent((c) => c.type)!;
+    const type = useComponent((c) => c.type);
+    if (!type) return null;
     return <>{capitalize(type)}</>;
   },
   component: () => {

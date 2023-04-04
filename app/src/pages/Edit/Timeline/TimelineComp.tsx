@@ -21,7 +21,7 @@ export const TimelineComponent = ({ id }: { id: string }) => {
   return (
     <div className="cursor-pointer">
       <div
-        className=" rounded-lg"
+        className="rounded-lg"
         ref={isSelected ? divRef : undefined}
         onClick={(e) => {
           e.stopPropagation();

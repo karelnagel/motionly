@@ -8,7 +8,7 @@ import { component } from "./Component";
 import { general } from "./General";
 
 export type Right = Tab & {
-  icon: IconType;
+  icon: IconType | React.FC;
 };
 
 export const right = {

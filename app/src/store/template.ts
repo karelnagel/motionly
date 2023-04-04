@@ -16,7 +16,9 @@ export const defaultTemplate: Template = {
   id: getRandomId(),
   name: "New Template",
   width: 1080,
+  background: "#FFFFFFFF",
 };
+
 const TemplateStore = z.object({
   template: z.string().optional(),
   setTemplate: z.function().args(z.string().optional()).returns(z.void()),
@@ -69,7 +71,6 @@ export const useTemplateStore = storeBase<TemplateStore>(
       setStore(s);
     };
     return {
-      template: "",
       templates: {},
       allTemplates: [],
       newTemplate: () => {
@@ -88,7 +89,8 @@ export const useTemplateStore = storeBase<TemplateStore>(
           s.allTemplates = s.allTemplates.filter((id) => id !== s.template);
           s.template = s.allTemplates[0];
         }),
-      setTemplate: (template) => setStore({ template, page: "edit", future: [], past: [], historyTimeout: undefined, lastTemplate: undefined }),
+      setTemplate: (template) =>
+        setStore({ template, page: "edit", future: [], past: [], historyTimeout: undefined, lastTemplate: undefined, component: undefined }),
       cloneTemplate: (id) => {
         const newId = getRandomId();
         setStore((s) => {

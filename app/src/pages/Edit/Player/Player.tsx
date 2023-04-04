@@ -41,16 +41,15 @@ const useGuidelines = (scale: number) => {
 };
 
 const Move = () => {
-  const comp = useComponent((c) => ({ x: c.x, y: c.y, width: c.width, height: c.height, rotation: c.rotation }))!;
+  const comp = useComponent((c) => ({ x: c.x, y: c.y, width: c.width, height: c.height, rotation: c.rotation, id: c.id }));
   const editComponent = useTemplateStore((t) => t.editComponent);
   const lockAspectRatio = useShiftKey();
   const scale = usePlayerStore((t) => t.playerScale);
   const { vertical, horizontal } = useGuidelines(scale);
-  const selected = useTemplateStore((s) => s.component);
-  if (!selected) return null;
+  if (!comp) return null;
   return (
     <Moveable
-      target={document.getElementById(selected)}
+      target={document.getElementById(comp.id)}
       scale={scale}
       stopPropagation={true}
       preventClickDefault={true}
