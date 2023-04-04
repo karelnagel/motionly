@@ -23,6 +23,7 @@ export type InputProps<T> = {
 };
 export type DefaultProps = {
   label: string;
+  colspan?: number;
   tooltip?: string;
   placeholder?: string;
 };
@@ -62,3 +63,4 @@ export function Input<T>({ props, value, onChange }: { props: Inputs; value: T; 
   const Component = inputs[entry[0] as keys].component;
   return <Component onChange={onChange as any} value={value as any} props={entry[1] as any} />;
 }
+export const getColspan = (span: number = 2) => ({ gridColumn: `span ${span} / span ${span}` });

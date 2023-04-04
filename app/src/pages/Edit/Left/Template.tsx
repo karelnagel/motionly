@@ -18,7 +18,7 @@ export const template: Left = {
     const template = useTemplate();
     const editTemplate = useTemplateStore((state) => state.editTemplate);
     return (
-      <div>
+      <div className="grid grid-cols-2 gap-2">
         {Object.entries(templateInputs).map(([key, input]) => {
           const value = template[key as keyof typeof templateInputs];
           return <Input key={key} value={value} onChange={(value) => editTemplate({ [key]: value })} props={input} />;

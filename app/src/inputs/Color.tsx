@@ -22,11 +22,17 @@ export const color: Input<string> = {
     const color = value?.slice(0, 7);
     const alpha = value?.slice(7) || "FF";
     return (
-      <div className="form" style={{ borderColor: value }}>
+      <div className="form form-color" style={{ borderColor: value }}>
         <label>{label}</label>
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%" }}>
           <input type="color" value={color || ""} disabled={disabled} onChange={(e) => onChange(e.target.value + alpha)} />
-          <input type="text" value={color || ""} onChange={(e) => onChange(e.target.value + alpha)} disabled={disabled} style={{margin:"0 10px"}} />
+          <input
+            type="text"
+            value={color || ""}
+            onChange={(e) => onChange(e.target.value + alpha)}
+            disabled={disabled}
+            style={{ margin: "0 10px" }}
+          />
           <div style={{ display: "flex", flexDirection: "row" }}>
             <input
               style={{ width: "40px" }}

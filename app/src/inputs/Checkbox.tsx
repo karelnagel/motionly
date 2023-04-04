@@ -1,11 +1,11 @@
 import { z } from "zod";
-import { Input } from ".";
+import { getColspan, Input } from ".";
 
 export const checkbox: Input<boolean> = {
   zod: z.boolean(),
-  component: ({ disabled, value, onChange, props: { placeholder, label, tooltip } }) => {
+  component: ({ disabled, value, onChange, props: { placeholder, label, tooltip, colspan } }) => {
     return (
-      <div className="form">
+      <div className="form" style={getColspan(colspan)}>
         <label>{label}</label>
         <input
           disabled={disabled}

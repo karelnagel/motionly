@@ -1,11 +1,11 @@
 import { z } from "zod";
-import { Input } from ".";
+import { getColspan, Input } from ".";
 
 export const number: Input<number> = {
   zod: z.number(),
-  component: ({ props: { label, placeholder }, value, onChange, disabled }) => {
+  component: ({ props: { label, placeholder, colspan }, value, onChange, disabled }) => {
     return (
-      <div className="form">
+      <div className="form" style={getColspan(colspan)}>
         <label>{label}</label>
         <input
           onWheel={(e) => e.currentTarget.blur()}

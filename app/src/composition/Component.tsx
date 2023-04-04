@@ -41,7 +41,7 @@ const Stuff = ({ children, id }: { children: ReactNode; id: string }) => {
           overflow: "hidden",
           width: comp.width,
           height: comp.height,
-          transform: `rotate(${comp.rotation}deg) translate(${comp.x}px, ${comp.y}px)`,
+          transform: `translate(${comp.x}px, ${comp.y}px) rotate(${comp.rotation}deg)`,
           opacity: comp.opacity,
           position: "absolute",
         }}
