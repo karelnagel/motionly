@@ -1,11 +1,7 @@
-import { Inputs } from "../inputs";
 import { z } from "zod";
-import { IconType } from "react-icons";
 import { WrappersType } from "./wrappers";
 import { components } from ".";
-
-import { create } from "zustand";
-import { subscribeWithSelector } from "zustand/middleware";
+export * from "./store";
 
 export const ComponentName = z.enum([
   "mockup",
@@ -57,34 +53,6 @@ export const CompPartial = BaseComp.partial().superRefine((s, ctx) => {
 });
 export type Comp = z.infer<typeof Comp>;
 
-type CompositionStore = {
-  template?: Template;
-  setTemplate: (template?: Template) => void;
-  component?: string;
-  setComponent: (id?: string) => void;
-  componentRef: React.MutableRefObject<HTMLDivElement | null> | null;
-  setComponentRef: (ref: React.MutableRefObject<HTMLDivElement | null> | null) => void;
-};
-
-export const useCompositionStore = create(
-  subscribeWithSelector<CompositionStore>((set) => ({
-    setComponent: (selected) => set({ component: selected }),
-    componentRef: null,
-    setComponentRef: (selectedRef) => set({ componentRef: selectedRef }),
-    component: undefined,
-    template: undefined,
-    setTemplate: (template) => set({ template }),
-  }))
-);
-
-export const useComponent = <T = Comp>(fn: (t: Comp) => T = (t) => t as T, id: string): T => {
-  return useCompositionStore((s) => {
-    if (!s.template) throw new Error("No template");
-    const comp = s.template.components[id || ""];
-    if (!comp) throw new Error("No component");
-    return fn(comp);
-  });
-};
 export const Template = z.object({
   id: z.string(),
   name: z.string(),

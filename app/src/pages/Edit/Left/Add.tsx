@@ -1,6 +1,6 @@
 import { Left } from ".";
 import { useTemplateStore } from "../../../store";
-import { Comp,components } from "../../../composition";
+import { Comp, components } from "../../../composition";
 import { IoShapesSharp } from "react-icons/io5";
 
 const def: Comp = {
@@ -42,7 +42,8 @@ export const add: Left = {
                           <img src={image} className="w-full object-cover" />
                         ) : (
                           <div className="aspect-square w-full rounded-lg scale-50">
-                            <component.component {...(props.props as any)} />
+                            {/* Todo fix this shit */}
+                            {/* <component.component {...(props.props as any)} /> */}
                           </div>
                         )}
                       </div>

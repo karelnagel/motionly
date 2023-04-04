@@ -2,7 +2,6 @@ import Moveable from "react-moveable";
 import { Player as MotionlyPlayer } from "../../../player";
 import { useComponent, useTemplateStore, useTemplate, usePlayerStore } from "../../../store";
 import { useShiftKey } from "../../../hooks/useShiftKey";
-import { useCompositionStore } from "../../../composition";
 
 export const Player = () => {
   const template = useTemplate();
@@ -47,10 +46,11 @@ const Move = () => {
   const lockAspectRatio = useShiftKey();
   const scale = usePlayerStore((t) => t.playerScale);
   const { vertical, horizontal } = useGuidelines(scale);
-  const divRef = useCompositionStore((s) => s.componentRef);
+  const selected = useTemplateStore((s) => s.component);
+  if (!selected) return null;
   return (
     <Moveable
-      target={divRef}
+      target={document.getElementById(selected)}
       scale={scale}
       stopPropagation={true}
       preventClickDefault={true}

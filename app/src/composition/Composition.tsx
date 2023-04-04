@@ -1,34 +1,13 @@
-import { useEffect } from "react";
 import { AbsoluteFill } from "remotion";
 import { Component } from "./Component";
-import { Template, useCompositionStore } from "./types";
+import { CompositionProvider, Template, useCompositionStore } from "./types";
 
-export const Composition = ({
-  component,
-  setComponent,
-  template,
-}: {
-  component?: string;
-  setComponent: (c?: string) => void;
-  template: Template;
-}) => {
-  const setTemplate = useCompositionStore((s) => s.setTemplate);
-  const set = useCompositionStore((s) => s.setComponent);
-  useEffect(() => {
-    set(component);
-  }, [component]);
-  useEffect(() => {
-    setTemplate(template);
-  }, [template]);
-  useEffect(() => {
-    useCompositionStore.subscribe(
-      (s) => s.component,
-      (state) => {
-        setComponent(state);
-      }
-    );
-  }, [setComponent]);
-  return <Items />;
+export const Composition = ({ setComponent, template }: { setComponent: (c?: string) => void; template: Template }) => {
+  return (
+    <CompositionProvider setComponent={setComponent} template={template}>
+      <Items />
+    </CompositionProvider>
+  );
 };
 
 const Items = () => {
