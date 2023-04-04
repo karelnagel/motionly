@@ -10,7 +10,7 @@ export const Timeline = () => {
     <div className=" h-full relative flex flex-col">
       <TopBar />
       <div className=" w-full h-full overflow-x-auto">
-        <div className="h-full w-full flex flex-col" style={{ width: `${width}%` }}>
+        <div id="timeline" className="h-full w-full flex flex-col" style={{ width: `${width}%` }}>
           <TimelineBar />
           <div className="overflow-y-scroll h-full overflow-x-hidden px-3 pb-2">
             <div className="flex flex-col space-y-2 relative">

@@ -42,8 +42,8 @@ export const TopBar = () => {
         <Button Icon={IoMdExpand} onClick={() => playerRef?.requestFullscreen()} tooltip="F" />
       </div>
       <div className="text-xl flex items-center space-x-2">
-        <Button Icon={IoIosRemove} onClick={() => setWidth(width / 1.1)} />
-        <Button Icon={IoIosAdd} onClick={() => setWidth(width * 1.1)} />
+        <Button Icon={IoIosRemove} onClick={() => setWidth(width * 1.1)} />
+        <Button Icon={IoIosAdd} onClick={() => setWidth(width / 1.1)} />
       </div>
     </div>
   );
