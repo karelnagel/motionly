@@ -2,9 +2,9 @@ import { IconType } from "react-icons";
 import { Left } from "../pages/Edit/Left";
 
 export type Tab = {
-  icon: IconType | (() => JSX.Element);
-  title: string | (() => JSX.Element);
-  component: () => JSX.Element;
+  icon: IconType | React.FC;
+  title: string | React.FC;
+  component: React.FC;
 };
 export function Tabs<T extends string>({
   order,
@@ -35,7 +35,7 @@ export function Tabs<T extends string>({
               <div className="text-2xl">
                 <item.icon />
               </div>
-              <p className="text-[10px] overflow-hidden">{typeof item.title === "string" ? item.title : item.title()}</p>
+              <p className="text-[10px] overflow-hidden">{typeof item.title === "string" ? item.title : <item.title />}</p>
             </div>
           );
         })}

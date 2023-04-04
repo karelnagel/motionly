@@ -14,14 +14,15 @@ const inputs: { [key in keyof Comp]?: Inputs } = {
   duration: { number: { label: "Duration" } },
   from: { number: { label: "From" } },
 };
+const entries = Object.entries(inputs);
 
 export const general: Right = {
   icon: IoIosSettings,
   title: "General",
   component: () => {
-    const comp = useComponent()!;
+    const comp = useComponent();
     const editComponent = useTemplateStore((state) => state.editComponent);
-    const entries = Object.entries(inputs);
+    if (!comp) return null;
     return (
       <div className="space-y-2">
         {entries.map(([key, input]) => {

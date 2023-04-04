@@ -15,9 +15,10 @@ export const component: Right = {
     return <>{capitalize(type)}</>;
   },
   component: () => {
-    const props = useComponent((c) => c.props)!;
-    const inputs = useComponent((c) => Object.entries(components[c.type].inputs))!;
+    const props = useComponent((c) => c.props);
+    const inputs = useComponent((c) => Object.entries(components[c.type].inputs));
     const editComponentProps = useTemplateStore((state) => state.editComponentProps);
+    if (!props || !inputs) return null;
     return (
       <div className="flex flex-col space-y-2">
         {inputs.map(([key, input]) => {
