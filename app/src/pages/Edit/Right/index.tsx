@@ -1,4 +1,4 @@
-import { Comp } from "@motionly/composition";
+import { Comp } from "../../../composition";
 import { IconType } from "react-icons";
 import { IoIosInformation } from "react-icons/io";
 import { z } from "zod";

@@ -1,7 +1,7 @@
 import { Right } from ".";
 import { IoIosSettings } from "react-icons/io";
-import { Input, Inputs } from "@motionly/inputs";
-import { Comp } from "@motionly/composition";
+import { Input, Inputs } from "../../../inputs";
+import { Comp } from "../../../composition";
 import { useComponent, useTemplateStore } from "../../../store";
 
 const inputs: { [key in keyof Comp]?: Inputs } = {

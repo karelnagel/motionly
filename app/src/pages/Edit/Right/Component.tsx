@@ -1,7 +1,7 @@
 import { Right } from ".";
 import { useComponent, useTemplateStore } from "../../../store";
-import { components } from "@motionly/composition";
-import { Input } from "@motionly/inputs";
+import { components } from "../../../composition";
+import { Input } from "../../../inputs";
 import { capitalize } from "../../../helpers";
 
 export const component: Right = {

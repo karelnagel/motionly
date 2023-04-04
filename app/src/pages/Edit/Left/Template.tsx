@@ -1,8 +1,8 @@
 import { Left } from ".";
-import { IoIosAdd, IoIosSettings } from "react-icons/io";
+import { IoIosSettings } from "react-icons/io";
 import { useTemplateStore, useTemplate } from "../../../store";
-import { Input, Inputs } from "@motionly/inputs";
-import { Template } from "@motionly/composition";
+import { Input, Inputs } from "../../../inputs";
+import { Template } from "../../../composition";
 
 const templateInputs: { [key in keyof Template]?: Inputs } = {
   width: { number: { label: "Width" } },

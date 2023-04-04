@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import Moveable from "react-moveable";
-import { Player as MotionlyPlayer } from "@motionly/player";
+import { Player as MotionlyPlayer } from "../../../player";
 import { useComponent, useTemplateStore, useTemplate, usePlayerStore } from "../../../store";
 import { useShiftKey } from "../../../hooks/useShiftKey";
 
