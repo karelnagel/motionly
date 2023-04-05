@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <Theme>
       <body style={inter.style} className="flex flex-col">
         <Header />
-        <div className="min-h-screen pt-[80px]">{children}</div>
+        <div className="min-h-screen">{children}</div>
         <Footer />
       </body>
     </Theme>

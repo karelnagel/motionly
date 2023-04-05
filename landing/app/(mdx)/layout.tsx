@@ -25,7 +25,7 @@ export default function MDXLayout({ children }: { children: ReactNode }) {
   if (!collection || !paths) return <Error statusCode={404} />;
 
   return (
-    <div className="grid grid-cols-4 md:grid-cols-5 gap-4 px-2">
+    <div className="grid grid-cols-4 md:grid-cols-5 gap-4 px-2 mt-[80px]">
       <div className="hidden md:flex flex-col w-full space-y-1">
         {collection.pages?.map((page) => (
           <MenuItem key={page.id} {...page} parents={`/${collection.id}`} />
