@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { Theme } from "~/components/Theme";
+import { Footer } from "~/components/Footer";
+import { Header } from "~/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,10 +19,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body style={inter.style}>
-        <Theme>{children}</Theme>
+    <Theme>
+      <body style={inter.style} className="flex flex-col">
+        <Header />
+        <div className="min-h-screen">{children}</div>
+        <Footer />
       </body>
-    </html>
+    </Theme>
   );
 }
