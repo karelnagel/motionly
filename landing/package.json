@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mdx-js/loader": "^2.3.0",
+    "@next/mdx": "^13.2.4",
+    "@tailwindcss/typography": "^0.5.9",
     "@types/node": "^18.7.10",
     "@types/react": "^18.0.33",
     "@types/react-dom": "18.0.11",
@@ -17,8 +20,11 @@
     "next": "13.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.6.0",
     "tw-colors": "^1.2.0",
-    "typescript": "5.0.3"
+    "typescript": "5.0.3",
+    "webpack": "^5.77.0",
+    "zustand": "^4.3.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
