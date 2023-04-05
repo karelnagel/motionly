@@ -27,7 +27,7 @@ export const general: Right = {
       <div className="grid grid-cols-2 gap-2">
         {entries.map(([key, input]) => {
           const value = comp[key as keyof Comp];
-          return <Input key={key} value={value} onChange={(value) => editComponent({ [key]: value }, false)} props={input} />;
+          return <Input key={key} value={value} onChange={(value) => editComponent({ [key]: value }, false, undefined)} props={input} />;
         })}
       </div>
     );

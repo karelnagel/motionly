@@ -43,7 +43,7 @@ const TemplateStore = z.object({
   setComponentRef: z.function().args(z.any().optional()).returns(z.void()),
   setComponent: z.function().args(z.string().optional()).returns(z.void()),
 
-  editComponent: z.function().args(CompPartial, z.boolean().optional()).returns(z.void()),
+  editComponent: z.function().args(CompPartial, z.boolean().optional(), z.string().optional()).returns(z.void()),
   editComponentProps: z.function().args(z.any()).returns(z.void()),
   newComponent: z.function().args(Comp).returns(z.void()),
   copyComponent: z.function().returns(z.void()),
@@ -51,8 +51,17 @@ const TemplateStore = z.object({
 
   page: Page,
   setPage: z.function().args(Page).returns(z.void()),
+  reset: z.function().returns(z.void()),
 });
-
+const defaultState = {
+  templates: {},
+  allTemplates: [],
+  past: [],
+  future: [],
+  page: "home" as Page,
+  historyTimeout: undefined,
+  component: undefined,
+};
 type TemplateStore = z.infer<typeof TemplateStore>;
 export const useTemplateStore = storeBase<TemplateStore>(
   (setStore, get) => {
@@ -71,8 +80,10 @@ export const useTemplateStore = storeBase<TemplateStore>(
       setStore(s);
     };
     return {
-      templates: {},
-      allTemplates: [],
+      ...defaultState,
+      reset: () => {
+        setStore(defaultState, true);
+      },
       newTemplate: () => {
         const id = getRandomId();
         setStore((s) => {
@@ -101,8 +112,6 @@ export const useTemplateStore = storeBase<TemplateStore>(
         return newId;
       },
 
-      past: [],
-      future: [],
       editTemplate: (template) => {
         set((s) => {
           if (!s.template) return;
@@ -110,17 +119,16 @@ export const useTemplateStore = storeBase<TemplateStore>(
         });
       },
 
-      page: "home",
       setPage: (page) => setStore({ page }),
       setComponent: (component?: string) => setStore({ component }),
       setComponentRef: (componentRef) => setStore({ componentRef }),
-      editComponent: (comp, noCheck = false) => {
+      editComponent: (comp, noCheck = false, id) => {
         set(
           (s) => {
             if (!s.template) return;
-            const old = s.templates[s.template].components[s.component || ""];
+            const old = s.templates[s.template].components[id || s.component || ""];
             if (!old) return toast.error("No component selected");
-            s.templates[s.template].components[s.component || ""] = { ...old, ...comp };
+            s.templates[s.template].components[id || s.component || ""] = { ...old, ...comp };
           },
           undefined,
           noCheck

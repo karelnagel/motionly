@@ -27,8 +27,8 @@ const BaseComp = z.object({
   id: z.string(),
   y: z.number(),
   x: z.number(),
-  width: z.number(),
-  height: z.number(),
+  width: z.number().min(1),
+  height: z.number().min(1),
   from: z.number().min(0),
   duration: z.number().min(0),
   opacity: z.number().min(0).max(1),
@@ -39,7 +39,6 @@ const BaseComp = z.object({
 });
 
 export const Comp = BaseComp.superRefine((s, ctx) => {
-  if (!s.type) return;
   const res = components[s.type].zod.safeParse(s.props);
   if (res.success) return;
   res.error.errors.map((e) => ctx.addIssue(e));

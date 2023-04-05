@@ -15,44 +15,32 @@
 .table > thead > tr > th {
   @apply bg-base-300;
 }
-.timeline {
-  height: 30px /* 24px */;
-  width: calc(100% + 4px);
+
+#playhead {
+  height: 0;
+  width: 100%;
+  top: 0;
   cursor: ew-resize;
   appearance: none;
-  overflow: hidden;
-  background-color: transparent;
-  margin: 0 -2px;
+  position: absolute;
 }
-.timeline::-webkit-slider-runnable-track {
-  height: 0.5rem /* 8px */;
+
+#playhead::-webkit-slider-runnable-track {
+  height: 0;
   width: 100%;
-  background-color: transparent;
+  pointer-events: none;
 }
-.timeline::-moz-range-track {
-  height: 0.5rem /* 8px */;
-  width: 100%;
-  background-color: transparent;
-}
-.timeline::-webkit-slider-thumb {
+
+#playhead::-webkit-slider-thumb {
   background-color: red;
   position: relative;
-  height: 40px;
-  width: 4px;
+  height: 600px;
+  width: 3px;
+  z-index: 2000000;
   appearance: none;
+  pointer-events: all;
   -webkit-appearance: none;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.timeline::-moz-range-thumb {
-  background-color: red;
-  position: relative;
-  height: 40px;
-  width: 4px;
-  appearance: none;
-  -webkit-appearance: none;
-  top: 50%;
-  transform: translateY(-50%);
+  @apply shadow-lg;
 }
 
 .moveable-origin {
@@ -90,4 +78,21 @@
 }
 .form input[type="range"] {
   @apply w-full accent-primary;
+}
+
+#timeline .moveable-control {
+  background: rgba(256, 256, 256, 0.3) !important;
+  height: 26px !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+  width: 4px !important;
+  margin: 0 !important;
+  margin-top: -13px !important;
+}
+#timeline .moveable-w {
+  border-radius: 10px 0 0 10px !important;
+}
+#timeline .moveable-e {
+  border-radius: 0 10px 10px 0 !important;
+  margin-left: -4px !important;
 }

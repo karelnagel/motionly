@@ -1,4 +1,4 @@
-import { usePlayerRef, usePlayerStore, useTemplateStore, useTimelineStore } from "../../../store";
+import { usePlayerRef, usePlayerStore, useTemplate, useTemplateStore } from "../../../store";
 import {
   IoMdCopy,
   IoIosVolumeOff,
@@ -15,22 +15,22 @@ import {
 import { IconType } from "react-icons";
 
 export const TopBar = () => {
-  const setWidth = useTimelineStore((t) => t.setWidth);
   const selected = useTemplateStore((t) => t.component);
   const copy = useTemplateStore((t) => t.copyComponent);
-  const width = useTimelineStore((t) => t.width);
   const deleteComp = useTemplateStore((t) => t.deleteComp);
-  const fps = useTemplateStore((t) => t.templates[t.template || ""].fps);
+  const fps = useTemplate((t) => t.fps);
   const playerRef = usePlayerRef();
   const isPlaying = usePlayerStore((t) => t.isPlaying);
   const frame = usePlayerStore((t) => t.frame);
   return (
-    <div className="flex justify-between py-1 px-2 shadow-md items-center">
-      <div className="flex space-x-2 items-center">
-        <Button Icon={IoMdTrash} disabled={!selected} onClick={() => deleteComp()} tooltip="Delete" />
-        <Button Icon={IoMdCopy} disabled={!selected} onClick={() => copy()} tooltip="Ctrl + C" />
-      </div>
-      <div className="flex items-center justify-center space-x-5">
+    <div className="grid grid-cols-11 py-1 px-2 shadow-md items-center">
+      <input
+        type="number"
+        value={frame === 0 ? "" : Math.round((frame / fps) * 100) / 100}
+        onChange={(e) => playerRef?.seekTo(Number(e.target.value) * fps)}
+        className="bg-transparent outline-none"
+      />
+      <div className="flex items-center justify-center space-x-5 col-span-9">
         <Button
           Icon={playerRef?.isMuted ? IoIosVolumeOff : IoIosVolumeHigh}
           onClick={() => (playerRef?.isMuted() ? playerRef?.unmute() : playerRef?.mute())}
@@ -41,9 +41,9 @@ export const TopBar = () => {
         <Button Icon={IoIosSkipForward} onClick={() => playerRef?.seekTo(frame + 5 * fps)} tooltip="→ / L" />
         <Button Icon={IoMdExpand} onClick={() => playerRef?.requestFullscreen()} tooltip="F" />
       </div>
-      <div className="text-xl flex items-center space-x-2">
-        <Button Icon={IoIosRemove} onClick={() => setWidth(width * 1.1)} />
-        <Button Icon={IoIosAdd} onClick={() => setWidth(width / 1.1)} />
+      <div className="flex space-x-2 items-center justify-end">
+        <Button Icon={IoMdTrash} disabled={!selected} onClick={() => deleteComp()} tooltip="Delete" />
+        <Button Icon={IoMdCopy} disabled={!selected} onClick={() => copy()} tooltip="Ctrl + C" />
       </div>
     </div>
   );

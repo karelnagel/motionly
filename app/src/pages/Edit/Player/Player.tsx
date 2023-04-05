@@ -82,7 +82,8 @@ const Move = () => {
             x: (comp.x || 0) + delta[0],
             y: (comp.y || 0) + delta[1],
           },
-          true
+          true,
+          undefined
         );
       }}
       keepRatio={lockAspectRatio}
@@ -94,7 +95,8 @@ const Move = () => {
             width: width,
             height: height,
           },
-          true
+          true,
+          undefined
         );
         if (delta[0]) {
           target.style.width = `${width}px`;
@@ -103,7 +105,7 @@ const Move = () => {
           target.style.height = `${height}px`;
         }
       }}
-      onRotate={({ absoluteRotation }) => editComponent({ rotation: absoluteRotation }, true)}
+      onRotate={({ absoluteRotation }) => editComponent({ rotation: absoluteRotation }, true, undefined)}
     />
   );
 };

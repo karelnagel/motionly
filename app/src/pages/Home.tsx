@@ -3,6 +3,7 @@ import { useTemplate, useTemplateStore } from "../store";
 export const home = () => {
   const newTemplate = useTemplateStore((s) => s.newTemplate);
   const allTemplates = useTemplateStore((s) => s.allTemplates);
+  const reset = useTemplateStore((s) => s.reset);
   return (
     <div className="p-4 space-y-4">
       <div className="flex justify-between items-center">
@@ -17,6 +18,7 @@ export const home = () => {
           <Template id={id} key={id} />
         ))}
       </div>
+      <button onClick={reset}>Reset</button>
     </div>
   );
 };

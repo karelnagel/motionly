@@ -1,64 +1,39 @@
-import { useTemplate, useTimelineStore, usePlayerStore, usePlayerRef } from "../../../store/index";
-import { TimelineComponent } from "./TimelineComp";
+import { usePlayerRef, usePlayerStore, useTemplate } from "../../../store/index";
+import { Component } from "./Component";
 import { TopBar } from "./TopBar";
 
 export const Timeline = () => {
   const allComponents = useTemplate((t) => t.allComponents);
-  const width = useTimelineStore((t) => t.width);
-
   return (
-    <div className=" h-full relative flex flex-col">
+    <div id="timeline" className="flex flex-col h-full">
       <TopBar />
-      <div className=" w-full h-full overflow-x-auto">
-        <div id="timeline" className="h-full w-full flex flex-col" style={{ width: `${width}%` }}>
-          <TimelineBar />
-          <div className="overflow-y-scroll h-full overflow-x-hidden px-3 pb-2">
-            <div className="flex flex-col space-y-2 relative">
-              {allComponents?.map((id) => (
-                <TimelineComponent key={id} id={id} />
-              ))}
-            </div>
-          </div>
+      <div className="relative h-full w-full">
+        <Playhead />
+        <div className="absolute w-full h-full overflow-auto space-y-1 py-1">
+          {allComponents.map((c) => (
+            <Component key={c} id={c} />
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
-export const TimelineBar = () => {
+export const Playhead = () => {
   const { duration, fps } = useTemplate((t) => ({ duration: t.duration, fps: t.fps }));
   const frame = usePlayerStore((s) => s.frame);
   const playerRef = usePlayerRef();
   return (
-    <div className="h-14 w-full relative p-3 pr-7">
-      <div className="relative">
-        {new Array(duration * 2 + 1).fill(0).map((_, i) =>
-          i % Math.ceil(duration / 10) !== 0 ? null : (
-            <div
-              key={i}
-              className="absolute top-0 flex flex-col -translate-x-1/2 items-center"
-              style={{
-                left: `${(i / 2 / duration) * 100}%`,
-              }}
-            >
-              <div className={"h-3 bg-base-content"} style={{ width: i % 2 === 0 ? 2 : 1 }} />
-              <p className="text-sm">{i % 2 === 0 && Math.floor(i / 2)}</p>
-            </div>
-          )
-        )}
-        <input
-          id="timeline"
-          type="range"
-          value={frame}
-          onChange={(e) => {
-            playerRef?.seekTo(Number(e.currentTarget.value));
-          }}
-          step={1}
-          min={0}
-          max={duration * fps}
-          className="absolute top-0 left-0 w-full h-6 timeline"
-        />
-      </div>
-    </div>
+    <input
+      type="range"
+      id="playhead"
+      value={frame}
+      onChange={(e) => {
+        playerRef?.seekTo(Number(e.currentTarget.value));
+      }}
+      step={1}
+      min={0}
+      max={duration * fps}
+    />
   );
 };
