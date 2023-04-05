@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Download } from "~/components/Download";
 import { github } from "~/config";
 
-export const Hero = () => {
+const Hero = () => {
   return (
     <div className=" grid grid-cols-2 items-center h-screen">
       <div className="flex flex-col space-y-4">
@@ -16,9 +16,7 @@ export const Hero = () => {
           </Link>
         </div>
       </div>
-      <div>
-        {/* <Image priority src="/favicon.png" alt="video" height={400} width={600} className="" /> */}
-      </div>
+      <div>{/* <Image priority src="/favicon.png" alt="video" height={400} width={600} className="" /> */}</div>
     </div>
   );
 };
