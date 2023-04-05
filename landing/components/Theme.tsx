@@ -12,8 +12,8 @@ export const Theme = ({ children }: { children: ReactNode }) => {
     });
   }, []);
   return (
-    <div className="min-h-screen bg-base-100 text-base-content" data-theme={theme}>
+    <html lang="en" className="min-h-screen bg-base-100 text-base-content" data-theme={theme}>
       {children}
-    </div>
+    </html>
   );
 };

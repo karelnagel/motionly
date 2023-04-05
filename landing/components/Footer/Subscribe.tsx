@@ -10,7 +10,6 @@ export const Subscribe = () => {
       className="col-span-2 space-y-2 flex flex-col"
       onSubmit={(e) => {
         e.preventDefault();
-        // todo send
         setIsSuccess(true);
       }}
     >
@@ -27,7 +26,7 @@ export const Subscribe = () => {
           Subscribe
         </button>
       ) : (
-        <p className="btn btn-success cursor-default">It's not working yet!</p>
+        <p className="cursor-default">It's not working yet, but thanks for trying 😀</p>
       )}
     </form>
   );

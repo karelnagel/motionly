@@ -14,8 +14,8 @@ const items: { name: string; route: string }[] = [
 export const Header = () => {
   const pathname = usePathname();
   return (
-    <div className="relative z-20 w-full py-2">
-      <div className="max-w-screen-xl mx-auto px-2 flex justify-between items-center">
+    <div className="z-20 w-full h-[60px] bg-base-100 bg-opacity-80 shadow-md fixed top-0">
+      <div className=" max-w-screen-xl h-full mx-auto px-2 flex justify-between items-center">
         <Link href="/">
           <Logo />
         </Link>

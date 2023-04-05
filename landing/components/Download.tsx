@@ -3,7 +3,7 @@ import { release } from "~/config";
 
 export const Download = () => {
   return (
-    <Link href={release} target="_blank" className="bg-primary-500 p-2 font-bold text-xl rounded-md cursor-pointer">
+    <Link href={release} target="_blank" className="bg-primary-500 p-2 font-bold text-lg rounded-md cursor-pointer">
       download
     </Link>
   );
