@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { Input } from ".";
+import { DefineInput } from ".";
 
-export const gif: Input<string> = {
+export const gif: DefineInput<string> = {
   zod: z.string().url(),
   component: ({ disabled, value, onChange, props: { placeholder, label, tooltip } }) => {
     return (

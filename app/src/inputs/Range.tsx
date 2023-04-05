@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { Input } from ".";
+import { DefineInput } from ".";
 
-export const range: Input<
+export const range: DefineInput<
   number,
   {
     min: number;

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Input } from ".";
+import { DefineInput } from ".";
 
 const percentToHex = (p: number) => {
   const intValue = Math.round((p / 100) * 255); // map percent to nearest integer (0 - 255)
@@ -16,7 +16,7 @@ const hexToPercent = (alpha: string) => {
 
 export const Color = z.string().startsWith("#").max(9);
 
-export const color: Input<string> = {
+export const color: DefineInput<string> = {
   zod: Color,
   component: ({ disabled, value, onChange, props: { label } }) => {
     const color = value?.slice(0, 7);

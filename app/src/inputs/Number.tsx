@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { getColspan, Input } from ".";
+import { getColspan, DefineInput } from ".";
 
-export const number: Input<number> = {
+export const number: DefineInput<number> = {
   zod: z.number(),
   component: ({ props: { label, placeholder, colspan }, value, onChange, disabled }) => {
     return (

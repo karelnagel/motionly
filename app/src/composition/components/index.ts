@@ -15,7 +15,7 @@ import { shape } from "./components/Shape";
 import { text } from "./components/Text";
 import { video } from "./components/Video";
 import { z } from "zod";
-import { Inputs } from "../../inputs";
+import { Input } from "../../inputs";
 import { Comp } from "../types";
 
 export type Component<T> = {
@@ -24,7 +24,7 @@ export type Component<T> = {
   hue: number;
   Icon: React.FC;
   examples?: { props: Partial<Omit<Comp, "props">> & { props: T }; title: string; image?: string }[];
-  inputs: { [key in keyof T]?: Inputs };
+  inputs: { [key in keyof T]?: Input };
 };
 
 export const components = {

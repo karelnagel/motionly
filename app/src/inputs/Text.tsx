@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { Input } from ".";
+import { DefineInput } from ".";
 
-export const text: Input<string> = {
+export const text: DefineInput<string> = {
   zod: z.string(),
   component: ({ props: { label }, value, onChange }) => {
     return (

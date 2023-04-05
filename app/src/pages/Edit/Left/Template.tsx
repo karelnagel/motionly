@@ -1,10 +1,10 @@
 import { Left } from ".";
 import { IoIosSettings } from "react-icons/io";
 import { useTemplateStore, useTemplate } from "../../../store";
-import { Input, Inputs } from "../../../inputs";
+import { Inputs } from "../../../inputs";
 import { Template } from "../../../composition";
 
-const templateInputs: { [key in keyof Template]?: Inputs } = {
+const templateInputs: Inputs<Template> = {
   width: { number: { label: "Width" } },
   height: { number: { label: "Height" } },
   duration: { number: { label: "Duration" } },
@@ -17,13 +17,6 @@ export const template: Left = {
   component: () => {
     const template = useTemplate();
     const editTemplate = useTemplateStore((state) => state.editTemplate);
-    return (
-      <div className="grid grid-cols-2 gap-2">
-        {Object.entries(templateInputs).map(([key, input]) => {
-          const value = template[key as keyof typeof templateInputs];
-          return <Input key={key} value={value} onChange={(value) => editTemplate({ [key]: value })} props={input} />;
-        })}
-      </div>
-    );
+    return <Inputs inputs={templateInputs} value={template} onChange={(v) => editTemplate(v, false, undefined)} />;
   },
 };

@@ -1,7 +1,7 @@
 import { Right } from ".";
 import { useComponent, useTemplateStore } from "../../../store";
 import { components } from "../../../composition";
-import { Input } from "../../../inputs";
+import { Inputs } from "../../../inputs";
 import { capitalize } from "../../../helpers";
 
 export const component: Right = {
@@ -18,16 +18,9 @@ export const component: Right = {
   },
   component: () => {
     const props = useComponent((c) => c.props);
-    const inputs = useComponent((c) => Object.entries(components[c.type].inputs));
+    const inputs = useComponent((c) => components[c.type].inputs);
     const editComponentProps = useTemplateStore((state) => state.editComponentProps);
     if (!props || !inputs) return null;
-    return (
-      <div className="flex flex-col space-y-2">
-        {inputs.map(([key, input]) => {
-          const value = props[key];
-          return <Input key={key} value={value} onChange={(e) => editComponentProps({ [key]: e })} props={input} />;
-        })}
-      </div>
-    );
+    return <Inputs inputs={inputs} value={props} onChange={(v) => editComponentProps(v, false, undefined)} />;
   },
 };
