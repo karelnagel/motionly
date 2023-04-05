@@ -22,7 +22,7 @@ export const Subscribe = () => {
         placeholder="Enter your email"
       />
       {!isSuccess ? (
-        <button className="bg-primary py-2 rounded-md" type="submit">
+        <button className="bg-primary py-2 rounded-md text-primary-content" type="submit">
           Subscribe
         </button>
       ) : (
