@@ -1,4 +1,3 @@
-import { IconType } from "react-icons";
 import { IoIosInformation } from "react-icons/io";
 import { z } from "zod";
 import { Panel } from "../../../components/Panel";
@@ -7,9 +6,7 @@ import { useRightStore, useTemplateStore } from "../../../store";
 import { component } from "./Component";
 import { general } from "./General";
 
-export type Right = Tab & {
-  icon: IconType | React.FC;
-};
+export type Right = Tab;
 
 export const right = {
   general,

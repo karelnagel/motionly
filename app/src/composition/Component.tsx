@@ -1,15 +1,15 @@
 import { Sequence, useVideoConfig } from "remotion";
 import { ReactNode } from "react";
 import { components } from "./components";
-import { Wrappers } from "./wrappers";
+import { WrappersComponent } from "./wrappers";
 import { useComponent, useCompositionStore } from ".";
 
 export const Component = ({ id }: { id: string }) => {
   return (
     <Stuff id={id}>
-      <Wrappers id={id}>
+      <WrappersComponent id={id}>
         <Component2 id={id} />
-      </Wrappers>
+      </WrappersComponent>
     </Stuff>
   );
 };

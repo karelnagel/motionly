@@ -1,8 +1,7 @@
-import { IconType } from "react-icons";
 import { Left } from "../pages/Edit/Left";
 
 export type Tab = {
-  icon: IconType | React.FC;
+  icon: React.FC;
   title: string | React.FC;
   component: React.FC;
 };

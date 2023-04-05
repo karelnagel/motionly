@@ -1,48 +1,41 @@
 import { z } from "zod";
 import { loop } from "./Loop";
-import { animation } from "./Animation";
-import { freeze } from "./Freeze";
-import { motion_blur } from "./MotionBlur";
 import { ReactNode } from "react";
-import { useComponent, useCompositionStore } from "..";
+import { useComponent } from "..";
+import { freeze } from "./Freeze";
+import { animation } from "./Animation";
+import { motion_blur } from "./MotionBlur";
 
-export type WrapperType<T> = {
+export const WrapperName = z.enum(["loop", "animation", "freeze", "motion_blur"]);
+export type WrapperName = z.infer<typeof WrapperName>;
+
+export type WrapperType<T extends { type: WrapperName }> = {
   wrapper: React.FC<T & { children: ReactNode }>;
   zod: z.ZodType<T>;
+  title: string;
+  icon: React.FC;
+  edit: React.FC<{ value: T; onChange: (v: Partial<T>) => void }>;
 };
-export const WrapperNames = z.enum(["loop", "animation", "freeze", "motion_blur"]);
-export type WrapperNames = z.infer<typeof WrapperNames>;
+export const Wrapper = z.union([loop.zod, freeze.zod, animation.zod, motion_blur.zod]);
+export type Wrapper = z.infer<typeof Wrapper>;
 
-export const wrappersCollection = { loop, animation, freeze, motion_blur };
+export const Wrappers = z.record(WrapperName, Wrapper);
+export type Wrappers = z.infer<typeof Wrappers>;
 
-export const WrappersType = z.object({
-  wrappers: z.record(
-    z.object({
-      name: WrapperNames,
-      props: z.any(),
-    })
-  ),
-  allWrappers: z.string().array(),
-});
-export type WrappersType = z.infer<typeof WrappersType>;
+export const items = { loop, freeze, animation, motion_blur };
 
-const Wrap = ({ allWrappers, id, children }: { allWrappers: string[]; id: string; children: ReactNode }) => {
-  const wrapper = useComponent((c) => c.wrappers.wrappers[allWrappers[0]], id);
-  if (allWrappers.length === 0 || !wrapper) return <>{children}</>;
-
-  const Wrapper = wrappersCollection[wrapper.name].wrapper;
+export const WrappersComponent = ({ children, id }: { children: ReactNode; id: string }) => {
+  const wrappers = useComponent((c) => c.wrappers, id);
   return (
-    <Wrapper {...wrapper.props}>
-      <Wrap allWrappers={allWrappers.slice(1)} id={id} children={children} />
-    </Wrapper>
-  );
-};
-
-export const Wrappers = ({ children, id }: { children: ReactNode; id: string }) => {
-  const allWrappers = useCompositionStore((s) => s.template?.components[id]?.wrappers.allWrappers);
-  return (
-    <Wrap allWrappers={allWrappers || []} id={id}>
-      {children}
-    </Wrap>
+    <>
+      {WrapperName.options.map((w) => {
+        const Wrapper = items[w].wrapper;
+        return (
+          <Wrapper {...(wrappers[w] as any)} type={w}>
+            {children}
+          </Wrapper>
+        );
+      })}
+    </>
   );
 };

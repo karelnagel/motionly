@@ -1,14 +1,21 @@
+import { IoLockOpen } from "react-icons/io5";
 import { Loop, useVideoConfig } from "remotion";
 import { z } from "zod";
 import { WrapperType } from ".";
 
-const LoopType = z.object({
+export const LoopType = z.object({
+  type: z.literal("loop"),
   duration: z.number().optional(),
 });
 type LoopType = z.infer<typeof LoopType>;
 
 export const loop: WrapperType<LoopType> = {
   zod: LoopType,
+  title: "Loop",
+  icon: IoLockOpen,
+  edit: (props) => {
+    return <div></div>;
+  },
   wrapper: ({ duration, children }) => {
     const { fps } = useVideoConfig();
     return (

@@ -15,7 +15,7 @@ const def: Comp = {
   from: 0,
   type: "text",
   props: {},
-  wrappers: { allWrappers: [], wrappers: {} },
+  wrappers: {},
 };
 export const add: Left = {
   icon: IoShapesSharp,

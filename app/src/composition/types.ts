@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { WrappersType } from "./wrappers";
+import { Wrappers } from "./wrappers";
 import { components } from ".";
 export * from "./store";
 
@@ -35,7 +35,7 @@ const BaseComp = z.object({
   rotation: z.number(),
   type: ComponentName,
   props: z.any(),
-  wrappers: WrappersType,
+  wrappers: Wrappers,
 });
 
 export const Comp = BaseComp.superRefine((s, ctx) => {

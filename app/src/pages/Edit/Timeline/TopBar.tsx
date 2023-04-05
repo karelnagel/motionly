@@ -8,11 +8,8 @@ import {
   IoIosPlay,
   IoIosSkipForward,
   IoMdExpand,
-  IoIosRemove,
-  IoIosAdd,
   IoMdTrash,
 } from "react-icons/io";
-import { IconType } from "react-icons";
 
 export const TopBar = () => {
   const selected = useTemplateStore((t) => t.component);
@@ -48,7 +45,7 @@ export const TopBar = () => {
     </div>
   );
 };
-const Button = ({ Icon, onClick, disabled, tooltip }: { Icon: IconType; onClick: () => void; disabled?: boolean; tooltip?: string }) => {
+const Button = ({ Icon, onClick, disabled, tooltip }: { Icon: React.FC; onClick: () => void; disabled?: boolean; tooltip?: string }) => {
   return (
     <div className={`${tooltip ? "tooltip tooltip-bottom" : ""}`} data-tip={tooltip}>
       <button disabled={disabled} onClick={() => onClick()} className="btn-ghost">

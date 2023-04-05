@@ -14,7 +14,6 @@ import { qrcode } from "./components/QRCode";
 import { shape } from "./components/Shape";
 import { text } from "./components/Text";
 import { video } from "./components/Video";
-import { IconType } from "react-icons";
 import { z } from "zod";
 import { Inputs } from "../../inputs";
 import { Comp } from "../types";
@@ -23,7 +22,7 @@ export type Component<T> = {
   zod: z.ZodType<T>;
   component: React.FC<T & { id: string }>;
   hue: number;
-  Icon: IconType;
+  Icon: React.FC;
   examples?: { props: Partial<Omit<Comp, "props">> & { props: T }; title: string; image?: string }[];
   inputs: { [key in keyof T]?: Inputs };
 };
