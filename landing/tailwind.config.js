@@ -28,6 +28,7 @@ module.exports = {
     },
   },
   plugins: [
+    require('@tailwindcss/typography'),
     createThemes({
       light: {
         "base-100": "#f7f7f7",
