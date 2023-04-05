@@ -6,14 +6,15 @@ import { freeze } from "./Freeze";
 import { animation } from "./Animation";
 import { motion_blur } from "./MotionBlur";
 
-export const WrapperName = z.enum(["loop", "animation", "freeze", "motion_blur"]);
+export const WrapperName = z.enum(["freeze", "loop", "motion_blur", "animation"]);
 export type WrapperName = z.infer<typeof WrapperName>;
 
-export type WrapperType<T extends { type: WrapperName }> = {
+export type DefineWrapper<T extends { type: WrapperName }> = {
   wrapper: React.FC<T & { children: ReactNode }>;
   zod: z.ZodType<T>;
   title: string;
   icon: React.FC;
+  default: T;
   edit: React.FC<{ value: T; onChange: (v: Partial<T>) => void }>;
 };
 export const Wrapper = z.union([loop.zod, freeze.zod, animation.zod, motion_blur.zod]);
@@ -22,7 +23,7 @@ export type Wrapper = z.infer<typeof Wrapper>;
 export const Wrappers = z.record(WrapperName, Wrapper);
 export type Wrappers = z.infer<typeof Wrappers>;
 
-export const items = { loop, freeze, animation, motion_blur };
+export const definedWrappers = { loop, freeze, animation, motion_blur };
 
 const Wrap = ({ allWrappers, id, children }: { allWrappers: WrapperName[]; id: string; children: ReactNode }) => {
   const w = allWrappers[0];
@@ -30,7 +31,7 @@ const Wrap = ({ allWrappers, id, children }: { allWrappers: WrapperName[]; id: s
   if (allWrappers.length === 0) return <>{children}</>;
   if (!props) return <Wrap allWrappers={allWrappers.slice(1)} id={id} children={children} />;
 
-  const Wrapper = items[w].wrapper;
+  const Wrapper = definedWrappers[w].wrapper;
 
   return (
     <Wrapper {...(props as any)}>

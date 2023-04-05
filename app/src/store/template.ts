@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { Page } from "../enums";
 import { z } from "zod";
 import { useCallback } from "react";
+import { Wrapper } from "../composition/wrappers";
 
 export const defaultTemplate: Template = {
   allComponents: [],
@@ -45,6 +46,7 @@ const TemplateStore = z.object({
 
   editComponent: z.function().args(CompPartial, z.boolean().optional(), z.string().optional()).returns(z.void()),
   editComponentProps: z.function().args(z.any()).returns(z.void()),
+  editComponentWrapper: z.function().args(Wrapper).returns(z.void()),
   newComponent: z.function().args(Comp).returns(z.void()),
   copyComponent: z.function().returns(z.void()),
   deleteComp: z.function().returns(z.void()),
@@ -140,6 +142,14 @@ export const useTemplateStore = storeBase<TemplateStore>(
           const comp = s.templates[s.template].components[s.component || ""];
           if (!comp) return toast.error("No component selected");
           s.templates[s.template].components[s.component || ""].props = { ...comp.props, ...props };
+        });
+      },
+      editComponentWrapper: (wrapper) => {
+        set((s) => {
+          if (!s.template) return;
+          const comp = s.templates[s.template].components[s.component || ""];
+          if (!comp) return toast.error("No component selected");
+          comp.wrappers[wrapper.type] = wrapper;
         });
       },
 

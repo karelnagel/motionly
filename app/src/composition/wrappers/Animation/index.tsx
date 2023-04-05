@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
-import { IoLockOpen } from "react-icons/io5";
+import { MdAnimation } from "react-icons/md";
 import { z } from "zod";
-import { WrapperType } from "..";
+import { DefineWrapper } from "..";
 import { AnimationProps } from "./types";
 import { useAnimation } from "./useAnimation";
 
@@ -11,12 +11,13 @@ const Animation = z.object({
 });
 type Animation = z.infer<typeof Animation>;
 
-export const animation: WrapperType<Animation> = {
+export const animation: DefineWrapper<Animation> = {
   zod: Animation,
   title: "Animations",
-  icon: IoLockOpen,
+  icon: MdAnimation,
+  default: { type: "animation", animations: [] },
   edit: ({ value, onChange }) => {
-    return <div></div>;
+    return <div>{value.type}</div>;
   },
   wrapper: ({ children, animations }) => {
     const animate = useAnimation();

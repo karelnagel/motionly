@@ -15,8 +15,8 @@ export function HotKeys() {
   const frame = usePlayerStore((t) => t.frame);
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
-      const isInput =
-        (document.activeElement?.tagName === "INPUT" || document.activeElement?.tagName === "TEXTAREA") && document.activeElement?.id !== "timeline";
+      const isInput = document.activeElement?.tagName === "INPUT" || document.activeElement?.tagName === "TEXTAREA";
+      const isTextInput = isInput && document.activeElement?.getAttribute("type") === "text";
       if (event.key === "Backspace" && !isInput) {
         deleteComp();
       } else if (event.key === "z" && event.metaKey && !event.shiftKey) {
@@ -25,7 +25,7 @@ export function HotKeys() {
         redo?.();
       } else if (event.key === "c" && event.metaKey && !isInput) {
         copyComp();
-      } else if (event.key === " " && !isInput) {
+      } else if (event.key === " " && !isTextInput) {
         playerRef?.toggle();
       } else if ((event.key === "l" || event.key === "ArrowRight") && !isInput) {
         playerRef?.seekTo(frame + 5 * fps);

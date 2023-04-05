@@ -1,26 +1,36 @@
 import { Trail } from "@remotion/motion-blur";
-import { IoLockOpen } from "react-icons/io5";
+import { MdOutlineAutoAwesomeMotion } from "react-icons/md";
 import { useVideoConfig } from "remotion";
 import { z } from "zod";
-import { WrapperType } from ".";
+import { DefineWrapper } from ".";
+import { Inputs } from "../../inputs";
 
 export const MotionBlur = z.object({
   type: z.literal("motion_blur"),
+  active: z.boolean().optional(),
   layers: z.number().optional(),
   lag: z.number().optional(),
   opacity: z.number().optional(),
 });
-type MotionBlur = z.infer<typeof MotionBlur>;
 
-export const motion_blur: WrapperType<MotionBlur> = {
+type MotionBlur = z.infer<typeof MotionBlur>;
+const inputs: Inputs<MotionBlur> = {
+  active: { checkbox: { label: "Active" } },
+  layers: { number: { label: "Layers", placeholder: "50" } },
+  lag: { number: { label: "Lag", placeholder: "0.1" } },
+  opacity: { number: { label: "Opacity", placeholder: "1" } },
+};
+export const motion_blur: DefineWrapper<MotionBlur> = {
   zod: MotionBlur,
   title: "Motion Blur",
-  icon: IoLockOpen,
-  edit: (props) => {
-    return <div></div>;
+  icon: MdOutlineAutoAwesomeMotion,
+  default: { type: "motion_blur" },
+  edit: ({ value, onChange }) => {
+    return <Inputs value={value} inputs={inputs} onChange={onChange} />;
   },
-  wrapper: ({ layers, lag, opacity, children }) => {
+  wrapper: ({ layers, lag, opacity, children, active }) => {
     const { fps } = useVideoConfig();
+    if (!active) return <>{children}</>;
     return (
       <Trail lagInFrames={lag ? lag : 0.1 * fps} layers={layers || 50} trailOpacity={opacity || 1}>
         <>{children}</>
