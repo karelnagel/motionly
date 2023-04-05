@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+.table > tbody > tr > th {
+  @apply bg-base-200;
+}
+.table > thead > tr > th {
+  @apply bg-base-300;
+}
+
+#playhead {
+  height: 0;
+  width: 100%;
+  top: 0;
+  cursor: ew-resize;
+  appearance: none;
+  position: absolute;
+}
+
+#playhead::-webkit-slider-runnable-track {
+  height: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+#playhead::-webkit-slider-thumb {
+  background-color: red;
+  position: relative;
+  height: 600px;
+  width: 3px;
+  z-index: 2000000;
+  appearance: none;
+  pointer-events: all;
+  -webkit-appearance: none;
+  @apply shadow-lg;
+}
+
+.moveable-origin {
+  display: none;
+}
+
+.btn-primary {
+  @apply bg-primary hover:bg-primary-600 duration-150 px-2 py-1 rounded-md cursor-pointer text-primary-content;
+}
+.btn-ghost {
+  @apply bg-base-content text-base-content bg-opacity-0 hover:bg-opacity-25 duration-150 p-1 rounded-md cursor-pointer;
+}
+.btn-ghost:disabled {
+  @apply opacity-20 cursor-default;
+}
+
+.form {
+  @apply grid grid-cols-4 gap-2 items-center col-span-2;
+}
+.form label {
+  @apply text-sm whitespace-nowrap overflow-hidden;
+}
+.form > input,
+.form-color > div {
+  @apply col-span-3;
+}
+.form input {
+  @apply !bg-base-100 rounded-md p-1 focus:outline-primary focus:outline w-full;
+}
+.form input[type="color"] {
+  @apply p-0 h-8 w-8 shrink-0;
+}
+.form input[type="checkbox"] {
+  @apply p-0 h-5 w-5 ml-auto bg-primary-50 rounded-md accent-primary-500;
+}
+.form input[type="range"] {
+  @apply w-full accent-primary;
+}
+
+#timeline .moveable-control {
+  background: rgba(256, 256, 256, 0.3) !important;
+  height: 26px !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+  width: 4px !important;
+  margin: 0 !important;
+  margin-top: -13px !important;
+}
+#timeline .moveable-w {
+  border-radius: 10px 0 0 10px !important;
+}
+#timeline .moveable-e {
+  border-radius: 0 10px 10px 0 !important;
+  margin-left: -4px !important;
+}

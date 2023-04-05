@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "Project" ALTER COLUMN "tags" SET DEFAULT ARRAY[]::TEXT[];
