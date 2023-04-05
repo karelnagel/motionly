@@ -24,18 +24,26 @@ export type Wrappers = z.infer<typeof Wrappers>;
 
 export const items = { loop, freeze, animation, motion_blur };
 
-export const WrappersComponent = ({ children, id }: { children: ReactNode; id: string }) => {
-  const wrappers = useComponent((c) => c.wrappers, id);
+const Wrap = ({ allWrappers, id, children }: { allWrappers: WrapperName[]; id: string; children: ReactNode }) => {
+  const w = allWrappers[0];
+  const props = useComponent((c) => c.wrappers[w], id);
+  if (allWrappers.length === 0) return <>{children}</>;
+  if (!props) return <Wrap allWrappers={allWrappers.slice(1)} id={id} children={children} />;
+
+  const Wrapper = items[w].wrapper;
+
   return (
-    <>
-      {WrapperName.options.map((w) => {
-        const Wrapper = items[w].wrapper;
-        return (
-          <Wrapper {...(wrappers[w] as any)} type={w}>
-            {children}
-          </Wrapper>
-        );
-      })}
-    </>
+    <Wrapper {...(props as any)}>
+      <Wrap allWrappers={allWrappers.slice(1)} id={id} children={children} />
+    </Wrapper>
+  );
+};
+
+export const WrappersComponent = ({ children, id }: { children: ReactNode; id: string }) => {
+  const allWrappers = WrapperName.options;
+  return (
+    <Wrap allWrappers={allWrappers || []} id={id}>
+      {children}
+    </Wrap>
   );
 };
