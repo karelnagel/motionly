@@ -3,11 +3,11 @@ import { DefineInput, getColspan } from ".";
 
 export const text: DefineInput<string> = {
   zod: z.string(),
-  component: ({ props: { label, colspan }, value, onChange }) => {
+  component: ({ props: { label, colspan, def = "" }, value, onChange }) => {
     return (
       <div className="form" style={getColspan(colspan)}>
         <label>{label}</label>
-        <input type="text" value={value} onChange={(e) => onChange(e.target.value)} />
+        <input type="text" value={value || def} onChange={(e) => onChange(e.target.value)} />
       </div>
     );
   },

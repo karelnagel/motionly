@@ -23,10 +23,13 @@ export const NoiseProps = z.object({
 export type NoiseProps = z.infer<typeof NoiseProps>;
 export const AnimationType = z.enum(["spring", "interpolate", "noise"]);
 export type AnimationType = z.infer<typeof AnimationType>;
+export const AnimationProp = z.enum(["translateX", "translateY", "scale", "rotate", "opacity", "skewX", "skewY", "perspective", "borderRadius"]);
+export type AnimationProp = z.infer<typeof AnimationProp>;
+
 export const AnimationProps = z
   .object({
     id: z.string(),
-    prop: z.enum(["translateX", "translateY", "scale", "rotate", "opacity", "skewX", "skewY", "perspective", "borderRadius"]),
+    prop: AnimationProp,
     from: z.number().optional(),
     to: z.number().optional(),
     start: z.number().optional(),

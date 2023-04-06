@@ -27,12 +27,11 @@ export const definedWrappers = { loop, freeze, animation, motion_blur };
 
 const Wrap = ({ allWrappers, id, children }: { allWrappers: WrapperName[]; id: string; children: ReactNode }) => {
   const w = allWrappers[0];
-  const props = useComponent((c) => c.wrappers[w], id);
   if (allWrappers.length === 0) return <>{children}</>;
+
+  const props = useComponent((c) => c.wrappers[w], id);
   if (!props) return <Wrap allWrappers={allWrappers.slice(1)} id={id} children={children} />;
-
   const Wrapper = definedWrappers[w].wrapper;
-
   return (
     <Wrapper {...(props as any)}>
       <Wrap allWrappers={allWrappers.slice(1)} id={id} children={children} />

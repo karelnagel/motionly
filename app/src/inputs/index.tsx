@@ -20,15 +20,16 @@ export type InputProps<T> = {
   onChange: (value: T | undefined) => void;
   disabled?: boolean;
 };
-export type DefaultProps = {
+export type DefaultProps<Value> = {
   label: string;
   colspan?: number;
   tooltip?: string;
   placeholder?: string;
+  def?: Value;
 };
 
 export type DefineInput<Value, Props = {}> = {
-  component: React.FC<InputProps<Value | undefined> & { props: Props & DefaultProps }>;
+  component: React.FC<InputProps<Value | undefined> & { props: Props & DefaultProps<Value> }>;
   zod: z.ZodType<Value | undefined> | ((props: Props) => z.ZodType<Value | undefined>);
 };
 

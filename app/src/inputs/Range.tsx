@@ -10,11 +10,11 @@ export const range: DefineInput<
   }
 > = {
   zod: z.number(),
-  component: ({ value, onChange, props: { label, min, max, step, colspan } }) => {
+  component: ({ value, onChange, props: { label, min, max, step, colspan, def = 1 } }) => {
     return (
       <div className="form" style={getColspan(colspan)}>
         <label>{label}</label>
-        <input type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} />
+        <input type="range" min={min} max={max} step={step} value={value || def} onChange={(e) => onChange(Number(e.target.value))} />
       </div>
     );
   },
