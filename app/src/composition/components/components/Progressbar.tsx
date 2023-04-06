@@ -1,10 +1,12 @@
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import { z } from "zod";
-import { Color, ProgressbarTypes } from "../../../inputs";
+import { Color } from "../../../inputs";
 import { Component } from "..";
 import { IoIosTimer } from "react-icons/io";
-import { useComponent, useCompositionStore } from "../../types";
+import { useComponent } from "../../types";
 
+export const ProgressbarTypes = z.enum(["spotify", "line", "circle", "square"]);
+export type ProgressbarTypes = z.infer<typeof ProgressbarTypes>;
 export const ProgressbarProps = z.object({
   type: ProgressbarTypes,
   color: Color.optional(),
@@ -23,7 +25,7 @@ export const progressbar: Component<ProgressbarProps> = {
     color: { color: { label: "Color" } },
     bg: { color: { label: "Background" } },
     topRight: { checkbox: { label: "Top Right" } },
-    type: { select: { label: "Type", options: "progressbar-types" } },
+    type: { select: { label: "Type", zod: ProgressbarTypes } },
   },
   examples: [
     {

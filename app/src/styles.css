@@ -64,11 +64,13 @@
   @apply text-sm whitespace-nowrap overflow-hidden;
 }
 .form > input,
-.form-color > div {
+.form-color > div,
+.form > select {
   @apply col-span-3;
 }
-.form input {
-  @apply !bg-base-100 rounded-md p-1 focus:outline-primary focus:outline w-full;
+.form input,
+.form select {
+  @apply !bg-base-100 rounded-md p-1 focus:outline-primary focus:outline !w-full;
 }
 .form input[type="color"] {
   @apply p-0 h-8 w-8 shrink-0;
@@ -79,7 +81,6 @@
 .form input[type="range"] {
   @apply w-full accent-primary;
 }
-
 #timeline .moveable-control {
   background: rgba(256, 256, 256, 0.3) !important;
   height: 26px !important;

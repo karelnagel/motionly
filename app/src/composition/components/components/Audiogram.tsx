@@ -2,10 +2,11 @@ import { useAudioData, visualizeAudio } from "@remotion/media-utils";
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import { getSrc } from "../../helpers/getSrc";
 import { z } from "zod";
-import { Color, JustifyContent } from "../../../inputs";
+import { Color } from "../../../inputs";
 import { Component } from "..";
 import { BsSoundwave } from "react-icons/bs";
 import { useComponent } from "../../types";
+import { JustifyContent } from "./Text";
 
 export const AudiogramProps = z.object({
   src: z.string().url(),

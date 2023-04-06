@@ -1,10 +1,12 @@
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { z } from "zod";
-import { Color, GraphTypes } from "../../../inputs";
+import { Color } from "../../../inputs";
 import { Component } from "..";
 import { SlGraph } from "react-icons/sl";
 import { useComponent } from "../../types";
 
+export const GraphTypes = z.enum(["line", "bar", "pie"]);
+export type GraphTypes = z.infer<typeof GraphTypes>;
 export const GraphProps = z.object({
   src: z.array(z.number()),
   color: Color.optional(),
@@ -26,7 +28,7 @@ export const graph: Component<GraphProps> = {
   inputs: {
     src: { text: { label: "Source" } },
     color: { color: { label: "Color" } },
-    type: { select: { label: "Type", options: "graph-types" } },
+    type: { select: { label: "Type", zod: GraphTypes } },
     max: { number: { label: "Max" } },
     min: { number: { label: "Min" } },
     animationStart: { number: { label: "Animation Start" } },

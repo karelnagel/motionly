@@ -4,7 +4,7 @@ import { z } from "zod";
 import { DefineWrapper } from "..";
 import { getRandomId } from "../../../helpers";
 import { Inputs } from "../../../inputs";
-import { AnimationProps, InterpolateProps, NoiseProps, SpringProps } from "./types";
+import { AnimationProps, AnimationType, Easing, InterpolateProps, NoiseProps, SpringProps } from "./types";
 import { useAnimation } from "./useAnimation";
 
 const Animation = z.object({
@@ -18,14 +18,14 @@ const spring: Inputs<SpringProps> = {
   mass: { number: { label: "Mass" } },
 };
 const interpolate: Inputs<InterpolateProps> = {
-  easing: { select: { label: "Easing", options: "align" } }, // Todo add easing options
+  easing: { select: { label: "Easing", zod: Easing } }, // Todo add easing options
 };
 const noise: Inputs<NoiseProps> = {
   speed: { number: { label: "Speed" } },
   seed: { number: { label: "Seed", placeholder: "Auto" } },
 };
 const animationProps: Inputs<AnimationProps> = {
-  type: { select: { label: "Type", options: "font-weight", colspan: 2 } },
+  type: { select: { label: "Type", zod: AnimationType, colspan: 2 } },
   start: { number: { label: "Start" } },
   duration: { number: { label: "End" } },
   from: { number: { label: "From" } },
@@ -50,7 +50,7 @@ export const animation: DefineWrapper<Animation> = {
     return (
       <div>
         {value.animations.map((a) => (
-          <EditAnimation value={a} onChange={(v) => onChange({ animations: value.animations.map((a2) => a2) })} />
+          <EditAnimation key={a.id} value={a} onChange={(v) => onChange({ animations: value.animations.map((a2) => a2) })} /> // Todo
         ))}
         <button onClick={() => onChange({ animations: [...value.animations, defaultAnimation] })}>Add</button>
       </div>

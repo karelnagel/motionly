@@ -1,9 +1,9 @@
-import { ObjectFit } from "../../../inputs";
 import { OffthreadVideo, useVideoConfig, Video as RemotionVideo } from "remotion";
 import { z } from "zod";
 import { Component } from "..";
 import { getSrc } from "../../helpers/getSrc";
 import { MdVideoLibrary } from "react-icons/md";
+import { ObjectFit } from "./Image";
 
 export const VideoProps = z.object({
   src: z.string().url().optional(),
@@ -21,7 +21,7 @@ export const video: Component<VideoProps> = {
   hue: 134,
   inputs: {
     src: { text: { label: "Source" } },
-    objectFit: { select: { label: "Object Fit", options: "object-fit" } },
+    objectFit: { select: { label: "Object Fit", zod: ObjectFit } },
   },
   component: ({ src, objectFit, muted, offthread, startFrom, volume }) => {
     const { fps } = useVideoConfig();

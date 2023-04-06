@@ -1,10 +1,10 @@
 import { Gif as RemotionGif, GifFillMode } from "@remotion/gif";
 import { getSrc } from "../../helpers/getSrc";
 import { z } from "zod";
-import { ObjectFit } from "../../../inputs";
 import { Component } from "..";
 import { useState } from "react";
 import { MdGif } from "react-icons/md";
+import { ObjectFit } from "./Image";
 
 const Props = z.object({
   src: z.string().url(),
@@ -18,7 +18,7 @@ export const gif: Component<Props> = {
   hue: 180,
   inputs: {
     src: { text: { label: "Source" } },
-    objectFit: { select: { label: "Object Fit", options: "object-fit" } },
+    objectFit: { select: { label: "Object Fit", zod: ObjectFit } },
   },
   component: ({ src, objectFit }) => {
     useState;

@@ -67,7 +67,6 @@ export const Component = ({ id }: { id: string }) => {
             editComponent({ from }, true, id);
           }}
           onResize={({ width, delta, target, direction }) => {
-            console.log(direction);
             const from = direction[0] === -1 ? comp.from + comp.duration - width / timeline.scale : comp.from;
             let duration = width / timeline.scale;
             if (from + duration > timeline.duration) duration = timeline.duration - from;

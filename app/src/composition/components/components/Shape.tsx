@@ -1,10 +1,14 @@
-import { Color, ShapeTypes, TriangleDirection } from "../../../inputs";
+import { Color } from "../../../inputs";
 import { Rect, Triangle, Circle, Ellipse } from "@remotion/shapes";
 import { z } from "zod";
 import { Component } from "..";
 import { IoShapesOutline } from "react-icons/io5";
 import { useComponent } from "../../types";
 
+export const TriangleDirection = z.enum(["up", "down", "left", "right"]);
+export type TriangleDirection = z.infer<typeof TriangleDirection>;
+export const ShapeTypes = z.enum(["rect", "triangle", "circle", "ellipse"]);
+export type ShapeTypes = z.infer<typeof ShapeTypes>;
 export const ShapeProps = z.object({
   fill: Color.optional(),
   stroke: Color.optional(),
@@ -27,8 +31,8 @@ export const shape: Component<ShapeProps> = {
     fill: { color: { label: "Fill" } },
     stroke: { color: { label: "Stroke" } },
     strokeWidth: { number: { label: "Stroke Width" } },
-    type: { select: { label: "Type", options: "shape-types" } },
-    direction: { select: { label: "Direction", options: "triangle-direction" } },
+    type: { select: { label: "Type", zod: ShapeTypes } },
+    direction: { select: { label: "Direction", zod: TriangleDirection } },
   },
   examples: [
     {

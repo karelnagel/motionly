@@ -12,8 +12,6 @@ import { textarea } from "./Textarea";
 import { video } from "./Video";
 import { text_style } from "./TextStyle";
 import { useMemo } from "react";
-
-export * from "./Select/options";
 export { Color } from "./Color";
 export { TextStyle } from "./TextStyle";
 

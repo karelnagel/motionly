@@ -2,11 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { continueRender, delayRender, useCurrentFrame, useVideoConfig } from "remotion";
 import { useTextStyles } from "../../../helpers/useTextStyles";
 import z from "zod";
-import { TextStyle, TranscriptionAnimationTypes } from "../../../../inputs";
+import { TextStyle } from "../../../../inputs";
 import { Component } from "../..";
 import { MdSubtitles } from "react-icons/md";
 import { useComponent } from "../../../types";
 
+export const TranscriptionAnimationTypes = z.enum(["current-word", "previous-text"]);
+export type TranscriptionAnimationTypes = z.infer<typeof TranscriptionAnimationTypes>;
 export const TranscriptionWord = z.object({
   text: z.string(),
   start: z.number(),
@@ -32,7 +34,7 @@ export const transcription: Component<TranscriptionProps> = {
     src: { text: { label: "Source" } },
     textStyle: { text_style: { label: "Text Style" } },
     animationStyle: { text_style: { label: "Animation Style" } },
-    animationType: { select: { label: "Animation Type", options: "transcription-types" } },
+    animationType: { select: { label: "Animation Type", zod: TranscriptionAnimationTypes } },
     scrollByPage: { checkbox: { label: "Scroll By Page" } },
     startFrom: { number: { label: "Start From" } },
   },

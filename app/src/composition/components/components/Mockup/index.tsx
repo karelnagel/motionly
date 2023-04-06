@@ -8,10 +8,12 @@ import { Samsung } from "./samsung";
 import { Watch } from "./watch";
 import { CSSProperties } from "react";
 import { z } from "zod";
-import { Color, MockupTypes } from "../../../../inputs";
+import { Color } from "../../../../inputs";
 import { Component } from "../..";
 import { IoIosPhonePortrait } from "react-icons/io";
 
+export const MockupTypes = z.enum(["iphone", "samsung", "macbook", "macbook2", "ipad", "watch", "monitor", "iphone14"]);
+export type MockupTypes = z.infer<typeof MockupTypes>;
 export const MockupProps = z.object({
   bg: Color.optional(),
   type: MockupTypes,
@@ -69,7 +71,7 @@ export const mockup: Component<MockupProps> = {
   hue: 300,
   inputs: {
     bg: { color: { label: "Background" } },
-    type: { select: { label: "Type", options: "mockup-types" } },
+    type: { select: { label: "Type", zod: MockupTypes } },
   },
   examples: [
     {

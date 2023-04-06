@@ -1,8 +1,11 @@
-import { JustifyContent, TextStyle } from "../../../inputs";
+import { TextStyle } from "../../../inputs";
 import { z } from "zod";
 import { Component } from "..";
 import { useTextStyles } from "../../helpers/useTextStyles";
 import { IoText } from "react-icons/io5";
+
+export const JustifyContent = z.enum(["start", "center", "end"]);
+export type JustifyContent = z.infer<typeof JustifyContent>;
 
 export const TextProps = z.object({
   textStyle: TextStyle.optional(),
@@ -37,7 +40,7 @@ export const text: Component<TextProps> = {
           textStyle: {
             fontFamily: "Roboto",
             fontSize: 40,
-            fontWeight: "bold",
+            fontWeight: "800",
             textAlign: "center",
             color: "#000000ff",
           },
@@ -49,7 +52,7 @@ export const text: Component<TextProps> = {
   inputs: {
     text: { text: { label: "Text" } },
     textStyle: { text_style: { label: "Text Style" } },
-    justifyContent: { select: { label: "Justify Content", options: "justify" } },
+    justifyContent: { select: { label: "Justify Content", zod: JustifyContent } },
   },
   component: ({ text, textStyle, justifyContent }) => {
     const styles = useTextStyles(textStyle || {});
