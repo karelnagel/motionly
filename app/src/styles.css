@@ -58,19 +58,17 @@
 }
 
 .form {
-  @apply grid grid-cols-4 gap-2 items-center;
+  @apply grid grid-cols-4 gap-2 items-center col-span-4;
 }
 .form label {
   @apply text-sm whitespace-nowrap overflow-hidden;
 }
-.form > input,
-.form-color > div,
-.form > select {
+.form > *:last-child {
   @apply col-span-3;
 }
 .form input,
 .form select {
-  @apply !bg-base-100 rounded-md p-1 focus:outline-primary focus:outline !w-full;
+  @apply !bg-base-100 rounded-md p-1 focus:outline-primary focus:outline w-full;
 }
 .form input[type="color"] {
   @apply p-0 h-8 w-8 shrink-0;
@@ -80,6 +78,9 @@
 }
 .form input[type="range"] {
   @apply w-full accent-primary;
+}
+.form-group {
+  @apply flex flex-col space-y-2;
 }
 #timeline .moveable-control {
   background: rgba(256, 256, 256, 0.3) !important;

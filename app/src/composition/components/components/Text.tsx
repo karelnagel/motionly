@@ -25,7 +25,7 @@ export const text: Component<TextProps> = {
           text: "Regular",
           textStyle: {
             fontFamily: "Roboto",
-            fontSize: 20,
+            fontSize: 130,
             textAlign: "center",
             color: "#000000ff",
           },
@@ -39,7 +39,7 @@ export const text: Component<TextProps> = {
           text: "Title",
           textStyle: {
             fontFamily: "Roboto",
-            fontSize: 40,
+            fontSize: 200,
             fontWeight: "800",
             textAlign: "center",
             color: "#000000ff",
