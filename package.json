@@ -9,7 +9,10 @@
         "landing"
     ],
     "devDependencies": {
-        "turbo": "^1.6.3"
+        "@parcel/packager-ts": "2.8.3",
+        "@parcel/transformer-typescript-types": "2.8.3",
+        "turbo": "^1.6.3",
+        "parcel": "^2.8.3"
     },
     "scripts": {
         "postinstall": "patch-package",

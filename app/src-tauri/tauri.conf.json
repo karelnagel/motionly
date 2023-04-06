@@ -1,7 +1,7 @@
 {
   "build": {
-    "beforeDevCommand": "pnpm fe-dev",
-    "beforeBuildCommand": "pnpm fe-build",
+    "beforeDevCommand": "yarn fe-dev",
+    "beforeBuildCommand": "yarn fe-build",
     "devPath": "http://localhost:1420",
     "distDir": "../dist",
     "withGlobalTauri": false
