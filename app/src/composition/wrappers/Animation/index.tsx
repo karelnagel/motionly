@@ -33,7 +33,7 @@ const animationProps: Inputs<AnimationProps> = {
   from: { number: { label: "From" } },
   to: { number: { label: "To" } },
 };
-const defaultAnimation: AnimationProps = {
+const defaultAnimation = (): AnimationProps => ({
   id: getRandomId(),
   prop: "scale",
   type: "spring",
@@ -41,7 +41,7 @@ const defaultAnimation: AnimationProps = {
   duration: 1,
   from: 0,
   to: 1,
-};
+});
 const getUnits = (prop: AnimationProp) => {
   switch (prop) {
     case "scale":
@@ -96,7 +96,7 @@ export const animation: DefineWrapper<Animation> = {
             }}
           />
         ))}
-        <button onClick={() => onChange({ animations: [...value.animations, defaultAnimation] })}>Add</button>
+        <button onClick={() => onChange({ animations: [...value.animations, defaultAnimation()] })}>Add</button>
       </div>
     );
   },
