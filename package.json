@@ -3,6 +3,11 @@
     "version": "1.0.0",
     "private": true,
     "license": "MIT",
+    "workspaces": [
+        "packages/*",
+        "app",
+        "landing"
+    ],
     "devDependencies": {
         "turbo": "^1.6.3"
     },

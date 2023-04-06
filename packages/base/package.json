@@ -1,0 +1,20 @@
+{
+    "name": "@motionly/base",
+    "version": "0.0.1",
+    "description": "Base package for Motionly",
+    "source": "src/index.ts",
+    "main": "dist/main.js",
+    "module": "dist/module.js",
+    "types": "dist/types.d.ts",
+    "scripts": {
+        "watch": "parcel watch",
+        "build": "parcel build src/index.ts",
+        "check": "tsc --noEmit"
+    },
+    "devDependencies": {
+        "parcel": "^2.8.3"
+    },
+    "dependencies": {
+        "typescript": "^5.0.3"
+    }
+}

@@ -40,3 +40,4 @@ dist/
 .vscode/
 .turbo
 target/
+/.parcel-cache
