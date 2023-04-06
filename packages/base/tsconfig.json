@@ -8,7 +8,6 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
 
     "experimentalDecorators": true,
-    "jsxImportSource": "preact",
     "isolatedModules": true
-  },
+  }
 }
