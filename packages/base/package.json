@@ -1,6 +1,7 @@
 {
     "name": "@motionly/base",
-    "version": "0.0.1",
+    "version": "0.0.3",
+    "private": false,
     "description": "Base package for Motionly",
     "source": "src/index.ts",
     "main": "dist/main.js",

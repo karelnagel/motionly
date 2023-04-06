@@ -11,8 +11,8 @@
     "devDependencies": {
         "@parcel/packager-ts": "2.8.3",
         "@parcel/transformer-typescript-types": "2.8.3",
-        "turbo": "^1.6.3",
-        "parcel": "^2.8.3"
+        "parcel": "^2.8.3",
+        "turbo": "^1.6.3"
     },
     "scripts": {
         "postinstall": "patch-package",
@@ -26,7 +26,7 @@
         "format": "prettier --write \"**/*.{js,ts,tsx}\" && eslint --fix \"**/*.{js,ts,tsx}\""
     },
     "dependencies": {
-        "@changesets/cli": "^2.26.0",
+        "@changesets/cli": "^2.26.1",
         "@typescript-eslint/eslint-plugin": "^5.47.2-alpha.0",
         "@typescript-eslint/parser": "^5.47.2-alpha.0",
         "eslint": "^8.30.0",
