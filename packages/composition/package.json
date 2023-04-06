@@ -1,0 +1,16 @@
+{
+    "name": "@motionly/composition",
+    "version": "0.0.1",
+    "description": "Base package for Motionly",
+    "source": "src/index.ts",
+    "main": "dist/main.js",
+    "module": "dist/module.js",
+    "types": "dist/types.d.ts",
+    "scripts": {
+        "dev": "parcel watch",
+        "build": "parcel build"
+    },
+    "devDependencies": {
+        "typescript": "^5.0.3"
+    }
+}
