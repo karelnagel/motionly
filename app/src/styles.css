@@ -58,7 +58,7 @@
 }
 
 .form {
-  @apply grid grid-cols-4 gap-2 items-center col-span-2;
+  @apply grid grid-cols-4 gap-2 items-center;
 }
 .form label {
   @apply text-sm whitespace-nowrap overflow-hidden;

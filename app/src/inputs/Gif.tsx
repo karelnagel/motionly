@@ -1,11 +1,11 @@
 import { z } from "zod";
-import { DefineInput } from ".";
+import { DefineInput, getColspan } from ".";
 
 export const gif: DefineInput<string> = {
   zod: z.string().url(),
-  component: ({ disabled, value, onChange, props: { placeholder, label, tooltip } }) => {
+  component: ({ disabled, value, onChange, props: { placeholder, label, tooltip,colspan } }) => {
     return (
-      <div className="form">
+      <div className="form"  style={getColspan(colspan)}>
         <label>{label}</label>
         <input
           disabled={disabled}

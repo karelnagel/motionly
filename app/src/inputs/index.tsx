@@ -64,14 +64,14 @@ export function Input<T>({ props, value, onChange }: { props: Input; value: T; o
   const Component = inputs[entry[0] as keys].component;
   return <Component onChange={onChange as any} value={value as any} props={entry[1] as any} />;
 }
-export const getColspan = (span: number = 2) => ({ gridColumn: `span ${span} / span ${span}` });
+export const getColspan = (span: number = 1) => ({ gridColumn: `span ${span} / span ${span}` });
 
 export type Inputs<T> = { [key in keyof T]?: Input };
 
-export function Inputs<T>({ inputs, value, onChange }: { inputs: Inputs<T>; value: T; onChange: (v: Partial<T>) => void }) {
+export function Inputs<T>({ inputs, value, onChange, cols = 1 }: { inputs: Inputs<T>; value: T; onChange: (v: Partial<T>) => void; cols?: number }) {
   const entries = useMemo(() => Object.entries(inputs) as [keyof T, Input][], [inputs]);
   return (
-    <div className="grid grid-cols-2 gap-2">
+    <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
       {entries.map(([key, input]) => {
         return <Input key={String(key)} value={value[key as keyof T]} onChange={(value) => onChange({ [key]: value } as any)} props={input} />;
       })}

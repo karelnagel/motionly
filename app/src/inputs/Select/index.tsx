@@ -1,11 +1,12 @@
-import { DefineInput } from "..";
+import { DefineInput, getColspan } from "..";
 import { SelectOptions } from "./options";
 
+// Todo fix this and also rethink options
 export const select: DefineInput<boolean, { options: keyof typeof SelectOptions }> = {
   zod: ({ options }) => SelectOptions[options] as any,
-  component: ({ disabled, value, onChange, props: { placeholder, label, tooltip } }) => {
+  component: ({ disabled, value, onChange, props: { placeholder, label, tooltip, colspan } }) => {
     return (
-      <div className="form">
+      <div className="form" style={getColspan(colspan)}>
         <label>{label}</label>
         <input
           disabled={disabled}

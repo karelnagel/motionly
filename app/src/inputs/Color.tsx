@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { DefineInput } from ".";
+import { DefineInput, getColspan } from ".";
 
 const percentToHex = (p: number) => {
   const intValue = Math.round((p / 100) * 255); // map percent to nearest integer (0 - 255)
@@ -18,11 +18,11 @@ export const Color = z.string().startsWith("#").max(9);
 
 export const color: DefineInput<string> = {
   zod: Color,
-  component: ({ disabled, value, onChange, props: { label } }) => {
+  component: ({ disabled, value, onChange, props: { label, colspan } }) => {
     const color = value?.slice(0, 7);
     const alpha = value?.slice(7) || "FF";
     return (
-      <div className="form form-color" style={{ borderColor: value }}>
+      <div className="form form-color" style={{ borderColor: value, ...getColspan(colspan) }}>
         <label>{label}</label>
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%" }}>
           <input type="color" value={color || ""} disabled={disabled} onChange={(e) => onChange(e.target.value + alpha)} />

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { DefineInput, TextAlign } from ".";
+import { DefineInput, getColspan, TextAlign } from ".";
 import { Color } from "./Color";
 
 export const TextStyle = z.object({
@@ -17,9 +17,9 @@ export type TextStyle = z.infer<typeof TextStyle>;
 
 export const text_style: DefineInput<TextStyle> = {
   zod: TextStyle,
-  component: ({ props: { label }, value, onChange }) => {
+  component: ({ props: { label, colspan }, value, onChange }) => {
     return (
-      <div className="form">
+      <div className="form" style={getColspan(colspan)}>
         <label>{label}</label>
         <div></div>
       </div>
