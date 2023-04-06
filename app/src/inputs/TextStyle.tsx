@@ -1,10 +1,9 @@
 import { z } from "zod";
 import { DefineInput, getColspan, Inputs } from ".";
+import { fonts } from "../composition/fonts";
 import { Color } from "./Color";
-
 export const TextAlign = z.enum(["left", "center", "right"]);
 export type TextAlign = z.infer<typeof TextAlign>;
-
 export const FontWeight = z.enum(["100", "200", "300", "400", "500", "600", "700", "800", "900"]);
 export type FontWeight = z.infer<typeof FontWeight>;
 export const TextStyle = z.object({
@@ -21,7 +20,7 @@ export const TextStyle = z.object({
 export type TextStyle = z.infer<typeof TextStyle>;
 
 export const inputs: Inputs<TextStyle> = {
-  fontFamily: { text: { label: "Font Family" } },
+  fontFamily: { select: { label: "Font Family", options: fonts } },
   fontSize: { number: { label: "Font Size", placeholder: "Font Size" } },
   fontWeight: { select: { label: "Font Weight", placeholder: "Font Weight", zod: FontWeight } },
   lineHeight: { number: { label: "Line Height", placeholder: "Line Height" } },

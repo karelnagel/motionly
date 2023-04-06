@@ -26,19 +26,24 @@ export type PlayerProps = PlayerControls & {
   selectedRef?: React.RefObject<HTMLDivElement>;
 };
 
+import { LoadFonts } from "../composition/LoadFonts";
+
 export const Player = forwardRef<PlayerRef, PlayerProps>(
   ({ template, loading, setComponent = () => undefined, component, selectedRef, ...props }, ref) => {
     return (
-      <RemotionPlayer
-        ref={ref}
-        component={Composition}
-        fps={template.fps}
-        durationInFrames={Math.ceil((template.duration || 1) * template.fps)}
-        inputProps={{ component, setComponent, template }}
-        compositionHeight={template.height}
-        compositionWidth={template.width}
-        {...props}
-      />
+      <>
+        <LoadFonts template={template} />
+        <RemotionPlayer
+          ref={ref}
+          component={Composition}
+          fps={template.fps}
+          durationInFrames={Math.ceil((template.duration || 1) * template.fps)}
+          inputProps={{ component, setComponent, template }}
+          compositionHeight={template.height}
+          compositionWidth={template.width}
+          {...props}
+        />
+      </>
     );
   }
 );
