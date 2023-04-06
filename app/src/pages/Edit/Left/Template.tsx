@@ -1,7 +1,7 @@
 import { Left } from ".";
 import { IoIosSettings } from "react-icons/io";
 import { useTemplateStore, useTemplate } from "../../../store";
-import { Inputs } from "../../../inputs";
+import { Inputs } from "@motionly/inputs";
 import { Template } from "../../../composition";
 
 const templateInputs: Inputs<Template> = {

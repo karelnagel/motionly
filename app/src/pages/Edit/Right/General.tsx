@@ -1,6 +1,6 @@
 import { Right } from ".";
 import { IoIosSettings } from "react-icons/io";
-import { Inputs } from "../../../inputs";
+import { Inputs } from "@motionly/inputs";
 import { Comp } from "../../../composition";
 import { useComponent, useTemplateStore } from "../../../store";
 

@@ -1,4 +1,4 @@
-import { TextStyle } from "../../../inputs";
+import { TextStyle } from "@motionly/inputs";
 import { z } from "zod";
 import { Component } from "..";
 import { useTextStyles } from "../../helpers/useTextStyles";

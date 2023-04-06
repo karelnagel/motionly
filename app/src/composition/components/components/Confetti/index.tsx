@@ -1,4 +1,4 @@
-import { Color } from "../../../../inputs";
+import { Color } from "@motionly/inputs";
 import { z } from "zod";
 import { Component } from "../..";
 import Confetti from "./src";

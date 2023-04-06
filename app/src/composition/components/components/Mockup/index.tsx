@@ -8,7 +8,7 @@ import { Samsung } from "./samsung";
 import { Watch } from "./watch";
 import { CSSProperties } from "react";
 import { z } from "zod";
-import { Color } from "../../../../inputs";
+import { Color } from "@motionly/inputs";
 import { Component } from "../..";
 import { IoIosPhonePortrait } from "react-icons/io";
 

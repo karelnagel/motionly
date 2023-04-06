@@ -3,7 +3,7 @@ import { MdOutlineAutoAwesomeMotion } from "react-icons/md";
 import { useVideoConfig } from "remotion";
 import { z } from "zod";
 import { DefineWrapper } from ".";
-import { Inputs } from "../../inputs";
+import { Inputs } from "@motionly/inputs";
 
 export const MotionBlur = z.object({
   type: z.literal("motion_blur"),

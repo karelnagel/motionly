@@ -1669,7 +1669,7 @@
   dependencies:
     remotion "3.3.82"
 
-"@remotion/google-fonts@3.3.82":
+"@remotion/google-fonts@3.3.82", "@remotion/google-fonts@^3.3.82":
   version "3.3.82"
   resolved "https://registry.yarnpkg.com/@remotion/google-fonts/-/google-fonts-3.3.82.tgz#cbc7798ae670641268bf74db90ee498aca8f375f"
   integrity sha512-WN6QAqy/e/z2d+LljhIusDzFIiKpDCzVsNpElqoOGloUV52wnAAdg2OMnEjSKz9QWJxoyHXFBvD+Y7L+q1k7/A==

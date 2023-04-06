@@ -2,7 +2,7 @@ import { useAudioData, visualizeAudio } from "@remotion/media-utils";
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import { getSrc } from "../../helpers/getSrc";
 import { z } from "zod";
-import { Color } from "../../../inputs";
+import { Color } from "@motionly/inputs";
 import { Component } from "..";
 import { BsSoundwave } from "react-icons/bs";
 import { useComponent } from "../../types";

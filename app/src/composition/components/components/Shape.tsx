@@ -1,4 +1,4 @@
-import { Color } from "../../../inputs";
+import { Color } from "@motionly/inputs";
 import { Rect, Triangle, Circle, Ellipse } from "@remotion/shapes";
 import { z } from "zod";
 import { Component } from "..";

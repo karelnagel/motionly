@@ -1,6 +1,6 @@
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import { z } from "zod";
-import { Color } from "../../../inputs";
+import { Color } from "@motionly/inputs";
 import { Component } from "..";
 import { IoIosTimer } from "react-icons/io";
 import { useComponent } from "../../types";

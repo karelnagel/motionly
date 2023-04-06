@@ -3,13 +3,18 @@
     "version": "0.0.3",
     "private": false,
     "description": "Base package for Motionly",
-    "source": "src/index.ts",
+    "source": "src/index.tsx",
     "main": "dist/main.js",
     "module": "dist/module.js",
     "types": "dist/types.d.ts",
     "scripts": {
         "dev": "parcel watch",
         "build": "parcel build"
+    },
+    "dependencies": {
+        "@motionly/base": "*",
+        "react": "^18.2.0",
+        "zod": "^3.21.4"
     },
     "devDependencies": {
         "typescript": "^5.0.3"

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { getColspan, DefineInput } from ".";
+import { getColspan, DefineInput } from "..";
 
 export const number: DefineInput<number> = {
   zod: z.number(),

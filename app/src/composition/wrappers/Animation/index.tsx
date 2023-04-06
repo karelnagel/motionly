@@ -4,7 +4,7 @@ import { MdAnimation } from "react-icons/md";
 import { z } from "zod";
 import { DefineWrapper } from "..";
 import { getRandomId } from "../../../helpers";
-import { Inputs } from "../../../inputs";
+import { Inputs } from "@motionly/inputs";
 import { AnimationProp, AnimationProps, AnimationType, Easing, InterpolateProps, NoiseProps, SpringProps } from "./types";
 import { useAnimation } from "./useAnimation";
 

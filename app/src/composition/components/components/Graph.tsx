@@ -1,6 +1,6 @@
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { z } from "zod";
-import { Color } from "../../../inputs";
+import { Color } from "@motionly/inputs";
 import { Component } from "..";
 import { SlGraph } from "react-icons/sl";
 import { useComponent } from "../../types";

@@ -1,6 +1,6 @@
 import { evolvePath } from "@remotion/paths";
 import { z } from "zod";
-import { Color } from "../../../inputs";
+import { Color } from "@motionly/inputs";
 import { Component } from "..";
 import { IoIosBrush } from "react-icons/io";
 

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { getColspan, DefineInput } from ".";
+import { getColspan, DefineInput } from "..";
 
 export const checkbox: DefineInput<boolean> = {
   zod: z.boolean(),

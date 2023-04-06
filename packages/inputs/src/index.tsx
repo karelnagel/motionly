@@ -1,19 +1,19 @@
 import { z } from "zod";
-import { number } from "./Number";
-import { range } from "./Range";
-import { text } from "./Text";
-import { checkbox } from "./Checkbox";
-import { color } from "./Color";
-import { gif } from "./Gif";
-import { image } from "./Image";
-import { json } from "./Json";
-import { select } from "./Select";
-import { textarea } from "./Textarea";
-import { video } from "./Video";
-import { text_style } from "./TextStyle";
+import { number } from "./inputs/Number";
+import { range } from "./inputs/Range";
+import { text } from "./inputs/Text";
+import { checkbox } from "./inputs/Checkbox";
+import { color } from "./inputs/Color";
+import { gif } from "./inputs/Gif";
+import { image } from "./inputs/Image";
+import { json } from "./inputs/Json";
+import { select } from "./inputs/Select";
+import { textarea } from "./inputs/Textarea";
+import { video } from "./inputs/Video";
+import { text_style } from "./inputs/TextStyle";
 import { useMemo } from "react";
-export { Color } from "./Color";
-export { TextStyle } from "./TextStyle";
+export { Color } from "./inputs/Color";
+export { TextStyle } from "./inputs/TextStyle";
 
 export type InputProps<T> = {
   value: T | undefined;

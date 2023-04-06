@@ -15,7 +15,7 @@ import { shape } from "./components/Shape";
 import { text } from "./components/Text";
 import { video } from "./components/Video";
 import { z } from "zod";
-import { Input } from "../../inputs";
+import { Input } from "@motionly/inputs";
 import { Comp } from "../types";
 
 export type Component<T> = {

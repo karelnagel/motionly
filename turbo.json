@@ -9,7 +9,20 @@
                 "dist/**"
             ]
         },
+        "tauri-build": {
+            "dependsOn": [
+                "^build"
+            ],
+            "outputs": [
+                "release/**"
+            ]
+        },
         "dev": {
+            "dependsOn": [
+                "^dev"
+            ]
+        },
+        "tauri-dev": {
             "dependsOn": [
                 "^build"
             ]

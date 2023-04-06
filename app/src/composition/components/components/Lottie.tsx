@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { continueRender, delayRender } from "remotion";
 import { getSrc } from "../../helpers/getSrc";
 import { z } from "zod";
-import { Color } from "../../../inputs";
+import { Color } from "@motionly/inputs";
 import { Component } from "..";
 import { MdOutlineMotionPhotosOn } from "react-icons/md";
 

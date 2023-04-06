@@ -4,11 +4,11 @@
   "version": "0.0.6",
   "type": "module",
   "scripts": {
-    "fe-dev": "vite",
-    "fe-build": "tsc && vite build",
+    "dev": "vite",
+    "build": "tsc && vite build",
     "preview": "vite preview",
-    "dev": "tauri dev",
-    "build": "tauri build",
+    "tauri-dev": "tauri dev",
+    "tauri-build": "tauri build",
     "tauri": "tauri"
   },
   "dependencies": {

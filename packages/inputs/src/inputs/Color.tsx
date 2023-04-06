@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { DefineInput, getColspan } from ".";
+import { DefineInput, getColspan } from "..";
 
 const percentToHex = (p: number) => {
   const intValue = Math.round((p / 100) * 255); // map percent to nearest integer (0 - 255)

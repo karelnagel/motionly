@@ -4,7 +4,7 @@ import { continueRender, delayRender } from "remotion";
 import { getSrc } from "../../helpers/getSrc";
 import { z } from "zod";
 import { Component } from "..";
-import { Color } from "../../../inputs";
+import { Color } from "@motionly/inputs";
 import { IoIosMap } from "react-icons/io";
 
 export const MapProps = z.object({

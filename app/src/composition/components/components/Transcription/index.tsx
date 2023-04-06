@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { continueRender, delayRender, useCurrentFrame, useVideoConfig } from "remotion";
 import { useTextStyles } from "../../../helpers/useTextStyles";
 import z from "zod";
-import { TextStyle } from "../../../../inputs";
+import { TextStyle } from "@motionly/inputs";
 import { Component } from "../..";
 import { MdSubtitles } from "react-icons/md";
 import { useComponent } from "../../../types";

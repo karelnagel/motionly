@@ -2,7 +2,7 @@ import { GiFrozenOrb } from "react-icons/gi";
 import { Freeze as RemotionFreeze, useVideoConfig } from "remotion";
 import { z } from "zod";
 import { DefineWrapper } from ".";
-import { Inputs } from "../../inputs";
+import { Inputs } from "@motionly/inputs";
 
 export const Freeze = z.object({
   type: z.literal("freeze"),

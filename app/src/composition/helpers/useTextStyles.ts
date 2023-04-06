@@ -1,4 +1,4 @@
-import { TextStyle } from "../../inputs";
+import { TextStyle } from "@motionly/inputs";
 import { CSSProperties } from "react";
 import { useMemo } from "react";
 

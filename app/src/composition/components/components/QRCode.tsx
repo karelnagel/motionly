@@ -1,6 +1,6 @@
 import ReactQRCode from "react-qr-code";
 import { z } from "zod";
-import { Color } from "../../../inputs";
+import { Color } from "@motionly/inputs";
 import { Component } from "..";
 import { IoQrCodeOutline } from "react-icons/io5";
 
