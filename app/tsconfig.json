@@ -16,6 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"],
+  "include": ["src", "../packages/composition/src/wrappers", "../packages/composition/src/helpers"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

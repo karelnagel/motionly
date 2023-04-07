@@ -1,6 +1,6 @@
 import { Right } from ".";
 import { useComponent, useTemplateStore } from "../../../store";
-import { components } from "../../../composition";
+import { components } from "@motionly/composition";
 import { Inputs } from "@motionly/inputs";
 import { capitalize } from "../../../helpers";
 

@@ -1,6 +1,6 @@
 import { Left } from ".";
 import { useTemplateStore } from "../../../store";
-import { Comp, components } from "../../../composition";
+import { Comp, components } from "@motionly/composition";
 import { IoShapesSharp } from "react-icons/io5";
 
 const def: Comp = {

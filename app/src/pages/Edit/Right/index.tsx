@@ -3,7 +3,7 @@ import { IoIosInformation } from "react-icons/io";
 import { z } from "zod";
 import { Panel } from "../../../components/Panel";
 import { Tab, Tabs } from "../../../components/Tabs";
-import { definedWrappers, WrapperName } from "../../../composition/wrappers";
+import { definedWrappers, WrapperName } from "../../../../../packages/composition/src/wrappers";
 import { useComponent, useRightStore, useTemplateStore } from "../../../store";
 import { component } from "./Component";
 import { general } from "./General";

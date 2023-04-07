@@ -1,4 +1,4 @@
-import { Comp, components } from "../../../composition";
+import { Comp, components } from "@motionly/composition";
 import { useEffect, useRef, useState } from "react";
 import Moveable from "react-moveable";
 import { capitalize } from "../../../helpers";

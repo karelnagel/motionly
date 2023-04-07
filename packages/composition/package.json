@@ -11,6 +11,30 @@
         "dev": "parcel watch",
         "build": "parcel build"
     },
+    "dependencies": {
+        "@motionly/base": "*",
+        "@motionly/inputs": "*",
+        "react": "^18.2.0",
+        "remotion": "3.3.82",
+        "zod": "^3.21.4",
+        "@remotion/cli": "3.3.82",
+        "@remotion/gif": "3.3.82",
+        "@remotion/lottie": "3.3.82",
+        "@remotion/media-utils": "3.3.82",
+        "@remotion/google-fonts": "3.3.82",
+        "@remotion/motion-blur": "3.3.82",
+        "@remotion/noise": "3.3.82",
+        "@remotion/paths": "3.3.82",
+        "@remotion/player": "3.3.82",
+        "@remotion/shapes": "3.3.82",
+        "lottie-web": "^5.10.0",
+        "prop-types": "^15.8.1",
+        "react-dom": "^18.2.0",
+        "react-icons": "^4.6.0",
+        "react-qr-code": "^2.0.10",
+        "react-simple-maps": "^3.0.0",
+        "zustand": "^4.3.2"
+    },
     "devDependencies": {
         "typescript": "^5.0.3"
     }

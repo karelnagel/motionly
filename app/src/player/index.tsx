@@ -1,7 +1,7 @@
 import { Player as RemotionPlayer, PlayerRef } from "@remotion/player";
 import { forwardRef } from "react";
 import { CSSProperties, ReactNode } from "react";
-import { Template, Composition } from "../composition";
+import { Template, Composition, LoadFonts } from "@motionly/composition";
 
 export type PlayerControls = {
   allowFullscreen?: boolean;
@@ -25,8 +25,6 @@ export type PlayerProps = PlayerControls & {
   component?: string;
   selectedRef?: React.RefObject<HTMLDivElement>;
 };
-
-import { LoadFonts } from "../composition/LoadFonts";
 
 export const Player = forwardRef<PlayerRef, PlayerProps>(
   ({ template, loading, setComponent = () => undefined, component, selectedRef, ...props }, ref) => {

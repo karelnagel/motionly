@@ -2,7 +2,7 @@ import { Left } from ".";
 import { IoIosSettings } from "react-icons/io";
 import { useTemplateStore, useTemplate } from "../../../store";
 import { Inputs } from "@motionly/inputs";
-import { Template } from "../../../composition";
+import { Template } from "@motionly/composition";
 
 const templateInputs: Inputs<Template> = {
   width: { number: { label: "Width" } },

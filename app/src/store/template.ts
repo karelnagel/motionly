@@ -1,12 +1,12 @@
 import { getRandomId } from "../helpers";
 import { storeBase } from ".";
-import { Comp, CompPartial } from "../composition";
-import { Template } from "../composition";
+import { Comp, CompPartial } from "@motionly/composition";
+import { Template } from "@motionly/composition";
 import { toast } from "sonner";
 import { Page } from "../enums";
 import { z } from "zod";
 import { useCallback } from "react";
-import { Wrapper } from "../composition/wrappers";
+import { Wrapper } from "../../../packages/composition/src/wrappers";
 
 export const defaultTemplate: Template = {
   allComponents: [],
