@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { DefineInput, getColspan } from "..";
-import { capitalize } from "@motionly/base";
+import { capitalize } from "@motionly/core";
 
 type Option = { value: string; label?: string };
 export const select: DefineInput<string, { zod?: z.ZodEnum<[string, ...string[]]>; options?: Option[] }> = {

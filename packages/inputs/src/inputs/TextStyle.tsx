@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { DefineInput, getColspan, Inputs } from "..";
-import { fonts } from "@motionly/base";
+import { fonts } from "@motionly/core";
 import { Color } from "./Color";
 export const TextAlign = z.enum(["left", "center", "right"]);
 export type TextAlign = z.infer<typeof TextAlign>;

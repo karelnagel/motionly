@@ -12,7 +12,7 @@
         "build": "parcel build"
     },
     "dependencies": {
-        "@motionly/base": "*",
+        "@motionly/core": "*",
         "@motionly/inputs": "*",
         "react": "^18.2.0",
         "remotion": "3.3.82",

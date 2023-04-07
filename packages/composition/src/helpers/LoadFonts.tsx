@@ -1,4 +1,4 @@
-import { fonts } from "@motionly/base";
+import { fonts } from "@motionly/core";
 import { useEffect } from "react";
 import { Template } from "../types";
 

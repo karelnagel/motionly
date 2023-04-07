@@ -1,5 +1,5 @@
 {
-    "name": "@motionly/base",
+    "name": "@motionly/core",
     "version": "0.0.3",
     "private": false,
     "description": "Base package for Motionly",

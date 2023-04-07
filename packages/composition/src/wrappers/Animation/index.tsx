@@ -6,7 +6,7 @@ import { DefineWrapper } from "..";
 import { Inputs } from "@motionly/inputs";
 import { AnimationProp, AnimationProps, AnimationType, Easing, InterpolateProps, NoiseProps, SpringProps } from "./types";
 import { useAnimation } from "./useAnimation";
-import { getRandomId } from "@motionly/base";
+import { getRandomId } from "@motionly/core";
 
 const Animation = z.object({
   type: z.literal("animation"),
