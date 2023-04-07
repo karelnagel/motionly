@@ -9,16 +9,19 @@ const getFonts = (json: string) => {
     .filter((f) => f);
 };
 
+const loadFont = async (font: string) => {
+  try {
+    const fontToLoad = fonts.find((f) => f.value === font);
+    if (!fontToLoad) return console.log(`Font ${font} not found`);
+    const module = await fontToLoad.load();
+    (module.loadFont as any)();
+  } catch (e) {
+    console.log(`Failed loading ${font}`);
+  }
+};
+
 export const LoadFonts = ({ template }: { template: Template }) => {
   const fontFamilies = getFonts(JSON.stringify(template.components));
-  useEffect(() => {
-    if (!fontFamilies) return;
-    for (const font of fontFamilies) {
-      fonts
-        .find((f) => f.value === font)
-        ?.load()
-        .then((f) => (f.loadFont as any)());
-    }
-  }, [fontFamilies]);
+  useEffect(() => fontFamilies?.forEach(loadFont), [fontFamilies]);
   return null;
 };

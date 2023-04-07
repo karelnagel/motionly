@@ -2,7 +2,7 @@
     "name": "@motionly/inputs",
     "version": "0.0.3",
     "private": false,
-    "description": "Base package for Motionly",
+    "description": "Motionly inputs",
     "source": "src/index.tsx",
     "main": "dist/main.js",
     "module": "dist/module.js",

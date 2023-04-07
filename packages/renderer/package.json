@@ -2,7 +2,7 @@
     "name": "@motionly/renderer",
     "version": "0.0.3",
     "private": false,
-    "description": "Base package for Motionly",
+    "description": "Motionly Renderer",
     "source": "src/index.ts",
     "main": "dist/main.js",
     "module": "dist/module.js",

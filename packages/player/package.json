@@ -2,7 +2,7 @@
     "name": "@motionly/player",
     "version": "0.0.3",
     "private": false,
-    "description": "Base package for Motionly",
+    "description": "Motionly Player",
     "source": "src/index.tsx",
     "main": "dist/main.js",
     "module": "dist/module.js",
