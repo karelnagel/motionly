@@ -9,7 +9,9 @@
     "types": "dist/types.d.ts",
     "scripts": {
         "dev": "parcel watch",
-        "build": "parcel build"
+        "build": "parcel build",
+        "preview": "remotion preview src/register.ts",
+        "render": "remotion render src/register.ts"
     },
     "dependencies": {
         "@motionly/core": "*",
