@@ -25,7 +25,6 @@
         "@remotion/motion-blur": "3.3.82",
         "@remotion/noise": "3.3.82",
         "@remotion/paths": "3.3.82",
-        "@remotion/player": "3.3.82",
         "@remotion/shapes": "3.3.82",
         "lottie-web": "^5.10.0",
         "prop-types": "^15.8.1",

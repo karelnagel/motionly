@@ -2,6 +2,7 @@ import { Player as RemotionPlayer, PlayerRef } from "@remotion/player";
 import { forwardRef } from "react";
 import { CSSProperties, ReactNode } from "react";
 import { Template, Composition, LoadFonts } from "@motionly/composition";
+export { type PlayerRef } from "@remotion/player";
 
 export type PlayerControls = {
   allowFullscreen?: boolean;

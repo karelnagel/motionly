@@ -1,4 +1,4 @@
-import { PlayerRef } from "@remotion/player";
+import { PlayerRef } from "@motionly/player";
 import { z } from "zod";
 import { storeBase } from ".";
 
