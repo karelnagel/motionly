@@ -9,9 +9,19 @@
     "types": "dist/types.d.ts",
     "scripts": {
         "dev": "parcel watch",
-        "build": "parcel build"
+        "build": "yarn bundle; parcel build; yarn copy-bundle",
+        "bundle": "ts-node ./src/bundle.ts",
+        "copy-bundle": "cp -r ./bundle ./dist/bundle"
     },
     "devDependencies": {
+        "@remotion/bundler": "3.3.82",
+        "ts-node": "^10.9.1",
         "typescript": "^5.0.3"
+    },
+    "dependencies": {
+        "@motionly/composition": "*",
+        "@remotion/renderer": "3.3.82",
+        "react": "17.0.2",
+        "remotion": "3.3.82"
     }
 }
